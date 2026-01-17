@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
 
   const handleNavigate = (target: string) => {
     if (target === 'blog') {
-      window.location.href = '/blog';
+      window.location.href = 'https://blog.blinkad.kr';
     } else if (target === 'services-page') {
       window.location.href = '/services';
     } else if (target === 'case-studies-page') {

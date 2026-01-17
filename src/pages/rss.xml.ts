@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { BLOG_POSTS } from '../constants';
 
-const siteUrl = 'https://blinkad.co.kr';
+const siteUrl = 'https://blog.blinkad.kr';
 
 export const GET: APIRoute = async () => {
   const sortedPosts = [...BLOG_POSTS].sort((a, b) => {
@@ -17,8 +17,8 @@ export const GET: APIRoute = async () => {
     return `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${siteUrl}/blog/${post.id}</link>
-      <guid isPermaLink="true">${siteUrl}/blog/${post.id}</guid>
+      <link>${siteUrl}/${post.id}</link>
+      <guid isPermaLink="true">${siteUrl}/${post.id}</guid>
       <description><![CDATA[${description}]]></description>
       <pubDate>${new Date(dateISO).toUTCString()}</pubDate>
       <category>${post.category}</category>
@@ -33,7 +33,7 @@ export const GET: APIRoute = async () => {
   <channel>
     <title>Blink Ad Blog</title>
     <description>검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지. 프리미엄 SEO 에이전시 블링크애드의 인사이트.</description>
-    <link>${siteUrl}/blog</link>
+    <link>${siteUrl}</link>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml"/>
     <language>ko-KR</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>

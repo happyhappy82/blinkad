@@ -9,7 +9,7 @@ const sortedPosts = [...BLOG_POSTS].sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
-const siteUrl = "https://blinkad.co.kr";
+const siteUrl = "https://blog.blinkad.kr";
 
 // CollectionPage Schema
 const collectionSchema = {
@@ -17,14 +17,14 @@ const collectionSchema = {
   "@type": "CollectionPage",
   "name": "Blink Ad Blog",
   "description": "검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지.",
-  "url": `${siteUrl}/blog`,
+  "url": siteUrl,
   "mainEntity": {
     "@type": "ItemList",
     "numberOfItems": sortedPosts.length,
     "itemListElement": sortedPosts.map((post, index) => ({
       "@type": "ListItem",
       "position": index + 1,
-      "url": `${siteUrl}/blog/${post.id}`,
+      "url": `${siteUrl}/${post.id}`,
       "name": post.title
     }))
   }
@@ -45,7 +45,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       "position": 2,
       "name": "블로그",
-      "item": `${siteUrl}/blog`
+      "item": siteUrl
     }
   ]
 };
@@ -54,7 +54,7 @@ const breadcrumbSchema = {
 <Layout
   title="Blog - Blink Ad"
   description="검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지. 프리미엄 SEO 에이전시 블링크애드의 인사이트."
-  canonical={`${siteUrl}/blog`}
+  canonical={siteUrl}
 >
   <!-- Schema.org -->
   <script type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
@@ -69,7 +69,7 @@ const breadcrumbSchema = {
           <a href="/" class="text-sm text-gray-400 hover:text-white transition-colors">Home</a>
           <a href="/services" class="text-sm text-gray-400 hover:text-white transition-colors">서비스</a>
           <a href="/case-studies" class="text-sm text-gray-400 hover:text-white transition-colors">성공사례</a>
-          <a href="/blog" class="text-sm text-white" aria-current="page">Blog</a>
+          <a href="https://blog.blinkad.kr" class="text-sm text-white" aria-current="page">Blog</a>
         </div>
       </div>
     </nav>
@@ -104,7 +104,7 @@ const breadcrumbSchema = {
           {sortedPosts.map((post) => {
             const dateISO = post.date.replace(/\./g, '-');
             return (
-              <a href={`/blog/${post.id}`} class="group block" role="listitem">
+              <a href={`https://blog.blinkad.kr/${post.id}`} class="group block" role="listitem">
                 <article class="bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 h-full">
                   <div class="aspect-video relative overflow-hidden">
                     <img

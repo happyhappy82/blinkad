@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.blinkad.kr"
+        }
+      ],
+      "destination": "/blog/:path*"
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "blog.blinkad.kr"
+        }
+      ],
+      "destination": "/blog"
+    }
+  ]
+}
