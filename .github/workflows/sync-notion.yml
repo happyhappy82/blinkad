@@ -1,0 +1,54 @@
+name: Sync Notion Blog Posts
+
+on:
+  # 스케줄 실행 (KST 기준 매일 오후 1시, 오후 6시)
+  schedule:
+    - cron: '0 4 * * *'   # UTC 04:00 = KST 13:00
+    - cron: '0 9 * * *'   # UTC 09:00 = KST 18:00
+  # 수동 실행
+  workflow_dispatch:
+  # 웹훅 트리거
+  repository_dispatch:
+    types: [notion-webhook]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync Notion posts
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: node scripts/fetch-notion-posts.js
+
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code src/constants.ts || echo "changes=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.git-check.outputs.changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/constants.ts
+          git commit -m "chore: sync blog posts from Notion [skip ci]"
+          git push
