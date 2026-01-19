@@ -49,8 +49,8 @@ export default function CaseStudiesPage() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-xl font-semibold tracking-tight hover:text-gray-300 transition-colors">
-            Blink Ad
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-8">
             <Link href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</Link>
@@ -128,7 +128,9 @@ export default function CaseStudiesPage() {
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link href="/" className="text-xl font-semibold tracking-tight mb-4 inline-block">Blink Ad</Link>
+          <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+          </Link>
           <p className="text-gray-500 text-sm">Premium SEO Agency</p>
           <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
         </div>

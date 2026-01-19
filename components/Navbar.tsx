@@ -37,9 +37,9 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div
             onClick={() => handleNavigate('home')}
-            className="text-xl font-bold tracking-tight cursor-pointer text-white hover:text-gray-300 transition-colors"
+            className="cursor-pointer hover:opacity-80 transition-opacity"
         >
-          Blink Ad.
+          <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
         </div>
 
         <div className="hidden md:flex space-x-8">

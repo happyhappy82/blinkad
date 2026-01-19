@@ -127,8 +127,8 @@ export default async function BlogPost({ params }: Props) {
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link href="https://blinkad.kr" className="text-xl font-semibold tracking-tight mb-4 inline-block hover:text-gray-300 transition-colors">
-            Blink Ad
+          <Link href="https://blinkad.kr" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
           <p className="text-gray-500 text-sm">Premium SEO Agency</p>
           <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
