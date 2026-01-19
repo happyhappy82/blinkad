@@ -154,9 +154,9 @@ function formatDate(dateStr) {
   return `${year}.${month}.${day}`;
 }
 
-// constants.ts 파일 업데이트
+// constants/index.ts 파일 업데이트
 async function updateConstants(posts) {
-  const constantsPath = path.join(__dirname, '..', 'src', 'constants.ts');
+  const constantsPath = path.join(__dirname, '..', 'constants', 'index.ts');
   let constantsContent = fs.readFileSync(constantsPath, 'utf-8');
 
   // BLOG_POSTS 배열 생성
@@ -173,7 +173,7 @@ async function updateConstants(posts) {
   }
 
   fs.writeFileSync(constantsPath, constantsContent, 'utf-8');
-  console.log(`Updated constants.ts with ${posts.length} posts`);
+  console.log(`Updated constants/index.ts with ${posts.length} posts`);
 }
 
 // 메인 실행
