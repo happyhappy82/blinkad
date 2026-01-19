@@ -12,9 +12,9 @@ const BlogPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
           <Link
             href="https://blinkad.kr"
-            className="text-xl font-bold tracking-tight text-white hover:text-gray-300 transition-colors"
+            className="hover:opacity-80 transition-opacity"
           >
-            Blink Ad.
+            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
 
           <div className="hidden md:flex space-x-8">
