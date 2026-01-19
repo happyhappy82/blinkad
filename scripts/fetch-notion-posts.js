@@ -17,31 +17,127 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
-// 마크다운을 HTML로 변환하는 간단한 함수
+// 마크다운을 HTML로 변환하는 함수
 function markdownToHtml(markdown) {
-  return markdown
-    // 헤딩
-    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-    // 볼드
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // 이탤릭
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    // 링크
-    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
-    // 리스트
-    .replace(/^\s*-\s+(.*$)/gm, '<li>$1</li>')
-    // 줄바꿈
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/\n/g, '<br/>')
-    // 문단 감싸기
-    .replace(/^(.+)$/gm, (match) => {
-      if (match.startsWith('<h') || match.startsWith('<li') || match.startsWith('<p') || match.startsWith('</')) {
-        return match;
-      }
-      return `<p>${match}</p>`;
-    });
+  if (!markdown || typeof markdown !== 'string') {
+    return '';
+  }
+
+  let html = markdown;
+
+  // 코드 블록 임시 보존 (```로 감싸진 부분)
+  const codeBlocks = [];
+  html = html.replace(/```([\s\S]*?)```/g, (match, code) => {
+    codeBlocks.push(`<pre><code>${escapeHtml(code.trim())}</code></pre>`);
+    return `__CODE_BLOCK_${codeBlocks.length - 1}__`;
+  });
+
+  // 인라인 코드 처리
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  // 헤딩 처리 (순서 중요: h3 -> h2 -> h1)
+  html = html.replace(/^######\s+(.+)$/gm, '<h6>$1</h6>');
+  html = html.replace(/^#####\s+(.+)$/gm, '<h5>$1</h5>');
+  html = html.replace(/^####\s+(.+)$/gm, '<h4>$1</h4>');
+  html = html.replace(/^###\s+(.+)$/gm, '<h3>$1</h3>');
+  html = html.replace(/^##\s+(.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^#\s+(.+)$/gm, '<h1>$1</h1>');
+
+  // 수평선
+  html = html.replace(/^---$/gm, '<hr/>');
+  html = html.replace(/^\*\*\*$/gm, '<hr/>');
+
+  // 볼드 & 이탤릭 (순서 중요)
+  html = html.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  html = html.replace(/_(.+?)_/g, '<em>$1</em>');
+
+  // 취소선
+  html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
+
+  // 링크
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+
+  // 이미지
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg my-4"/>');
+
+  // 인용구
+  html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
+
+  // 순서 없는 리스트
+  html = html.replace(/^[\*\-]\s+(.+)$/gm, '<li>$1</li>');
+
+  // 순서 있는 리스트
+  html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>');
+
+  // 연속된 li 태그를 ul로 감싸기
+  html = html.replace(/(<li>.*<\/li>\n?)+/g, (match) => {
+    return `<ul>${match}</ul>`;
+  });
+
+  // 테이블 처리
+  html = html.replace(/\|(.+)\|/g, (match, content) => {
+    const cells = content.split('|').map(cell => cell.trim());
+    if (cells.every(cell => /^[-:]+$/.test(cell))) {
+      return ''; // 구분선 행 제거
+    }
+    const cellTags = cells.map(cell => `<td>${cell}</td>`).join('');
+    return `<tr>${cellTags}</tr>`;
+  });
+
+  // 연속된 tr을 table로 감싸기
+  html = html.replace(/(<tr>.*<\/tr>\n?)+/g, (match) => {
+    return `<table class="w-full border-collapse my-4">${match}</table>`;
+  });
+
+  // 빈 줄로 구분된 문단 처리
+  const paragraphs = html.split(/\n\n+/);
+  html = paragraphs.map(para => {
+    para = para.trim();
+    if (!para) return '';
+
+    // 이미 HTML 태그로 감싸진 경우 그대로 유지
+    if (
+      para.startsWith('<h') ||
+      para.startsWith('<ul') ||
+      para.startsWith('<ol') ||
+      para.startsWith('<li') ||
+      para.startsWith('<blockquote') ||
+      para.startsWith('<pre') ||
+      para.startsWith('<table') ||
+      para.startsWith('<hr') ||
+      para.startsWith('<img') ||
+      para.startsWith('__CODE_BLOCK_')
+    ) {
+      return para;
+    }
+
+    // 줄바꿈을 <br/>로 변환
+    para = para.replace(/\n/g, '<br/>');
+    return `<p>${para}</p>`;
+  }).join('\n');
+
+  // 코드 블록 복원
+  codeBlocks.forEach((block, i) => {
+    html = html.replace(`__CODE_BLOCK_${i}__`, block);
+  });
+
+  // 빈 태그 정리
+  html = html.replace(/<p><\/p>/g, '');
+  html = html.replace(/<p>\s*<\/p>/g, '');
+
+  return html.trim();
+}
+
+// HTML 특수문자 이스케이프
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+  };
+  return text.replace(/[&<>]/g, m => map[m]);
 }
 
 // 노션 데이터베이스에서 게시글 가져오기
@@ -94,9 +190,12 @@ async function fetchNotionPosts() {
       // 페이지 속성 추출
       const properties = page.properties;
 
-      // 제목 추출
+      // 제목 추출 (rich_text 전체 합치기)
       const titleProperty = properties.Title || properties.Name || properties['제목'];
-      const title = titleProperty?.title?.[0]?.plain_text || 'Untitled';
+      const title = (titleProperty?.title || [])
+        .map(t => t.plain_text)
+        .join('')
+        .trim() || 'Untitled';
 
       // 카테고리 추출
       const categoryProperty = properties.Category || properties['카테고리'];
@@ -106,9 +205,12 @@ async function fetchNotionPosts() {
       const dateProperty = properties.Date || properties['날짜'];
       const date = dateProperty?.date?.start || new Date().toISOString().split('T')[0];
 
-      // 요약 추출
+      // 요약 추출 (rich_text 전체 합치기)
       const excerptProperty = properties.Excerpt || properties.Summary || properties['요약'];
-      const excerpt = excerptProperty?.rich_text?.[0]?.plain_text || '';
+      const excerpt = (excerptProperty?.rich_text || [])
+        .map(t => t.plain_text)
+        .join('')
+        .trim();
 
       // 이미지 URL 추출
       const imageProperty = properties.Image || properties.Cover || properties['이미지'];
@@ -125,7 +227,8 @@ async function fetchNotionPosts() {
       // 페이지 컨텐츠를 마크다운으로 변환
       const mdBlocks = await n2m.pageToMarkdown(page.id);
       const mdString = n2m.toMarkdownString(mdBlocks);
-      const content = markdownToHtml(mdString.parent || mdString);
+      const rawContent = typeof mdString === 'string' ? mdString : (mdString.parent || '');
+      const content = markdownToHtml(rawContent);
 
       posts.push({
         id: page.id.replace(/-/g, ''),
