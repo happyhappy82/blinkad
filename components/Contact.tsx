@@ -152,7 +152,7 @@ const Contact: React.FC = () => {
                     name="companyName"
                     value={formData.companyName}
                     onChange={handleChange}
-                    className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 ${errors.companyName ? 'border-red-500' : 'border-white/10'}`}
+                    className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.companyName ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="기업명"
                   />
                   {errors.companyName && <p className="text-red-500 text-xs mt-1">{errors.companyName}</p>}
@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
                     name="contactName"
                     value={formData.contactName}
                     onChange={handleChange}
-                    className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 ${errors.contactName ? 'border-red-500' : 'border-white/10'}`}
+                    className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.contactName ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="홍길동"
                   />
                   {errors.contactName && <p className="text-red-500 text-xs mt-1">{errors.contactName}</p>}
@@ -186,7 +186,7 @@ const Contact: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 ${errors.email ? 'border-red-500' : 'border-white/10'}`}
+                    className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="example@company.com"
                   />
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -201,7 +201,7 @@ const Contact: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 ${errors.phone ? 'border-red-500' : 'border-white/10'}`}
+                    className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="010-1234-5678"
                   />
                   {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
@@ -219,7 +219,7 @@ const Contact: React.FC = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 ${errors.subject ? 'border-red-500' : 'border-white/10'}`}
+                  className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.subject ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder="문의 제목을 입력해 주세요"
                 />
                 {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
@@ -236,7 +236,7 @@ const Contact: React.FC = () => {
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className={`w-full bg-brand-dark border rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-600 resize-none ${errors.message ? 'border-red-500' : 'border-white/10'}`}
+                  className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 resize-none ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
                   placeholder="문의 내용을 자세히 입력해 주세요"
                 />
                 {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
