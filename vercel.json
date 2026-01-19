@@ -1,4 +1,6 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/",
@@ -8,17 +10,17 @@
           "value": "blog.blinkad.kr"
         }
       ],
-      "destination": "/blog"
+      "destination": "/blog/index.html"
     },
     {
-      "source": "/:path+",
+      "source": "/:path*",
       "has": [
         {
           "type": "host",
           "value": "blog.blinkad.kr"
         }
       ],
-      "destination": "/blog/:path+"
+      "destination": "/blog/:path*"
     }
   ]
 }
