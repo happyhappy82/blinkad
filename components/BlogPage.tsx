@@ -3,23 +3,40 @@
 import React from 'react';
 import Link from 'next/link';
 import { BLOG_POSTS } from '@/constants';
-import { ArrowLeft } from 'lucide-react';
 
 const BlogPage: React.FC = () => {
   return (
-    <section className="min-h-screen bg-black pt-28 pb-20">
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div>
+    <div className="min-h-screen bg-black">
+      {/* Navigation - 메인 사이트와 동일 */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
           <Link
-            href="/"
-            className="group flex items-center text-gray-400 hover:text-white transition-colors mb-12"
+            href="https://blinkad.kr"
+            className="text-xl font-bold tracking-tight text-white hover:text-gray-300 transition-colors"
           >
-            <ArrowLeft className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium">홈으로 돌아가기</span>
+            Blink Ad.
           </Link>
 
+          <div className="hidden md:flex space-x-8">
+            <Link href="https://blinkad.kr/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</Link>
+            <Link href="https://blinkad.kr/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</Link>
+            <Link href="/" className="text-sm font-medium text-white transition-colors">블로그</Link>
+            <Link href="https://blinkad.kr/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</Link>
+          </div>
+
+          <Link
+            href="https://blinkad.kr/#contact"
+            className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+          >
+            무료 진단하기
+          </Link>
+        </div>
+      </nav>
+
+      <section className="pt-28 pb-20">
+        <div className="max-w-7xl mx-auto px-6">
+
+          {/* Header */}
           <div className="mb-20">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Insights.</h1>
             <p className="text-xl text-gray-400 max-w-2xl keep-all leading-relaxed">
@@ -27,7 +44,6 @@ const BlogPage: React.FC = () => {
               블링크애드의 전문적인 인사이트를 만나보세요.
             </p>
           </div>
-        </div>
 
         {/* Post Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
@@ -94,8 +110,20 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
 
-      </div>
-    </section>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-12">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <Link href="https://blinkad.kr" className="text-xl font-semibold tracking-tight mb-4 inline-block hover:text-gray-300 transition-colors">
+            Blink Ad
+          </Link>
+          <p className="text-gray-500 text-sm">Premium SEO Agency</p>
+          <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   );
 };
 
