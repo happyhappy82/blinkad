@@ -1,29 +1,29 @@
-import { Search, MapPin, BarChart3 } from 'lucide-react';
+import { Video, MapPin, Globe } from 'lucide-react';
 import type { ServiceItem, CaseStudy, BlogPost, ChartDataPoint } from './types';
 
 export type { ServiceItem, CaseStudy, BlogPost, ChartDataPoint };
 
 // Updated to a standalone glowing filament bulb against a dark background
-export const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=2000&auto=format&fit=crop"; 
+export const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=2000&auto=format&fit=crop";
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'seo',
-    title: '프리미엄 SEO',
-    description: '기술적 정교함과 콘텐츠 권위를 바탕으로 구글 첫 페이지를 선점합니다.',
-    icon: Search,
+    id: 'reels',
+    title: '맛집 릴스 제작대행',
+    description: '바이럴 되는 맛집 릴스 콘텐츠로 인스타그램에서 폭발적인 노출을 만들어냅니다.',
+    icon: Video,
   },
   {
     id: 'maps',
-    title: '지도 최적화 (Local SEO)',
-    description: '지역 검색 결과에서 귀하의 비즈니스가 가장 먼저 선택되도록 만듭니다.',
+    title: '구글맵 상위노출',
+    description: '구글 지도 검색에서 1위를 선점하여 지역 고객의 방문을 극대화합니다.',
     icon: MapPin,
   },
   {
-    id: 'profile',
-    title: '비즈니스 프로필 관리',
-    description: '구글 비즈니스 프로필을 체계적으로 관리하여 디지털 평판을 높입니다.',
-    icon: BarChart3,
+    id: 'website',
+    title: 'SEO 웹사이트 제작',
+    description: '검색 엔진 최적화가 완벽하게 적용된 고성능 웹사이트를 제작합니다.',
+    icon: Globe,
   },
 ];
 

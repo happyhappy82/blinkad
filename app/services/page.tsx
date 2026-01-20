@@ -1,54 +1,54 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Search, MapPin, BarChart3, ArrowLeft, Check } from 'lucide-react'
+import { Video, MapPin, Globe, ArrowLeft, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '서비스 - Blink Ad',
-  description: '블링크애드의 프리미엄 SEO 서비스. 구글 첫 페이지 선점, 지도 최적화, 비즈니스 프로필 관리.',
+  description: '블링크애드의 프리미엄 서비스. 맛집 릴스 제작대행, 구글맵 상위노출, SEO 웹사이트 제작.',
 }
 
 const services = [
   {
-    id: 'seo',
-    title: '프리미엄 SEO',
-    subtitle: '구글 첫 페이지 선점',
-    description: '기술적 정교함과 콘텐츠 권위를 바탕으로 구글 검색 결과 첫 페이지를 선점합니다. 키워드 분석부터 온페이지/오프페이지 최적화까지 체계적인 SEO 전략을 제공합니다.',
+    id: 'reels',
+    title: '맛집 릴스 제작대행',
+    subtitle: '바이럴 콘텐츠 제작',
+    description: '인스타그램에서 폭발적인 반응을 이끌어내는 맛집 릴스 콘텐츠를 기획부터 촬영, 편집까지 원스톱으로 제작해 드립니다. 트렌디한 영상으로 매장 인지도를 높이세요.',
     features: [
-      '심층 키워드 리서치 및 경쟁사 분석',
-      '기술적 SEO 진단 및 최적화',
-      '고품질 콘텐츠 전략 수립',
-      '백링크 프로필 구축',
-      '월간 성과 리포트 제공'
+      '트렌드 분석 기반 콘텐츠 기획',
+      '전문 촬영팀의 현장 촬영',
+      '바이럴 최적화 편집 및 자막',
+      '인스타그램 알고리즘 맞춤 업로드',
+      '성과 분석 리포트 제공'
     ],
-    icon: Search
+    icon: Video
   },
   {
-    id: 'local',
-    title: '지도 최적화 (Local SEO)',
+    id: 'maps',
+    title: '구글맵 상위노출',
     subtitle: '지역 검색 1위',
-    description: '네이버 지도, 구글 지도 검색에서 귀하의 비즈니스가 가장 먼저 노출되도록 최적화합니다. 지역 고객의 방문과 전화 문의를 극대화합니다.',
+    description: '구글 지도 검색에서 귀하의 비즈니스가 가장 먼저 노출되도록 최적화합니다. 지역 고객의 방문과 전화 문의를 극대화하여 실질적인 매출 증가를 만들어냅니다.',
     features: [
-      '구글/네이버 비즈니스 프로필 최적화',
+      '구글 비즈니스 프로필 최적화',
       '지역 키워드 타겟팅',
       '리뷰 관리 및 평점 개선 전략',
       '로컬 디렉토리 등록',
-      '지역 기반 콘텐츠 제작'
+      '경쟁사 분석 및 차별화 전략'
     ],
     icon: MapPin
   },
   {
-    id: 'profile',
-    title: '비즈니스 프로필 관리',
-    subtitle: '디지털 평판 관리',
-    description: '구글 비즈니스 프로필을 체계적으로 관리하여 온라인 가시성과 신뢰도를 높입니다. 고객 리뷰 대응부터 정보 업데이트까지 전담 관리합니다.',
+    id: 'website',
+    title: 'SEO 웹사이트 제작',
+    subtitle: '검색 최적화 사이트',
+    description: '처음부터 SEO를 고려하여 설계된 고성능 웹사이트를 제작합니다. 빠른 로딩 속도, 모바일 최적화, 구조화된 데이터까지 구글이 좋아하는 사이트를 만들어 드립니다.',
     features: [
-      '프로필 정보 최적화',
-      '사진/동영상 콘텐츠 관리',
-      '고객 리뷰 모니터링 및 대응',
-      'Q&A 섹션 관리',
-      '인사이트 분석 및 개선'
+      '모바일 퍼스트 반응형 디자인',
+      'Core Web Vitals 최적화',
+      '구조화된 데이터(Schema) 적용',
+      'SEO 친화적 URL 및 메타 설정',
+      '구글 서치콘솔 연동 및 설정'
     ],
-    icon: BarChart3
+    icon: Globe
   }
 ]
 
@@ -78,8 +78,8 @@ export default function ServicesPage() {
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services.</h1>
           <p className="text-xl text-gray-500 keep-all">
-            데이터 기반의 체계적인 SEO 전략으로<br />
-            귀하의 비즈니스 성장을 가속화합니다.
+            맛집 마케팅의 모든 것.<br />
+            온라인에서 발견되고 선택받는 매장을 만듭니다.
           </p>
         </div>
       </header>
@@ -128,14 +128,14 @@ export default function ServicesPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">지금 바로 시작하세요</h2>
           <p className="text-gray-400 mb-8 keep-all">
-            무료 SEO 진단을 통해 귀하의 웹사이트 현황을 파악하고<br />
-            맞춤형 개선 전략을 제안해 드립니다.
+            무료 상담을 통해 매장에 맞는 최적의 마케팅 전략을<br />
+            제안해 드립니다.
           </p>
           <Link
             href="/#contact"
             className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-4 rounded-full font-medium hover:bg-blue-600 transition-colors text-lg"
           >
-            무료 진단 받기
+            무료 상담 받기
             <span>→</span>
           </Link>
         </div>

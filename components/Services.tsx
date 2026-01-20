@@ -12,7 +12,7 @@ const Services: React.FC = () => {
         <FadeIn className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Expertise.</h2>
           <p className="text-xl text-gray-500 max-w-xl keep-all">
-            현대 디지털 비즈니스를 위한 세 가지 핵심 축. 보여져야 하는 비즈니스를 위해 정교하게 설계되었습니다.
+            맛집의 성장을 위한 세 가지 핵심 서비스. 온라인에서 발견되고 선택받는 비즈니스를 만듭니다.
           </p>
         </FadeIn>
 

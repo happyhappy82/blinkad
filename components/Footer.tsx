@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
         </div>
         <div className="flex space-x-6">
-          <a href="#" className="hover:text-white transition-colors">개인정보처리방침</a>
+          <a href="https://warm-hip-fe9.notion.site/2e9753ebc01380e8aa5dca28b76683eb" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">개인정보처리방침</a>
           <a href="#" className="hover:text-white transition-colors">이용약관</a>
           <a href="#" className="hover:text-white transition-colors">Instagram</a>
           <a href="#" className="hover:text-white transition-colors">LinkedIn</a>

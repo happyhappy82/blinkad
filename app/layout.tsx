@@ -3,6 +3,12 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://blinkad.kr'),
+  verification: {
+    google: 'hITjCfw5G-GhQuvrWCZ7vMCcXwt4-zSr_-K-vNruL6E',
+    other: {
+      'naver-site-verification': '0880a9beee76c3bee3d9675800122348c1dd6204',
+    },
+  },
   title: 'Blink Ad - Premium SEO Agency',
   description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
   icons: {
