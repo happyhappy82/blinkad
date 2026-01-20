@@ -118,7 +118,10 @@ export default async function BlogPost({ params }: Props) {
               prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
               prose-li:text-gray-300
               prose-strong:text-white
-              prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline"
+              prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline
+              prose-table:border-collapse prose-table:w-full prose-table:my-6
+              prose-th:border prose-th:border-gray-700 prose-th:bg-gray-800 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:text-white
+              prose-td:border prose-td:border-gray-700 prose-td:px-4 prose-td:py-2 prose-td:text-gray-300"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

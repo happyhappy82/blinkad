@@ -76,19 +76,41 @@ function markdownToHtml(markdown) {
     return `<ul>${match}</ul>`;
   });
 
-  // 테이블 처리
-  html = html.replace(/\|(.+)\|/g, (match, content) => {
-    const cells = content.split('|').map(cell => cell.trim());
-    if (cells.every(cell => /^[-:]+$/.test(cell))) {
-      return ''; // 구분선 행 제거
-    }
-    const cellTags = cells.map(cell => `<td>${cell}</td>`).join('');
-    return `<tr>${cellTags}</tr>`;
-  });
+  // 테이블 처리 - 개선된 로직
+  html = html.replace(/(\|.+\|\n?)+/g, (tableMatch) => {
+    const rows = tableMatch.trim().split('\n').filter(row => row.trim());
 
-  // 연속된 tr을 table로 감싸기
-  html = html.replace(/(<tr>.*<\/tr>\n?)+/g, (match) => {
-    return `<table class="w-full border-collapse my-4">${match}</table>`;
+    // 최소 2행 필요 (헤더 + 구분선 또는 헤더 + 데이터)
+    if (rows.length < 2) return tableMatch;
+
+    // 헤더 행 처리
+    const headerCells = rows[0].split('|')
+      .map(cell => cell.trim())
+      .filter(cell => cell)
+      .map(cell => `<th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">${cell}</th>`)
+      .join('');
+
+    // 두 번째 행이 구분선인지 확인
+    const hasseparator = rows[1] && rows[1].split('|').every(cell => /^[-:\s|]+$/.test(cell));
+    const dataStartIndex = hasseparator ? 2 : 1;
+
+    // 데이터 행 처리
+    const bodyRows = rows.slice(dataStartIndex)
+      .map(row => {
+        const cells = row.split('|')
+          .map(cell => cell.trim())
+          .filter(cell => cell)
+          .map(cell => `<td class="border border-gray-700 px-4 py-2">${cell}</td>`)
+          .join('');
+        return cells ? `<tr>${cells}</tr>` : '';
+      })
+      .filter(row => row)
+      .join('\n');
+
+    return `<table class="w-full border-collapse my-6 text-sm">
+<thead><tr>${headerCells}</tr></thead>
+<tbody>${bodyRows}</tbody>
+</table>`;
   });
 
   // 빈 줄로 구분된 문단 처리
