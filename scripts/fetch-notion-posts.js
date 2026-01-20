@@ -280,13 +280,84 @@ function formatDate(dateStr) {
   return `${year}.${month}.${day}`;
 }
 
-// constants/index.ts 파일 업데이트
-async function updateConstants(posts) {
+// 기존 BLOG_POSTS에서 ID 목록 추출
+function getExistingPostIds() {
+  const constantsPath = path.join(__dirname, '..', 'constants', 'index.ts');
+  const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
+
+  // BLOG_POSTS 배열에서 id 값들 추출
+  const idRegex = /"id":\s*"([^"]+)"/g;
+  const blogPostsMatch = constantsContent.match(/export const BLOG_POSTS: BlogPost\[\] = \[([\s\S]*?)\];/);
+
+  if (!blogPostsMatch) {
+    console.log('No existing BLOG_POSTS found');
+    return new Set();
+  }
+
+  const existingIds = new Set();
+  let match;
+  while ((match = idRegex.exec(blogPostsMatch[1])) !== null) {
+    existingIds.add(match[1]);
+  }
+
+  console.log(`Found ${existingIds.size} existing posts`);
+  return existingIds;
+}
+
+// 기존 BLOG_POSTS 배열 파싱
+function getExistingPosts() {
+  const constantsPath = path.join(__dirname, '..', 'constants', 'index.ts');
+  const constantsContent = fs.readFileSync(constantsPath, 'utf-8');
+
+  const blogPostsMatch = constantsContent.match(/export const BLOG_POSTS: BlogPost\[\] = (\[[\s\S]*?\]);/);
+
+  if (!blogPostsMatch) {
+    console.log('No existing BLOG_POSTS found');
+    return [];
+  }
+
+  try {
+    // JSON 파싱을 위해 약간의 정리
+    const jsonStr = blogPostsMatch[1];
+    return JSON.parse(jsonStr);
+  } catch (e) {
+    console.log('Failed to parse existing posts, starting fresh');
+    return [];
+  }
+}
+
+// constants/index.ts 파일 업데이트 (새 글만 추가)
+async function updateConstants(newPosts) {
   const constantsPath = path.join(__dirname, '..', 'constants', 'index.ts');
   let constantsContent = fs.readFileSync(constantsPath, 'utf-8');
 
+  // 기존 포스트 ID 목록 가져오기
+  const existingIds = getExistingPostIds();
+  const existingPosts = getExistingPosts();
+
+  // 새 포스트 중 기존에 없는 것만 필터링
+  const trulyNewPosts = newPosts.filter(post => !existingIds.has(post.id));
+
+  if (trulyNewPosts.length === 0) {
+    console.log('No new posts to add');
+    return false;
+  }
+
+  console.log(`Adding ${trulyNewPosts.length} new posts:`);
+  trulyNewPosts.forEach(post => console.log(`  - ${post.title} (${post.id})`));
+
+  // 새 포스트를 기존 포스트 앞에 추가 (최신순)
+  const allPosts = [...trulyNewPosts, ...existingPosts];
+
+  // 날짜순으로 정렬 (최신이 먼저)
+  allPosts.sort((a, b) => {
+    const dateA = a.date.replace(/\./g, '-');
+    const dateB = b.date.replace(/\./g, '-');
+    return dateB.localeCompare(dateA);
+  });
+
   // BLOG_POSTS 배열 생성
-  const blogPostsArray = `export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(posts, null, 2)};`;
+  const blogPostsArray = `export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(allPosts, null, 2)};`;
 
   // 기존 BLOG_POSTS 배열 교체
   const blogPostsRegex = /export const BLOG_POSTS: BlogPost\[\] = \[[\s\S]*?\];/;
@@ -299,12 +370,14 @@ async function updateConstants(posts) {
   }
 
   fs.writeFileSync(constantsPath, constantsContent, 'utf-8');
-  console.log(`Updated constants/index.ts with ${posts.length} posts`);
+  console.log(`Updated constants/index.ts - Total: ${allPosts.length} posts (${trulyNewPosts.length} new)`);
+  return true;
 }
 
 // 메인 실행
 async function main() {
   console.log('Starting Notion sync...');
+  console.log(`Current time: ${new Date().toISOString()}`);
 
   if (!process.env.NOTION_API_KEY) {
     console.error('Error: NOTION_API_KEY is not set');
@@ -317,13 +390,17 @@ async function main() {
   }
 
   const posts = await fetchNotionPosts();
-  console.log(`Fetched ${posts.length} posts from Notion`);
+  console.log(`Fetched ${posts.length} eligible posts from Notion (date <= today)`);
 
   if (posts.length > 0) {
-    await updateConstants(posts);
-    console.log('Sync completed successfully!');
+    const hasChanges = await updateConstants(posts);
+    if (hasChanges) {
+      console.log('Sync completed - new posts added!');
+    } else {
+      console.log('Sync completed - no new posts to add');
+    }
   } else {
-    console.log('No published posts found');
+    console.log('No published posts found with eligible dates');
   }
 }
 
