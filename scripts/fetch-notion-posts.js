@@ -65,7 +65,85 @@ function markdownToHtml(markdown) {
   // 인용구
   html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
 
-  // 순서 없는 리스트
+  // 테이블 처리 - 셀 안 줄바꿈 지원 (리스트보다 먼저 처리해야 함)
+  const lines = html.split('\n');
+  const result = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // 표 시작 감지: |로 시작하고 |로 끝나는 줄
+    if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
+      const tableLines = [];
+
+      // 표 전체 수집
+      while (i < lines.length) {
+        const currentLine = lines[i];
+        // |로 시작하거나, 이전에 |로 끝나지 않은 행의 연속
+        if (currentLine.trim().startsWith('|') ||
+            (tableLines.length > 0 && !tableLines[tableLines.length - 1].trim().endsWith('|') && currentLine.trim())) {
+          tableLines.push(currentLine);
+          i++;
+        } else if (!currentLine.trim()) {
+          // 빈 줄이면 표 끝
+          break;
+        } else {
+          break;
+        }
+      }
+
+      // |로 끝나는 줄까지를 하나의 행으로 합침
+      const rows = [];
+      let currentRow = '';
+      for (const tline of tableLines) {
+        currentRow += (currentRow ? '\n' : '') + tline;
+        if (tline.trim().endsWith('|')) {
+          rows.push(currentRow);
+          currentRow = '';
+        }
+      }
+      if (currentRow) rows.push(currentRow);
+
+      // 최소 2행 필요
+      if (rows.length >= 2) {
+        const isSeparatorRow = (row) => {
+          const cells = row.split('|').map(c => c.trim()).filter(c => c);
+          return cells.length > 0 && cells.every(c => /^[-:\s]+$/.test(c));
+        };
+
+        const processCell = (cell) => cell.trim().replace(/\n/g, '<br/>');
+
+        const headerCells = rows[0].split('|')
+          .map(c => c.trim()).filter(c => c)
+          .map(c => `<th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">${processCell(c)}</th>`)
+          .join('');
+
+        const bodyRows = rows.slice(1)
+          .filter(row => !isSeparatorRow(row))
+          .map(row => {
+            const cells = row.split('|').map(c => c.trim()).filter(c => c)
+              .map(c => `<td class="border border-gray-700 px-4 py-2">${processCell(c)}</td>`).join('');
+            return cells ? `<tr>${cells}</tr>` : '';
+          })
+          .filter(r => r).join('\n');
+
+        result.push(`<table class="w-full border-collapse my-6 text-sm">
+<thead><tr>${headerCells}</tr></thead>
+<tbody>${bodyRows}</tbody>
+</table>`);
+      } else {
+        result.push(...tableLines);
+      }
+    } else {
+      result.push(line);
+      i++;
+    }
+  }
+
+  html = result.join('\n');
+
+  // 순서 없는 리스트 (테이블 처리 후에 실행)
   html = html.replace(/^[\*\-]\s+(.+)$/gm, '<li>$1</li>');
 
   // 순서 있는 리스트
@@ -74,46 +152,6 @@ function markdownToHtml(markdown) {
   // 연속된 li 태그를 ul로 감싸기
   html = html.replace(/(<li>.*<\/li>\n?)+/g, (match) => {
     return `<ul>${match}</ul>`;
-  });
-
-  // 테이블 처리 - 개선된 로직
-  html = html.replace(/(\|.+\|\n?)+/g, (tableMatch) => {
-    const rows = tableMatch.trim().split('\n').filter(row => row.trim());
-
-    // 최소 2행 필요 (헤더 + 구분선 또는 헤더 + 데이터)
-    if (rows.length < 2) return tableMatch;
-
-    // 구분선 행인지 확인하는 함수
-    const isSeparatorRow = (row) => {
-      const cells = row.split('|').map(cell => cell.trim()).filter(cell => cell);
-      return cells.length > 0 && cells.every(cell => /^[-:\s]+$/.test(cell));
-    };
-
-    // 헤더 행 처리
-    const headerCells = rows[0].split('|')
-      .map(cell => cell.trim())
-      .filter(cell => cell)
-      .map(cell => `<th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">${cell}</th>`)
-      .join('');
-
-    // 데이터 행 처리 (구분선 행 제외)
-    const bodyRows = rows.slice(1)
-      .filter(row => !isSeparatorRow(row))  // 구분선 행 필터링
-      .map(row => {
-        const cells = row.split('|')
-          .map(cell => cell.trim())
-          .filter(cell => cell)
-          .map(cell => `<td class="border border-gray-700 px-4 py-2">${cell}</td>`)
-          .join('');
-        return cells ? `<tr>${cells}</tr>` : '';
-      })
-      .filter(row => row)
-      .join('\n');
-
-    return `<table class="w-full border-collapse my-6 text-sm">
-<thead><tr>${headerCells}</tr></thead>
-<tbody>${bodyRows}</tbody>
-</table>`;
   });
 
   // 빈 줄로 구분된 문단 처리
