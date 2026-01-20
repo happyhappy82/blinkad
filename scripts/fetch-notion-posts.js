@@ -153,22 +153,45 @@ async function fetchNotionPosts() {
     const statusProp = dbInfo.properties.Status || dbInfo.properties['상태'];
     console.log('Status property type:', statusProp?.type);
 
-    // 필터 구성 (Status 타입에 따라 다르게)
-    let filter = undefined;
+    // 오늘 날짜 (KST 기준)
+    const today = new Date();
+    const todayStr = today.toISOString().split('T')[0]; // YYYY-MM-DD 형식
+    console.log('Filtering posts with date on or before:', todayStr);
+
+    // 필터 구성 (Status + Date 조건)
+    let statusFilter = undefined;
     if (statusProp?.type === 'status') {
-      filter = {
+      statusFilter = {
         property: statusProp.name || 'Status',
         status: {
           equals: 'Published',
         },
       };
     } else if (statusProp?.type === 'select') {
-      filter = {
+      statusFilter = {
         property: statusProp.name || 'Status',
         select: {
           equals: 'Published',
         },
       };
+    }
+
+    // Date 필터 (오늘 이전 날짜만)
+    const dateFilter = {
+      property: 'Date',
+      date: {
+        on_or_before: todayStr,
+      },
+    };
+
+    // Status와 Date 필터 결합
+    let filter = undefined;
+    if (statusFilter) {
+      filter = {
+        and: [statusFilter, dateFilter],
+      };
+    } else {
+      filter = dateFilter;
     }
 
     const response = await notion.databases.query({
