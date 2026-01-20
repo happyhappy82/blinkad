@@ -30,27 +30,66 @@ export const SERVICES: ServiceItem[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: '1',
-    client: '어반 에스테틱',
-    metric: '유기적 트래픽',
-    value: '+420%',
-    description: '6개월 만에 시장 리더로 도약한 성공 사례.',
-    colSpan: 2,
+    client: '홍대 수제버거 맛집',
+    industry: '음식점 / 버거',
+    metric: '구글맵 노출',
+    value: '1위',
+    description: '3개월 만에 홍대 버거 검색 1위 달성',
+    imageUrl: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800',
+    beforeValue: '검색 노출 없음',
+    afterValue: '홍대 버거 1위',
+    testimonial: '인스타 릴스 영상이 올라가고 나서 매장 앞에 줄이 서기 시작했어요. 구글맵 순위도 1위가 되니까 외국인 손님도 엄청 늘었습니다.',
+    customerName: '김민수',
+    customerRole: '홍대 수제버거 대표',
+    duration: '3개월',
+    keyResults: [
+      '구글맵 "홍대 버거" 검색 1위',
+      '인스타그램 릴스 조회수 50만+',
+      '월 매출 180% 증가',
+      '외국인 고객 비율 40% 달성'
+    ]
   },
   {
     id: '2',
-    client: '로펌 파트너스',
-    metric: '지도 전화 문의',
-    value: '3.5x',
-    description: '로컬 지배력 강화 전략 실행.',
-    colSpan: 1,
+    client: '강남 프리미엄 스시',
+    industry: '음식점 / 일식',
+    metric: '월 예약',
+    value: '+320%',
+    description: '릴스 바이럴로 예약 폭발',
+    imageUrl: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800',
+    beforeValue: '월 예약 50건',
+    afterValue: '월 예약 210건',
+    testimonial: '릴스 영상 하나가 터지면서 예약이 2주 앞까지 꽉 차버렸어요. 이제는 웹사이트로 예약 관리하니까 노쇼도 줄었습니다.',
+    customerName: '박준영',
+    customerRole: '스시 오마카세 오너셰프',
+    duration: '2개월',
+    keyResults: [
+      '인스타그램 릴스 120만 조회',
+      '예약 대기 2주 풀부킹',
+      '객단가 15% 상승',
+      'SEO 웹사이트로 노쇼율 80% 감소'
+    ]
   },
   {
     id: '3',
-    client: '테크 솔루션',
-    metric: '리드 전환',
-    value: '+180%',
-    description: '구매 의도가 높은 키워드 타겟팅.',
-    colSpan: 1,
+    client: '이태원 루프탑 바',
+    industry: '음식점 / 바',
+    metric: '방문 고객',
+    value: '2.5배',
+    description: '구글맵 최적화로 외국인 손님 급증',
+    imageUrl: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800',
+    beforeValue: '일 평균 30명',
+    afterValue: '일 평균 75명',
+    testimonial: '외국인들이 구글맵으로 찾아오는데, 리뷰 관리하고 사진 올리니까 확실히 달라졌어요. 이제 트립어드바이저보다 구글 리뷰가 더 많아요.',
+    customerName: '이수진',
+    customerRole: '루프탑바 매니저',
+    duration: '4개월',
+    keyResults: [
+      '구글맵 리뷰 4.8점 달성',
+      '외국인 고객 비율 60%',
+      '"이태원 루프탑" 검색 2위',
+      '주말 웨이팅 평균 30분'
+    ]
   },
 ];
 

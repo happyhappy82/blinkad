@@ -10,10 +10,18 @@ export interface ServiceItem {
 export interface CaseStudy {
   id: string;
   client: string;
+  industry: string;
   metric: string;
   value: string;
   description: string;
-  colSpan: number;
+  imageUrl: string;
+  beforeValue: string;
+  afterValue: string;
+  testimonial: string;
+  customerName: string;
+  customerRole: string;
+  duration: string;
+  keyResults: string[];
 }
 
 export interface BlogPost {
