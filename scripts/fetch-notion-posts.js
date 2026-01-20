@@ -83,6 +83,12 @@ function markdownToHtml(markdown) {
     // 최소 2행 필요 (헤더 + 구분선 또는 헤더 + 데이터)
     if (rows.length < 2) return tableMatch;
 
+    // 구분선 행인지 확인하는 함수
+    const isSeparatorRow = (row) => {
+      const cells = row.split('|').map(cell => cell.trim()).filter(cell => cell);
+      return cells.length > 0 && cells.every(cell => /^[-:\s]+$/.test(cell));
+    };
+
     // 헤더 행 처리
     const headerCells = rows[0].split('|')
       .map(cell => cell.trim())
@@ -90,12 +96,9 @@ function markdownToHtml(markdown) {
       .map(cell => `<th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">${cell}</th>`)
       .join('');
 
-    // 두 번째 행이 구분선인지 확인
-    const hasseparator = rows[1] && rows[1].split('|').every(cell => /^[-:\s|]+$/.test(cell));
-    const dataStartIndex = hasseparator ? 2 : 1;
-
-    // 데이터 행 처리
-    const bodyRows = rows.slice(dataStartIndex)
+    // 데이터 행 처리 (구분선 행 제외)
+    const bodyRows = rows.slice(1)
+      .filter(row => !isSeparatorRow(row))  // 구분선 행 필터링
       .map(row => {
         const cells = row.split('|')
           .map(cell => cell.trim())
