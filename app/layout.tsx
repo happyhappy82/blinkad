@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'hITjCfw5G-GhQuvrWCZ7vMCcXwt4-zSr_-K-vNruL6E',
     other: {
-      'naver-site-verification': '0880a9beee76c3bee3d9675800122348c1dd6204',
+      'naver-site-verification': '4b64641c3d671cfe7ae80cb01821e64a9c6f16b7',
     },
   },
   title: 'Blink Ad - Premium SEO Agency',
