@@ -12,6 +12,12 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
+    // sitemap.xml은 /blog/sitemap.xml로 rewrite
+    if (url.pathname === '/sitemap.xml') {
+      url.pathname = '/blog/sitemap.xml'
+      return NextResponse.rewrite(url)
+    }
+
     // 정적 파일은 그대로
     if (
       url.pathname.startsWith('/_next') ||

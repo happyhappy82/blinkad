@@ -47,8 +47,55 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Preconnect for external resources */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* RSS Feed */}
+        <link rel="alternate" type="application/rss+xml" title="Blink Ad Blog RSS" href="https://blog.blinkad.kr/feed.xml" />
       </head>
-      <body className="bg-black text-white antialiased">{children}</body>
+      <body className="bg-black text-white antialiased">
+        {/* Schema.org - WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Blink Ad',
+              url: 'https://blinkad.kr',
+              description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://blinkad.kr/blog?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
+        {/* Schema.org - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Blink Ad',
+              url: 'https://blinkad.kr',
+              logo: 'https://blinkad.kr/logo-white-nav.png',
+              description: '프리미엄 SEO 에이전시',
+              sameAs: [],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                availableLanguage: ['Korean'],
+              },
+            }),
+          }}
+        />
+        {children}
+      </body>
     </html>
   )
 }

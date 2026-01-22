@@ -9,6 +9,11 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+// 날짜 형식 변환 (2026.01.22 → 2026-01-22)
+function formatDateToISO(dateStr: string): string {
+  return dateStr.replace(/\./g, '-')
+}
+
 export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({
     slug: post.id,
@@ -39,8 +44,73 @@ export default async function BlogPost({ params }: Props) {
     notFound()
   }
 
+  const isoDate = formatDateToISO(post.date)
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt || post.title,
+    image: post.imageUrl,
+    datePublished: isoDate,
+    dateModified: isoDate,
+    author: {
+      '@type': 'Organization',
+      name: 'Blink Ad',
+      url: 'https://blinkad.kr',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Blink Ad',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://blinkad.kr/logo-white-nav.png',
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://blog.blinkad.kr/${post.id}`,
+    },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: '홈',
+        item: 'https://blinkad.kr',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '블로그',
+        item: 'https://blog.blinkad.kr',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.title,
+        item: `https://blog.blinkad.kr/${post.id}`,
+      },
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-black">
+      {/* Schema.org - Article */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      {/* Schema.org - BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       {/* Navigation - 메인 사이트와 동일 */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
@@ -85,7 +155,7 @@ export default async function BlogPost({ params }: Props) {
               <span className="px-3 py-1 bg-brand-blue/20 text-brand-blue text-sm font-medium rounded-full">
                 {post.category}
               </span>
-              <time className="text-gray-500 text-sm">{post.date}</time>
+              <time dateTime={isoDate} className="text-gray-500 text-sm">{post.date}</time>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 keep-all leading-tight">
               {post.title}
