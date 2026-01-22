@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { BLOG_POSTS } from '@/constants'
 import { ArrowLeft } from 'lucide-react'
+import BlogCTA from '@/components/BlogCTA'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -124,6 +125,9 @@ export default async function BlogPost({ params }: Props) {
               prose-td:border prose-td:border-gray-700 prose-td:px-4 prose-td:py-2 prose-td:text-gray-300"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          {/* CTA Section */}
+          <BlogCTA />
         </div>
       </article>
 
