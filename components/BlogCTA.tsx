@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
 
-const WEBHOOK_URL = 'https://hook.us2.make.com/698zywep5g6bdl42x8y7vsx7y2455jhh';
+const WEBHOOK_URL = 'https://hook.us2.make.com/nrf1jnqab3jl3u73hxaio2afexwqzlv7';
 
 interface FormData {
   name: string;
