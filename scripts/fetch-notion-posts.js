@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import Aromanize from 'aromanize';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -310,6 +311,15 @@ async function fetchNotionPosts() {
         imageUrl = page.cover.file?.url || page.cover.external?.url || '';
       }
 
+      // 슬러그 추출 (Notion에 Slug 속성이 있으면 사용, 없으면 자동 생성)
+      const slugProperty = properties.Slug || properties.slug || properties['슬러그'];
+      const customSlug = (slugProperty?.rich_text || [])
+        .map(t => t.plain_text)
+        .join('')
+        .trim();
+      const slug = customSlug || generateSlug(title);
+      console.log(`  Title: ${title} → Slug: ${slug}`);
+
       // 페이지 컨텐츠를 마크다운으로 변환
       const mdBlocks = await n2m.pageToMarkdown(page.id);
       const mdString = n2m.toMarkdownString(mdBlocks);
@@ -317,7 +327,7 @@ async function fetchNotionPosts() {
       const content = markdownToHtml(rawContent);
 
       posts.push({
-        id: page.id.replace(/-/g, ''),
+        id: slug,
         title,
         category,
         date: formatDate(date),
@@ -332,6 +342,37 @@ async function fetchNotionPosts() {
     console.error('Error fetching Notion posts:', error);
     throw error;
   }
+}
+
+// 한글 제목을 영문 슬러그로 변환
+function generateSlug(title) {
+  // 약어 매핑
+  const abbreviations = {
+    '구글 비즈니스 프로필 관리': 'gbp',
+    '구글 비즈니스 프로필': 'gbp',
+    '검색엔진최적화': 'seo',
+    '검색 엔진 최적화': 'seo',
+  };
+
+  let slug = title;
+
+  // 약어 치환
+  for (const [korean, abbr] of Object.entries(abbreviations)) {
+    slug = slug.replace(korean, abbr);
+  }
+
+  // 한글을 로마자로 변환
+  slug = Aromanize.hangulToLatin(slug, 'rr-translit');
+
+  // 슬러그 정규화
+  slug = slug
+    .toLowerCase()
+    .replace(/[^a-z0-9가-힣\s-]/g, '') // 특수문자 제거
+    .replace(/\s+/g, '-')              // 공백을 하이픈으로
+    .replace(/-+/g, '-')               // 연속 하이픈 제거
+    .replace(/^-|-$/g, '');            // 앞뒤 하이픈 제거
+
+  return slug;
 }
 
 // 날짜 포맷팅
