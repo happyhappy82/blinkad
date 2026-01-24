@@ -430,35 +430,32 @@ function getExistingPosts() {
   }
 }
 
-// constants/index.ts 파일 업데이트 (새 글만 추가)
+// constants/index.ts 파일 업데이트 (Notion 포스트로 전체 동기화)
 async function updateConstants(newPosts) {
   const constantsPath = path.join(__dirname, '..', 'constants', 'index.ts');
   let constantsContent = fs.readFileSync(constantsPath, 'utf-8');
 
-  // 기존 포스트 ID 목록 가져오기
-  const existingIds = getExistingPostIds();
   const existingPosts = getExistingPosts();
 
-  // 새 포스트 중 기존에 없는 것만 필터링
-  const trulyNewPosts = newPosts.filter(post => !existingIds.has(post.id));
-
-  if (trulyNewPosts.length === 0) {
-    console.log('No new posts to add');
-    return false;
-  }
-
-  console.log(`Adding ${trulyNewPosts.length} new posts:`);
-  trulyNewPosts.forEach(post => console.log(`  - ${post.title} (${post.id})`));
-
-  // 새 포스트를 기존 포스트 앞에 추가 (최신순)
-  const allPosts = [...trulyNewPosts, ...existingPosts];
-
-  // 날짜순으로 정렬 (최신이 먼저)
+  // Notion 포스트로 전체 교체 (날짜순 정렬)
+  const allPosts = [...newPosts];
   allPosts.sort((a, b) => {
     const dateA = a.date.replace(/\./g, '-');
     const dateB = b.date.replace(/\./g, '-');
     return dateB.localeCompare(dateA);
   });
+
+  // 변경 여부 확인
+  const existingJson = JSON.stringify(existingPosts);
+  const newJson = JSON.stringify(allPosts);
+
+  if (existingJson === newJson) {
+    console.log('No changes detected');
+    return false;
+  }
+
+  console.log(`Syncing ${allPosts.length} posts from Notion:`);
+  allPosts.forEach(post => console.log(`  - ${post.title} (${post.id})`));
 
   // BLOG_POSTS 배열 생성
   const blogPostsArray = `export const BLOG_POSTS: BlogPost[] = ${JSON.stringify(allPosts, null, 2)};`;
