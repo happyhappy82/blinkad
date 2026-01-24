@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: Props) {
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt || post.title,
-    image: post.imageUrl,
+    ...(post.imageUrl && { image: post.imageUrl }),
     datePublished: isoDate,
     dateModified: isoDate,
     author: {
@@ -172,13 +172,15 @@ export default async function BlogPost({ params }: Props) {
           </header>
 
           {/* Featured Image */}
-          <div className="rounded-2xl overflow-hidden mb-12">
-            <img
-              src={post.imageUrl}
-              alt={post.title}
-              className="w-full aspect-video object-cover"
-            />
-          </div>
+          {post.imageUrl && (
+            <div className="rounded-2xl overflow-hidden mb-12">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full aspect-video object-cover"
+              />
+            </div>
+          )}
 
           {/* Content */}
           <div

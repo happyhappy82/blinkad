@@ -56,15 +56,17 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({ post, onBack, onNavigat
         </FadeIn>
 
         {/* Featured Image */}
-        <FadeIn delay={200}>
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-12 bg-brand-dark border border-white/10">
-            <img 
-              src={post.imageUrl} 
-              alt={post.title} 
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </FadeIn>
+        {post.imageUrl && (
+          <FadeIn delay={200}>
+            <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-12 bg-brand-dark border border-white/10">
+              <img
+                src={post.imageUrl}
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </FadeIn>
+        )}
 
         {/* Content Body */}
         <FadeIn delay={300}>

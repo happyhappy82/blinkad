@@ -322,7 +322,7 @@ async function fetchNotionPosts() {
         category,
         date: formatDate(date),
         excerpt,
-        imageUrl: imageUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800',
+        imageUrl: imageUrl || '',
         content,
       });
     }

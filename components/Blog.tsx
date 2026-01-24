@@ -36,17 +36,26 @@ const Blog: React.FC<BlogProps> = ({ onPostClick, onViewAllClick }) => {
                 onClick={() => onPostClick(post)}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] bg-brand-dark border border-white/5">
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
-                  <img 
-                    src={post.imageUrl} 
-                    alt={post.title}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
-                    <span className="text-xs font-medium text-white">{post.category}</span>
+                {post.imageUrl && (
+                  <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] bg-brand-dark border border-white/5">
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title}
+                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
+                      <span className="text-xs font-medium text-white">{post.category}</span>
+                    </div>
                   </div>
-                </div>
+                )}
+                {!post.imageUrl && (
+                  <div className="mb-6">
+                    <span className="inline-block px-3 py-1 bg-brand-blue/20 text-brand-blue text-xs font-medium rounded-full border border-brand-blue/20">
+                      {post.category}
+                    </span>
+                  </div>
+                )}
                 
                 <div className="space-y-3">
                   <div className="text-sm text-gray-500 flex items-center gap-2">
