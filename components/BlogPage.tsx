@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { BLOG_POSTS } from '@/constants';
 
 const BlogPage: React.FC = () => {
@@ -11,21 +12,21 @@ const BlogPage: React.FC = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
           <Link
-            href="https://blinkad.kr"
+            href="/"
             className="hover:opacity-80 transition-opacity"
           >
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
 
           <div className="hidden md:flex space-x-8">
-            <Link href="https://blinkad.kr/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</Link>
-            <Link href="https://blinkad.kr/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</Link>
-            <Link href="/" className="text-sm font-medium text-white transition-colors">블로그</Link>
-            <Link href="https://blinkad.kr/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</Link>
+            <Link href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</Link>
+            <Link href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</Link>
+            <Link href="/blog" className="text-sm font-medium text-white transition-colors">블로그</Link>
+            <Link href="/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</Link>
           </div>
 
           <Link
-            href="https://blinkad.kr/#contact"
+            href="/#contact"
             className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
           >
             무료 진단하기
@@ -39,7 +40,7 @@ const BlogPage: React.FC = () => {
           {/* Header */}
           <div className="mb-20">
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">Insights.</h1>
-            <p className="text-xl text-gray-400 max-w-2xl keep-all leading-relaxed">
+            <p className="text-xl text-gray-300 max-w-2xl keep-all leading-relaxed">
               검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지.<br/>
               블링크애드의 전문적인 인사이트를 만나보세요.
             </p>
@@ -47,7 +48,7 @@ const BlogPage: React.FC = () => {
 
         {/* Post Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-12">
-          {BLOG_POSTS.map((post) => (
+          {BLOG_POSTS.map((post, index) => (
             <article key={post.id}>
               <Link
                 href={`/blog/${post.id}`}
@@ -56,10 +57,13 @@ const BlogPage: React.FC = () => {
                 {post.imageUrl && (
                   <div className="relative overflow-hidden rounded-2xl mb-6 aspect-[4/3] bg-gray-900 border border-white/5">
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
-                    <img
+                    <Image
                       src={post.imageUrl}
                       alt={post.title}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      fill
+                      className="object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      priority={index < 3}
                     />
                     <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10">
                       <span className="text-xs font-medium text-white">{post.category}</span>
@@ -75,14 +79,14 @@ const BlogPage: React.FC = () => {
                 )}
 
                 <div className="flex-1 space-y-3">
-                  <div className="text-sm text-gray-500 flex items-center gap-2">
+                  <div className="text-sm text-gray-400 flex items-center gap-2">
                     <span>{post.date}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
                     <span>Blink Ad Team</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-brand-blue transition-colors keep-all leading-snug">
+                  <h2 className="text-2xl font-bold text-white group-hover:text-brand-blue transition-colors keep-all leading-snug">
                     {post.title}
-                  </h3>
+                  </h2>
                   {post.excerpt && (
                     <p className="text-gray-400 text-sm line-clamp-3 leading-relaxed keep-all">
                       {post.excerpt}
@@ -102,8 +106,8 @@ const BlogPage: React.FC = () => {
         <div className="mt-32 p-12 rounded-3xl bg-gray-900 border border-white/5 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-brand-blue/5" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h3 className="text-3xl font-bold text-white mb-4">최신 마케팅 트렌드를 놓치지 마세요.</h3>
-            <p className="text-gray-400 mb-8">
+            <h2 className="text-3xl font-bold text-white mb-4">최신 마케팅 트렌드를 놓치지 마세요.</h2>
+            <p className="text-gray-300 mb-8">
               매주 발행되는 블링크애드의 뉴스레터를 통해 경쟁사보다 한발 앞서 나가세요.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -125,11 +129,11 @@ const BlogPage: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link href="https://blinkad.kr" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+          <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
-          <p className="text-gray-500 text-sm">Premium SEO Agency</p>
-          <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">Premium SEO Agency</p>
+          <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
         </div>
       </footer>
     </div>

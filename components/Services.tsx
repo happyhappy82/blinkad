@@ -11,7 +11,7 @@ const Services: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Expertise.</h2>
-          <p className="text-xl text-gray-500 max-w-xl keep-all">
+          <p className="text-xl text-gray-400 max-w-xl keep-all">
             맛집의 성장을 위한 세 가지 핵심 서비스. 온라인에서 발견되고 선택받는 비즈니스를 만듭니다.
           </p>
         </FadeIn>

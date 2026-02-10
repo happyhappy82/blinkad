@@ -27,13 +27,14 @@ export function middleware(request: NextRequest) {
       return NextResponse.next()
     }
 
-    // /blog 경로로 rewrite
-    if (url.pathname === '/') {
-      url.pathname = '/blog'
-    } else {
+    // /slug 접근 시 /blog/slug로 rewrite (URL은 blog.blinkad.kr/slug 유지)
+    if (url.pathname !== '/') {
       url.pathname = `/blog${url.pathname}`
+      return NextResponse.rewrite(url)
     }
 
+    // 홈페이지는 /blog로 rewrite
+    url.pathname = '/blog'
     return NextResponse.rewrite(url)
   }
 

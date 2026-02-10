@@ -19,11 +19,11 @@ export default function Home() {
         <section id="blog" className="py-32 bg-black border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Insights.</h2>
-            <p className="text-xl text-gray-500 mb-12 keep-all">
+            <p className="text-xl text-gray-400 mb-12 keep-all">
               검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지.
             </p>
             <a
-              href="https://blog.blinkad.kr"
+              href="/blog"
               className="inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-lg font-medium transition-colors group"
             >
               블로그 보기

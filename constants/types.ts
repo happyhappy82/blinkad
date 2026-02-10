@@ -7,6 +7,12 @@ export interface ServiceItem {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
 }
 
+export interface CaseStudyScreenshot {
+  label: string;
+  value: string;
+  src: string;
+}
+
 export interface CaseStudy {
   id: string;
   client: string;
@@ -22,6 +28,7 @@ export interface CaseStudy {
   customerRole: string;
   duration: string;
   keyResults: string[];
+  screenshots?: CaseStudyScreenshot[];
 }
 
 export interface BlogPost {

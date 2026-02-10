@@ -132,7 +132,7 @@ const Contact: React.FC = () => {
       <div className="max-w-3xl mx-auto px-6 text-center">
         <FadeIn className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Let's Talk.</h2>
-          <p className="text-xl text-gray-500 keep-all">
+          <p className="text-xl text-gray-400 keep-all">
             첫 페이지로의 여정, 클릭 한 번으로 시작됩니다.
           </p>
         </FadeIn>
@@ -143,7 +143,7 @@ const Contact: React.FC = () => {
               {/* Row 1: 기업명 / 담당자명 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group">
-                  <label htmlFor="companyName" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                  <label htmlFor="companyName" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     상호 또는 기업/기관명 <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -158,7 +158,7 @@ const Contact: React.FC = () => {
                   {errors.companyName && <p className="text-red-500 text-xs mt-1">{errors.companyName}</p>}
                 </div>
                 <div className="group">
-                  <label htmlFor="contactName" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                  <label htmlFor="contactName" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     담당자명 <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -177,7 +177,7 @@ const Contact: React.FC = () => {
               {/* Row 2: 이메일 / 연락처 */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="group">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     이메일 <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -192,7 +192,7 @@ const Contact: React.FC = () => {
                   {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
                 <div className="group">
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     연락처 <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -210,7 +210,7 @@ const Contact: React.FC = () => {
 
               {/* Row 3: 제목 */}
               <div className="group">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                   제목 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -227,7 +227,7 @@ const Contact: React.FC = () => {
 
               {/* Row 4: 내용 */}
               <div className="group">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-500 mb-2 group-focus-within:text-brand-blue transition-colors">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                   내용 <span className="text-red-500">*</span>
                 </label>
                 <textarea
@@ -274,7 +274,7 @@ const Contact: React.FC = () => {
                     </svg>
                 </div>
                 <h3 className="text-2xl font-bold text-white">문의가 접수되었습니다.</h3>
-                <p className="text-gray-500">담당자가 검토 후 24시간 이내에 연락드리겠습니다.</p>
+                <p className="text-gray-400">담당자가 검토 후 24시간 이내에 연락드리겠습니다.</p>
                 <button 
                     onClick={() => setIsSubmitted(false)}
                     className="text-brand-blue hover:text-white text-sm mt-4 underline underline-offset-4"

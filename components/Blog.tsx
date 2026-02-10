@@ -17,7 +17,7 @@ const Blog: React.FC<BlogProps> = ({ onPostClick, onViewAllClick }) => {
         <FadeIn className="mb-20 flex flex-col md:flex-row justify-between items-end">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Insights.</h2>
-            <p className="text-xl text-gray-500 max-w-xl keep-all">
+            <p className="text-xl text-gray-400 max-w-xl keep-all">
               변화하는 디지털 마케팅 트렌드와 SEO 전략에 대한 깊이 있는 분석.
             </p>
           </div>
@@ -58,7 +58,7 @@ const Blog: React.FC<BlogProps> = ({ onPostClick, onViewAllClick }) => {
                 )}
                 
                 <div className="space-y-3">
-                  <div className="text-sm text-gray-500 flex items-center gap-2">
+                  <div className="text-sm text-gray-400 flex items-center gap-2">
                     <span>{post.date}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
                     <span>Blink Ad Team</span>

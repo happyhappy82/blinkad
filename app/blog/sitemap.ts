@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 동적 블로그 포스트들
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/${post.id}`,
-    lastModified: new Date(),
+    lastModified: new Date(post.date.replace(/\./g, '-')),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
