@@ -1,7 +1,7 @@
 import { Video, MapPin, Globe } from 'lucide-react';
-import type { ServiceItem, CaseStudy, CaseStudyScreenshot, BlogPost, ChartDataPoint } from './types';
+import type { ServiceItem, CaseStudy, CaseStudyScreenshot, CaseStudyInsight, CaseStudyKeyword, BlogPost, ChartDataPoint } from './types';
 
-export type { ServiceItem, CaseStudy, CaseStudyScreenshot, BlogPost, ChartDataPoint };
+export type { ServiceItem, CaseStudy, CaseStudyScreenshot, CaseStudyInsight, CaseStudyKeyword, BlogPost, ChartDataPoint };
 
 // Updated to a standalone glowing filament bulb against a dark background
 export const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=2000&auto=format&fit=crop";
@@ -42,17 +42,52 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerName: '',
     customerRole: '북촌 한식당 대표',
     duration: '5개월',
+    period: '2025.09 – 2026.01',
+    background: '북촌 한옥마을 안쪽 골목에 위치한 한식당입니다. 관광 특구라는 입지에도 불구하고 구글 검색에서의 존재감이 거의 없었습니다. 네이버 플레이스에만 의존하고 있었지만, 북촌을 찾는 외국인 관광객 대부분은 Google Maps를 사용합니다. 기존 GBP에는 상호명과 주소만 등록된 상태였고, 영문 정보는 물론 매장 사진도 기본 1장뿐이었습니다.',
+    approach: [
+      'GBP 프로필 완전 재구성 — 영문·일문 비즈니스 설명 추가, 카테고리를 "Korean restaurant"로 세분화',
+      '고품질 음식·매장 사진 30장 이상 업로드, 이후 격주 1회 신규 사진 갱신',
+      '다국어 리뷰 응대 체계 구축 — 영어·일본어 리뷰에 24시간 내 답변',
+      'Google 게시물(Posts) 주 2회 발행 — 시즌 메뉴, 영업시간 변경 등',
+      '메뉴판 영문·일문 번역본 GBP에 등록 및 가격 정보 최신화',
+    ],
+    insights: [
+      {
+        title: '일본어 "レストラン" 키워드에서 566회 노출',
+        detail: '일본어로 "레스토랑"을 뜻합니다. 북촌 일대를 방문하는 일본인 관광객이 구글맵에서 식당을 검색할 때 이 키워드로 매장이 노출되기 시작했습니다. GBP에 일본어 비즈니스 설명을 추가한 직후부터 유입이 발생한 키워드입니다.',
+      },
+      {
+        title: '전체 조회의 90%가 구글지도 모바일에서 발생',
+        detail: '관광지 특성상 방문객 대부분이 도보로 이동하며 스마트폰으로 주변 맛집을 검색합니다. 데스크톱이 아닌 모바일 지도 노출이 실제 방문과 직결되는 구조이기 때문에, 모바일 환경에서의 프로필 완성도가 핵심이었습니다.',
+      },
+      {
+        title: '"bukchon korean restaurant"로 574회 직접 검색',
+        detail: '영문으로 "북촌 한식당"을 직접 검색한 횟수입니다. 숙소에서 미리 맛집을 조사하고 방문하는 외국인 관광객의 전형적인 패턴이며, 온라인상에서 브랜드 인지도가 형성되었음을 보여주는 지표입니다.',
+      },
+      {
+        title: '월 600~750회 상호작용, 5개월간 꾸준히 유지',
+        detail: '일회성 바이럴이 아닌 안정적인 유입입니다. Google 알고리즘이 해당 비즈니스를 "신뢰할 수 있는 로컬 업체"로 판단하고 있다는 의미이며, 리뷰 응답률·정보 최신성·사진 품질 등 복합적인 시그널이 누적된 결과입니다.',
+      },
+    ],
+    searchKeywords: [
+      { keyword: 'restaurants', volume: '약 30,000', note: '일반 영문 검색 — 가장 넓은 유입 경로' },
+      { keyword: 'korean restaurant', volume: '828', note: '카테고리 특화 키워드' },
+      { keyword: 'bukchon korean restaurant', volume: '574', note: '브랜드+지역 복합 키워드' },
+      { keyword: 'レストラン', volume: '566', note: '일본어 유입 — 다국어 최적화 성과' },
+      { keyword: '한식당', volume: '498', note: '국내 검색 유입' },
+    ],
+    dataSource: 'Google 비즈니스 프로필 인사이트 | 집계 기간: 2025.09.01 – 2026.01.31',
     keyResults: [
       '프로필 조회수 56,719회',
       '검색 노출 41,930회',
       '비즈니스 상호작용 3,562회',
-      '구글지도 모바일 노출 90%'
+      '구글지도 모바일 노출 90%',
     ],
     screenshots: [
       { label: '프로필 조회수', value: '56,719', src: '/cases/bukchon/views.png' },
       { label: '검색 노출수', value: '41,930', src: '/cases/bukchon/searches.png' },
       { label: '비즈니스 상호작용', value: '3,562', src: '/cases/bukchon/interactions.png' },
-    ]
+    ],
   },
 ];
 

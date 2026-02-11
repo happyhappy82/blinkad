@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CASE_STUDIES } from '@/constants';
 import { FadeIn } from './ui/FadeIn';
-import { Eye, Search, MousePointerClick, TrendingUp } from 'lucide-react';
+import { Eye, Search, MousePointerClick, TrendingUp, Globe, Smartphone, MapPin, BarChart3 } from 'lucide-react';
 import Image from 'next/image';
 
 // 숫자 카운팅 애니메이션 훅
@@ -51,6 +51,8 @@ function useCountUp(end: number, duration: number = 2000, start: number = 0) {
 }
 
 const STAT_ICONS = [Eye, Search, MousePointerClick];
+const INSIGHT_ICONS = [Globe, Smartphone, MapPin, BarChart3];
+const KEYWORD_WIDTHS = ['100%', '38%', '32%', '31%', '28%'];
 
 const CaseStudies: React.FC = () => {
   const mainCase = CASE_STUDIES[0];
@@ -87,6 +89,12 @@ const CaseStudies: React.FC = () => {
             <span className="text-gray-500 text-sm">{mainCase.industry}</span>
             <span className="text-gray-600 text-sm">·</span>
             <span className="text-gray-500 text-sm">GBP 최적화 {mainCase.duration}</span>
+            {mainCase.period && (
+              <>
+                <span className="text-gray-600 text-sm">·</span>
+                <span className="text-gray-500 text-sm">{mainCase.period}</span>
+              </>
+            )}
           </div>
         </FadeIn>
 
@@ -151,6 +159,116 @@ const CaseStudies: React.FC = () => {
             </div>
           </div>
         </FadeIn>
+
+        {/* ===== 상세 분석 섹션 ===== */}
+
+        {/* 배경 + 수행 작업 */}
+        {(mainCase.background || mainCase.approach) && (
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {mainCase.background && (
+              <FadeIn delay={100}>
+                <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-8">
+                  <h3 className="text-lg font-bold text-white mb-1">배경</h3>
+                  <p className="text-xs text-gray-600 mb-5">프로젝트 시작 전 상황</p>
+                  <p className="text-sm text-gray-400 leading-relaxed keep-all">
+                    {mainCase.background}
+                  </p>
+                </div>
+              </FadeIn>
+            )}
+
+            {mainCase.approach && (
+              <FadeIn delay={200}>
+                <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-8">
+                  <h3 className="text-lg font-bold text-white mb-1">수행한 작업</h3>
+                  <p className="text-xs text-gray-600 mb-5">{mainCase.duration} 동안 진행한 최적화</p>
+                  <ul className="space-y-3">
+                    {mainCase.approach.map((step, i) => (
+                      <li key={i} className="flex items-start gap-3 text-sm text-gray-400 keep-all">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-brand-blue/10 text-brand-blue text-xs flex items-center justify-center font-semibold mt-0.5">
+                          {i + 1}
+                        </span>
+                        <span className="leading-relaxed">{step}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+            )}
+          </div>
+        )}
+
+        {/* 검색 키워드 분석 */}
+        {mainCase.searchKeywords && mainCase.searchKeywords.length > 0 && (
+          <FadeIn delay={300} className="mt-8">
+            <div className="rounded-2xl bg-brand-dark border border-white/5 p-8">
+              <h3 className="text-lg font-bold text-white mb-1">검색 키워드 분석</h3>
+              <p className="text-xs text-gray-600 mb-6">
+                실제 Google 검색에서 매장이 노출된 키워드와 횟수
+              </p>
+              <div className="space-y-5">
+                {mainCase.searchKeywords.map((kw, i) => (
+                  <div key={i}>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <code className="text-sm text-white font-mono bg-white/5 px-2 py-0.5 rounded">
+                        {kw.keyword}
+                      </code>
+                      <span className="text-sm text-gray-400 tabular-nums">{kw.volume}회</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-gradient-to-r from-brand-blue to-brand-blue/50 rounded-full transition-all duration-1000"
+                        style={{ width: KEYWORD_WIDTHS[i] }}
+                      />
+                    </div>
+                    {kw.note && (
+                      <p className="text-xs text-gray-600 mt-1">{kw.note}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+        )}
+
+        {/* 데이터 인사이트 */}
+        {mainCase.insights && mainCase.insights.length > 0 && (
+          <div className="mt-8">
+            <FadeIn>
+              <h3 className="text-lg font-bold text-white mb-1">데이터가 말해주는 것</h3>
+              <p className="text-xs text-gray-600 mb-6">숫자 너머의 의미를 읽습니다</p>
+            </FadeIn>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {mainCase.insights.map((insight, i) => {
+                const Icon = INSIGHT_ICONS[i % INSIGHT_ICONS.length];
+                return (
+                  <FadeIn key={i} delay={100 + i * 100}>
+                    <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-6 hover:border-brand-blue/20 transition-colors duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
+                          <Icon className="w-5 h-5 text-brand-blue" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-semibold text-white mb-2 keep-all">{insight.title}</h4>
+                          <p className="text-sm text-gray-400 leading-relaxed keep-all">{insight.detail}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </FadeIn>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* 데이터 출처 */}
+        {mainCase.dataSource && (
+          <FadeIn delay={600}>
+            <p className="mt-10 text-[11px] text-gray-600 text-center tracking-wide">
+              {mainCase.dataSource}
+            </p>
+          </FadeIn>
+        )}
       </div>
 
       {/* 스크린샷 확대 모달 */}

@@ -13,6 +13,17 @@ export interface CaseStudyScreenshot {
   src: string;
 }
 
+export interface CaseStudyInsight {
+  title: string;
+  detail: string;
+}
+
+export interface CaseStudyKeyword {
+  keyword: string;
+  volume: string;
+  note?: string;
+}
+
 export interface CaseStudy {
   id: string;
   client: string;
@@ -29,6 +40,12 @@ export interface CaseStudy {
   duration: string;
   keyResults: string[];
   screenshots?: CaseStudyScreenshot[];
+  period?: string;
+  background?: string;
+  approach?: string[];
+  insights?: CaseStudyInsight[];
+  searchKeywords?: CaseStudyKeyword[];
+  dataSource?: string;
 }
 
 export interface BlogPost {
