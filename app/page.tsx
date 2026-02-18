@@ -23,7 +23,7 @@ export default function Home() {
               검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지.
             </p>
             <a
-              href="/blog"
+              href="https://blog.blinkad.kr"
               className="inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-lg font-medium transition-colors group"
             >
               블로그 보기

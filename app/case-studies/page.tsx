@@ -20,7 +20,7 @@ export default function CaseStudiesPage() {
           <div className="flex items-center gap-8">
             <Link href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</Link>
             <Link href="/case-studies" className="text-sm text-white">성공사례</Link>
-            <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</Link>
+            <a href="https://blog.blinkad.kr" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</a>
           </div>
         </div>
       </nav>
