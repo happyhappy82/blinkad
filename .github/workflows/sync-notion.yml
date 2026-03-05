@@ -42,13 +42,13 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git diff --exit-code constants/index.ts || echo "changes=true" >> $GITHUB_OUTPUT
+          git add constants/index.ts public/blog/thumbnails/ 2>/dev/null || true
+          git diff --cached --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         if: steps.git-check.outputs.changes == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add constants/index.ts
           git commit -m "chore: sync blog posts from Notion [skip ci]"
           git push

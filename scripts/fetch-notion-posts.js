@@ -194,6 +194,40 @@ function markdownToHtml(markdown) {
   return html.trim();
 }
 
+// 이미지 다운로드 함수 (Notion 파일 URL 만료 대응)
+async function downloadImage(url, filePath) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    const buffer = Buffer.from(await response.arrayBuffer());
+    fs.writeFileSync(filePath, buffer);
+    return true;
+  } catch (error) {
+    console.error(`  Failed to download image: ${error.message}`);
+    return false;
+  }
+}
+
+// URL에서 파일 확장자 추출
+function getExtensionFromUrl(url) {
+  try {
+    const urlPath = new URL(url).pathname;
+    const ext = path.extname(urlPath).toLowerCase();
+    if (ext && ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg', '.avif'].includes(ext)) {
+      return ext;
+    }
+  } catch (e) {}
+  return '.jpg';
+}
+
 // HTML 특수문자 이스케이프
 function escapeHtml(text) {
   const map = {
@@ -299,18 +333,6 @@ async function fetchNotionPosts() {
         .join('')
         .trim();
 
-      // 이미지 URL 추출
-      const imageProperty = properties.Image || properties.Cover || properties['이미지'];
-      let imageUrl = '';
-      if (imageProperty?.files?.[0]) {
-        const file = imageProperty.files[0];
-        imageUrl = file.file?.url || file.external?.url || '';
-      }
-      // 커버 이미지가 있으면 사용
-      if (!imageUrl && page.cover) {
-        imageUrl = page.cover.file?.url || page.cover.external?.url || '';
-      }
-
       // 슬러그 추출 (Notion에 Slug 속성이 있으면 사용, 없으면 자동 생성)
       const slugProperty = properties.Slug || properties.slug || properties['슬러그'];
       const customSlug = (slugProperty?.rich_text || [])
@@ -319,6 +341,33 @@ async function fetchNotionPosts() {
         .trim();
       const slug = customSlug || generateSlug(title);
       console.log(`  Title: ${title} → Slug: ${slug}`);
+
+      // 썸네일 이미지 추출 및 다운로드
+      const imageProperty = properties['썸네일'] || properties.Image || properties.Cover || properties['이미지'];
+      let imageUrl = '';
+      let remoteImageUrl = '';
+
+      if (imageProperty?.files?.[0]) {
+        const file = imageProperty.files[0];
+        remoteImageUrl = file.file?.url || file.external?.url || '';
+      }
+      // 커버 이미지 폴백
+      if (!remoteImageUrl && page.cover) {
+        remoteImageUrl = page.cover.file?.url || page.cover.external?.url || '';
+      }
+
+      // 이미지가 있으면 로컬에 다운로드
+      if (remoteImageUrl) {
+        const ext = getExtensionFromUrl(remoteImageUrl);
+        const localFileName = `${slug}${ext}`;
+        const localPath = path.join(__dirname, '..', 'public', 'blog', 'thumbnails', localFileName);
+
+        const downloaded = await downloadImage(remoteImageUrl, localPath);
+        if (downloaded) {
+          imageUrl = `/blog/thumbnails/${localFileName}`;
+          console.log(`  Thumbnail saved: ${localFileName}`);
+        }
+      }
 
       // 페이지 컨텐츠를 마크다운으로 변환
       const mdBlocks = await n2m.pageToMarkdown(page.id);
@@ -471,7 +520,7 @@ async function updateConstants(newPosts) {
   }
 
   fs.writeFileSync(constantsPath, constantsContent, 'utf-8');
-  console.log(`Updated constants/index.ts - Total: ${allPosts.length} posts (${trulyNewPosts.length} new)`);
+  console.log(`Updated constants/index.ts - Total: ${allPosts.length} posts`);
   return true;
 }
 
