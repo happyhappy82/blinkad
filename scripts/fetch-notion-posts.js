@@ -292,20 +292,33 @@ async function fetchNotionPosts() {
       filter = dateFilter;
     }
 
-    const response = await notion.databases.query({
-      database_id: DATABASE_ID,
-      filter,
-      sorts: [
-        {
-          property: 'Date',
-          direction: 'descending',
-        },
-      ],
-    });
+    // 페이지네이션: 노션 API는 한 번에 최대 100개까지만 반환
+    // has_more / next_cursor를 사용해 모든 페이지를 가져옴
+    let allResults = [];
+    let hasMore = true;
+    let startCursor = undefined;
+
+    while (hasMore) {
+      const response = await notion.databases.query({
+        database_id: DATABASE_ID,
+        filter,
+        sorts: [
+          {
+            property: 'Date',
+            direction: 'descending',
+          },
+        ],
+        start_cursor: startCursor,
+      });
+      allResults.push(...response.results);
+      hasMore = response.has_more;
+      startCursor = response.next_cursor;
+      console.log(`Fetched ${response.results.length} posts (total: ${allResults.length}, has_more: ${hasMore})`);
+    }
 
     const posts = [];
 
-    for (const page of response.results) {
+    for (const page of allResults) {
       console.log(`Processing: ${page.id}`);
 
       // 페이지 속성 추출
