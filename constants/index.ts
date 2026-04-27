@@ -10,19 +10,19 @@ export const SERVICES: ServiceItem[] = [
   {
     id: 'gbp',
     title: '구글 비즈니스 프로필 관리',
-    description: '병원의 지역 검색 노출과 지도 신뢰도를 높일 수 있도록 프로필 운영을 체계적으로 관리합니다.',
+    description: '지역 검색 노출과 지도 신뢰도를 높일 수 있도록 프로필 운영을 체계적으로 관리합니다.',
     icon: MapPin,
   },
   {
     id: 'blog',
-    title: '병원 브랜드 블로그 운영',
-    description: '병원의 전문성과 진료 강점을 꾸준한 콘텐츠로 쌓아 브랜드 자산을 만듭니다.',
+    title: '브랜드 블로그 운영',
+    description: '브랜드의 전문성과 강점을 꾸준한 콘텐츠로 쌓아 브랜드 자산을 만듭니다.',
     icon: FileText,
   },
   {
     id: 'ai-search',
     title: 'AI 검색 최적화',
-    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 병원이 인용될 수 있도록 설계합니다.',
+    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 브랜드가 인용될 수 있도록 설계합니다.',
     icon: Bot,
   },
 ];
