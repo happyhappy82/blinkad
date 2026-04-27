@@ -1,54 +1,54 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Video, MapPin, Globe, ArrowLeft, Check } from 'lucide-react'
+import { MapPin, FileText, Bot, ArrowLeft, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '서비스 - Blink Ad',
-  description: '블링크애드의 프리미엄 서비스. 맛집 릴스 제작대행, 구글맵 상위노출, SEO 웹사이트 제작.',
+  description: '블링크애드의 핵심 서비스. 구글 비즈니스 프로필 관리, 병원 브랜드 블로그 운영, AI 검색 최적화.',
 }
 
 const services = [
   {
-    id: 'reels',
-    title: '맛집 릴스 제작대행',
-    subtitle: '바이럴 콘텐츠 제작',
-    description: '인스타그램에서 폭발적인 반응을 이끌어내는 맛집 릴스 콘텐츠를 기획부터 촬영, 편집까지 원스톱으로 제작해 드립니다. 트렌디한 영상으로 매장 인지도를 높이세요.',
+    id: 'gbp',
+    title: '구글 비즈니스 프로필 관리',
+    subtitle: '지역 검색 기반 구축',
+    description: '병원의 지역 검색 노출과 지도 신뢰도를 높이기 위해 구글 비즈니스 프로필을 체계적으로 운영합니다. 병원 정보를 최신 상태로 유지하고, 지역 검색에서 발견될 가능성을 높입니다.',
     features: [
-      '트렌드 분석 기반 콘텐츠 기획',
-      '전문 촬영팀의 현장 촬영',
-      '바이럴 최적화 편집 및 자막',
-      '인스타그램 알고리즘 맞춤 업로드',
-      '성과 분석 리포트 제공'
-    ],
-    icon: Video
-  },
-  {
-    id: 'maps',
-    title: '구글맵 상위노출',
-    subtitle: '지역 검색 1위',
-    description: '구글 지도 검색에서 귀하의 비즈니스가 가장 먼저 노출되도록 최적화합니다. 지역 고객의 방문과 전화 문의를 극대화하여 실질적인 매출 증가를 만들어냅니다.',
-    features: [
-      '구글 비즈니스 프로필 최적화',
-      '지역 키워드 타겟팅',
-      '리뷰 관리 및 평점 개선 전략',
-      '로컬 디렉토리 등록',
-      '경쟁사 분석 및 차별화 전략'
+      '구글 비즈니스 프로필 기본 정보 최적화',
+      '카테고리 및 진료 관련 항목 정비',
+      '리뷰 응답 및 평판 관리 운영',
+      '게시물·사진·업데이트 관리',
+      '월간 인사이트 점검 및 리포트 제공'
     ],
     icon: MapPin
   },
   {
-    id: 'website',
-    title: 'SEO 웹사이트 제작',
-    subtitle: '검색 최적화 사이트',
-    description: '처음부터 SEO를 고려하여 설계된 고성능 웹사이트를 제작합니다. 빠른 로딩 속도, 모바일 최적화, 구조화된 데이터까지 구글이 좋아하는 사이트를 만들어 드립니다.',
+    id: 'blog',
+    title: '병원 브랜드 블로그 운영',
+    subtitle: '브랜드 콘텐츠 축적',
+    description: '병원의 전문성과 진료 강점을 꾸준한 콘텐츠로 정리해 브랜드 자산을 쌓습니다. 진료과목과 시술별 검색 의도를 반영한 운영으로 신뢰도 높은 콘텐츠 기반을 만듭니다.',
     features: [
-      '모바일 퍼스트 반응형 디자인',
-      'Core Web Vitals 최적화',
-      '구조화된 데이터(Schema) 적용',
-      'SEO 친화적 URL 및 메타 설정',
-      '구글 서치콘솔 연동 및 설정'
+      '진료과목·시술 키워드 기반 주제 기획',
+      '병원 전문성 중심 콘텐츠 작성 및 발행',
+      '브랜드 톤앤매너에 맞춘 블로그 운영',
+      '내부 링크 및 카테고리 구조 관리',
+      '월간 운영 리포트 제공'
     ],
-    icon: Globe
+    icon: FileText
+  },
+  {
+    id: 'ai-search',
+    title: 'AI 검색 최적화',
+    subtitle: 'AEO · GEO 구축',
+    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 병원이 인용될 수 있도록 콘텐츠 구조와 엔티티 신호를 설계합니다. 단순 노출이 아니라 AI 검색 환경에 맞는 병원 디지털 자산을 구축합니다.',
+    features: [
+      '질문형 랜딩 구조 및 답변형 콘텐츠 설계',
+      'FAQ·Schema·엔티티 최적화',
+      'ChatGPT·Perplexity·Google AI 검색 대응',
+      '웹사이트·블로그·GBP 연결 구조 정비',
+      'AI 검색 노출 및 인용 흐름 모니터링'
+    ],
+    icon: Bot
   }
 ]
 
@@ -78,8 +78,8 @@ export default function ServicesPage() {
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services.</h1>
           <p className="text-xl text-gray-500 keep-all">
-            맛집 마케팅의 모든 것.<br />
-            온라인에서 발견되고 선택받는 매장을 만듭니다.
+            병원 성장을 위한 핵심 서비스.<br />
+            온라인에서 발견되고 선택받는 병원을 만듭니다.
           </p>
         </div>
       </header>

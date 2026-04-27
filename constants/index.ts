@@ -1,4 +1,4 @@
-import { Video, MapPin, Globe } from 'lucide-react';
+import { MapPin, FileText, Bot } from 'lucide-react';
 import type { ServiceItem, CaseStudy, CaseStudyScreenshot, CaseStudyInsight, CaseStudyKeyword, BlogPost, ChartDataPoint } from './types';
 
 export type { ServiceItem, CaseStudy, CaseStudyScreenshot, CaseStudyInsight, CaseStudyKeyword, BlogPost, ChartDataPoint };
@@ -8,22 +8,22 @@ export const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1493612276216-e
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'reels',
-    title: '맛집 릴스 제작대행',
-    description: '바이럴 되는 맛집 릴스 콘텐츠로 인스타그램에서 폭발적인 노출을 만들어냅니다.',
-    icon: Video,
-  },
-  {
-    id: 'maps',
-    title: '구글맵 상위노출',
-    description: '구글 지도 검색에서 1위를 선점하여 지역 고객의 방문을 극대화합니다.',
+    id: 'gbp',
+    title: '구글 비즈니스 프로필 관리',
+    description: '병원의 지역 검색 노출과 지도 신뢰도를 높일 수 있도록 프로필 운영을 체계적으로 관리합니다.',
     icon: MapPin,
   },
   {
-    id: 'website',
-    title: 'SEO 웹사이트 제작',
-    description: '검색 엔진 최적화가 완벽하게 적용된 고성능 웹사이트를 제작합니다.',
-    icon: Globe,
+    id: 'blog',
+    title: '병원 브랜드 블로그 운영',
+    description: '병원의 전문성과 진료 강점을 꾸준한 콘텐츠로 쌓아 브랜드 자산을 만듭니다.',
+    icon: FileText,
+  },
+  {
+    id: 'ai-search',
+    title: 'AI 검색 최적화',
+    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 병원이 인용될 수 있도록 설계합니다.',
+    icon: Bot,
   },
 ];
 
