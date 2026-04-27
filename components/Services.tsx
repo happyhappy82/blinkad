@@ -12,7 +12,7 @@ const Services: React.FC = () => {
         <FadeIn className="mb-20">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Expertise.</h2>
           <p className="text-xl text-gray-400 max-w-xl keep-all">
-            병원 성장을 위한 세 가지 핵심 서비스. 온라인에서 발견되고 선택받는 병원을 만듭니다.
+            성장을 위한 세 가지 핵심 서비스. 온라인에서 발견되고 선택받는 브랜드를 만듭니다.
           </p>
         </FadeIn>
 
