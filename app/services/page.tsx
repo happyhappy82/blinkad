@@ -4,7 +4,7 @@ import { MapPin, FileText, Bot, ArrowLeft, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: '서비스 - Blink Ad',
-  description: '블링크애드의 핵심 서비스. 구글 비즈니스 프로필 관리, 병원 브랜드 블로그 운영, AI 검색 최적화.',
+  description: '블링크애드의 핵심 서비스. 구글 비즈니스 프로필 관리, 브랜드 블로그 운영, AI 검색 최적화.',
 }
 
 const services = [
@@ -12,7 +12,7 @@ const services = [
     id: 'gbp',
     title: '구글 비즈니스 프로필 관리',
     subtitle: '지역 검색 기반 구축',
-    description: '병원의 지역 검색 노출과 지도 신뢰도를 높이기 위해 구글 비즈니스 프로필을 체계적으로 운영합니다. 병원 정보를 최신 상태로 유지하고, 지역 검색에서 발견될 가능성을 높입니다.',
+    description: '지역 검색 노출과 지도 신뢰도를 높이기 위해 구글 비즈니스 프로필을 체계적으로 운영합니다. 비즈니스 정보를 최신 상태로 유지하고, 지역 검색에서 발견될 가능성을 높입니다.',
     features: [
       '구글 비즈니스 프로필 기본 정보 최적화',
       '카테고리 및 진료 관련 항목 정비',
@@ -26,7 +26,7 @@ const services = [
     id: 'blog',
     title: '병원 브랜드 블로그 운영',
     subtitle: '브랜드 콘텐츠 축적',
-    description: '병원의 전문성과 진료 강점을 꾸준한 콘텐츠로 정리해 브랜드 자산을 쌓습니다. 진료과목과 시술별 검색 의도를 반영한 운영으로 신뢰도 높은 콘텐츠 기반을 만듭니다.',
+    description: '브랜드의 전문성과 강점을 꾸준한 콘텐츠로 정리해 브랜드 자산을 쌓습니다. 검색 의도를 반영한 운영으로 신뢰도 높은 콘텐츠 기반을 만듭니다.',
     features: [
       '진료과목·시술 키워드 기반 주제 기획',
       '병원 전문성 중심 콘텐츠 작성 및 발행',
@@ -40,7 +40,7 @@ const services = [
     id: 'ai-search',
     title: 'AI 검색 최적화',
     subtitle: 'AEO · GEO 구축',
-    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 병원이 인용될 수 있도록 콘텐츠 구조와 엔티티 신호를 설계합니다. 단순 노출이 아니라 AI 검색 환경에 맞는 병원 디지털 자산을 구축합니다.',
+    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 브랜드가 인용될 수 있도록 콘텐츠 구조와 엔티티 신호를 설계합니다. 단순 노출이 아니라 AI 검색 환경에 맞는 디지털 자산을 구축합니다.',
     features: [
       '질문형 랜딩 구조 및 답변형 콘텐츠 설계',
       'FAQ·Schema·엔티티 최적화',
@@ -78,8 +78,8 @@ export default function ServicesPage() {
           </Link>
           <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services.</h1>
           <p className="text-xl text-gray-500 keep-all">
-            병원 성장을 위한 핵심 서비스.<br />
-            온라인에서 발견되고 선택받는 병원을 만듭니다.
+            성장을 위한 핵심 서비스.<br />
+            온라인에서 발견되고 선택받는 브랜드를 만듭니다.
           </p>
         </div>
       </header>
