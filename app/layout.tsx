@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Tracker from '@/components/Tracker'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://blinkad.kr'),
@@ -77,6 +78,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
+        {/* 통합 문의 추적 트래커 (Layout 마운트, Client Component) */}
+        <Tracker />
         {/* Schema.org - WebSite */}
         <script
           type="application/ld+json"

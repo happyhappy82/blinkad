@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { recordCtaClick } from '@/lib/tracker';
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -12,6 +13,15 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // contact로 가는 클릭은 CTA 클릭으로 추적
+  const trackContactCta = (location: string, label: string) => {
+    recordCtaClick({
+      cta_id: `bl_global_${location}_v1`,
+      cta_location: location,
+      cta_label: label,
+    });
+  };
 
   const handleNavigate = (target: string) => {
     if (target === 'blog') {
@@ -46,11 +56,11 @@ const Navbar: React.FC = () => {
           <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</button>
           <button onClick={() => handleNavigate('casestudies')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
           <button onClick={() => handleNavigate('blog')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">블로그</button>
-          <button onClick={() => handleNavigate('contact')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</button>
+          <button onClick={() => { trackContactCta('header-menu', '문의하기'); handleNavigate('contact'); }} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</button>
         </div>
 
         <button
-          onClick={() => handleNavigate('contact')}
+          onClick={() => { trackContactCta('header-cta-pill', '무료 진단하기'); handleNavigate('contact'); }}
           className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
         >
           무료 진단하기

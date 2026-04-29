@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FadeIn } from './ui/FadeIn';
+import { getTrackingDataAsync } from '@/lib/tracker';
 
 const WEBHOOK_URL = 'https://hook.us2.make.com/698zywep5g6bdl42x8y7vsx7y2455jhh';
 
@@ -75,6 +76,9 @@ const Contact: React.FC = () => {
     setSubmitError('');
 
     try {
+      // 트래킹 데이터(GA4 client_id 포함) 비동기 가져오기
+      const tracking = await getTrackingDataAsync();
+
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
@@ -87,6 +91,7 @@ const Contact: React.FC = () => {
           phone: formData.phone,
           message: formData.message,
           submittedAt: new Date().toISOString(),
+          ...tracking,
         }),
       });
 

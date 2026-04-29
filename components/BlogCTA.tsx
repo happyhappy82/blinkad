@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { X } from 'lucide-react';
+import { getTrackingDataAsync, recordCtaClick } from '@/lib/tracker';
 
 const WEBHOOK_URL = 'https://hook.us2.make.com/nrf1jnqab3jl3u73hxaio2afexwqzlv7';
 
@@ -58,6 +59,9 @@ const BlogCTA: React.FC = () => {
     setSubmitError('');
 
     try {
+      // 트래킹 데이터(GA4 client_id 포함) 비동기 가져오기
+      const tracking = await getTrackingDataAsync();
+
       const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: {
@@ -69,6 +73,7 @@ const BlogCTA: React.FC = () => {
           message: formData.message || '(궁금한 점 미입력)',
           source: 'blog_cta',
           submittedAt: new Date().toISOString(),
+          ...tracking,
         }),
       });
 
@@ -94,6 +99,12 @@ const BlogCTA: React.FC = () => {
   };
 
   const openModal = () => {
+    // 모달 여는 시점에 CTA 클릭 추적 (현재 페이지=글이 origin으로 기록됨)
+    recordCtaClick({
+      cta_id: 'bl_blog_post-inline_v1',
+      cta_location: 'blog-inline',
+      cta_label: '내 업장 진단받기',
+    });
     setIsModalOpen(true);
     setIsSubmitted(false);
     setSubmitError('');
