@@ -77,21 +77,45 @@ export function getPageMeta(pathname?: string): PageMeta {
   };
 }
 
-// ── sessionStorage 안전 헬퍼 (SSR 대응)
+// ── Cookie 헬퍼 (cross-subdomain: .blinkad.kr 공유)
+//    blinkad.kr ↔ blog.blinkad.kr 사이 이동에도 추적 데이터 보존.
+//    - max-age 7200초(2시간) — 한 방문 세션 정도, 너무 길지 않게
+//    - SameSite=Lax — 서브도메인 간 동일 사이트 컨텍스트 허용
+//    - localhost는 domain 옵션 생략 (개발 환경 호환)
+const COOKIE_MAX_AGE = 7200; // 2시간
+
+function getCookieDomain(): string {
+  if (typeof location === 'undefined') return '';
+  const host = location.hostname;
+  if (host === 'localhost' || host === '127.0.0.1') return '';
+  // .blinkad.kr / .aijeong.com 등 — 호스트 끝의 등록도메인 자동 추출
+  const parts = host.split('.');
+  if (parts.length < 2) return '';
+  // 마지막 2칸이 등록도메인 (.co.kr 같은 ccTLD는 더 정교한 처리 필요하지만
+  // 우리 환경(blinkad.kr / aijeong.com)은 단순 케이스)
+  return '.' + parts.slice(-2).join('.');
+}
+
 function ssGet(key: string): string {
-  if (typeof window === 'undefined') return '';
+  if (typeof document === 'undefined') return '';
   try {
-    return window.sessionStorage.getItem(key) || '';
+    const m = document.cookie.match(new RegExp('(^|; )' + key + '=([^;]+)'));
+    return m ? decodeURIComponent(m[2]) : '';
   } catch {
     return '';
   }
 }
+
 function ssSet(key: string, value: string): void {
-  if (typeof window === 'undefined') return;
+  if (typeof document === 'undefined') return;
   try {
-    window.sessionStorage.setItem(key, value);
+    const domain = getCookieDomain();
+    const domainPart = domain ? `; domain=${domain}` : '';
+    const securePart = location.protocol === 'https:' ? '; secure' : '';
+    document.cookie =
+      `${key}=${encodeURIComponent(value)}; max-age=${COOKIE_MAX_AGE}; path=/${domainPart}; SameSite=Lax${securePart}`;
   } catch {
-    // private mode 등에서 실패해도 무해
+    // 무해
   }
 }
 
