@@ -64,10 +64,9 @@ const BlogCTA: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          contactName: formData.name,
+          name: formData.name,
           phone: formData.phone,
           message: formData.message || '(궁금한 점 미입력)',
-          subject: '[블로그] 업장 진단 요청',
           source: 'blog_cta',
           submittedAt: new Date().toISOString(),
         }),
