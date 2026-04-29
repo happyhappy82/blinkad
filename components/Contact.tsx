@@ -14,7 +14,6 @@ const Contact: React.FC = () => {
     contactName: '',
     email: '',
     phone: '',
-    subject: '',
     message: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -55,12 +54,6 @@ const Contact: React.FC = () => {
       newErrors.phone = '올바른 연락처 형식을 입력해 주세요. (예: 010-1234-5678)';
     }
 
-    if (!formData.subject.trim()) {
-      newErrors.subject = '제목을 입력해 주세요.';
-    } else if (formData.subject.trim().length < 2) {
-      newErrors.subject = '제목은 2글자 이상 입력해 주세요.';
-    }
-
     if (!formData.message.trim()) {
       newErrors.message = '내용을 입력해 주세요.';
     } else if (formData.message.trim().length < 10) {
@@ -88,11 +81,10 @@ const Contact: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          companyName: formData.companyName,
-          contactName: formData.contactName,
+          company: formData.companyName,
+          name: formData.contactName,
           email: formData.email,
           phone: formData.phone,
-          subject: formData.subject,
           message: formData.message,
           submittedAt: new Date().toISOString(),
         }),
@@ -105,7 +97,6 @@ const Contact: React.FC = () => {
           contactName: '',
           email: '',
           phone: '',
-          subject: '',
           message: ''
         });
       } else {
@@ -208,24 +199,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
 
-              {/* Row 3: 제목 */}
-              <div className="group">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
-                  제목 <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className={`w-full bg-white border rounded-xl px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-brand-blue/50 transition-all placeholder-gray-400 ${errors.subject ? 'border-red-500' : 'border-gray-300'}`}
-                  placeholder="문의 제목을 입력해 주세요"
-                />
-                {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
-              </div>
-
-              {/* Row 4: 내용 */}
+              {/* Row 3: 내용 */}
               <div className="group">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                   내용 <span className="text-red-500">*</span>
