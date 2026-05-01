@@ -10,15 +10,15 @@ export const metadata: Metadata = {
       'naver-site-verification': '4b64641c3d671cfe7ae80cb01821e64a9c6f16b7',
     },
   },
-  title: 'Blink Ad - Premium SEO Agency',
-  description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
+  title: '블링크애드 | 구글 AEO·GEO 외국인 마케팅 전문 에이전시',
+  description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
   icons: {
     icon: '/favicon.svg',
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Blink Ad - Premium SEO Agency',
-    description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
+    title: '블링크애드 | 구글 AEO·GEO 외국인 마케팅 전문 에이전시',
+    description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
     url: 'https://blinkad.kr',
     siteName: 'Blink Ad',
     images: [
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Blink Ad - Premium SEO Agency',
-    description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
+    title: '블링크애드 | 구글 AEO·GEO 외국인 마케팅 전문 에이전시',
+    description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
     images: ['https://blinkad.kr/og-image.png'],
   },
 }
@@ -89,7 +89,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               '@type': 'WebSite',
               name: 'Blink Ad',
               url: 'https://blinkad.kr',
-              description: '프리미엄 SEO 에이전시 블링크애드. 구글 첫 페이지는 목적지가 아닙니다. 그것은 기준입니다.',
+              description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
               potentialAction: {
                 '@type': 'SearchAction',
                 target: 'https://blinkad.kr/blog?q={search_term_string}',
@@ -108,7 +108,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               name: 'Blink Ad',
               url: 'https://blinkad.kr',
               logo: 'https://blinkad.kr/logo-white-nav.png',
-              description: '프리미엄 SEO 에이전시',
+              description: '구글 AEO·GEO 외국인 마케팅 전문 에이전시',
               sameAs: [],
               contactPoint: {
                 '@type': 'ContactPoint',
