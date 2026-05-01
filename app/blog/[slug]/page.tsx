@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://blog.blinkad.kr/${post.id}`
   const description = post.excerpt && post.excerpt.length > 50
     ? post.excerpt
-    : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 프리미엄 SEO 에이전시의 전문적인 인사이트를 제공합니다.`
+    : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 구글 AEO·GEO 외국인 마케팅 전문 에이전시의 인사이트를 제공합니다.`
 
   return {
     title: `${post.title} - Blink Ad Blog`,
@@ -208,7 +208,7 @@ export default async function BlogPost({ params }: Props) {
               </div>
               <div>
                 <p className="text-white font-medium">Blink Ad Team</p>
-                <p className="text-gray-400 text-sm">Premium SEO Agency</p>
+                <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>
               </div>
             </div>
           </header>
@@ -293,7 +293,7 @@ export default async function BlogPost({ params }: Props) {
           <a href="https://blinkad.kr" className="inline-block mb-4 hover:opacity-80 transition-opacity">
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </a>
-          <p className="text-gray-400 text-sm">Premium SEO Agency</p>
+          <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>
           <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
         </div>
       </footer>

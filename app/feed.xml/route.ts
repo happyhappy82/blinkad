@@ -34,7 +34,7 @@ export async function GET() {
   <channel>
     <title>Blink Ad Blog</title>
     <link>${baseUrl}</link>
-    <description>검색 엔진 최적화(SEO)부터 디지털 브랜딩 전략까지. 프리미엄 SEO 에이전시 블링크애드의 인사이트.</description>
+    <description>구글 AEO·GEO 외국인 마케팅 전문 블링크애드의 인사이트. 의료관광·맛집·로컬 브랜드의 검색·AI 답변 노출 전략과 케이스를 다룹니다.</description>
     <language>ko</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>

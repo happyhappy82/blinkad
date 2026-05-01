@@ -187,7 +187,7 @@ export default function CaseStudiesPage() {
           <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </Link>
-          <p className="text-gray-500 text-sm">Premium SEO Agency</p>
+          <p className="text-gray-500 text-sm">AEO·GEO Marketing Agency</p>
           <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
         </div>
       </footer>
