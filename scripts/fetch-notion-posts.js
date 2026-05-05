@@ -25,12 +25,13 @@ function markdownToHtml(markdown) {
   }
 
   let html = markdown;
+  const codeBlockPlaceholder = (index) => `@@CODEBLOCK${index}@@`;
 
   // 코드 블록 임시 보존 (```로 감싸진 부분)
   const codeBlocks = [];
   html = html.replace(/```([\s\S]*?)```/g, (match, code) => {
     codeBlocks.push(`<pre><code>${escapeHtml(code.trim())}</code></pre>`);
-    return `__CODE_BLOCK_${codeBlocks.length - 1}__`;
+    return codeBlockPlaceholder(codeBlocks.length - 1);
   });
 
   // 인라인 코드 처리
@@ -172,7 +173,7 @@ function markdownToHtml(markdown) {
       para.startsWith('<table') ||
       para.startsWith('<hr') ||
       para.startsWith('<img') ||
-      para.startsWith('__CODE_BLOCK_')
+      para.startsWith('@@CODEBLOCK')
     ) {
       return para;
     }
@@ -184,7 +185,7 @@ function markdownToHtml(markdown) {
 
   // 코드 블록 복원
   codeBlocks.forEach((block, i) => {
-    html = html.replace(`__CODE_BLOCK_${i}__`, block);
+    html = html.replace(codeBlockPlaceholder(i), block);
   });
 
   // 빈 태그 정리
