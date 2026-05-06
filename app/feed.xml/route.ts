@@ -33,7 +33,7 @@ export async function GET() {
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blink Ad Blog</title>
+    <title>BlinkAd Blog</title>
     <link>${blogBaseUrl}</link>
     <description>구글 AEO·GEO 외국인 마케팅 전문 블링크애드의 인사이트. 의료관광·맛집·로컬 브랜드의 검색·AI 답변 노출 전략과 케이스를 다룹니다.</description>
     <language>ko</language>

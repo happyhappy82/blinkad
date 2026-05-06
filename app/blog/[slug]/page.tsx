@@ -8,6 +8,7 @@ import BlogCTA from '@/components/BlogCTA'
 
 const SITE_URL = 'https://www.blinkad.kr'
 const BLOG_BASE_URL = `${SITE_URL}/blog`
+const SITE_NAME = 'BlinkAd'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!post) {
     return {
-      title: 'Post Not Found - Blink Ad',
+      title: `Post Not Found - ${SITE_NAME}`,
     }
   }
 
@@ -49,16 +50,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 구글 AEO·GEO 외국인 마케팅 전문 에이전시의 인사이트를 제공합니다.`
 
   return {
-    title: `${post.title} - Blink Ad Blog`,
+    title: `${post.title} - ${SITE_NAME} Blog`,
     description,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${post.title} - Blink Ad Blog`,
+      title: `${post.title} - ${SITE_NAME} Blog`,
       description,
       url: canonicalUrl,
-      siteName: 'Blink Ad',
+      siteName: SITE_NAME,
       images: imageUrl ? [
         {
           url: imageUrl,
@@ -77,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${post.title} - Blink Ad Blog`,
+      title: `${post.title} - ${SITE_NAME} Blog`,
       description,
       images: imageUrl ? [imageUrl] : [`${SITE_URL}/og-image.png`],
     },
@@ -111,12 +112,12 @@ export default async function BlogPost({ params }: Props) {
     dateModified: isoDate,
     author: {
       '@type': 'Organization',
-      name: 'Blink Ad',
+      name: SITE_NAME,
       url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Blink Ad',
+      name: SITE_NAME,
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_URL}/logo-white-nav.png`,
@@ -174,7 +175,7 @@ export default async function BlogPost({ params }: Props) {
             href="/"
             className="hover:opacity-80 transition-opacity"
           >
-            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+            <img src="/logo-white-nav.png" alt={SITE_NAME} className="h-8 w-auto" />
           </a>
 
           <div className="hidden md:flex space-x-8">
@@ -221,7 +222,7 @@ export default async function BlogPost({ params }: Props) {
                 <span className="text-white font-bold text-sm">BA</span>
               </div>
               <div>
-                <p className="text-white font-medium">Blink Ad Team</p>
+                <p className="text-white font-medium">{SITE_NAME} Team</p>
                 <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>
               </div>
             </div>
@@ -305,10 +306,10 @@ export default async function BlogPost({ params }: Props) {
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <a href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+            <img src="/logo-white-nav.png" alt={SITE_NAME} className="h-8 w-auto" />
           </a>
           <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>
-          <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
+          <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
         </div>
       </footer>
     </div>

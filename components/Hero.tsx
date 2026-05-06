@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
           frameBorder='0'
           width='100%'
           height='100%'
-          title="Blink Ad 3D Lightbulb"
+          title="BlinkAd 3D Lightbulb"
           className="w-full h-full"
         />
         {/* Overlay: captures wheel events for page scroll, allows click-through for 3D interaction */}

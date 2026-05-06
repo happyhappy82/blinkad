@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { MapPin, FileText, Bot, ArrowLeft, Check } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: '서비스 - Blink Ad',
+  title: '서비스 - BlinkAd',
   description: '블링크애드의 핵심 서비스. 구글 비즈니스 프로필 관리, 브랜드 블로그 운영, AI 검색 최적화.',
 }
 
@@ -59,7 +59,7 @@ export default function ServicesPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
           </Link>
           <div className="flex items-center gap-8">
             <Link href="/services" className="text-sm text-white">서비스</Link>
@@ -145,10 +145,10 @@ export default function ServicesPage() {
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
           </Link>
           <p className="text-gray-500 text-sm">AEO·GEO Marketing Agency</p>
-          <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} Blink Ad. All rights reserved.</p>
+          <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} BlinkAd. All rights reserved.</p>
         </div>
       </footer>
     </div>

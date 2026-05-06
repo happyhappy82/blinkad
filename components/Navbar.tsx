@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
             onClick={() => handleNavigate('home')}
             className="cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
+          <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
         </div>
 
         <div className="hidden md:flex space-x-8">
