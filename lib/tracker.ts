@@ -40,7 +40,7 @@ function currentUrl(): string {
 
 // ── pathname 기반 페이지 카테고리 자동 분류
 export function inferPageType(pathname: string): 'main' | 'blog' | 'case' | 'lp' | 'service' {
-  // blog.blinkad.kr 호스트는 middleware로 /blog/*로 rewrite됨
+  // 기존 blog.blinkad.kr 호스트는 middleware에서 /blog/*로 영구 리다이렉트됨
   if (pathname === '/' || pathname === '') return 'main';
   if (pathname.startsWith('/blog')) return 'blog';
   if (pathname.startsWith('/case-studies')) return 'case';
@@ -78,7 +78,7 @@ export function getPageMeta(pathname?: string): PageMeta {
 }
 
 // ── Cookie 헬퍼 (cross-subdomain: .blinkad.kr 공유)
-//    blinkad.kr ↔ blog.blinkad.kr 사이 이동에도 추적 데이터 보존.
+//    기존 서브도메인 유입이 www.blinkad.kr로 넘어와도 추적 데이터 보존.
 //    - max-age 7200초(2시간) — 한 방문 세션 정도, 너무 길지 않게
 //    - SameSite=Lax — 서브도메인 간 동일 사이트 컨텍스트 허용
 //    - localhost는 domain 옵션 생략 (개발 환경 호환)

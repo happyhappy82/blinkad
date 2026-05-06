@@ -12,21 +12,21 @@ const BlogPage: React.FC = () => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
           <a
-            href="https://blinkad.kr"
+            href="/"
             className="hover:opacity-80 transition-opacity"
           >
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </a>
 
           <div className="hidden md:flex space-x-8">
-            <a href="https://blinkad.kr/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
-            <a href="https://blinkad.kr/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
+            <a href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
+            <a href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
             <Link href="/blog" className="text-sm font-medium text-white transition-colors">블로그</Link>
-            <a href="https://blinkad.kr/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</a>
+            <a href="/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</a>
           </div>
 
           <a
-            href="https://blinkad.kr/#contact"
+            href="/#contact"
             className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
           >
             무료 진단하기
@@ -129,7 +129,7 @@ const BlogPage: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <a href="https://blinkad.kr" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+          <a href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </a>
           <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>

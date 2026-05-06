@@ -17,13 +17,14 @@ function escapeXml(str: string): string {
 }
 
 export async function GET() {
-  const baseUrl = 'https://blog.blinkad.kr'
+  const siteUrl = 'https://www.blinkad.kr'
+  const blogBaseUrl = `${siteUrl}/blog`
 
   const rssItems = BLOG_POSTS.map((post) => `
     <item>
       <title>${escapeXml(post.title)}</title>
-      <link>${baseUrl}/${post.id}</link>
-      <guid isPermaLink="true">${baseUrl}/${post.id}</guid>
+      <link>${blogBaseUrl}/${post.id}</link>
+      <guid isPermaLink="true">${blogBaseUrl}/${post.id}</guid>
       <pubDate>${formatDateToRFC822(post.date)}</pubDate>
       <description>${escapeXml(post.excerpt || post.title)}</description>
       <category>${escapeXml(post.category)}</category>
@@ -33,11 +34,11 @@ export async function GET() {
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blink Ad Blog</title>
-    <link>${baseUrl}</link>
+    <link>${blogBaseUrl}</link>
     <description>구글 AEO·GEO 외국인 마케팅 전문 블링크애드의 인사이트. 의료관광·맛집·로컬 브랜드의 검색·AI 답변 노출 전략과 케이스를 다룹니다.</description>
     <language>ko</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <atom:link href="${baseUrl}/feed.xml" rel="self" type="application/rss+xml"/>
+    <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml"/>
     ${rssItems}
   </channel>
 </rss>`

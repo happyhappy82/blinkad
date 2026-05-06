@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://blinkad.kr'
+  const baseUrl = 'https://www.blinkad.kr'
 
   // 정적 페이지들
   const staticPages: MetadataRoute.Sitemap = [

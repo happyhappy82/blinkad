@@ -6,6 +6,9 @@ import { BLOG_POSTS } from '@/constants'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
 
+const SITE_URL = 'https://www.blinkad.kr'
+const BLOG_BASE_URL = `${SITE_URL}/blog`
+
 interface Props {
   params: Promise<{ slug: string }>
 }
@@ -13,6 +16,14 @@ interface Props {
 // 날짜 형식 변환 (2026.01.22 → 2026-01-22)
 function formatDateToISO(dateStr: string): string {
   return dateStr.replace(/\./g, '-')
+}
+
+function toAbsoluteUrl(url: string): string {
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url
+  }
+
+  return `${SITE_URL}${url.startsWith('/') ? url : `/${url}`}`
 }
 
 export async function generateStaticParams() {
@@ -31,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const canonicalUrl = `https://blog.blinkad.kr/${post.id}`
+  const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
+  const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
   const description = post.excerpt && post.excerpt.length > 50
     ? post.excerpt
     : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 구글 AEO·GEO 외국인 마케팅 전문 에이전시의 인사이트를 제공합니다.`
@@ -47,15 +59,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: canonicalUrl,
       siteName: 'Blink Ad',
-      images: post.imageUrl ? [
+      images: imageUrl ? [
         {
-          url: post.imageUrl,
+          url: imageUrl,
           width: 1200,
           height: 630,
         },
       ] : [
         {
-          url: 'https://blinkad.kr/og-image.png',
+          url: `${SITE_URL}/og-image.png`,
           width: 1200,
           height: 734,
         },
@@ -67,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${post.title} - Blink Ad Blog`,
       description,
-      images: post.imageUrl ? [post.imageUrl] : ['https://blinkad.kr/og-image.png'],
+      images: imageUrl ? [imageUrl] : [`${SITE_URL}/og-image.png`],
     },
   }
 }
@@ -81,6 +93,8 @@ export default async function BlogPost({ params }: Props) {
   }
 
   const isoDate = formatDateToISO(post.date)
+  const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
+  const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
 
   // 관련 글 추천 (같은 카테고리, 최대 3개)
   const relatedPosts = BLOG_POSTS
@@ -92,27 +106,27 @@ export default async function BlogPost({ params }: Props) {
     '@type': 'Article',
     headline: post.title,
     description: post.excerpt || post.title,
-    ...(post.imageUrl && { image: post.imageUrl }),
+    ...(imageUrl && { image: imageUrl }),
     datePublished: isoDate,
     dateModified: isoDate,
     author: {
       '@type': 'Organization',
       name: 'Blink Ad',
-      url: 'https://blinkad.kr',
+      url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
       name: 'Blink Ad',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://blinkad.kr/logo-white-nav.png',
+        url: `${SITE_URL}/logo-white-nav.png`,
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://blog.blinkad.kr/${post.id}`,
+      '@id': canonicalUrl,
     },
-    url: `https://blog.blinkad.kr/${post.id}`,
+    url: canonicalUrl,
   }
 
   const breadcrumbSchema = {
@@ -123,19 +137,19 @@ export default async function BlogPost({ params }: Props) {
         '@type': 'ListItem',
         position: 1,
         name: '홈',
-        item: 'https://blinkad.kr',
+        item: SITE_URL,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '블로그',
-        item: 'https://blog.blinkad.kr',
+        item: BLOG_BASE_URL,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: post.title,
-        item: `https://blog.blinkad.kr/${post.id}`,
+        item: canonicalUrl,
       },
     ],
   }
@@ -157,21 +171,21 @@ export default async function BlogPost({ params }: Props) {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
           <a
-            href="https://blinkad.kr"
+            href="/"
             className="hover:opacity-80 transition-opacity"
           >
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </a>
 
           <div className="hidden md:flex space-x-8">
-            <a href="https://blinkad.kr/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
-            <a href="https://blinkad.kr/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
+            <a href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
+            <a href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
             <Link href="/blog" className="text-sm font-medium text-white transition-colors">블로그</Link>
-            <a href="https://blinkad.kr/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</a>
+            <a href="/#contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</a>
           </div>
 
           <a
-            href="https://blinkad.kr/#contact"
+            href="/#contact"
             className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
           >
             무료 진단하기
@@ -290,7 +304,7 @@ export default async function BlogPost({ params }: Props) {
       {/* Footer */}
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <a href="https://blinkad.kr" className="inline-block mb-4 hover:opacity-80 transition-opacity">
+          <a href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
             <img src="/logo-white-nav.png" alt="Blink Ad" className="h-8 w-auto" />
           </a>
           <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>

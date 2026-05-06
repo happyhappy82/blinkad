@@ -1,11 +1,11 @@
 # Robots.txt for Blink Ad
-# https://blinkad.kr
+# https://www.blinkad.kr
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://blinkad.kr/sitemap.xml
+Sitemap: https://www.blinkad.kr/sitemap.xml
 
 # Crawl-delay (optional, for polite crawling)
 Crawl-delay: 1

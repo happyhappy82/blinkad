@@ -192,7 +192,18 @@ function markdownToHtml(markdown) {
   html = html.replace(/<p><\/p>/g, '');
   html = html.replace(/<p>\s*<\/p>/g, '');
 
-  return html.trim();
+  return normalizeBlinkadLinks(html.trim());
+}
+
+// 기존 서브도메인 링크가 Notion 본문에 남아 있어도 빌드 산출물은 새 canonical로 통일
+function normalizeBlinkadLinks(html) {
+  return html
+    .replace(/https:\/\/blog\.blinkad\.kr\/feed\.xml/g, 'https://www.blinkad.kr/feed.xml')
+    .replace(/https:\/\/blog\.blinkad\.kr\/sitemap\.xml/g, 'https://www.blinkad.kr/sitemap.xml')
+    .replace(/https:\/\/blog\.blinkad\.kr\/blog\//g, 'https://www.blinkad.kr/blog/')
+    .replace(/https:\/\/blog\.blinkad\.kr\//g, 'https://www.blinkad.kr/blog/')
+    .replace(/https:\/\/blinkad\.kr\/blog\//g, 'https://www.blinkad.kr/blog/')
+    .replace(/https:\/\/blinkad\.kr\//g, 'https://www.blinkad.kr/');
 }
 
 // 이미지 다운로드 함수 (Notion 파일 URL 만료 대응)
