@@ -45,15 +45,15 @@ const services = [
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="py-32 bg-black relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-12 lg:gap-20 items-end mb-16">
+    <section id="services" className="py-20 md:py-32 bg-black relative">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.25fr] gap-7 lg:gap-20 items-end mb-10 md:mb-16">
           <FadeIn>
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Services</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">제공 서비스</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">제공 서비스</h2>
           </FadeIn>
           <FadeIn delay={120}>
-            <p className="text-lg text-gray-400 leading-relaxed keep-all">
+            <p className="text-base md:text-lg text-gray-400 leading-relaxed keep-all">
               단순 제작사가 아니라 검색과 AI 답변에 잡히는 구조까지 설계하는 에이전시입니다.
               홈페이지, Google 프로필, 콘텐츠 운영을 같은 기준으로 맞춥니다.
             </p>
@@ -66,7 +66,7 @@ const Services: React.FC = () => {
             return (
             <FadeIn key={service.title} delay={index * 80}>
               <Link href={service.href} className="group block">
-                <div className="grid grid-cols-1 lg:grid-cols-[96px_0.9fr_1.1fr_140px] gap-6 md:gap-8 items-start rounded-[10px] bg-brand-dark border border-white/10 hover:border-brand-blue/35 p-6 md:p-8 transition-colors">
+                <div className="grid grid-cols-1 lg:grid-cols-[96px_0.9fr_1.1fr_140px] gap-5 md:gap-8 items-start rounded-[10px] bg-brand-dark border border-white/10 hover:border-brand-blue/35 p-5 md:p-8 transition-colors">
                   <div className="flex items-center gap-4">
                     <span className="text-sm text-gray-500 tabular-nums">0{index + 1}</span>
                     <div className="w-11 h-11 rounded-[10px] bg-black border border-white/10 flex items-center justify-center">
@@ -74,8 +74,8 @@ const Services: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-100 mb-3 keep-all">{service.title}</h3>
-                    <p className="text-gray-400 leading-relaxed keep-all">
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-100 mb-3 keep-all">{service.title}</h3>
+                    <p className="text-sm md:text-base text-gray-400 leading-relaxed keep-all">
                       {service.description}
                     </p>
                   </div>

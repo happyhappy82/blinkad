@@ -40,22 +40,22 @@ const stats = [
 
 const MethodStack: React.FC = () => {
   return (
-    <section id="method" className="bg-[#050505] py-28 md:py-36 border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-16 lg:gap-24">
+    <section id="method" className="bg-[#050505] py-20 md:py-36 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-24">
           <FadeIn>
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Method</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">
               SEO → AEO → GEO<br className="hidden md:block" />
               3단계 통합 최적화 기술
             </h2>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed keep-all">
+            <p className="mt-5 md:mt-6 text-base md:text-lg text-gray-400 leading-relaxed keep-all">
               SEO와 AEO는 기본 구조로 탑재하고, GEO 고도화로 AI 추천과 인용 가능성까지 확장합니다.
               홈페이지와 프로필 운영을 따로 보지 않는 방식입니다.
             </p>
             <a
               href="#contact"
-              className="mt-9 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 font-semibold transition-colors"
+              className="mt-7 md:mt-9 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 font-semibold transition-colors"
             >
               우리 브랜드 진단하기
               <ArrowUpRight className="w-4 h-4" />
@@ -78,7 +78,7 @@ const MethodStack: React.FC = () => {
                         <p className="text-sm md:text-base text-gray-400 leading-relaxed keep-all">{item.detail}</p>
                       </div>
                     </div>
-                    <div className="mt-6 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-5">
+                    <div className="mt-5 md:mt-6 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-4 md:gap-5">
                       <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                         {item.bullets.map((bullet) => (
                           <li key={bullet} className="rounded-[8px] bg-white/[0.04] border border-white/10 px-3 py-2 text-xs text-gray-400 keep-all">
@@ -94,10 +94,10 @@ const MethodStack: React.FC = () => {
             })}
           </div>
         </div>
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
+        <div className="mt-10 md:mt-14 grid grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
           {stats.map(([value, label, note]) => (
-            <div key={label} className="p-6 md:p-7 bg-brand-dark border-r border-b lg:border-b-0 border-white/10 last:border-r-0">
-              <p className="text-3xl md:text-4xl font-bold text-white">{value}</p>
+            <div key={label} className="p-5 md:p-7 bg-brand-dark border-r border-b lg:border-b-0 border-white/10 last:border-r-0">
+              <p className="text-2xl md:text-4xl font-bold text-white">{value}</p>
               <p className="mt-2 text-sm font-semibold text-gray-300 keep-all">{label}</p>
               <p className="mt-1 text-xs text-gray-600 keep-all">{note}</p>
             </div>

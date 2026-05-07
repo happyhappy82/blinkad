@@ -13,22 +13,22 @@ const signals = [
 
 const AIDiagnostic: React.FC = () => {
   return (
-    <section id="ai-diagnostic" className="bg-[#050505] py-28 md:py-36 border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-14 lg:gap-20 items-start">
+    <section id="ai-diagnostic" className="bg-[#050505] py-20 md:py-36 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-20 items-start">
           <FadeIn>
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">AI Visibility Diagnostic</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">
               AI가 우리 브랜드를<br className="hidden md:block" />
               어떻게 설명하는지 먼저 봅니다.
             </h2>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed keep-all">
+            <p className="mt-5 md:mt-6 text-base md:text-lg text-gray-400 leading-relaxed keep-all">
               LogAgency 레퍼런스의 핵심처럼, 이제는 검색 순위만이 아니라 AI 답변 안에서 브랜드가 어떻게 언급되는지가 중요합니다.
               블링크애드는 실제 질의 결과를 기준으로 누락된 정보 구조를 찾습니다.
             </p>
             <a
               href="#contact"
-              className="mt-9 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 font-semibold transition-colors"
+              className="mt-7 md:mt-9 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 font-semibold transition-colors"
             >
               무료 진단 신청
               <ArrowUpRight className="w-4 h-4" />
@@ -41,14 +41,14 @@ const AIDiagnostic: React.FC = () => {
                 <span className="text-sm font-semibold text-white">AI 답변 진단 예시</span>
                 <span className="text-[11px] text-gray-500 tracking-[0.18em]">CHATGPT · PERPLEXITY · GOOGLE</span>
               </div>
-              <div className="p-5 md:p-7 space-y-5">
-                <div className="rounded-[10px] bg-white/[0.04] border border-white/10 p-5">
+              <div className="p-4 md:p-7 space-y-4 md:space-y-5">
+                <div className="rounded-[10px] bg-white/[0.04] border border-white/10 p-4 md:p-5">
                   <p className="text-xs text-gray-500 mb-3">User Prompt</p>
-                  <p className="text-lg text-white leading-relaxed keep-all">
+                  <p className="text-base md:text-lg text-white leading-relaxed keep-all">
                     “서울에서 외국인 관광객에게 잘 보이는 한식당 마케팅 업체를 알려줘.”
                   </p>
                 </div>
-                <div className="rounded-[10px] bg-brand-blue/10 border border-brand-blue/25 p-5">
+                <div className="rounded-[10px] bg-brand-blue/10 border border-brand-blue/25 p-4 md:p-5">
                   <p className="text-xs text-brand-blue mb-3">Diagnostic Focus</p>
                   <p className="text-sm md:text-base text-gray-300 leading-relaxed keep-all">
                     답변에 브랜드가 등장하는지, 어떤 출처가 붙는지, 경쟁사가 먼저 나오는 이유가 무엇인지,

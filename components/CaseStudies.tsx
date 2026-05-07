@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CASE_STUDIES } from '@/constants';
 import { FadeIn } from './ui/FadeIn';
-import { Eye, Search, MousePointerClick, TrendingUp, Globe, Smartphone, MapPin, BarChart3 } from 'lucide-react';
+import { Eye, Search, MousePointerClick, TrendingUp, Globe, Smartphone, MapPin, BarChart3, X } from 'lucide-react';
 import Image from 'next/image';
 
 // 숫자 카운팅 애니메이션 훅
@@ -67,63 +67,63 @@ const CaseStudies: React.FC = () => {
   const [modalImg, setModalImg] = useState<string | null>(null);
 
   return (
-    <section id="casestudies" className="py-32 bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="casestudies" className="py-20 md:py-32 bg-black overflow-hidden">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
         {/* 섹션 헤더 */}
-        <FadeIn className="mb-16">
+        <FadeIn className="mb-10 md:mb-16">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-4">Success Stories</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">실제 성과로 증명합니다.</h2>
-          <p className="text-xl text-gray-400 max-w-2xl keep-all">
-            스톡 이미지도, 꾸며낸 숫자도 아닙니다.<br className="hidden md:block" />
-            Google 비즈니스 프로필에서 가져온 실제 데이터입니다.
+          <h2 className="text-3xl md:text-5xl font-bold mb-4 keep-all">실제 성과로 증명합니다.</h2>
+          <p className="text-base md:text-xl text-gray-400 max-w-2xl keep-all break-words leading-relaxed">
+            <span className="block">스톡 이미지도, 꾸며낸 숫자도 아닙니다.</span>
+            <span className="block">Google 비즈니스 프로필에서 가져온 실제 데이터입니다.</span>
           </p>
         </FadeIn>
 
         {/* 고객사 배지 */}
-        <FadeIn delay={100} className="mb-10">
-          <div className="flex flex-wrap items-center gap-3">
+        <FadeIn delay={100} className="mb-8 md:mb-10">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
             <span className="inline-flex items-center gap-2 bg-brand-blue/10 text-brand-blue px-4 py-2 rounded-full text-sm font-semibold border border-brand-blue/20">
               <span className="w-2 h-2 bg-brand-blue rounded-full animate-pulse" />
               {mainCase.client}
             </span>
             <span className="text-gray-500 text-sm">{mainCase.industry}</span>
-            <span className="text-gray-600 text-sm">·</span>
+            <span className="hidden sm:inline text-gray-600 text-sm">·</span>
             <span className="text-gray-500 text-sm">GBP 최적화 {mainCase.duration}</span>
             {mainCase.period && (
               <>
-                <span className="text-gray-600 text-sm">·</span>
-                <span className="text-gray-500 text-sm">{mainCase.period}</span>
+                <span className="hidden sm:inline text-gray-600 text-sm">·</span>
+                <span className="w-full sm:w-auto text-gray-500 text-sm">{mainCase.period}</span>
               </>
             )}
           </div>
         </FadeIn>
 
         {/* 핵심 수치 3개 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-6 md:mb-8">
           {screenshots.map((shot, index) => {
             const Icon = STAT_ICONS[index];
             return (
               <FadeIn key={shot.label} delay={150 + index * 100}>
                 <div
                   ref={countRefs[index]}
-                  className="group relative rounded-2xl bg-brand-dark border border-white/5 hover:border-brand-blue/30 transition-all duration-500 overflow-hidden cursor-pointer"
+                  className="group relative rounded-[10px] bg-brand-dark border border-white/5 hover:border-brand-blue/30 transition-all duration-500 overflow-hidden cursor-pointer"
                   onClick={() => setModalImg(shot.src)}
                 >
                   {/* 카드 헤더 - 수치 */}
-                  <div className="p-6 pb-4">
+                  <div className="p-5 md:p-6 pb-4">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center">
                         <Icon className="w-5 h-5 text-brand-blue" />
                       </div>
                       <span className="text-sm text-gray-400">{shot.label}</span>
                     </div>
-                    <p className="text-4xl md:text-5xl font-bold text-white">
+                    <p className="text-3xl md:text-5xl font-bold text-white">
                       {counts[index].toLocaleString()}
                     </p>
                   </div>
 
                   {/* 스크린샷 이미지 */}
-                  <div className="relative mx-4 mb-4 rounded-xl overflow-hidden bg-white/95 border border-gray-200/50 group-hover:shadow-[0_0_30px_rgba(0,113,227,0.15)] transition-shadow duration-500">
+                  <div className="relative mx-3 md:mx-4 mb-3 md:mb-4 rounded-[10px] overflow-hidden bg-white/95 border border-gray-200/50 group-hover:shadow-[0_0_30px_rgba(0,113,227,0.15)] transition-shadow duration-500">
                     <Image
                       src={shot.src}
                       alt={shot.label}
@@ -135,7 +135,7 @@ const CaseStudies: React.FC = () => {
                   </div>
 
                   {/* 호버 힌트 */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="hidden md:block absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <span className="text-xs text-gray-500 bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full">
                       클릭하여 확대
                     </span>
@@ -148,8 +148,8 @@ const CaseStudies: React.FC = () => {
 
         {/* 주요 성과 요약 바 */}
         <FadeIn delay={500}>
-          <div className="rounded-2xl bg-gradient-to-r from-brand-blue/5 via-brand-dark to-brand-blue/5 border border-white/5 p-6 md:p-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="rounded-[10px] bg-gradient-to-r from-brand-blue/5 via-brand-dark to-brand-blue/5 border border-white/5 p-5 md:p-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {mainCase.keyResults.map((result, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <TrendingUp className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
@@ -164,10 +164,10 @@ const CaseStudies: React.FC = () => {
 
         {/* 배경 + 수행 작업 */}
         {(mainCase.background || mainCase.approach) && (
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-8">
             {mainCase.background && (
               <FadeIn delay={100}>
-                <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-8">
+                <div className="h-full rounded-[10px] bg-brand-dark border border-white/5 p-5 md:p-8">
                   <h3 className="text-lg font-bold text-white mb-1">배경</h3>
                   <p className="text-xs text-gray-600 mb-5">프로젝트 시작 전 상황</p>
                   <p className="text-sm text-gray-400 leading-relaxed keep-all">
@@ -179,7 +179,7 @@ const CaseStudies: React.FC = () => {
 
             {mainCase.approach && (
               <FadeIn delay={200}>
-                <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-8">
+                <div className="h-full rounded-[10px] bg-brand-dark border border-white/5 p-5 md:p-8">
                   <h3 className="text-lg font-bold text-white mb-1">수행한 작업</h3>
                   <p className="text-xs text-gray-600 mb-5">{mainCase.duration} 동안 진행한 최적화</p>
                   <ul className="space-y-3">
@@ -201,7 +201,7 @@ const CaseStudies: React.FC = () => {
         {/* 검색 키워드 분석 */}
         {mainCase.searchKeywords && mainCase.searchKeywords.length > 0 && (
           <FadeIn delay={300} className="mt-8">
-            <div className="rounded-2xl bg-brand-dark border border-white/5 p-8">
+            <div className="rounded-[10px] bg-brand-dark border border-white/5 p-5 md:p-8">
               <h3 className="text-lg font-bold text-white mb-1">검색 키워드 분석</h3>
               <p className="text-xs text-gray-600 mb-6">
                 실제 Google 검색에서 매장이 노출된 키워드와 횟수
@@ -209,11 +209,11 @@ const CaseStudies: React.FC = () => {
               <div className="space-y-5">
                 {mainCase.searchKeywords.map((kw, i) => (
                   <div key={i}>
-                    <div className="flex items-center justify-between mb-1.5">
-                      <code className="text-sm text-white font-mono bg-white/5 px-2 py-0.5 rounded">
+                    <div className="flex items-start sm:items-center justify-between gap-3 mb-1.5">
+                      <code className="min-w-0 text-xs sm:text-sm text-white font-mono bg-white/5 px-2 py-0.5 rounded break-all">
                         {kw.keyword}
                       </code>
-                      <span className="text-sm text-gray-400 tabular-nums">{kw.volume}회</span>
+                      <span className="text-sm text-gray-400 tabular-nums flex-shrink-0">{kw.volume}회</span>
                     </div>
                     <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
                       <div
@@ -243,7 +243,7 @@ const CaseStudies: React.FC = () => {
                 const Icon = INSIGHT_ICONS[i % INSIGHT_ICONS.length];
                 return (
                   <FadeIn key={i} delay={100 + i * 100}>
-                    <div className="h-full rounded-2xl bg-brand-dark border border-white/5 p-6 hover:border-brand-blue/20 transition-colors duration-300">
+                    <div className="h-full rounded-[10px] bg-brand-dark border border-white/5 p-5 md:p-6 hover:border-brand-blue/20 transition-colors duration-300">
                       <div className="flex items-start gap-4">
                         <div className="w-10 h-10 rounded-xl bg-brand-blue/10 flex items-center justify-center flex-shrink-0">
                           <Icon className="w-5 h-5 text-brand-blue" />
@@ -274,10 +274,10 @@ const CaseStudies: React.FC = () => {
       {/* 스크린샷 확대 모달 */}
       {modalImg && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 cursor-pointer"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-3 md:p-4 cursor-pointer"
           onClick={() => setModalImg(null)}
         >
-          <div className="relative max-w-3xl w-full max-h-[90vh] overflow-auto rounded-2xl bg-white p-2">
+          <div className="relative max-w-3xl w-full max-h-[90vh] overflow-auto rounded-[10px] bg-white p-2">
             <Image
               src={modalImg}
               alt="확대 보기"
@@ -288,9 +288,10 @@ const CaseStudies: React.FC = () => {
             />
             <button
               onClick={() => setModalImg(null)}
-              className="absolute top-4 right-4 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
+              aria-label="닫기"
+              className="absolute top-3 md:top-4 right-3 md:right-4 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-colors"
             >
-              ✕
+              <X className="w-5 h-5" />
             </button>
           </div>
         </div>

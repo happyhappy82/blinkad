@@ -24,22 +24,22 @@ const faqs = [
 
 const FAQ: React.FC = () => {
   return (
-    <section id="faq" className="bg-[#050505] py-28 md:py-36 border-y border-white/5">
-      <div className="max-w-4xl mx-auto px-6">
-        <FadeIn className="mb-12 text-center">
+    <section id="faq" className="bg-[#050505] py-20 md:py-36 border-y border-white/5">
+      <div className="max-w-4xl mx-auto px-5 md:px-6">
+        <FadeIn className="mb-9 md:mb-12 text-center">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">FAQ</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">자주 묻는 질문</h2>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">자주 묻는 질문</h2>
         </FadeIn>
 
         <div className="divide-y divide-white/10 border-y border-white/10">
           {faqs.map((faq, index) => (
             <FadeIn key={faq.question} delay={index * 70}>
-              <details className="group py-7">
+              <details className="group py-6 md:py-7">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-left">
-                  <span className="text-lg md:text-xl font-semibold text-white keep-all">{faq.question}</span>
+                  <span className="text-base md:text-xl font-semibold text-white keep-all">{faq.question}</span>
                   <span className="mt-1 text-brand-blue transition-transform group-open:rotate-45">+</span>
                 </summary>
-                <p className="mt-5 text-gray-400 leading-relaxed keep-all">{faq.answer}</p>
+                <p className="mt-4 md:mt-5 text-sm md:text-base text-gray-400 leading-relaxed keep-all">{faq.answer}</p>
               </details>
             </FadeIn>
           ))}

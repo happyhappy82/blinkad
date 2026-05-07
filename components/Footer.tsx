@@ -4,8 +4,8 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black py-16 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="bg-black py-12 md:py-16 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
         {/* 상단 영역 */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-6 md:mb-0 md:max-w-xl">
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               구글 마케팅 전문 블링크애드입니다. SEO와 AEO를 중심으로 브랜드가 검색 결과와 AI 답변에서 더 잘 발견되고 선택되도록 돕습니다. 검색 구조, 마케팅 인사이트, 브랜딩을 함께 설계해 노출이 아닌 전환 중심의 성장을 만듭니다.
             </p>
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <a href="https://warm-hip-fe9.notion.site/2e9753ebc01380e8aa5dca28b76683eb" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
             <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">이용약관</a>
             <a href="https://www.youtube.com/@bizik_insight" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" aria-label="YouTube">

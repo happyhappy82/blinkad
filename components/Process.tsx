@@ -44,12 +44,12 @@ const process = [
 
 const Process: React.FC = () => {
   return (
-    <section id="process" className="bg-black py-28 md:py-36 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <FadeIn className="mb-16">
+    <section id="process" className="bg-black py-20 md:py-36 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
+        <FadeIn className="mb-10 md:mb-16">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Process</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">프로젝트 진행 과정</h2>
-          <p className="mt-5 text-lg text-gray-400 max-w-2xl leading-relaxed keep-all">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">프로젝트 진행 과정</h2>
+          <p className="mt-5 text-base md:text-lg text-gray-400 max-w-2xl leading-relaxed keep-all">
             검색과 AI 노출을 위한 6단계 프로세스입니다. 모든 프로젝트는 사전 정의된 구조 설계 기준을 기반으로 진행됩니다.
           </p>
         </FadeIn>
@@ -57,9 +57,9 @@ const Process: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/10 rounded-[10px] overflow-hidden">
           {process.map((phase, index) => (
             <FadeIn key={phase.step} delay={index * 90}>
-              <div className="h-full p-7 md:p-8 bg-brand-dark border-b md:border-r border-white/10">
-                <div className="flex items-center justify-between mb-8">
-                  <span className="text-3xl font-bold text-white/20">{phase.step}</span>
+              <div className="h-full p-6 md:p-8 bg-brand-dark border-b md:border-r border-white/10">
+                <div className="flex items-center justify-between mb-6 md:mb-8">
+                  <span className="text-2xl md:text-3xl font-bold text-white/20">{phase.step}</span>
                   <span className="text-[11px] tracking-[0.18em] text-brand-blue font-semibold">{phase.duration}</span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-5 keep-all">{phase.title}</h3>

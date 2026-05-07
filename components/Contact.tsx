@@ -124,21 +124,21 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-32 bg-black relative border-t border-white/5">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <FadeIn className="mb-12">
+    <section id="contact" className="py-20 md:py-32 bg-black relative border-t border-white/5">
+      <div className="max-w-3xl mx-auto px-5 md:px-6 text-center">
+        <FadeIn className="mb-9 md:mb-12">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Contact</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 keep-all">우리 브랜드가 어디서 빠지는지 먼저 보겠습니다.</h2>
-          <p className="text-xl text-gray-400 keep-all">
+          <h2 className="text-3xl md:text-5xl font-bold mb-5 md:mb-6 keep-all">우리 브랜드가 어디서 빠지는지 먼저 보겠습니다.</h2>
+          <p className="text-base md:text-xl text-gray-400 keep-all">
             검색, 지도, AI 답변 노출 상태를 보고 우선순위를 정리해드립니다.
           </p>
         </FadeIn>
 
         <FadeIn delay={200}>
           {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-6 text-left">
+            <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6 text-left">
               {/* Row 1: 기업명 / 담당자명 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div className="group">
                   <label htmlFor="companyName" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     상호 또는 기업/기관명 <span className="text-red-500">*</span>
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
               </div>
 
               {/* Row 2: 이메일 / 연락처 */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                 <div className="group">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2 group-focus-within:text-brand-blue transition-colors">
                     이메일 <span className="text-red-500">*</span>
@@ -232,7 +232,7 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="bg-white text-black hover:bg-gray-200 px-10 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full sm:w-auto bg-white text-black hover:bg-gray-200 px-8 md:px-10 py-4 rounded-full text-base md:text-lg font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {isLoading ? (
                     <span className="flex items-center gap-2">

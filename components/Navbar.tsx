@@ -41,10 +41,12 @@ const Navbar: React.FC = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-black/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'
+        scrolled
+          ? 'bg-black/80 backdrop-blur-md border-b border-white/5 py-3 md:py-4'
+          : 'bg-black/45 md:bg-transparent backdrop-blur-sm md:backdrop-blur-0 py-4 md:py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-5 md:px-6 flex justify-between items-center">
         <div
             onClick={() => handleNavigate('home')}
             className="cursor-pointer hover:opacity-80 transition-opacity"
@@ -56,7 +58,7 @@ const Navbar: React.FC = () => {
           <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</button>
           <button onClick={() => handleNavigate('ai-diagnostic')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AI 진단</button>
           <button onClick={() => handleNavigate('method')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Method</button>
-          <button onClick={() => handleNavigate('casestudies')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
+          <button onClick={() => handleNavigate('case-studies-page')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
           <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">프로세스</button>
         </div>
 

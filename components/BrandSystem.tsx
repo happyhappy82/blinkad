@@ -40,18 +40,18 @@ const pillars = [
 
 const BrandSystem: React.FC = () => {
   return (
-    <section className="bg-black py-28 md:py-36 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-14 lg:gap-20 items-start">
+    <section className="bg-black py-20 md:py-36 border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-5 md:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-20 items-start">
           <FadeIn>
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">
               Brand Visibility System
             </p>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight keep-all">
+            <h2 className="text-3xl md:text-6xl font-bold tracking-tight keep-all">
               문제는 디자인이 아니라,<br className="hidden md:block" />
               만들어진 구조일 수 있습니다.
             </h2>
-            <p className="mt-7 text-lg text-gray-400 leading-relaxed keep-all">
+            <p className="mt-5 md:mt-7 text-base md:text-lg text-gray-400 leading-relaxed keep-all">
               예쁜 화면만으로는 검색엔진과 AI가 브랜드를 정확히 이해하지 못합니다.
               블링크애드는 검색 의도, 정보 위계, 스키마, 외부 프로필을 같이 정리해 발견과 문의가 이어지는 구조를 만듭니다.
             </p>
@@ -72,13 +72,13 @@ const BrandSystem: React.FC = () => {
           </FadeIn>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
+        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
               <FadeIn key={pillar.title} delay={index * 90}>
-                <div className="h-full min-h-[280px] p-7 md:p-8 bg-brand-dark border-b md:border-b-0 md:border-r border-white/10 last:border-r-0">
-                  <div className="flex items-center justify-between mb-10">
+                <div className="h-full min-h-[220px] md:min-h-[280px] p-6 md:p-8 bg-brand-dark border-b md:border-b-0 md:border-r border-white/10 last:border-r-0">
+                  <div className="flex items-center justify-between mb-7 md:mb-10">
                     <span className="text-sm text-gray-500">{pillar.label}</span>
                     <Icon className="w-5 h-5 text-brand-blue" />
                   </div>
