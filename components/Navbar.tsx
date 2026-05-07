@@ -55,11 +55,11 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="hidden md:flex space-x-8">
-          <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</button>
-          <button onClick={() => handleNavigate('ai-diagnostic')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AI 진단</button>
-          <button onClick={() => handleNavigate('method')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Method</button>
+          <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">상품</button>
+          <button onClick={() => handleNavigate('ai-diagnostic')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">확장전략</button>
+          <button onClick={() => handleNavigate('method')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AEO 구조</button>
           <button onClick={() => handleNavigate('case-studies-page')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
-          <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">프로세스</button>
+          <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">진행과정</button>
         </div>
 
         <button

@@ -128,7 +128,7 @@ const Contact: React.FC = () => {
       <div className="max-w-3xl mx-auto px-5 md:px-6 text-center">
         <FadeIn className="mb-9 md:mb-12">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Contact</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-5 md:mb-6 keep-all">우리 브랜드가 어디서 빠지는지 먼저 보겠습니다.</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-5 md:mb-6 keep-all">무료 진단받기</h2>
           <p className="text-base md:text-xl text-gray-400 keep-all">
             검색, 지도, AI 답변 노출 상태를 보고 우선순위를 정리해드립니다.
           </p>

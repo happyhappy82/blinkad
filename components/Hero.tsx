@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] md:min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-[80svh] md:min-h-[78vh] flex items-center justify-center overflow-hidden bg-black">
       {/* Spline 3D Background - Full Screen */}
       <div className="absolute inset-0 w-full h-full">
         <iframe
@@ -71,14 +71,13 @@ const Hero: React.FC = () => {
         <div className="max-w-7xl mx-auto">
         <FadeIn delay={200}>
           <h1 className="text-[2.45rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-5 md:mb-6 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75 drop-shadow-lg keep-all">
-            Google 검색과<br className="sm:hidden" /> AI 답변에서<br/>먼저 발견되는<br className="sm:hidden" /> 브랜드.
+            Google에서 발견되고,<br />AI가 이해하는<br className="sm:hidden" /> 브랜드로 만듭니다.
           </h1>
         </FadeIn>
 
         <FadeIn delay={400}>
           <p className="text-sm sm:text-base md:text-xl text-gray-300 max-w-[21rem] md:max-w-3xl font-light leading-relaxed mb-6 md:mb-8 break-words drop-shadow-md">
-            블링크애드는 홈페이지, Google Business Profile, 답변형 콘텐츠, 스키마를 통합해
-            고객이 검색하고 AI에게 물어볼 때 브랜드가 설명되도록 설계합니다.
+            블링크애드는 Google 비즈니스 프로필, 웹사이트, 블로그 콘텐츠를 연결해 외국인 고객 유입의 기반을 설계합니다.
           </p>
         </FadeIn>
 

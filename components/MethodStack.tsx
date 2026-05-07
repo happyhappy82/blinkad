@@ -6,103 +6,97 @@ import { FadeIn } from './ui/FadeIn';
 
 const stack = [
   {
-    name: '기본 탑재 SEO',
-    title: '검색엔진최적화',
-    detail: '메타태그, 시맨틱 마크업, 크롤링과 인덱싱 구조를 기본으로 잡아 Google과 Naver 검색 기반을 만듭니다.',
+    name: '당장 운영',
+    title: 'Google 비즈니스 프로필',
+    detail: '외국인 고객이 가장 먼저 보는 정보, 사진, 리뷰, 게시물을 지속적으로 관리합니다.',
     icon: Globe2,
-    bullets: ['메타태그 & 시맨틱 마크업', 'Core Web Vitals 고려', '크롤링 & 인덱싱 설계'],
-    result: '검색 결과에서 발견되는 기반',
   },
   {
-    name: '기본 탑재 AEO',
-    title: 'AI 답변 최적화',
-    detail: '질문형 콘텐츠, FAQ, 구조화 데이터를 통해 AI가 답변에 채택하기 쉬운 정보 블록을 만듭니다.',
+    name: '콘텐츠 확장',
+    title: '웹사이트·블로그',
+    detail: '프로필만으로 설명되지 않는 브랜드 강점, 서비스, 고객 질문을 공식 콘텐츠로 쌓습니다.',
     icon: Braces,
-    bullets: ['FAQ·Article 스키마', '2-5문장 직접 답변', 'Entity 기반 콘텐츠 설계'],
-    result: 'AI 답변에 정보 채택 가능성 강화',
   },
   {
-    name: '고도화 옵션 GEO',
-    title: '생성형 AI 최적화',
-    detail: '브랜드 설명, 외부 신뢰 신호, Google 프로필, 콘텐츠 허브를 연결해 ChatGPT와 Perplexity 추천까지 확장합니다.',
+    name: '장기 방향',
+    title: 'AEO·GEO 기반',
+    detail: '브랜드 설명과 질문형 답변을 구조화해 AI가 이해할 수 있는 기반을 만듭니다.',
     icon: Bot,
-    bullets: ['Knowledge Graph 관점 설계', 'LLM 인용 최적화 구조', '브랜드 신뢰도 신호 강화'],
-    result: 'ChatGPT·Perplexity 추천 후보화',
   },
-];
-
-const stats = [
-  ['56,719', 'GBP 프로필 조회', '실제 운영 사례 기준'],
-  ['41,930', '검색 노출', 'Google 비즈니스 프로필 인사이트'],
-  ['3,562', '상호작용', '전화·경로·웹사이트 액션'],
-  ['2h', '초기 진단 응답', '업무시간 내 기준'],
 ];
 
 const MethodStack: React.FC = () => {
   return (
-    <section id="method" className="bg-[#050505] py-20 md:py-36 border-y border-white/5">
+    <section id="method" className="bg-[#050505] py-24 md:py-40 border-y border-white/5">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-20 items-center">
           <FadeIn>
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Method</p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight keep-all">
-              SEO → AEO → GEO<br className="hidden md:block" />
-              3단계 통합 최적화 기술
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] keep-all">
+              AEO는 따로 붙이는 기술이 아니라<br />
+              지금 쌓는 운영의 결과입니다.
             </h2>
-            <p className="mt-5 md:mt-6 text-base md:text-lg text-gray-400 leading-relaxed keep-all">
-              SEO와 AEO는 기본 구조로 탑재하고, GEO 고도화로 AI 추천과 인용 가능성까지 확장합니다.
-              홈페이지와 프로필 운영을 따로 보지 않는 방식입니다.
+            <p className="mt-6 md:mt-8 text-base md:text-xl text-gray-400 leading-relaxed keep-all">
+              Google 프로필, 웹사이트, 블로그가 서로 다른 말을 하면 검색과 AI는 브랜드를 일관되게 이해하기 어렵습니다. 블링크애드는 같은 브랜드 설명이 모든 접점에 남도록 운영합니다.
             </p>
             <a
               href="#contact"
-              className="mt-7 md:mt-9 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 font-semibold transition-colors"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
             >
               우리 브랜드 진단하기
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-4">
-            {stack.map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <FadeIn key={item.name} delay={index * 90}>
-                  <div className="group border border-white/10 bg-black hover:border-brand-blue/35 rounded-[10px] p-6 md:p-7 transition-colors">
-                    <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
-                      <div className="w-11 h-11 rounded-[10px] bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-brand-blue" />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm text-brand-blue font-semibold mb-1">{item.name}</p>
-                        <h3 className="text-xl font-bold text-white mb-2 keep-all">{item.title}</h3>
-                        <p className="text-sm md:text-base text-gray-400 leading-relaxed keep-all">{item.detail}</p>
-                      </div>
-                    </div>
-                    <div className="mt-5 md:mt-6 grid grid-cols-1 md:grid-cols-[1fr_220px] gap-4 md:gap-5">
-                      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                        {item.bullets.map((bullet) => (
-                          <li key={bullet} className="rounded-[8px] bg-white/[0.04] border border-white/10 px-3 py-2 text-xs text-gray-400 keep-all">
-                            ✓ {bullet}
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="text-sm font-semibold text-white md:text-right keep-all">→ {item.result}</p>
+          <FadeIn delay={140}>
+            <div className="relative mx-auto max-w-[500px]">
+              <div className="absolute -inset-8 rounded-[56px] bg-brand-blue/10 blur-3xl" />
+              <div className="relative rounded-[38px] bg-[#f3f6fb] p-6 md:p-8 text-black shadow-2xl shadow-black/30">
+                <div className="flex items-center justify-between gap-6">
+                  <div>
+                    <p className="text-sm text-gray-500">AI Readiness Score</p>
+                    <p className="mt-2 text-3xl md:text-5xl font-bold tracking-tight">Brand Entity</p>
+                  </div>
+                  <div className="relative h-24 w-24 rounded-full bg-[conic-gradient(#0066FF_0_78%,#e8ebf2_78%_100%)] flex items-center justify-center">
+                    <div className="h-16 w-16 rounded-full bg-[#f3f6fb] flex items-center justify-center">
+                      <span className="text-2xl font-bold text-brand-blue">78</span>
                     </div>
                   </div>
-                </FadeIn>
-              );
-            })}
-          </div>
-        </div>
-        <div className="mt-10 md:mt-14 grid grid-cols-2 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
-          {stats.map(([value, label, note]) => (
-            <div key={label} className="p-5 md:p-7 bg-brand-dark border-r border-b lg:border-b-0 border-white/10 last:border-r-0">
-              <p className="text-2xl md:text-4xl font-bold text-white">{value}</p>
-              <p className="mt-2 text-sm font-semibold text-gray-300 keep-all">{label}</p>
-              <p className="mt-1 text-xs text-gray-600 keep-all">{note}</p>
+                </div>
+
+                <div className="mt-8 space-y-3">
+                  {['브랜드 설명 일관성', '질문형 답변 구조', 'Google 프로필 연결성'].map((item, index) => (
+                    <div key={item} className="rounded-2xl bg-white px-4 py-4 shadow-sm">
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-sm font-bold text-gray-700 keep-all">{item}</span>
+                        <span className="text-sm font-bold text-brand-blue">{[92, 76, 84][index]}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-          ))}
+          </FadeIn>
         </div>
+
+        <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 border-y border-white/10">
+          {stack.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <FadeIn key={item.title} delay={index * 90}>
+                <div className="h-full py-8 md:py-10 md:px-8 border-b md:border-b-0 md:border-r border-white/10 last:border-r-0">
+                  <div className="h-12 w-12 rounded-2xl bg-white text-black flex items-center justify-center">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <p className="mt-7 text-sm font-semibold text-brand-blue">{item.name}</p>
+                  <h3 className="mt-3 text-2xl md:text-3xl font-bold tracking-tight keep-all">{item.title}</h3>
+                  <p className="mt-4 text-base text-gray-400 leading-relaxed keep-all">{item.detail}</p>
+                </div>
+              </FadeIn>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );
