@@ -9,20 +9,20 @@ export const HERO_IMAGE_URL = "https://images.unsplash.com/photo-1493612276216-e
 export const SERVICES: ServiceItem[] = [
   {
     id: 'gbp',
-    title: '구글 비즈니스 프로필 관리',
-    description: '지역 검색 노출과 지도 신뢰도를 높일 수 있도록 프로필 운영을 체계적으로 관리합니다.',
+    title: 'Google Maps & GBP 운영',
+    description: '외국인과 로컬 고객이 지도에서 브랜드를 찾을 때 필요한 프로필 정보, 사진, 리뷰, 게시물을 꾸준히 정비합니다.',
     icon: MapPin,
   },
   {
     id: 'blog',
-    title: '브랜드 블로그 운영',
-    description: '브랜드의 전문성과 강점을 꾸준한 콘텐츠로 쌓아 브랜드 자산을 만듭니다.',
+    title: '검색형 콘텐츠 시스템',
+    description: '고객 질문, 지역 키워드, 서비스 비교 의도를 답변형 페이지와 블로그 콘텐츠로 쌓아 검색 접점을 넓힙니다.',
     icon: FileText,
   },
   {
     id: 'ai-search',
-    title: 'AI 검색 최적화',
-    description: 'AEO·GEO 기반으로 ChatGPT, Perplexity, Google AI 검색에서 브랜드가 인용될 수 있도록 설계합니다.',
+    title: 'AEO·GEO 구조 설계',
+    description: 'ChatGPT, Perplexity, Google AI 검색이 브랜드를 이해하고 인용할 수 있도록 엔티티, FAQ, 스키마, 외부 신호를 연결합니다.',
     icon: Bot,
   },
 ];

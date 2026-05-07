@@ -55,6 +55,7 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex space-x-8">
           <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</button>
           <button onClick={() => handleNavigate('casestudies')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
+          <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">프로세스</button>
           <button onClick={() => handleNavigate('blog')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">블로그</button>
           <button onClick={() => { trackContactCta('header-menu', '문의하기'); handleNavigate('contact'); }} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</button>
         </div>

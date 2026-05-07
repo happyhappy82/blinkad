@@ -127,9 +127,10 @@ const Contact: React.FC = () => {
     <section id="contact" className="py-32 bg-black relative border-t border-white/5">
       <div className="max-w-3xl mx-auto px-6 text-center">
         <FadeIn className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Let's Talk.</h2>
+          <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Contact</p>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 keep-all">우리 브랜드가 어디서 빠지는지 먼저 보겠습니다.</h2>
           <p className="text-xl text-gray-400 keep-all">
-            첫 페이지로의 여정, 클릭 한 번으로 시작됩니다.
+            검색, 지도, AI 답변 노출 상태를 보고 우선순위를 정리해드립니다.
           </p>
         </FadeIn>
 
