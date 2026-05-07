@@ -54,15 +54,15 @@ const Navbar: React.FC = () => {
 
         <div className="hidden md:flex space-x-8">
           <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</button>
+          <button onClick={() => handleNavigate('ai-diagnostic')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AI 진단</button>
+          <button onClick={() => handleNavigate('method')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">Method</button>
           <button onClick={() => handleNavigate('casestudies')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
           <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">프로세스</button>
-          <button onClick={() => handleNavigate('blog')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">블로그</button>
-          <button onClick={() => { trackContactCta('header-menu', '문의하기'); handleNavigate('contact'); }} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</button>
         </div>
 
         <button
           onClick={() => { trackContactCta('header-cta-pill', '무료 진단하기'); handleNavigate('contact'); }}
-          className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+          className="hidden sm:block bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
         >
           무료 진단하기
         </button>

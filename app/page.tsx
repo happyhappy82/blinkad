@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
 import BrandSystem from '@/components/BrandSystem'
 import Services from '@/components/Services'
+import AIDiagnostic from '@/components/AIDiagnostic'
 import MethodStack from '@/components/MethodStack'
 import CaseStudies from '@/components/CaseStudies'
 import Process from '@/components/Process'
@@ -18,8 +19,9 @@ export default function Home() {
         <Hero />
         <BrandSystem />
         <Services />
-        <MethodStack />
+        <AIDiagnostic />
         <CaseStudies />
+        <MethodStack />
         <Process />
         <FAQ />
 

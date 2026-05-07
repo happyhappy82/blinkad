@@ -5,9 +5,10 @@ import { BarChart3, Database, MessageSquareQuote, SearchCheck } from 'lucide-rea
 import { FadeIn } from './ui/FadeIn';
 
 const problems = [
-  '홈페이지는 있지만 검색과 지도에서 존재감이 약한 상태',
-  '블로그, SNS, 프로필 정보가 서로 다르게 말하는 상태',
-  'AI 답변에서 브랜드가 언급되지 않거나 근거로 쓰이지 않는 상태',
+  '검색해도 우리 브랜드가 잘 나오지 않음',
+  'AI에게 물어봐도 브랜드를 모르거나 경쟁사를 먼저 말함',
+  '지도 조회수는 있는데 예약·문의로 이어지지 않음',
+  '홈페이지, 블로그, Google 프로필 설명이 서로 다름',
 ];
 
 const pillars = [
@@ -47,18 +48,18 @@ const BrandSystem: React.FC = () => {
               Brand Visibility System
             </p>
             <h2 className="text-4xl md:text-6xl font-bold tracking-tight keep-all">
-              예쁜 사이트보다 먼저,<br className="hidden md:block" />
-              발견되는 구조가 필요합니다.
+              문제는 디자인이 아니라,<br className="hidden md:block" />
+              만들어진 구조일 수 있습니다.
             </h2>
             <p className="mt-7 text-lg text-gray-400 leading-relaxed keep-all">
-              블링크애드는 광고비를 더 쓰기 전에 브랜드가 검색엔진과 AI에게 어떻게 읽히는지부터 정리합니다.
-              검색, 지도, 콘텐츠, 답변 엔진이 같은 브랜드를 설명하도록 만드는 작업입니다.
+              예쁜 화면만으로는 검색엔진과 AI가 브랜드를 정확히 이해하지 못합니다.
+              블링크애드는 검색 의도, 정보 위계, 스키마, 외부 프로필을 같이 정리해 발견과 문의가 이어지는 구조를 만듭니다.
             </p>
           </FadeIn>
 
           <FadeIn delay={120}>
             <div className="border border-white/10 bg-white/[0.03] rounded-[10px] p-6 md:p-8">
-              <p className="text-sm font-semibold text-white mb-5">많은 브랜드가 막히는 지점</p>
+              <p className="text-sm font-semibold text-white mb-5">홈페이지가 제 역할을 못 할 때 보이는 신호</p>
               <div className="space-y-3">
                 {problems.map((problem) => (
                   <div key={problem} className="flex items-start gap-3 border-b border-white/5 last:border-b-0 pb-3 last:pb-0">

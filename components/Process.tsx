@@ -6,27 +6,39 @@ import { FadeIn } from './ui/FadeIn';
 const process = [
   {
     step: '01',
-    title: '노출 상태 진단',
+    title: '시장 의도 분석',
     duration: '1-2 DAYS',
-    items: ['검색 결과와 Google Maps 노출 확인', 'AI 답변 내 브랜드 언급 여부 확인', '홈페이지와 외부 채널 정보 불일치 점검'],
+    items: ['비즈니스 목표와 KPI 설정', '타겟 고객 검색 의도 분석', '경쟁사 키워드와 AI 답변 비교'],
   },
   {
     step: '02',
-    title: '구조 설계',
+    title: '전략적 구조 설계',
     duration: '2-3 DAYS',
-    items: ['검색 의도별 페이지 구조 설계', 'GBP와 홈페이지 연결 구조 정리', 'AEO/GEO 우선 질문 리스트 구성'],
+    items: ['검색 친화적 사이트맵 설계', '정보 위계 구조 정의', '고객 문의 경로 최적화'],
   },
   {
     step: '03',
-    title: '콘텐츠와 엔티티 구축',
-    duration: '2-4 WEEKS',
-    items: ['답변형 콘텐츠와 FAQ 제작', '서비스/진료/업종별 핵심 페이지 정비', '외부 채널 소개 문구와 링크 체계 정리'],
+    title: '프리미엄 UI/UX',
+    duration: '5-7 DAYS',
+    items: ['브랜드 맞춤 디자인', '반응형 레이아웃 설계', '로딩 속도와 가독성 고려'],
   },
   {
     step: '04',
-    title: '운영과 개선',
+    title: 'SEO 기반 코드 개발',
+    duration: '7-10 DAYS',
+    items: ['시맨틱 HTML 퍼블리싱', 'Core Web Vitals 점검', '스키마 마크업 적용'],
+  },
+  {
+    step: '05',
+    title: 'AEO·GEO 적용',
+    duration: '3-5 DAYS',
+    items: ['FAQ와 답변형 콘텐츠 구조화', 'Google 프로필과 홈페이지 연결', 'AI 답변 노출 가능성 점검'],
+  },
+  {
+    step: '06',
+    title: '검수 및 운영',
     duration: 'MONTHLY',
-    items: ['GBP 게시물, 사진, 리뷰 응대 운영', 'AI referral과 검색 유입 추적', '노출 변화에 맞춘 콘텐츠 업데이트'],
+    items: ['검색·스키마 유효성 검증', 'GA4·서치콘솔 연동', 'GBP와 콘텐츠 업데이트 운영'],
   },
 ];
 
@@ -36,16 +48,16 @@ const Process: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <FadeIn className="mb-16">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Process</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">진단에서 운영까지 한 흐름으로 갑니다.</h2>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight keep-all">프로젝트 진행 과정</h2>
           <p className="mt-5 text-lg text-gray-400 max-w-2xl leading-relaxed keep-all">
-            디자인, 콘텐츠, 프로필 운영, AI 검색 대응을 따로 떼지 않고 하나의 발견 구조로 다룹니다.
+            검색과 AI 노출을 위한 6단계 프로세스입니다. 모든 프로젝트는 사전 정의된 구조 설계 기준을 기반으로 진행됩니다.
           </p>
         </FadeIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 border border-white/10 rounded-[10px] overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/10 rounded-[10px] overflow-hidden">
           {process.map((phase, index) => (
             <FadeIn key={phase.step} delay={index * 90}>
-              <div className="h-full p-7 md:p-8 bg-brand-dark border-b lg:border-b-0 lg:border-r border-white/10 last:border-r-0">
+              <div className="h-full p-7 md:p-8 bg-brand-dark border-b md:border-r border-white/10">
                 <div className="flex items-center justify-between mb-8">
                   <span className="text-3xl font-bold text-white/20">{phase.step}</span>
                   <span className="text-[11px] tracking-[0.18em] text-brand-blue font-semibold">{phase.duration}</span>
