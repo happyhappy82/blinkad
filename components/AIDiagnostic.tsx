@@ -15,16 +15,22 @@ const assetPreviews = [
   {
     label: '프로필',
     preview: (
-      <div className="h-24 rounded-2xl bg-[#eef3f5] p-2 text-left">
-        <div className="h-7 rounded-xl bg-[#d6e1e7]">
-          <div className="ml-5 h-full w-10 rotate-12 border-l-4 border-[#d45f21]" />
+      <div className="h-24 overflow-hidden rounded-2xl bg-[#eef3f5] text-left">
+        <div className="relative h-9 overflow-hidden bg-[#dbe7ec]">
+          <div className="absolute left-2 top-4 h-1 w-24 -rotate-6 rounded-full bg-[#bdcbd3]" />
+          <div className="absolute left-14 top-0 h-11 w-1.5 rotate-12 rounded-full bg-[#d95f25]" />
+          <div className="absolute right-4 top-2 h-4 w-4 rounded-full bg-[#b8d6c5]" />
+          <div className="absolute left-4 top-3 h-2.5 w-2.5 rounded-full bg-brand-blue ring-2 ring-white" />
         </div>
-        <div className="mt-2 rounded-xl bg-white p-2">
-          <div className="h-2.5 w-20 rounded-full bg-gray-900" />
-          <div className="mt-1.5 h-2 w-16 rounded-full bg-[#f5a400]" />
-          <div className="mt-2 flex gap-1">
-            <span className="h-5 w-10 rounded-full bg-[#d8f7ff]" />
-            <span className="h-5 w-10 rounded-full bg-[#d8f7ff]" />
+        <div className="px-2 pb-2 pt-1.5">
+          <div className="h-2.5 w-24 rounded-full bg-gray-900" />
+          <div className="mt-1 flex items-center gap-1.5">
+            <span className="h-2 w-6 rounded-full bg-[#f5a400]" />
+            <span className="h-1.5 w-16 rounded-full bg-gray-300" />
+          </div>
+          <div className="mt-2 flex gap-1.5">
+            <span className="h-4 w-10 rounded-full bg-[#d8f7ff]" />
+            <span className="h-4 w-9 rounded-full bg-[#d8f7ff]" />
           </div>
         </div>
       </div>
@@ -33,17 +39,25 @@ const assetPreviews = [
   {
     label: '웹사이트',
     preview: (
-      <div className="h-24 rounded-2xl bg-[#111827] p-2 text-left">
-        <div className="flex gap-1">
-          <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
-          <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
-          <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
+      <div className="h-24 overflow-hidden rounded-2xl bg-[#0f1724] text-left">
+        <div className="flex h-5 items-center gap-1 border-b border-white/10 px-2">
+          <span className="h-1.5 w-1.5 rounded-full bg-white/35" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+          <span className="ml-auto h-1.5 w-8 rounded-full bg-white/20" />
         </div>
-        <div className="mt-3 h-4 w-20 rounded-full bg-white" />
-        <div className="mt-2 h-2 w-24 rounded-full bg-white/35" />
-        <div className="mt-3 grid grid-cols-2 gap-2">
-          <div className="h-8 rounded-xl bg-brand-blue" />
-          <div className="h-8 rounded-xl bg-white/20" />
+        <div className="grid grid-cols-[1fr_34px] gap-2 p-2">
+          <div>
+            <div className="h-3 w-20 rounded-full bg-white" />
+            <div className="mt-2 h-1.5 w-24 rounded-full bg-white/30" />
+            <div className="mt-1 h-1.5 w-16 rounded-full bg-white/20" />
+            <div className="mt-3 h-4 w-12 rounded-full bg-brand-blue" />
+          </div>
+          <div className="h-[58px] overflow-hidden rounded-xl bg-white/10">
+            <div className="h-7 bg-gradient-to-br from-[#dfe8ef] to-[#9fb2c0]" />
+            <div className="m-1 h-2 rounded-full bg-white/35" />
+            <div className="mx-1 h-2 rounded-full bg-brand-blue" />
+          </div>
         </div>
       </div>
     ),
@@ -51,16 +65,19 @@ const assetPreviews = [
   {
     label: '블로그',
     preview: (
-      <div className="h-24 rounded-2xl bg-white p-2 text-left">
-        <div className="h-3 w-24 rounded-full bg-gray-900" />
-        <div className="mt-2 flex items-center gap-2">
-          <div className="h-5 w-5 rounded-full bg-gradient-to-br from-[#19202a] to-[#c5b39a]" />
-          <div className="h-2 w-16 rounded-full bg-gray-300" />
+      <div className="h-24 overflow-hidden rounded-2xl bg-white p-2 text-left">
+        <div className="h-2 w-12 rounded-full bg-gray-300" />
+        <div className="mt-1.5 h-3 w-24 rounded-full bg-gray-900" />
+        <div className="mt-1 h-3 w-16 rounded-full bg-gray-900" />
+        <div className="mt-2 flex items-center gap-1.5">
+          <div className="h-4 w-4 rounded-full bg-gradient-to-br from-[#111827] to-[#c5b39a]" />
+          <div className="h-1.5 w-14 rounded-full bg-gray-300" />
+          <div className="h-1.5 w-6 rounded-full bg-gray-200" />
         </div>
-        <div className="mt-3 space-y-1.5">
+        <div className="mt-2.5 space-y-1">
           <div className="h-1.5 rounded-full bg-gray-200" />
-          <div className="h-1.5 rounded-full bg-gray-200" />
-          <div className="h-1.5 w-3/4 rounded-full bg-gray-200" />
+          <div className="h-1.5 w-11/12 rounded-full bg-gray-200" />
+          <div className="h-1.5 w-2/3 rounded-full bg-gray-200" />
         </div>
       </div>
     ),
@@ -68,18 +85,24 @@ const assetPreviews = [
   {
     label: 'Answer',
     preview: (
-      <div className="h-24 rounded-2xl bg-[#f6f8fb] p-2 text-left">
-        <div className="rounded-xl bg-white p-2">
+      <div className="h-24 overflow-hidden rounded-2xl bg-[#101827] p-2 text-left">
+        <div className="flex items-center gap-1.5">
+          <div className="h-3.5 w-3.5 rounded-full bg-white" />
+          <div className="h-2 w-14 rounded-full bg-white/60" />
+        </div>
+        <div className="mt-2 rounded-xl bg-white p-2">
           <div className="h-2.5 w-20 rounded-full bg-gray-900" />
-          <div className="mt-2 space-y-1.5">
+          <div className="mt-1.5 space-y-1">
             <div className="h-1.5 rounded-full bg-gray-200" />
-            <div className="h-1.5 rounded-full bg-gray-200" />
+            <div className="h-1.5 w-10/12 rounded-full bg-gray-200" />
+          </div>
+          <div className="mt-2 flex gap-1">
+            <span className="h-3 w-8 rounded-full bg-[#e8f1ff]" />
+            <span className="h-3 w-7 rounded-full bg-[#e8f1ff]" />
           </div>
         </div>
-        <div className="mt-2 rounded-xl bg-[#eef5ff] p-2">
-          <div className="h-2 w-16 rounded-full bg-brand-blue" />
-          <div className="mt-1.5 h-1.5 w-20 rounded-full bg-[#9ec5ff]" />
-        </div>
+        <div className="mt-1.5 h-3 rounded-full bg-brand-blue/80" />
+        <div className="mt-1 h-2 w-16 rounded-full bg-white/20" />
       </div>
     ),
   },
