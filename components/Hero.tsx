@@ -3,15 +3,6 @@
 import React, { useRef, useEffect } from 'react';
 import { FadeIn } from './ui/FadeIn';
 
-const industries = [
-  '병원 / 의료관광',
-  '외식 / 로컬 매장',
-  '뷰티 / 클리닉',
-  '전문 서비스',
-  '프랜차이즈',
-  'B2B / 수출기업',
-];
-
 const Hero: React.FC = () => {
   const overlayRef = useRef<HTMLDivElement>(null);
 
@@ -79,9 +70,6 @@ const Hero: React.FC = () => {
       <div className="absolute top-[30svh] bottom-auto sm:top-auto sm:bottom-10 md:bottom-14 left-0 right-0 z-30 px-5 md:px-6">
         <div className="max-w-7xl mx-auto">
         <FadeIn delay={200}>
-          <p className="mb-4 md:mb-5 max-w-[19rem] md:max-w-none text-[11px] md:text-sm font-semibold tracking-[0.12em] md:tracking-[0.28em] uppercase text-brand-blue leading-relaxed">
-            혹시 ChatGPT · Perplexity · Google에서 브랜드를 찾고 계신가요?
-          </p>
           <h1 className="text-[2.45rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-5 md:mb-6 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75 drop-shadow-lg keep-all">
             Google 검색과<br className="sm:hidden" /> AI 답변에서<br/>먼저 발견되는<br className="sm:hidden" /> 브랜드.
           </h1>
@@ -99,7 +87,7 @@ const Hero: React.FC = () => {
                onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
                className="w-full sm:w-auto bg-white text-black hover:bg-gray-200 px-6 md:px-7 py-3.5 rounded-full text-sm md:text-base font-semibold transition-colors pointer-events-auto"
              >
-               2시간 내 노출 가능성 확인
+               문의하기
              </button>
              <button
                onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}
@@ -110,13 +98,6 @@ const Hero: React.FC = () => {
              </button>
         </FadeIn>
 
-        <FadeIn delay={750} className="mt-8 md:mt-10 hidden sm:grid grid-cols-2 md:grid-cols-6 max-w-5xl border border-white/10 rounded-[10px] overflow-hidden bg-black/35 backdrop-blur-sm">
-          {industries.map((industry) => (
-            <div key={industry} className="px-4 py-3 border-r border-b md:border-b-0 border-white/10 last:border-r-0">
-              <p className="text-xs md:text-sm text-gray-300 keep-all">{industry}</p>
-            </div>
-          ))}
-        </FadeIn>
         </div>
       </div>
     </section>
