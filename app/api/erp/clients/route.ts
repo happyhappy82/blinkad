@@ -1,7 +1,10 @@
 import { Client } from '@notionhq/client'
+import { execFileSync } from 'child_process'
 import { NextResponse } from 'next/server'
+import path from 'path'
 
 export const dynamic = 'force-dynamic'
+export const runtime = 'nodejs'
 
 const DEFAULT_DATABASE_ID = '18f45111-0c99-45d9-97de-4ce4fd86d074'
 const TITLE_PROPERTY = '고객명'
@@ -148,8 +151,26 @@ function normalizePage(page: any) {
   }
 }
 
+function resolveNotionToken() {
+  const envToken = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY
+  if (envToken) return envToken
+
+  if (process.env.NODE_ENV !== 'development') return ''
+
+  try {
+    const projectRoot = path.resolve(process.cwd(), '../..')
+    return execFileSync('python3', ['-c', 'from ops.notion_api import NOTION_TOKEN; print(NOTION_TOKEN)'], {
+      cwd: projectRoot,
+      encoding: 'utf-8',
+      timeout: 5000,
+    }).trim()
+  } catch {
+    return ''
+  }
+}
+
 export async function GET() {
-  const token = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY
+  const token = resolveNotionToken()
   const databaseId = process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_DATABASE_ID
 
   if (!token) {
