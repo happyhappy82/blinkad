@@ -155,8 +155,6 @@ function resolveNotionToken() {
   const envToken = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY
   if (envToken) return envToken
 
-  if (process.env.NODE_ENV !== 'development') return ''
-
   try {
     const projectRoot = path.resolve(process.cwd(), '../..')
     return execFileSync('python3', ['-c', 'from ops.notion_api import NOTION_TOKEN; print(NOTION_TOKEN)'], {
