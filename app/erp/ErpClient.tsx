@@ -1,17 +1,26 @@
 'use client'
 
 import {
-  BarChart3,
+  Badge,
   Building2,
+  Calendar,
+  CalendarDays,
   CheckCircle2,
+  CheckSquare,
   CircleDot,
   Clock3,
   ExternalLink,
   FileSearch,
+  Folder,
+  LayoutDashboard,
   MapPinned,
+  Mail,
+  Mic,
   ReceiptText,
   RefreshCw,
   Search,
+  UserPlus,
+  Users,
 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -38,16 +47,65 @@ type ApiResponse = {
   message?: string
 }
 
-const menus = [
-  { id: 'dashboard', label: '대시보드', icon: BarChart3 },
-  { id: 'crm', label: '문의 CRM', icon: Building2 },
-  { id: 'diagnosis', label: '진단자료', icon: FileSearch },
-  { id: 'quote', label: '견적서', icon: ReceiptText },
-  { id: 'profile', label: '프로필 운영', icon: MapPinned },
-  { id: 'report', label: '리포트', icon: CheckCircle2 },
+const menuGroups = [
+  {
+    label: '워크스페이스',
+    items: [{ id: 'dashboard', label: '대시보드', icon: LayoutDashboard }],
+  },
+  {
+    label: '영업',
+    items: [
+      { id: 'lead', label: '리드관리', icon: UserPlus },
+      { id: 'crm', label: '문의 CRM', icon: Building2 },
+      { id: 'customer', label: '고객관리', icon: Users },
+      { id: 'project', label: '프로젝트관리', icon: Folder },
+    ],
+  },
+  {
+    label: '자동화',
+    items: [
+      { id: 'diagnosis', label: '진단자료', icon: FileSearch },
+      { id: 'quote', label: '견적서', icon: ReceiptText },
+    ],
+  },
+  {
+    label: '운영',
+    items: [
+      { id: 'profile', label: '프로필 운영', icon: MapPinned },
+      { id: 'report', label: '리포트', icon: CheckCircle2 },
+    ],
+  },
+  {
+    label: '할 일',
+    items: [
+      { id: 'todo', label: '할일관리', icon: CheckSquare },
+      { id: 'schedule', label: '일정관리', icon: Calendar },
+      { id: 'meeting', label: '미팅관리', icon: Mic },
+      { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
+      { id: 'mail', label: '메일관리', icon: Mail },
+      { id: 'card', label: '명함관리', icon: Badge },
+    ],
+  },
 ] as const
 
-type MenuId = (typeof menus)[number]['id']
+type MenuId = (typeof menuGroups)[number]['items'][number]['id']
+
+type OperationRow = {
+  title: string
+  meta: string
+  status: string
+  owner: string
+  due: string
+  memo: string
+}
+
+type OperationView = {
+  kicker: string
+  title: string
+  description: string
+  stats: { label: string; value: string }[]
+  rows: OperationRow[]
+}
 
 const statusGroups = [
   { label: '문의접수', matcher: ['문의', '접수', '신규'] },
@@ -55,6 +113,333 @@ const statusGroups = [
   { label: '계약대기', matcher: ['계약', '대기'] },
   { label: '운영시작', matcher: ['운영', '진행', '시작'] },
 ]
+
+const operationViews: Partial<Record<MenuId, OperationView>> = {
+  lead: {
+    kicker: 'Sales Pipeline',
+    title: '리드관리',
+    description: '문의가 들어온 매장을 유입 경로, 다음 액션, 우선순위 기준으로 정리합니다.',
+    stats: [
+      { label: '신규 리드', value: '12' },
+      { label: '미팅 예정', value: '5' },
+      { label: '견적 대기', value: '7' },
+    ],
+    rows: [
+      {
+        title: '미스터버거',
+        meta: '요식업 · Google 프로필 관리 문의',
+        status: '견적 제안 전',
+        owner: '권순현',
+        due: '오늘',
+        memo: '프로필 최적화 세팅 견적서 발송 예정',
+      },
+      {
+        title: '미플러스치과 신사',
+        meta: '병원 · 외국인 환자 유입 상담',
+        status: '진단자료 완료',
+        owner: '블링크애드',
+        due: '내일',
+        memo: '분석자료 기반 미팅 아젠다 정리 필요',
+      },
+      {
+        title: '대게특별시',
+        meta: '요식업 · 구글 지도 노출 개선',
+        status: '계약 검토',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '메뉴판·리뷰·사진 정비 범위 확인',
+      },
+    ],
+  },
+  customer: {
+    kicker: 'Account',
+    title: '고객관리',
+    description: '계약 전후 고객 상태와 요청 자료, 담당자를 한 화면에서 확인합니다.',
+    stats: [
+      { label: '운영 고객', value: '4' },
+      { label: '자료 대기', value: '8' },
+      { label: '재계약 후보', value: '3' },
+    ],
+    rows: [
+      {
+        title: '주하(데이즈 후카 바)',
+        meta: '로컬 매장 · Google 프로필 운영',
+        status: '운영시작',
+        owner: '블링크애드',
+        due: '상시',
+        memo: '다국어 소식지와 리뷰 응대 루틴 유지',
+      },
+      {
+        title: '월하동',
+        meta: '요식업 · 진단자료/견적서 완료',
+        status: '계약대기',
+        owner: '권순현',
+        due: 'D+2',
+        memo: '대표 사진과 메뉴판 자료 수집 필요',
+      },
+      {
+        title: '미포굿모닝시락국밥',
+        meta: '요식업 · 프로필 최적화 세팅',
+        status: '입금 확인 전',
+        owner: '블링크애드',
+        due: '이번 주',
+        memo: '세팅 견적서 재발송 완료',
+      },
+    ],
+  },
+  project: {
+    kicker: 'Project Board',
+    title: '프로젝트관리',
+    description: '진단, 견적, 계약, 운영 시작까지 매장별 프로젝트 진행 단계를 관리합니다.',
+    stats: [
+      { label: '진행 프로젝트', value: '9' },
+      { label: '이번 주 마감', value: '6' },
+      { label: '보류', value: '2' },
+    ],
+    rows: [
+      {
+        title: '역대짬뽕 지점별 프로필 구조',
+        meta: 'GBP · 웹사이트 · 블로그 연결',
+        status: '견적 발송',
+        owner: '권순현',
+        due: 'D+1',
+        memo: '1개월/3개월 상품 범위 비교 설명 필요',
+      },
+      {
+        title: 'Naan Indian Restaurant 진단서',
+        meta: '무료진단자료 · 레스토랑',
+        status: '초안 완료',
+        owner: '블링크애드',
+        due: '완료',
+        memo: '리뷰 비교 섹션 포함',
+      },
+      {
+        title: 'ERP 견적서 자동화',
+        meta: 'AX · 사무업무 자동화',
+        status: '프로토타입',
+        owner: 'Codex',
+        due: '진행 중',
+        memo: '버튼 실행과 Notion 파일 업로드 연동 예정',
+      },
+    ],
+  },
+  todo: {
+    kicker: 'Task',
+    title: '할일관리',
+    description: '오늘 처리해야 할 견적서, 진단자료, 자료 요청 업무를 우선순위로 정리합니다.',
+    stats: [
+      { label: '오늘 할 일', value: '11' },
+      { label: '지연', value: '2' },
+      { label: '완료', value: '18' },
+    ],
+    rows: [
+      {
+        title: '미스터버거 프로필 최적화 견적서 확인',
+        meta: '견적서 · 66만원 VAT 포함',
+        status: '검토 필요',
+        owner: '권순현',
+        due: '오늘',
+        memo: '세부작업내역 표 포함 버전 기준',
+      },
+      {
+        title: '미플러스치과 신사 진단자료 업로드 확인',
+        meta: '분석자료 · Notion',
+        status: '업로드 확인',
+        owner: '블링크애드',
+        due: '오늘',
+        memo: '분석자료 열 파일 누락 여부 체크',
+      },
+      {
+        title: '요식업 자료 요청 템플릿 정리',
+        meta: '운영 · 클라이언트 요청자료',
+        status: '작성 중',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '사진, 메뉴판, 리뷰, 외국어 안내 자료 포함',
+      },
+    ],
+  },
+  schedule: {
+    kicker: 'Calendar',
+    title: '일정관리',
+    description: '상담, 자료 마감, 운영 시작일을 캘린더형 업무 목록으로 관리합니다.',
+    stats: [
+      { label: '오늘 일정', value: '3' },
+      { label: '이번 주 미팅', value: '7' },
+      { label: '자료 마감', value: '5' },
+    ],
+    rows: [
+      {
+        title: '역대짬뽕 제안 미팅',
+        meta: '오프라인 상담 · 요식업',
+        status: '준비 중',
+        owner: '권순현',
+        due: '내일 11:00',
+        memo: '쌓아가는 마케팅 투자 구조 설명',
+      },
+      {
+        title: '월하동 사진 자료 수령',
+        meta: '프로필 운영 준비',
+        status: '자료 대기',
+        owner: '블링크애드',
+        due: '금요일',
+        memo: '대표 사진, 메뉴판, 외부 사진 요청',
+      },
+      {
+        title: 'ERP 프로토타입 리뷰',
+        meta: '내부 AX',
+        status: '진행 중',
+        owner: 'Codex',
+        due: '오늘',
+        memo: '메뉴 구조와 샘플 데이터 확인',
+      },
+    ],
+  },
+  meeting: {
+    kicker: 'Meeting',
+    title: '미팅관리',
+    description: '미팅 목적, 설득 포인트, 후속 액션을 매장별로 기록합니다.',
+    stats: [
+      { label: '예정 미팅', value: '5' },
+      { label: '후속 필요', value: '4' },
+      { label: '완료', value: '9' },
+    ],
+    rows: [
+      {
+        title: '짬뽕집 AEO 설득 미팅',
+        meta: 'Google 프로필 · 웹사이트 · FAQ',
+        status: '아젠다 작성',
+        owner: '권순현',
+        due: '내일',
+        memo: '즉각 반응형 투자와 누적형 투자를 비교 설명',
+      },
+      {
+        title: '병원 GBP 자료 요청 안내',
+        meta: '병원 · 사진/시술/권위자료',
+        status: '전달 예정',
+        owner: '블링크애드',
+        due: 'D+1',
+        memo: '방송 출연, 세미나, 내부/외부 사진 포함',
+      },
+      {
+        title: '대게특별시 후속 미팅',
+        meta: '요식업 · 리뷰/메뉴판',
+        status: '일정 조율',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '외국인 고객 기준 메뉴 설명 필요',
+      },
+    ],
+  },
+  weekly: {
+    kicker: 'Weekly',
+    title: '위클리미팅',
+    description: '이번 주 영업, 제작, 운영 이슈를 주간 단위로 정리합니다.',
+    stats: [
+      { label: '이번 주 안건', value: '6' },
+      { label: '결정 필요', value: '3' },
+      { label: '다음 액션', value: '12' },
+    ],
+    rows: [
+      {
+        title: '견적서 스킬 운영 기준',
+        meta: '1개월 · 3/6/12개월 · 세팅 견적서',
+        status: '정리 완료',
+        owner: 'Codex',
+        due: '월요일',
+        memo: '매장명 기준 Notion 견적서 열 업로드',
+      },
+      {
+        title: '진단자료 템플릿 고정',
+        meta: 'GBP 무료진단자료',
+        status: '운영 중',
+        owner: '블링크애드',
+        due: '상시',
+        memo: '1페이지 요약표, 개선점, 고객후기, 작업프로세스',
+      },
+      {
+        title: 'ERP 자동화 범위',
+        meta: 'Notion DB · Codex skill trigger',
+        status: '기획 중',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '로컬 실행과 배포 환경 실행 권한 분리 필요',
+      },
+    ],
+  },
+  mail: {
+    kicker: 'Inbox',
+    title: '메일관리',
+    description: '견적서 발송, 자료 요청, 미팅 리마인드 메일을 업무별로 관리합니다.',
+    stats: [
+      { label: '발송 대기', value: '8' },
+      { label: '회신 대기', value: '14' },
+      { label: '템플릿', value: '5' },
+    ],
+    rows: [
+      {
+        title: '구글 프로필 필요 자료 요청',
+        meta: '클라이언트 온보딩',
+        status: '템플릿 준비',
+        owner: '블링크애드',
+        due: '오늘',
+        memo: '병원, 헤어샵, 요식업 버전 분리',
+      },
+      {
+        title: '프로필 최적화 세팅 견적서 발송',
+        meta: '미스터버거 · 미포굿모닝시락국밥',
+        status: '발송 전',
+        owner: '권순현',
+        due: '오늘',
+        memo: 'PDF 첨부와 유효기간 안내 확인',
+      },
+      {
+        title: '미팅 후속 메일',
+        meta: '영업 후속',
+        status: '작성 필요',
+        owner: '권순현',
+        due: 'D+1',
+        memo: '논의 내용, 견적서, 다음 일정 포함',
+      },
+    ],
+  },
+  card: {
+    kicker: 'Contact',
+    title: '명함관리',
+    description: '상담 중 받은 담당자 정보를 매장, 역할, 후속 액션과 연결합니다.',
+    stats: [
+      { label: '신규 명함', value: '9' },
+      { label: '미분류', value: '3' },
+      { label: '후속 연결', value: '6' },
+    ],
+    rows: [
+      {
+        title: '오스테리아 윤 대표',
+        meta: '요식업 · 대표',
+        status: '견적서 연결',
+        owner: '권순현',
+        due: '완료',
+        memo: '1개월 견적서 007 발행 이력',
+      },
+      {
+        title: '미플러스치과 신사 실장',
+        meta: '병원 · 운영 담당',
+        status: '자료 요청',
+        owner: '블링크애드',
+        due: '이번 주',
+        memo: '사진, 진료 항목, 방송/세미나 자료 요청',
+      },
+      {
+        title: '대게특별시 매장 담당자',
+        meta: '요식업 · 매장 운영',
+        status: '후속 연락',
+        owner: '권순현',
+        due: 'D+2',
+        memo: '외국인 고객 메뉴 안내 자료 확인',
+      },
+    ],
+  },
+}
 
 function matchesStatus(status: string, matcher: string[]) {
   const target = status || ''
@@ -144,6 +529,8 @@ export default function ErpClient() {
     return { managed, counts }
   }, [stores])
 
+  const operationView = operationViews[activeMenu]
+
   const runAutomation = async (type: 'quote' | 'diagnosis', store: StoreRecord) => {
     setRunningAction(`${type}:${store.id}`)
     setActionMessage('')
@@ -178,30 +565,34 @@ export default function ErpClient() {
             </a>
           </div>
 
-          <nav className="px-3 py-5">
-            <p className="px-3 pb-3 text-xs font-semibold uppercase tracking-[0.18em] text-gray-500">
-              ERP Menu
-            </p>
-            <div className="space-y-1">
-              {menus.map((menu) => {
-                const Icon = menu.icon
-                const active = activeMenu === menu.id
+          <nav className="space-y-6 px-3 py-5">
+            {menuGroups.map((group) => (
+              <div key={group.label}>
+                <p className="px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600">
+                  {group.label}
+                </p>
+                <div className="space-y-1">
+                  {group.items.map((menu) => {
+                    const Icon = menu.icon
+                    const active = activeMenu === menu.id
 
-                return (
-                  <button
-                    key={menu.id}
-                    type="button"
-                    onClick={() => setActiveMenu(menu.id)}
-                    className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-bold transition ${
-                      active ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {menu.label}
-                  </button>
-                )
-              })}
-            </div>
+                    return (
+                      <button
+                        key={menu.id}
+                        type="button"
+                        onClick={() => setActiveMenu(menu.id)}
+                        className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-bold transition ${
+                          active ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
+                        }`}
+                      >
+                        <Icon className="h-4 w-4" />
+                        {menu.label}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
           </nav>
         </aside>
 
@@ -233,17 +624,21 @@ export default function ErpClient() {
             </div>
 
             <div className="flex gap-2 overflow-x-auto px-5 pb-4 md:hidden">
-              {menus.map((menu) => (
-                <button
-                  key={menu.id}
-                  type="button"
-                  onClick={() => setActiveMenu(menu.id)}
-                  className={`shrink-0 rounded-full px-3 py-2 text-sm font-bold ${
-                    activeMenu === menu.id ? 'bg-brand-blue text-white' : 'bg-white/10 text-gray-300'
-                  }`}
-                >
-                  {menu.label}
-                </button>
+              {menuGroups.map((group) => (
+                <div key={group.label} className="flex shrink-0 gap-2">
+                  {group.items.map((menu) => (
+                    <button
+                      key={menu.id}
+                      type="button"
+                      onClick={() => setActiveMenu(menu.id)}
+                      className={`shrink-0 rounded-full px-3 py-2 text-sm font-bold ${
+                        activeMenu === menu.id ? 'bg-brand-blue text-white' : 'bg-white/10 text-gray-300'
+                      }`}
+                    >
+                      {menu.label}
+                    </button>
+                  ))}
+                </div>
               ))}
             </div>
           </header>
@@ -328,10 +723,66 @@ export default function ErpClient() {
                 columns="report"
               />
             )}
+
+            {operationView ? <OperationsPanel view={operationView} /> : null}
           </div>
         </section>
       </div>
     </main>
+  )
+}
+
+function OperationsPanel({ view }: { view: OperationView }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{view.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{view.description}</p>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {view.stats.map((stat) => (
+            <div key={stat.label} className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500 keep-all">{stat.label}</p>
+              <p className="mt-3 text-3xl font-black tracking-tight text-white">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="min-w-[980px] w-full border-collapse text-left text-sm">
+          <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+            <tr>
+              <th className="px-5 py-4">업무</th>
+              <th className="px-5 py-4">상태</th>
+              <th className="px-5 py-4">담당</th>
+              <th className="px-5 py-4">기한</th>
+              <th className="px-5 py-4">메모</th>
+            </tr>
+          </thead>
+          <tbody>
+            {view.rows.map((row) => (
+              <tr key={`${view.title}-${row.title}`} className="border-t border-white/10">
+                <td className="px-5 py-4">
+                  <p className="font-black text-white keep-all">{row.title}</p>
+                  <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
+                </td>
+                <td className="px-5 py-4">
+                  <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
+                    {row.status}
+                  </span>
+                </td>
+                <td className="px-5 py-4 font-semibold text-gray-300">{row.owner}</td>
+                <td className="px-5 py-4 font-black text-white">{row.due}</td>
+                <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   )
 }
 
