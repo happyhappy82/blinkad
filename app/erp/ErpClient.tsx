@@ -24,7 +24,7 @@ import {
   UserPlus,
   Users,
 } from 'lucide-react'
-import type { FormEvent } from 'react'
+import type { Dispatch, FormEvent, SetStateAction } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 type StoreRecord = {
@@ -856,6 +856,11 @@ function formatDateTime(value: string) {
   }).format(new Date(value))
 }
 
+function toDateTimeLocalValue(date: Date) {
+  const offsetDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000)
+  return offsetDate.toISOString().slice(0, 16)
+}
+
 function formatDateLabel(value: string) {
   if (!value) return '-'
   return new Intl.DateTimeFormat('ko-KR', {
@@ -863,6 +868,120 @@ function formatDateLabel(value: string) {
     day: '2-digit',
     weekday: 'short',
   }).format(new Date(value))
+}
+
+function CalendarEventForm({
+  newEvent,
+  setNewEvent,
+  creating,
+  createMessage,
+  onSubmit,
+}: {
+  newEvent: {
+    title: string
+    start: string
+    end: string
+    type: CalendarEvent['type']
+    location: string
+    memo: string
+  }
+  setNewEvent: Dispatch<
+    SetStateAction<{
+      title: string
+      start: string
+      end: string
+      type: CalendarEvent['type']
+      location: string
+      memo: string
+    }>
+  >
+  creating: boolean
+  createMessage: string
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void
+}) {
+  return (
+    <form onSubmit={onSubmit} className="mt-5 space-y-3">
+      <label className="block">
+        <span className="text-xs font-bold text-gray-500">일정명</span>
+        <input
+          required
+          value={newEvent.title}
+          onChange={(event) => setNewEvent((current) => ({ ...current, title: event.target.value }))}
+          className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+          placeholder="예: 미스터버거 제안 미팅"
+        />
+      </label>
+
+      <div className="grid grid-cols-2 gap-2">
+        <label className="block">
+          <span className="text-xs font-bold text-gray-500">시작</span>
+          <input
+            required
+            type="datetime-local"
+            value={newEvent.start}
+            onChange={(event) => setNewEvent((current) => ({ ...current, start: event.target.value }))}
+            className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
+          />
+        </label>
+        <label className="block">
+          <span className="text-xs font-bold text-gray-500">종료</span>
+          <input
+            required
+            type="datetime-local"
+            value={newEvent.end}
+            onChange={(event) => setNewEvent((current) => ({ ...current, end: event.target.value }))}
+            className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
+          />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="text-xs font-bold text-gray-500">분류</span>
+        <select
+          value={newEvent.type}
+          onChange={(event) =>
+            setNewEvent((current) => ({ ...current, type: event.target.value as CalendarEvent['type'] }))
+          }
+          className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+        >
+          <option value="meeting">미팅</option>
+          <option value="deadline">마감</option>
+          <option value="operation">운영</option>
+          <option value="task">할 일</option>
+        </select>
+      </label>
+
+      <label className="block">
+        <span className="text-xs font-bold text-gray-500">장소</span>
+        <input
+          value={newEvent.location}
+          onChange={(event) => setNewEvent((current) => ({ ...current, location: event.target.value }))}
+          className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+          placeholder="Google Meet / 매장명"
+        />
+      </label>
+
+      <label className="block">
+        <span className="text-xs font-bold text-gray-500">메모</span>
+        <textarea
+          value={newEvent.memo}
+          onChange={(event) => setNewEvent((current) => ({ ...current, memo: event.target.value }))}
+          className="mt-1 min-h-20 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold text-white outline-none"
+          placeholder="미팅 목적, 준비사항, 후속 액션"
+        />
+      </label>
+
+      <button
+        type="submit"
+        disabled={creating}
+        className="inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+      >
+        {creating ? '추가 중' : 'Google Calendar에 일정 추가'}
+      </button>
+
+      {createMessage ? <p className="text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
+    </form>
+  )
 }
 
 function isSameDate(left: Date, right: Date) {
@@ -903,6 +1022,7 @@ function CalendarPanel({
   const [localEvents, setLocalEvents] = useState<CalendarEvent[]>([])
   const [creating, setCreating] = useState(false)
   const [createMessage, setCreateMessage] = useState('')
+  const [quickCreateOpen, setQuickCreateOpen] = useState(false)
   const [newEvent, setNewEvent] = useState(() => {
     const start = new Date()
     start.setHours(start.getHours() + 1, 0, 0, 0)
@@ -937,6 +1057,28 @@ function CalendarPanel({
 
   const moveMonth = (offset: number) => {
     setCurrentMonth(new Date(year, month + offset, 1))
+  }
+
+  const openCreateModal = (date?: Date) => {
+    if (date) {
+      const start = new Date(date)
+      start.setHours(10, 0, 0, 0)
+      const end = new Date(start)
+      end.setHours(end.getHours() + 1)
+
+      setNewEvent((current) => ({
+        ...current,
+        start: toDateTimeLocalValue(start),
+        end: toDateTimeLocalValue(end),
+      }))
+    }
+
+    setCreateMessage('')
+    setQuickCreateOpen(true)
+  }
+
+  const closeCreateModal = () => {
+    setQuickCreateOpen(false)
   }
 
   const createCalendarEvent = async (event: FormEvent<HTMLFormElement>) => {
@@ -975,6 +1117,8 @@ function CalendarPanel({
         location: '',
         memo: '',
       }))
+
+      setQuickCreateOpen(false)
     } catch (error) {
       setCreateMessage(error instanceof Error ? error.message : '일정 추가에 실패했습니다.')
     } finally {
@@ -1046,6 +1190,9 @@ function CalendarPanel({
               return (
                 <div
                   key={`${year}-${month}-${index}`}
+                  onDoubleClick={() => {
+                    if (cell) openCreateModal(cell)
+                  }}
                   className={`min-h-28 border-b border-r border-white/10 p-2 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
                 >
                   {cell ? (
@@ -1076,90 +1223,20 @@ function CalendarPanel({
         </div>
 
         <div className="space-y-4">
-          <form onSubmit={createCalendarEvent} className="rounded-lg border border-white/10 bg-black p-4">
-            <p className="text-sm font-black text-white">일정 추가</p>
-            <div className="mt-4 space-y-3">
-              <label className="block">
-                <span className="text-xs font-bold text-gray-500">일정명</span>
-                <input
-                  required
-                  value={newEvent.title}
-                  onChange={(event) => setNewEvent((current) => ({ ...current, title: event.target.value }))}
-                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
-                  placeholder="예: 미스터버거 제안 미팅"
-                />
-              </label>
-
-              <div className="grid grid-cols-2 gap-2">
-                <label className="block">
-                  <span className="text-xs font-bold text-gray-500">시작</span>
-                  <input
-                    required
-                    type="datetime-local"
-                    value={newEvent.start}
-                    onChange={(event) => setNewEvent((current) => ({ ...current, start: event.target.value }))}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-xs font-bold text-gray-500">종료</span>
-                  <input
-                    required
-                    type="datetime-local"
-                    value={newEvent.end}
-                    onChange={(event) => setNewEvent((current) => ({ ...current, end: event.target.value }))}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
-                  />
-                </label>
-              </div>
-
-              <label className="block">
-                <span className="text-xs font-bold text-gray-500">분류</span>
-                <select
-                  value={newEvent.type}
-                  onChange={(event) =>
-                    setNewEvent((current) => ({ ...current, type: event.target.value as CalendarEvent['type'] }))
-                  }
-                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
-                >
-                  <option value="meeting">미팅</option>
-                  <option value="deadline">마감</option>
-                  <option value="operation">운영</option>
-                  <option value="task">할 일</option>
-                </select>
-              </label>
-
-              <label className="block">
-                <span className="text-xs font-bold text-gray-500">장소</span>
-                <input
-                  value={newEvent.location}
-                  onChange={(event) => setNewEvent((current) => ({ ...current, location: event.target.value }))}
-                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
-                  placeholder="Google Meet / 매장명"
-                />
-              </label>
-
-              <label className="block">
-                <span className="text-xs font-bold text-gray-500">메모</span>
-                <textarea
-                  value={newEvent.memo}
-                  onChange={(event) => setNewEvent((current) => ({ ...current, memo: event.target.value }))}
-                  className="mt-1 min-h-20 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold text-white outline-none"
-                  placeholder="미팅 목적, 준비사항, 후속 액션"
-                />
-              </label>
-
-              <button
-                type="submit"
-                disabled={creating}
-                className="inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
-              >
-                {creating ? '추가 중' : 'Google Calendar에 일정 추가'}
-              </button>
-
-              {createMessage ? <p className="text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
-            </div>
-          </form>
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-sm font-black text-white">빠른 일정 추가</p>
+            <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">
+              달력 날짜를 더블클릭하거나 아래 버튼을 눌러 Google Calendar 일정 추가 팝업을 엽니다.
+            </p>
+            <button
+              type="button"
+              onClick={() => openCreateModal()}
+              className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600"
+            >
+              일정 추가
+            </button>
+            {createMessage ? <p className="mt-3 text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
+          </div>
 
           <div className="rounded-lg border border-white/10 bg-black p-4">
             <p className="text-sm font-black text-white">이번 달 일정</p>
@@ -1175,6 +1252,35 @@ function CalendarPanel({
           </div>
         </div>
       </div>
+
+      {quickCreateOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-lg border border-white/10 bg-[#0b0d12] p-5 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
+                <h3 className="mt-2 text-xl font-black text-white">일정 추가</h3>
+              </div>
+              <button
+                type="button"
+                onClick={closeCreateModal}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-400 hover:bg-white/5 hover:text-white"
+                aria-label="일정 추가 닫기"
+              >
+                ×
+              </button>
+            </div>
+
+            <CalendarEventForm
+              newEvent={newEvent}
+              setNewEvent={setNewEvent}
+              creating={creating}
+              createMessage={createMessage}
+              onSubmit={createCalendarEvent}
+            />
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
