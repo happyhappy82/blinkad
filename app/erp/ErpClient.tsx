@@ -7,6 +7,8 @@ import {
   CalendarDays,
   CheckCircle2,
   CheckSquare,
+  ChevronLeft,
+  ChevronRight,
   CircleDot,
   Clock3,
   ExternalLink,
@@ -45,6 +47,43 @@ type ApiResponse = {
   connected: boolean
   stores: StoreRecord[]
   message?: string
+}
+
+type CalendarEvent = {
+  id: string
+  title: string
+  start: string
+  end: string
+  type: 'meeting' | 'deadline' | 'operation' | 'task'
+  location: string
+  attendees: string[]
+  status: string
+  memo: string
+  source: 'google' | 'sample'
+}
+
+type CalendarApiResponse = {
+  source: 'google' | 'sample'
+  connected: boolean
+  message?: string
+  events: CalendarEvent[]
+}
+
+type MailItem = {
+  id: string
+  from: string
+  subject: string
+  snippet: string
+  receivedAt: string
+  unread: boolean
+  source: 'gmail' | 'sample'
+}
+
+type MailApiResponse = {
+  source: 'gmail' | 'sample'
+  connected: boolean
+  message?: string
+  mails: MailItem[]
 }
 
 const menuGroups = [
@@ -113,6 +152,8 @@ const statusGroups = [
   { label: '계약대기', matcher: ['계약', '대기'] },
   { label: '운영시작', matcher: ['운영', '진행', '시작'] },
 ]
+
+const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 
 const operationViews: Partial<Record<MenuId, OperationView>> = {
   lead: {
@@ -406,36 +447,20 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
   card: {
     kicker: 'Contact',
     title: '명함관리',
-    description: '상담 중 받은 담당자 정보를 매장, 역할, 후속 액션과 연결합니다.',
+    description: '명함관리는 현재 보류 중입니다. 우선 일정, 미팅, 메일 연동부터 정리합니다.',
     stats: [
-      { label: '신규 명함', value: '9' },
-      { label: '미분류', value: '3' },
-      { label: '후속 연결', value: '6' },
+      { label: '상태', value: '보류' },
+      { label: '우선순위', value: '낮음' },
+      { label: '다음 작업', value: '-' },
     ],
     rows: [
       {
-        title: '오스테리아 윤 대표',
-        meta: '요식업 · 대표',
-        status: '견적서 연결',
+        title: '명함관리 기능 정의 보류',
+        meta: '연락처 DB · CRM 연결 범위 미정',
+        status: '보류',
         owner: '권순현',
-        due: '완료',
-        memo: '1개월 견적서 007 발행 이력',
-      },
-      {
-        title: '미플러스치과 신사 실장',
-        meta: '병원 · 운영 담당',
-        status: '자료 요청',
-        owner: '블링크애드',
-        due: '이번 주',
-        memo: '사진, 진료 항목, 방송/세미나 자료 요청',
-      },
-      {
-        title: '대게특별시 매장 담당자',
-        meta: '요식업 · 매장 운영',
-        status: '후속 연락',
-        owner: '권순현',
-        due: 'D+2',
-        memo: '외국인 고객 메뉴 안내 자료 확인',
+        due: '미정',
+        memo: '문의 CRM과 고객관리 구조가 먼저 잡힌 뒤 명함 OCR/수기 입력/연락처 동기화 범위를 결정합니다.',
       },
     ],
   },
@@ -496,6 +521,12 @@ export default function ErpClient() {
   const [connectionMessage, setConnectionMessage] = useState('')
   const [actionMessage, setActionMessage] = useState('')
   const [runningAction, setRunningAction] = useState<string | null>(null)
+  const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
+  const [calendarLoading, setCalendarLoading] = useState(false)
+  const [calendarMessage, setCalendarMessage] = useState('')
+  const [mailItems, setMailItems] = useState<MailItem[]>([])
+  const [mailLoading, setMailLoading] = useState(false)
+  const [mailMessage, setMailMessage] = useState('')
 
   const loadStores = async () => {
     setLoading(true)
@@ -519,6 +550,52 @@ export default function ErpClient() {
     loadStores()
   }, [])
 
+  const loadCalendarEvents = async () => {
+    setCalendarLoading(true)
+    try {
+      const response = await fetch('/api/erp/google/calendar', { cache: 'no-store' })
+      const data = (await response.json()) as CalendarApiResponse
+      setCalendarEvents(data.events)
+      setCalendarMessage(
+        data.connected
+          ? 'Google Calendar와 연결되었습니다.'
+          : data.message || 'Google Calendar 토큰이 없어 샘플 일정으로 표시 중입니다.'
+      )
+    } catch {
+      setCalendarMessage('Google Calendar 일정을 불러오지 못했습니다.')
+    } finally {
+      setCalendarLoading(false)
+    }
+  }
+
+  const loadMailItems = async () => {
+    setMailLoading(true)
+    try {
+      const response = await fetch('/api/erp/google/gmail', { cache: 'no-store' })
+      const data = (await response.json()) as MailApiResponse
+      setMailItems(data.mails)
+      setMailMessage(
+        data.connected
+          ? 'Gmail 받은편지함과 연결되었습니다.'
+          : data.message || 'Gmail 토큰이 없어 샘플 메일로 표시 중입니다.'
+      )
+    } catch {
+      setMailMessage('Gmail 받은편지함을 불러오지 못했습니다.')
+    } finally {
+      setMailLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (['schedule', 'meeting', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
+      loadCalendarEvents()
+    }
+
+    if (activeMenu === 'mail' && mailItems.length === 0 && !mailLoading) {
+      loadMailItems()
+    }
+  }, [activeMenu])
+
   const dashboard = useMemo(() => {
     const managed = stores.filter((store) => matchesStatus(store.status, ['운영', '진행', '시작'])).length
     const counts = statusGroups.map((group) => ({
@@ -529,7 +606,7 @@ export default function ErpClient() {
     return { managed, counts }
   }, [stores])
 
-  const operationView = operationViews[activeMenu]
+  const operationView = realtimeMenuIds.includes(activeMenu) ? undefined : operationViews[activeMenu]
 
   const runAutomation = async (type: 'quote' | 'diagnosis', store: StoreRecord) => {
     setRunningAction(`${type}:${store.id}`)
@@ -724,11 +801,435 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'schedule' && (
+              <CalendarPanel
+                events={calendarEvents}
+                loading={calendarLoading}
+                message={calendarMessage}
+                onRefresh={loadCalendarEvents}
+              />
+            )}
+
+            {activeMenu === 'meeting' && (
+              <MeetingPanel
+                events={calendarEvents}
+                loading={calendarLoading}
+                message={calendarMessage}
+                onRefresh={loadCalendarEvents}
+              />
+            )}
+
+            {activeMenu === 'weekly' && (
+              <WeeklyMeetingPanel
+                events={calendarEvents}
+                loading={calendarLoading}
+                message={calendarMessage}
+                onRefresh={loadCalendarEvents}
+              />
+            )}
+
+            {activeMenu === 'mail' && (
+              <MailPanel
+                mails={mailItems}
+                loading={mailLoading}
+                message={mailMessage}
+                onRefresh={loadMailItems}
+              />
+            )}
+
             {operationView ? <OperationsPanel view={operationView} /> : null}
           </div>
         </section>
       </div>
     </main>
+  )
+}
+
+function formatDateTime(value: string) {
+  if (!value) return '-'
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(value))
+}
+
+function formatDateLabel(value: string) {
+  if (!value) return '-'
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+  }).format(new Date(value))
+}
+
+function isSameDate(left: Date, right: Date) {
+  return left.getFullYear() === right.getFullYear() && left.getMonth() === right.getMonth() && left.getDate() === right.getDate()
+}
+
+function isMeetingEvent(event: CalendarEvent) {
+  const text = `${event.title} ${event.memo}`.toLowerCase()
+  return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담')
+}
+
+function eventTypeLabel(type: CalendarEvent['type']) {
+  if (type === 'meeting') return '미팅'
+  if (type === 'deadline') return '마감'
+  if (type === 'task') return '할 일'
+  return '운영'
+}
+
+function eventTypeClass(type: CalendarEvent['type']) {
+  if (type === 'meeting') return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
+  if (type === 'deadline') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  if (type === 'task') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
+  return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+}
+
+function CalendarPanel({
+  events,
+  loading,
+  message,
+  onRefresh,
+}: {
+  events: CalendarEvent[]
+  loading: boolean
+  message: string
+  onRefresh: () => void
+}) {
+  const [currentMonth, setCurrentMonth] = useState(() => new Date())
+  const year = currentMonth.getFullYear()
+  const month = currentMonth.getMonth()
+  const firstDay = new Date(year, month, 1).getDay()
+  const lastDate = new Date(year, month + 1, 0).getDate()
+  const cells = Array.from({ length: 42 }, (_, index) => {
+    const dateNumber = index - firstDay + 1
+    return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
+  })
+
+  const monthEvents = events
+    .filter((event) => {
+      const start = new Date(event.start)
+      return start.getFullYear() === year && start.getMonth() === month
+    })
+    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+
+  const moveMonth = (offset: number) => {
+    setCurrentMonth(new Date(year, month + offset, 1))
+  }
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">일정관리</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+            Google Calendar 일정을 월간 캘린더로 확인합니다. 미팅 일정은 미팅관리와 위클리미팅에도 자동으로 분류됩니다.
+          </p>
+          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+        </div>
+        <button
+          type="button"
+          onClick={onRefresh}
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+        >
+          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+          일정 새로고침
+        </button>
+      </div>
+
+      <div className="grid gap-5 p-5 md:grid-cols-[1fr_340px] md:p-6">
+        <div className="rounded-lg border border-white/10 bg-black">
+          <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
+            <button
+              type="button"
+              onClick={() => moveMonth(-1)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+              aria-label="이전 달"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <p className="text-lg font-black text-white">
+              {year}.{String(month + 1).padStart(2, '0')}
+            </p>
+            <button
+              type="button"
+              onClick={() => moveMonth(1)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+              aria-label="다음 달"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+              <div key={day} className="py-3">
+                {day}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-7">
+            {cells.map((cell, index) => {
+              const dayEvents = cell
+                ? events
+                    .filter((event) => isSameDate(new Date(event.start), cell))
+                    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+                : []
+
+              return (
+                <div
+                  key={`${year}-${month}-${index}`}
+                  className={`min-h-28 border-b border-r border-white/10 p-2 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
+                >
+                  {cell ? (
+                    <>
+                      <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
+                        {cell.getDate()}
+                      </p>
+                      <div className="mt-2 space-y-1">
+                        {dayEvents.slice(0, 3).map((event) => (
+                          <div
+                            key={event.id}
+                            className={`truncate rounded border px-2 py-1 text-[11px] font-bold ${eventTypeClass(event.type)}`}
+                            title={event.title}
+                          >
+                            {event.title}
+                          </div>
+                        ))}
+                        {dayEvents.length > 3 ? (
+                          <p className="text-[11px] font-bold text-gray-500">+{dayEvents.length - 3}개</p>
+                        ) : null}
+                      </div>
+                    </>
+                  ) : null}
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-sm font-black text-white">이번 달 일정</p>
+          <div className="mt-4 space-y-3">
+            {monthEvents.length === 0 ? (
+              <p className="rounded-md border border-white/10 px-3 py-4 text-sm font-bold text-gray-500">표시할 일정이 없습니다.</p>
+            ) : (
+              monthEvents.slice(0, 8).map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function EventCard({ event }: { event: CalendarEvent }) {
+  return (
+    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-black text-white keep-all">{event.title}</p>
+          <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTime(event.start)}</p>
+        </div>
+        <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
+          {eventTypeLabel(event.type)}
+        </span>
+      </div>
+      {event.location ? <p className="mt-2 text-xs font-bold text-gray-400 keep-all">{event.location}</p> : null}
+      {event.memo ? <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">{event.memo}</p> : null}
+    </div>
+  )
+}
+
+function MeetingPanel({
+  events,
+  loading,
+  message,
+  onRefresh,
+}: {
+  events: CalendarEvent[]
+  loading: boolean
+  message: string
+  onRefresh: () => void
+}) {
+  const meetings = events
+    .filter(isMeetingEvent)
+    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+
+  return (
+    <MeetingListPanel
+      kicker="Meeting"
+      title="미팅관리"
+      description="일정관리에서 미팅 일정으로 기록된 항목만 추려서 보여줍니다."
+      events={meetings}
+      loading={loading}
+      message={message}
+      onRefresh={onRefresh}
+      emptyLabel="등록된 미팅 일정이 없습니다."
+    />
+  )
+}
+
+function WeeklyMeetingPanel({
+  events,
+  loading,
+  message,
+  onRefresh,
+}: {
+  events: CalendarEvent[]
+  loading: boolean
+  message: string
+  onRefresh: () => void
+}) {
+  const now = new Date()
+  const sevenDaysAgo = new Date(now)
+  sevenDaysAgo.setDate(now.getDate() - 7)
+  const weeklyMeetings = events
+    .filter((event) => isMeetingEvent(event) && new Date(event.start) >= sevenDaysAgo && new Date(event.start) <= now)
+    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+
+  return (
+    <MeetingListPanel
+      kicker="Weekly Meeting"
+      title="위클리미팅"
+      description="최근 1주일간 진행했던 미팅 내역을 Google Calendar 기준으로 모아봅니다."
+      events={weeklyMeetings}
+      loading={loading}
+      message={message}
+      onRefresh={onRefresh}
+      emptyLabel="최근 1주일 내 진행된 미팅이 없습니다."
+    />
+  )
+}
+
+function MeetingListPanel({
+  kicker,
+  title,
+  description,
+  events,
+  loading,
+  message,
+  onRefresh,
+  emptyLabel,
+}: {
+  kicker: string
+  title: string
+  description: string
+  events: CalendarEvent[]
+  loading: boolean
+  message: string
+  onRefresh: () => void
+  emptyLabel: string
+}) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">{kicker}</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
+          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+        </div>
+        <button
+          type="button"
+          onClick={onRefresh}
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+        >
+          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+          일정 새로고침
+        </button>
+      </div>
+
+      <div className="grid gap-4 p-5 md:grid-cols-3 md:p-6">
+        {events.length === 0 ? (
+          <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
+        ) : (
+          events.map((event) => (
+            <div key={event.id} className="rounded-lg border border-white/10 bg-black p-5">
+              <p className="text-xs font-black text-brand-blue">{formatDateLabel(event.start)}</p>
+              <h3 className="mt-3 text-lg font-black text-white keep-all">{event.title}</h3>
+              <p className="mt-2 text-sm font-bold text-gray-400">{formatDateTime(event.start)}</p>
+              {event.location ? <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">{event.location}</p> : null}
+              {event.attendees.length > 0 ? (
+                <p className="mt-3 text-xs font-semibold text-gray-500 keep-all">
+                  참석자: {event.attendees.slice(0, 3).join(', ')}
+                </p>
+              ) : null}
+              {event.memo ? <p className="mt-3 text-sm leading-6 text-gray-400 keep-all">{event.memo}</p> : null}
+            </div>
+          ))
+        )}
+      </div>
+    </section>
+  )
+}
+
+function MailPanel({
+  mails,
+  loading,
+  message,
+  onRefresh,
+}: {
+  mails: MailItem[]
+  loading: boolean
+  message: string
+  onRefresh: () => void
+}) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Gmail Inbox</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">메일관리</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+            사용하는 Gmail 받은편지함의 최근 메일을 확인합니다. 견적, 자료 요청, 미팅 후속 메일을 ERP에서 같이 볼 수 있게 연결합니다.
+          </p>
+          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+        </div>
+        <button
+          type="button"
+          onClick={onRefresh}
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+        >
+          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+          메일 새로고침
+        </button>
+      </div>
+
+      <div className="divide-y divide-white/10">
+        {mails.length === 0 ? (
+          <p className="p-6 text-sm font-bold text-gray-500">표시할 메일이 없습니다.</p>
+        ) : (
+          mails.map((mail) => (
+            <article key={mail.id} className="grid gap-3 p-5 hover:bg-white/[0.03] md:grid-cols-[180px_1fr_140px] md:p-6">
+              <div>
+                <p className={`text-sm keep-all ${mail.unread ? 'font-black text-white' : 'font-semibold text-gray-400'}`}>
+                  {mail.from}
+                </p>
+                {mail.unread ? (
+                  <span className="mt-2 inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2 py-1 text-[11px] font-black text-blue-100">
+                    새 메일
+                  </span>
+                ) : null}
+              </div>
+              <div>
+                <h3 className={`text-base keep-all ${mail.unread ? 'font-black text-white' : 'font-bold text-gray-300'}`}>
+                  {mail.subject}
+                </h3>
+                <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-500 keep-all">{mail.snippet}</p>
+              </div>
+              <p className="text-sm font-bold text-gray-500 md:text-right">{formatDateTime(mail.receivedAt)}</p>
+            </article>
+          ))
+        )}
+      </div>
+    </section>
   )
 }
 
