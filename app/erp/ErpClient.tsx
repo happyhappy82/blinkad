@@ -13,6 +13,7 @@ import {
   Clock3,
   ExternalLink,
   FileSearch,
+  FileSignature,
   Folder,
   LayoutDashboard,
   MapPinned,
@@ -37,6 +38,9 @@ type StoreRecord = {
   googleMapUrl: string
   quoteCount: number
   diagnosisCount: number
+  contractCount: number
+  contractStatus: string
+  contractUrl: string
   reportStatus: string
   profileStatus: string
   lastEdited: string
@@ -106,6 +110,7 @@ const menuGroups = [
     items: [
       { id: 'diagnosis', label: '진단자료', icon: FileSearch },
       { id: 'quote', label: '견적서', icon: ReceiptText },
+      { id: 'contract', label: '계약서', icon: FileSignature },
     ],
   },
   {
@@ -682,7 +687,7 @@ export default function ErpClient() {
                   BlinkAd ERP
                 </p>
                 <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
-                  영업·진단·견적·운영 관리
+                  영업·진단·견적·계약·운영 관리
                 </h1>
               </div>
 
@@ -779,6 +784,16 @@ export default function ErpClient() {
                 columns="quote"
                 runningAction={runningAction}
                 onRunQuote={(store) => runAutomation('quote', store)}
+              />
+            )}
+
+            {activeMenu === 'contract' && (
+              <StoreTable
+                title="계약서 조회"
+                description="매장별 계약서 파일, 전자계약 링크, 계약 상태를 확인합니다. 전자계약 플랫폼 연결 후에는 발송·서명완료 상태까지 동기화합니다."
+                stores={stores}
+                loading={loading}
+                columns="contract"
               />
             )}
 
@@ -1557,7 +1572,7 @@ function StoreTable({
   description: string
   stores: StoreRecord[]
   loading: boolean
-  columns: 'crm' | 'diagnosis' | 'quote' | 'profile' | 'report'
+  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'profile' | 'report'
   runningAction?: string | null
   onRunDiagnosis?: (store: StoreRecord) => void
   onRunQuote?: (store: StoreRecord) => void
@@ -1587,7 +1602,7 @@ function StoreTable({
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-[980px] w-full border-collapse text-left text-sm">
+        <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-5 py-4">매장명</th>
@@ -1596,6 +1611,9 @@ function StoreTable({
               {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
               {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
+              {columns === 'contract' && <th className="px-5 py-4">계약서</th>}
+              {columns === 'contract' && <th className="px-5 py-4">전자계약</th>}
+              {columns === 'contract' && <th className="px-5 py-4">계약 상태</th>}
               {columns === 'profile' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'profile' && <th className="px-5 py-4">프로필 현황</th>}
               {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
@@ -1660,6 +1678,38 @@ function StoreTable({
                     </td>
                   )}
 
+                  {columns === 'contract' && (
+                    <td className="px-5 py-4">
+                      <FileState count={store.contractCount} emptyLabel="미등록" />
+                    </td>
+                  )}
+
+                  {columns === 'contract' && (
+                    <td className="px-5 py-4">
+                      {store.contractUrl ? (
+                        <a
+                          href={store.contractUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
+                        >
+                          전자계약 열기
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ) : (
+                        <span className="font-semibold text-gray-500">링크 미등록</span>
+                      )}
+                    </td>
+                  )}
+
+                  {columns === 'contract' && (
+                    <td className="px-5 py-4">
+                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.contractStatus)}`}>
+                        {store.contractStatus || '계약 전'}
+                      </span>
+                    </td>
+                  )}
+
                   {columns === 'profile' && (
                     <td className="px-5 py-4">
                       <a
@@ -1708,6 +1758,19 @@ function StoreTable({
                       >
                         {runningAction === `quote:${store.id}` ? '생성 중' : '견적서 생성'}
                       </PrimaryButton>
+                    ) : columns === 'contract' ? (
+                      store.contractUrl ? (
+                        <a
+                          href={store.contractUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+                        >
+                          전자계약 보기
+                        </a>
+                      ) : (
+                        <span className="font-semibold text-gray-600">플랫폼 연동 예정</span>
+                      )
                     ) : store.notionUrl ? (
                       <a
                         href={store.notionUrl}

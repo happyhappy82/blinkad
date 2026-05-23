@@ -20,6 +20,9 @@ const fallbackStores = [
     googleMapUrl: '',
     quoteCount: 0,
     diagnosisCount: 1,
+    contractCount: 0,
+    contractStatus: '계약 전',
+    contractUrl: '',
     reportStatus: '리포트 대기',
     profileStatus: '프로필 확인 필요',
     lastEdited: '',
@@ -35,6 +38,9 @@ const fallbackStores = [
     googleMapUrl: '',
     quoteCount: 1,
     diagnosisCount: 1,
+    contractCount: 0,
+    contractStatus: '계약대기',
+    contractUrl: '',
     reportStatus: '월간 리포트 미작성',
     profileStatus: '사진·메뉴판 정비 필요',
     lastEdited: '',
@@ -50,6 +56,9 @@ const fallbackStores = [
     googleMapUrl: '',
     quoteCount: 1,
     diagnosisCount: 1,
+    contractCount: 1,
+    contractStatus: '전자계약 발송 전',
+    contractUrl: '',
     reportStatus: '보고 대상 아님',
     profileStatus: 'Google 프로필 운영 전',
     lastEdited: '',
@@ -65,6 +74,9 @@ const fallbackStores = [
     googleMapUrl: '',
     quoteCount: 1,
     diagnosisCount: 0,
+    contractCount: 1,
+    contractStatus: '계약완료',
+    contractUrl: '',
     reportStatus: '첫 리포트 준비 중',
     profileStatus: '게시물 운영 대기',
     lastEdited: '',
@@ -128,6 +140,28 @@ function pickGoogleMapUrl(properties: Record<string, any>) {
   return ''
 }
 
+function pickContractUrl(properties: Record<string, any>) {
+  const direct = findProperty(properties, [
+    '전자계약 링크',
+    '전자계약',
+    '계약서 링크',
+    '계약 링크',
+    'Contract URL',
+    'Contract Link',
+  ])
+  const directText = propText(direct)
+  if (directText) return directText
+
+  for (const [name, prop] of Object.entries(properties)) {
+    const lowerName = name.toLowerCase()
+    if ((name.includes('계약') || lowerName.includes('contract')) && (name.includes('링크') || lowerName.includes('url') || lowerName.includes('link'))) {
+      const value = propText(prop)
+      if (value) return value
+    }
+  }
+  return ''
+}
+
 function normalizePage(page: any) {
   const properties = page.properties || {}
   const status =
@@ -144,6 +178,9 @@ function normalizePage(page: any) {
     googleMapUrl: pickGoogleMapUrl(properties),
     quoteCount: fileCount(properties['견적서']),
     diagnosisCount: fileCount(properties['분석자료']),
+    contractCount: fileCount(findProperty(properties, ['계약서', '계약 파일', 'Contract'])),
+    contractStatus: propText(findProperty(properties, ['계약상태', '계약 상태', '전자계약 상태', 'Contract Status'])) || '계약 전',
+    contractUrl: pickContractUrl(properties),
     reportStatus: propText(findProperty(properties, ['리포트', '보고현황', '보고 상태'])) || '리포트 대기',
     profileStatus: propText(findProperty(properties, ['프로필 현황', '프로필상태', '운영상태'])) || '프로필 확인 필요',
     lastEdited: propText(properties['last_edited_time']) || page.last_edited_time || '',
