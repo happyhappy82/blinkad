@@ -159,6 +159,8 @@ const statusGroups = [
   { label: '운영시작', matcher: ['운영', '진행', '시작'] },
 ]
 
+const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
+
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 
 const operationViews: Partial<Record<MenuId, OperationView>> = {
@@ -790,7 +792,7 @@ export default function ErpClient() {
             {activeMenu === 'contract' && (
               <StoreTable
                 title="계약서 조회"
-                description="매장별 계약서 파일, 전자계약 링크, 계약 상태를 확인합니다. 전자계약 플랫폼 연결 후에는 발송·서명완료 상태까지 동기화합니다."
+                description="매장별 계약서 파일, 전자계약 링크, 계약 상태를 확인합니다. 전자계약 발송은 이폼사인에서 진행하고, API 연동은 추후 세팅합니다."
                 stores={stores}
                 loading={loading}
                 columns="contract"
@@ -1590,14 +1592,27 @@ function StoreTable({
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
           <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
         </div>
-        <div className="relative w-full md:w-72">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            className="h-11 w-full rounded-md border border-white/10 bg-black pl-9 pr-3 text-sm font-semibold text-white outline-none placeholder:text-gray-600"
-            placeholder="매장명 검색"
-          />
+        <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row md:items-center">
+          {columns === 'contract' ? (
+            <a
+              href={EFORMSIGN_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/15"
+            >
+              이폼사인 바로가기
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+          <div className="relative w-full md:w-72">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              className="h-11 w-full rounded-md border border-white/10 bg-black pl-9 pr-3 text-sm font-semibold text-white outline-none placeholder:text-gray-600"
+              placeholder="매장명 검색"
+            />
+          </div>
         </div>
       </div>
 
@@ -1769,7 +1784,14 @@ function StoreTable({
                           전자계약 보기
                         </a>
                       ) : (
-                        <span className="font-semibold text-gray-600">플랫폼 연동 예정</span>
+                        <a
+                          href={EFORMSIGN_URL}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+                        >
+                          이폼사인 열기
+                        </a>
                       )
                     ) : store.notionUrl ? (
                       <a
