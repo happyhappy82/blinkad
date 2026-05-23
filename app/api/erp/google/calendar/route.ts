@@ -99,6 +99,10 @@ function normalizeEvent(event: GoogleCalendarEvent) {
   }
 }
 
+function normalizeCreatedEvent(event: GoogleCalendarEvent) {
+  return normalizeEvent(event)
+}
+
 function token() {
   return process.env.GOOGLE_CALENDAR_ACCESS_TOKEN || process.env.GOOGLE_OAUTH_ACCESS_TOKEN || process.env.GOOGLE_ACCESS_TOKEN || ''
 }
@@ -158,5 +162,93 @@ export async function GET() {
       message: error instanceof Error ? `${error.message} 오류로 샘플 일정으로 표시 중입니다.` : 'Google Calendar 연결 실패로 샘플 일정으로 표시 중입니다.',
       events: sampleEvents,
     })
+  }
+}
+
+export async function POST(request: Request) {
+  const accessToken = token()
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
+  const body = (await request.json().catch(() => ({}))) as {
+    title?: string
+    start?: string
+    end?: string
+    type?: string
+    location?: string
+    memo?: string
+  }
+
+  if (!body.title || !body.start) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: '일정명과 시작일시는 필수입니다.',
+      },
+      { status: 400 }
+    )
+  }
+
+  if (!accessToken) {
+    return NextResponse.json({
+      connected: false,
+      message: 'Google Calendar 쓰기 토큰이 없어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 OAuth 연결 후 가능합니다.',
+      event: {
+        id: `local-${Date.now()}`,
+        title: body.title,
+        start: body.start,
+        end: body.end || body.start,
+        type: body.type || 'operation',
+        location: body.location || '',
+        attendees: [],
+        status: 'local-only',
+        memo: body.memo || '',
+        source: 'sample',
+      },
+    })
+  }
+
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          summary: body.title,
+          description: [body.memo, body.type ? `ERP_TYPE:${body.type}` : ''].filter(Boolean).join('\n'),
+          location: body.location || undefined,
+          start: {
+            dateTime: body.start,
+            timeZone: 'Asia/Seoul',
+          },
+          end: {
+            dateTime: body.end || body.start,
+            timeZone: 'Asia/Seoul',
+          },
+        }),
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`Google Calendar create API ${response.status}`)
+    }
+
+    const event = (await response.json()) as GoogleCalendarEvent
+
+    return NextResponse.json({
+      connected: true,
+      message: 'Google Calendar에 일정이 추가되었습니다.',
+      event: normalizeCreatedEvent(event),
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: error instanceof Error ? error.message : 'Google Calendar 일정 추가에 실패했습니다.',
+      },
+      { status: 500 }
+    )
   }
 }

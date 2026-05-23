@@ -24,6 +24,7 @@ import {
   UserPlus,
   Users,
 } from 'lucide-react'
+import type { FormEvent } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 type StoreRecord = {
@@ -784,8 +785,8 @@ export default function ErpClient() {
             {activeMenu === 'profile' && (
               <StoreTable
                 title="프로필 운영"
-                description="각 매장별 Google 프로필 운영 상태를 확인합니다."
-                stores={stores}
+                description="Notion DB에서 Google 맵 링크가 등록된 매장만 모아 프로필 운영 상태와 지도 링크를 확인합니다."
+                stores={stores.filter((store) => store.googleMapUrl)}
                 loading={loading}
                 columns="profile"
               />
@@ -899,6 +900,25 @@ function CalendarPanel({
   onRefresh: () => void
 }) {
   const [currentMonth, setCurrentMonth] = useState(() => new Date())
+  const [localEvents, setLocalEvents] = useState<CalendarEvent[]>([])
+  const [creating, setCreating] = useState(false)
+  const [createMessage, setCreateMessage] = useState('')
+  const [newEvent, setNewEvent] = useState(() => {
+    const start = new Date()
+    start.setHours(start.getHours() + 1, 0, 0, 0)
+    const end = new Date(start)
+    end.setHours(end.getHours() + 1)
+
+    return {
+      title: '',
+      start: start.toISOString().slice(0, 16),
+      end: end.toISOString().slice(0, 16),
+      type: 'meeting' as CalendarEvent['type'],
+      location: '',
+      memo: '',
+    }
+  })
+  const allEvents = [...events, ...localEvents]
   const year = currentMonth.getFullYear()
   const month = currentMonth.getMonth()
   const firstDay = new Date(year, month, 1).getDay()
@@ -908,7 +928,7 @@ function CalendarPanel({
     return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
   })
 
-  const monthEvents = events
+  const visibleMonthEvents = allEvents
     .filter((event) => {
       const start = new Date(event.start)
       return start.getFullYear() === year && start.getMonth() === month
@@ -917,6 +937,49 @@ function CalendarPanel({
 
   const moveMonth = (offset: number) => {
     setCurrentMonth(new Date(year, month + offset, 1))
+  }
+
+  const createCalendarEvent = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setCreating(true)
+    setCreateMessage('')
+
+    try {
+      const response = await fetch('/api/erp/google/calendar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...newEvent,
+          start: new Date(newEvent.start).toISOString(),
+          end: new Date(newEvent.end || newEvent.start).toISOString(),
+        }),
+      })
+      const data = (await response.json()) as { message?: string; event?: CalendarEvent }
+
+      if (!response.ok) {
+        throw new Error(data.message || '일정 추가에 실패했습니다.')
+      }
+
+      if (data.event) {
+        setLocalEvents((current) => [...current, data.event as CalendarEvent])
+      }
+      setCreateMessage(data.message || '일정이 추가되었습니다.')
+
+      if (data.event?.source === 'google') {
+        await onRefresh()
+      }
+
+      setNewEvent((current) => ({
+        ...current,
+        title: '',
+        location: '',
+        memo: '',
+      }))
+    } catch (error) {
+      setCreateMessage(error instanceof Error ? error.message : '일정 추가에 실패했습니다.')
+    } finally {
+      setCreating(false)
+    }
   }
 
   return (
@@ -975,7 +1038,7 @@ function CalendarPanel({
           <div className="grid grid-cols-7">
             {cells.map((cell, index) => {
               const dayEvents = cell
-                ? events
+                ? allEvents
                     .filter((event) => isSameDate(new Date(event.start), cell))
                     .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
                 : []
@@ -1012,16 +1075,103 @@ function CalendarPanel({
           </div>
         </div>
 
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-sm font-black text-white">이번 달 일정</p>
+        <div className="space-y-4">
+          <form onSubmit={createCalendarEvent} className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-sm font-black text-white">일정 추가</p>
+            <div className="mt-4 space-y-3">
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">일정명</span>
+                <input
+                  required
+                  value={newEvent.title}
+                  onChange={(event) => setNewEvent((current) => ({ ...current, title: event.target.value }))}
+                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+                  placeholder="예: 미스터버거 제안 미팅"
+                />
+              </label>
+
+              <div className="grid grid-cols-2 gap-2">
+                <label className="block">
+                  <span className="text-xs font-bold text-gray-500">시작</span>
+                  <input
+                    required
+                    type="datetime-local"
+                    value={newEvent.start}
+                    onChange={(event) => setNewEvent((current) => ({ ...current, start: event.target.value }))}
+                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-xs font-bold text-gray-500">종료</span>
+                  <input
+                    required
+                    type="datetime-local"
+                    value={newEvent.end}
+                    onChange={(event) => setNewEvent((current) => ({ ...current, end: event.target.value }))}
+                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-xs font-semibold text-white outline-none"
+                  />
+                </label>
+              </div>
+
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">분류</span>
+                <select
+                  value={newEvent.type}
+                  onChange={(event) =>
+                    setNewEvent((current) => ({ ...current, type: event.target.value as CalendarEvent['type'] }))
+                  }
+                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+                >
+                  <option value="meeting">미팅</option>
+                  <option value="deadline">마감</option>
+                  <option value="operation">운영</option>
+                  <option value="task">할 일</option>
+                </select>
+              </label>
+
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">장소</span>
+                <input
+                  value={newEvent.location}
+                  onChange={(event) => setNewEvent((current) => ({ ...current, location: event.target.value }))}
+                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-white outline-none"
+                  placeholder="Google Meet / 매장명"
+                />
+              </label>
+
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">메모</span>
+                <textarea
+                  value={newEvent.memo}
+                  onChange={(event) => setNewEvent((current) => ({ ...current, memo: event.target.value }))}
+                  className="mt-1 min-h-20 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold text-white outline-none"
+                  placeholder="미팅 목적, 준비사항, 후속 액션"
+                />
+              </label>
+
+              <button
+                type="submit"
+                disabled={creating}
+                className="inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+              >
+                {creating ? '추가 중' : 'Google Calendar에 일정 추가'}
+              </button>
+
+              {createMessage ? <p className="text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
+            </div>
+          </form>
+
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-sm font-black text-white">이번 달 일정</p>
           <div className="mt-4 space-y-3">
-            {monthEvents.length === 0 ? (
+            {visibleMonthEvents.length === 0 ? (
               <p className="rounded-md border border-white/10 px-3 py-4 text-sm font-bold text-gray-500">표시할 일정이 없습니다.</p>
             ) : (
-              monthEvents.slice(0, 8).map((event) => (
+              visibleMonthEvents.slice(0, 8).map((event) => (
                 <EventCard key={event.id} event={event} />
               ))
             )}
+          </div>
           </div>
         </div>
       </div>
@@ -1340,6 +1490,7 @@ function StoreTable({
               {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
               {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
+              {columns === 'profile' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'profile' && <th className="px-5 py-4">프로필 현황</th>}
               {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
               <th className="px-5 py-4">담당</th>
@@ -1400,6 +1551,20 @@ function StoreTable({
                   {columns === 'quote' && (
                     <td className="px-5 py-4">
                       <FileState count={store.quoteCount} emptyLabel="미생성" />
+                    </td>
+                  )}
+
+                  {columns === 'profile' && (
+                    <td className="px-5 py-4">
+                      <a
+                        href={store.googleMapUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
+                      >
+                        구글맵 보기
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
                     </td>
                   )}
 
