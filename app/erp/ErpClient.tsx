@@ -4,6 +4,7 @@ import {
   Badge,
   Building2,
   Calendar,
+  CalendarCheck,
   CalendarDays,
   CheckCircle2,
   CheckSquare,
@@ -123,6 +124,7 @@ const menuGroups = [
     label: '일정 / 미팅',
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
+      { id: 'calendarIntegration', label: '캘린더 연동', icon: CalendarCheck },
       { id: 'meeting', label: '미팅관리', icon: Mic },
       { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
       { id: 'mail', label: '메일관리', icon: Mail },
@@ -1127,6 +1129,8 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'calendarIntegration' && <CalendarIntegrationPanel />}
+
             {activeMenu === 'meeting' && (
               <MeetingPanel
                 events={calendarEvents}
@@ -1649,10 +1653,7 @@ function CalendarPanel({
       onDragOver: (event: DragEvent<HTMLElement>) => {
         event.preventDefault()
         event.dataTransfer.dropEffect = 'move'
-        setDragOverSlot(slotKey)
-      },
-      onDragLeave: () => {
-        setDragOverSlot((current) => (current === slotKey ? null : current))
+        setDragOverSlot((current) => (current === slotKey ? current : slotKey))
       },
       onDrop: (event: DragEvent<HTMLElement>) => {
         event.preventDefault()
@@ -1974,6 +1975,130 @@ function CalendarPanel({
           </div>
         </div>
       ) : null}
+    </section>
+  )
+}
+
+function CalendarIntegrationPanel() {
+  const teamRows = [
+    {
+      name: '권순현',
+      email: 'blinkadceo@gmail.com',
+      role: '관리자',
+      status: '서버 토큰 점검 필요',
+      calendar: 'primary / 할일 캘린더',
+    },
+    {
+      name: '운영 담당',
+      email: 'ops@blinkad.kr',
+      role: '운영',
+      status: '초대 대기',
+      calendar: '운영 일정',
+    },
+    {
+      name: '외주 PM',
+      email: 'pm@blinkad.kr',
+      role: '외주',
+      status: '권한 미연결',
+      calendar: '프로젝트 일정',
+    },
+  ]
+
+  const setupSteps = [
+    {
+      title: '1. Google OAuth 연결',
+      description: '팀원이 직접 Google 계정으로 로그인해 캘린더 읽기/쓰기 권한을 승인합니다.',
+    },
+    {
+      title: '2. 기본 캘린더 선택',
+      description: '개인 primary, 팀 공유 캘린더, 미팅 전용 캘린더 중 ERP에서 사용할 캘린더를 지정합니다.',
+    },
+    {
+      title: '3. 동기화 기준 설정',
+      description: 'ERP에서 만든 일정만 보낼지, Google Calendar의 기존 일정까지 가져올지 선택합니다.',
+    },
+    {
+      title: '4. 권한 만료 감지',
+      description: 'refresh token 만료나 권한 회수 시 연동 상태를 경고하고 재연결 버튼을 노출합니다.',
+    },
+  ]
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Calendar Integration</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">캘린더 연동</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-400 keep-all">
+            팀원별 Google Calendar 계정을 연결하고, ERP 일정이 어느 캘린더에 저장되는지 관리하는 설정 화면입니다.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            disabled
+            className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue/50 px-3 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            Google 계정 연결
+          </button>
+          <a
+            href="https://console.cloud.google.com/apis/credentials"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+          >
+            OAuth 설정 열기
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        </div>
+      </div>
+
+      <div className="grid gap-5 p-5 lg:grid-cols-[1fr_360px] md:p-6">
+        <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+          <div className="grid min-w-[920px] grid-cols-[1.1fr_1.4fr_0.8fr_1fr_1.2fr] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <p>팀원</p>
+            <p>Google 계정</p>
+            <p>역할</p>
+            <p>연동 상태</p>
+            <p>사용 캘린더</p>
+          </div>
+          {teamRows.map((row) => (
+            <div
+              key={row.email}
+              className="grid min-w-[920px] grid-cols-[1.1fr_1.4fr_0.8fr_1fr_1.2fr] items-center gap-3 border-b border-white/10 px-4 py-4 last:border-b-0"
+            >
+              <p className="font-black text-white">{row.name}</p>
+              <p className="text-sm font-semibold text-gray-400">{row.email}</p>
+              <p className="text-sm font-bold text-gray-300">{row.role}</p>
+              <p className="text-sm font-black text-amber-100">{row.status}</p>
+              <p className="text-sm font-semibold text-gray-400">{row.calendar}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-lg border border-white/10 bg-black p-5">
+          <p className="text-sm font-black text-white">현재 구현 상태</p>
+          <div className="mt-4 space-y-3 text-sm leading-6 text-gray-400 keep-all">
+            <p>
+              지금 ERP는 서버 환경변수에 저장된 단일 Google 토큰으로 일정을 읽고 씁니다. 팀원별 연동을 하려면 사용자별 OAuth 승인과
+              refresh token 저장 구조가 필요합니다.
+            </p>
+            <p>
+              이 탭은 그 구조를 붙일 위치입니다. 다음 단계에서 로그인 버튼, 콜백 API, 팀원별 토큰 저장 테이블을 연결하면 실제 연동
+              메뉴로 전환됩니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 border-t border-white/10 p-5 md:grid-cols-4 md:p-6">
+        {setupSteps.map((step) => (
+          <div key={step.title} className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="font-black text-white">{step.title}</p>
+            <p className="mt-3 text-sm leading-6 text-gray-500 keep-all">{step.description}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
