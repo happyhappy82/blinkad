@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { getCalendarAuth } from '@/lib/erp-google-calendar-store'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -16,6 +17,7 @@ type GoogleCalendarEvent = {
 
 type CalendarRequestBody = {
   id?: string
+  memberId?: string
   title?: string
   start?: string
   end?: string
@@ -144,19 +146,16 @@ function localEventFromBody(body: CalendarRequestBody, id = `local-${Date.now()}
   }
 }
 
-function token() {
-  return process.env.GOOGLE_CALENDAR_ACCESS_TOKEN || process.env.GOOGLE_OAUTH_ACCESS_TOKEN || process.env.GOOGLE_ACCESS_TOKEN || ''
-}
-
-export async function GET() {
-  const accessToken = token()
-  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
+export async function GET(request: Request) {
+  const url = new URL(request.url)
+  const auth = await getCalendarAuth(url.searchParams.get('memberId') || 'owner')
+  const { accessToken, calendarId } = auth
 
   if (!accessToken) {
     return NextResponse.json({
       source: 'sample',
       connected: false,
-      message: 'GOOGLE_CALENDAR_ACCESS_TOKEN 또는 GOOGLE_OAUTH_ACCESS_TOKEN이 없어 샘플 일정으로 표시 중입니다.',
+      message: 'Google Calendar OAuth 연결 또는 서버 토큰이 없어 샘플 일정으로 표시 중입니다.',
       events: sampleEvents,
     })
   }
@@ -194,6 +193,8 @@ export async function GET() {
     return NextResponse.json({
       source: 'google',
       connected: true,
+      authSource: auth.source,
+      memberId: auth.memberId,
       events: (data.items || []).map(normalizeEvent),
     })
   } catch (error) {
@@ -207,9 +208,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const accessToken = token()
-  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
   const body = (await request.json().catch(() => ({}))) as CalendarRequestBody
+  const auth = await getCalendarAuth(body.memberId || 'owner')
+  const { accessToken, calendarId } = auth
 
   if (!body.title || !body.start) {
     return NextResponse.json(
@@ -224,7 +225,7 @@ export async function POST(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar 쓰기 토큰이 없어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 연결 또는 쓰기 토큰이 없어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 OAuth 연결 후 가능합니다.',
       event: localEventFromBody(body),
     })
   }
@@ -250,6 +251,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       connected: true,
+      authSource: auth.source,
+      memberId: auth.memberId,
       message: 'Google Calendar에 일정이 추가되었습니다.',
       event: normalizeCreatedEvent(event),
     })
@@ -265,9 +268,9 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
-  const accessToken = token()
-  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
   const body = (await request.json().catch(() => ({}))) as CalendarRequestBody
+  const auth = await getCalendarAuth(body.memberId || 'owner')
+  const { accessToken, calendarId } = auth
 
   if (!body.id || !body.title || !body.start) {
     return NextResponse.json(
@@ -282,7 +285,7 @@ export async function PUT(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar 수정 토큰이 없어 ERP 화면에서만 수정 요청을 확인했습니다. 실제 캘린더 수정은 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 연결 또는 수정 토큰이 없어 ERP 화면에서만 수정 요청을 확인했습니다. 실제 캘린더 수정은 OAuth 연결 후 가능합니다.',
       event: localEventFromBody(body, body.id),
     })
   }
@@ -308,6 +311,8 @@ export async function PUT(request: Request) {
 
     return NextResponse.json({
       connected: true,
+      authSource: auth.source,
+      memberId: auth.memberId,
       message: 'Google Calendar 일정이 수정되었습니다.',
       event: normalizeCreatedEvent(event),
     })
@@ -323,9 +328,9 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: Request) {
-  const accessToken = token()
-  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
-  const body = (await request.json().catch(() => ({}))) as { id?: string }
+  const body = (await request.json().catch(() => ({}))) as { id?: string; memberId?: string }
+  const auth = await getCalendarAuth(body.memberId || 'owner')
+  const { accessToken, calendarId } = auth
 
   if (!body.id) {
     return NextResponse.json(
@@ -340,7 +345,7 @@ export async function DELETE(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar 삭제 토큰이 없어 ERP 화면에서만 삭제 처리했습니다. 실제 캘린더 삭제는 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 연결 또는 삭제 토큰이 없어 ERP 화면에서만 삭제 처리했습니다. 실제 캘린더 삭제는 OAuth 연결 후 가능합니다.',
     })
   }
 
@@ -361,6 +366,8 @@ export async function DELETE(request: Request) {
 
     return NextResponse.json({
       connected: true,
+      authSource: auth.source,
+      memberId: auth.memberId,
       message: 'Google Calendar 일정이 삭제되었습니다.',
     })
   } catch (error) {

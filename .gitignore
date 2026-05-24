@@ -29,6 +29,9 @@ yarn-error.log*
 .env*.local
 .env.production
 
+# local private runtime storage
+.erp-private/
+
 # vercel
 .vercel
 

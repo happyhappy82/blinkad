@@ -88,6 +88,23 @@ type CalendarApiResponse = {
   events: CalendarEvent[]
 }
 
+type CalendarAccountView = {
+  memberId: string
+  name: string
+  email: string
+  role: string
+  calendarId: string
+  connected: boolean
+  updatedAt?: string
+  expiresAt?: number
+}
+
+type CalendarAccountsResponse = {
+  connected: boolean
+  accounts: CalendarAccountView[]
+  message?: string
+}
+
 type MailItem = {
   id: string
   from: string
@@ -195,6 +212,7 @@ const statusGroups = [
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
+const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id))
 
 const operationViews: Partial<Record<MenuId, OperationView>> = {
   lead: {
@@ -857,6 +875,13 @@ export default function ErpClient() {
 
   useEffect(() => {
     loadStores()
+  }, [])
+
+  useEffect(() => {
+    const menu = new URLSearchParams(window.location.search).get('menu') as MenuId | null
+    if (menu && menuIds.includes(menu)) {
+      setActiveMenu(menu)
+    }
   }, [])
 
   const loadCalendarEvents = async () => {
@@ -1980,29 +2005,57 @@ function CalendarPanel({
 }
 
 function CalendarIntegrationPanel() {
-  const teamRows = [
-    {
-      name: '권순현',
-      email: 'blinkadceo@gmail.com',
-      role: '관리자',
-      status: '서버 토큰 점검 필요',
-      calendar: 'primary / 할일 캘린더',
-    },
-    {
-      name: '운영 담당',
-      email: 'ops@blinkad.kr',
-      role: '운영',
-      status: '초대 대기',
-      calendar: '운영 일정',
-    },
-    {
-      name: '외주 PM',
-      email: 'pm@blinkad.kr',
-      role: '외주',
-      status: '권한 미연결',
-      calendar: '프로젝트 일정',
-    },
-  ]
+  const [accounts, setAccounts] = useState<CalendarAccountView[]>([])
+  const [loading, setLoading] = useState(true)
+  const [message, setMessage] = useState('')
+
+  const loadAccounts = async () => {
+    setLoading(true)
+    try {
+      const response = await fetch('/api/erp/google/calendar/oauth/accounts', { cache: 'no-store' })
+      const data = (await response.json()) as CalendarAccountsResponse
+      setAccounts(data.accounts || [])
+      setMessage(data.message || '')
+    } catch {
+      setMessage('캘린더 연동 상태를 불러오지 못했습니다.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadAccounts()
+
+    const status = new URLSearchParams(window.location.search).get('calendarOAuth')
+    if (status === 'connected') {
+      setMessage('Google Calendar 연결이 완료되었습니다.')
+    } else if (status) {
+      setMessage(`Google Calendar 연결 상태: ${status}`)
+    }
+  }, [])
+
+  const disconnectAccount = async (memberId: string) => {
+    setMessage('')
+    try {
+      const response = await fetch('/api/erp/google/calendar/oauth/accounts', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ memberId }),
+      })
+      const data = (await response.json()) as { message?: string }
+
+      if (!response.ok) {
+        throw new Error(data.message || '연동 해제에 실패했습니다.')
+      }
+
+      setMessage(data.message || 'Google Calendar 연동을 해제했습니다.')
+      await loadAccounts()
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : '연동 해제에 실패했습니다.')
+    }
+  }
+
+  const ownerAccount = accounts.find((account) => account.memberId === 'owner') || accounts[0]
 
   const setupSteps = [
     {
@@ -2034,13 +2087,12 @@ function CalendarIntegrationPanel() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            disabled
-            className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue/50 px-3 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-70"
+          <a
+            href={`/api/erp/google/calendar/oauth/start?memberId=${ownerAccount?.memberId || 'owner'}`}
+            className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600"
           >
             Google 계정 연결
-          </button>
+          </a>
           <a
             href="https://console.cloud.google.com/apis/credentials"
             target="_blank"
@@ -2053,39 +2105,68 @@ function CalendarIntegrationPanel() {
         </div>
       </div>
 
+      {message ? (
+        <div className="mx-5 mt-5 rounded-lg border border-brand-blue/25 bg-brand-blue/10 px-4 py-3 text-sm font-bold text-blue-100 md:mx-6">
+          {message}
+        </div>
+      ) : null}
+
       <div className="grid gap-5 p-5 lg:grid-cols-[1fr_360px] md:p-6">
         <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-          <div className="grid min-w-[920px] grid-cols-[1.1fr_1.4fr_0.8fr_1fr_1.2fr] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+          <div className="grid min-w-[1040px] grid-cols-[1fr_1.3fr_0.7fr_1fr_1fr_1.1fr] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
             <p>팀원</p>
             <p>Google 계정</p>
             <p>역할</p>
             <p>연동 상태</p>
             <p>사용 캘린더</p>
+            <p>작업</p>
           </div>
-          {teamRows.map((row) => (
-            <div
-              key={row.email}
-              className="grid min-w-[920px] grid-cols-[1.1fr_1.4fr_0.8fr_1fr_1.2fr] items-center gap-3 border-b border-white/10 px-4 py-4 last:border-b-0"
-            >
-              <p className="font-black text-white">{row.name}</p>
-              <p className="text-sm font-semibold text-gray-400">{row.email}</p>
-              <p className="text-sm font-bold text-gray-300">{row.role}</p>
-              <p className="text-sm font-black text-amber-100">{row.status}</p>
-              <p className="text-sm font-semibold text-gray-400">{row.calendar}</p>
-            </div>
-          ))}
+          {loading ? (
+            <p className="px-4 py-6 text-sm font-bold text-gray-500">연동 상태를 불러오는 중입니다.</p>
+          ) : (
+            accounts.map((row) => (
+              <div
+                key={row.memberId}
+                className="grid min-w-[1040px] grid-cols-[1fr_1.3fr_0.7fr_1fr_1fr_1.1fr] items-center gap-3 border-b border-white/10 px-4 py-4 last:border-b-0"
+              >
+                <p className="font-black text-white">{row.name}</p>
+                <p className="text-sm font-semibold text-gray-400">{row.email}</p>
+                <p className="text-sm font-bold text-gray-300">{row.role}</p>
+                <p className={`text-sm font-black ${row.connected ? 'text-emerald-100' : 'text-amber-100'}`}>
+                  {row.connected ? '연결됨' : '권한 미연결'}
+                </p>
+                <p className="text-sm font-semibold text-gray-400">{row.calendarId}</p>
+                <div className="flex gap-2">
+                  <a
+                    href={`/api/erp/google/calendar/oauth/start?memberId=${row.memberId}`}
+                    className="inline-flex h-9 items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600"
+                  >
+                    {row.connected ? '재연결' : '연결'}
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => disconnectAccount(row.memberId)}
+                    disabled={!row.connected}
+                    className="inline-flex h-9 items-center justify-center rounded-md border border-white/15 px-3 text-xs font-black text-gray-300 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
+                  >
+                    해제
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         <div className="rounded-lg border border-white/10 bg-black p-5">
           <p className="text-sm font-black text-white">현재 구현 상태</p>
           <div className="mt-4 space-y-3 text-sm leading-6 text-gray-400 keep-all">
             <p>
-              지금 ERP는 서버 환경변수에 저장된 단일 Google 토큰으로 일정을 읽고 씁니다. 팀원별 연동을 하려면 사용자별 OAuth 승인과
-              refresh token 저장 구조가 필요합니다.
+              이제 팀원별 Google OAuth 승인과 refresh token 저장 구조가 추가되었습니다. 연결된 팀원의 토큰은 로컬
+              `.erp-private/` 저장소에 보관되며 Git에는 올라가지 않습니다.
             </p>
             <p>
-              이 탭은 그 구조를 붙일 위치입니다. 다음 단계에서 로그인 버튼, 콜백 API, 팀원별 토큰 저장 테이블을 연결하면 실제 연동
-              메뉴로 전환됩니다.
+              실제 운영에서는 이 저장소를 DB 또는 암호화된 Secret Store로 바꾸는 것이 맞습니다. 로컬 ERP에서는 지금 구조로
+              팀원별 연결 테스트가 가능합니다.
             </p>
           </div>
         </div>
