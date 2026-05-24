@@ -29,7 +29,7 @@ import {
   UserCog,
   Users,
 } from 'lucide-react'
-import type { Dispatch, FormEvent, SetStateAction } from 'react'
+import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 
 type StoreRecord = {
@@ -1271,6 +1271,10 @@ function defaultDraft(date = new Date(), hour?: number): CalendarEventDraft {
   }
 }
 
+function slotKeyFor(date: Date, hour?: number) {
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${hour ?? 'day'}`
+}
+
 function CalendarEventForm({
   newEvent,
   setNewEvent,
@@ -1414,6 +1418,8 @@ function CalendarPanel({
   const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
   const [eventDraft, setEventDraft] = useState<CalendarEventDraft>(() => defaultDraft())
+  const [draggingEventId, setDraggingEventId] = useState<string | null>(null)
+  const [dragOverSlot, setDragOverSlot] = useState<string | null>(null)
 
   const allEvents = useMemo(() => {
     const eventMap = new Map<string, CalendarEvent>()
@@ -1569,15 +1575,117 @@ function CalendarPanel({
     }
   }
 
+  const moveEventToSlot = async (eventId: string, targetDate: Date, hour?: number) => {
+    const calendarEvent = allEvents.find((event) => event.id === eventId)
+    if (!calendarEvent || saving) return
+
+    setSaving(true)
+    setActionStatus('')
+
+    const currentStart = new Date(calendarEvent.start)
+    const currentEnd = new Date(calendarEvent.end || calendarEvent.start)
+    const duration = Math.max(30 * 60 * 1000, currentEnd.getTime() - currentStart.getTime())
+    const nextStart = new Date(targetDate)
+
+    if (hour === undefined) {
+      nextStart.setHours(currentStart.getHours(), currentStart.getMinutes(), 0, 0)
+    } else {
+      nextStart.setHours(hour, currentStart.getMinutes(), 0, 0)
+    }
+
+    const nextEnd = new Date(nextStart.getTime() + duration)
+    const payload = {
+      id: calendarEvent.id,
+      title: calendarEvent.title,
+      start: nextStart.toISOString(),
+      end: nextEnd.toISOString(),
+      type: calendarEvent.type,
+      location: calendarEvent.location,
+      memo: calendarEvent.memo,
+    }
+
+    try {
+      const response = await fetch('/api/erp/google/calendar', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+      const data = (await response.json()) as { message?: string; event?: CalendarEvent }
+
+      if (!response.ok) {
+        throw new Error(data.message || '일정을 이동하지 못했습니다.')
+      }
+
+      const movedEvent = data.event || {
+        ...calendarEvent,
+        start: payload.start,
+        end: payload.end,
+      }
+
+      setDeletedEventIds((current) => {
+        const next = new Set(current)
+        next.delete(movedEvent.id)
+        return next
+      })
+      setLocalEvents((current) => [...current.filter((item) => item.id !== movedEvent.id), movedEvent])
+      setActionStatus(data.message || '일정이 이동되었습니다.')
+
+      if (movedEvent.source === 'google') {
+        await onRefresh()
+      }
+    } catch (error) {
+      setActionStatus(error instanceof Error ? error.message : '일정을 이동하지 못했습니다.')
+    } finally {
+      setSaving(false)
+      setDraggingEventId(null)
+      setDragOverSlot(null)
+    }
+  }
+
+  const dropSlotProps = (targetDate: Date, hour?: number) => {
+    const slotKey = slotKeyFor(targetDate, hour)
+
+    return {
+      onDragOver: (event: DragEvent<HTMLElement>) => {
+        event.preventDefault()
+        event.dataTransfer.dropEffect = 'move'
+        setDragOverSlot(slotKey)
+      },
+      onDragLeave: () => {
+        setDragOverSlot((current) => (current === slotKey ? null : current))
+      },
+      onDrop: (event: DragEvent<HTMLElement>) => {
+        event.preventDefault()
+        event.stopPropagation()
+        const eventId = event.dataTransfer.getData('text/plain') || draggingEventId
+        setDragOverSlot(null)
+
+        if (eventId) {
+          void moveEventToSlot(eventId, targetDate, hour)
+        }
+      },
+    }
+  }
+
   const renderEventButton = (calendarEvent: CalendarEvent, compact = false) => (
     <button
       key={calendarEvent.id}
       type="button"
+      draggable
+      onDragStart={(dragEvent) => {
+        dragEvent.dataTransfer.effectAllowed = 'move'
+        dragEvent.dataTransfer.setData('text/plain', calendarEvent.id)
+        setDraggingEventId(calendarEvent.id)
+      }}
+      onDragEnd={() => {
+        setDraggingEventId(null)
+        setDragOverSlot(null)
+      }}
       onClick={(clickEvent) => {
         clickEvent.stopPropagation()
         openEditModal(calendarEvent)
       }}
-      className={`w-full truncate rounded border text-left font-bold transition hover:brightness-125 ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${eventTypeClass(calendarEvent.type)}`}
+      className={`w-full cursor-grab truncate rounded border text-left font-bold transition hover:brightness-125 active:cursor-grabbing ${draggingEventId === calendarEvent.id ? 'opacity-45' : ''} ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${eventTypeClass(calendarEvent.type)}`}
       title={calendarEvent.title}
     >
       {compact ? calendarEvent.title : `${formatDateTime(calendarEvent.start)} · ${calendarEvent.title}`}
@@ -1591,7 +1699,7 @@ function CalendarPanel({
           <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white">일정관리</h2>
           <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
-            월·주·일 보기에서 Google Calendar 일정을 확인하고, 날짜 더블클릭으로 새 일정을 추가하며, 기존 일정을 클릭해 수정·삭제합니다.
+            월·주·일 보기에서 Google Calendar 일정을 확인하고, 더블클릭으로 추가하며, 드래그로 날짜와 시간을 이동합니다.
           </p>
           {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
           {actionStatus ? <p className="mt-2 text-xs font-bold text-blue-100">{actionStatus}</p> : null}
@@ -1677,17 +1785,19 @@ function CalendarPanel({
                 <div className="grid grid-cols-7">
                   {cells.map((cell, index) => {
                     const dayEvents = cell ? allEvents.filter((calendarEvent) => isSameDate(new Date(calendarEvent.start), cell)) : []
+                    const slotKey = cell ? slotKeyFor(cell) : ''
 
                     return (
                       <div
                         key={`${year}-${month}-${index}`}
+                        {...(cell ? dropSlotProps(cell) : {})}
                         onClick={() => {
                           if (cell) setAnchorDate(cell)
                         }}
                         onDoubleClick={() => {
                           if (cell) openCreateModal(cell)
                         }}
-                        className={`min-h-32 cursor-default border-b border-r border-white/10 p-2 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'}`}
+                        className={`min-h-32 cursor-default border-b border-r border-white/10 p-2 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'} ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                       >
                         {cell ? (
                           <>
@@ -1737,12 +1847,14 @@ function CalendarPanel({
                           const start = new Date(calendarEvent.start)
                           return isSameDate(start, day) && start.getHours() === hour
                         })
+                        const slotKey = slotKeyFor(day, hour)
 
                         return (
                           <div
                             key={`${day.toISOString()}-${hour}`}
+                            {...dropSlotProps(day, hour)}
                             onDoubleClick={() => openCreateModal(day, hour)}
-                            className="space-y-1 border-r border-white/10 p-1.5 transition hover:bg-white/[0.04]"
+                            className={`space-y-1 border-r border-white/10 p-1.5 transition hover:bg-white/[0.04] ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                           >
                             {dayHourEvents.map((calendarEvent) => renderEventButton(calendarEvent, true))}
                           </div>
@@ -1765,13 +1877,15 @@ function CalendarPanel({
                     const start = new Date(calendarEvent.start)
                     return isSameDate(start, anchorDate) && start.getHours() === hour
                   })
+                  const slotKey = slotKeyFor(anchorDate, hour)
 
                   return (
                     <div key={hour} className="grid min-h-24 grid-cols-[72px_1fr] border-b border-white/10">
                       <div className="border-r border-white/10 px-3 py-3 text-xs font-bold text-gray-600">{String(hour).padStart(2, '0')}:00</div>
                       <div
+                        {...dropSlotProps(anchorDate, hour)}
                         onDoubleClick={() => openCreateModal(anchorDate, hour)}
-                        className="space-y-2 p-2 transition hover:bg-white/[0.04]"
+                        className={`space-y-2 p-2 transition hover:bg-white/[0.04] ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                       >
                         {hourEvents.map((calendarEvent) => renderEventButton(calendarEvent))}
                       </div>
@@ -1785,7 +1899,7 @@ function CalendarPanel({
           <div className="rounded-lg border border-white/10 bg-black p-4">
             <p className="text-sm font-black text-white">일정 목록</p>
             <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">
-              일정을 클릭하면 상세 수정 팝업이 열립니다. 캘린더 빈 칸을 더블클릭하면 해당 날짜와 시간으로 새 일정이 생성됩니다.
+              일정을 클릭하면 상세 수정 팝업이 열립니다. 일정 카드를 캘린더 칸으로 끌어 옮기면 Google Calendar 수정 요청으로 저장됩니다.
             </p>
             <div className="mt-4 space-y-3">
               {visibleRangeEvents.length === 0 ? (
