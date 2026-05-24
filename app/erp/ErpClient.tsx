@@ -71,6 +71,15 @@ type CalendarEvent = {
   source: 'google' | 'sample'
 }
 
+type CalendarEventDraft = {
+  title: string
+  start: string
+  end: string
+  type: CalendarEvent['type']
+  location: string
+  memo: string
+}
+
 type CalendarApiResponse = {
   source: 'google' | 'sample'
   connected: boolean
@@ -1163,9 +1172,48 @@ function formatDateTime(value: string) {
   }).format(new Date(value))
 }
 
+function formatDateTimeRange(event: CalendarEvent) {
+  if (!event.start) return '-'
+  const start = new Date(event.start)
+  const end = new Date(event.end || event.start)
+  const date = new Intl.DateTimeFormat('ko-KR', {
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+  }).format(start)
+  const startTime = new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(start)
+  const endTime = new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(end)
+
+  return `${date} ${startTime} - ${endTime}`
+}
+
 function toDateTimeLocalValue(date: Date) {
   const offsetDate = new Date(date.getTime() - date.getTimezoneOffset() * 60 * 1000)
   return offsetDate.toISOString().slice(0, 16)
+}
+
+function startOfDay(date: Date) {
+  const target = new Date(date)
+  target.setHours(0, 0, 0, 0)
+  return target
+}
+
+function startOfWeek(date: Date) {
+  const target = startOfDay(date)
+  target.setDate(target.getDate() - target.getDay())
+  return target
+}
+
+function addDays(date: Date, days: number) {
+  const target = new Date(date)
+  target.setDate(target.getDate() + days)
+  return target
 }
 
 function formatDateLabel(value: string) {
@@ -1177,34 +1225,66 @@ function formatDateLabel(value: string) {
   }).format(new Date(value))
 }
 
+function formatCalendarRange(view: 'month' | 'week' | 'day', anchorDate: Date) {
+  if (view === 'month') {
+    return `${anchorDate.getFullYear()}.${String(anchorDate.getMonth() + 1).padStart(2, '0')}`
+  }
+
+  if (view === 'week') {
+    const start = startOfWeek(anchorDate)
+    const end = addDays(start, 6)
+    return `${start.getFullYear()}.${String(start.getMonth() + 1).padStart(2, '0')}.${String(start.getDate()).padStart(2, '0')} - ${end.getFullYear()}.${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}`
+  }
+
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'long',
+  }).format(anchorDate)
+}
+
+function draftFromEvent(event: CalendarEvent): CalendarEventDraft {
+  return {
+    title: event.title,
+    start: toDateTimeLocalValue(new Date(event.start)),
+    end: toDateTimeLocalValue(new Date(event.end || event.start)),
+    type: event.type,
+    location: event.location || '',
+    memo: event.memo || '',
+  }
+}
+
+function defaultDraft(date = new Date(), hour?: number): CalendarEventDraft {
+  const start = new Date(date)
+  start.setHours(hour ?? start.getHours() + 1, 0, 0, 0)
+  const end = new Date(start)
+  end.setHours(end.getHours() + 1)
+
+  return {
+    title: '',
+    start: toDateTimeLocalValue(start),
+    end: toDateTimeLocalValue(end),
+    type: 'meeting',
+    location: '',
+    memo: '',
+  }
+}
+
 function CalendarEventForm({
   newEvent,
   setNewEvent,
   creating,
   createMessage,
   onSubmit,
+  submitLabel = 'Google Calendar에 일정 추가',
 }: {
-  newEvent: {
-    title: string
-    start: string
-    end: string
-    type: CalendarEvent['type']
-    location: string
-    memo: string
-  }
-  setNewEvent: Dispatch<
-    SetStateAction<{
-      title: string
-      start: string
-      end: string
-      type: CalendarEvent['type']
-      location: string
-      memo: string
-    }>
-  >
+  newEvent: CalendarEventDraft
+  setNewEvent: Dispatch<SetStateAction<CalendarEventDraft>>
   creating: boolean
   createMessage: string
   onSubmit: (event: FormEvent<HTMLFormElement>) => void
+  submitLabel?: string
 }) {
   return (
     <form onSubmit={onSubmit} className="mt-5 space-y-3">
@@ -1283,7 +1363,7 @@ function CalendarEventForm({
         disabled={creating}
         className="inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
       >
-        {creating ? '추가 중' : 'Google Calendar에 일정 추가'}
+        {creating ? '처리 중' : submitLabel}
       </button>
 
       {createMessage ? <p className="text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
@@ -1325,113 +1405,184 @@ function CalendarPanel({
   message: string
   onRefresh: () => void
 }) {
-  const [currentMonth, setCurrentMonth] = useState(() => new Date())
+  const [calendarView, setCalendarView] = useState<'month' | 'week' | 'day'>('month')
+  const [anchorDate, setAnchorDate] = useState(() => new Date())
   const [localEvents, setLocalEvents] = useState<CalendarEvent[]>([])
-  const [creating, setCreating] = useState(false)
-  const [createMessage, setCreateMessage] = useState('')
-  const [quickCreateOpen, setQuickCreateOpen] = useState(false)
-  const [newEvent, setNewEvent] = useState(() => {
-    const start = new Date()
-    start.setHours(start.getHours() + 1, 0, 0, 0)
-    const end = new Date(start)
-    end.setHours(end.getHours() + 1)
+  const [deletedEventIds, setDeletedEventIds] = useState<Set<string>>(() => new Set())
+  const [saving, setSaving] = useState(false)
+  const [actionStatus, setActionStatus] = useState('')
+  const [modalMode, setModalMode] = useState<'create' | 'edit' | null>(null)
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const [eventDraft, setEventDraft] = useState<CalendarEventDraft>(() => defaultDraft())
 
-    return {
-      title: '',
-      start: start.toISOString().slice(0, 16),
-      end: end.toISOString().slice(0, 16),
-      type: 'meeting' as CalendarEvent['type'],
-      location: '',
-      memo: '',
-    }
-  })
-  const allEvents = [...events, ...localEvents]
-  const year = currentMonth.getFullYear()
-  const month = currentMonth.getMonth()
+  const allEvents = useMemo(() => {
+    const eventMap = new Map<string, CalendarEvent>()
+    events.forEach((event) => {
+      if (!deletedEventIds.has(event.id)) eventMap.set(event.id, event)
+    })
+    localEvents.forEach((event) => {
+      if (!deletedEventIds.has(event.id)) eventMap.set(event.id, event)
+    })
+    return Array.from(eventMap.values()).sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+  }, [events, localEvents, deletedEventIds])
+
+  const year = anchorDate.getFullYear()
+  const month = anchorDate.getMonth()
   const firstDay = new Date(year, month, 1).getDay()
   const lastDate = new Date(year, month + 1, 0).getDate()
   const cells = Array.from({ length: 42 }, (_, index) => {
     const dateNumber = index - firstDay + 1
     return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
   })
+  const weekStart = startOfWeek(anchorDate)
+  const weekDays = Array.from({ length: 7 }, (_, index) => addDays(weekStart, index))
+  const calendarHours = Array.from({ length: 14 }, (_, index) => index + 8)
+  const weekDayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-  const visibleMonthEvents = allEvents
-    .filter((event) => {
-      const start = new Date(event.start)
+  const visibleRangeEvents = allEvents
+    .filter((calendarEvent) => {
+      const start = new Date(calendarEvent.start)
+
+      if (calendarView === 'week') {
+        const end = addDays(weekStart, 7)
+        return start >= weekStart && start < end
+      }
+
+      if (calendarView === 'day') {
+        return isSameDate(start, anchorDate)
+      }
+
       return start.getFullYear() === year && start.getMonth() === month
     })
-    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
 
-  const moveMonth = (offset: number) => {
-    setCurrentMonth(new Date(year, month + offset, 1))
-  }
-
-  const openCreateModal = (date?: Date) => {
-    if (date) {
-      const start = new Date(date)
-      start.setHours(10, 0, 0, 0)
-      const end = new Date(start)
-      end.setHours(end.getHours() + 1)
-
-      setNewEvent((current) => ({
-        ...current,
-        start: toDateTimeLocalValue(start),
-        end: toDateTimeLocalValue(end),
-      }))
+  const moveCalendar = (offset: number) => {
+    if (calendarView === 'month') {
+      setAnchorDate(new Date(year, month + offset, 1))
+      return
     }
 
-    setCreateMessage('')
-    setQuickCreateOpen(true)
+    if (calendarView === 'week') {
+      setAnchorDate((current) => addDays(current, offset * 7))
+      return
+    }
+
+    setAnchorDate((current) => addDays(current, offset))
   }
 
-  const closeCreateModal = () => {
-    setQuickCreateOpen(false)
+  const openCreateModal = (date?: Date, hour = 10) => {
+    setSelectedEvent(null)
+    setEventDraft(defaultDraft(date || anchorDate, hour))
+    setActionStatus('')
+    setModalMode('create')
   }
 
-  const createCalendarEvent = async (event: FormEvent<HTMLFormElement>) => {
+  const openEditModal = (calendarEvent: CalendarEvent) => {
+    setSelectedEvent(calendarEvent)
+    setEventDraft(draftFromEvent(calendarEvent))
+    setActionStatus('')
+    setModalMode('edit')
+  }
+
+  const closeModal = () => {
+    setModalMode(null)
+    setSelectedEvent(null)
+  }
+
+  const saveCalendarEvent = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setCreating(true)
-    setCreateMessage('')
+    setSaving(true)
+    setActionStatus('')
 
     try {
+      const payload = {
+        ...eventDraft,
+        start: new Date(eventDraft.start).toISOString(),
+        end: new Date(eventDraft.end || eventDraft.start).toISOString(),
+      }
       const response = await fetch('/api/erp/google/calendar', {
-        method: 'POST',
+        method: modalMode === 'edit' ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...newEvent,
-          start: new Date(newEvent.start).toISOString(),
-          end: new Date(newEvent.end || newEvent.start).toISOString(),
-        }),
+        body: JSON.stringify(modalMode === 'edit' ? { ...payload, id: selectedEvent?.id } : payload),
       })
       const data = (await response.json()) as { message?: string; event?: CalendarEvent }
 
       if (!response.ok) {
-        throw new Error(data.message || '일정 추가에 실패했습니다.')
+        throw new Error(data.message || '일정을 저장하지 못했습니다.')
       }
 
       if (data.event) {
-        setLocalEvents((current) => [...current, data.event as CalendarEvent])
+        setDeletedEventIds((current) => {
+          const next = new Set(current)
+          next.delete(data.event!.id)
+          return next
+        })
+        setLocalEvents((current) => [...current.filter((item) => item.id !== data.event!.id), data.event as CalendarEvent])
       }
-      setCreateMessage(data.message || '일정이 추가되었습니다.')
+      setActionStatus(data.message || '일정을 저장했습니다.')
 
       if (data.event?.source === 'google') {
         await onRefresh()
       }
 
-      setNewEvent((current) => ({
-        ...current,
-        title: '',
-        location: '',
-        memo: '',
-      }))
-
-      setQuickCreateOpen(false)
+      closeModal()
     } catch (error) {
-      setCreateMessage(error instanceof Error ? error.message : '일정 추가에 실패했습니다.')
+      setActionStatus(error instanceof Error ? error.message : '일정을 저장하지 못했습니다.')
     } finally {
-      setCreating(false)
+      setSaving(false)
     }
   }
+
+  const deleteCalendarEvent = async () => {
+    if (!selectedEvent) return
+    setSaving(true)
+    setActionStatus('')
+
+    try {
+      const response = await fetch('/api/erp/google/calendar', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: selectedEvent.id }),
+      })
+      const data = (await response.json()) as { message?: string }
+
+      if (!response.ok) {
+        throw new Error(data.message || '일정을 삭제하지 못했습니다.')
+      }
+
+      setDeletedEventIds((current) => {
+        const next = new Set(current)
+        next.add(selectedEvent.id)
+        return next
+      })
+      setLocalEvents((current) => current.filter((item) => item.id !== selectedEvent.id))
+      setActionStatus(data.message || '일정을 삭제했습니다.')
+
+      if (selectedEvent.source === 'google') {
+        await onRefresh()
+      }
+
+      closeModal()
+    } catch (error) {
+      setActionStatus(error instanceof Error ? error.message : '일정을 삭제하지 못했습니다.')
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const renderEventButton = (calendarEvent: CalendarEvent, compact = false) => (
+    <button
+      key={calendarEvent.id}
+      type="button"
+      onClick={(clickEvent) => {
+        clickEvent.stopPropagation()
+        openEditModal(calendarEvent)
+      }}
+      className={`w-full truncate rounded border text-left font-bold transition hover:brightness-125 ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${eventTypeClass(calendarEvent.type)}`}
+      title={calendarEvent.title}
+    >
+      {compact ? calendarEvent.title : `${formatDateTime(calendarEvent.start)} · ${calendarEvent.title}`}
+    </button>
+  )
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -1440,151 +1591,272 @@ function CalendarPanel({
           <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white">일정관리</h2>
           <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
-            Google Calendar 일정을 월간 캘린더로 확인합니다. 미팅 일정은 미팅관리와 위클리미팅에도 자동으로 분류됩니다.
+            월·주·일 보기에서 Google Calendar 일정을 확인하고, 날짜 더블클릭으로 새 일정을 추가하며, 기존 일정을 클릭해 수정·삭제합니다.
           </p>
           {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+          {actionStatus ? <p className="mt-2 text-xs font-bold text-blue-100">{actionStatus}</p> : null}
         </div>
-        <button
-          type="button"
-          onClick={onRefresh}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-        >
-          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          일정 새로고침
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setAnchorDate(new Date())}
+            className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+          >
+            오늘
+          </button>
+          <button
+            type="button"
+            onClick={() => openCreateModal()}
+            className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600"
+          >
+            일정 추가
+          </button>
+          <button
+            type="button"
+            onClick={onRefresh}
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+          >
+            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            새로고침
+          </button>
+        </div>
       </div>
 
-      <div className="grid gap-5 p-5 md:grid-cols-[1fr_340px] md:p-6">
-        <div className="rounded-lg border border-white/10 bg-black">
-          <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
+      <div className="p-5 md:p-6">
+        <div className="mb-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-black p-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => moveMonth(-1)}
+              onClick={() => moveCalendar(-1)}
               className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
-              aria-label="이전 달"
+              aria-label="이전"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <p className="text-lg font-black text-white">
-              {year}.{String(month + 1).padStart(2, '0')}
-            </p>
+            <p className="min-w-56 text-center text-lg font-black text-white">{formatCalendarRange(calendarView, anchorDate)}</p>
             <button
               type="button"
-              onClick={() => moveMonth(1)}
+              onClick={() => moveCalendar(1)}
               className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
-              aria-label="다음 달"
+              aria-label="다음"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
-
-          <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
-            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-              <div key={day} className="py-3">
-                {day}
-              </div>
+          <div className="grid grid-cols-3 rounded-md border border-white/10 bg-white/[0.03] p-1">
+            {[
+              { id: 'month', label: '월' },
+              { id: 'week', label: '주' },
+              { id: 'day', label: '일' },
+            ].map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setCalendarView(item.id as 'month' | 'week' | 'day')}
+                className={`h-8 rounded px-3 text-sm font-black transition ${
+                  calendarView === item.id ? 'bg-white text-black' : 'text-gray-400 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                {item.label}
+              </button>
             ))}
-          </div>
-
-          <div className="grid grid-cols-7">
-            {cells.map((cell, index) => {
-              const dayEvents = cell
-                ? allEvents
-                    .filter((event) => isSameDate(new Date(event.start), cell))
-                    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-                : []
-
-              return (
-                <div
-                  key={`${year}-${month}-${index}`}
-                  onDoubleClick={() => {
-                    if (cell) openCreateModal(cell)
-                  }}
-                  className={`min-h-28 border-b border-r border-white/10 p-2 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
-                >
-                  {cell ? (
-                    <>
-                      <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
-                        {cell.getDate()}
-                      </p>
-                      <div className="mt-2 space-y-1">
-                        {dayEvents.slice(0, 3).map((event) => (
-                          <div
-                            key={event.id}
-                            className={`truncate rounded border px-2 py-1 text-[11px] font-bold ${eventTypeClass(event.type)}`}
-                            title={event.title}
-                          >
-                            {event.title}
-                          </div>
-                        ))}
-                        {dayEvents.length > 3 ? (
-                          <p className="text-[11px] font-bold text-gray-500">+{dayEvents.length - 3}개</p>
-                        ) : null}
-                      </div>
-                    </>
-                  ) : null}
-                </div>
-              )
-            })}
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div className="rounded-lg border border-white/10 bg-black p-4">
-            <p className="text-sm font-black text-white">빠른 일정 추가</p>
-            <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">
-              달력 날짜를 더블클릭하거나 아래 버튼을 눌러 Google Calendar 일정 추가 팝업을 엽니다.
-            </p>
-            <button
-              type="button"
-              onClick={() => openCreateModal()}
-              className="mt-4 inline-flex h-10 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600"
-            >
-              일정 추가
-            </button>
-            {createMessage ? <p className="mt-3 text-xs font-bold leading-5 text-gray-400 keep-all">{createMessage}</p> : null}
+        <div className="grid gap-5 xl:grid-cols-[1fr_340px]">
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+            {calendarView === 'month' ? (
+              <>
+                <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
+                  {weekDayLabels.map((day) => (
+                    <div key={day} className="py-3">
+                      {day}
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-7">
+                  {cells.map((cell, index) => {
+                    const dayEvents = cell ? allEvents.filter((calendarEvent) => isSameDate(new Date(calendarEvent.start), cell)) : []
+
+                    return (
+                      <div
+                        key={`${year}-${month}-${index}`}
+                        onClick={() => {
+                          if (cell) setAnchorDate(cell)
+                        }}
+                        onDoubleClick={() => {
+                          if (cell) openCreateModal(cell)
+                        }}
+                        className={`min-h-32 cursor-default border-b border-r border-white/10 p-2 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'}`}
+                      >
+                        {cell ? (
+                          <>
+                            <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
+                              {cell.getDate()}
+                            </p>
+                            <div className="mt-2 space-y-1">
+                              {dayEvents.slice(0, 4).map((calendarEvent) => renderEventButton(calendarEvent, true))}
+                              {dayEvents.length > 4 ? (
+                                <p className="text-[11px] font-bold text-gray-500">+{dayEvents.length - 4}개</p>
+                              ) : null}
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+                    )
+                  })}
+                </div>
+              </>
+            ) : null}
+
+            {calendarView === 'week' ? (
+              <div className="overflow-x-auto">
+                <div className="min-w-[980px]">
+                  <div className="grid grid-cols-[64px_repeat(7,minmax(120px,1fr))] border-b border-white/10">
+                    <div className="border-r border-white/10 px-2 py-3 text-xs font-black text-gray-600">시간</div>
+                    {weekDays.map((day) => (
+                      <button
+                        key={day.toISOString()}
+                        type="button"
+                        onClick={() => setAnchorDate(day)}
+                        onDoubleClick={() => openCreateModal(day)}
+                        className={`border-r border-white/10 px-3 py-3 text-left transition hover:bg-white/[0.04] ${
+                          isSameDate(day, new Date()) ? 'text-brand-blue' : 'text-gray-300'
+                        }`}
+                      >
+                        <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-600">{weekDayLabels[day.getDay()]}</p>
+                        <p className="mt-1 text-xl font-black">{day.getDate()}</p>
+                      </button>
+                    ))}
+                  </div>
+                  {calendarHours.map((hour) => (
+                    <div key={hour} className="grid min-h-24 grid-cols-[64px_repeat(7,minmax(120px,1fr))] border-b border-white/10">
+                      <div className="border-r border-white/10 px-2 py-2 text-xs font-bold text-gray-600">{String(hour).padStart(2, '0')}:00</div>
+                      {weekDays.map((day) => {
+                        const dayHourEvents = allEvents.filter((calendarEvent) => {
+                          const start = new Date(calendarEvent.start)
+                          return isSameDate(start, day) && start.getHours() === hour
+                        })
+
+                        return (
+                          <div
+                            key={`${day.toISOString()}-${hour}`}
+                            onDoubleClick={() => openCreateModal(day, hour)}
+                            className="space-y-1 border-r border-white/10 p-1.5 transition hover:bg-white/[0.04]"
+                          >
+                            {dayHourEvents.map((calendarEvent) => renderEventButton(calendarEvent, true))}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {calendarView === 'day' ? (
+              <div>
+                <div className="border-b border-white/10 px-4 py-4">
+                  <p className="text-sm font-bold text-gray-500">선택한 날짜</p>
+                  <p className="mt-1 text-2xl font-black text-white">{formatCalendarRange('day', anchorDate)}</p>
+                </div>
+                {calendarHours.map((hour) => {
+                  const hourEvents = allEvents.filter((calendarEvent) => {
+                    const start = new Date(calendarEvent.start)
+                    return isSameDate(start, anchorDate) && start.getHours() === hour
+                  })
+
+                  return (
+                    <div key={hour} className="grid min-h-24 grid-cols-[72px_1fr] border-b border-white/10">
+                      <div className="border-r border-white/10 px-3 py-3 text-xs font-bold text-gray-600">{String(hour).padStart(2, '0')}:00</div>
+                      <div
+                        onDoubleClick={() => openCreateModal(anchorDate, hour)}
+                        className="space-y-2 p-2 transition hover:bg-white/[0.04]"
+                      >
+                        {hourEvents.map((calendarEvent) => renderEventButton(calendarEvent))}
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : null}
           </div>
 
           <div className="rounded-lg border border-white/10 bg-black p-4">
-            <p className="text-sm font-black text-white">이번 달 일정</p>
-          <div className="mt-4 space-y-3">
-            {visibleMonthEvents.length === 0 ? (
-              <p className="rounded-md border border-white/10 px-3 py-4 text-sm font-bold text-gray-500">표시할 일정이 없습니다.</p>
-            ) : (
-              visibleMonthEvents.slice(0, 8).map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))
-            )}
-          </div>
+            <p className="text-sm font-black text-white">일정 목록</p>
+            <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">
+              일정을 클릭하면 상세 수정 팝업이 열립니다. 캘린더 빈 칸을 더블클릭하면 해당 날짜와 시간으로 새 일정이 생성됩니다.
+            </p>
+            <div className="mt-4 space-y-3">
+              {visibleRangeEvents.length === 0 ? (
+                <p className="rounded-md border border-white/10 px-3 py-4 text-sm font-bold text-gray-500">표시할 일정이 없습니다.</p>
+              ) : (
+                visibleRangeEvents.slice(0, 12).map((calendarEvent) => (
+                  <button
+                    key={calendarEvent.id}
+                    type="button"
+                    onClick={() => openEditModal(calendarEvent)}
+                    className="w-full rounded-md border border-white/10 bg-white/[0.03] p-3 text-left transition hover:border-white/25 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-black text-white keep-all">{calendarEvent.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTimeRange(calendarEvent)}</p>
+                      </div>
+                      <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(calendarEvent.type)}`}>
+                        {eventTypeLabel(calendarEvent.type)}
+                      </span>
+                    </div>
+                    {calendarEvent.location ? <p className="mt-2 text-xs font-bold text-gray-400 keep-all">{calendarEvent.location}</p> : null}
+                  </button>
+                ))
+              )}
+            </div>
           </div>
         </div>
       </div>
 
-      {quickCreateOpen ? (
+      {modalMode ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
           <div className="w-full max-w-lg rounded-lg border border-white/10 bg-[#0b0d12] p-5 shadow-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
-                <h3 className="mt-2 text-xl font-black text-white">일정 추가</h3>
+                <h3 className="mt-2 text-xl font-black text-white">{modalMode === 'edit' ? '일정 수정' : '일정 추가'}</h3>
+                {selectedEvent ? (
+                  <p className="mt-1 text-xs font-bold text-gray-500">
+                    {selectedEvent.source === 'google' ? 'Google Calendar 일정' : 'ERP 로컬 일정'}
+                  </p>
+                ) : null}
               </div>
               <button
                 type="button"
-                onClick={closeCreateModal}
+                onClick={closeModal}
                 className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-400 hover:bg-white/5 hover:text-white"
-                aria-label="일정 추가 닫기"
+                aria-label="일정 팝업 닫기"
               >
                 ×
               </button>
             </div>
 
             <CalendarEventForm
-              newEvent={newEvent}
-              setNewEvent={setNewEvent}
-              creating={creating}
-              createMessage={createMessage}
-              onSubmit={createCalendarEvent}
+              newEvent={eventDraft}
+              setNewEvent={setEventDraft}
+              creating={saving}
+              createMessage={actionStatus}
+              onSubmit={saveCalendarEvent}
+              submitLabel={modalMode === 'edit' ? '일정 수정 저장' : 'Google Calendar에 일정 추가'}
             />
+            {modalMode === 'edit' ? (
+              <button
+                type="button"
+                onClick={deleteCalendarEvent}
+                disabled={saving}
+                className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-md border border-red-400/25 bg-red-400/10 px-3 text-sm font-black text-red-100 transition hover:border-red-400/50 hover:bg-red-400/15 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                일정 삭제
+              </button>
+            ) : null}
           </div>
         </div>
       ) : null}

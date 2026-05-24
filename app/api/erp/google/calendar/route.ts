@@ -14,6 +14,16 @@ type GoogleCalendarEvent = {
   attendees?: { email?: string; displayName?: string }[]
 }
 
+type CalendarRequestBody = {
+  id?: string
+  title?: string
+  start?: string
+  end?: string
+  type?: string
+  location?: string
+  memo?: string
+}
+
 function isoAt(offsetDays: number, hour: number, minute = 0) {
   const date = new Date()
   date.setDate(date.getDate() + offsetDays)
@@ -103,6 +113,37 @@ function normalizeCreatedEvent(event: GoogleCalendarEvent) {
   return normalizeEvent(event)
 }
 
+function googleEventBody(body: CalendarRequestBody) {
+  return {
+    summary: body.title,
+    description: [body.memo, body.type ? `ERP_TYPE:${body.type}` : ''].filter(Boolean).join('\n'),
+    location: body.location || undefined,
+    start: {
+      dateTime: body.start,
+      timeZone: 'Asia/Seoul',
+    },
+    end: {
+      dateTime: body.end || body.start,
+      timeZone: 'Asia/Seoul',
+    },
+  }
+}
+
+function localEventFromBody(body: CalendarRequestBody, id = `local-${Date.now()}`) {
+  return {
+    id,
+    title: body.title || '제목 없는 일정',
+    start: body.start || new Date().toISOString(),
+    end: body.end || body.start || new Date().toISOString(),
+    type: body.type || 'operation',
+    location: body.location || '',
+    attendees: [],
+    status: 'local-only',
+    memo: body.memo || '',
+    source: 'sample',
+  }
+}
+
 function token() {
   return process.env.GOOGLE_CALENDAR_ACCESS_TOKEN || process.env.GOOGLE_OAUTH_ACCESS_TOKEN || process.env.GOOGLE_ACCESS_TOKEN || ''
 }
@@ -168,14 +209,7 @@ export async function GET() {
 export async function POST(request: Request) {
   const accessToken = token()
   const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
-  const body = (await request.json().catch(() => ({}))) as {
-    title?: string
-    start?: string
-    end?: string
-    type?: string
-    location?: string
-    memo?: string
-  }
+  const body = (await request.json().catch(() => ({}))) as CalendarRequestBody
 
   if (!body.title || !body.start) {
     return NextResponse.json(
@@ -191,18 +225,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       connected: false,
       message: 'Google Calendar 쓰기 토큰이 없어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 OAuth 연결 후 가능합니다.',
-      event: {
-        id: `local-${Date.now()}`,
-        title: body.title,
-        start: body.start,
-        end: body.end || body.start,
-        type: body.type || 'operation',
-        location: body.location || '',
-        attendees: [],
-        status: 'local-only',
-        memo: body.memo || '',
-        source: 'sample',
-      },
+      event: localEventFromBody(body),
     })
   }
 
@@ -215,19 +238,7 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          summary: body.title,
-          description: [body.memo, body.type ? `ERP_TYPE:${body.type}` : ''].filter(Boolean).join('\n'),
-          location: body.location || undefined,
-          start: {
-            dateTime: body.start,
-            timeZone: 'Asia/Seoul',
-          },
-          end: {
-            dateTime: body.end || body.start,
-            timeZone: 'Asia/Seoul',
-          },
-        }),
+        body: JSON.stringify(googleEventBody(body)),
       }
     )
 
@@ -247,6 +258,116 @@ export async function POST(request: Request) {
       {
         connected: false,
         message: error instanceof Error ? error.message : 'Google Calendar 일정 추가에 실패했습니다.',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+export async function PUT(request: Request) {
+  const accessToken = token()
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
+  const body = (await request.json().catch(() => ({}))) as CalendarRequestBody
+
+  if (!body.id || !body.title || !body.start) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: '일정 ID, 일정명, 시작일시는 필수입니다.',
+      },
+      { status: 400 }
+    )
+  }
+
+  if (!accessToken) {
+    return NextResponse.json({
+      connected: false,
+      message: 'Google Calendar 수정 토큰이 없어 ERP 화면에서만 수정 요청을 확인했습니다. 실제 캘린더 수정은 OAuth 연결 후 가능합니다.',
+      event: localEventFromBody(body, body.id),
+    })
+  }
+
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(body.id)}`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(googleEventBody(body)),
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`Google Calendar update API ${response.status}`)
+    }
+
+    const event = (await response.json()) as GoogleCalendarEvent
+
+    return NextResponse.json({
+      connected: true,
+      message: 'Google Calendar 일정이 수정되었습니다.',
+      event: normalizeCreatedEvent(event),
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: error instanceof Error ? error.message : 'Google Calendar 일정 수정에 실패했습니다.',
+      },
+      { status: 500 }
+    )
+  }
+}
+
+export async function DELETE(request: Request) {
+  const accessToken = token()
+  const calendarId = process.env.GOOGLE_CALENDAR_ID || 'primary'
+  const body = (await request.json().catch(() => ({}))) as { id?: string }
+
+  if (!body.id) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: '삭제할 일정 ID가 필요합니다.',
+      },
+      { status: 400 }
+    )
+  }
+
+  if (!accessToken) {
+    return NextResponse.json({
+      connected: false,
+      message: 'Google Calendar 삭제 토큰이 없어 ERP 화면에서만 삭제 처리했습니다. 실제 캘린더 삭제는 OAuth 연결 후 가능합니다.',
+    })
+  }
+
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(body.id)}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`Google Calendar delete API ${response.status}`)
+    }
+
+    return NextResponse.json({
+      connected: true,
+      message: 'Google Calendar 일정이 삭제되었습니다.',
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: error instanceof Error ? error.message : 'Google Calendar 일정 삭제에 실패했습니다.',
       },
       { status: 500 }
     )
