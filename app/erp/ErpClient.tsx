@@ -26,7 +26,6 @@ import {
   RefreshCw,
   Search,
   Settings,
-  UserPlus,
   UserCog,
   Users,
 } from 'lucide-react'
@@ -140,10 +139,9 @@ const menuGroups = [
   {
     label: 'CRM/영업',
     items: [
-      { id: 'lead', label: '리드관리', icon: UserPlus },
-      { id: 'crm', label: '문의 CRM', icon: Building2 },
-      { id: 'customer', label: '고객관리', icon: Users },
+      { id: 'crm', label: '문의관리', icon: Building2 },
       { id: 'followup', label: '팔로업 관리', icon: RefreshCw },
+      { id: 'customer', label: '고객관리', icon: Users },
       { id: 'card', label: '명함관리', icon: Badge },
     ],
   },
@@ -243,46 +241,10 @@ function isMenuId(value: string): value is MenuId {
 }
 
 const operationViews: Partial<Record<MenuId, OperationView>> = {
-  lead: {
-    kicker: 'Sales Pipeline',
-    title: '리드관리',
-    description: '문의가 들어온 매장을 유입 경로, 다음 액션, 우선순위 기준으로 정리합니다.',
-    stats: [
-      { label: '신규 리드', value: '12' },
-      { label: '미팅 예정', value: '5' },
-      { label: '견적 대기', value: '7' },
-    ],
-    rows: [
-      {
-        title: '미스터버거',
-        meta: '요식업 · Google 프로필 관리 문의',
-        status: '견적 제안 전',
-        owner: '권순현',
-        due: '오늘',
-        memo: '프로필 최적화 세팅 견적서 발송 예정',
-      },
-      {
-        title: '미플러스치과 신사',
-        meta: '병원 · 외국인 환자 유입 상담',
-        status: '진단자료 완료',
-        owner: '블링크애드',
-        due: '내일',
-        memo: '분석자료 기반 미팅 아젠다 정리 필요',
-      },
-      {
-        title: '대게특별시',
-        meta: '요식업 · 구글 지도 노출 개선',
-        status: '계약 검토',
-        owner: '권순현',
-        due: '이번 주',
-        memo: '메뉴판·리뷰·사진 정비 범위 확인',
-      },
-    ],
-  },
   customer: {
     kicker: 'Account',
     title: '고객관리',
-    description: '계약 전후 고객 상태와 요청 자료, 담당자를 한 화면에서 확인합니다.',
+    description: '계약이 확정됐거나 운영이 시작된 매장의 상태, 요청 자료, 담당자를 확인합니다.',
     stats: [
       { label: '운영 고객', value: '4' },
       { label: '자료 대기', value: '8' },
@@ -1114,8 +1076,8 @@ export default function ErpClient() {
 
             {activeMenu === 'crm' && (
               <StoreTable
-                title="문의 CRM"
-                description="Notion 문의관리 DB의 매장 목록을 ERP에서 확인합니다."
+                title="문의관리"
+                description="Notion 문의관리 DB의 신규 문의와 상담 전 매장을 ERP에서 확인합니다."
                 stores={stores}
                 loading={loading}
                 columns="crm"

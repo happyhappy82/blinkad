@@ -126,6 +126,12 @@ function targetTeamCalendarName() {
   return process.env.GOOGLE_CALENDAR_TEAM_NAME || process.env.GOOGLE_TEAM_CALENDAR_NAME || '용올캘린더'
 }
 
+function targetTeamCalendarNameCandidates() {
+  const targetName = targetTeamCalendarName()
+  const names = new Set([targetName, targetName.replace(/캘린더$/i, ''), targetName.replace(/calendar$/i, '')])
+  return Array.from(names).map(normalizeCalendarName).filter(Boolean)
+}
+
 async function fetchCalendarList(accessToken: string) {
   const response = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList?showDeleted=false&maxResults=250', {
     headers: {
@@ -147,18 +153,20 @@ async function resolveTeamCalendar(accessToken: string, storedCalendarId: string
   const configuredCalendarId = process.env.GOOGLE_CALENDAR_ID || ''
   const storedTeamCalendarId = storedCalendarId && storedCalendarId !== 'primary' ? storedCalendarId : ''
   const targetId = configuredCalendarId || storedTeamCalendarId
-  const targetName = targetTeamCalendarName()
-  const normalizedTargetName = normalizeCalendarName(targetName)
+  const normalizedTargetNames = targetTeamCalendarNameCandidates()
 
   if (targetId) {
     const byId = calendars.find((calendar) => calendar.id === targetId)
     if (byId) return byId
   }
 
-  const exactNameMatch = calendars.find((calendar) => normalizeCalendarName(calendar.summary || '') === normalizedTargetName)
+  const exactNameMatch = calendars.find((calendar) => normalizedTargetNames.includes(normalizeCalendarName(calendar.summary || '')))
   if (exactNameMatch) return exactNameMatch
 
-  const partialNameMatch = calendars.find((calendar) => normalizeCalendarName(calendar.summary || '').includes(normalizedTargetName))
+  const partialNameMatch = calendars.find((calendar) => {
+    const calendarName = normalizeCalendarName(calendar.summary || '')
+    return normalizedTargetNames.some((targetName) => calendarName.includes(targetName) || targetName.includes(calendarName))
+  })
   if (partialNameMatch) return partialNameMatch
 
   return null
