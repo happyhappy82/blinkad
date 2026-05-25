@@ -126,13 +126,13 @@ function weekday(date: Date) {
 
 function fallbackReports(weekStart?: string): ReportItem[] {
   const dates = weekDates(weekStart)
-  const titles = ['주간 기준 세팅', '사진 점검', '리뷰 확인', '소식지 운영', '주간 보고', '긴급 대응', '정기 운영 없음']
+  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고', '긴급 대응', '정기 운영 없음']
   const memos = [
-    '기본정보와 우선 작업 정리',
-    '대표사진, 메뉴판, 내부사진 확인',
-    '신규 리뷰와 대댓글 상태 점검',
-    'Google 게시물 작성/게시 확인',
-    '이번 주 작업 요약 및 다음 액션',
+    'Google 게시물과 소식지 업데이트를 진행합니다.',
+    '주요 키워드 노출 순위와 변동을 확인합니다.',
+    '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+    '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+    '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
     '필요 시 리뷰/정보 오류만 확인',
     '주간 운영 마감 후 대기',
   ]
@@ -170,7 +170,7 @@ function fallbackReportHistory(weekStart?: string): ReportItem[] {
       dayOffset: index % 7,
       date: isoDate(date),
       status: '완료' as ReportStatus,
-      title: ['기본정보 점검', '사진 정리', '리뷰 응대', '소식지 게시', '주간 보고'][index % 5],
+      title: ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고'][index % 5],
       memo: '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
       reporter: '블링크애드',
       completedAt: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 0, 0).toISOString(),
