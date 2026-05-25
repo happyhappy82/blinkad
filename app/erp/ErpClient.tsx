@@ -1067,6 +1067,9 @@ export default function ErpClient() {
   const followupStores = stores.filter((store) =>
     statusIncludesAny(store.status, ['견적서 송부', '팔로업 지속', '공동대응'])
   )
+  const quoteCandidateStores = stores.filter(
+    (store) => !statusIncludesAny(store.status, ['견적서 송부/팔로업 지속', '취소/팔로업 중지'])
+  )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
   const operationView =
     realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
@@ -1286,8 +1289,8 @@ export default function ErpClient() {
             {activeMenu === 'quote' && (
               <StoreTable
                 title="견적서 생성"
-                description="각 매장별 견적서 생성 버튼을 통해 PDF를 만들고 Notion 견적서 열에 저장합니다."
-                stores={stores}
+                description="견적서 송부/팔로업 지속, 취소/팔로업 중지 상태를 제외한 매장만 견적서 생성 대상으로 표시합니다."
+                stores={quoteCandidateStores}
                 loading={loading}
                 columns="quote"
                 runningAction={runningAction}
