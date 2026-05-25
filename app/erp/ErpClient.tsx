@@ -211,10 +211,18 @@ type StoreProductTask = {
   memo: string
 }
 
+type StoreProductMetric = {
+  label: string
+  value: string
+  note: string
+}
+
 type StoreProductWorkspace = {
   key: StoreProductKey
   label: string
+  heading: string
   description: string
+  metrics: StoreProductMetric[]
   tasks: StoreProductTask[]
 }
 
@@ -362,7 +370,13 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
           {
             key: 'googleProfile',
             label: '구글프로필',
-            description: 'Google 지도에서 보이는 기본 정보, 사진, 리뷰, 소식지 운영 업무를 관리합니다.',
+            heading: '작업·보고 현황',
+            description: 'Google 프로필 작업현황과 보고 현황을 한눈에 보고, 누락 없이 운영하기 위한 공간입니다.',
+            metrics: [
+              { label: '이번 주 작업', value: '3건', note: '기본정보, 사진, 리뷰 기준 정리' },
+              { label: '보고 상태', value: '작성중', note: '운영 시작 전 기준 리포트 준비' },
+              { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+            ],
             tasks: [
               {
                 title: '프로필 기본정보 정리',
@@ -390,7 +404,13 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
           {
             key: 'googleAds',
             label: '구글애즈',
-            description: '검색과 지도 기반 즉각 노출을 위한 캠페인 구조와 전환 설정을 관리합니다.',
+            heading: '성과 요약',
+            description: '매장별 Google Ads 노출, 클릭, 전환, 광고비 흐름을 나중에 한눈에 보기 위한 공간입니다.',
+            metrics: [
+              { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+              { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+              { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+            ],
             tasks: [
               {
                 title: '캠페인 구조 확인',
@@ -418,7 +438,13 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
           {
             key: 'websiteBlog',
             label: '웹사이트·블로그',
-            description: 'Google 프로필과 연결되는 공식 페이지, 블로그, FAQ 콘텐츠 업무를 관리합니다.',
+            heading: '제작·콘텐츠 현황',
+            description: '매장별로 어떤 웹사이트, 블로그, FAQ 작업이 들어가고 있는지 체크하기 위한 공간입니다.',
+            metrics: [
+              { label: '제작 상태', value: '기획중', note: '브랜드/지점 페이지 구조 정리' },
+              { label: '콘텐츠', value: '2건 대기', note: 'FAQ, 블로그 주제 정리 필요' },
+              { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
+            ],
             tasks: [
               {
                 title: '브랜드/지점 페이지 구조 기획',
@@ -2729,8 +2755,17 @@ function StoreOperationsPanel({ view }: { view: OperationView }) {
                 <div className="mt-5 rounded-lg border border-white/10 bg-black">
                   <div className="border-b border-white/10 p-5">
                     <p className="text-sm font-bold text-brand-blue">{activeWorkspace.label}</p>
-                    <h4 className="mt-2 text-xl font-black text-white">매장별 업무</h4>
+                    <h4 className="mt-2 text-xl font-black text-white">{activeWorkspace.heading}</h4>
                     <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">{activeWorkspace.description}</p>
+                  </div>
+                  <div className="grid gap-2 border-b border-white/10 p-5 md:grid-cols-3">
+                    {activeWorkspace.metrics.map((metric) => (
+                      <div key={`${activeWorkspace.key}-${metric.label}`} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                        <p className="text-xs font-black text-gray-500 keep-all">{metric.label}</p>
+                        <p className="mt-2 text-2xl font-black tracking-tight text-white keep-all">{metric.value}</p>
+                        <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
+                      </div>
+                    ))}
                   </div>
                   <div className="divide-y divide-white/10">
                     {activeWorkspace.tasks.map((task) => (
