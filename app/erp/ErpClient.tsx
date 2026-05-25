@@ -6,7 +6,6 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
-  CheckSquare,
   ChevronLeft,
   ChevronRight,
   CircleDot,
@@ -19,7 +18,6 @@ import {
   Folder,
   Handshake,
   LayoutDashboard,
-  MapPinned,
   Mail,
   Mic,
   ReceiptText,
@@ -156,9 +154,7 @@ const menuGroups = [
   {
     label: '프로젝트/작업관리',
     items: [
-      { id: 'project', label: '프로젝트관리', icon: Folder },
-      { id: 'profile', label: 'GBP 운영', icon: MapPinned },
-      { id: 'request', label: '자료 요청', icon: CheckSquare },
+      { id: 'project', label: '매장 운영관리', icon: Folder },
     ],
   },
   {
@@ -212,6 +208,13 @@ type OperationRow = {
   owner: string
   due: string
   memo: string
+  products?: {
+    googleProfile: string
+    googleAds: string
+    website: string
+    material: string
+    nextAction: string
+  }
 }
 
 type OperationView = {
@@ -314,22 +317,29 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
     ],
   },
   project: {
-    kicker: 'Project Board',
-    title: '프로젝트관리',
-    description: '계약 이후 매장별 GBP 운영 작업을 포스팅, 리뷰응답, 사진관리, 키워드 최적화 단위로 관리합니다.',
+    kicker: 'Store Operations',
+    title: '매장 운영관리',
+    description: '매장별로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 한 화면에서 확인합니다.',
     stats: [
       { label: '운영 매장', value: '1' },
-      { label: '이번 주 작업', value: '5' },
+      { label: '진행 상품', value: '3' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
       {
-        title: '언리미티드 GBP 운영 세팅',
-        meta: '프로필 · 리뷰 응대 · 소식지 · 사진 정리',
+        title: '언리미티드',
+        meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
         status: '작업중',
         owner: '권순현',
         due: '이번 주',
-        memo: 'Google 프로필 기본 세팅, 대표 사진 정리, 다국어 소식지, 리뷰 응대 기준을 한 매장 기준으로 관리합니다.',
+        memo: '매장별 운영 현황은 상품 메뉴를 나누기보다 한 매장 안에서 상품별 진행 상태를 같이 봅니다.',
+        products: {
+          googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+          googleAds: '계정/캠페인 구조 확인',
+          website: '브랜드 페이지 구조 기획',
+          material: '대표 사진·서비스 설명 요청',
+          nextAction: 'Google 프로필 기본정보와 대표사진 정리',
+        },
       },
     ],
   },
@@ -366,26 +376,6 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
         owner: '블링크애드',
         due: '상시',
         memo: '매장 톤에 맞게 공통 문구를 그대로 쓰지 않고 가볍게 변형합니다.',
-      },
-    ],
-  },
-  request: {
-    kicker: 'Material Request',
-    title: '자료 요청',
-    description: '운영 시작 전에 필요한 사진, 메뉴판, 서비스 설명, 권위 자료의 수집 상태를 관리합니다.',
-    stats: [
-      { label: '요청 대기', value: '1' },
-      { label: '부분 수신', value: '0' },
-      { label: '완료', value: '0' },
-    ],
-    rows: [
-      {
-        title: '언리미티드 운영 자료 요청',
-        meta: '로컬 매장 · 내부/외부 사진 · 메뉴/서비스 안내',
-        status: '요청 대기',
-        owner: '블링크애드',
-        due: '이번 주',
-        memo: '대표 사진, 공간 사진, 서비스 설명, 외국인 고객 안내에 필요한 기본 자료를 먼저 요청합니다.',
       },
     ],
   },
@@ -823,6 +813,8 @@ export default function ErpClient() {
     const menu = new URLSearchParams(window.location.search).get('menu')
     if (menu === 'calendarIntegration') {
       setActiveMenu('settings')
+    } else if (menu === 'profile' || menu === 'request') {
+      setActiveMenu('project')
     } else if (menu && isMenuId(menu)) {
       setActiveMenu(menu)
     }
@@ -1067,16 +1059,6 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="contract"
-              />
-            )}
-
-            {activeMenu === 'profile' && (
-              <StoreTable
-                title="GBP 운영"
-                description="현재 GBP 운영 대상으로 잡은 언리미티드 매장의 운영 상태와 Google 맵 링크를 확인합니다."
-                stores={stores.filter((store) => store.googleMapUrl && store.name.includes('언리미티드'))}
-                loading={loading}
-                columns="profile"
               />
             )}
 
@@ -2428,6 +2410,8 @@ function MailPanel({
 }
 
 function OperationsPanel({ view }: { view: OperationView }) {
+  const isStoreOperations = view.rows.some((row) => row.products)
+
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
       <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
@@ -2447,31 +2431,79 @@ function OperationsPanel({ view }: { view: OperationView }) {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-[980px] w-full border-collapse text-left text-sm">
+        <table className={`${isStoreOperations ? 'min-w-[1240px]' : 'min-w-[980px]'} w-full border-collapse text-left text-sm`}>
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
-            <tr>
-              <th className="px-5 py-4">업무</th>
-              <th className="px-5 py-4">상태</th>
-              <th className="px-5 py-4">담당</th>
-              <th className="px-5 py-4">기한</th>
-              <th className="px-5 py-4">메모</th>
-            </tr>
+            {isStoreOperations ? (
+              <tr>
+                <th className="px-5 py-4">매장명</th>
+                <th className="px-5 py-4">상태</th>
+                <th className="px-5 py-4">구글프로필</th>
+                <th className="px-5 py-4">구글애즈</th>
+                <th className="px-5 py-4">웹사이트·블로그</th>
+                <th className="px-5 py-4">자료요청</th>
+                <th className="px-5 py-4">다음 작업</th>
+                <th className="px-5 py-4">담당</th>
+              </tr>
+            ) : (
+              <tr>
+                <th className="px-5 py-4">업무</th>
+                <th className="px-5 py-4">상태</th>
+                <th className="px-5 py-4">담당</th>
+                <th className="px-5 py-4">기한</th>
+                <th className="px-5 py-4">메모</th>
+              </tr>
+            )}
           </thead>
           <tbody>
             {view.rows.map((row) => (
               <tr key={`${view.title}-${row.title}`} className="border-t border-white/10">
-                <td className="px-5 py-4">
-                  <p className="font-black text-white keep-all">{row.title}</p>
-                  <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
-                </td>
-                <td className="px-5 py-4">
-                  <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
-                    {row.status}
-                  </span>
-                </td>
-                <td className="px-5 py-4 font-semibold text-gray-300">{row.owner}</td>
-                <td className="px-5 py-4 font-black text-white">{row.due}</td>
-                <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
+                {isStoreOperations && row.products ? (
+                  <>
+                    <td className="px-5 py-4">
+                      <p className="font-black text-white keep-all">{row.title}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
+                    </td>
+                    <td className="px-5 py-4">
+                      <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="max-w-[180px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                      {row.products.googleProfile}
+                    </td>
+                    <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                      {row.products.googleAds}
+                    </td>
+                    <td className="max-w-[190px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                      {row.products.website}
+                    </td>
+                    <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                      {row.products.material}
+                    </td>
+                    <td className="max-w-[220px] px-5 py-4 font-black leading-6 text-white keep-all">
+                      {row.products.nextAction}
+                    </td>
+                    <td className="px-5 py-4">
+                      <p className="font-semibold text-gray-300">{row.owner}</p>
+                      <p className="mt-1 text-xs font-bold text-gray-500">{row.due}</p>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td className="px-5 py-4">
+                      <p className="font-black text-white keep-all">{row.title}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
+                    </td>
+                    <td className="px-5 py-4">
+                      <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="px-5 py-4 font-semibold text-gray-300">{row.owner}</td>
+                    <td className="px-5 py-4 font-black text-white">{row.due}</td>
+                    <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
+                  </>
+                )}
               </tr>
             ))}
           </tbody>
@@ -2495,7 +2527,7 @@ function StoreTable({
   description: string
   stores: StoreRecord[]
   loading: boolean
-  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'profile' | 'report'
+  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
   runningAction?: string | null
   onRunDiagnosis?: (store: StoreRecord) => void
   onRunQuote?: (store: StoreRecord) => void
@@ -2550,8 +2582,6 @@ function StoreTable({
               {columns === 'contract' && <th className="px-5 py-4">계약서</th>}
               {columns === 'contract' && <th className="px-5 py-4">전자계약</th>}
               {columns === 'contract' && <th className="px-5 py-4">계약 상태</th>}
-              {columns === 'profile' && <th className="px-5 py-4">구글맵</th>}
-              {columns === 'profile' && <th className="px-5 py-4">프로필 현황</th>}
               {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
               <th className="px-5 py-4">담당</th>
               <th className="px-5 py-4">액션</th>
@@ -2642,29 +2672,6 @@ function StoreTable({
                     <td className="px-5 py-4">
                       <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.contractStatus)}`}>
                         {store.contractStatus || '계약 전'}
-                      </span>
-                    </td>
-                  )}
-
-                  {columns === 'profile' && (
-                    <td className="px-5 py-4">
-                      <a
-                        href={store.googleMapUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
-                      >
-                        구글맵 보기
-                        <ExternalLink className="h-3.5 w-3.5" />
-                      </a>
-                    </td>
-                  )}
-
-                  {columns === 'profile' && (
-                    <td className="px-5 py-4">
-                      <span className="inline-flex items-center gap-2 font-bold text-gray-300">
-                        <CircleDot className="h-4 w-4 text-brand-blue" />
-                        {store.profileStatus}
                       </span>
                     </td>
                   )}
