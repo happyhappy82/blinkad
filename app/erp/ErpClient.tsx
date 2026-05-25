@@ -273,11 +273,12 @@ type OperationView = {
 }
 
 const statusGroups = [
-  { label: '문의접수', matcher: ['문의', '접수', '신규'] },
-  { label: '진단완료', matcher: ['진단'] },
-  { label: '견적발송', matcher: ['견적', '제안'] },
-  { label: '계약대기', matcher: ['계약', '대기'] },
-  { label: '운영시작', matcher: ['운영', '진행', '시작'] },
+  { label: '신규 문의', matcher: ['신규 문의', '신규문의'] },
+  { label: '접촉중', matcher: ['접촉중'] },
+  { label: '미팅일정 확정', matcher: ['미팅일정 확정', '미팅일정확정'] },
+  { label: '견적/팔로업', matcher: ['견적서 송부/팔로업 지속', '견적서송부/팔로업지속'] },
+  { label: '공동 대응', matcher: ['공동 대응', '공동대응'] },
+  { label: '완료/종료', matcher: ['계약 완료', '계약완료', '답변 완료', '답변완료', '취소/팔로업 중지', '취소/팔로업중지'] },
 ]
 
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
@@ -909,11 +910,6 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
   },
 }
 
-function matchesStatus(status: string, matcher: string[]) {
-  const target = status || ''
-  return matcher.some((keyword) => target.includes(keyword))
-}
-
 function statusIncludesAny(status: string, keywords: string[]) {
   const compactStatus = (status || '').replace(/\s+/g, '')
   return keywords.some((keyword) => compactStatus.includes(keyword.replace(/\s+/g, '')))
@@ -1058,13 +1054,12 @@ export default function ErpClient() {
   }, [activeMenu])
 
   const dashboard = useMemo(() => {
-    const managed = stores.filter((store) => matchesStatus(store.status, ['운영', '진행', '시작'])).length
     const counts = statusGroups.map((group) => ({
       label: group.label,
-      count: stores.filter((store) => matchesStatus(store.status, group.matcher)).length,
+      count: stores.filter((store) => statusIncludesAny(store.status, group.matcher)).length,
     }))
 
-    return { managed, counts }
+    return { counts }
   }, [stores])
 
   const inquiryStores = stores.filter((store) => statusIncludesAny(store.status, ['신규 문의', '신규문의']))
@@ -1233,12 +1228,6 @@ export default function ErpClient() {
             {activeMenu === 'dashboard' && (
               <section>
                 <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-6">
-                  <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:col-span-1">
-                    <p className="text-sm font-bold text-gray-400">관리업장 현황</p>
-                    <p className="mt-4 text-5xl font-black tracking-tight text-white">{dashboard.managed}</p>
-                    <p className="mt-3 text-sm leading-6 text-gray-500">현재 운영이 시작된 매장 수</p>
-                  </div>
-
                   {dashboard.counts.map((item) => (
                     <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
                       <p className="text-sm font-bold text-gray-400">{item.label}</p>
