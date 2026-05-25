@@ -1068,7 +1068,8 @@ export default function ErpClient() {
     statusIncludesAny(store.status, ['견적서 송부', '팔로업 지속', '공동대응'])
   )
   const quoteCandidateStores = stores.filter(
-    (store) => !statusIncludesAny(store.status, ['견적서 송부/팔로업 지속', '취소/팔로업 중지'])
+    (store) =>
+      !statusIncludesAny(store.status, ['계약대기', '계약 대기', '답변완료', '답변 완료', '계약완료', '계약 완료', '취소/팔로업 중지'])
   )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
   const operationView =
@@ -1289,7 +1290,7 @@ export default function ErpClient() {
             {activeMenu === 'quote' && (
               <StoreTable
                 title="견적서 생성"
-                description="견적서 송부/팔로업 지속, 취소/팔로업 중지 상태를 제외한 매장만 견적서 생성 대상으로 표시합니다."
+                description="계약대기, 답변완료, 계약완료, 취소/팔로업 중지 상태를 제외한 매장을 견적서 생성 대상으로 표시합니다."
                 stores={quoteCandidateStores}
                 loading={loading}
                 columns="quote"
