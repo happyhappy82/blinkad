@@ -201,6 +201,23 @@ const menuGroups = [
 
 type MenuId = (typeof menuGroups)[number]['items'][number]['id']
 
+type StoreProductKey = 'googleProfile' | 'googleAds' | 'websiteBlog'
+
+type StoreProductTask = {
+  title: string
+  status: string
+  owner: string
+  due: string
+  memo: string
+}
+
+type StoreProductWorkspace = {
+  key: StoreProductKey
+  label: string
+  description: string
+  tasks: StoreProductTask[]
+}
+
 type OperationRow = {
   title: string
   meta: string
@@ -215,6 +232,7 @@ type OperationRow = {
     material: string
     nextAction: string
   }
+  productWorkspaces?: StoreProductWorkspace[]
 }
 
 type OperationView = {
@@ -340,6 +358,92 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
           material: '대표 사진·서비스 설명 요청',
           nextAction: 'Google 프로필 기본정보와 대표사진 정리',
         },
+        productWorkspaces: [
+          {
+            key: 'googleProfile',
+            label: '구글프로필',
+            description: 'Google 지도에서 보이는 기본 정보, 사진, 리뷰, 소식지 운영 업무를 관리합니다.',
+            tasks: [
+              {
+                title: '프로필 기본정보 정리',
+                status: '진행중',
+                owner: '권순현',
+                due: '이번 주',
+                memo: '카테고리, 영업시간, 전화번호, 매장 설명, 대표 서비스 정보를 먼저 맞춥니다.',
+              },
+              {
+                title: '대표 사진 재정렬',
+                status: '대기',
+                owner: '블링크애드',
+                due: '자료 수신 후',
+                memo: '외국인 고객이 방문 전 신뢰할 수 있는 내부/외부/서비스 사진 순서로 정리합니다.',
+              },
+              {
+                title: '리뷰 응대 기준 정리',
+                status: '대기',
+                owner: '권순현',
+                due: '이번 주',
+                memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+              },
+            ],
+          },
+          {
+            key: 'googleAds',
+            label: '구글애즈',
+            description: '검색과 지도 기반 즉각 노출을 위한 캠페인 구조와 전환 설정을 관리합니다.',
+            tasks: [
+              {
+                title: '캠페인 구조 확인',
+                status: '대기',
+                owner: '권순현',
+                due: '운영 시작 전',
+                memo: '브랜드 키워드, 지역 키워드, 서비스 키워드를 분리해 예산 낭비를 줄입니다.',
+              },
+              {
+                title: '검색/지도 키워드 그룹 초안',
+                status: '대기',
+                owner: '블링크애드',
+                due: '이번 주',
+                memo: '외국인 고객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+              },
+              {
+                title: '전화·길찾기 전환 점검',
+                status: '대기',
+                owner: '권순현',
+                due: '세팅 후',
+                memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+              },
+            ],
+          },
+          {
+            key: 'websiteBlog',
+            label: '웹사이트·블로그',
+            description: 'Google 프로필과 연결되는 공식 페이지, 블로그, FAQ 콘텐츠 업무를 관리합니다.',
+            tasks: [
+              {
+                title: '브랜드/지점 페이지 구조 기획',
+                status: '진행중',
+                owner: '권순현',
+                due: '이번 주',
+                memo: 'GBP에서 연결할 공식 페이지의 메뉴, 서비스 설명, 위치 정보를 먼저 설계합니다.',
+              },
+              {
+                title: 'FAQ 콘텐츠 주제 정리',
+                status: '대기',
+                owner: '블링크애드',
+                due: '다음 주',
+                memo: '외국인 고객이 방문 전 궁금해할 질문을 FAQ와 블로그 주제로 전환합니다.',
+              },
+              {
+                title: 'Google 프로필 연결 URL 확정',
+                status: '대기',
+                owner: '권순현',
+                due: '페이지 초안 후',
+                memo: '예약 링크만 연결하지 않고, 브랜드 설명이 쌓이는 공식 페이지로 연결합니다.',
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -2412,6 +2516,10 @@ function MailPanel({
 function OperationsPanel({ view }: { view: OperationView }) {
   const isStoreOperations = view.rows.some((row) => row.products)
 
+  if (isStoreOperations) {
+    return <StoreOperationsPanel view={view} />
+  }
+
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
       <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
@@ -2508,6 +2616,158 @@ function OperationsPanel({ view }: { view: OperationView }) {
             ))}
           </tbody>
         </table>
+      </div>
+    </section>
+  )
+}
+
+function StoreOperationsPanel({ view }: { view: OperationView }) {
+  const [selectedStoreTitle, setSelectedStoreTitle] = useState(view.rows[0]?.title || '')
+  const [activeProduct, setActiveProduct] = useState<StoreProductKey>('googleProfile')
+  const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
+  const workspaces = selectedStore?.productWorkspaces || []
+  const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{view.title}</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{view.description}</p>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {view.stats.map((stat) => (
+            <div key={stat.label} className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500 keep-all">{stat.label}</p>
+              <p className="mt-3 text-3xl font-black tracking-tight text-white">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid min-h-[560px] lg:grid-cols-[300px_1fr]">
+        <aside className="border-b border-white/10 bg-black p-4 lg:border-b-0 lg:border-r">
+          <p className="px-2 text-xs font-black uppercase tracking-[0.16em] text-gray-600">운영 매장</p>
+          <div className="mt-3 space-y-2">
+            {view.rows.map((store) => {
+              const active = selectedStore?.title === store.title
+
+              return (
+                <button
+                  key={store.title}
+                  type="button"
+                  onClick={() => {
+                    setSelectedStoreTitle(store.title)
+                    setActiveProduct(store.productWorkspaces?.[0]?.key || 'googleProfile')
+                  }}
+                  className={`w-full rounded-lg border p-4 text-left transition ${
+                    active
+                      ? 'border-brand-blue/40 bg-brand-blue/15'
+                      : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]'
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="font-black text-white keep-all">{store.title}</p>
+                      <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{store.meta}</p>
+                    </div>
+                    <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-bold ${statusBadge(store.status)}`}>
+                      {store.status}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-xs font-bold text-gray-500">담당 {store.owner} · {store.due}</p>
+                </button>
+              )
+            })}
+          </div>
+        </aside>
+
+        <div className="p-5 md:p-6">
+          {selectedStore ? (
+            <>
+              <div className="rounded-lg border border-white/10 bg-black p-5">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p className="text-sm font-bold text-brand-blue">Selected Store</p>
+                    <h3 className="mt-2 text-2xl font-black text-white">{selectedStore.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-sm md:min-w-72">
+                    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+                      <p className="text-xs font-bold text-gray-500">담당</p>
+                      <p className="mt-2 font-black text-white">{selectedStore.owner}</p>
+                    </div>
+                    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+                      <p className="text-xs font-bold text-gray-500">기한</p>
+                      <p className="mt-2 font-black text-white">{selectedStore.due}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 overflow-x-auto">
+                <div className="inline-flex min-w-full rounded-lg border border-white/10 bg-black p-1">
+                  {workspaces.map((workspace) => (
+                    <button
+                      key={workspace.key}
+                      type="button"
+                      onClick={() => setActiveProduct(workspace.key)}
+                      className={`h-10 flex-1 whitespace-nowrap rounded-md px-4 text-sm font-black transition ${
+                        activeWorkspace?.key === workspace.key
+                          ? 'bg-white text-black'
+                          : 'text-gray-400 hover:bg-white/10 hover:text-white'
+                      }`}
+                    >
+                      {workspace.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {activeWorkspace ? (
+                <div className="mt-5 rounded-lg border border-white/10 bg-black">
+                  <div className="border-b border-white/10 p-5">
+                    <p className="text-sm font-bold text-brand-blue">{activeWorkspace.label}</p>
+                    <h4 className="mt-2 text-xl font-black text-white">매장별 업무</h4>
+                    <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">{activeWorkspace.description}</p>
+                  </div>
+                  <div className="divide-y divide-white/10">
+                    {activeWorkspace.tasks.map((task) => (
+                      <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_160px_160px]">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className={`rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(task.status)}`}>
+                              {task.status}
+                            </span>
+                            <p className="font-black text-white keep-all">{task.title}</p>
+                          </div>
+                          <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-gray-600">담당</p>
+                          <p className="mt-2 font-bold text-gray-300">{task.owner}</p>
+                        </div>
+                        <div>
+                          <p className="text-xs font-bold text-gray-600">기한</p>
+                          <p className="mt-2 font-black text-white">{task.due}</p>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <p className="mt-5 rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
+                  등록된 상품별 업무가 없습니다.
+                </p>
+              )}
+            </>
+          ) : (
+            <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
+              등록된 운영 매장이 없습니다.
+            </p>
+          )}
+        </div>
       </div>
     </section>
   )
