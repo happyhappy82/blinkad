@@ -278,6 +278,7 @@ const statusGroups = [
   { label: '미팅일정 확정', matcher: ['미팅일정 확정', '미팅일정확정'] },
   { label: '견적/팔로업', matcher: ['견적서 송부/팔로업 지속', '견적서송부/팔로업지속'] },
   { label: '공동 대응', matcher: ['공동 대응', '공동대응'] },
+  { label: '계약대기', matcher: ['계약대기', '계약 대기'] },
   { label: '완료/종료', matcher: ['계약 완료', '계약완료', '답변 완료', '답변완료', '취소/팔로업 중지', '취소/팔로업중지'] },
 ]
 
@@ -1066,6 +1067,7 @@ export default function ErpClient() {
   const followupStores = stores.filter((store) =>
     statusIncludesAny(store.status, ['견적서 송부', '팔로업 지속', '공동대응'])
   )
+  const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
   const operationView =
     realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
       ? undefined
@@ -1227,7 +1229,7 @@ export default function ErpClient() {
 
             {activeMenu === 'dashboard' && (
               <section>
-                <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-6">
+                <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
                   {dashboard.counts.map((item) => (
                     <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
                       <p className="text-sm font-bold text-gray-400">{item.label}</p>
@@ -1295,9 +1297,9 @@ export default function ErpClient() {
 
             {activeMenu === 'contract' && (
               <StoreTable
-                title="계약서 조회"
-                description="매장별 계약서 파일, 전자계약 링크, 계약 상태를 확인합니다. 전자계약 발송은 이폼사인에서 진행하고, API 연동은 추후 세팅합니다."
-                stores={stores}
+                title="계약서 관리"
+                description="Notion 문의관리 DB에서 계약대기 상태인 매장을 모아 전자계약 발송과 계약서 상태를 확인합니다."
+                stores={contractPendingStores}
                 loading={loading}
                 columns="contract"
               />
