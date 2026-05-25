@@ -217,12 +217,22 @@ type StoreProductMetric = {
   note: string
 }
 
+type StoreWeeklyReportStatus = '완료' | '작성중' | '예정' | '휴무'
+
+type StoreWeeklyReport = {
+  dayOffset: number
+  status: StoreWeeklyReportStatus
+  title: string
+  memo: string
+}
+
 type StoreProductWorkspace = {
   key: StoreProductKey
   label: string
   heading: string
   description: string
   metrics: StoreProductMetric[]
+  weeklyReports?: StoreWeeklyReport[]
   tasks: StoreProductTask[]
 }
 
@@ -376,6 +386,50 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
               { label: '이번 주 작업', value: '3건', note: '기본정보, 사진, 리뷰 기준 정리' },
               { label: '보고 상태', value: '작성중', note: '운영 시작 전 기준 리포트 준비' },
               { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+            ],
+            weeklyReports: [
+              {
+                dayOffset: 0,
+                status: '작성중',
+                title: '주간 기준 세팅',
+                memo: '기본정보와 우선 작업 정리',
+              },
+              {
+                dayOffset: 1,
+                status: '예정',
+                title: '사진 점검',
+                memo: '대표사진, 메뉴판, 내부사진 확인',
+              },
+              {
+                dayOffset: 2,
+                status: '예정',
+                title: '리뷰 확인',
+                memo: '신규 리뷰와 대댓글 상태 점검',
+              },
+              {
+                dayOffset: 3,
+                status: '예정',
+                title: '소식지 운영',
+                memo: 'Google 게시물 작성/게시 확인',
+              },
+              {
+                dayOffset: 4,
+                status: '예정',
+                title: '주간 보고',
+                memo: '이번 주 작업 요약 및 다음 액션',
+              },
+              {
+                dayOffset: 5,
+                status: '휴무',
+                title: '긴급 대응',
+                memo: '필요 시 리뷰/정보 오류만 확인',
+              },
+              {
+                dayOffset: 6,
+                status: '휴무',
+                title: '정기 운영 없음',
+                memo: '주간 운영 마감 후 대기',
+              },
             ],
             tasks: [
               {
@@ -2710,6 +2764,7 @@ function StoreOperationsPanel({
   const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
+  const weeklyReportDates = useMemo(() => getCurrentWeekDates(), [])
 
   return (
     <section className="space-y-5">
@@ -2796,6 +2851,43 @@ function StoreOperationsPanel({
                   ))}
                 </div>
               </div>
+              {activeWorkspace.weeklyReports?.length ? (
+                <div className="border-b border-white/10 p-5 md:p-6">
+                  <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <p className="text-sm font-bold text-brand-blue">Weekly Report</p>
+                      <h4 className="mt-2 text-xl font-black text-white">이번 주 작업보고 현황</h4>
+                    </div>
+                    <p className="text-sm font-semibold text-gray-500 keep-all">
+                      요일별 보고 진행 여부를 날짜와 함께 확인합니다.
+                    </p>
+                  </div>
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-7">
+                    {activeWorkspace.weeklyReports.map((report) => {
+                      const date = weeklyReportDates[report.dayOffset]
+
+                      return (
+                        <div
+                          key={`${activeWorkspace.key}-report-${report.dayOffset}`}
+                          className={`rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
+                        >
+                          <div className="flex items-start justify-between gap-2">
+                            <div>
+                              <p className="text-xs font-black text-gray-500">{formatWeekday(date)}</p>
+                              <p className="mt-1 text-lg font-black text-white">{formatMonthDay(date)}</p>
+                            </div>
+                            <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${weeklyReportBadge(report.status)}`}>
+                              {report.status}
+                            </span>
+                          </div>
+                          <p className="mt-4 font-black text-white keep-all">{report.title}</p>
+                          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              ) : null}
               <div className="divide-y divide-white/10">
                 {activeWorkspace.tasks.map((task) => (
                   <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_180px_180px] md:p-6">
@@ -2833,6 +2925,38 @@ function StoreOperationsPanel({
       )}
     </section>
   )
+}
+
+function getCurrentWeekDates() {
+  const today = new Date()
+  const monday = startOfDay(today)
+  const day = monday.getDay()
+  const offset = day === 0 ? -6 : 1 - day
+  monday.setDate(monday.getDate() + offset)
+
+  return Array.from({ length: 7 }, (_, index) => addDays(monday, index))
+}
+
+function formatWeekday(date: Date) {
+  return new Intl.DateTimeFormat('ko-KR', { weekday: 'short' }).format(date)
+}
+
+function formatMonthDay(date: Date) {
+  return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
+}
+
+function weeklyReportClass(status: StoreWeeklyReportStatus) {
+  if (status === '완료') return 'border-emerald-300/20 bg-emerald-300/10'
+  if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
+  if (status === '휴무') return 'border-white/10 bg-white/[0.025]'
+  return 'border-white/10 bg-white/[0.04]'
+}
+
+function weeklyReportBadge(status: StoreWeeklyReportStatus) {
+  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
+  if (status === '휴무') return 'border-white/10 bg-white/[0.04] text-gray-500'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
 }
 
 function StoreTable({
