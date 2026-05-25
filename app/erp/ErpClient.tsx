@@ -124,11 +124,11 @@ type MailApiResponse = {
 
 const menuGroups = [
   {
-    label: '워크스페이스',
+    label: '일반 ERP',
     items: [{ id: 'dashboard', label: '대시보드', icon: LayoutDashboard }],
   },
   {
-    label: '영업 CRM',
+    label: 'CRM/영업',
     items: [
       { id: 'lead', label: '리드관리', icon: UserPlus },
       { id: 'crm', label: '문의 CRM', icon: Building2 },
@@ -138,7 +138,29 @@ const menuGroups = [
     ],
   },
   {
-    label: '일정 / 미팅',
+    label: '견적/수주',
+    items: [
+      { id: 'diagnosis', label: '진단자료', icon: FileSearch },
+      { id: 'quote', label: '견적서', icon: ReceiptText },
+      { id: 'contract', label: '계약서', icon: FileSignature },
+    ],
+  },
+  {
+    label: '프로젝트/작업관리',
+    items: [
+      { id: 'project', label: '프로젝트관리', icon: Folder },
+      { id: 'profile', label: 'GBP 운영', icon: MapPinned },
+      { id: 'request', label: '자료 요청', icon: CheckSquare },
+    ],
+  },
+  {
+    label: '자산/콘텐츠',
+    items: [
+      { id: 'assets', label: '콘텐츠 자산', icon: ClipboardList },
+    ],
+  },
+  {
+    label: '일정/미팅',
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
       { id: 'meeting', label: '미팅관리', icon: Mic },
@@ -147,33 +169,21 @@ const menuGroups = [
     ],
   },
   {
-    label: '견적 / 계약',
-    items: [
-      { id: 'diagnosis', label: '진단자료', icon: FileSearch },
-      { id: 'quote', label: '견적서', icon: ReceiptText },
-      { id: 'contract', label: '계약서', icon: FileSignature },
-    ],
-  },
-  {
-    label: '운영',
-    items: [
-      { id: 'project', label: '프로젝트관리', icon: Folder },
-      { id: 'profile', label: '프로필 운영', icon: MapPinned },
-      { id: 'assets', label: '콘텐츠 자산', icon: ClipboardList },
-      { id: 'request', label: '자료 요청', icon: CheckSquare },
-    ],
-  },
-  {
-    label: '성과 / 정산',
+    label: '성과분석/리포팅',
     items: [
       { id: 'report', label: '리포트', icon: CheckCircle2 },
       { id: 'kpi', label: 'KPI 분석', icon: CircleDot },
+    ],
+  },
+  {
+    label: '인보이스/청구',
+    items: [
       { id: 'billing', label: '청구관리', icon: CreditCard },
       { id: 'receivable', label: '미수금', icon: Clock3 },
     ],
   },
   {
-    label: '조직',
+    label: '인사/근태',
     items: [
       { id: 'staff', label: '담당자 관리', icon: UserCog },
       { id: 'outsourcing', label: '외주 PM 관리', icon: Handshake },
