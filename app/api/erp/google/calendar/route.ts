@@ -10,9 +10,19 @@ type GoogleCalendarEvent = {
   description?: string
   location?: string
   status?: string
+  colorId?: string
   start?: { dateTime?: string; date?: string }
   end?: { dateTime?: string; date?: string }
   attendees?: { email?: string; displayName?: string }[]
+}
+
+type GoogleCalendarListEntry = {
+  id?: string
+  summary?: string
+  backgroundColor?: string
+  foregroundColor?: string
+  primary?: boolean
+  accessRole?: string
 }
 
 type CalendarRequestBody = {
@@ -45,6 +55,10 @@ const sampleEvents = [
     status: 'confirmed',
     memo: 'Google 프로필과 지점별 웹페이지 연결 전략 설명',
     source: 'sample',
+    calendarId: 'team-sample',
+    calendarName: '용올캘린더',
+    calendarColor: '#0b57d0',
+    calendarForegroundColor: '#ffffff',
   },
   {
     id: 'sample-meeting-2',
@@ -57,6 +71,10 @@ const sampleEvents = [
     status: 'confirmed',
     memo: '병원 사진 자료와 진료 항목 정리 범위 확인',
     source: 'sample',
+    calendarId: 'team-sample',
+    calendarName: '용올캘린더',
+    calendarColor: '#0b57d0',
+    calendarForegroundColor: '#ffffff',
   },
   {
     id: 'sample-deadline-1',
@@ -69,6 +87,10 @@ const sampleEvents = [
     status: 'confirmed',
     memo: '대표 사진, 외부 사진, 메뉴판 원본 수집',
     source: 'sample',
+    calendarId: 'team-sample',
+    calendarName: '용올캘린더',
+    calendarColor: '#0b57d0',
+    calendarForegroundColor: '#ffffff',
   },
   {
     id: 'sample-operation-1',
@@ -81,6 +103,10 @@ const sampleEvents = [
     status: 'confirmed',
     memo: '키워드 리서치, 카테고리 분석, 다국어 메뉴판 세팅',
     source: 'sample',
+    calendarId: 'team-sample',
+    calendarName: '용올캘린더',
+    calendarColor: '#0b57d0',
+    calendarForegroundColor: '#ffffff',
   },
 ] as const
 
@@ -92,7 +118,62 @@ function classifyEvent(event: GoogleCalendarEvent) {
   return 'operation'
 }
 
-function normalizeEvent(event: GoogleCalendarEvent) {
+function normalizeCalendarName(value: string) {
+  return value.replace(/\s+/g, '').toLowerCase()
+}
+
+function targetTeamCalendarName() {
+  return process.env.GOOGLE_CALENDAR_TEAM_NAME || process.env.GOOGLE_TEAM_CALENDAR_NAME || '용올캘린더'
+}
+
+async function fetchCalendarList(accessToken: string) {
+  const response = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList?showDeleted=false&maxResults=250', {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    throw new Error(`Google Calendar list API ${response.status}`)
+  }
+
+  const data = (await response.json()) as { items?: GoogleCalendarListEntry[] }
+  return data.items || []
+}
+
+async function resolveTeamCalendar(accessToken: string, storedCalendarId: string) {
+  const calendars = await fetchCalendarList(accessToken)
+  const configuredCalendarId = process.env.GOOGLE_CALENDAR_ID || ''
+  const storedTeamCalendarId = storedCalendarId && storedCalendarId !== 'primary' ? storedCalendarId : ''
+  const targetId = configuredCalendarId || storedTeamCalendarId
+  const targetName = targetTeamCalendarName()
+  const normalizedTargetName = normalizeCalendarName(targetName)
+
+  if (targetId) {
+    const byId = calendars.find((calendar) => calendar.id === targetId)
+    if (byId) return byId
+  }
+
+  const exactNameMatch = calendars.find((calendar) => normalizeCalendarName(calendar.summary || '') === normalizedTargetName)
+  if (exactNameMatch) return exactNameMatch
+
+  const partialNameMatch = calendars.find((calendar) => normalizeCalendarName(calendar.summary || '').includes(normalizedTargetName))
+  if (partialNameMatch) return partialNameMatch
+
+  return null
+}
+
+function calendarMeta(calendar: GoogleCalendarListEntry) {
+  return {
+    calendarId: calendar.id || '',
+    calendarName: calendar.summary || targetTeamCalendarName(),
+    calendarColor: calendar.backgroundColor || '#0b57d0',
+    calendarForegroundColor: calendar.foregroundColor || '#ffffff',
+  }
+}
+
+function normalizeEvent(event: GoogleCalendarEvent, calendar?: GoogleCalendarListEntry) {
   const start = event.start?.dateTime || event.start?.date || ''
   const end = event.end?.dateTime || event.end?.date || start
 
@@ -108,11 +189,12 @@ function normalizeEvent(event: GoogleCalendarEvent) {
     status: event.status || 'confirmed',
     memo: event.description || '',
     source: 'google',
+    ...(calendar ? calendarMeta(calendar) : {}),
   }
 }
 
-function normalizeCreatedEvent(event: GoogleCalendarEvent) {
-  return normalizeEvent(event)
+function normalizeCreatedEvent(event: GoogleCalendarEvent, calendar?: GoogleCalendarListEntry) {
+  return normalizeEvent(event, calendar)
 }
 
 function googleEventBody(body: CalendarRequestBody) {
@@ -143,6 +225,10 @@ function localEventFromBody(body: CalendarRequestBody, id = `local-${Date.now()}
     status: 'local-only',
     memo: body.memo || '',
     source: 'sample',
+    calendarId: 'team-local',
+    calendarName: targetTeamCalendarName(),
+    calendarColor: '#0b57d0',
+    calendarForegroundColor: '#ffffff',
   }
 }
 
@@ -174,8 +260,22 @@ export async function GET(request: Request) {
   })
 
   try {
+    const teamCalendar = await resolveTeamCalendar(accessToken, calendarId)
+
+    if (!teamCalendar?.id) {
+      return NextResponse.json({
+        source: 'google',
+        connected: true,
+        authSource: auth.source,
+        memberId: auth.memberId,
+        message: `팀 공유 캘린더 "${targetTeamCalendarName()}"를 찾지 못해 개인 일정을 표시하지 않습니다.`,
+        selectedCalendar: null,
+        events: [],
+      })
+    }
+
     const response = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?${params.toString()}`,
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(teamCalendar.id)}/events?${params.toString()}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -195,7 +295,9 @@ export async function GET(request: Request) {
       connected: true,
       authSource: auth.source,
       memberId: auth.memberId,
-      events: (data.items || []).map(normalizeEvent),
+      message: `팀 공유 캘린더 "${teamCalendar.summary || teamCalendar.id}" 일정만 표시합니다.`,
+      selectedCalendar: calendarMeta(teamCalendar),
+      events: (data.items || []).map((event) => normalizeEvent(event, teamCalendar)),
     })
   } catch (error) {
     return NextResponse.json({
@@ -231,8 +333,20 @@ export async function POST(request: Request) {
   }
 
   try {
+    const teamCalendar = await resolveTeamCalendar(accessToken, calendarId)
+
+    if (!teamCalendar?.id) {
+      return NextResponse.json(
+        {
+          connected: false,
+          message: `팀 공유 캘린더 "${targetTeamCalendarName()}"를 찾지 못해 일정을 추가하지 않았습니다.`,
+        },
+        { status: 400 }
+      )
+    }
+
     const response = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`,
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(teamCalendar.id)}/events`,
       {
         method: 'POST',
         headers: {
@@ -253,8 +367,8 @@ export async function POST(request: Request) {
       connected: true,
       authSource: auth.source,
       memberId: auth.memberId,
-      message: 'Google Calendar에 일정이 추가되었습니다.',
-      event: normalizeCreatedEvent(event),
+      message: `팀 공유 캘린더 "${teamCalendar.summary || teamCalendar.id}"에 일정이 추가되었습니다.`,
+      event: normalizeCreatedEvent(event, teamCalendar),
     })
   } catch (error) {
     return NextResponse.json(
@@ -291,8 +405,20 @@ export async function PUT(request: Request) {
   }
 
   try {
+    const teamCalendar = await resolveTeamCalendar(accessToken, calendarId)
+
+    if (!teamCalendar?.id) {
+      return NextResponse.json(
+        {
+          connected: false,
+          message: `팀 공유 캘린더 "${targetTeamCalendarName()}"를 찾지 못해 일정을 수정하지 않았습니다.`,
+        },
+        { status: 400 }
+      )
+    }
+
     const response = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(body.id)}`,
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(teamCalendar.id)}/events/${encodeURIComponent(body.id)}`,
       {
         method: 'PATCH',
         headers: {
@@ -313,8 +439,8 @@ export async function PUT(request: Request) {
       connected: true,
       authSource: auth.source,
       memberId: auth.memberId,
-      message: 'Google Calendar 일정이 수정되었습니다.',
-      event: normalizeCreatedEvent(event),
+      message: `팀 공유 캘린더 "${teamCalendar.summary || teamCalendar.id}" 일정이 수정되었습니다.`,
+      event: normalizeCreatedEvent(event, teamCalendar),
     })
   } catch (error) {
     return NextResponse.json(
@@ -350,8 +476,20 @@ export async function DELETE(request: Request) {
   }
 
   try {
+    const teamCalendar = await resolveTeamCalendar(accessToken, calendarId)
+
+    if (!teamCalendar?.id) {
+      return NextResponse.json(
+        {
+          connected: false,
+          message: `팀 공유 캘린더 "${targetTeamCalendarName()}"를 찾지 못해 일정을 삭제하지 않았습니다.`,
+        },
+        { status: 400 }
+      )
+    }
+
     const response = await fetch(
-      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events/${encodeURIComponent(body.id)}`,
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(teamCalendar.id)}/events/${encodeURIComponent(body.id)}`,
       {
         method: 'DELETE',
         headers: {
@@ -368,7 +506,7 @@ export async function DELETE(request: Request) {
       connected: true,
       authSource: auth.source,
       memberId: auth.memberId,
-      message: 'Google Calendar 일정이 삭제되었습니다.',
+      message: `팀 공유 캘린더 "${teamCalendar.summary || teamCalendar.id}" 일정이 삭제되었습니다.`,
     })
   } catch (error) {
     return NextResponse.json(

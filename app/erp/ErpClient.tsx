@@ -70,6 +70,10 @@ type CalendarEvent = {
   status: string
   memo: string
   source: 'google' | 'sample'
+  calendarId?: string
+  calendarName?: string
+  calendarColor?: string
+  calendarForegroundColor?: string
 }
 
 type CalendarEventDraft = {
@@ -85,6 +89,12 @@ type CalendarApiResponse = {
   source: 'google' | 'sample'
   connected: boolean
   message?: string
+  selectedCalendar?: {
+    calendarId: string
+    calendarName: string
+    calendarColor: string
+    calendarForegroundColor: string
+  } | null
   events: CalendarEvent[]
 }
 
@@ -223,6 +233,7 @@ const statusGroups = [
 ]
 
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
+const TEAM_CALENDAR_LABEL = '용올캘린더'
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id)) as MenuId[]
@@ -910,9 +921,10 @@ export default function ErpClient() {
       const data = (await response.json()) as CalendarApiResponse
       setCalendarEvents(data.events)
       setCalendarMessage(
-        data.connected
-          ? 'Google Calendar와 연결되었습니다.'
-          : data.message || 'Google Calendar 토큰이 없어 샘플 일정으로 표시 중입니다.'
+        data.message ||
+          (data.connected
+            ? 'Google Calendar와 연결되었습니다.'
+            : 'Google Calendar 토큰이 없어 샘플 일정으로 표시 중입니다.')
       )
     } catch {
       setCalendarMessage('Google Calendar 일정을 불러오지 못했습니다.')
@@ -1446,6 +1458,37 @@ function eventTypeClass(type: CalendarEvent['type']) {
   return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
 }
 
+function calendarColor(event: CalendarEvent) {
+  return event.calendarColor || (event.source === 'google' ? '#0b57d0' : '')
+}
+
+function hexToRgba(hex: string, alpha: number) {
+  const normalized = hex.replace('#', '')
+  if (!/^[0-9a-f]{6}$/i.test(normalized)) return `rgba(11, 87, 208, ${alpha})`
+
+  const red = parseInt(normalized.slice(0, 2), 16)
+  const green = parseInt(normalized.slice(2, 4), 16)
+  const blue = parseInt(normalized.slice(4, 6), 16)
+
+  return `rgba(${red}, ${green}, ${blue}, ${alpha})`
+}
+
+function calendarEventStyle(event: CalendarEvent) {
+  const color = calendarColor(event)
+  if (!color) return undefined
+
+  return {
+    borderColor: hexToRgba(color, 0.55),
+    borderLeftColor: color,
+    background: `linear-gradient(90deg, ${hexToRgba(color, 0.24)}, rgba(255,255,255,0.035))`,
+  }
+}
+
+function calendarDotStyle(event: CalendarEvent) {
+  const color = calendarColor(event)
+  return color ? { backgroundColor: color } : undefined
+}
+
 function CalendarPanel({
   events,
   loading,
@@ -1508,6 +1551,15 @@ function CalendarPanel({
 
       return start.getFullYear() === year && start.getMonth() === month
     })
+
+  const visibleCalendars = useMemo(() => {
+    const calendarMap = new Map<string, CalendarEvent>()
+    allEvents.forEach((calendarEvent) => {
+      const key = calendarEvent.calendarId || calendarEvent.calendarName
+      if (key && !calendarMap.has(key)) calendarMap.set(key, calendarEvent)
+    })
+    return Array.from(calendarMap.values())
+  }, [allEvents])
 
   const moveCalendar = (offset: number) => {
     if (calendarView === 'month') {
@@ -1730,7 +1782,8 @@ function CalendarPanel({
         clickEvent.stopPropagation()
         openEditModal(calendarEvent)
       }}
-      className={`w-full cursor-grab truncate rounded border text-left font-bold transition hover:brightness-125 active:cursor-grabbing ${draggingEventId === calendarEvent.id ? 'opacity-45' : ''} ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${eventTypeClass(calendarEvent.type)}`}
+      className={`w-full cursor-grab truncate rounded border border-l-4 text-left font-bold text-gray-100 transition hover:brightness-125 active:cursor-grabbing ${draggingEventId === calendarEvent.id ? 'opacity-45' : ''} ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${calendarColor(calendarEvent) ? '' : eventTypeClass(calendarEvent.type)}`}
+      style={calendarEventStyle(calendarEvent)}
       title={calendarEvent.title}
     >
       {compact ? calendarEvent.title : `${formatDateTime(calendarEvent.start)} · ${calendarEvent.title}`}
@@ -1747,6 +1800,19 @@ function CalendarPanel({
             월·주·일 보기에서 Google Calendar 일정을 확인하고, 더블클릭으로 추가하며, 드래그로 날짜와 시간을 이동합니다.
           </p>
           {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+          {visibleCalendars.length > 0 ? (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {visibleCalendars.map((calendarEvent) => (
+                <span
+                  key={calendarEvent.calendarId || calendarEvent.calendarName || calendarEvent.id}
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-black text-gray-200"
+                >
+                  <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(calendarEvent)} />
+                  {calendarEvent.calendarName || '팀 공유 캘린더'}
+                </span>
+              ))}
+            </div>
+          ) : null}
           {actionStatus ? <p className="mt-2 text-xs font-bold text-blue-100">{actionStatus}</p> : null}
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -1955,12 +2021,19 @@ function CalendarPanel({
                     key={calendarEvent.id}
                     type="button"
                     onClick={() => openEditModal(calendarEvent)}
-                    className="w-full rounded-md border border-white/10 bg-white/[0.03] p-3 text-left transition hover:border-white/25 hover:bg-white/[0.06]"
+                    className="w-full rounded-md border border-l-4 border-white/10 bg-white/[0.03] p-3 text-left transition hover:border-white/25 hover:bg-white/[0.06]"
+                    style={calendarEventStyle(calendarEvent)}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <p className="font-black text-white keep-all">{calendarEvent.title}</p>
                         <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTimeRange(calendarEvent)}</p>
+                        {calendarEvent.calendarName ? (
+                          <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
+                            <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(calendarEvent)} />
+                            {calendarEvent.calendarName}
+                          </p>
+                        ) : null}
                       </div>
                       <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(calendarEvent.type)}`}>
                         {eventTypeLabel(calendarEvent.type)}
@@ -1983,8 +2056,9 @@ function CalendarPanel({
                 <p className="text-sm font-bold text-brand-blue">Google Calendar</p>
                 <h3 className="mt-2 text-xl font-black text-white">{modalMode === 'edit' ? '일정 수정' : '일정 추가'}</h3>
                 {selectedEvent ? (
-                  <p className="mt-1 text-xs font-bold text-gray-500">
-                    {selectedEvent.source === 'google' ? 'Google Calendar 일정' : 'ERP 로컬 일정'}
+                  <p className="mt-1 inline-flex items-center gap-2 text-xs font-bold text-gray-500">
+                    <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(selectedEvent)} />
+                    {selectedEvent.calendarName || (selectedEvent.source === 'google' ? 'Google Calendar 일정' : 'ERP 로컬 일정')}
                   </p>
                 ) : null}
               </div>
@@ -2098,8 +2172,8 @@ function CalendarIntegrationPanel() {
       description: '팀원이 직접 Google 계정으로 로그인해 캘린더 읽기/쓰기 권한을 승인합니다.',
     },
     {
-      title: '2. 기본 캘린더 선택',
-      description: '개인 primary, 팀 공유 캘린더, 미팅 전용 캘린더 중 ERP에서 사용할 캘린더를 지정합니다.',
+      title: '2. 팀 공유 캘린더만 사용',
+      description: `${TEAM_CALENDAR_LABEL} 일정만 ERP에 표시하고, 개인 primary 캘린더 일정은 가져오지 않습니다.`,
     },
     {
       title: '3. 동기화 기준 설정',
@@ -2118,7 +2192,7 @@ function CalendarIntegrationPanel() {
           <p className="text-sm font-bold text-brand-blue">Calendar Integration</p>
           <h2 className="mt-2 text-2xl font-black tracking-tight text-white">캘린더 연동</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-gray-400 keep-all">
-            팀원별 Google Calendar 계정을 연결하고, ERP 일정이 어느 캘린더에 저장되는지 관리하는 설정 화면입니다.
+            팀원별 Google Calendar 계정을 연결합니다. ERP 일정은 개인 캘린더가 아니라 {TEAM_CALENDAR_LABEL} 팀 공유 캘린더만 확인합니다.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -2153,7 +2227,7 @@ function CalendarIntegrationPanel() {
             <p>Google 계정</p>
             <p>역할</p>
             <p>연동 상태</p>
-            <p>사용 캘린더</p>
+            <p>ERP 표시 캘린더</p>
             <p>작업</p>
           </div>
           {loading ? (
@@ -2170,7 +2244,7 @@ function CalendarIntegrationPanel() {
                 <p className={`text-sm font-black ${row.connected ? 'text-emerald-100' : 'text-amber-100'}`}>
                   {row.connected ? '연결됨' : '권한 미연결'}
                 </p>
-                <p className="text-sm font-semibold text-gray-400">{row.calendarId}</p>
+                <p className="text-sm font-semibold text-gray-400">{TEAM_CALENDAR_LABEL} 자동 선택</p>
                 <div className="flex gap-2">
                   <a
                     href={`/api/erp/google/calendar/oauth/start?memberId=${row.memberId}`}
@@ -2196,8 +2270,8 @@ function CalendarIntegrationPanel() {
           <p className="text-sm font-black text-white">현재 구현 상태</p>
           <div className="mt-4 space-y-3 text-sm leading-6 text-gray-400 keep-all">
             <p>
-              이제 팀원별 Google OAuth 승인과 refresh token 저장 구조가 추가되었습니다. Notion 토큰 DB와 암호화 키가
-              설정되면 연결된 팀원의 토큰은 Notion에 암호화 저장됩니다.
+              이제 팀원별 Google OAuth 승인과 refresh token 저장 구조가 추가되었습니다. ERP는 연결 계정의 캘린더 목록에서
+              {TEAM_CALENDAR_LABEL}만 찾아서 읽고 씁니다.
             </p>
             <p>
               Notion 저장소가 아직 연결되지 않은 환경에서는 기존 로컬 `.erp-private/` 저장소로 자동 전환됩니다. 운영 배포에서는
@@ -2221,11 +2295,17 @@ function CalendarIntegrationPanel() {
 
 function EventCard({ event }: { event: CalendarEvent }) {
   return (
-    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
+    <div className="rounded-md border border-l-4 border-white/10 bg-white/[0.03] p-3" style={calendarEventStyle(event)}>
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="font-black text-white keep-all">{event.title}</p>
           <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTime(event.start)}</p>
+          {event.calendarName ? (
+            <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
+              <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
+              {event.calendarName}
+            </p>
+          ) : null}
         </div>
         <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
           {eventTypeLabel(event.type)}
@@ -2341,10 +2421,20 @@ function MeetingListPanel({
           <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
         ) : (
           events.map((event) => (
-            <div key={event.id} className="rounded-lg border border-white/10 bg-black p-5">
+            <div
+              key={event.id}
+              className="rounded-lg border border-l-4 border-white/10 bg-black p-5"
+              style={calendarEventStyle(event)}
+            >
               <p className="text-xs font-black text-brand-blue">{formatDateLabel(event.start)}</p>
               <h3 className="mt-3 text-lg font-black text-white keep-all">{event.title}</h3>
               <p className="mt-2 text-sm font-bold text-gray-400">{formatDateTime(event.start)}</p>
+              {event.calendarName ? (
+                <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
+                  <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
+                  {event.calendarName}
+                </p>
+              ) : null}
               {event.location ? <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">{event.location}</p> : null}
               {event.attendees.length > 0 ? (
                 <p className="mt-3 text-xs font-semibold text-gray-500 keep-all">
