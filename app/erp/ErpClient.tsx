@@ -33,7 +33,6 @@ import { useEffect, useMemo, useState } from 'react'
 type StoreRecord = {
   id: string
   name: string
-  category: string
   status: string
   contact: string
   owner: string
@@ -3228,7 +3227,7 @@ function StoreTable({
 }) {
   const [query, setQuery] = useState('')
   const filteredStores = stores.filter((store) =>
-    [store.name, store.category, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
+    [store.name, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
   )
 
   return (
@@ -3268,7 +3267,6 @@ function StoreTable({
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-5 py-4">매장명</th>
-              <th className="px-5 py-4">업종</th>
               <th className="px-5 py-4">상태</th>
               {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
@@ -3301,7 +3299,6 @@ function StoreTable({
                     <p className="font-black text-white keep-all">{store.name}</p>
                     <p className="mt-1 text-xs text-gray-500">{store.contact || '연락처 확인 필요'}</p>
                   </td>
-                  <td className="px-5 py-4 font-semibold text-gray-300">{store.category || '확인 필요'}</td>
                   <td className="px-5 py-4">
                     <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
                       {store.status || '상태 없음'}
