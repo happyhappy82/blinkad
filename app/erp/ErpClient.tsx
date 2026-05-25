@@ -12,6 +12,7 @@ import {
   CircleDot,
   ClipboardList,
   Clock3,
+  Copy,
   CreditCard,
   ExternalLink,
   FileSearch,
@@ -257,6 +258,7 @@ type OperationRow = {
   owner: string
   due: string
   memo: string
+  copyText?: string
   products?: {
     googleProfile: string
     googleAds: string
@@ -302,6 +304,26 @@ const DEFAULT_CLIENT_STATUS_OPTIONS = [
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id)) as MenuId[]
+
+const WELCOME_GOOGLE_PROFILE_ACCESS_MESSAGE = `안녕하세요.
+
+앞으로 Google 비즈니스 프로필 관리와 외국인 고객 유입을 위한 기본 세팅을 함께 진행드리겠습니다.
+
+먼저 Google 비즈니스 프로필 작업을 위해 아래 계정으로 권한 추가를 부탁드립니다.
+
+권한 추가 계정
+- 이메일1: seunggyeomlee@gmail.com
+- 이메일2: travelingtoseoul@gmail.com
+- 이메일3: ban951112@gmail.com
+
+권한은 '관리자' 권한으로 초대해주시면 됩니다.
+
+자세한 진행 방법은 아래 링크에 정리된 지침에 따라 진행해주시면 됩니다.
+https://www.notion.so/366753ebc0138087aff3fbdd8ac6aa3f?source=copy_link
+
+권한 초대 완료 후 단톡방에 "권한 추가 완료"라고 남겨주시면 확인 후 다음 작업을 진행하겠습니다.
+
+감사합니다.`
 
 function isMenuId(value: string): value is MenuId {
   return menuIds.includes(value as MenuId)
@@ -550,9 +572,18 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
     stats: [
       { label: '자료 보유 매장', value: '11' },
       { label: '사진 대기', value: '7' },
-      { label: '템플릿', value: '12' },
+      { label: '템플릿', value: '13' },
     ],
     rows: [
+      {
+        title: '계약 시작 웰컴·권한 요청 문구',
+        meta: '단톡방 고정 문구 · GBP 권한 추가 · Notion 지침 링크',
+        status: '템플릿',
+        owner: '블링크애드',
+        due: '상시',
+        memo: '신규 계약 후 단톡방에 고정해 Google 비즈니스 프로필 관리자 권한 추가를 요청할 때 사용합니다.',
+        copyText: WELCOME_GOOGLE_PROFILE_ACCESS_MESSAGE,
+      },
       {
         title: '요식업 기본 자료 패키지',
         meta: '내부/외부 사진 · 메뉴판 · 대표 메뉴',
@@ -2921,9 +2952,22 @@ function OperationsPanel({
   onSelectStore?: (storeTitle: string) => void
 }) {
   const isStoreOperations = view.rows.some((row) => row.products)
+  const [copiedRowTitle, setCopiedRowTitle] = useState('')
 
   if (isStoreOperations) {
     return <StoreOperationsPanel view={view} selectedStoreTitle={selectedStoreTitle} onSelectStore={onSelectStore} />
+  }
+
+  const copyAssetText = async (row: OperationRow) => {
+    if (!row.copyText) return
+
+    try {
+      await navigator.clipboard.writeText(row.copyText)
+      setCopiedRowTitle(row.title)
+      window.setTimeout(() => setCopiedRowTitle(''), 1800)
+    } catch {
+      setCopiedRowTitle('')
+    }
   }
 
   return (
@@ -2965,6 +3009,7 @@ function OperationsPanel({
                 <th className="px-5 py-4">담당</th>
                 <th className="px-5 py-4">기한</th>
                 <th className="px-5 py-4">메모</th>
+                {view.rows.some((row) => row.copyText) ? <th className="px-5 py-4">복사</th> : null}
               </tr>
             )}
           </thead>
@@ -3016,6 +3061,22 @@ function OperationsPanel({
                     <td className="px-5 py-4 font-semibold text-gray-300">{row.owner}</td>
                     <td className="px-5 py-4 font-black text-white">{row.due}</td>
                     <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
+                    {view.rows.some((item) => item.copyText) ? (
+                      <td className="px-5 py-4">
+                        {row.copyText ? (
+                          <button
+                            type="button"
+                            onClick={() => copyAssetText(row)}
+                            className="inline-flex h-9 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-xs font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+                          >
+                            <Copy className="h-3.5 w-3.5" />
+                            {copiedRowTitle === row.title ? '복사됨' : '복사'}
+                          </button>
+                        ) : (
+                          <span className="text-xs font-bold text-gray-700">-</span>
+                        )}
+                      </td>
+                    ) : null}
                   </>
                 )}
               </tr>
