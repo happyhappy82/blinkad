@@ -905,6 +905,7 @@ function PrimaryButton({
 
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
+  const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
   const [stores, setStores] = useState<StoreRecord[]>([])
   const [loading, setLoading] = useState(true)
   const [connectionMessage, setConnectionMessage] = useState('')
@@ -1008,6 +1009,14 @@ export default function ErpClient() {
   }, [stores])
 
   const operationView = realtimeMenuIds.includes(activeMenu) ? undefined : operationViews[activeMenu]
+  const projectStores = operationViews.project?.rows || []
+
+  const selectMenu = (menuId: MenuId) => {
+    setActiveMenu(menuId)
+    if (menuId === 'project' && !activeStoreTitle) {
+      setActiveStoreTitle(projectStores[0]?.title || '')
+    }
+  }
 
   const runAutomation = async (type: 'quote' | 'diagnosis', store: StoreRecord) => {
     setRunningAction(`${type}:${store.id}`)
@@ -1055,10 +1064,10 @@ export default function ErpClient() {
                     const active = activeMenu === menu.id
 
                     return (
+                      <div key={menu.id}>
                       <button
-                        key={menu.id}
                         type="button"
-                        onClick={() => setActiveMenu(menu.id)}
+                        onClick={() => selectMenu(menu.id)}
                         className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-bold transition ${
                           active ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
                         }`}
@@ -1066,6 +1075,33 @@ export default function ErpClient() {
                         <Icon className="h-4 w-4" />
                         {menu.label}
                       </button>
+                      {menu.id === 'project' && activeMenu === 'project' ? (
+                        <div className="ml-7 mt-1 space-y-1 border-l border-white/10 pl-3">
+                          {projectStores.map((store) => {
+                            const storeActive = activeStoreTitle === store.title
+
+                            return (
+                              <button
+                                key={store.title}
+                                type="button"
+                                onClick={() => {
+                                  setActiveMenu('project')
+                                  setActiveStoreTitle(store.title)
+                                }}
+                                className={`flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left text-xs font-black transition ${
+                                  storeActive
+                                    ? 'bg-white text-black'
+                                    : 'text-gray-500 hover:bg-white/5 hover:text-white'
+                                }`}
+                              >
+                                <span>{store.title}</span>
+                                <span className={storeActive ? 'text-black/55' : 'text-gray-600'}>{store.status}</span>
+                              </button>
+                            )
+                          })}
+                        </div>
+                      ) : null}
+                      </div>
                     )
                   })}
                 </div>
@@ -1108,7 +1144,7 @@ export default function ErpClient() {
                     <button
                       key={menu.id}
                       type="button"
-                      onClick={() => setActiveMenu(menu.id)}
+                      onClick={() => selectMenu(menu.id)}
                       className={`shrink-0 rounded-full px-3 py-2 text-sm font-bold ${
                         activeMenu === menu.id ? 'bg-brand-blue text-white' : 'bg-white/10 text-gray-300'
                       }`}
@@ -1240,7 +1276,13 @@ export default function ErpClient() {
               />
             )}
 
-            {operationView ? <OperationsPanel view={operationView} /> : null}
+            {operationView ? (
+              <OperationsPanel
+                view={operationView}
+                selectedStoreTitle={activeStoreTitle}
+                onSelectStore={setActiveStoreTitle}
+              />
+            ) : null}
           </div>
         </section>
       </div>
@@ -2539,11 +2581,19 @@ function MailPanel({
   )
 }
 
-function OperationsPanel({ view }: { view: OperationView }) {
+function OperationsPanel({
+  view,
+  selectedStoreTitle,
+  onSelectStore,
+}: {
+  view: OperationView
+  selectedStoreTitle?: string
+  onSelectStore?: (storeTitle: string) => void
+}) {
   const isStoreOperations = view.rows.some((row) => row.products)
 
   if (isStoreOperations) {
-    return <StoreOperationsPanel view={view} />
+    return <StoreOperationsPanel view={view} selectedStoreTitle={selectedStoreTitle} onSelectStore={onSelectStore} />
   }
 
   return (
@@ -2647,163 +2697,140 @@ function OperationsPanel({ view }: { view: OperationView }) {
   )
 }
 
-function StoreOperationsPanel({ view }: { view: OperationView }) {
-  const [selectedStoreTitle, setSelectedStoreTitle] = useState(view.rows[0]?.title || '')
+function StoreOperationsPanel({
+  view,
+  selectedStoreTitle,
+  onSelectStore,
+}: {
+  view: OperationView
+  selectedStoreTitle?: string
+  onSelectStore?: (storeTitle: string) => void
+}) {
   const [activeProduct, setActiveProduct] = useState<StoreProductKey>('googleProfile')
   const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
 
   return (
-    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-      <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{view.title}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{view.description}</p>
-        </div>
-        <div className="grid grid-cols-3 gap-2">
-          {view.stats.map((stat) => (
-            <div key={stat.label} className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500 keep-all">{stat.label}</p>
-              <p className="mt-3 text-3xl font-black tracking-tight text-white">{stat.value}</p>
+    <section className="space-y-5">
+      {selectedStore ? (
+        <>
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+            <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
+              <div>
+                <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
+                <h2 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">
+                  {selectedStore.title}
+                </h2>
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
+              </div>
+              <div className="grid gap-2 text-sm sm:grid-cols-3 xl:min-w-[520px]">
+                <div className="rounded-lg border border-white/10 bg-black p-4">
+                  <p className="text-xs font-bold text-gray-500">상태</p>
+                  <p className="mt-2 font-black text-white">{selectedStore.status}</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-black p-4">
+                  <p className="text-xs font-bold text-gray-500">담당</p>
+                  <p className="mt-2 font-black text-white">{selectedStore.owner}</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-black p-4">
+                  <p className="text-xs font-bold text-gray-500">기한</p>
+                  <p className="mt-2 font-black text-white">{selectedStore.due}</p>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="grid min-h-[560px] lg:grid-cols-[300px_1fr]">
-        <aside className="border-b border-white/10 bg-black p-4 lg:border-b-0 lg:border-r">
-          <p className="px-2 text-xs font-black uppercase tracking-[0.16em] text-gray-600">운영 매장</p>
-          <div className="mt-3 space-y-2">
-            {view.rows.map((store) => {
-              const active = selectedStore?.title === store.title
-
-              return (
+            <div className="mt-5 flex gap-2 overflow-x-auto lg:hidden">
+              {view.rows.map((store) => (
                 <button
                   key={store.title}
                   type="button"
                   onClick={() => {
-                    setSelectedStoreTitle(store.title)
+                    onSelectStore?.(store.title)
                     setActiveProduct(store.productWorkspaces?.[0]?.key || 'googleProfile')
                   }}
-                  className={`w-full rounded-lg border p-4 text-left transition ${
-                    active
-                      ? 'border-brand-blue/40 bg-brand-blue/15'
-                      : 'border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/[0.06]'
+                  className={`shrink-0 rounded-full px-3 py-2 text-xs font-black ${
+                    selectedStore.title === store.title ? 'bg-white text-black' : 'bg-white/10 text-gray-300'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-black text-white keep-all">{store.title}</p>
-                      <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{store.meta}</p>
-                    </div>
-                    <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-bold ${statusBadge(store.status)}`}>
-                      {store.status}
-                    </span>
-                  </div>
-                  <p className="mt-3 text-xs font-bold text-gray-500">담당 {store.owner} · {store.due}</p>
+                  {store.title}
                 </button>
-              )
-            })}
+              ))}
+            </div>
           </div>
-        </aside>
 
-        <div className="p-5 md:p-6">
-          {selectedStore ? (
-            <>
-              <div className="rounded-lg border border-white/10 bg-black p-5">
-                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <p className="text-sm font-bold text-brand-blue">Selected Store</p>
-                    <h3 className="mt-2 text-2xl font-black text-white">{selectedStore.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-sm md:min-w-72">
-                    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
-                      <p className="text-xs font-bold text-gray-500">담당</p>
-                      <p className="mt-2 font-black text-white">{selectedStore.owner}</p>
-                    </div>
-                    <div className="rounded-md border border-white/10 bg-white/[0.03] p-3">
-                      <p className="text-xs font-bold text-gray-500">기한</p>
-                      <p className="mt-2 font-black text-white">{selectedStore.due}</p>
-                    </div>
-                  </div>
+          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black p-1">
+            <div className="grid min-w-[620px] grid-cols-3 gap-1">
+              {workspaces.map((workspace) => (
+                <button
+                  key={workspace.key}
+                  type="button"
+                  onClick={() => setActiveProduct(workspace.key)}
+                  className={`h-14 whitespace-nowrap rounded-md px-4 text-base font-black transition ${
+                    activeWorkspace?.key === workspace.key
+                      ? 'bg-white text-black'
+                      : 'text-gray-400 hover:bg-white/10 hover:text-white'
+                  }`}
+                >
+                  {workspace.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {activeWorkspace ? (
+            <div className="rounded-lg border border-white/10 bg-black">
+              <div className="grid gap-4 border-b border-white/10 p-5 md:grid-cols-[1fr_420px] md:p-6">
+                <div>
+                  <p className="text-sm font-bold text-brand-blue">{activeWorkspace.label}</p>
+                  <h3 className="mt-2 text-2xl font-black text-white">{activeWorkspace.heading}</h3>
+                  <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">{activeWorkspace.description}</p>
                 </div>
-              </div>
-
-              <div className="mt-5 overflow-x-auto">
-                <div className="inline-flex min-w-full rounded-lg border border-white/10 bg-black p-1">
-                  {workspaces.map((workspace) => (
-                    <button
-                      key={workspace.key}
-                      type="button"
-                      onClick={() => setActiveProduct(workspace.key)}
-                      className={`h-10 flex-1 whitespace-nowrap rounded-md px-4 text-sm font-black transition ${
-                        activeWorkspace?.key === workspace.key
-                          ? 'bg-white text-black'
-                          : 'text-gray-400 hover:bg-white/10 hover:text-white'
-                      }`}
-                    >
-                      {workspace.label}
-                    </button>
+                <div className="grid gap-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3">
+                  {activeWorkspace.metrics.map((metric) => (
+                    <div key={`${activeWorkspace.key}-${metric.label}`} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                      <p className="text-xs font-black text-gray-500 keep-all">{metric.label}</p>
+                      <p className="mt-2 text-2xl font-black tracking-tight text-white keep-all">{metric.value}</p>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
+                    </div>
                   ))}
                 </div>
               </div>
-
-              {activeWorkspace ? (
-                <div className="mt-5 rounded-lg border border-white/10 bg-black">
-                  <div className="border-b border-white/10 p-5">
-                    <p className="text-sm font-bold text-brand-blue">{activeWorkspace.label}</p>
-                    <h4 className="mt-2 text-xl font-black text-white">{activeWorkspace.heading}</h4>
-                    <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">{activeWorkspace.description}</p>
-                  </div>
-                  <div className="grid gap-2 border-b border-white/10 p-5 md:grid-cols-3">
-                    {activeWorkspace.metrics.map((metric) => (
-                      <div key={`${activeWorkspace.key}-${metric.label}`} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                        <p className="text-xs font-black text-gray-500 keep-all">{metric.label}</p>
-                        <p className="mt-2 text-2xl font-black tracking-tight text-white keep-all">{metric.value}</p>
-                        <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
+              <div className="divide-y divide-white/10">
+                {activeWorkspace.tasks.map((task) => (
+                  <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_180px_180px] md:p-6">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className={`rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(task.status)}`}>
+                          {task.status}
+                        </span>
+                        <p className="text-lg font-black text-white keep-all">{task.title}</p>
                       </div>
-                    ))}
-                  </div>
-                  <div className="divide-y divide-white/10">
-                    {activeWorkspace.tasks.map((task) => (
-                      <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_160px_160px]">
-                        <div>
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className={`rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(task.status)}`}>
-                              {task.status}
-                            </span>
-                            <p className="font-black text-white keep-all">{task.title}</p>
-                          </div>
-                          <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-bold text-gray-600">담당</p>
-                          <p className="mt-2 font-bold text-gray-300">{task.owner}</p>
-                        </div>
-                        <div>
-                          <p className="text-xs font-bold text-gray-600">기한</p>
-                          <p className="mt-2 font-black text-white">{task.due}</p>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <p className="mt-5 rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
-                  등록된 상품별 업무가 없습니다.
-                </p>
-              )}
-            </>
+                      <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-600">담당</p>
+                      <p className="mt-2 font-bold text-gray-300">{task.owner}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-gray-600">기한</p>
+                      <p className="mt-2 font-black text-white">{task.due}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
           ) : (
             <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
-              등록된 운영 매장이 없습니다.
+              등록된 상품별 업무가 없습니다.
             </p>
           )}
-        </div>
-      </div>
+        </>
+      ) : (
+        <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
+          등록된 운영 매장이 없습니다.
+        </p>
+      )}
     </section>
   )
 }
