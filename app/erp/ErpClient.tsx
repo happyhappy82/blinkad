@@ -220,10 +220,21 @@ type StoreProductMetric = {
 type StoreWeeklyReportStatus = '완료' | '작성중' | '예정' | '휴무'
 
 type StoreWeeklyReport = {
+  id?: string
   dayOffset: number
+  date?: string
   status: StoreWeeklyReportStatus
   title: string
   memo: string
+  reporter?: string
+  completedAt?: string
+}
+
+type WeeklyReportApiResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  message?: string
+  reports: StoreWeeklyReport[]
 }
 
 type StoreProductWorkspace = {
@@ -2765,6 +2776,79 @@ function StoreOperationsPanel({
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
   const weeklyReportDates = useMemo(() => getCurrentWeekDates(), [])
+  const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
+  const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
+  const [weeklyReportLoading, setWeeklyReportLoading] = useState(false)
+  const [weeklyReportMessage, setWeeklyReportMessage] = useState('')
+  const [completingReportDate, setCompletingReportDate] = useState<string | null>(null)
+  const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
+
+  useEffect(() => {
+    if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
+      setWeeklyReports([])
+      setWeeklyReportMessage('')
+      return
+    }
+
+    let cancelled = false
+    const loadWeeklyReports = async () => {
+      setWeeklyReportLoading(true)
+      try {
+        const params = new URLSearchParams({
+          store: selectedStore.title,
+          product: activeWorkspace.key,
+          weekStart,
+        })
+        const response = await fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' })
+        const data = (await response.json()) as WeeklyReportApiResponse
+        if (cancelled) return
+        setWeeklyReports(data.reports || [])
+        setWeeklyReportMessage(
+          data.message ||
+            (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
+        )
+      } catch {
+        if (cancelled) return
+        setWeeklyReports(activeWorkspace.weeklyReports || [])
+        setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
+      } finally {
+        if (!cancelled) setWeeklyReportLoading(false)
+      }
+    }
+
+    loadWeeklyReports()
+
+    return () => {
+      cancelled = true
+    }
+  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart])
+
+  const completeWeeklyReport = async (report: StoreWeeklyReport, reportDateKey: string) => {
+    if (!selectedStore || !activeWorkspace) return
+
+    setCompletingReportDate(reportDateKey)
+    try {
+      const response = await fetch('/api/erp/reports', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          store: selectedStore.title,
+          product: activeWorkspace.key,
+          date: reportDateKey,
+          weekStart,
+          title: report.title,
+          memo: report.memo,
+        }),
+      })
+      const data = (await response.json()) as WeeklyReportApiResponse
+      setWeeklyReports(data.reports || [])
+      setWeeklyReportMessage(data.message || '보고완료 처리했습니다.')
+    } catch {
+      setWeeklyReportMessage('보고완료 처리 중 오류가 발생했습니다.')
+    } finally {
+      setCompletingReportDate(null)
+    }
+  }
 
   return (
     <section className="space-y-5">
@@ -2851,24 +2935,32 @@ function StoreOperationsPanel({
                   ))}
                 </div>
               </div>
-              {activeWorkspace.weeklyReports?.length ? (
+              {displayWeeklyReports.length ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                     <div>
                       <p className="text-sm font-bold text-brand-blue">Weekly Report</p>
                       <h4 className="mt-2 text-xl font-black text-white">이번 주 작업보고 현황</h4>
                     </div>
-                    <p className="text-sm font-semibold text-gray-500 keep-all">
-                      요일별 보고 진행 여부를 날짜와 함께 확인합니다.
-                    </p>
+                    <div className="text-sm font-semibold text-gray-500 md:text-right">
+                      <p className="keep-all">요일별 보고 진행 여부를 날짜와 함께 확인합니다.</p>
+                      <p className="mt-1 keep-all">
+                        {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
+                      </p>
+                    </div>
                   </div>
                   <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-7">
-                    {activeWorkspace.weeklyReports.map((report) => {
-                      const date = weeklyReportDates[report.dayOffset]
+                    {displayWeeklyReports.map((report) => {
+                      const date = report.date
+                        ? parseLocalDate(report.date)
+                        : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
+                      const reportDateKey = report.date || toISODate(date)
+                      const canComplete = report.status !== '완료' && report.status !== '휴무'
+                      const completing = completingReportDate === reportDateKey
 
                       return (
                         <div
-                          key={`${activeWorkspace.key}-report-${report.dayOffset}`}
+                          key={`${activeWorkspace.key}-report-${reportDateKey}`}
                           className={`rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
                         >
                           <div className="flex items-start justify-between gap-2">
@@ -2882,6 +2974,22 @@ function StoreOperationsPanel({
                           </div>
                           <p className="mt-4 font-black text-white keep-all">{report.title}</p>
                           <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                          {report.status === '완료' ? (
+                            <p className="mt-3 text-[11px] font-bold leading-5 text-emerald-100/80 keep-all">
+                              {report.reporter ? `${report.reporter} · ` : ''}
+                              {report.completedAt ? formatDateTime(report.completedAt) : '보고완료'}
+                            </p>
+                          ) : null}
+                          {canComplete ? (
+                            <button
+                              type="button"
+                              onClick={() => completeWeeklyReport(report, reportDateKey)}
+                              disabled={completing}
+                              className="mt-4 inline-flex h-9 w-full items-center justify-center rounded-md bg-white px-3 text-xs font-black text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                            >
+                              {completing ? '처리 중' : '보고완료'}
+                            </button>
+                          ) : null}
                         </div>
                       )
                     })}
@@ -2935,6 +3043,16 @@ function getCurrentWeekDates() {
   monday.setDate(monday.getDate() + offset)
 
   return Array.from({ length: 7 }, (_, index) => addDays(monday, index))
+}
+
+function toISODate(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
+function parseLocalDate(value: string) {
+  const [year, month, day] = value.split('-').map(Number)
+  if (!year || !month || !day) return new Date(value)
+  return new Date(year, month - 1, day)
 }
 
 function formatWeekday(date: Date) {
