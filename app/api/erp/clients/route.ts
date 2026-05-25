@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
 import { execFileSync } from 'child_process'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import path from 'path'
 
 export const dynamic = 'force-dynamic'
@@ -9,6 +9,18 @@ export const runtime = 'nodejs'
 const DEFAULT_DATABASE_ID = '18f451110c9945d997de4ce4fd86d074'
 const TITLE_PROPERTY = '고객명'
 const CLIENT_DATABASE_SEARCH_QUERY = '통합 문의 관리 DB'
+const STATUS_PROPERTY_CANDIDATES = ['처리상태', '상태', '계약완료', 'Status']
+const FALLBACK_STATUS_OPTIONS = [
+  '신규 문의',
+  '접촉중',
+  '미팅일정 확정',
+  '견적서 송부/팔로업 지속',
+  '공동 대응',
+  '계약대기',
+  '계약 완료',
+  '답변 완료',
+  '취소/팔로업 중지',
+]
 
 const fallbackStores = [
   {
@@ -117,6 +129,42 @@ function findProperty(properties: Record<string, any>, candidates: string[]) {
     candidates.some((candidate) => name.toLowerCase().includes(candidate.toLowerCase()))
   )
   return match?.[1]
+}
+
+function findPropertyName(properties: Record<string, any>, candidates: string[]) {
+  for (const name of candidates) {
+    if (properties[name]) return name
+  }
+
+  const entries = Object.entries(properties)
+  const match = entries.find(([name]) =>
+    candidates.some((candidate) => name.toLowerCase().includes(candidate.toLowerCase()))
+  )
+  return match?.[0] || ''
+}
+
+function statusOptionsFromSchema(properties: Record<string, any>) {
+  const statusPropertyName = findPropertyName(properties, STATUS_PROPERTY_CANDIDATES)
+  const statusProperty = statusPropertyName ? properties[statusPropertyName] : undefined
+  const options =
+    statusProperty?.type === 'status'
+      ? statusProperty.status?.options
+      : statusProperty?.type === 'select'
+        ? statusProperty.select?.options
+        : []
+
+  return Array.isArray(options) && options.length
+    ? options.map((option: any) => option.name).filter(Boolean)
+    : FALLBACK_STATUS_OPTIONS
+}
+
+function statusPropertyValue(propertySchema: any, status: string) {
+  if (!propertySchema) return undefined
+  if (propertySchema.type === 'status') return { status: { name: status } }
+  if (propertySchema.type === 'select') return { select: { name: status } }
+  if (propertySchema.type === 'rich_text') return { rich_text: [{ text: { content: status } }] }
+  if (propertySchema.type === 'title') return { title: [{ text: { content: status } }] }
+  return undefined
 }
 
 function pickGoogleMapUrl(properties: Record<string, any>) {
@@ -265,6 +313,7 @@ export async function GET() {
       source: 'fallback',
       connected: false,
       message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 데이터로 표시 중입니다.',
+      statusOptions: FALLBACK_STATUS_OPTIONS,
       stores: fallbackStores,
     })
   }
@@ -272,6 +321,8 @@ export async function GET() {
   try {
     const notion = new Client({ auth: token })
     const resolvedDatabaseId = await resolveClientDatabaseId(notion, databaseId)
+    const database = await notion.databases.retrieve({ database_id: resolvedDatabaseId })
+    const schema = (database as any).properties || {}
     const response = await notion.databases.query({
       database_id: resolvedDatabaseId,
       page_size: 100,
@@ -280,6 +331,7 @@ export async function GET() {
     return NextResponse.json({
       source: 'notion',
       connected: true,
+      statusOptions: statusOptionsFromSchema(schema),
       stores: response.results.map(normalizePage),
     })
   } catch (error) {
@@ -288,9 +340,67 @@ export async function GET() {
         source: 'fallback',
         connected: false,
         message: error instanceof Error ? error.message : 'Notion DB 연결에 실패했습니다.',
+        statusOptions: FALLBACK_STATUS_OPTIONS,
         stores: fallbackStores,
       },
       { status: 200 }
+    )
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  const token = resolveNotionToken()
+  const databaseId = process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_DATABASE_ID
+  const body = await request.json()
+  const pageId = String(body.pageId || '').trim()
+  const status = String(body.status || '').trim()
+
+  if (!token || !pageId || !status) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: 'Notion 토큰, 페이지 ID, 상태값이 필요합니다.',
+      },
+      { status: 400 }
+    )
+  }
+
+  try {
+    const notion = new Client({ auth: token })
+    const resolvedDatabaseId = await resolveClientDatabaseId(notion, databaseId)
+    const database = await notion.databases.retrieve({ database_id: resolvedDatabaseId })
+    const schema = (database as any).properties || {}
+    const statusPropertyName = findPropertyName(schema, STATUS_PROPERTY_CANDIDATES)
+    const value = statusPropertyValue(statusPropertyName ? schema[statusPropertyName] : undefined, status)
+
+    if (!statusPropertyName || !value) {
+      return NextResponse.json(
+        {
+          connected: false,
+          message: '수정 가능한 상태 속성을 찾지 못했습니다.',
+        },
+        { status: 400 }
+      )
+    }
+
+    await notion.pages.update({
+      page_id: pageId,
+      properties: {
+        [statusPropertyName]: value,
+      },
+    })
+
+    return NextResponse.json({
+      connected: true,
+      message: `상태를 ${status}(으)로 변경했습니다.`,
+    })
+  } catch (error) {
+    return NextResponse.json(
+      {
+        connected: false,
+        message: error instanceof Error ? error.message : 'Notion 상태 변경에 실패했습니다.',
+      },
+      { status: 500 }
     )
   }
 }

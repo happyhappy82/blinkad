@@ -52,6 +52,7 @@ type ApiResponse = {
   source: 'notion' | 'fallback'
   connected: boolean
   stores: StoreRecord[]
+  statusOptions?: string[]
   message?: string
 }
 
@@ -284,6 +285,17 @@ const statusGroups = [
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
 const TEAM_CALENDAR_LABEL = '용올캘린더'
 const REPORT_STATUS_OPTIONS: StoreWeeklyReportStatus[] = ['예정', '작성중', '완료', '휴무']
+const DEFAULT_CLIENT_STATUS_OPTIONS = [
+  '신규 문의',
+  '접촉중',
+  '미팅일정 확정',
+  '견적서 송부/팔로업 지속',
+  '공동 대응',
+  '계약대기',
+  '계약 완료',
+  '답변 완료',
+  '취소/팔로업 중지',
+]
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id)) as MenuId[]
@@ -378,7 +390,7 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
       {
         title: '언리미티드',
         meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
-        status: '작업중',
+        status: '계약완료 · 운영중',
         owner: '권순현',
         due: '이번 주',
         memo: '매장별 운영 현황은 상품 메뉴를 나누기보다 한 매장 안에서 상품별 진행 상태를 같이 봅니다.',
@@ -916,6 +928,8 @@ function statusIncludesAny(status: string, keywords: string[]) {
 }
 
 function statusBadge(status: string) {
+  if (statusIncludesAny(status, ['공동 대응', '공동대응'])) return 'border-red-300/30 bg-red-400/10 text-red-100'
+  if (statusIncludesAny(status, ['견적서 송부/팔로업 지속', '견적서송부/팔로업지속'])) return 'border-yellow-300/35 bg-yellow-300/10 text-yellow-100'
   if (status.includes('운영')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
   if (status.includes('계약')) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
   if (status.includes('견적')) return 'border-blue-300/30 bg-brand-blue/15 text-blue-100'
@@ -962,10 +976,12 @@ export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
   const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
   const [stores, setStores] = useState<StoreRecord[]>([])
+  const [statusOptions, setStatusOptions] = useState<string[]>(DEFAULT_CLIENT_STATUS_OPTIONS)
   const [loading, setLoading] = useState(true)
   const [connectionMessage, setConnectionMessage] = useState('')
   const [actionMessage, setActionMessage] = useState('')
   const [runningAction, setRunningAction] = useState<string | null>(null)
+  const [updatingStoreStatus, setUpdatingStoreStatus] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
@@ -979,6 +995,7 @@ export default function ErpClient() {
       const response = await fetch('/api/erp/clients', { cache: 'no-store' })
       const data = (await response.json()) as ApiResponse
       setStores(data.stores)
+      setStatusOptions(data.statusOptions?.length ? data.statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS)
       setConnectionMessage(
         data.connected
           ? 'Notion 문의관리 DB와 연결되었습니다.'
@@ -994,6 +1011,34 @@ export default function ErpClient() {
   useEffect(() => {
     loadStores()
   }, [])
+
+  const updateStoreStatus = async (store: StoreRecord, status: string) => {
+    if (!status || status === store.status) return
+
+    const previousStores = stores
+    setUpdatingStoreStatus(store.id)
+    setStores((current) => current.map((item) => (item.id === store.id ? { ...item, status } : item)))
+
+    try {
+      const response = await fetch('/api/erp/clients', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: store.id, status }),
+      })
+      const data = (await response.json()) as { connected: boolean; message?: string }
+      if (!response.ok || !data.connected) {
+        setStores(previousStores)
+        setActionMessage(data.message || 'Notion 상태 변경에 실패했습니다.')
+        return
+      }
+      setActionMessage(`${store.name} 상태를 ${status}(으)로 변경했습니다.`)
+    } catch {
+      setStores(previousStores)
+      setActionMessage('Notion 상태 변경 중 오류가 발생했습니다.')
+    } finally {
+      setUpdatingStoreStatus(null)
+    }
+  }
 
   useEffect(() => {
     const menu = new URLSearchParams(window.location.search).get('menu')
@@ -1251,6 +1296,9 @@ export default function ErpClient() {
                 stores={inquiryStores}
                 loading={loading}
                 columns="crm"
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
               />
             )}
 
@@ -1261,6 +1309,9 @@ export default function ErpClient() {
                 stores={followupStores}
                 loading={loading}
                 columns="crm"
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
               />
             )}
 
@@ -1271,6 +1322,9 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="crm"
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
               />
             )}
 
@@ -1282,6 +1336,9 @@ export default function ErpClient() {
                 loading={loading}
                 columns="diagnosis"
                 runningAction={runningAction}
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
                 onRunDiagnosis={(store) => runAutomation('diagnosis', store)}
               />
             )}
@@ -1294,6 +1351,9 @@ export default function ErpClient() {
                 loading={loading}
                 columns="quote"
                 runningAction={runningAction}
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
                 onRunQuote={(store) => runAutomation('quote', store)}
               />
             )}
@@ -1305,16 +1365,18 @@ export default function ErpClient() {
                 stores={contractPendingStores}
                 loading={loading}
                 columns="contract"
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
               />
             )}
 
             {activeMenu === 'report' && (
-              <StoreTable
-                title="리포트"
-                description="각 매장별 보고 현황과 리포트 준비 상태를 확인합니다."
+              <ReportOperationsPanel
+                view={operationViews.project!}
                 stores={stores}
-                loading={loading}
-                columns="report"
+                selectedStoreTitle={activeStoreTitle}
+                onSelectStore={setActiveStoreTitle}
               />
             )}
 
@@ -2777,6 +2839,60 @@ function OperationsPanel({
   )
 }
 
+function ReportOperationsPanel({
+  view,
+  stores,
+  selectedStoreTitle,
+  onSelectStore,
+}: {
+  view: OperationView
+  stores: StoreRecord[]
+  selectedStoreTitle?: string
+  onSelectStore?: (storeTitle: string) => void
+}) {
+  const contractedStoreNames = new Set(
+    stores
+      .filter((store) => statusIncludesAny(store.status, ['계약 완료', '계약완료', '운영시작', '운영 시작']))
+      .map((store) => store.name.replace(/\s+/g, ''))
+  )
+  const reportRows = view.rows.filter((row) => {
+    const compactTitle = row.title.replace(/\s+/g, '')
+    return (
+      statusIncludesAny(row.status, ['계약 완료', '계약완료', '운영중', '운영시작']) ||
+      contractedStoreNames.has(compactTitle)
+    )
+  })
+  const rows = reportRows.length ? reportRows : view.rows
+  const reportView: OperationView = {
+    ...view,
+    kicker: 'Report Operations',
+    title: '리포트',
+    description: '매장 운영관리에 등록된 계약완료·운영중 매장만 보고 대상으로 관리합니다.',
+    stats: [
+      { label: '보고 대상', value: String(rows.length) },
+      { label: '이번 주 보고', value: '5회' },
+      { label: '누락 기준', value: '0건' },
+    ],
+    rows,
+  }
+  const fallbackStoreTitle = rows[0]?.title || ''
+  const activeStoreTitle = rows.some((row) => row.title === selectedStoreTitle) ? selectedStoreTitle : fallbackStoreTitle
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Report Sample</p>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-white">계약완료 매장 중심 리포트 보드</h2>
+        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-400 keep-all">
+          리포트는 전체 문의 DB가 아니라, 매장 운영관리에 등록된 실제 운영 매장 기준으로만 봅니다. 매장 선택 후 구글프로필,
+          구글애즈, 웹사이트·블로그별 보고 상태를 날짜 단위로 관리하는 구조입니다.
+        </p>
+      </div>
+      <StoreOperationsPanel view={reportView} selectedStoreTitle={activeStoreTitle} onSelectStore={onSelectStore} />
+    </section>
+  )
+}
+
 function StoreOperationsPanel({
   view,
   selectedStoreTitle,
@@ -3213,6 +3329,9 @@ function StoreTable({
   loading,
   columns,
   runningAction,
+  statusOptions,
+  updatingStatusId,
+  onStatusChange,
   onRunDiagnosis,
   onRunQuote,
 }: {
@@ -3222,6 +3341,9 @@ function StoreTable({
   loading: boolean
   columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
   runningAction?: string | null
+  statusOptions?: string[]
+  updatingStatusId?: string | null
+  onStatusChange?: (store: StoreRecord, status: string) => void
   onRunDiagnosis?: (store: StoreRecord) => void
   onRunQuote?: (store: StoreRecord) => void
 }) {
@@ -3300,9 +3422,27 @@ function StoreTable({
                     <p className="mt-1 text-xs text-gray-500">{store.contact || '연락처 확인 필요'}</p>
                   </td>
                   <td className="px-5 py-4">
-                    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
-                      {store.status || '상태 없음'}
-                    </span>
+                    {onStatusChange ? (
+                      <select
+                        value={store.status || ''}
+                        disabled={updatingStatusId === store.id}
+                        onChange={(event) => onStatusChange(store, event.target.value)}
+                        className={`h-9 min-w-[180px] rounded-full border px-3 text-xs font-black outline-none transition disabled:cursor-not-allowed disabled:opacity-60 ${statusBadge(store.status)}`}
+                      >
+                        {store.status && !statusOptions?.includes(store.status) ? (
+                          <option value={store.status}>{store.status}</option>
+                        ) : null}
+                        {(statusOptions?.length ? statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS).map((status) => (
+                          <option key={status} value={status}>
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
+                        {store.status || '상태 없음'}
+                      </span>
+                    )}
                   </td>
 
                   {columns === 'crm' && (
