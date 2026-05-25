@@ -2578,22 +2578,23 @@ function MeetingPanel({
   onRefresh: () => void
   onSaveMeetingNote: SaveMeetingNoteHandler
 }) {
+  const now = new Date()
   const meetings = events
-    .filter(isMeetingEvent)
+    .filter((event) => isMeetingEvent(event) && new Date(event.start) <= now)
     .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
 
   return (
     <MeetingListPanel
       kicker="Meeting DB"
       title="총 미팅 DB"
-      description="Google Calendar 팀 공유 캘린더에 기록된 전체 미팅 일정을 모아보고, 각 미팅별 논의 내용과 후속 액션을 기록합니다."
+      description="지금까지 진행된 미팅을 날짜별로 모아보고, 각 미팅별 논의 내용과 후속 액션을 기록합니다."
       events={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
       enableDateFilter
-      emptyLabel="등록된 미팅 일정이 없습니다."
+      emptyLabel="지금까지 진행된 미팅이 없습니다."
     />
   )
 }
@@ -2611,27 +2612,28 @@ function WeeklyMeetingPanel({
   onRefresh: () => void
   onSaveMeetingNote: SaveMeetingNoteHandler
 }) {
-  const todayEnd = new Date()
-  todayEnd.setHours(23, 59, 59, 999)
-  const sevenDaysAgo = startOfDay(addDays(todayEnd, -7))
+  const now = new Date()
+  const sevenDaysLater = new Date(now)
+  sevenDaysLater.setDate(now.getDate() + 7)
+  sevenDaysLater.setHours(23, 59, 59, 999)
   const weeklyMeetings = events
     .filter((event) => {
       const start = new Date(event.start)
-      return isMeetingEvent(event) && start >= sevenDaysAgo && start <= todayEnd
+      return isMeetingEvent(event) && start >= now && start <= sevenDaysLater
     })
-    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
 
   return (
     <MeetingListPanel
       kicker="Weekly Meeting"
       title="위클리미팅"
-      description="오늘 기준 최근 7일 이내 용올캘린더에 등록된 미팅 일정을 확인합니다."
+      description="오늘부터 앞으로 7일 이내 용올캘린더에 예정된 미팅 일정을 확인합니다."
       events={weeklyMeetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="최근 7일 내 등록된 미팅 일정이 없습니다."
+      emptyLabel="앞으로 7일 이내 예정된 미팅이 없습니다."
     />
   )
 }
