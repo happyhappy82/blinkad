@@ -2592,6 +2592,7 @@ function MeetingPanel({
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
+      enableDateFilter
       emptyLabel="등록된 미팅 일정이 없습니다."
     />
   )
@@ -2610,29 +2611,27 @@ function WeeklyMeetingPanel({
   onRefresh: () => void
   onSaveMeetingNote: SaveMeetingNoteHandler
 }) {
-  const now = new Date()
-  now.setHours(0, 0, 0, 0)
-  const sevenDaysLater = new Date(now)
-  sevenDaysLater.setDate(now.getDate() + 7)
-  sevenDaysLater.setHours(23, 59, 59, 999)
+  const todayEnd = new Date()
+  todayEnd.setHours(23, 59, 59, 999)
+  const sevenDaysAgo = startOfDay(addDays(todayEnd, -7))
   const weeklyMeetings = events
     .filter((event) => {
       const start = new Date(event.start)
-      return isMeetingEvent(event) && start >= now && start <= sevenDaysLater
+      return isMeetingEvent(event) && start >= sevenDaysAgo && start <= todayEnd
     })
-    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
 
   return (
     <MeetingListPanel
       kicker="Weekly Meeting"
       title="위클리미팅"
-      description="오늘부터 7일 뒤까지 예정된 미팅만 모아 미팅 준비와 후속 기록을 확인합니다."
+      description="오늘 기준 최근 7일 이내 용올캘린더에 등록된 미팅 일정을 확인합니다."
       events={weeklyMeetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="향후 7일 내 예정된 미팅이 없습니다."
+      emptyLabel="최근 7일 내 등록된 미팅 일정이 없습니다."
     />
   )
 }
@@ -2646,6 +2645,7 @@ function MeetingListPanel({
   message,
   onRefresh,
   onSaveMeetingNote,
+  enableDateFilter = false,
   emptyLabel,
 }: {
   kicker: string
@@ -2656,11 +2656,27 @@ function MeetingListPanel({
   message: string
   onRefresh: () => void
   onSaveMeetingNote: SaveMeetingNoteHandler
+  enableDateFilter?: boolean
   emptyLabel: string
 }) {
   const [meetingNotes, setMeetingNotes] = useState<Record<string, string>>({})
   const [savingNoteId, setSavingNoteId] = useState<string | null>(null)
   const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
+  const [filterStart, setFilterStart] = useState('')
+  const [filterEnd, setFilterEnd] = useState('')
+
+  const filteredEvents = useMemo(() => {
+    if (!enableDateFilter) return events
+
+    return events.filter((event) => {
+      const start = new Date(event.start)
+      const from = filterStart ? startOfDay(parseLocalDate(filterStart)) : null
+      const to = filterEnd ? parseLocalDate(filterEnd) : null
+      if (to) to.setHours(23, 59, 59, 999)
+
+      return (!from || start >= from) && (!to || start <= to)
+    })
+  }, [enableDateFilter, events, filterEnd, filterStart])
 
   const saveNote = async (event: CalendarEvent) => {
     const note = meetingNotes[event.id] ?? event.memo ?? ''
@@ -2699,73 +2715,131 @@ function MeetingListPanel({
         </button>
       </div>
 
-      <div className="grid gap-3 border-b border-white/10 p-5 md:grid-cols-3 md:p-6">
+      <div className="grid gap-3 border-b border-white/10 p-5 md:grid-cols-[180px_1fr] md:p-6">
         <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-gray-500">Total Meetings</p>
-          <p className="mt-3 text-4xl font-black text-white">{events.length}</p>
-        </div>
-        <div className="rounded-lg border border-white/10 bg-black p-4 md:col-span-2">
-          <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
-          <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
-            추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-gray-500">
+            {enableDateFilter ? 'Filtered / Total' : 'Total Meetings'}
           </p>
+          <p className="mt-3 text-4xl font-black text-white">
+            {enableDateFilter ? `${filteredEvents.length}/${events.length}` : events.length}
+          </p>
+        </div>
+        <div className="rounded-lg border border-white/10 bg-black p-4">
+          {enableDateFilter ? (
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-xs font-black text-gray-500">시작일</span>
+                  <input
+                    type="date"
+                    value={filterStart}
+                    onChange={(event) => setFilterStart(event.target.value)}
+                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-xs font-black text-gray-500">종료일</span>
+                  <input
+                    type="date"
+                    value={filterEnd}
+                    onChange={(event) => setFilterEnd(event.target.value)}
+                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
+                  />
+                </label>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setFilterStart('')
+                  setFilterEnd('')
+                }}
+                className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
+              >
+                필터 초기화
+              </button>
+            </div>
+          ) : (
+            <>
+              <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
+              <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
+                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
+              </p>
+            </>
+          )}
         </div>
       </div>
 
-      <div className="grid gap-4 p-5 md:grid-cols-3 md:p-6">
-        {events.length === 0 ? (
+      <div className="p-5 md:p-6">
+        {filteredEvents.length === 0 ? (
           <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
         ) : (
-          events.map((event) => (
-            <div
-              key={event.id}
-              className="rounded-lg border border-l-4 border-white/10 bg-black p-5"
-              style={calendarEventStyle(event)}
-            >
-              <p className="text-xs font-black text-brand-blue">{formatDateLabel(event.start)}</p>
-              <h3 className="mt-3 text-lg font-black text-white keep-all">{event.title}</h3>
-              <p className="mt-2 text-sm font-bold text-gray-400">{formatDateTime(event.start)}</p>
-              {event.calendarName ? (
-                <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
-                  <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
-                  {event.calendarName}
-                </p>
-              ) : null}
-              {event.location ? <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">{event.location}</p> : null}
-              {event.attendees.length > 0 ? (
-                <p className="mt-3 text-xs font-semibold text-gray-500 keep-all">
-                  참석자: {event.attendees.slice(0, 3).join(', ')}
-                </p>
-              ) : null}
-              <label className="mt-4 block">
-                <span className="text-xs font-black text-gray-500">미팅 내용 기록</span>
-                <textarea
-                  value={meetingNotes[event.id] ?? event.memo ?? ''}
-                  onChange={(changeEvent) =>
-                    setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
-                  }
-                  className="mt-2 min-h-32 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                  placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션을 기록합니다."
-                />
-              </label>
-              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <p className="text-xs font-semibold leading-5 text-gray-600 keep-all">
-                  향후 Drive 음성파일 분석 회의록도 이 영역에 저장합니다.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => saveNote(event)}
-                  disabled={savingNoteId === event.id}
-                  className="inline-flex h-9 shrink-0 items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
-                >
-                  {savingNoteId === event.id ? '저장 중' : '기록 저장'}
-                </button>
-              </div>
-              {noteMessages[event.id] ? (
-                <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
-              ) : null}
-            </div>
-          ))
+          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+            <table className="min-w-[1180px] w-full border-collapse text-left">
+              <thead className="bg-white/[0.04]">
+                <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+                  <th className="w-[150px] px-4 py-3">날짜</th>
+                  <th className="w-[240px] px-4 py-3">미팅</th>
+                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
+                  <th className="w-[160px] px-4 py-3">참석자</th>
+                  <th className="px-4 py-3">미팅 내용</th>
+                  <th className="w-[110px] px-4 py-3">저장</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/10">
+                {filteredEvents.map((event) => (
+                  <tr key={event.id} className="align-top">
+                    <td className="px-4 py-4">
+                      <p className="text-sm font-black text-white">{formatDateLabel(event.start)}</p>
+                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(event.start)}</p>
+                    </td>
+                    <td className="px-4 py-4">
+                      <p className="text-sm font-black leading-5 text-white keep-all">{event.title}</p>
+                      <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
+                        {eventTypeLabel(event.type)}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      {event.calendarName ? (
+                        <p className="inline-flex items-center gap-2 text-xs font-black text-gray-400">
+                          <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
+                          {event.calendarName}
+                        </p>
+                      ) : null}
+                      {event.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{event.location}</p> : null}
+                    </td>
+                    <td className="px-4 py-4">
+                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
+                        {event.attendees.length > 0 ? event.attendees.slice(0, 3).join(', ') : '-'}
+                      </p>
+                    </td>
+                    <td className="px-4 py-4">
+                      <textarea
+                        value={meetingNotes[event.id] ?? event.memo ?? ''}
+                        onChange={(changeEvent) =>
+                          setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
+                        }
+                        className="min-h-28 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
+                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+                      />
+                      {noteMessages[event.id] ? (
+                        <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
+                      ) : null}
+                    </td>
+                    <td className="px-4 py-4">
+                      <button
+                        type="button"
+                        onClick={() => saveNote(event)}
+                        disabled={savingNoteId === event.id}
+                        className="inline-flex h-9 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+                      >
+                        {savingNoteId === event.id ? '저장 중' : '저장'}
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </section>
