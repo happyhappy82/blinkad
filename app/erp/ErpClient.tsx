@@ -2580,7 +2580,7 @@ function MeetingPanel({
 }) {
   const meetings = events
     .filter(isMeetingEvent)
-    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
 
   return (
     <MeetingListPanel
