@@ -2918,6 +2918,13 @@ function StoreOperationsPanel({
   const [historyDateFilter, setHistoryDateFilter] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
+  const [expandedReport, setExpandedReport] = useState<{
+    report: StoreWeeklyReport
+    date: Date
+    dateKey: string
+    status: StoreWeeklyReportStatus
+    memo: string
+  } | null>(null)
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
@@ -3143,7 +3150,7 @@ function StoreOperationsPanel({
                       return (
                         <div
                           key={`${activeWorkspace.key}-report-${reportDateKey}`}
-                          className={`flex min-h-[330px] flex-col rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
+                          className={`flex min-h-[440px] flex-col rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
                         >
                           <div className="flex items-start justify-between gap-2">
                             <div>
@@ -3166,7 +3173,7 @@ function StoreOperationsPanel({
                                   [reportDateKey]: event.target.value,
                                 }))
                               }
-                              className="min-h-[112px] w-full resize-none rounded-md border border-white/10 bg-black/35 px-3 py-2 text-xs font-semibold leading-5 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/20 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+                              className="min-h-[190px] w-full resize-none rounded-md border border-white/10 bg-black/35 px-3 py-2 text-xs font-semibold leading-5 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/20 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
                               placeholder="오늘 보고한 내용을 입력하세요."
                             />
                           </label>
@@ -3200,6 +3207,22 @@ function StoreOperationsPanel({
                             className="mt-2 h-9 rounded-md border border-white/15 bg-white/10 px-3 text-xs font-black text-white transition hover:border-brand-blue/40 hover:bg-brand-blue/15 disabled:cursor-not-allowed disabled:text-gray-500"
                           >
                             {updating ? '저장 중' : '보고 저장'}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={updating}
+                            onClick={() =>
+                              setExpandedReport({
+                                report,
+                                date,
+                                dateKey: reportDateKey,
+                                status: report.status,
+                                memo: draftMemo,
+                              })
+                            }
+                            className="mt-2 h-9 rounded-md border border-white/10 px-3 text-xs font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+                          >
+                            확대 작성
                           </button>
                         </div>
                       )
@@ -3308,6 +3331,81 @@ function StoreOperationsPanel({
               등록된 상품별 업무가 없습니다.
             </p>
           )}
+          {expandedReport ? (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
+              <div className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl">
+                <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p className="text-sm font-bold text-brand-blue">Report Detail</p>
+                    <h4 className="mt-2 text-2xl font-black text-white keep-all">{expandedReport.report.title}</h4>
+                    <p className="mt-2 text-sm font-semibold text-gray-500">
+                      {formatMonthDay(expandedReport.date)} · {formatWeekday(expandedReport.date)}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setExpandedReport(null)}
+                    className="h-10 rounded-md border border-white/10 px-3 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+                  >
+                    닫기
+                  </button>
+                </div>
+                <div className="space-y-4 p-5">
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black text-gray-500">보고 상태</span>
+                    <select
+                      value={expandedReport.status}
+                      onChange={(event) =>
+                        setExpandedReport((current) =>
+                          current ? { ...current, status: event.target.value as StoreWeeklyReportStatus } : current
+                        )
+                      }
+                      className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white outline-none transition hover:border-white/25"
+                    >
+                      {REPORT_STATUS_OPTIONS.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block">
+                    <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
+                    <textarea
+                      value={expandedReport.memo}
+                      onChange={(event) =>
+                        setExpandedReport((current) => (current ? { ...current, memo: event.target.value } : current))
+                      }
+                      className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50"
+                      placeholder="보고 내용을 자세히 입력하세요."
+                    />
+                  </label>
+                </div>
+                <div className="flex justify-end gap-2 border-t border-white/10 p-5">
+                  <button
+                    type="button"
+                    onClick={() => setExpandedReport(null)}
+                    className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+                  >
+                    취소
+                  </button>
+                  <button
+                    type="button"
+                    disabled={updatingReportDate === expandedReport.dateKey}
+                    onClick={async () => {
+                      const current = expandedReport
+                      setReportDrafts((drafts) => ({ ...drafts, [current.dateKey]: current.memo }))
+                      await updateWeeklyReportStatus(current.report, current.dateKey, current.status, current.memo)
+                      setExpandedReport(null)
+                    }}
+                    className="h-10 rounded-md bg-brand-blue px-4 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                  >
+                    {updatingReportDate === expandedReport.dateKey ? '저장 중' : '저장'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : null}
         </>
       ) : (
         <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
