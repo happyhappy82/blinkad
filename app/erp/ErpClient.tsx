@@ -6,6 +6,7 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
@@ -2916,6 +2917,7 @@ function StoreOperationsPanel({
   const [reportHistoryMessage, setReportHistoryMessage] = useState('')
   const [historyDateFilter, setHistoryDateFilter] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
+  const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
@@ -2955,6 +2957,7 @@ function StoreOperationsPanel({
         if (cancelled) return
         setWeeklyReports(data.reports || [])
         setReportHistory(historyData.reports || [])
+        setReportDrafts(Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || ''])))
         setWeeklyReportMessage(
           data.message ||
             (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
@@ -2966,6 +2969,14 @@ function StoreOperationsPanel({
       } catch {
         if (cancelled) return
         setWeeklyReports(activeWorkspace.weeklyReports || [])
+        setReportDrafts(
+          Object.fromEntries(
+            (activeWorkspace.weeklyReports || []).map((report) => {
+              const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
+              return [date, report.memo || '']
+            })
+          )
+        )
         setReportHistory([])
         setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
         setReportHistoryMessage('기존 보고 현황을 불러오지 못했습니다.')
@@ -2987,10 +2998,12 @@ function StoreOperationsPanel({
   const updateWeeklyReportStatus = async (
     report: StoreWeeklyReport,
     reportDateKey: string,
-    status: StoreWeeklyReportStatus
+    status: StoreWeeklyReportStatus,
+    memoOverride?: string
   ) => {
     if (!selectedStore || !activeWorkspace) return
 
+    const reportMemo = memoOverride ?? reportDrafts[reportDateKey] ?? report.memo
     setUpdatingReportDate(reportDateKey)
     setWeeklyReports((current) => {
       const source = current.length ? current : displayWeeklyReports
@@ -3000,6 +3013,7 @@ function StoreOperationsPanel({
           ? {
               ...item,
               status,
+              memo: reportMemo,
               reporter: status === '완료' ? item.reporter || '블링크애드' : item.reporter,
               completedAt: status === '완료' ? item.completedAt || new Date().toISOString() : undefined,
             }
@@ -3017,13 +3031,14 @@ function StoreOperationsPanel({
           date: reportDateKey,
           weekStart,
           title: report.title,
-          memo: report.memo,
+          memo: reportMemo,
           status,
         }),
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       if (data.connected) {
         setWeeklyReports(data.reports || [])
+        setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
       }
       setWeeklyReportMessage(data.message || '보고 상태를 변경했습니다.')
     } catch {
@@ -3116,18 +3131,19 @@ function StoreOperationsPanel({
                       </p>
                     </div>
                   </div>
-                  <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-7">
+                  <div className="mt-4 grid gap-3 lg:grid-cols-5">
                     {displayWeeklyReports.map((report) => {
                       const date = report.date
                         ? parseLocalDate(report.date)
                         : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
                       const reportDateKey = report.date || toISODate(date)
                       const updating = updatingReportDate === reportDateKey
+                      const draftMemo = reportDrafts[reportDateKey] ?? report.memo ?? ''
 
                       return (
                         <div
                           key={`${activeWorkspace.key}-report-${reportDateKey}`}
-                          className={`rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
+                          className={`flex min-h-[330px] flex-col rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
                         >
                           <div className="flex items-start justify-between gap-2">
                             <div>
@@ -3139,7 +3155,21 @@ function StoreOperationsPanel({
                             </span>
                           </div>
                           <p className="mt-4 font-black text-white keep-all">{report.title}</p>
-                          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                          <label className="mt-3 block flex-1">
+                            <span className="mb-1 block text-[11px] font-black text-gray-600">보고 내용</span>
+                            <textarea
+                              value={draftMemo}
+                              disabled={updating}
+                              onChange={(event) =>
+                                setReportDrafts((current) => ({
+                                  ...current,
+                                  [reportDateKey]: event.target.value,
+                                }))
+                              }
+                              className="min-h-[112px] w-full resize-none rounded-md border border-white/10 bg-black/35 px-3 py-2 text-xs font-semibold leading-5 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/20 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+                              placeholder="오늘 보고한 내용을 입력하세요."
+                            />
+                          </label>
                           {report.status === '완료' ? (
                             <p className="mt-3 text-[11px] font-bold leading-5 text-emerald-100/80 keep-all">
                               {report.reporter ? `${report.reporter} · ` : ''}
@@ -3152,7 +3182,7 @@ function StoreOperationsPanel({
                               value={report.status}
                               disabled={updating}
                               onChange={(event) =>
-                                updateWeeklyReportStatus(report, reportDateKey, event.target.value as StoreWeeklyReportStatus)
+                                updateWeeklyReportStatus(report, reportDateKey, event.target.value as StoreWeeklyReportStatus, draftMemo)
                               }
                               className="h-9 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-xs font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
                             >
@@ -3163,6 +3193,14 @@ function StoreOperationsPanel({
                               ))}
                             </select>
                           </label>
+                          <button
+                            type="button"
+                            disabled={updating}
+                            onClick={() => updateWeeklyReportStatus(report, reportDateKey, report.status, draftMemo)}
+                            className="mt-2 h-9 rounded-md border border-white/15 bg-white/10 px-3 text-xs font-black text-white transition hover:border-brand-blue/40 hover:bg-brand-blue/15 disabled:cursor-not-allowed disabled:text-gray-500"
+                          >
+                            {updating ? '저장 중' : '보고 저장'}
+                          </button>
                         </div>
                       )
                     })}
@@ -3423,21 +3461,24 @@ function StoreTable({
                   </td>
                   <td className="px-5 py-4">
                     {onStatusChange ? (
-                      <select
-                        value={store.status || ''}
-                        disabled={updatingStatusId === store.id}
-                        onChange={(event) => onStatusChange(store, event.target.value)}
-                        className={`h-9 min-w-[180px] rounded-full border px-3 text-xs font-black outline-none transition disabled:cursor-not-allowed disabled:opacity-60 ${statusBadge(store.status)}`}
-                      >
-                        {store.status && !statusOptions?.includes(store.status) ? (
-                          <option value={store.status}>{store.status}</option>
-                        ) : null}
-                        {(statusOptions?.length ? statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS).map((status) => (
-                          <option key={status} value={status}>
-                            {status}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative inline-flex">
+                        <select
+                          value={store.status || ''}
+                          disabled={updatingStatusId === store.id}
+                          onChange={(event) => onStatusChange(store, event.target.value)}
+                          className={`h-9 min-w-[180px] appearance-none rounded-full border py-0 pl-3 pr-12 text-xs font-black outline-none transition disabled:cursor-not-allowed disabled:opacity-60 ${statusBadge(store.status)}`}
+                        >
+                          {store.status && !statusOptions?.includes(store.status) ? (
+                            <option value={store.status}>{store.status}</option>
+                          ) : null}
+                          {(statusOptions?.length ? statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS).map((status) => (
+                            <option key={status} value={status}>
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-current" />
+                      </div>
                     ) : (
                       <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
                         {store.status || '상태 없음'}
