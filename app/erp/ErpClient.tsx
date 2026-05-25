@@ -96,6 +96,8 @@ type CalendarApiResponse = {
   events: CalendarEvent[]
 }
 
+type SaveMeetingNoteHandler = (event: CalendarEvent, memo: string) => Promise<string>
+
 type CalendarAccountView = {
   memberId: string
   name: string
@@ -1071,6 +1073,39 @@ export default function ErpClient() {
     }
   }
 
+  const saveMeetingNote: SaveMeetingNoteHandler = async (calendarEvent, memo) => {
+    const payload = {
+      id: calendarEvent.id,
+      title: calendarEvent.title,
+      start: calendarEvent.start,
+      end: calendarEvent.end || calendarEvent.start,
+      type: 'meeting',
+      location: calendarEvent.location,
+      memo,
+    }
+
+    const response = await fetch('/api/erp/google/calendar', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    const data = (await response.json()) as { message?: string; event?: CalendarEvent }
+
+    if (!response.ok) {
+      throw new Error(data.message || '미팅 기록을 저장하지 못했습니다.')
+    }
+
+    if (data.event) {
+      setCalendarEvents((current) => current.map((item) => (item.id === data.event!.id ? data.event! : item)))
+    }
+
+    if (data.event?.source === 'google') {
+      await loadCalendarEvents()
+    }
+
+    return data.message || '미팅 기록을 저장했습니다.'
+  }
+
   const loadMailItems = async () => {
     setMailLoading(true)
     try {
@@ -1398,6 +1433,7 @@ export default function ErpClient() {
                 loading={calendarLoading}
                 message={calendarMessage}
                 onRefresh={loadCalendarEvents}
+                onSaveMeetingNote={saveMeetingNote}
               />
             )}
 
@@ -1407,6 +1443,7 @@ export default function ErpClient() {
                 loading={calendarLoading}
                 message={calendarMessage}
                 onRefresh={loadCalendarEvents}
+                onSaveMeetingNote={saveMeetingNote}
               />
             )}
 
@@ -2533,11 +2570,13 @@ function MeetingPanel({
   loading,
   message,
   onRefresh,
+  onSaveMeetingNote,
 }: {
   events: CalendarEvent[]
   loading: boolean
   message: string
   onRefresh: () => void
+  onSaveMeetingNote: SaveMeetingNoteHandler
 }) {
   const meetings = events
     .filter(isMeetingEvent)
@@ -2545,13 +2584,14 @@ function MeetingPanel({
 
   return (
     <MeetingListPanel
-      kicker="Meeting"
-      title="미팅관리"
-      description="일정관리에서 미팅 일정으로 기록된 항목만 추려서 보여줍니다."
+      kicker="Meeting DB"
+      title="총 미팅 DB"
+      description="Google Calendar 팀 공유 캘린더에 기록된 전체 미팅 일정을 모아보고, 각 미팅별 논의 내용과 후속 액션을 기록합니다."
       events={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
+      onSaveMeetingNote={onSaveMeetingNote}
       emptyLabel="등록된 미팅 일정이 없습니다."
     />
   )
@@ -2562,29 +2602,37 @@ function WeeklyMeetingPanel({
   loading,
   message,
   onRefresh,
+  onSaveMeetingNote,
 }: {
   events: CalendarEvent[]
   loading: boolean
   message: string
   onRefresh: () => void
+  onSaveMeetingNote: SaveMeetingNoteHandler
 }) {
   const now = new Date()
-  const sevenDaysAgo = new Date(now)
-  sevenDaysAgo.setDate(now.getDate() - 7)
+  now.setHours(0, 0, 0, 0)
+  const sevenDaysLater = new Date(now)
+  sevenDaysLater.setDate(now.getDate() + 7)
+  sevenDaysLater.setHours(23, 59, 59, 999)
   const weeklyMeetings = events
-    .filter((event) => isMeetingEvent(event) && new Date(event.start) >= sevenDaysAgo && new Date(event.start) <= now)
-    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
+    .filter((event) => {
+      const start = new Date(event.start)
+      return isMeetingEvent(event) && start >= now && start <= sevenDaysLater
+    })
+    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
 
   return (
     <MeetingListPanel
       kicker="Weekly Meeting"
       title="위클리미팅"
-      description="최근 1주일간 진행했던 미팅 내역을 Google Calendar 기준으로 모아봅니다."
+      description="오늘부터 7일 뒤까지 예정된 미팅만 모아 미팅 준비와 후속 기록을 확인합니다."
       events={weeklyMeetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
-      emptyLabel="최근 1주일 내 진행된 미팅이 없습니다."
+      onSaveMeetingNote={onSaveMeetingNote}
+      emptyLabel="향후 7일 내 예정된 미팅이 없습니다."
     />
   )
 }
@@ -2597,6 +2645,7 @@ function MeetingListPanel({
   loading,
   message,
   onRefresh,
+  onSaveMeetingNote,
   emptyLabel,
 }: {
   kicker: string
@@ -2606,8 +2655,31 @@ function MeetingListPanel({
   loading: boolean
   message: string
   onRefresh: () => void
+  onSaveMeetingNote: SaveMeetingNoteHandler
   emptyLabel: string
 }) {
+  const [meetingNotes, setMeetingNotes] = useState<Record<string, string>>({})
+  const [savingNoteId, setSavingNoteId] = useState<string | null>(null)
+  const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
+
+  const saveNote = async (event: CalendarEvent) => {
+    const note = meetingNotes[event.id] ?? event.memo ?? ''
+    setSavingNoteId(event.id)
+    setNoteMessages((current) => ({ ...current, [event.id]: '' }))
+
+    try {
+      const message = await onSaveMeetingNote(event, note)
+      setNoteMessages((current) => ({ ...current, [event.id]: message }))
+    } catch (error) {
+      setNoteMessages((current) => ({
+        ...current,
+        [event.id]: error instanceof Error ? error.message : '미팅 기록 저장 중 오류가 발생했습니다.',
+      }))
+    } finally {
+      setSavingNoteId(null)
+    }
+  }
+
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
       <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
@@ -2625,6 +2697,19 @@ function MeetingListPanel({
           <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
           일정 새로고침
         </button>
+      </div>
+
+      <div className="grid gap-3 border-b border-white/10 p-5 md:grid-cols-3 md:p-6">
+        <div className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-gray-500">Total Meetings</p>
+          <p className="mt-3 text-4xl font-black text-white">{events.length}</p>
+        </div>
+        <div className="rounded-lg border border-white/10 bg-black p-4 md:col-span-2">
+          <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
+          <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
+            추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
+          </p>
+        </div>
       </div>
 
       <div className="grid gap-4 p-5 md:grid-cols-3 md:p-6">
@@ -2652,7 +2737,33 @@ function MeetingListPanel({
                   참석자: {event.attendees.slice(0, 3).join(', ')}
                 </p>
               ) : null}
-              {event.memo ? <p className="mt-3 text-sm leading-6 text-gray-400 keep-all">{event.memo}</p> : null}
+              <label className="mt-4 block">
+                <span className="text-xs font-black text-gray-500">미팅 내용 기록</span>
+                <textarea
+                  value={meetingNotes[event.id] ?? event.memo ?? ''}
+                  onChange={(changeEvent) =>
+                    setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
+                  }
+                  className="mt-2 min-h-32 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
+                  placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션을 기록합니다."
+                />
+              </label>
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-xs font-semibold leading-5 text-gray-600 keep-all">
+                  향후 Drive 음성파일 분석 회의록도 이 영역에 저장합니다.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => saveNote(event)}
+                  disabled={savingNoteId === event.id}
+                  className="inline-flex h-9 shrink-0 items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+                >
+                  {savingNoteId === event.id ? '저장 중' : '기록 저장'}
+                </button>
+              </div>
+              {noteMessages[event.id] ? (
+                <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
+              ) : null}
             </div>
           ))
         )}

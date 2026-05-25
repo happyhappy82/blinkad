@@ -118,6 +118,14 @@ function classifyEvent(event: GoogleCalendarEvent) {
   return 'operation'
 }
 
+function cleanEventDescription(value = '') {
+  return value
+    .split('\n')
+    .filter((line) => !line.trim().startsWith('ERP_TYPE:'))
+    .join('\n')
+    .trim()
+}
+
 function normalizeCalendarName(value: string) {
   return value.replace(/\s+/g, '').toLowerCase()
 }
@@ -195,7 +203,7 @@ function normalizeEvent(event: GoogleCalendarEvent, calendar?: GoogleCalendarLis
     attendees:
       event.attendees?.map((attendee) => attendee.displayName || attendee.email || '').filter(Boolean) || [],
     status: event.status || 'confirmed',
-    memo: event.description || '',
+    memo: cleanEventDescription(event.description || ''),
     source: 'google',
     ...(calendar ? calendarMeta(calendar) : {}),
   }
@@ -255,14 +263,14 @@ export async function GET(request: Request) {
   }
 
   const timeMin = new Date()
-  timeMin.setMonth(timeMin.getMonth() - 1)
+  timeMin.setMonth(timeMin.getMonth() - 6)
   const timeMax = new Date()
-  timeMax.setMonth(timeMax.getMonth() + 2)
+  timeMax.setMonth(timeMax.getMonth() + 6)
 
   const params = new URLSearchParams({
     singleEvents: 'true',
     orderBy: 'startTime',
-    maxResults: '80',
+    maxResults: '250',
     timeMin: timeMin.toISOString(),
     timeMax: timeMax.toISOString(),
   })
