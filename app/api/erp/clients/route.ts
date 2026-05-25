@@ -6,7 +6,7 @@ import path from 'path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const DEFAULT_DATABASE_ID = '18f45111-0c99-45d9-97de-4ce4fd86d074'
+const DEFAULT_DATABASE_ID = '2ea753ebc01380e18b25c0bc664238b8'
 const TITLE_PROPERTY = '고객명'
 
 const fallbackStores = [
@@ -14,7 +14,7 @@ const fallbackStores = [
     id: 'sample-1',
     name: '미플러스치과 신사',
     category: '병원',
-    status: '진단완료',
+    status: '신규 문의',
     contact: '연락처 확인 필요',
     owner: '블링크애드',
     googleMapUrl: '',
@@ -32,7 +32,7 @@ const fallbackStores = [
     id: 'sample-2',
     name: '월하동',
     category: '요식업',
-    status: '견적서',
+    status: '견적서 송부/팔로업 지속',
     contact: '연락처 확인 필요',
     owner: '블링크애드',
     googleMapUrl: '',
@@ -50,7 +50,7 @@ const fallbackStores = [
     id: 'sample-3',
     name: '대게특별시',
     category: '요식업',
-    status: '계약대기',
+    status: '공동대응',
     contact: '연락처 확인 필요',
     owner: '권순현',
     googleMapUrl: '',

@@ -430,18 +430,6 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
                 title: '주간 마감 보고',
                 memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
               },
-              {
-                dayOffset: 5,
-                status: '휴무',
-                title: '긴급 대응',
-                memo: '필요 시 리뷰/정보 오류만 확인',
-              },
-              {
-                dayOffset: 6,
-                status: '휴무',
-                title: '정기 운영 없음',
-                memo: '주간 운영 마감 후 대기',
-              },
             ],
             tasks: [
               {
@@ -926,6 +914,11 @@ function matchesStatus(status: string, matcher: string[]) {
   return matcher.some((keyword) => target.includes(keyword))
 }
 
+function statusIncludesAny(status: string, keywords: string[]) {
+  const compactStatus = (status || '').replace(/\s+/g, '')
+  return keywords.some((keyword) => compactStatus.includes(keyword.replace(/\s+/g, '')))
+}
+
 function statusBadge(status: string) {
   if (status.includes('운영')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
   if (status.includes('계약')) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
@@ -1074,7 +1067,14 @@ export default function ErpClient() {
     return { managed, counts }
   }, [stores])
 
-  const operationView = realtimeMenuIds.includes(activeMenu) ? undefined : operationViews[activeMenu]
+  const inquiryStores = stores.filter((store) => statusIncludesAny(store.status, ['신규 문의', '신규문의']))
+  const followupStores = stores.filter((store) =>
+    statusIncludesAny(store.status, ['견적서 송부', '팔로업 지속', '공동대응'])
+  )
+  const operationView =
+    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
+      ? undefined
+      : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
 
   const selectMenu = (menuId: MenuId) => {
@@ -1253,7 +1253,27 @@ export default function ErpClient() {
             {activeMenu === 'crm' && (
               <StoreTable
                 title="문의관리"
-                description="Notion 문의관리 DB의 신규 문의와 상담 전 매장을 ERP에서 확인합니다."
+                description="Notion 문의관리 DB에서 처리상태가 신규 문의인 클라이언트만 확인합니다."
+                stores={inquiryStores}
+                loading={loading}
+                columns="crm"
+              />
+            )}
+
+            {activeMenu === 'followup' && (
+              <StoreTable
+                title="팔로업 관리"
+                description="견적서 송부/팔로업 지속, 공동대응 상태의 클라이언트를 모아 후속 액션을 관리합니다."
+                stores={followupStores}
+                loading={loading}
+                columns="crm"
+              />
+            )}
+
+            {activeMenu === 'customer' && (
+              <StoreTable
+                title="고객관리"
+                description="Notion 문의관리 DB의 전체 고객 리스트를 확인합니다."
                 stores={stores}
                 loading={loading}
                 columns="crm"
@@ -2862,6 +2882,21 @@ function StoreOperationsPanel({
     if (!selectedStore || !activeWorkspace) return
 
     setUpdatingReportDate(reportDateKey)
+    setWeeklyReports((current) => {
+      const source = current.length ? current : displayWeeklyReports
+      return source.map((item) => {
+        const itemDate = item.date || toISODate(weeklyReportDates[item.dayOffset] || weeklyReportDates[0])
+        return itemDate === reportDateKey
+          ? {
+              ...item,
+              status,
+              reporter: status === '완료' ? item.reporter || '블링크애드' : item.reporter,
+              completedAt: status === '완료' ? item.completedAt || new Date().toISOString() : undefined,
+            }
+          : item
+      })
+    })
+
     try {
       const response = await fetch('/api/erp/reports', {
         method: 'PATCH',
@@ -2877,7 +2912,9 @@ function StoreOperationsPanel({
         }),
       })
       const data = (await response.json()) as WeeklyReportApiResponse
-      setWeeklyReports(data.reports || [])
+      if (data.connected) {
+        setWeeklyReports(data.reports || [])
+      }
       setWeeklyReportMessage(data.message || '보고 상태를 변경했습니다.')
     } catch {
       setWeeklyReportMessage('보고 상태 변경 중 오류가 발생했습니다.')
@@ -3140,7 +3177,7 @@ function getCurrentWeekDates() {
   const offset = day === 6 ? 2 : day === 0 ? 1 : 1 - day
   monday.setDate(monday.getDate() + offset)
 
-  return Array.from({ length: 7 }, (_, index) => addDays(monday, index))
+  return Array.from({ length: 5 }, (_, index) => addDays(monday, index))
 }
 
 function toISODate(date: Date) {

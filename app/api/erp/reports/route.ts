@@ -125,16 +125,14 @@ function weekday(date: Date) {
 }
 
 function fallbackReports(weekStart?: string): ReportItem[] {
-  const dates = weekDates(weekStart)
-  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고', '긴급 대응', '정기 운영 없음']
+  const dates = weekDates(weekStart).slice(0, 5)
+  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
   const memos = [
     'Google 게시물과 소식지 업데이트를 진행합니다.',
     '주요 키워드 노출 순위와 변동을 확인합니다.',
     '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
     '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
     '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
-    '필요 시 리뷰/정보 오류만 확인',
-    '주간 운영 마감 후 대기',
   ]
 
   return dates.map((date, index) => ({
@@ -162,20 +160,27 @@ function fallbackReportsWithStatus(weekStart: string | undefined, date: string, 
 function fallbackReportHistory(weekStart?: string): ReportItem[] {
   const baseStart = parseDate(weekStart)
   baseStart.setDate(baseStart.getDate() - 14)
+  const reports: ReportItem[] = []
+  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
 
-  return Array.from({ length: 10 }, (_, index) => {
+  for (let index = 0; reports.length < 10; index += 1) {
     const date = new Date(baseStart)
     date.setDate(baseStart.getDate() + index)
-    return {
-      dayOffset: index % 7,
+    const day = date.getDay()
+    if (day === 0 || day === 6) continue
+
+    reports.push({
+      dayOffset: reports.length % 5,
       date: isoDate(date),
       status: '완료' as ReportStatus,
-      title: ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고'][index % 5],
+      title: titles[reports.length % 5],
       memo: '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
       reporter: '블링크애드',
       completedAt: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 0, 0).toISOString(),
-    }
-  }).reverse()
+    })
+  }
+
+  return reports.reverse()
 }
 
 function propertyValue(propSchema: any, value: string) {
