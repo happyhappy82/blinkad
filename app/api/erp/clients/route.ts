@@ -204,6 +204,25 @@ function resolveNotionToken() {
   }
 }
 
+async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string) {
+  try {
+    await notion.databases.retrieve({ database_id: databaseOrPageId })
+    return databaseOrPageId
+  } catch (error) {
+    const message = error instanceof Error ? error.message : ''
+    if (!message.includes('is a page')) throw error
+
+    const children = await notion.blocks.children.list({
+      block_id: databaseOrPageId,
+      page_size: 100,
+    })
+    const databaseBlock = children.results.find((block: any) => block.type === 'child_database') as any
+    if (databaseBlock?.id) return databaseBlock.id
+
+    throw new Error('지정한 Notion 페이지 안에서 문의관리 DB를 찾지 못했습니다.')
+  }
+}
+
 export async function GET() {
   const token = resolveNotionToken()
   const databaseId = process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_DATABASE_ID
@@ -219,8 +238,9 @@ export async function GET() {
 
   try {
     const notion = new Client({ auth: token })
+    const resolvedDatabaseId = await resolveClientDatabaseId(notion, databaseId)
     const response = await notion.databases.query({
-      database_id: databaseId,
+      database_id: resolvedDatabaseId,
       page_size: 100,
     })
 
