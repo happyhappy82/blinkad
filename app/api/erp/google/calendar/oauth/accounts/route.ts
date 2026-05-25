@@ -1,14 +1,22 @@
 import { NextResponse } from 'next/server'
-import { clearCalendarAccountToken, publicCalendarAccount, readCalendarAccounts } from '@/lib/erp-google-calendar-store'
+import {
+  calendarTokenStoreStatus,
+  clearCalendarAccountToken,
+  publicCalendarAccount,
+  readCalendarAccounts,
+} from '@/lib/erp-google-calendar-store'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function GET() {
   const accounts = await readCalendarAccounts()
+  const storage = calendarTokenStoreStatus()
 
   return NextResponse.json({
     connected: true,
+    storage,
+    message: storage.message,
     accounts: accounts.map(publicCalendarAccount),
   })
 }

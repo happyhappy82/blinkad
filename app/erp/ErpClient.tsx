@@ -2196,12 +2196,12 @@ function CalendarIntegrationPanel() {
           <p className="text-sm font-black text-white">현재 구현 상태</p>
           <div className="mt-4 space-y-3 text-sm leading-6 text-gray-400 keep-all">
             <p>
-              이제 팀원별 Google OAuth 승인과 refresh token 저장 구조가 추가되었습니다. 연결된 팀원의 토큰은 로컬
-              `.erp-private/` 저장소에 보관되며 Git에는 올라가지 않습니다.
+              이제 팀원별 Google OAuth 승인과 refresh token 저장 구조가 추가되었습니다. Notion 토큰 DB와 암호화 키가
+              설정되면 연결된 팀원의 토큰은 Notion에 암호화 저장됩니다.
             </p>
             <p>
-              실제 운영에서는 이 저장소를 DB 또는 암호화된 Secret Store로 바꾸는 것이 맞습니다. 로컬 ERP에서는 지금 구조로
-              팀원별 연결 테스트가 가능합니다.
+              Notion 저장소가 아직 연결되지 않은 환경에서는 기존 로컬 `.erp-private/` 저장소로 자동 전환됩니다. 운영 배포에서는
+              Vercel 환경변수에 Notion DB ID와 암호화 키를 함께 등록해야 합니다.
             </p>
           </div>
         </div>
