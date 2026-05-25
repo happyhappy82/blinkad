@@ -16,12 +16,12 @@ function encodeState(state: Record<string, string | number>) {
 export async function GET(request: Request) {
   const url = new URL(request.url)
   const memberId = url.searchParams.get('memberId') || 'owner'
-  const returnTo = url.searchParams.get('returnTo') || '/erp?menu=calendarIntegration'
+  const returnTo = url.searchParams.get('returnTo') || '/erp?menu=settings'
   const { clientId, redirectUri } = getGoogleOAuthConfig(request)
 
   if (!clientId) {
     return NextResponse.redirect(
-      new URL('/erp?menu=calendarIntegration&calendarOAuth=missing-client-id', url.origin)
+      new URL('/erp?menu=settings&calendarOAuth=missing-client-id', url.origin)
     )
   }
 

@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 function decodeState(value: string | null) {
-  if (!value) return { memberId: 'owner', returnTo: '/erp?menu=calendarIntegration' }
+  if (!value) return { memberId: 'owner', returnTo: '/erp?menu=settings' }
 
   try {
     const parsed = JSON.parse(Buffer.from(value, 'base64url').toString('utf8')) as {
@@ -19,16 +19,16 @@ function decodeState(value: string | null) {
 
     return {
       memberId: parsed.memberId || 'owner',
-      returnTo: parsed.returnTo || '/erp?menu=calendarIntegration',
+      returnTo: parsed.returnTo || '/erp?menu=settings',
     }
   } catch {
-    return { memberId: 'owner', returnTo: '/erp?menu=calendarIntegration' }
+    return { memberId: 'owner', returnTo: '/erp?menu=settings' }
   }
 }
 
 function redirectWithStatus(origin: string, returnTo: string, status: string) {
   const target = new URL(returnTo, origin)
-  target.searchParams.set('menu', 'calendarIntegration')
+  target.searchParams.set('menu', 'settings')
   target.searchParams.set('calendarOAuth', status)
   return NextResponse.redirect(target)
 }

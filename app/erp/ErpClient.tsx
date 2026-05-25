@@ -4,7 +4,6 @@ import {
   Badge,
   Building2,
   Calendar,
-  CalendarCheck,
   CalendarDays,
   CheckCircle2,
   CheckSquare,
@@ -26,6 +25,7 @@ import {
   ReceiptText,
   RefreshCw,
   Search,
+  Settings,
   UserPlus,
   UserCog,
   Users,
@@ -141,7 +141,6 @@ const menuGroups = [
     label: '일정 / 미팅',
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
-      { id: 'calendarIntegration', label: '캘린더 연동', icon: CalendarCheck },
       { id: 'meeting', label: '미팅관리', icon: Mic },
       { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
       { id: 'mail', label: '메일관리', icon: Mail },
@@ -180,6 +179,10 @@ const menuGroups = [
       { id: 'outsourcing', label: '외주 PM 관리', icon: Handshake },
     ],
   },
+  {
+    label: '설정',
+    items: [{ id: 'settings', label: '설정', icon: Settings }],
+  },
 ] as const
 
 type MenuId = (typeof menuGroups)[number]['items'][number]['id']
@@ -212,7 +215,11 @@ const statusGroups = [
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
-const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id))
+const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id)) as MenuId[]
+
+function isMenuId(value: string): value is MenuId {
+  return menuIds.includes(value as MenuId)
+}
 
 const operationViews: Partial<Record<MenuId, OperationView>> = {
   lead: {
@@ -878,8 +885,10 @@ export default function ErpClient() {
   }, [])
 
   useEffect(() => {
-    const menu = new URLSearchParams(window.location.search).get('menu') as MenuId | null
-    if (menu && menuIds.includes(menu)) {
+    const menu = new URLSearchParams(window.location.search).get('menu')
+    if (menu === 'calendarIntegration') {
+      setActiveMenu('settings')
+    } else if (menu && isMenuId(menu)) {
       setActiveMenu(menu)
     }
   }, [])
@@ -1154,7 +1163,7 @@ export default function ErpClient() {
               />
             )}
 
-            {activeMenu === 'calendarIntegration' && <CalendarIntegrationPanel />}
+            {activeMenu === 'settings' && <SettingsPanel />}
 
             {activeMenu === 'meeting' && (
               <MeetingPanel
@@ -2000,6 +2009,22 @@ function CalendarPanel({
           </div>
         </div>
       ) : null}
+    </section>
+  )
+}
+
+function SettingsPanel() {
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Settings</p>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-white">설정</h2>
+        <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+          매일 쓰는 업무 메뉴에서는 빼고, 외부 서비스 연동처럼 가끔 관리하는 항목만 모았습니다.
+        </p>
+      </div>
+
+      <CalendarIntegrationPanel />
     </section>
   )
 }
