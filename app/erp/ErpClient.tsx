@@ -318,34 +318,18 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '프로젝트관리',
     description: '계약 이후 매장별 GBP 운영 작업을 포스팅, 리뷰응답, 사진관리, 키워드 최적화 단위로 관리합니다.',
     stats: [
-      { label: '운영 매장', value: '9' },
-      { label: '이번 주 작업', value: '36' },
-      { label: '지연 작업', value: '4' },
+      { label: '운영 매장', value: '1' },
+      { label: '이번 주 작업', value: '5' },
+      { label: '지연 작업', value: '0' },
     ],
     rows: [
       {
-        title: '역대짬뽕 GBP 운영 세팅',
-        meta: '프로필 · 키워드 · 지점 페이지',
+        title: '언리미티드 GBP 운영 세팅',
+        meta: '프로필 · 리뷰 응대 · 소식지 · 사진 정리',
         status: '작업중',
         owner: '권순현',
-        due: 'D+3',
-        memo: '지점명 표기, 대표 메뉴, 외국인 검색 키워드 기준으로 기본 세팅합니다.',
-      },
-      {
-        title: '미스터버거 리뷰 응대 기준',
-        meta: '리뷰 · 다국어 CS · QR 인입',
-        status: '진행중',
-        owner: '블링크애드',
         due: '이번 주',
-        memo: '한국어/영어 대댓글 기준과 리뷰 요청 QR 흐름을 같이 정리합니다.',
-      },
-      {
-        title: '월하동 포스팅 캘린더',
-        meta: 'Google 게시물 · 메뉴 안내',
-        status: '대기',
-        owner: '외주 PM',
-        due: '금요일',
-        memo: '대표 메뉴, 영업시간, 외국어 안내를 월간 포스팅 계획으로 전환합니다.',
+        memo: 'Google 프로필 기본 세팅, 대표 사진 정리, 다국어 소식지, 리뷰 응대 기준을 한 매장 기준으로 관리합니다.',
       },
     ],
   },
@@ -390,34 +374,18 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '자료 요청',
     description: '운영 시작 전에 필요한 사진, 메뉴판, 서비스 설명, 권위 자료의 수집 상태를 관리합니다.',
     stats: [
-      { label: '요청 대기', value: '8' },
-      { label: '부분 수신', value: '6' },
-      { label: '완료', value: '10' },
+      { label: '요청 대기', value: '1' },
+      { label: '부분 수신', value: '0' },
+      { label: '완료', value: '0' },
     ],
     rows: [
       {
-        title: '월하동 메뉴판 원본 요청',
-        meta: '요식업 · 메뉴/가격/대표 메뉴',
-        status: '부분 수신',
+        title: '언리미티드 운영 자료 요청',
+        meta: '로컬 매장 · 내부/외부 사진 · 메뉴/서비스 안내',
+        status: '요청 대기',
         owner: '블링크애드',
-        due: '내일',
-        memo: '사진은 수신했지만 외국어 메뉴 설명과 대표 메뉴 우선순위가 필요합니다.',
-      },
-      {
-        title: '미플러스치과 신사 진료 항목 자료',
-        meta: '병원 · 시술/진료/내부 사진',
-        status: '요청중',
-        owner: '권순현',
-        due: 'D+2',
-        memo: '진료 항목, 의료진/공간 사진, 방송/수상 자료를 분리해서 요청합니다.',
-      },
-      {
-        title: '대게특별시 외부/메뉴 사진 보강',
-        meta: '요식업 · 방문 전 신뢰 자료',
-        status: '대기',
-        owner: '외주 PM',
         due: '이번 주',
-        memo: '외국인 고객이 방문 전 확인할 수 있는 메뉴·공간·포장 사진을 보강합니다.',
+        memo: '대표 사진, 공간 사진, 서비스 설명, 외국인 고객 안내에 필요한 기본 자료를 먼저 요청합니다.',
       },
     ],
   },
@@ -640,36 +608,20 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
   billing: {
     kicker: 'Billing',
     title: '청구관리',
-    description: '월간 청구, 정기결제, 세금계산서, 다음 결제일을 매장별로 관리합니다.',
+    description: 'GBP 계약 클라이언트의 매월 청구일, 청구 금액, 입금 상태, 다음 결제 예정일을 관리합니다.',
     stats: [
-      { label: '이번 달 청구', value: '12' },
-      { label: '결제 완료', value: '7' },
-      { label: '발행 대기', value: '5' },
+      { label: 'GBP 계약 고객', value: '1' },
+      { label: '이번 달 청구', value: '1' },
+      { label: '미수 건', value: '0' },
     ],
     rows: [
       {
-        title: '월간 GBP 운영료 청구',
-        meta: '정기 운영 · VAT 별도/포함 확인',
+        title: '언리미티드 월간 GBP 운영료',
+        meta: '정기 운영 · 매월 계약일 기준 청구',
         status: '발행 대기',
         owner: '권순현',
-        due: '월말',
-        memo: '계약 기간별 할인 금액과 세금계산서 발행 여부를 함께 확인합니다.',
-      },
-      {
-        title: '프로필 최적화 세팅비',
-        meta: '단건 세팅 · 66만원 VAT 포함',
-        status: '입금 확인',
-        owner: '블링크애드',
-        due: 'D+1',
-        memo: '입금 확인 후 계약서와 작업 시작일을 프로젝트에 연결합니다.',
-      },
-      {
-        title: 'Google Ads 운영 수수료',
-        meta: '광고비 별도 · 월 20만원',
-        status: '정산 예정',
-        owner: '권순현',
-        due: '매월 25일',
-        memo: '광고비와 운영 수수료를 분리해서 청구합니다.',
+        due: '매월 계약일',
+        memo: '계약 시작일, 월 청구 금액, 세금계산서 발행 여부, 입금 확인 상태를 한 줄에서 확인합니다.',
       },
     ],
   },
@@ -1120,9 +1072,9 @@ export default function ErpClient() {
 
             {activeMenu === 'profile' && (
               <StoreTable
-                title="프로필 운영"
-                description="Notion DB에서 Google 맵 링크가 등록된 매장만 모아 프로필 운영 상태와 지도 링크를 확인합니다."
-                stores={stores.filter((store) => store.googleMapUrl)}
+                title="GBP 운영"
+                description="현재 GBP 운영 대상으로 잡은 언리미티드 매장의 운영 상태와 Google 맵 링크를 확인합니다."
+                stores={stores.filter((store) => store.googleMapUrl && store.name.includes('언리미티드'))}
                 loading={loading}
                 columns="profile"
               />
