@@ -6,8 +6,9 @@ import path from 'path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-const DEFAULT_DATABASE_ID = '2ea753ebc01380e18b25c0bc664238b8'
+const DEFAULT_DATABASE_ID = '18f451110c9945d997de4ce4fd86d074'
 const TITLE_PROPERTY = '고객명'
+const CLIENT_DATABASE_SEARCH_QUERY = '통합 문의 관리 DB'
 
 const fallbackStores = [
   {
@@ -165,7 +166,7 @@ function pickContractUrl(properties: Record<string, any>) {
 function normalizePage(page: any) {
   const properties = page.properties || {}
   const status =
-    propText(findProperty(properties, ['처리상태', '상태', 'Status'])) ||
+    propText(findProperty(properties, ['처리상태', '상태', '계약완료', 'Status'])) ||
     (fileCount(properties['견적서']) > 0 ? '견적서' : '문의접수')
 
   return {
@@ -210,17 +211,49 @@ async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string)
     return databaseOrPageId
   } catch (error) {
     const message = error instanceof Error ? error.message : ''
-    if (!message.includes('is a page')) throw error
+    if (!message.includes('is a page')) {
+      return findClientDatabaseBySearch(notion, error)
+    }
 
     const children = await notion.blocks.children.list({
       block_id: databaseOrPageId,
       page_size: 100,
     })
-    const databaseBlock = children.results.find((block: any) => block.type === 'child_database') as any
-    if (databaseBlock?.id) return databaseBlock.id
+    const databaseBlocks = children.results.filter((block: any) => block.type === 'child_database') as any[]
+    const preferredBlocks = [
+      ...databaseBlocks.filter((block) => (block.child_database?.title || '').includes('문의')),
+      ...databaseBlocks,
+    ]
 
-    throw new Error('지정한 Notion 페이지 안에서 문의관리 DB를 찾지 못했습니다.')
+    for (const block of preferredBlocks) {
+      if (!block?.id) continue
+      try {
+        await notion.databases.retrieve({ database_id: block.id })
+        return block.id
+      } catch {
+        // The shared dashboard can contain linked DB blocks that are visible as
+        // blocks but whose data source is not shared with the integration.
+      }
+    }
+
+    return findClientDatabaseBySearch(notion, error)
   }
+}
+
+async function findClientDatabaseBySearch(notion: Client, cause?: unknown) {
+  const response = await notion.search({
+    query: CLIENT_DATABASE_SEARCH_QUERY,
+    filter: { property: 'object', value: 'database' },
+    page_size: 10,
+  })
+  const database = response.results.find((result: any) =>
+    (result.title || []).some((text: any) => text.plain_text?.includes('통합 문의 관리 DB'))
+  ) || response.results[0]
+
+  if (database?.id) return database.id
+
+  const detail = cause instanceof Error ? ` 원인: ${cause.message}` : ''
+  throw new Error(`문의관리 DB를 찾지 못했습니다.${detail}`)
 }
 
 export async function GET() {
