@@ -2970,6 +2970,9 @@ function OperationsPanel({
     }
   }
 
+  const copyRows = view.rows.filter((row) => row.copyText)
+  const hasCopyRows = copyRows.length > 0
+
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
       <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_360px] md:p-6">
@@ -2988,8 +2991,43 @@ function OperationsPanel({
         </div>
       </div>
 
+      {hasCopyRows ? (
+        <div className="space-y-3 border-b border-white/10 p-5 md:p-6">
+          {copyRows.map((row) => (
+            <article key={`${row.title}-copy-card`} className="rounded-lg border border-white/10 bg-black p-5">
+              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">웰컴문구</p>
+                  <h3 className="mt-2 text-lg font-black text-white keep-all">{row.title}</h3>
+                  <p className="mt-1 text-sm font-semibold text-gray-500 keep-all">{row.meta}</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => copyAssetText(row)}
+                  className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+                >
+                  <Copy className="h-4 w-4" />
+                  {copiedRowTitle === row.title ? '복사됨' : '문구 복사'}
+                </button>
+              </div>
+              <pre className="mt-4 max-h-[360px] overflow-auto rounded-lg border border-white/10 bg-white/[0.03] p-4 whitespace-pre-wrap break-keep font-sans text-sm font-semibold leading-7 text-gray-300">{row.copyText}</pre>
+            </article>
+          ))}
+        </div>
+      ) : null}
+
       <div className="overflow-x-auto">
-        <table className={`${isStoreOperations ? 'min-w-[1240px]' : 'min-w-[980px]'} w-full border-collapse text-left text-sm`}>
+        <table className={`${isStoreOperations ? 'min-w-[1240px]' : 'min-w-[1080px] table-fixed'} w-full border-collapse text-left text-sm`}>
+          {!isStoreOperations ? (
+            <colgroup>
+              <col className="w-[28%]" />
+              <col className="w-[128px]" />
+              <col className="w-[144px]" />
+              <col className="w-[104px]" />
+              <col />
+              {hasCopyRows ? <col className="w-[112px]" /> : null}
+            </colgroup>
+          ) : null}
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             {isStoreOperations ? (
               <tr>
@@ -3005,11 +3043,11 @@ function OperationsPanel({
             ) : (
               <tr>
                 <th className="px-5 py-4">업무</th>
-                <th className="px-5 py-4">상태</th>
-                <th className="px-5 py-4">담당</th>
-                <th className="px-5 py-4">기한</th>
+                <th className="px-5 py-4 whitespace-nowrap">상태</th>
+                <th className="px-5 py-4 whitespace-nowrap">담당</th>
+                <th className="px-5 py-4 whitespace-nowrap">기한</th>
                 <th className="px-5 py-4">메모</th>
-                {view.rows.some((row) => row.copyText) ? <th className="px-5 py-4">복사</th> : null}
+                {hasCopyRows ? <th className="px-5 py-4 whitespace-nowrap">복사</th> : null}
               </tr>
             )}
           </thead>
@@ -3054,14 +3092,14 @@ function OperationsPanel({
                       <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
                     </td>
                     <td className="px-5 py-4">
-                      <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
+                      <span className="inline-flex whitespace-nowrap rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-xs font-bold text-blue-100">
                         {row.status}
                       </span>
                     </td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{row.owner}</td>
-                    <td className="px-5 py-4 font-black text-white">{row.due}</td>
+                    <td className="px-5 py-4 font-semibold whitespace-nowrap text-gray-300">{row.owner}</td>
+                    <td className="px-5 py-4 font-black whitespace-nowrap text-white">{row.due}</td>
                     <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
-                    {view.rows.some((item) => item.copyText) ? (
+                    {hasCopyRows ? (
                       <td className="px-5 py-4">
                         {row.copyText ? (
                           <button
