@@ -3302,29 +3302,6 @@ function StoreOperationsPanel({
                   </div>
                 </div>
               </div>
-              <div className="divide-y divide-white/10">
-                {activeWorkspace.tasks.map((task) => (
-                  <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_180px_180px] md:p-6">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className={`rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(task.status)}`}>
-                          {task.status}
-                        </span>
-                        <p className="text-lg font-black text-white keep-all">{task.title}</p>
-                      </div>
-                      <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-600">담당</p>
-                      <p className="mt-2 font-bold text-gray-300">{task.owner}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-gray-600">기한</p>
-                      <p className="mt-2 font-black text-white">{task.due}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
             </div>
           ) : (
             <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
