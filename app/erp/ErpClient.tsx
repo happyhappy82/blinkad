@@ -282,6 +282,7 @@ const statusGroups = [
 
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
 const TEAM_CALENDAR_LABEL = '용올캘린더'
+const REPORT_STATUS_OPTIONS: StoreWeeklyReportStatus[] = ['예정', '작성중', '완료', '휴무']
 
 const realtimeMenuIds: MenuId[] = ['schedule', 'meeting', 'weekly', 'mail']
 const menuIds = menuGroups.flatMap((group) => group.items.map((item) => item.id)) as MenuId[]
@@ -2778,41 +2779,71 @@ function StoreOperationsPanel({
   const weeklyReportDates = useMemo(() => getCurrentWeekDates(), [])
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
+  const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
   const [weeklyReportLoading, setWeeklyReportLoading] = useState(false)
+  const [reportHistoryLoading, setReportHistoryLoading] = useState(false)
   const [weeklyReportMessage, setWeeklyReportMessage] = useState('')
-  const [completingReportDate, setCompletingReportDate] = useState<string | null>(null)
+  const [reportHistoryMessage, setReportHistoryMessage] = useState('')
+  const [historyDateFilter, setHistoryDateFilter] = useState('')
+  const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
+  const filteredReportHistory = historyDateFilter
+    ? reportHistory.filter((report) => report.date === historyDateFilter)
+    : reportHistory
 
   useEffect(() => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
       setWeeklyReports([])
+      setReportHistory([])
       setWeeklyReportMessage('')
+      setReportHistoryMessage('')
       return
     }
 
     let cancelled = false
     const loadWeeklyReports = async () => {
       setWeeklyReportLoading(true)
+      setReportHistoryLoading(true)
       try {
         const params = new URLSearchParams({
           store: selectedStore.title,
           product: activeWorkspace.key,
           weekStart,
         })
-        const response = await fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' })
-        const data = (await response.json()) as WeeklyReportApiResponse
+        const historyParams = new URLSearchParams({
+          store: selectedStore.title,
+          product: activeWorkspace.key,
+          weekStart,
+          mode: 'history',
+        })
+        const [weekResponse, historyResponse] = await Promise.all([
+          fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' }),
+          fetch(`/api/erp/reports?${historyParams.toString()}`, { cache: 'no-store' }),
+        ])
+        const data = (await weekResponse.json()) as WeeklyReportApiResponse
+        const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
         if (cancelled) return
         setWeeklyReports(data.reports || [])
+        setReportHistory(historyData.reports || [])
         setWeeklyReportMessage(
           data.message ||
             (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
         )
+        setReportHistoryMessage(
+          historyData.message ||
+            (historyData.connected ? '기존 보고 현황을 불러왔습니다.' : '보고 DB 연결 전 샘플 기존 보고로 표시 중입니다.')
+        )
       } catch {
         if (cancelled) return
         setWeeklyReports(activeWorkspace.weeklyReports || [])
+        setReportHistory([])
         setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
+        setReportHistoryMessage('기존 보고 현황을 불러오지 못했습니다.')
       } finally {
-        if (!cancelled) setWeeklyReportLoading(false)
+        if (!cancelled) {
+          setWeeklyReportLoading(false)
+          setReportHistoryLoading(false)
+        }
       }
     }
 
@@ -2823,10 +2854,14 @@ function StoreOperationsPanel({
     }
   }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart])
 
-  const completeWeeklyReport = async (report: StoreWeeklyReport, reportDateKey: string) => {
+  const updateWeeklyReportStatus = async (
+    report: StoreWeeklyReport,
+    reportDateKey: string,
+    status: StoreWeeklyReportStatus
+  ) => {
     if (!selectedStore || !activeWorkspace) return
 
-    setCompletingReportDate(reportDateKey)
+    setUpdatingReportDate(reportDateKey)
     try {
       const response = await fetch('/api/erp/reports', {
         method: 'PATCH',
@@ -2838,15 +2873,16 @@ function StoreOperationsPanel({
           weekStart,
           title: report.title,
           memo: report.memo,
+          status,
         }),
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       setWeeklyReports(data.reports || [])
-      setWeeklyReportMessage(data.message || '보고완료 처리했습니다.')
+      setWeeklyReportMessage(data.message || '보고 상태를 변경했습니다.')
     } catch {
-      setWeeklyReportMessage('보고완료 처리 중 오류가 발생했습니다.')
+      setWeeklyReportMessage('보고 상태 변경 중 오류가 발생했습니다.')
     } finally {
-      setCompletingReportDate(null)
+      setUpdatingReportDate(null)
     }
   }
 
@@ -2919,22 +2955,6 @@ function StoreOperationsPanel({
 
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              <div className="grid gap-4 border-b border-white/10 p-5 md:grid-cols-[1fr_420px] md:p-6">
-                <div>
-                  <p className="text-sm font-bold text-brand-blue">{activeWorkspace.label}</p>
-                  <h3 className="mt-2 text-2xl font-black text-white">{activeWorkspace.heading}</h3>
-                  <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">{activeWorkspace.description}</p>
-                </div>
-                <div className="grid gap-2 sm:grid-cols-3 md:grid-cols-1 xl:grid-cols-3">
-                  {activeWorkspace.metrics.map((metric) => (
-                    <div key={`${activeWorkspace.key}-${metric.label}`} className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-                      <p className="text-xs font-black text-gray-500 keep-all">{metric.label}</p>
-                      <p className="mt-2 text-2xl font-black tracking-tight text-white keep-all">{metric.value}</p>
-                      <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
               {displayWeeklyReports.length ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
@@ -2955,8 +2975,7 @@ function StoreOperationsPanel({
                         ? parseLocalDate(report.date)
                         : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
                       const reportDateKey = report.date || toISODate(date)
-                      const canComplete = report.status !== '완료' && report.status !== '휴무'
-                      const completing = completingReportDate === reportDateKey
+                      const updating = updatingReportDate === reportDateKey
 
                       return (
                         <div
@@ -2980,22 +2999,101 @@ function StoreOperationsPanel({
                               {report.completedAt ? formatDateTime(report.completedAt) : '보고완료'}
                             </p>
                           ) : null}
-                          {canComplete ? (
-                            <button
-                              type="button"
-                              onClick={() => completeWeeklyReport(report, reportDateKey)}
-                              disabled={completing}
-                              className="mt-4 inline-flex h-9 w-full items-center justify-center rounded-md bg-white px-3 text-xs font-black text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                          <label className="mt-4 block">
+                            <span className="mb-1 block text-[11px] font-black text-gray-600">상태 변경</span>
+                            <select
+                              value={report.status}
+                              disabled={updating}
+                              onChange={(event) =>
+                                updateWeeklyReportStatus(report, reportDateKey, event.target.value as StoreWeeklyReportStatus)
+                              }
+                              className="h-9 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-xs font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
                             >
-                              {completing ? '처리 중' : '보고완료'}
-                            </button>
-                          ) : null}
+                              {REPORT_STATUS_OPTIONS.map((status) => (
+                                <option key={status} value={status}>
+                                  {status}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
                         </div>
                       )
                     })}
                   </div>
                 </div>
               ) : null}
+              <div className="border-b border-white/10 p-5 md:p-6">
+                <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="text-sm font-bold text-brand-blue">Report History</p>
+                    <h4 className="mt-2 text-xl font-black text-white">기존 보고 현황</h4>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
+                      완료된 보고와 이전 보고 내용을 날짜별로 확인합니다.
+                    </p>
+                  </div>
+                  <label className="w-full md:w-56">
+                    <span className="mb-2 block text-xs font-black text-gray-500">날짜 필터</span>
+                    <input
+                      type="date"
+                      value={historyDateFilter}
+                      onChange={(event) => setHistoryDateFilter(event.target.value)}
+                      className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-bold text-white outline-none transition hover:border-white/25"
+                    />
+                  </label>
+                </div>
+                <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.025]">
+                  <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
+                    <p className="text-xs font-bold text-gray-500 keep-all">
+                      {reportHistoryLoading ? '기존 보고 확인 중입니다.' : reportHistoryMessage}
+                    </p>
+                    {historyDateFilter ? (
+                      <button
+                        type="button"
+                        onClick={() => setHistoryDateFilter('')}
+                        className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs font-black text-gray-300 hover:border-white/25 hover:text-white"
+                      >
+                        필터 해제
+                      </button>
+                    ) : null}
+                  </div>
+                  <div className="divide-y divide-white/10">
+                    {filteredReportHistory.length ? (
+                      filteredReportHistory.slice(0, 12).map((report) => {
+                        const date = report.date ? parseLocalDate(report.date) : new Date()
+
+                        return (
+                          <article
+                            key={`${activeWorkspace.key}-history-${report.id || report.date}-${report.title}`}
+                            className="grid gap-3 px-4 py-4 md:grid-cols-[150px_140px_1fr_170px]"
+                          >
+                            <div>
+                              <p className="text-sm font-black text-white">{formatMonthDay(date)}</p>
+                              <p className="mt-1 text-xs font-bold text-gray-500">{formatWeekday(date)}</p>
+                            </div>
+                            <div>
+                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${weeklyReportBadge(report.status)}`}>
+                                {report.status}
+                              </span>
+                            </div>
+                            <div>
+                              <p className="font-black text-white keep-all">{report.title}</p>
+                              <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                            </div>
+                            <div className="text-xs font-bold leading-5 text-gray-500 md:text-right">
+                              <p>{report.reporter || '블링크애드'}</p>
+                              <p>{report.completedAt ? formatDateTime(report.completedAt) : '-'}</p>
+                            </div>
+                          </article>
+                        )
+                      })
+                    ) : (
+                      <p className="px-4 py-6 text-sm font-bold text-gray-500">
+                        {historyDateFilter ? '선택한 날짜의 보고 내역이 없습니다.' : '기존 보고 내역이 없습니다.'}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
               <div className="divide-y divide-white/10">
                 {activeWorkspace.tasks.map((task) => (
                   <article key={`${activeWorkspace.key}-${task.title}`} className="grid gap-4 p-5 md:grid-cols-[1fr_180px_180px] md:p-6">
@@ -3039,7 +3137,7 @@ function getCurrentWeekDates() {
   const today = new Date()
   const monday = startOfDay(today)
   const day = monday.getDay()
-  const offset = day === 0 ? -6 : 1 - day
+  const offset = day === 6 ? 2 : day === 0 ? 1 : 1 - day
   monday.setDate(monday.getDate() + offset)
 
   return Array.from({ length: 7 }, (_, index) => addDays(monday, index))

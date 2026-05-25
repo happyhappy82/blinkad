@@ -146,6 +146,38 @@ function fallbackReports(weekStart?: string): ReportItem[] {
   }))
 }
 
+function fallbackReportsWithStatus(weekStart: string | undefined, date: string, status: ReportStatus) {
+  return fallbackReports(weekStart).map((report) =>
+    report.date === date
+      ? {
+          ...report,
+          status,
+          reporter: '블링크애드',
+          completedAt: status === '완료' ? new Date().toISOString() : undefined,
+        }
+      : report
+  )
+}
+
+function fallbackReportHistory(weekStart?: string): ReportItem[] {
+  const baseStart = parseDate(weekStart)
+  baseStart.setDate(baseStart.getDate() - 14)
+
+  return Array.from({ length: 10 }, (_, index) => {
+    const date = new Date(baseStart)
+    date.setDate(baseStart.getDate() + index)
+    return {
+      dayOffset: index % 7,
+      date: isoDate(date),
+      status: '완료' as ReportStatus,
+      title: ['기본정보 점검', '사진 정리', '리뷰 응대', '소식지 게시', '주간 보고'][index % 5],
+      memo: '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
+      reporter: '블링크애드',
+      completedAt: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 0, 0).toISOString(),
+    }
+  }).reverse()
+}
+
 function propertyValue(propSchema: any, value: string) {
   if (!propSchema) return undefined
   if (propSchema.type === 'title') return { title: value ? [{ text: { content: value } }] : [] }
@@ -187,14 +219,20 @@ function reportSchemaMap(schema: Record<string, any>) {
   }
 }
 
-function pageMatches(page: any, map: ReturnType<typeof reportSchemaMap>, store: string, product: string, dateSet: Set<string>) {
+function pageMatches(
+  page: any,
+  map: ReturnType<typeof reportSchemaMap>,
+  store: string,
+  product: string,
+  dateSet?: Set<string>
+) {
   const properties = page.properties || {}
   const storeText = propText(properties[map.store])
   const productText = propText(properties[map.product])
   const dateText = propText(properties[map.date]).slice(0, 10)
   const productLabel = productLabels[product] || product
 
-  if (!dateSet.has(dateText)) return false
+  if (dateSet && !dateSet.has(dateText)) return false
   if (storeText && store && !storeText.includes(store) && !store.includes(storeText)) return false
   if (productText && productLabel && !productText.includes(productLabel) && !productLabel.includes(productText)) return false
   return true
@@ -245,11 +283,41 @@ async function loadReports(notion: Client, databaseId: string, store: string, pr
   return mergeReports(response.results, map, store, product, weekStart)
 }
 
+async function loadReportHistory(notion: Client, databaseId: string, store: string, product: string) {
+  const database = await notion.databases.retrieve({ database_id: databaseId })
+  const schema = (database as any).properties || {}
+  const map = reportSchemaMap(schema)
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    page_size: 100,
+  })
+
+  return response.results
+    .filter((page) => pageMatches(page, map, store, product))
+    .map((page: any) => {
+      const properties = page.properties || {}
+      const date = propText(properties[map.date]).slice(0, 10)
+      return {
+        id: page.id,
+        dayOffset: parseDate(date).getDay(),
+        date,
+        status: (propText(properties[map.status]) || '완료') as ReportStatus,
+        title: propText(properties[map.title]) || '작업보고',
+        memo: propText(properties[map.summary]) || '',
+        reporter: propText(properties[map.reporter]),
+        completedAt: propText(properties[map.completedAt]),
+      }
+    })
+    .filter((report) => report.date)
+    .sort((a, b) => b.date.localeCompare(a.date))
+}
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const store = searchParams.get('store') || ''
   const product = searchParams.get('product') || 'googleProfile'
   const weekStart = searchParams.get('weekStart') || undefined
+  const mode = searchParams.get('mode') || 'week'
   const token = resolveNotionToken()
   const databaseId = reportDatabaseId()
 
@@ -258,13 +326,16 @@ export async function GET(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 보고 데이터로 표시 중입니다.',
-      reports: fallbackReports(weekStart),
+      reports: mode === 'history' ? fallbackReportHistory(weekStart) : fallbackReports(weekStart),
     })
   }
 
   try {
     const notion = new Client({ auth: token })
-    const reports = await loadReports(notion, databaseId, store, product, weekStart)
+    const reports =
+      mode === 'history'
+        ? await loadReportHistory(notion, databaseId, store, product)
+        : await loadReports(notion, databaseId, store, product, weekStart)
     return NextResponse.json({
       source: 'notion',
       connected: true,
@@ -276,7 +347,7 @@ export async function GET(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: error instanceof Error ? error.message : 'Notion 보고 DB 연결에 실패했습니다.',
-      reports: fallbackReports(weekStart),
+      reports: mode === 'history' ? fallbackReportHistory(weekStart) : fallbackReports(weekStart),
     })
   }
 }
@@ -289,6 +360,7 @@ export async function PATCH(request: NextRequest) {
   const weekStart = String(body.weekStart || date || '').slice(0, 10)
   const title = String(body.title || '작업보고').trim()
   const memo = String(body.memo || '').trim()
+  const status = (String(body.status || '완료').trim() || '완료') as ReportStatus
   const token = resolveNotionToken()
   const databaseId = reportDatabaseId()
 
@@ -297,7 +369,7 @@ export async function PATCH(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: 'Notion 토큰, 매장명, 보고일이 필요합니다.',
-      reports: fallbackReports(weekStart),
+      reports: fallbackReportsWithStatus(weekStart, date, status),
     })
   }
 
@@ -321,9 +393,9 @@ export async function PATCH(request: NextRequest) {
     setProperty(properties, schema, map.product, productLabel)
     setProperty(properties, schema, map.date, date)
     setProperty(properties, schema, map.weekday, weekday(parseDate(date)))
-    setProperty(properties, schema, map.status, '완료')
+    setProperty(properties, schema, map.status, status)
     setProperty(properties, schema, map.reporter, '블링크애드')
-    setProperty(properties, schema, map.completedAt, new Date().toISOString())
+    setProperty(properties, schema, map.completedAt, status === '완료' ? new Date().toISOString() : '')
     setProperty(properties, schema, map.summary, memo ? `${title} - ${memo}` : title)
     setProperty(properties, schema, map.nextAction, '다음 작업 확인')
 
@@ -343,7 +415,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: `${date} 보고완료 처리했습니다.`,
+      message: `${date} 보고 상태를 ${status}(으)로 변경했습니다.`,
       reports,
     })
   } catch (error) {
@@ -351,7 +423,7 @@ export async function PATCH(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: error instanceof Error ? error.message : '보고완료 처리에 실패했습니다.',
-      reports: fallbackReports(weekStart),
+      reports: fallbackReportsWithStatus(weekStart, date, status),
     })
   }
 }
