@@ -31,7 +31,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import {
   DEFAULT_CLIENT_STATUS_OPTIONS,
@@ -191,6 +191,7 @@ export default function ErpClient() {
   const [meetingRecords, setMeetingRecords] = useState<MeetingRecord[]>([])
   const [meetingDbLoading, setMeetingDbLoading] = useState(false)
   const [meetingDbMessage, setMeetingDbMessage] = useState('')
+  const lastMeetingSyncSignatureRef = useRef('')
   const [mailItems, setMailItems] = useState<MailItem[]>([])
   const [mailLoading, setMailLoading] = useState(false)
   const [mailMessage, setMailMessage] = useState('')
@@ -315,10 +316,11 @@ export default function ErpClient() {
   const syncMeetingRecords = useCallback(async (events: CalendarEvent[]) => {
     setMeetingDbLoading(true)
     try {
+      const meetingEvents = uniqueCalendarMeetingEvents(events)
       const response = await fetch('/api/erp/meetings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ events }),
+        body: JSON.stringify({ events: meetingEvents }),
       })
       const data = (await response.json()) as MeetingsApiResponse
       setMeetingRecords(data.meetings || [])
@@ -440,7 +442,9 @@ export default function ErpClient() {
 
   useEffect(() => {
     if (activeMenu !== 'meeting' || calendarLoading) return
-    if (calendarEvents.length > 0) {
+    const syncSignature = meetingSyncSignature(calendarEvents)
+    if (syncSignature && lastMeetingSyncSignatureRef.current !== syncSignature) {
+      lastMeetingSyncSignatureRef.current = syncSignature
       syncMeetingRecords(calendarEvents)
     } else {
       loadMeetingRecords()
@@ -1139,6 +1143,32 @@ function isSameDate(left: Date, right: Date) {
 function isMeetingEvent(event: CalendarEvent) {
   const text = `${event.title} ${event.memo}`.toLowerCase()
   return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담')
+}
+
+function calendarMeetingKey(event: CalendarEvent) {
+  const id = String(event.id || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  if (id) return `event:${id}`
+  const title = String(event.title || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  const start = String(event.start || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  return `fallback:${title}:${start}`
+}
+
+function uniqueCalendarMeetingEvents(events: CalendarEvent[]) {
+  const seen = new Set<string>()
+  return events.filter((event) => {
+    if (!isMeetingEvent(event)) return false
+    const key = calendarMeetingKey(event)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function meetingSyncSignature(events: CalendarEvent[]) {
+  return uniqueCalendarMeetingEvents(events)
+    .map((event) => calendarMeetingKey(event))
+    .sort()
+    .join('|')
 }
 
 function eventTypeLabel(type: CalendarEvent['type']) {

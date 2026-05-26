@@ -162,6 +162,29 @@ function isMeetingEvent(event: CalendarEventPayload) {
   return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담') || text.includes('meet')
 }
 
+function normalizeKeyPart(value?: string) {
+  return String(value || '').replace(/\s+/g, ' ').trim().toLowerCase()
+}
+
+function meetingEventKey(event: CalendarEventPayload) {
+  const eventId = normalizeKeyPart(event.id)
+  if (eventId) return `event:${eventId}`
+  return `fallback:${normalizeKeyPart(event.title)}:${normalizeKeyPart(event.start)}`
+}
+
+function meetingPageKey(page: any, map: ReturnType<typeof meetingSchemaMap>) {
+  const properties = page.properties || {}
+  const eventId = normalizeKeyPart(propText(properties[map.eventId]))
+  if (eventId) return `event:${eventId}`
+  return `fallback:${normalizeKeyPart(propText(properties[map.title]))}:${normalizeKeyPart(propText(properties[map.date]))}`
+}
+
+function meetingRecordKey(record: ReturnType<typeof meetingRecordFromPage>) {
+  const eventId = normalizeKeyPart(record.calendarEventId)
+  if (eventId) return `event:${eventId}`
+  return `fallback:${normalizeKeyPart(record.title)}:${normalizeKeyPart(record.date)}`
+}
+
 function clientNameFromTitle(title: string) {
   return title
     .replace(/제안\s*미팅|상담|회의|미팅|打合せ|meeting/gi, '')
@@ -241,6 +264,40 @@ function matchExistingPage(
   })
 }
 
+function uniqueMeetingPages(pages: any[], map: ReturnType<typeof meetingSchemaMap>) {
+  const seen = new Set<string>()
+  return pages.filter((page) => {
+    const key = meetingPageKey(page, map)
+    if (!key || seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function uniqueMeetingEvents(events: CalendarEventPayload[]) {
+  const seen = new Set<string>()
+  return events.filter((event) => {
+    const key = meetingEventKey(event)
+    if (!key || seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function uniqueMeetingRecords(records: ReturnType<typeof meetingRecordFromPage>[]) {
+  const seen = new Set<string>()
+  return records.filter((record) => {
+    const key = meetingRecordKey(record)
+    if (!key || seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function mapMeetingPages(pages: any[], map: ReturnType<typeof meetingSchemaMap>) {
+  return uniqueMeetingRecords(pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings))
+}
+
 function eventProperties(
   schema: Record<string, any>,
   map: ReturnType<typeof meetingSchemaMap>,
@@ -279,24 +336,28 @@ async function syncCalendarMeetings(notion: Client, databaseId: string, events: 
   }
 
   const pages = await loadMeetingPages(notion, databaseId, map)
-  const meetingEvents = events.filter(isMeetingEvent)
+  const knownPages = uniqueMeetingPages(pages, map)
+  const meetingEvents = uniqueMeetingEvents(events.filter(isMeetingEvent))
 
   for (const event of meetingEvents) {
-    const existing = matchExistingPage(pages, map, event)
+    const existing = matchExistingPage(knownPages, map, event)
     const properties = eventProperties(schema, map, event, existing)
 
     if (existing) {
-      await notion.pages.update({ page_id: existing.id, properties })
+      const updatedPage = await notion.pages.update({ page_id: existing.id, properties })
+      const index = knownPages.findIndex((page) => page.id === existing.id)
+      if (index >= 0) knownPages[index] = updatedPage
     } else {
-      await notion.pages.create({
+      const createdPage = await notion.pages.create({
         parent: { database_id: databaseId },
         properties,
       })
+      knownPages.push(createdPage)
     }
   }
 
   const updatedPages = await loadMeetingPages(notion, databaseId, map)
-  return updatedPages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings)
+  return mapMeetingPages(updatedPages, map)
 }
 
 function fallbackMeetings() {
@@ -378,7 +439,7 @@ export async function GET() {
       source: 'notion',
       connected: true,
       message: 'Notion 미팅관리 DB와 연결되었습니다.',
-      meetings: pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings),
+      meetings: mapMeetingPages(pages, map),
     })
   } catch (error) {
     return NextResponse.json({
@@ -463,7 +524,7 @@ export async function PATCH(request: Request) {
       source: 'notion',
       connected: true,
       message: '미팅관리 DB에 미팅 내용을 저장했습니다.',
-      meetings: pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings),
+      meetings: mapMeetingPages(pages, map),
     })
   } catch (error) {
     return NextResponse.json(
