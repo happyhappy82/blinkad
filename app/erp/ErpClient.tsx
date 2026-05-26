@@ -396,10 +396,19 @@ export default function ErpClient() {
     <main className="min-h-screen bg-[#050608] text-white">
       <div className="flex min-h-screen">
         <aside className={`${sidebarCollapsed ? 'hidden' : 'hidden w-64 shrink-0 border-r border-white/10 bg-black lg:block'}`}>
-          <div className="flex h-20 items-center border-b border-white/10 px-6">
+          <div className="flex h-20 items-center justify-between gap-3 border-b border-white/10 px-6">
             <a href="/" aria-label="BlinkAd home">
               <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
             </a>
+            <button
+              type="button"
+              onClick={() => setSidebarCollapsed(true)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-gray-400 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+              aria-label="왼쪽 메뉴 숨기기"
+              title="왼쪽 메뉴 숨기기"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
           </div>
 
           <nav className="space-y-6 px-3 py-5">
@@ -467,12 +476,16 @@ export default function ErpClient() {
                 <button
                   type="button"
                   onClick={() => setSidebarCollapsed((current) => !current)}
-                  className="hidden h-10 shrink-0 items-center justify-center gap-2 rounded-full border border-white/15 px-3 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 lg:inline-flex"
+                  className={`inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-full px-3 text-sm font-black transition ${
+                    sidebarCollapsed
+                      ? 'bg-white text-black hover:bg-gray-200'
+                      : 'border border-white/15 text-gray-300 hover:border-white/30 hover:bg-white/5 hover:text-white'
+                  }`}
                   aria-label={sidebarCollapsed ? '왼쪽 메뉴 보이기' : '왼쪽 메뉴 숨기기'}
                   title={sidebarCollapsed ? '왼쪽 메뉴 보이기' : '왼쪽 메뉴 숨기기'}
                 >
                   {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-                  <span>{sidebarCollapsed ? '메뉴 보이기' : '메뉴 숨기기'}</span>
+                  <span>{sidebarCollapsed ? '메뉴 열기' : '메뉴 접기'}</span>
                 </button>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
