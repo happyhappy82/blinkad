@@ -2649,11 +2649,6 @@ function StoreOperationsPanel({
 
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              <ProductWorkspaceWorkPanel workspace={activeWorkspace} reports={displayWeeklyReports} />
-              {activeWorkspace.key === 'googleAds' ? (
-                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
-              ) : null}
-              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               {weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
@@ -2817,6 +2812,10 @@ function StoreOperationsPanel({
                   </div>
                 </div>
               ) : null}
+              {activeWorkspace.key === 'googleAds' ? (
+                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
+              ) : null}
+              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               <div className="border-b border-white/10 p-5 md:p-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                   <div>
@@ -2979,89 +2978,6 @@ function workspaceTabLabel(workspace: StoreProductWorkspace) {
   if (workspace.key === 'googleAds') return '구글 애즈'
   if (workspace.key === 'websiteBlog') return '웹사이트,블로그'
   return workspace.label
-}
-
-function StoreSummaryMetric({
-  label,
-  value,
-  note,
-  compact,
-}: {
-  label: string
-  value: string
-  note: string
-  compact?: boolean
-}) {
-  return (
-    <div className={`rounded-md border border-white/10 bg-black/45 ${compact ? 'p-3' : 'p-4'}`}>
-      <p className="text-[11px] font-black text-gray-600">{label}</p>
-      <p className={`${compact ? 'mt-2 text-xl' : 'mt-3 text-2xl'} font-black tracking-tight text-white`}>{value}</p>
-      <p className="mt-1 text-[11px] font-bold text-gray-500 keep-all">{note}</p>
-    </div>
-  )
-}
-
-function ProductWorkspaceWorkPanel({
-  workspace,
-  reports,
-}: {
-  workspace: StoreProductWorkspace
-  reports: StoreWeeklyReport[]
-}) {
-  const reportSummary = summarizeReports(reports)
-
-  return (
-    <div className="border-b border-white/10 p-5 md:p-6">
-      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">{workspace.label}</p>
-          <h4 className="mt-2 text-xl font-black text-white">{workspace.heading}</h4>
-          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">{workspace.description}</p>
-        </div>
-        {reports.length ? (
-          <div className="grid min-w-full grid-cols-3 gap-2 xl:min-w-[360px]">
-            <StoreSummaryMetric label="보고완료" value={`${reportSummary.done}`} note="발송 완료" compact />
-            <StoreSummaryMetric label="진행중" value={`${reportSummary.inProgress}`} note="작성·생성" compact />
-            <StoreSummaryMetric label="대기/실패" value={`${reportSummary.pending}`} note="확인 필요" compact />
-          </div>
-        ) : null}
-      </div>
-
-      <div className="mt-5 grid gap-3 md:grid-cols-3">
-        {workspace.metrics.map((metric) => (
-          <div key={metric.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-            <p className="text-xs font-black text-gray-500">{metric.label}</p>
-            <p className="mt-3 text-2xl font-black tracking-tight text-white">{metric.value}</p>
-            <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-5">
-        <div className="flex items-center justify-between gap-3">
-          <h5 className="text-sm font-black text-white">작업 상태</h5>
-          <p className="text-xs font-bold text-gray-600">{workspace.tasks.length}건</p>
-        </div>
-        <div className="mt-3 grid gap-3 lg:grid-cols-3">
-          {workspace.tasks.map((task) => (
-            <article key={`${workspace.key}-${task.title}`} className="flex min-h-[210px] flex-col rounded-lg border border-white/10 bg-[#0b0d12] p-4">
-              <div className="flex items-start justify-between gap-3">
-                <h6 className="font-black text-white keep-all">{task.title}</h6>
-                <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
-                  {task.status}
-                </span>
-              </div>
-              <p className="mt-3 flex-1 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
-              <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-3 text-xs font-bold text-gray-500">
-                <span>{task.owner}</span>
-                <span>{task.due}</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
 }
 
 function GoogleAdsPerformancePanel({
