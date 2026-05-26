@@ -2376,6 +2376,10 @@ function StoreOperationsPanel({
     status: StoreWeeklyReportStatus
     memo: string
   } | null>(null)
+  const [historyDetail, setHistoryDetail] = useState<{
+    report: StoreWeeklyReport
+    date: Date
+  } | null>(null)
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
@@ -2822,9 +2826,11 @@ function StoreOperationsPanel({
                         const date = report.date ? parseLocalDate(report.date) : new Date()
 
                         return (
-                          <article
+                          <button
+                            type="button"
                             key={`${activeWorkspace.key}-history-${report.id || report.date}-${report.title}`}
-                            className="grid gap-3 px-4 py-4 md:grid-cols-[150px_140px_1fr_170px]"
+                            onClick={() => setHistoryDetail({ report, date })}
+                            className="grid w-full gap-3 px-4 py-4 text-left transition hover:bg-white/[0.04] md:grid-cols-[150px_140px_1fr_170px]"
                           >
                             <div>
                               <p className="text-sm font-black text-white">{formatMonthDay(date)}</p>
@@ -2837,13 +2843,15 @@ function StoreOperationsPanel({
                             </div>
                             <div>
                               <p className="font-black text-white keep-all">{report.title}</p>
-                              <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                              <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                                {report.memo || '보고 내용이 비어 있습니다.'}
+                              </p>
                             </div>
                             <div className="text-xs font-bold leading-5 text-gray-500 md:text-right">
                               <p>{report.reporter || '블링크애드'}</p>
                               <p>{report.completedAt ? formatDateTime(report.completedAt) : '-'}</p>
                             </div>
-                          </article>
+                          </button>
                         )
                       })
                     ) : (
@@ -2860,6 +2868,40 @@ function StoreOperationsPanel({
               등록된 상품별 업무가 없습니다.
             </p>
           )}
+          {historyDetail ? (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
+              <div className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl">
+                <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <p className="text-sm font-bold text-brand-blue">Report History</p>
+                    <h4 className="mt-2 text-2xl font-black text-white keep-all">{historyDetail.report.title}</h4>
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-bold text-gray-500">
+                      <span>{formatMonthDay(historyDetail.date)} · {formatWeekday(historyDetail.date)}</span>
+                      <span className={`inline-flex rounded-full border px-2 py-1 font-black ${weeklyReportBadge(historyDetail.report.status)}`}>
+                        {historyDetail.report.status}
+                      </span>
+                      <span>{historyDetail.report.reporter || '블링크애드'}</span>
+                      <span>{historyDetail.report.completedAt ? formatDateTime(historyDetail.report.completedAt) : '-'}</span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setHistoryDetail(null)}
+                    className="h-10 rounded-md border border-white/10 px-3 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+                  >
+                    닫기
+                  </button>
+                </div>
+                <div className="p-5">
+                  <div className="max-h-[60vh] overflow-auto rounded-lg border border-white/10 bg-black p-4">
+                    <pre className="whitespace-pre-wrap break-keep font-sans text-sm font-semibold leading-7 text-gray-200">
+                      {historyDetail.report.memo || '보고 내용이 비어 있습니다.'}
+                    </pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : null}
           {expandedReport ? (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
               <div className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl">
