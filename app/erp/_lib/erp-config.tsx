@@ -162,7 +162,7 @@ export const menuGroups = [
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
       { id: 'meeting', label: '미팅관리', icon: Mic },
-      { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
+      { id: 'weekly', label: '주간미팅', icon: CalendarDays },
       { id: 'mail', label: '메일관리', icon: Mail },
     ],
   },
@@ -769,7 +769,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   },
   weekly: {
     kicker: 'Weekly',
-    title: '위클리미팅',
+    title: '주간미팅',
     description: '이번 주 영업, 제작, 운영 이슈를 주간 단위로 정리합니다.',
     stats: [
       { label: '이번 주 안건', value: '6' },

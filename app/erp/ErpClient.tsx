@@ -1764,7 +1764,7 @@ function WeeklyMeetingPanel({
   return (
     <MeetingListPanel
       kicker="Weekly Meeting"
-      title="위클리미팅"
+      title="주간미팅"
       description="오늘부터 앞으로 7일 이내 용올캘린더에 예정된 미팅 일정을 확인합니다."
       events={weeklyMeetings}
       loading={loading}
