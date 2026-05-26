@@ -134,6 +134,7 @@ export default function ErpClient() {
   const [businessCards, setBusinessCards] = useState<BusinessCardRecord[]>([])
   const [businessCardsLoading, setBusinessCardsLoading] = useState(false)
   const [businessCardsMessage, setBusinessCardsMessage] = useState('')
+  const [runningCardOcr, setRunningCardOcr] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
@@ -294,6 +295,33 @@ export default function ErpClient() {
     }
   }
 
+  const analyzeBusinessCard = async (card: BusinessCardRecord) => {
+    setRunningCardOcr(card.id)
+    setActionMessage('')
+
+    try {
+      const response = await fetch('/api/erp/clients/cards/ocr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: card.id }),
+      })
+      const data = (await response.json()) as { connected: boolean; message?: string }
+
+      if (!response.ok || !data.connected) {
+        setActionMessage(data.message || '명함 분석에 실패했습니다.')
+        await loadBusinessCards()
+        return
+      }
+
+      setActionMessage(data.message || '명함 분석을 완료했습니다.')
+      await loadBusinessCards()
+    } catch {
+      setActionMessage('명함 분석 중 오류가 발생했습니다.')
+    } finally {
+      setRunningCardOcr(null)
+    }
+  }
+
   useEffect(() => {
     if (activeMenu === 'card' && businessCards.length === 0 && !businessCardsLoading) {
       loadBusinessCards()
@@ -376,6 +404,11 @@ export default function ErpClient() {
         label: '입력필요',
         value: String(businessCards.filter((card) => statusIncludesAny(card.status, ['입력필요'])).length),
         detail: '검수 대기',
+      },
+      {
+        label: 'OCR 완료',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.ocrStatus, ['완료'])).length),
+        detail: '자동 분석',
       },
     ],
     [businessCards]
@@ -619,7 +652,9 @@ export default function ErpClient() {
                 loading={businessCardsLoading}
                 message={businessCardsMessage}
                 metrics={businessCardMetrics}
+                runningOcrId={runningCardOcr}
                 onRefresh={loadBusinessCards}
+                onAnalyze={analyzeBusinessCard}
               />
             )}
 
@@ -3045,13 +3080,17 @@ function BusinessCardPanel({
   loading,
   message,
   metrics,
+  runningOcrId,
   onRefresh,
+  onAnalyze,
 }: {
   cards: BusinessCardRecord[]
   loading: boolean
   message: string
   metrics: StoreMetric[]
+  runningOcrId: string | null
   onRefresh: () => void
+  onAnalyze: (card: BusinessCardRecord) => void
 }) {
   const [query, setQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
@@ -3113,7 +3152,7 @@ function BusinessCardPanel({
         </div>
       </div>
 
-      <div className="grid border-b border-white/10 md:grid-cols-3">
+      <div className="grid border-b border-white/10 md:grid-cols-4">
         {metrics.map((metric) => (
           <div key={metric.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
             <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{metric.label}</p>
@@ -3145,6 +3184,9 @@ function BusinessCardPanel({
                     <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.status)}`}>
                       {card.status || '상태 없음'}
                     </span>
+                    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.ocrStatus)}`}>
+                      OCR {card.ocrStatus || '대기'}
+                    </span>
                   </div>
                   <p className="mt-2 text-sm font-bold text-gray-300">{card.phone || '연락처 미입력'}</p>
                   <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
@@ -3153,6 +3195,15 @@ function BusinessCardPanel({
                 </div>
               </div>
               <div className="mt-4 flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  disabled={!card.imageUrl || runningOcrId === card.id}
+                  onClick={() => onAnalyze(card)}
+                  className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                >
+                  <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
+                  {runningOcrId === card.id ? '분석 중' : card.ocrStatus === '완료' ? '다시 분석' : '분석하기'}
+                </button>
                 {card.imageUrl ? (
                   <a
                     href={card.imageUrl}

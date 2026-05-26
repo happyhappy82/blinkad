@@ -62,6 +62,8 @@ export type BusinessCardRecord = {
   imageName: string
   meetingIds: string[]
   meetingTitles: string[]
+  ocrStatus: string
+  ocrText: string
   lastEdited: string
   notionUrl: string
 }

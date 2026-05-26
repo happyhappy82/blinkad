@@ -19,6 +19,8 @@ const fallbackCards = [
     imageName: '',
     meetingIds: [],
     meetingTitles: ['샘플 미팅'],
+    ocrStatus: '대기',
+    ocrText: '',
     lastEdited: '',
     notionUrl: '',
   },
@@ -140,6 +142,8 @@ function normalizeCard(page: any, meetingTitleMap: Map<string, string>) {
     imageName: file.imageName,
     meetingIds,
     meetingTitles: meetingIds.map((meetingId) => meetingTitleMap.get(meetingId) || '미팅명 확인 불가'),
+    ocrStatus: propText(findProperty(properties, ['OCR 상태', 'OCR Status'])) || '대기',
+    ocrText: propText(findProperty(properties, ['OCR 원문', 'OCR Text'])) || '',
     lastEdited: page.last_edited_time || '',
     notionUrl: page.url || '',
   }
