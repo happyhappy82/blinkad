@@ -325,6 +325,80 @@ https://www.notion.so/366753ebc0138087aff3fbdd8ac6aa3f?source=copy_link
 
 감사합니다.`
 
+const MONDAY_FEED_UPDATE_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
+
+오늘은 Google 프로필 피드 업데이트 작업을 진행했습니다.
+
+진행 내용
+- 이번 주 고객에게 보여줄 소식지/게시물 작성
+- 대표 서비스 또는 메뉴 중심으로 문구 정리
+- 외국인 고객이 이해하기 쉬운 표현으로 안내 문구 보강
+- Google 프로필 내 최신 운영 신호 유지
+
+이번 업데이트는 단기 노출만을 위한 작업이 아니라, Google 프로필에 꾸준히 운영 중인 매장이라는 신호를 쌓기 위한 작업입니다.
+
+확인 후 수정이 필요한 표현이나 강조하고 싶은 메뉴가 있으면 말씀 부탁드립니다.`
+
+const TUESDAY_KEYWORD_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
+
+오늘은 Google 지도 기준 주요 키워드 노출 흐름을 점검했습니다.
+
+점검 내용
+- 브랜드명 검색 노출 상태
+- 주요 서비스/메뉴 키워드 검색 흐름
+- 지역 키워드와 매장 카테고리 적합성
+- 경쟁 매장 대비 프로필 정보 보강 필요 지점
+
+현재는 단순히 키워드를 많이 넣기보다, 실제 고객이 검색할 만한 표현과 Google 프로필 정보가 일관되게 맞는지가 중요합니다.
+
+확인한 내용을 기준으로 다음 피드 업데이트와 프로필 문구에 반영하겠습니다.`
+
+const WEDNESDAY_DATA_ANALYSIS_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
+
+오늘은 Google 프로필 운영 데이터를 종합적으로 점검했습니다.
+
+점검 내용
+- 프로필 조회 흐름
+- 검색을 통한 유입 흐름
+- 길찾기, 전화, 웹사이트 이동 등 고객 행동 신호
+- 사진, 리뷰, 게시물에서 보강이 필요한 지점
+
+데이터는 단순 수치 확인보다 어떤 정보가 고객 행동으로 이어지는지를 보는 것이 중요합니다.
+
+이번 주 데이터 기준으로 다음 작업 우선순위를 정리해 운영에 반영하겠습니다.`
+
+const THURSDAY_FEED_UPDATE_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
+
+오늘은 주중 운영 내용을 반영해 Google 프로필 피드 업데이트를 추가로 진행했습니다.
+
+진행 내용
+- 이번 주 강조할 메뉴/서비스 문구 보강
+- 고객이 방문 전 확인할 만한 안내 정보 정리
+- 외국인 고객 기준으로 이해하기 쉬운 표현 점검
+- Google 프로필 내 최신성 유지
+
+월요일 업데이트가 기본 운영 신호를 쌓는 작업이라면, 목요일 업데이트는 한 주 중간에 매장의 최신 정보를 한 번 더 보강하는 작업입니다.
+
+추가로 알리고 싶은 이벤트나 메뉴가 있으면 전달 부탁드립니다.`
+
+const FRIDAY_WEEKLY_CLOSE_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
+
+이번 주 Google 프로필 운영 내용을 정리드립니다.
+
+이번 주 진행 내용
+- Google 프로필 피드 업데이트
+- 주요 키워드 노출 흐름 점검
+- 프로필 데이터 확인
+- 사진, 리뷰, 게시물 기준 보강 포인트 정리
+
+다음 주 작업 방향
+- 고객이 검색 후 바로 이해할 수 있는 정보 보강
+- 대표 메뉴/서비스 중심 콘텐츠 누적
+- 리뷰와 사진을 통한 신뢰 신호 강화
+- Google 프로필과 웹사이트/블로그 정보의 방향성 정리
+
+목표는 단순 게시물 작성이 아니라, Google과 AI가 매장을 더 정확히 이해할 수 있도록 공식 정보를 꾸준히 쌓는 것입니다.`
+
 function isMenuId(value: string): value is MenuId {
   return menuIds.includes(value as MenuId)
 }
@@ -568,11 +642,11 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
   assets: {
     kicker: 'Content Assets',
     title: '콘텐츠 자산',
-    description: '클라이언트별 GBP 자료, 사진, 메뉴판, 포스팅 템플릿, 리뷰 응대 문구를 모아 관리합니다.',
+    description: '웰컴문구와 Google 프로필 요일별 보고 멘트를 한곳에서 열람하고 복사합니다.',
     stats: [
-      { label: '자료 보유 매장', value: '11' },
-      { label: '사진 대기', value: '7' },
-      { label: '템플릿', value: '13' },
+      { label: '콘텐츠', value: '6' },
+      { label: '보고 멘트', value: '5' },
+      { label: '웰컴문구', value: '1' },
     ],
     rows: [
       {
@@ -585,28 +659,49 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
         copyText: WELCOME_GOOGLE_PROFILE_ACCESS_MESSAGE,
       },
       {
-        title: '요식업 기본 자료 패키지',
-        meta: '내부/외부 사진 · 메뉴판 · 대표 메뉴',
-        status: '템플릿',
+        title: '월요일 피드 업데이트 보고 멘트',
+        meta: 'Google 게시물 · 소식지 업데이트 · 최신 운영 신호',
+        status: '보고멘트',
         owner: '블링크애드',
-        due: '상시',
-        memo: 'GBP 운영 시작 전 반드시 요청할 자료 체크리스트로 사용합니다.',
+        due: '월요일',
+        memo: 'Google 프로필 게시물과 소식지 업데이트를 보고할 때 사용합니다.',
+        copyText: MONDAY_FEED_UPDATE_REPORT_MESSAGE,
       },
       {
-        title: '병원 권위·신뢰 자료',
-        meta: '진료 항목 · 방송/세미나 · 시술 사진',
-        status: '정리중',
-        owner: '권순현',
-        due: '이번 주',
-        memo: '의료광고 리스크가 없도록 초상권과 표현 수위를 함께 확인합니다.',
+        title: '화요일 키워드 순위 보고 멘트',
+        meta: '키워드 노출 · 지역 검색 · 경쟁 흐름',
+        status: '보고멘트',
+        owner: '블링크애드',
+        due: '화요일',
+        memo: '주요 키워드 노출 흐름과 프로필 보강 방향을 보고할 때 사용합니다.',
+        copyText: TUESDAY_KEYWORD_REPORT_MESSAGE,
       },
       {
-        title: '다국어 리뷰 응대 문구',
-        meta: '영어 · 일본어 · 중국어',
-        status: '운영중',
+        title: '수요일 종합 데이터 분석 보고 멘트',
+        meta: '조회 · 검색 · 상호작용 · 운영 우선순위',
+        status: '보고멘트',
         owner: '블링크애드',
-        due: '상시',
-        memo: '매장 톤에 맞게 공통 문구를 그대로 쓰지 않고 가볍게 변형합니다.',
+        due: '수요일',
+        memo: 'Google 프로필 데이터를 종합 점검하고 작업 우선순위를 설명할 때 사용합니다.',
+        copyText: WEDNESDAY_DATA_ANALYSIS_REPORT_MESSAGE,
+      },
+      {
+        title: '목요일 피드 업데이트 보고 멘트',
+        meta: '주중 피드 보강 · 메뉴/서비스 안내 · 최신성 유지',
+        status: '보고멘트',
+        owner: '블링크애드',
+        due: '목요일',
+        memo: '주중 운영 내용을 반영해 두 번째 피드 업데이트를 보고할 때 사용합니다.',
+        copyText: THURSDAY_FEED_UPDATE_REPORT_MESSAGE,
+      },
+      {
+        title: '금요일 주간 마감 보고 멘트',
+        meta: '주간 진행 요약 · 다음 주 방향 · 브랜드 정보 누적',
+        status: '보고멘트',
+        owner: '블링크애드',
+        due: '금요일',
+        memo: '한 주간 Google 프로필 운영 내용을 요약하고 다음 주 작업 방향을 안내할 때 사용합니다.',
+        copyText: FRIDAY_WEEKLY_CLOSE_REPORT_MESSAGE,
       },
     ],
   },
@@ -2953,6 +3048,7 @@ function OperationsPanel({
 }) {
   const isStoreOperations = view.rows.some((row) => row.products)
   const [copiedRowTitle, setCopiedRowTitle] = useState('')
+  const [selectedCopyRowTitle, setSelectedCopyRowTitle] = useState('')
 
   if (isStoreOperations) {
     return <StoreOperationsPanel view={view} selectedStoreTitle={selectedStoreTitle} onSelectStore={onSelectStore} />
@@ -2972,6 +3068,7 @@ function OperationsPanel({
 
   const copyRows = view.rows.filter((row) => row.copyText)
   const hasCopyRows = copyRows.length > 0
+  const selectedCopyRow = copyRows.find((row) => row.title === selectedCopyRowTitle)
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -2991,28 +3088,26 @@ function OperationsPanel({
         </div>
       </div>
 
-      {hasCopyRows ? (
+      {selectedCopyRow ? (
         <div className="space-y-3 border-b border-white/10 p-5 md:p-6">
-          {copyRows.map((row) => (
-            <article key={`${row.title}-copy-card`} className="rounded-lg border border-white/10 bg-black p-5">
-              <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                <div>
-                  <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">웰컴문구</p>
-                  <h3 className="mt-2 text-lg font-black text-white keep-all">{row.title}</h3>
-                  <p className="mt-1 text-sm font-semibold text-gray-500 keep-all">{row.meta}</p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => copyAssetText(row)}
-                  className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
-                >
-                  <Copy className="h-4 w-4" />
-                  {copiedRowTitle === row.title ? '복사됨' : '문구 복사'}
-                </button>
+          <article className="rounded-lg border border-white/10 bg-black p-5">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">콘텐츠 상세</p>
+                <h3 className="mt-2 text-lg font-black text-white keep-all">{selectedCopyRow.title}</h3>
+                <p className="mt-1 text-sm font-semibold text-gray-500 keep-all">{selectedCopyRow.meta}</p>
               </div>
-              <pre className="mt-4 max-h-[360px] overflow-auto rounded-lg border border-white/10 bg-white/[0.03] p-4 whitespace-pre-wrap break-keep font-sans text-sm font-semibold leading-7 text-gray-300">{row.copyText}</pre>
-            </article>
-          ))}
+              <button
+                type="button"
+                onClick={() => copyAssetText(selectedCopyRow)}
+                className="inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+              >
+                <Copy className="h-4 w-4" />
+                {copiedRowTitle === selectedCopyRow.title ? '복사됨' : '문구 복사'}
+              </button>
+            </div>
+            <pre className="mt-4 max-h-[360px] overflow-auto rounded-lg border border-white/10 bg-white/[0.03] p-4 whitespace-pre-wrap break-keep font-sans text-sm font-semibold leading-7 text-gray-300">{selectedCopyRow.copyText}</pre>
+          </article>
         </div>
       ) : null}
 
@@ -3047,78 +3142,91 @@ function OperationsPanel({
                 <th className="px-5 py-4 whitespace-nowrap">담당</th>
                 <th className="px-5 py-4 whitespace-nowrap">기한</th>
                 <th className="px-5 py-4">메모</th>
-                {hasCopyRows ? <th className="px-5 py-4 whitespace-nowrap">복사</th> : null}
+                {hasCopyRows ? <th className="px-5 py-4 whitespace-nowrap">보기</th> : null}
               </tr>
             )}
           </thead>
           <tbody>
-            {view.rows.map((row) => (
-              <tr key={`${view.title}-${row.title}`} className="border-t border-white/10">
-                {isStoreOperations && row.products ? (
-                  <>
-                    <td className="px-5 py-4">
-                      <p className="font-black text-white keep-all">{row.title}</p>
-                      <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
-                        {row.status}
-                      </span>
-                    </td>
-                    <td className="max-w-[180px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                      {row.products.googleProfile}
-                    </td>
-                    <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                      {row.products.googleAds}
-                    </td>
-                    <td className="max-w-[190px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                      {row.products.website}
-                    </td>
-                    <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                      {row.products.material}
-                    </td>
-                    <td className="max-w-[220px] px-5 py-4 font-black leading-6 text-white keep-all">
-                      {row.products.nextAction}
-                    </td>
-                    <td className="px-5 py-4">
-                      <p className="font-semibold text-gray-300">{row.owner}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{row.due}</p>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    <td className="px-5 py-4">
-                      <p className="font-black text-white keep-all">{row.title}</p>
-                      <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className="inline-flex whitespace-nowrap rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-xs font-bold text-blue-100">
-                        {row.status}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4 font-semibold whitespace-nowrap text-gray-300">{row.owner}</td>
-                    <td className="px-5 py-4 font-black whitespace-nowrap text-white">{row.due}</td>
-                    <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
-                    {hasCopyRows ? (
+            {view.rows.map((row) => {
+              const canOpenCopy = !isStoreOperations && Boolean(row.copyText)
+              return (
+                <tr
+                  key={`${view.title}-${row.title}`}
+                  onClick={canOpenCopy ? () => setSelectedCopyRowTitle(row.title) : undefined}
+                  className={`border-t border-white/10 ${canOpenCopy ? 'cursor-pointer transition hover:bg-white/[0.03]' : ''}`}
+                >
+                  {isStoreOperations && row.products ? (
+                    <>
                       <td className="px-5 py-4">
-                        {row.copyText ? (
-                          <button
-                            type="button"
-                            onClick={() => copyAssetText(row)}
-                            className="inline-flex h-9 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-xs font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
-                          >
-                            <Copy className="h-3.5 w-3.5" />
-                            {copiedRowTitle === row.title ? '복사됨' : '복사'}
-                          </button>
-                        ) : (
-                          <span className="text-xs font-bold text-gray-700">-</span>
-                        )}
+                        <p className="font-black text-white keep-all">{row.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
                       </td>
-                    ) : null}
-                  </>
-                )}
-              </tr>
-            ))}
+                      <td className="px-5 py-4">
+                        <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-bold text-blue-100">
+                          {row.status}
+                        </span>
+                      </td>
+                      <td className="max-w-[180px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                        {row.products.googleProfile}
+                      </td>
+                      <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                        {row.products.googleAds}
+                      </td>
+                      <td className="max-w-[190px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                        {row.products.website}
+                      </td>
+                      <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
+                        {row.products.material}
+                      </td>
+                      <td className="max-w-[220px] px-5 py-4 font-black leading-6 text-white keep-all">
+                        {row.products.nextAction}
+                      </td>
+                      <td className="px-5 py-4">
+                        <p className="font-semibold text-gray-300">{row.owner}</p>
+                        <p className="mt-1 text-xs font-bold text-gray-500">{row.due}</p>
+                      </td>
+                    </>
+                  ) : (
+                    <>
+                      <td className="px-5 py-4">
+                        <p className="font-black text-white keep-all">{row.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{row.meta}</p>
+                      </td>
+                      <td className="px-5 py-4">
+                        <span className="inline-flex whitespace-nowrap rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-xs font-bold text-blue-100">
+                          {row.status}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 font-semibold whitespace-nowrap text-gray-300">{row.owner}</td>
+                      <td className="px-5 py-4 font-black whitespace-nowrap text-white">{row.due}</td>
+                      <td className="max-w-md px-5 py-4 font-semibold leading-6 text-gray-400 keep-all">{row.memo}</td>
+                      {hasCopyRows ? (
+                        <td className="px-5 py-4">
+                          {row.copyText ? (
+                            <button
+                              type="button"
+                              onClick={(event) => {
+                                event.stopPropagation()
+                                setSelectedCopyRowTitle(row.title)
+                              }}
+                              className={`inline-flex h-9 items-center justify-center rounded-md border px-3 text-xs font-black transition ${
+                                selectedCopyRowTitle === row.title
+                                  ? 'border-brand-blue/60 bg-brand-blue text-white'
+                                  : 'border-white/15 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white'
+                              }`}
+                            >
+                              {selectedCopyRowTitle === row.title ? '선택됨' : '보기'}
+                            </button>
+                          ) : (
+                            <span className="text-xs font-bold text-gray-700">-</span>
+                          )}
+                        </td>
+                      ) : null}
+                    </>
+                  )}
+                </tr>
+              )
+            })}
           </tbody>
         </table>
       </div>
