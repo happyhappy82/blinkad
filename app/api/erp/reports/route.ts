@@ -65,6 +65,21 @@ function reportDatabaseId() {
   )
 }
 
+function reportConnectionErrorMessage(error: unknown) {
+  const code = typeof error === 'object' && error && 'code' in error ? String((error as { code?: string }).code || '') : ''
+  const message = error instanceof Error ? error.message : ''
+  const isMissingOrUnsharedDatabase =
+    code === 'object_not_found' ||
+    message.includes('Could not find database') ||
+    message.includes('Make sure the relevant pages and databases are shared')
+
+  if (isMissingOrUnsharedDatabase) {
+    return 'Notion 보고 DB가 현재 Integration에 공유되지 않아 샘플 보고 데이터로 표시 중입니다. Notion 보고 DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
+  }
+
+  return message || 'Notion 보고 DB 연결에 실패했습니다.'
+}
+
 function propText(prop: any): string {
   if (!prop) return ''
   if (prop.type === 'title') return prop.title?.map((item: any) => item.plain_text).join('') || ''
@@ -351,7 +366,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       source: 'fallback',
       connected: false,
-      message: error instanceof Error ? error.message : 'Notion 보고 DB 연결에 실패했습니다.',
+      message: reportConnectionErrorMessage(error),
       reports: mode === 'history' ? fallbackReportHistory(weekStart) : fallbackReports(weekStart),
     })
   }
@@ -427,7 +442,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({
       source: 'fallback',
       connected: false,
-      message: error instanceof Error ? error.message : '보고완료 처리에 실패했습니다.',
+      message: reportConnectionErrorMessage(error),
       reports: fallbackReportsWithStatus(weekStart, date, status),
     })
   }
