@@ -59,6 +59,7 @@ export type BusinessCardRecord = {
   phone: string
   status: string
   imageUrl: string
+  imagePreviewUrl?: string
   imageName: string
   meetingIds: string[]
   meetingTitles: string[]

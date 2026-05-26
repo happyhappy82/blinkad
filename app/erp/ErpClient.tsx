@@ -3111,6 +3111,8 @@ function BusinessCardPanel({
     return matchesQuery && matchesStatus
   })
 
+  const imageSource = (card: BusinessCardRecord) => card.imagePreviewUrl || card.imageUrl
+
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
       <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
@@ -3190,7 +3192,7 @@ function BusinessCardPanel({
                   <td className="px-5 py-4">
                     <div className="flex h-14 w-24 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
                       {card.imageUrl ? (
-                        <img src={card.imageUrl} alt={card.imageName || card.name} className="h-full w-full object-cover" />
+                        <img src={imageSource(card)} alt={card.imageName || card.name} className="h-full w-full object-cover" />
                       ) : (
                         <span className="text-xs font-bold text-gray-600">사진 없음</span>
                       )}
