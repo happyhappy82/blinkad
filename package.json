@@ -7,7 +7,8 @@
     "build": "npm run validate:posts && next build",
     "start": "next start",
     "lint": "next lint",
-    "validate:posts": "npx tsx scripts/validate-posts.ts"
+    "validate:posts": "npx tsx scripts/validate-posts.ts",
+    "erp:quote-worker": "node scripts/erp-quote-worker.mjs"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.3",
