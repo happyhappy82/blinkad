@@ -2106,6 +2106,7 @@ function MeetingDatabasePanel({
   const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
   const [filterStart, setFilterStart] = useState('')
   const [filterEnd, setFilterEnd] = useState('')
+  const [activeMeetingId, setActiveMeetingId] = useState<string | null>(null)
 
   const filteredMeetings = useMemo(() => {
     return meetings.filter((meeting) => {
@@ -2117,6 +2118,9 @@ function MeetingDatabasePanel({
       return (!from || start >= from) && (!to || start <= to)
     })
   }, [filterEnd, filterStart, meetings])
+
+  const activeMeeting = meetings.find((meeting) => meeting.id === activeMeetingId)
+  const activeMeetingNote = activeMeeting ? meetingNotes[activeMeeting.id] ?? activeMeeting.memo ?? '' : ''
 
   const saveNote = async (meeting: MeetingRecord) => {
     const note = meetingNotes[meeting.id] ?? meeting.memo ?? ''
@@ -2134,6 +2138,14 @@ function MeetingDatabasePanel({
     } finally {
       setSavingNoteId(null)
     }
+  }
+
+  const openNoteModal = (meeting: MeetingRecord) => {
+    setMeetingNotes((current) => ({
+      ...current,
+      [meeting.id]: current[meeting.id] ?? meeting.memo ?? '',
+    }))
+    setActiveMeetingId(meeting.id)
   }
 
   return (
@@ -2210,17 +2222,17 @@ function MeetingDatabasePanel({
                   <th className="w-[180px] px-4 py-3">캘린더/장소</th>
                   <th className="w-[160px] px-4 py-3">참석자</th>
                   <th className="px-4 py-3">미팅 내용</th>
-                  <th className="w-[120px] px-4 py-3">저장</th>
+                  <th className="w-[120px] px-4 py-3">상세</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10">
                 {filteredMeetings.map((meeting) => (
                   <tr key={meeting.id} className="align-top">
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       <p className="text-sm font-black text-white">{formatDateLabel(meeting.date)}</p>
                       <p className="mt-1 text-xs font-bold text-gray-500">{formatTimeOnly(meeting.date)}</p>
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       <p className="text-sm font-black leading-5 text-white keep-all">{meeting.title}</p>
                       <span className="mt-2 inline-flex rounded-full border border-brand-blue/30 bg-brand-blue/15 px-2 py-1 text-[11px] font-black text-blue-100">
                         {meeting.status || '미팅'}
@@ -2236,39 +2248,48 @@ function MeetingDatabasePanel({
                         </a>
                       ) : null}
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       {meeting.calendarName ? <p className="text-xs font-black text-gray-400">{meeting.calendarName}</p> : null}
                       {meeting.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{meeting.location}</p> : null}
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
                         {meeting.attendees.length > 0 ? meeting.attendees.slice(0, 3).join(', ') : '-'}
                       </p>
                     </td>
-                    <td className="px-4 py-4">
-                      <textarea
-                        value={meetingNotes[meeting.id] ?? meeting.memo ?? ''}
-                        onChange={(changeEvent) =>
-                          setMeetingNotes((current) => ({ ...current, [meeting.id]: changeEvent.target.value }))
-                        }
-                        className="min-h-32 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
-                      />
+                    <td className="px-4 py-3">
+                      <button
+                        type="button"
+                        onClick={() => openNoteModal(meeting)}
+                        className="block min-h-12 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-left text-sm font-semibold leading-5 text-gray-300 transition hover:border-brand-blue/50 hover:bg-white/[0.04]"
+                      >
+                        <span
+                          className="keep-all"
+                          style={{
+                            display: '-webkit-box',
+                            WebkitBoxOrient: 'vertical',
+                            WebkitLineClamp: 2,
+                            overflow: 'hidden',
+                          }}
+                        >
+                          {(meetingNotes[meeting.id] ?? meeting.memo) || '미팅 내용을 입력하려면 클릭하세요.'}
+                        </span>
+                      </button>
                       {noteMessages[meeting.id] ? (
                         <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[meeting.id]}</p>
                       ) : null}
                     </td>
-                    <td className="px-4 py-4">
+                    <td className="px-4 py-3">
                       <button
                         type="button"
-                        onClick={() => saveNote(meeting)}
+                        onClick={() => openNoteModal(meeting)}
                         disabled={savingNoteId === meeting.id}
-                        className="inline-flex h-9 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+                        className="inline-flex h-9 w-full items-center justify-center rounded-md border border-white/15 px-3 text-xs font-black text-gray-200 transition hover:border-white/30 hover:bg-white/5 disabled:bg-gray-700"
                       >
-                        {savingNoteId === meeting.id ? '저장 중' : 'DB 저장'}
+                        {savingNoteId === meeting.id ? '저장 중' : '열기'}
                       </button>
                     </td>
                   </tr>
@@ -2278,6 +2299,68 @@ function MeetingDatabasePanel({
           </div>
         )}
       </div>
+
+      {activeMeeting ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveMeetingId(null)}
+        >
+          <div
+            className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-start md:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.16em] text-brand-blue">Meeting Note</p>
+                <h3 className="mt-2 text-xl font-black text-white keep-all">{activeMeeting.title}</h3>
+                <p className="mt-2 text-sm font-bold text-gray-500">
+                  {formatDateLabel(activeMeeting.date)} · {formatTimeOnly(activeMeeting.date)}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setActiveMeetingId(null)}
+                className="inline-flex h-9 items-center justify-center rounded-md border border-white/15 px-3 text-xs font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
+              >
+                닫기
+              </button>
+            </div>
+
+            <div className="p-5">
+              <textarea
+                value={activeMeetingNote}
+                onChange={(changeEvent) =>
+                  setMeetingNotes((current) => ({ ...current, [activeMeeting.id]: changeEvent.target.value }))
+                }
+                className="min-h-80 w-full rounded-md border border-white/10 bg-[#07080b] px-4 py-3 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
+                placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+              />
+              {noteMessages[activeMeeting.id] ? (
+                <p className="mt-3 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[activeMeeting.id]}</p>
+              ) : null}
+              <div className="mt-4 flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveMeetingId(null)}
+                  className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-4 text-sm font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
+                >
+                  취소
+                </button>
+                <button
+                  type="button"
+                  onClick={() => saveNote(activeMeeting)}
+                  disabled={savingNoteId === activeMeeting.id}
+                  className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue px-4 text-sm font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
+                >
+                  {savingNoteId === activeMeeting.id ? '저장 중' : 'Notion DB 저장'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
