@@ -3311,7 +3311,7 @@ function StoreOperationsPanel({
   const [reportHistoryMessage, setReportHistoryMessage] = useState('')
   const [historyDateFilter, setHistoryDateFilter] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
-  const [generatingReports, setGeneratingReports] = useState(false)
+  const [generatingReportDate, setGeneratingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
   const [expandedReport, setExpandedReport] = useState<{
     report: StoreWeeklyReport
@@ -3450,10 +3450,13 @@ function StoreOperationsPanel({
     }
   }
 
-  const generateWinsorReports = async () => {
+  const canAutoGenerateReport = (title: string) =>
+    title.includes('키워드') || title.includes('종합') || title.includes('데이터') || title.includes('마감')
+
+  const generateReportMemo = async (report: StoreWeeklyReport, reportDateKey: string) => {
     if (!selectedStore || !activeWorkspace) return
 
-    setGeneratingReports(true)
+    setGeneratingReportDate(reportDateKey)
     try {
       const response = await fetch('/api/erp/reports', {
         method: 'POST',
@@ -3462,16 +3465,18 @@ function StoreOperationsPanel({
           store: selectedStore.title,
           product: activeWorkspace.key,
           weekStart,
+          date: reportDateKey,
+          title: report.title,
         }),
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       setWeeklyReports(data.reports || [])
       setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
-      setWeeklyReportMessage(data.message || '화·수·금 보고 초안을 자동 생성했습니다.')
+      setWeeklyReportMessage(data.message || `${report.title} 보고 내용을 자동 생성했습니다.`)
     } catch {
-      setWeeklyReportMessage('화·수·금 보고 자동 생성 중 오류가 발생했습니다.')
+      setWeeklyReportMessage(`${report.title} 보고 자동 생성 중 오류가 발생했습니다.`)
     } finally {
-      setGeneratingReports(false)
+      setGeneratingReportDate(null)
     }
   }
 
@@ -3558,16 +3563,6 @@ function StoreOperationsPanel({
                           {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
                         </p>
                       </div>
-                      {activeWorkspace.key === 'googleProfile' ? (
-                        <button
-                          type="button"
-                          disabled={generatingReports}
-                          onClick={generateWinsorReports}
-                          className="h-10 rounded-md border border-brand-blue/35 bg-brand-blue/10 px-4 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
-                        >
-                          {generatingReports ? '자동 생성 중' : '화·수·금 보고 자동 생성'}
-                        </button>
-                      ) : null}
                     </div>
                   </div>
                   <div className="mt-4 grid gap-3 lg:grid-cols-5">
@@ -3577,6 +3572,7 @@ function StoreOperationsPanel({
                         : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
                       const reportDateKey = report.date || toISODate(date)
                       const updating = updatingReportDate === reportDateKey
+                      const generating = generatingReportDate === reportDateKey
                       const draftMemo = reportDrafts[reportDateKey] ?? report.memo ?? ''
 
                       return (
@@ -3634,15 +3630,25 @@ function StoreOperationsPanel({
                           </label>
                           <button
                             type="button"
-                            disabled={updating}
+                            disabled={updating || generating}
                             onClick={() => updateWeeklyReportStatus(report, reportDateKey, report.status, draftMemo)}
                             className="mt-2 h-9 rounded-md border border-white/15 bg-white/10 px-3 text-xs font-black text-white transition hover:border-brand-blue/40 hover:bg-brand-blue/15 disabled:cursor-not-allowed disabled:text-gray-500"
                           >
                             {updating ? '저장 중' : '보고 저장'}
                           </button>
+                          {activeWorkspace.key === 'googleProfile' && canAutoGenerateReport(report.title) ? (
+                            <button
+                              type="button"
+                              disabled={updating || generating}
+                              onClick={() => generateReportMemo(report, reportDateKey)}
+                              className="mt-2 h-9 rounded-md border border-brand-blue/35 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                            >
+                              {generating ? '생성 중' : '멘트 자동생성'}
+                            </button>
+                          ) : null}
                           <button
                             type="button"
-                            disabled={updating}
+                            disabled={updating || generating}
                             onClick={() =>
                               setExpandedReport({
                                 report,

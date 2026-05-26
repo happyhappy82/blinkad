@@ -55,6 +55,22 @@ type GbpWinsorMetrics = {
   notes?: string[]
 }
 
+type LocalFalconMetrics = {
+  keyword?: string
+  averageRank?: number
+  foundRate?: number
+  top3Rate?: number
+  topKeywords?: string[]
+  competitors?: string[]
+  notes?: string[]
+}
+
+type ReportSourceData = {
+  gbp: GbpWinsorMetrics | null
+  localFalcon: LocalFalconMetrics | null
+  workNotes: string[]
+}
+
 function resolveNotionToken() {
   const envToken = process.env.NOTION_TOKEN || process.env.NOTION_API_KEY
   if (envToken) return envToken
@@ -438,24 +454,89 @@ async function loadGbpWinsorMetrics(store: string, weekStart?: string): Promise<
   }
 }
 
-function automatedReportMemo(report: ReportItem, store: string, metrics: GbpWinsorMetrics | null) {
-  const dataNotice = metrics
+async function loadLocalFalconMetrics(store: string, weekStart?: string): Promise<LocalFalconMetrics | null> {
+  const inlineJson = process.env.LOCALFALCON_DATA_JSON || ''
+  if (inlineJson) {
+    try {
+      const parsed = JSON.parse(inlineJson)
+      return parsed?.[store] || parsed || null
+    } catch {
+      return null
+    }
+  }
+
+  const apiUrl = process.env.LOCALFALCON_API_URL || ''
+  if (!apiUrl) return null
+
+  try {
+    const url = new URL(apiUrl)
+    url.searchParams.set('store', store)
+    if (weekStart) url.searchParams.set('weekStart', weekStart)
+
+    const response = await fetch(url.toString(), {
+      headers: process.env.LOCALFALCON_API_KEY
+        ? { Authorization: `Bearer ${process.env.LOCALFALCON_API_KEY}` }
+        : undefined,
+      cache: 'no-store',
+    })
+    if (!response.ok) return null
+    return (await response.json()) as LocalFalconMetrics
+  } catch {
+    return null
+  }
+}
+
+function rankText(value?: number) {
+  return typeof value === 'number' && Number.isFinite(value) ? `${value.toFixed(1)}위` : '데이터 연결 전'
+}
+
+function percentText(value?: number) {
+  return typeof value === 'number' && Number.isFinite(value) ? `${value.toFixed(1)}%` : '데이터 연결 전'
+}
+
+function weeklyWorkNotesText(workNotes: string[]) {
+  return workNotes.length ? workNotes.map((value) => `- ${value}`).join('\n') : '- 이번 주 작업 메모 입력 후 자동 반영'
+}
+
+async function loadWeeklyWorkNotes(
+  notion: Client,
+  databaseId: string,
+  store: string,
+  product: string,
+  weekStart?: string
+) {
+  const reports = await loadReports(notion, databaseId, store, product, weekStart)
+  return reports
+    .filter((report) => report.memo && !report.title.includes('마감'))
+    .map((report) => `${report.date} ${report.title}: ${report.memo}`)
+}
+
+function automatedReportMemo(report: ReportItem, store: string, sourceData: ReportSourceData) {
+  const { gbp, localFalcon, workNotes } = sourceData
+  const gbpDataNotice = gbp
     ? '아래 내용은 GBP-빅쿼리-Winsor 데이터를 기준으로 정리했습니다.'
     : '현재 GBP-빅쿼리-Winsor 데이터 연결값이 없어 수치 입력 전 보고 초안으로 생성했습니다.'
+  const localFalconNotice = localFalcon
+    ? '아래 내용은 LocalFalcon 순위 데이터를 기준으로 정리했습니다.'
+    : '현재 LocalFalcon API 연결값이 없어 순위 수치 입력 전 보고 초안으로 생성했습니다.'
 
   if (report.title.includes('키워드')) {
     return `[${store}] 대표님, 안녕하세요.
 
 오늘은 Google 지도 기준 주요 키워드 노출 흐름을 점검했습니다.
-${dataNotice}
+${localFalconNotice}
 
 핵심 확인 내용
-- 프로필 조회: ${numberText(metrics?.views)}
-- 검색 노출: ${numberText(metrics?.searches)}
-- 고객 행동: ${numberText(metrics?.actions)}
+- 점검 키워드: ${localFalcon?.keyword || '데이터 연결 전'}
+- 평균 순위: ${rankText(localFalcon?.averageRank)}
+- 검색망 발견 비율: ${percentText(localFalcon?.foundRate)}
+- Top 3 진입 비율: ${percentText(localFalcon?.top3Rate)}
 
 주요 키워드/변동
-${listText(metrics?.keywordChanges || metrics?.topKeywords)}
+${listText(localFalcon?.topKeywords)}
+
+경쟁 매장 참고
+${listText(localFalcon?.competitors)}
 
 이번 주 키워드 흐름을 기준으로 다음 피드 업데이트와 프로필 문구에 반영하겠습니다.`
   }
@@ -464,17 +545,17 @@ ${listText(metrics?.keywordChanges || metrics?.topKeywords)}
     return `[${store}] 대표님, 안녕하세요.
 
 오늘은 Google 프로필 운영 데이터를 종합적으로 점검했습니다.
-${dataNotice}
+${gbpDataNotice}
 
 데이터 요약
-- 프로필 조회: ${numberText(metrics?.views)}
-- 검색 노출: ${numberText(metrics?.searches)}
-- 전화 클릭: ${numberText(metrics?.calls)}
-- 길찾기 클릭: ${numberText(metrics?.directions)}
-- 웹사이트 이동: ${numberText(metrics?.websiteClicks)}
+- 프로필 조회: ${numberText(gbp?.views)}
+- 검색 노출: ${numberText(gbp?.searches)}
+- 전화 클릭: ${numberText(gbp?.calls)}
+- 길찾기 클릭: ${numberText(gbp?.directions)}
+- 웹사이트 이동: ${numberText(gbp?.websiteClicks)}
 
 운영 메모
-${listText(metrics?.notes)}
+${listText(gbp?.notes)}
 
 데이터는 단순 수치 확인보다 어떤 정보가 고객 행동으로 이어지는지를 보는 것이 중요합니다. 이번 주 데이터 기준으로 다음 작업 우선순위를 정리해 운영에 반영하겠습니다.`
   }
@@ -483,13 +564,16 @@ ${listText(metrics?.notes)}
     return `[${store}] 대표님, 안녕하세요.
 
 이번 주 Google 프로필 운영 내용을 정리드립니다.
-${dataNotice}
+${gbpDataNotice}
 
 이번 주 주요 수치
-- 프로필 조회: ${numberText(metrics?.views)}
-- 검색 노출: ${numberText(metrics?.searches)}
-- 고객 행동: ${numberText(metrics?.actions)}
-- 전화/길찾기/웹사이트 이동: ${numberText((metrics?.calls || 0) + (metrics?.directions || 0) + (metrics?.websiteClicks || 0))}
+- 프로필 조회: ${numberText(gbp?.views)}
+- 검색 노출: ${numberText(gbp?.searches)}
+- 고객 행동: ${numberText(gbp?.actions)}
+- 전화/길찾기/웹사이트 이동: ${numberText((gbp?.calls || 0) + (gbp?.directions || 0) + (gbp?.websiteClicks || 0))}
+
+이번 주 작업 메모
+${weeklyWorkNotesText(workNotes)}
 
 다음 주 작업 방향
 - 고객이 검색 후 바로 이해할 수 있는 정보 보강
@@ -591,19 +675,41 @@ export async function POST(request: NextRequest) {
   const store = String(body.store || '').trim()
   const product = String(body.product || 'googleProfile').trim()
   const weekStart = String(body.weekStart || '').slice(0, 10)
+  const targetDate = String(body.date || '').slice(0, 10)
+  const targetTitle = String(body.title || '').trim()
   const token = resolveNotionToken()
   const databaseId = reportDatabaseId()
   const baseReports = fallbackReports(weekStart)
+  const targetReportDates = targetDate ? new Set([targetDate]) : undefined
   const targetReports = baseReports.filter(
-    (report) => report.title.includes('키워드') || report.title.includes('종합') || report.title.includes('마감')
+    (report) =>
+      (!targetReportDates || targetReportDates.has(report.date)) &&
+      (targetTitle ||
+        report.title.includes('키워드') ||
+        report.title.includes('종합') ||
+        report.title.includes('마감'))
   )
-  const metrics = await loadGbpWinsorMetrics(store, weekStart)
+  const normalizedTargetReports = targetReports.map((report) => (targetTitle ? { ...report, title: targetTitle } : report))
+  const needsLocalFalcon = normalizedTargetReports.some((report) => report.title.includes('키워드'))
+  const needsGbp = normalizedTargetReports.some(
+    (report) => report.title.includes('종합') || report.title.includes('데이터') || report.title.includes('마감')
+  )
+  const [gbp, localFalcon] = await Promise.all([
+    needsGbp ? loadGbpWinsorMetrics(store, weekStart) : Promise.resolve(null),
+    needsLocalFalcon ? loadLocalFalconMetrics(store, weekStart) : Promise.resolve(null),
+  ])
+  const fallbackSourceData: ReportSourceData = { gbp, localFalcon, workNotes: [] }
   const generatedReports = baseReports.map((report) =>
-    targetReports.some((target) => target.date === report.date)
+    normalizedTargetReports.some((target) => target.date === report.date)
       ? {
           ...report,
+          title: normalizedTargetReports.find((target) => target.date === report.date)?.title || report.title,
           status: '생성완료' as ReportStatus,
-          memo: automatedReportMemo(report, store, metrics),
+          memo: automatedReportMemo(
+            normalizedTargetReports.find((target) => target.date === report.date) || report,
+            store,
+            fallbackSourceData
+          ),
           reporter: '블링크애드',
         }
       : report
@@ -623,8 +729,12 @@ export async function POST(request: NextRequest) {
     const database = await notion.databases.retrieve({ database_id: databaseId })
     const schema = (database as any).properties || {}
     const map = reportSchemaMap(schema)
+    const workNotes = normalizedTargetReports.some((report) => report.title.includes('마감'))
+      ? await loadWeeklyWorkNotes(notion, databaseId, store, product, weekStart)
+      : []
+    const sourceData: ReportSourceData = { gbp, localFalcon, workNotes }
 
-    for (const report of targetReports) {
+    for (const report of normalizedTargetReports) {
       await upsertReportPage(
         notion,
         databaseId,
@@ -635,7 +745,7 @@ export async function POST(request: NextRequest) {
         weekStart,
         report,
         '생성완료',
-        automatedReportMemo(report, store, metrics)
+        automatedReportMemo(report, store, sourceData)
       )
     }
 
@@ -643,9 +753,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: metrics
-        ? 'GBP-빅쿼리-Winsor 데이터 기준으로 화·수·금 보고 초안을 Notion에 저장했습니다.'
-        : 'GBP-빅쿼리-Winsor 데이터 연결값이 없어 화·수·금 보고 초안을 Notion에 저장했습니다.',
+      message: targetDate
+        ? `${targetDate} ${targetTitle || '보고'} 자동 생성 내용을 Notion에 저장했습니다.`
+        : '화·수·금 보고 초안을 보고 유형별 데이터 소스 기준으로 Notion에 저장했습니다.',
       reports,
     })
   } catch (error) {
