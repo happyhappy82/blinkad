@@ -53,6 +53,26 @@ export type ApiResponse = {
   message?: string
 }
 
+export type BusinessCardRecord = {
+  id: string
+  name: string
+  phone: string
+  status: string
+  imageUrl: string
+  imageName: string
+  meetingIds: string[]
+  meetingTitles: string[]
+  lastEdited: string
+  notionUrl: string
+}
+
+export type BusinessCardsResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  cards: BusinessCardRecord[]
+  message?: string
+}
+
 export type CalendarEvent = {
   id: string
   title: string
