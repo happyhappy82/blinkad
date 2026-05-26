@@ -58,6 +58,7 @@ import type {
   SaveMeetingNoteHandler,
   StoreRecord,
   StoreProductKey,
+  StoreProductWorkspace,
   StoreWeeklyReport,
   StoreWeeklyReportStatus,
   WeeklyReportApiResponse,
@@ -2337,6 +2338,12 @@ function StoreOperationsPanel({
     ? reportHistory.filter((report) => report.date === historyDateFilter)
     : reportHistory
 
+  useEffect(() => {
+    if (workspaces.length && !workspaces.some((workspace) => workspace.key === activeProduct)) {
+      setActiveProduct(workspaces[0].key)
+    }
+  }, [activeProduct, workspaces])
+
   const loadWeeklyReports = useCallback(async (silent = false) => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
       setWeeklyReports([])
@@ -2557,6 +2564,14 @@ function StoreOperationsPanel({
             </div>
           </div>
 
+          <StoreOperationsSummary
+            store={selectedStore}
+            workspaces={workspaces}
+            activeProduct={activeWorkspace?.key || activeProduct}
+            activeReports={displayWeeklyReports}
+            onSelectProduct={setActiveProduct}
+          />
+
           <div className="overflow-x-auto rounded-lg border border-white/10 bg-black p-1">
             <div className="grid min-w-[620px] grid-cols-3 gap-1">
               {workspaces.map((workspace) => (
@@ -2578,6 +2593,9 @@ function StoreOperationsPanel({
 
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
+              <ProductWorkspaceWorkPanel workspace={activeWorkspace} reports={displayWeeklyReports} />
+              {activeWorkspace.key === 'googleAds' ? <GoogleAdsPerformancePanel workspace={activeWorkspace} /> : null}
+              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               {displayWeeklyReports.length ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
@@ -2866,6 +2884,288 @@ function StoreOperationsPanel({
       )}
     </section>
   )
+}
+
+function StoreOperationsSummary({
+  store,
+  workspaces,
+  activeProduct,
+  activeReports,
+  onSelectProduct,
+}: {
+  store: OperationRow
+  workspaces: StoreProductWorkspace[]
+  activeProduct: StoreProductKey
+  activeReports: StoreWeeklyReport[]
+  onSelectProduct: (product: StoreProductKey) => void
+}) {
+  const taskSummary = summarizeWorkspaceTasks(workspaces)
+  const reportSummary = summarizeReports(
+    workspaces.flatMap((workspace) => (workspace.key === activeProduct ? activeReports : workspace.weeklyReports || []))
+  )
+
+  return (
+    <section className="grid gap-3 xl:grid-cols-[1.2fr_repeat(3,minmax(0,1fr))]">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
+        <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store Detail</p>
+        <h3 className="mt-2 text-xl font-black text-white keep-all">{store.title} 운영 상세</h3>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-400 keep-all">
+          {store.products?.nextAction || store.memo}
+        </p>
+        <div className="mt-4 grid gap-2 sm:grid-cols-3">
+          <StoreSummaryMetric label="전체 작업" value={`${taskSummary.total}건`} note={`${taskSummary.active}건 진행`} />
+          <StoreSummaryMetric label="보고 완료" value={`${reportSummary.done}/${reportSummary.total || 0}`} note="이번 주 기준" />
+          <StoreSummaryMetric label="보고 대기" value={`${reportSummary.pending}건`} note="초안·대기·실패 포함" />
+        </div>
+      </div>
+
+      {workspaces.map((workspace) => {
+        const reports = workspace.key === activeProduct ? activeReports : workspace.weeklyReports || []
+        const workspaceTaskSummary = summarizeWorkspaceTasks([workspace])
+        const workspaceReportSummary = summarizeReports(reports)
+        const active = workspace.key === activeProduct
+
+        return (
+          <button
+            key={workspace.key}
+            type="button"
+            onClick={() => onSelectProduct(workspace.key)}
+            className={`rounded-lg border p-5 text-left transition ${
+              active
+                ? 'border-brand-blue/50 bg-brand-blue/10'
+                : 'border-white/10 bg-black hover:border-white/25 hover:bg-white/[0.04]'
+            }`}
+          >
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">Product</p>
+                <h4 className="mt-2 text-lg font-black text-white">{workspace.label}</h4>
+              </div>
+              <span className={`rounded-full border px-2.5 py-1 text-[11px] font-black ${active ? 'border-brand-blue/40 bg-brand-blue/20 text-blue-100' : 'border-white/10 bg-white/5 text-gray-400'}`}>
+                {active ? '선택됨' : '보기'}
+              </span>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <StoreSummaryMetric label="작업" value={`${workspaceTaskSummary.total}건`} note={`${workspaceTaskSummary.active}건 진행`} compact />
+              <StoreSummaryMetric
+                label="보고"
+                value={workspaceReportSummary.total ? `${workspaceReportSummary.done}/${workspaceReportSummary.total}` : '-'}
+                note={workspaceReportSummary.total ? `${workspaceReportSummary.pending}건 대기` : '보고 없음'}
+                compact
+              />
+            </div>
+            <p className="mt-4 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{workspace.description}</p>
+          </button>
+        )
+      })}
+    </section>
+  )
+}
+
+function StoreSummaryMetric({
+  label,
+  value,
+  note,
+  compact,
+}: {
+  label: string
+  value: string
+  note: string
+  compact?: boolean
+}) {
+  return (
+    <div className={`rounded-md border border-white/10 bg-black/45 ${compact ? 'p-3' : 'p-4'}`}>
+      <p className="text-[11px] font-black text-gray-600">{label}</p>
+      <p className={`${compact ? 'mt-2 text-xl' : 'mt-3 text-2xl'} font-black tracking-tight text-white`}>{value}</p>
+      <p className="mt-1 text-[11px] font-bold text-gray-500 keep-all">{note}</p>
+    </div>
+  )
+}
+
+function ProductWorkspaceWorkPanel({
+  workspace,
+  reports,
+}: {
+  workspace: StoreProductWorkspace
+  reports: StoreWeeklyReport[]
+}) {
+  const reportSummary = summarizeReports(reports)
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">{workspace.label}</p>
+          <h4 className="mt-2 text-xl font-black text-white">{workspace.heading}</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">{workspace.description}</p>
+        </div>
+        {reports.length ? (
+          <div className="grid min-w-full grid-cols-3 gap-2 xl:min-w-[360px]">
+            <StoreSummaryMetric label="보고완료" value={`${reportSummary.done}`} note="발송 완료" compact />
+            <StoreSummaryMetric label="진행중" value={`${reportSummary.inProgress}`} note="작성·생성" compact />
+            <StoreSummaryMetric label="대기/실패" value={`${reportSummary.pending}`} note="확인 필요" compact />
+          </div>
+        ) : null}
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-3">
+        {workspace.metrics.map((metric) => (
+          <div key={metric.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+            <p className="text-xs font-black text-gray-500">{metric.label}</p>
+            <p className="mt-3 text-2xl font-black tracking-tight text-white">{metric.value}</p>
+            <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{metric.note}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5">
+        <div className="flex items-center justify-between gap-3">
+          <h5 className="text-sm font-black text-white">작업 상태</h5>
+          <p className="text-xs font-bold text-gray-600">{workspace.tasks.length}건</p>
+        </div>
+        <div className="mt-3 grid gap-3 lg:grid-cols-3">
+          {workspace.tasks.map((task) => (
+            <article key={`${workspace.key}-${task.title}`} className="flex min-h-[210px] flex-col rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+              <div className="flex items-start justify-between gap-3">
+                <h6 className="font-black text-white keep-all">{task.title}</h6>
+                <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
+                  {task.status}
+                </span>
+              </div>
+              <p className="mt-3 flex-1 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+              <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/10 pt-3 text-xs font-bold text-gray-500">
+                <span>{task.owner}</span>
+                <span>{task.due}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function GoogleAdsPerformancePanel({ workspace }: { workspace: StoreProductWorkspace }) {
+  const rows = [
+    {
+      label: '노출',
+      value: metricValue(workspace, '노출'),
+      basis: '캠페인/광고그룹별 impressions',
+      action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
+    },
+    {
+      label: '클릭·전환',
+      value: metricValue(workspace, '클릭') || metricValue(workspace, '전환'),
+      basis: '전화, 길찾기, 웹사이트 이동',
+      action: '매장 방문 의도가 높은 액션만 전환 기준으로 봅니다.',
+    },
+    {
+      label: '광고비',
+      value: metricValue(workspace, '광고비'),
+      basis: '월 예산 대비 소진액',
+      action: '운영 수수료와 광고비를 분리해 추적합니다.',
+    },
+  ]
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div>
+        <p className="text-sm font-bold text-brand-blue">Google Ads</p>
+        <h4 className="mt-2 text-xl font-black text-white">성과 화면</h4>
+        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+          광고 API 연결 전에도 어떤 성과 지표를 볼지 먼저 고정해두고, 연동 후 같은 화면에 수치를 채웁니다.
+        </p>
+      </div>
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
+        <div className="min-w-[760px]">
+          <div className="grid grid-cols-[120px_140px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>지표</span>
+            <span>현재값</span>
+            <span>확인 기준</span>
+            <span>운영 액션</span>
+          </div>
+          {rows.map((row) => (
+            <div key={row.label} className="grid grid-cols-[120px_140px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
+              <span className="font-black text-white">{row.label}</span>
+              <span className="font-black text-blue-100">{row.value || '연동 전'}</span>
+              <span className="font-semibold leading-6 text-gray-400 keep-all">{row.basis}</span>
+              <span className="font-semibold leading-6 text-gray-500 keep-all">{row.action}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWorkspace }) {
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div>
+        <p className="text-sm font-bold text-brand-blue">Website · Blog</p>
+        <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 작업 현황</h4>
+        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+          GBP에서 연결할 공식 페이지, FAQ, 블로그 주제를 같은 흐름으로 관리합니다.
+        </p>
+      </div>
+      <div className="mt-4 grid gap-3 lg:grid-cols-3">
+        {workspace.tasks.map((task, index) => (
+          <article key={`${workspace.key}-stage-${task.title}`} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-sm font-black text-black">
+                {index + 1}
+              </span>
+              <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
+                {task.status}
+              </span>
+            </div>
+            <h5 className="mt-4 font-black text-white keep-all">{task.title}</h5>
+            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function summarizeWorkspaceTasks(workspaces: StoreProductWorkspace[]) {
+  const tasks = workspaces.flatMap((workspace) => workspace.tasks)
+  const active = tasks.filter((task) => statusIncludesAny(task.status, ['진행', '작성', '검수'])).length
+  const completed = tasks.filter((task) => statusIncludesAny(task.status, ['완료', '운영중'])).length
+  const waiting = Math.max(0, tasks.length - active - completed)
+
+  return {
+    total: tasks.length,
+    active,
+    completed,
+    waiting,
+  }
+}
+
+function summarizeReports(reports: StoreWeeklyReport[]) {
+  const done = reports.filter((report) => report.status === '보고완료').length
+  const inProgress = reports.filter((report) => report.status === '작성중' || report.status === '생성완료').length
+  const failed = reports.filter((report) => report.status === '실패').length
+  const pending = Math.max(0, reports.length - done - inProgress - failed)
+
+  return {
+    total: reports.length,
+    done,
+    inProgress,
+    failed,
+    pending: pending + failed,
+  }
+}
+
+function taskStatusBadge(status: string) {
+  if (statusIncludesAny(status, ['진행', '작성', '검수'])) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (statusIncludesAny(status, ['대기', '예정'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-300'
+}
+
+function metricValue(workspace: StoreProductWorkspace, keyword: string) {
+  return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
 }
 
 function getCurrentWeekDates() {
