@@ -28,6 +28,7 @@ import {
   Settings,
   UserCog,
   Users,
+  X,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -3097,6 +3098,7 @@ function BusinessCardPanel({
 }) {
   const [query, setQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
+  const [previewCard, setPreviewCard] = useState<BusinessCardRecord | null>(null)
   const statusOptions = useMemo(
     () => Array.from(new Set(cards.map((card) => card.status).filter(Boolean))),
     [cards]
@@ -3112,6 +3114,17 @@ function BusinessCardPanel({
   })
 
   const imageSource = (card: BusinessCardRecord) => card.imagePreviewUrl || card.imageUrl
+
+  useEffect(() => {
+    if (!previewCard) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setPreviewCard(null)
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [previewCard])
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -3173,7 +3186,7 @@ function BusinessCardPanel({
         <p className="p-10 text-center text-sm font-bold text-gray-500">표시할 명함이 없습니다.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-[1120px] w-full table-fixed border-collapse">
+          <table className="min-w-[1240px] w-full table-fixed border-collapse">
             <thead className="bg-black/35">
               <tr className="border-b border-white/10 text-left">
                 <th className="w-32 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">명함</th>
@@ -3183,20 +3196,27 @@ function BusinessCardPanel({
                 <th className="w-32 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">OCR</th>
                 <th className="w-56 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">관련 미팅</th>
                 <th className="w-36 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">수정일</th>
-                <th className="w-48 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">작업</th>
+                <th className="w-36 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">다시분석</th>
+                <th className="w-36 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">Notion</th>
               </tr>
             </thead>
             <tbody>
               {filteredCards.map((card) => (
                 <tr key={card.id} className="border-b border-white/10 bg-[#07090d] align-middle last:border-b-0 hover:bg-white/[0.03]">
                   <td className="px-5 py-4">
-                    <div className="flex h-14 w-24 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
+                    <button
+                      type="button"
+                      disabled={!card.imageUrl}
+                      onClick={() => setPreviewCard(card)}
+                      className="flex h-14 w-24 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04] transition hover:border-brand-blue/60 disabled:cursor-default disabled:hover:border-white/10"
+                      title={card.imageUrl ? '명함 크게 보기' : '사진 없음'}
+                    >
                       {card.imageUrl ? (
                         <img src={imageSource(card)} alt={card.imageName || card.name} className="h-full w-full object-cover" />
                       ) : (
                         <span className="text-xs font-bold text-gray-600">사진 없음</span>
                       )}
-                    </div>
+                    </button>
                   </td>
                   <td className="px-5 py-4">
                     <p className="truncate text-sm font-black text-white" title={card.name}>
@@ -3233,39 +3253,30 @@ function BusinessCardPanel({
                     </p>
                   </td>
                   <td className="px-5 py-4">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <button
-                        type="button"
-                        disabled={!card.imageUrl || runningOcrId === card.id}
-                        onClick={() => onAnalyze(card)}
-                        className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                    <button
+                      type="button"
+                      disabled={!card.imageUrl || runningOcrId === card.id}
+                      onClick={() => onAnalyze(card)}
+                      className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                    >
+                      <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
+                      {runningOcrId === card.id ? '분석 중' : '다시 분석'}
+                    </button>
+                  </td>
+                  <td className="px-5 py-4">
+                    {card.notionUrl ? (
+                      <a
+                        href={card.notionUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 hover:border-brand-blue/60 hover:bg-brand-blue/15"
                       >
-                        <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
-                        {runningOcrId === card.id ? '분석 중' : card.ocrStatus === '완료' ? '다시 분석' : '분석'}
-                      </button>
-                      {card.imageUrl ? (
-                        <a
-                          href={card.imageUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/15 text-gray-200 hover:border-white/30 hover:bg-white/5"
-                          title="명함 이미지"
-                        >
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : null}
-                      {card.notionUrl ? (
-                        <a
-                          href={card.notionUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 hover:border-brand-blue/60 hover:bg-brand-blue/15"
-                        >
-                          Notion
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : null}
-                    </div>
+                        Notion
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    ) : (
+                      <span className="text-xs font-bold text-gray-600">링크 없음</span>
+                    )}
                   </td>
                 </tr>
               ))}
@@ -3273,6 +3284,42 @@ function BusinessCardPanel({
           </table>
         </div>
       )}
+
+      {previewCard ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+          onClick={() => setPreviewCard(null)}
+        >
+          <div
+            className="relative flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-lg border border-white/15 bg-[#080a0f] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-black text-white">{previewCard.name}</p>
+                <p className="mt-1 truncate text-xs font-semibold text-gray-500">
+                  {previewCard.imageName || '명함 이미지'}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setPreviewCard(null)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/15 text-gray-200 hover:border-white/30 hover:bg-white/5"
+                title="닫기"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex min-h-0 flex-1 items-center justify-center bg-black p-3">
+              <img
+                src={imageSource(previewCard)}
+                alt={previewCard.imageName || previewCard.name}
+                className="max-h-[78vh] max-w-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
