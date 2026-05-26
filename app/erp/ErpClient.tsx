@@ -30,7 +30,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 type StoreRecord = {
   id: string
@@ -3325,7 +3325,7 @@ function StoreOperationsPanel({
     ? reportHistory.filter((report) => report.date === historyDateFilter)
     : reportHistory
 
-  useEffect(() => {
+  const loadWeeklyReports = useCallback(async (silent = false) => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
       setWeeklyReports([])
       setReportHistory([])
@@ -3334,68 +3334,85 @@ function StoreOperationsPanel({
       return
     }
 
-    let cancelled = false
-    const loadWeeklyReports = async () => {
+    if (!silent) {
       setWeeklyReportLoading(true)
       setReportHistoryLoading(true)
-      try {
-        const params = new URLSearchParams({
-          store: selectedStore.title,
-          product: activeWorkspace.key,
-          weekStart,
-        })
-        const historyParams = new URLSearchParams({
-          store: selectedStore.title,
-          product: activeWorkspace.key,
-          weekStart,
-          mode: 'history',
-        })
-        const [weekResponse, historyResponse] = await Promise.all([
-          fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' }),
-          fetch(`/api/erp/reports?${historyParams.toString()}`, { cache: 'no-store' }),
-        ])
-        const data = (await weekResponse.json()) as WeeklyReportApiResponse
-        const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
-        if (cancelled) return
-        setWeeklyReports(data.reports || [])
-        setReportHistory(historyData.reports || [])
-        setReportDrafts(Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || ''])))
-        setWeeklyReportMessage(
-          data.message ||
-            (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
-        )
-        setReportHistoryMessage(
-          historyData.message ||
-            (historyData.connected ? '기존 보고 현황을 불러왔습니다.' : '보고 DB 연결 전 샘플 기존 보고로 표시 중입니다.')
-        )
-      } catch {
-        if (cancelled) return
-        setWeeklyReports(activeWorkspace.weeklyReports || [])
-        setReportDrafts(
-          Object.fromEntries(
-            (activeWorkspace.weeklyReports || []).map((report) => {
-              const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
-              return [date, report.memo || '']
-            })
-          )
-        )
-        setReportHistory([])
-        setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
-        setReportHistoryMessage('기존 보고 현황을 불러오지 못했습니다.')
-      } finally {
-        if (!cancelled) {
-          setWeeklyReportLoading(false)
-          setReportHistoryLoading(false)
-        }
-      }
     }
 
-    loadWeeklyReports()
+    try {
+      const params = new URLSearchParams({
+        store: selectedStore.title,
+        product: activeWorkspace.key,
+        weekStart,
+      })
+      const historyParams = new URLSearchParams({
+        store: selectedStore.title,
+        product: activeWorkspace.key,
+        weekStart,
+        mode: 'history',
+      })
+      const [weekResponse, historyResponse] = await Promise.all([
+        fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' }),
+        fetch(`/api/erp/reports?${historyParams.toString()}`, { cache: 'no-store' }),
+      ])
+      const data = (await weekResponse.json()) as WeeklyReportApiResponse
+      const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
+      setWeeklyReports(data.reports || [])
+      setReportHistory(historyData.reports || [])
+      setReportDrafts(Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || ''])))
+      setWeeklyReportMessage(
+        data.message ||
+          (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
+      )
+      setReportHistoryMessage(
+        historyData.message ||
+          (historyData.connected ? '기존 보고 현황을 불러왔습니다.' : '보고 DB 연결 전 샘플 기존 보고로 표시 중입니다.')
+      )
+    } catch {
+      setWeeklyReports(activeWorkspace.weeklyReports || [])
+      setReportDrafts(
+        Object.fromEntries(
+          (activeWorkspace.weeklyReports || []).map((report) => {
+            const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
+            return [date, report.memo || '']
+          })
+        )
+      )
+      setReportHistory([])
+      setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
+      setReportHistoryMessage('기존 보고 현황을 불러오지 못했습니다.')
+    } finally {
+      if (!silent) {
+        setWeeklyReportLoading(false)
+        setReportHistoryLoading(false)
+      }
+    }
+  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart, weeklyReportDates])
+
+  useEffect(() => {
+    let cancelled = false
+    const syncReports = async (silent = false) => {
+      if (cancelled) return
+      await loadWeeklyReports(silent)
+    }
+
+    syncReports()
+
+    const syncOnFocus = () => syncReports(true)
+    const interval = window.setInterval(() => {
+      const activeTag = document.activeElement?.tagName
+      if (activeTag === 'TEXTAREA' || activeTag === 'INPUT' || activeTag === 'SELECT') return
+      syncReports(true)
+    }, 30000)
+
+    window.addEventListener('focus', syncOnFocus)
 
     return () => {
       cancelled = true
+      window.clearInterval(interval)
+      window.removeEventListener('focus', syncOnFocus)
     }
-  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart])
+  }, [loadWeeklyReports])
 
   const updateWeeklyReportStatus = async (
     report: StoreWeeklyReport,
@@ -3563,6 +3580,14 @@ function StoreOperationsPanel({
                           {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
                         </p>
                       </div>
+                      <button
+                        type="button"
+                        disabled={weeklyReportLoading}
+                        onClick={() => loadWeeklyReports()}
+                        className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-white disabled:cursor-not-allowed disabled:text-gray-600"
+                      >
+                        {weeklyReportLoading ? '동기화 중' : 'Notion 동기화'}
+                      </button>
                     </div>
                   </div>
                   <div className="mt-4 grid gap-3 lg:grid-cols-5">
