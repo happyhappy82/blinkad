@@ -221,7 +221,7 @@ type StoreProductMetric = {
   note: string
 }
 
-type StoreWeeklyReportStatus = '완료' | '작성중' | '예정' | '휴무'
+type StoreWeeklyReportStatus = '초안' | '생성완료' | '보고대기' | '보고완료' | '실패' | '작성중'
 
 type StoreWeeklyReport = {
   id?: string
@@ -289,7 +289,7 @@ const statusGroups = [
 
 const EFORMSIGN_URL = 'https://www.eformsign.com/kr/'
 const TEAM_CALENDAR_LABEL = '용올캘린더'
-const REPORT_STATUS_OPTIONS: StoreWeeklyReportStatus[] = ['예정', '작성중', '완료', '휴무']
+const REPORT_STATUS_OPTIONS: StoreWeeklyReportStatus[] = ['초안', '생성완료', '보고대기', '보고완료', '실패', '작성중']
 const DEFAULT_CLIENT_STATUS_OPTIONS = [
   '신규 문의',
   '접촉중',
@@ -508,7 +508,7 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
             description: 'Google 프로필 작업현황과 보고 현황을 한눈에 보고, 누락 없이 운영하기 위한 공간입니다.',
             metrics: [
               { label: '이번 주 작업', value: '3건', note: '기본정보, 사진, 리뷰 기준 정리' },
-              { label: '보고 상태', value: '작성중', note: '운영 시작 전 기준 리포트 준비' },
+              { label: '발송상태', value: '작성중', note: '운영 시작 전 기준 리포트 준비' },
               { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
             ],
             weeklyReports: [
@@ -520,25 +520,25 @@ const operationViews: Partial<Record<MenuId, OperationView>> = {
               },
               {
                 dayOffset: 1,
-                status: '예정',
+                status: '보고대기',
                 title: '키워드순위보고',
                 memo: '주요 키워드 노출 순위와 변동을 확인합니다.',
               },
               {
                 dayOffset: 2,
-                status: '예정',
+                status: '보고대기',
                 title: '종합 데이터 분석',
                 memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
               },
               {
                 dayOffset: 3,
-                status: '예정',
+                status: '보고대기',
                 title: '피드업데이트',
                 memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
               },
               {
                 dayOffset: 4,
-                status: '예정',
+                status: '보고대기',
                 title: '주간 마감 보고',
                 memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
               },
@@ -3280,7 +3280,7 @@ function ReportOperationsPanel({
         <h2 className="mt-2 text-2xl font-black tracking-tight text-white">계약완료 매장 중심 리포트 보드</h2>
         <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-400 keep-all">
           리포트는 전체 문의 DB가 아니라, 매장 운영관리에 등록된 실제 운영 매장 기준으로만 봅니다. 매장 선택 후 구글프로필,
-          구글애즈, 웹사이트·블로그별 보고 상태를 날짜 단위로 관리하는 구조입니다.
+          구글애즈, 웹사이트·블로그별 발송상태를 날짜 단위로 관리하는 구조입니다.
         </p>
       </div>
       <StoreOperationsPanel view={reportView} selectedStoreTitle={activeStoreTitle} onSelectStore={onSelectStore} />
@@ -3311,6 +3311,7 @@ function StoreOperationsPanel({
   const [reportHistoryMessage, setReportHistoryMessage] = useState('')
   const [historyDateFilter, setHistoryDateFilter] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
+  const [generatingReports, setGeneratingReports] = useState(false)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
   const [expandedReport, setExpandedReport] = useState<{
     report: StoreWeeklyReport
@@ -3415,8 +3416,8 @@ function StoreOperationsPanel({
               ...item,
               status,
               memo: reportMemo,
-              reporter: status === '완료' ? item.reporter || '블링크애드' : item.reporter,
-              completedAt: status === '완료' ? item.completedAt || new Date().toISOString() : undefined,
+              reporter: status === '보고완료' ? item.reporter || '블링크애드' : item.reporter,
+              completedAt: status === '보고완료' ? item.completedAt || new Date().toISOString() : undefined,
             }
           : item
       })
@@ -3441,11 +3442,36 @@ function StoreOperationsPanel({
         setWeeklyReports(data.reports || [])
         setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
       }
-      setWeeklyReportMessage(data.message || '보고 상태를 변경했습니다.')
+      setWeeklyReportMessage(data.message || '발송상태를 변경했습니다.')
     } catch {
-      setWeeklyReportMessage('보고 상태 변경 중 오류가 발생했습니다.')
+      setWeeklyReportMessage('발송상태 변경 중 오류가 발생했습니다.')
     } finally {
       setUpdatingReportDate(null)
+    }
+  }
+
+  const generateWinsorReports = async () => {
+    if (!selectedStore || !activeWorkspace) return
+
+    setGeneratingReports(true)
+    try {
+      const response = await fetch('/api/erp/reports', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          store: selectedStore.title,
+          product: activeWorkspace.key,
+          weekStart,
+        }),
+      })
+      const data = (await response.json()) as WeeklyReportApiResponse
+      setWeeklyReports(data.reports || [])
+      setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
+      setWeeklyReportMessage(data.message || '화·수·금 보고 초안을 자동 생성했습니다.')
+    } catch {
+      setWeeklyReportMessage('화·수·금 보고 자동 생성 중 오류가 발생했습니다.')
+    } finally {
+      setGeneratingReports(false)
     }
   }
 
@@ -3520,16 +3546,28 @@ function StoreOperationsPanel({
             <div className="rounded-lg border border-white/10 bg-black">
               {displayWeeklyReports.length ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
-                  <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                  <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
                       <p className="text-sm font-bold text-brand-blue">Weekly Report</p>
                       <h4 className="mt-2 text-xl font-black text-white">이번 주 작업보고 현황</h4>
                     </div>
-                    <div className="text-sm font-semibold text-gray-500 md:text-right">
-                      <p className="keep-all">요일별 보고 진행 여부를 날짜와 함께 확인합니다.</p>
-                      <p className="mt-1 keep-all">
-                        {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
-                      </p>
+                    <div className="flex flex-col gap-3 xl:items-end">
+                      <div className="text-sm font-semibold text-gray-500 xl:text-right">
+                        <p className="keep-all">요일별 보고 진행 여부를 날짜와 함께 확인합니다.</p>
+                        <p className="mt-1 keep-all">
+                          {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
+                        </p>
+                      </div>
+                      {activeWorkspace.key === 'googleProfile' ? (
+                        <button
+                          type="button"
+                          disabled={generatingReports}
+                          onClick={generateWinsorReports}
+                          className="h-10 rounded-md border border-brand-blue/35 bg-brand-blue/10 px-4 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                        >
+                          {generatingReports ? '자동 생성 중' : '화·수·금 보고 자동 생성'}
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                   <div className="mt-4 grid gap-3 lg:grid-cols-5">
@@ -3571,14 +3609,14 @@ function StoreOperationsPanel({
                               placeholder="오늘 보고한 내용을 입력하세요."
                             />
                           </label>
-                          {report.status === '완료' ? (
+                          {report.status === '보고완료' ? (
                             <p className="mt-3 text-[11px] font-bold leading-5 text-emerald-100/80 keep-all">
                               {report.reporter ? `${report.reporter} · ` : ''}
                               {report.completedAt ? formatDateTime(report.completedAt) : '보고완료'}
                             </p>
                           ) : null}
                           <label className="mt-4 block">
-                            <span className="mb-1 block text-[11px] font-black text-gray-600">상태 변경</span>
+                            <span className="mb-1 block text-[11px] font-black text-gray-600">발송상태</span>
                             <select
                               value={report.status}
                               disabled={updating}
@@ -3723,7 +3761,7 @@ function StoreOperationsPanel({
                 </div>
                 <div className="space-y-4 p-5">
                   <label className="block">
-                    <span className="mb-2 block text-xs font-black text-gray-500">보고 상태</span>
+                    <span className="mb-2 block text-xs font-black text-gray-500">발송상태</span>
                     <select
                       value={expandedReport.status}
                       onChange={(event) =>
@@ -3816,16 +3854,18 @@ function formatMonthDay(date: Date) {
 }
 
 function weeklyReportClass(status: StoreWeeklyReportStatus) {
-  if (status === '완료') return 'border-emerald-300/20 bg-emerald-300/10'
+  if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
-  if (status === '휴무') return 'border-white/10 bg-white/[0.025]'
+  if (status === '실패') return 'border-rose-300/25 bg-rose-300/10'
+  if (status === '생성완료') return 'border-cyan-300/25 bg-cyan-300/10'
   return 'border-white/10 bg-white/[0.04]'
 }
 
 function weeklyReportBadge(status: StoreWeeklyReportStatus) {
-  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '보고완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
-  if (status === '휴무') return 'border-white/10 bg-white/[0.04] text-gray-500'
+  if (status === '실패') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+  if (status === '생성완료') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
 }
 

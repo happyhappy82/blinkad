@@ -8,7 +8,7 @@ export const runtime = 'nodejs'
 
 const DEFAULT_REPORT_DATABASE_ID = '357753ebc01381d29c36c774c4f2402f'
 
-type ReportStatus = '완료' | '작성중' | '예정' | '휴무'
+type ReportStatus = '초안' | '생성완료' | '보고대기' | '보고완료' | '실패' | '작성중'
 
 type ReportItem = {
   id?: string
@@ -31,13 +31,28 @@ const propertyCandidates = {
   title: ['보고명', '이름', 'Name', 'title'],
   store: ['매장명', '고객명', '업체명', '클라이언트', 'Store'],
   product: ['상품', '서비스', '작업구분', 'Product'],
+  reportType: ['보고 유형', '보고유형', 'Report Type'],
   date: ['보고일', '날짜', '일자', 'Date'],
+  periodStart: ['기준 시작일', '기준시작일', 'Period Start'],
+  periodEnd: ['기준 종료일', '기준종료일', 'Period End'],
   weekday: ['요일', 'Weekday'],
-  status: ['보고상태', '상태', 'Status'],
+  status: ['발송 상태', '발송상태', '보고상태', '상태', 'Status'],
   reporter: ['보고자', '담당자', '작성자', 'Owner'],
-  completedAt: ['완료시간', '보고완료시간', '완료일시', 'Completed At'],
-  summary: ['작업요약', '보고내용', '작업내용', '요약', 'Summary'],
+  completedAt: ['발송 시각', '발송시각', '완료시간', '보고완료시간', '완료일시', 'Completed At'],
+  summary: ['카톡 메시지', '카톡메시지', '작업요약', '보고내용', '작업내용', '요약', 'Summary'],
   nextAction: ['다음작업', '다음 액션', 'Next Action'],
+}
+
+type GbpWinsorMetrics = {
+  views?: number
+  searches?: number
+  actions?: number
+  calls?: number
+  directions?: number
+  websiteClicks?: number
+  topKeywords?: string[]
+  keywordChanges?: string[]
+  notes?: string[]
 }
 
 function resolveNotionToken() {
@@ -139,6 +154,27 @@ function weekday(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { weekday: 'short' }).format(date)
 }
 
+function normalizeReportStatus(value?: string, fallback: ReportStatus = '보고대기'): ReportStatus {
+  if (value === '완료') return '보고완료'
+  if (value === '예정') return '보고대기'
+  if (value === '휴무') return '보고대기'
+  if (
+    value === '초안' ||
+    value === '생성완료' ||
+    value === '보고대기' ||
+    value === '보고완료' ||
+    value === '실패' ||
+    value === '작성중'
+  ) {
+    return value
+  }
+  return fallback
+}
+
+function isReportSent(status: ReportStatus) {
+  return status === '보고완료'
+}
+
 function fallbackReports(weekStart?: string): ReportItem[] {
   const dates = weekDates(weekStart).slice(0, 5)
   const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
@@ -153,7 +189,7 @@ function fallbackReports(weekStart?: string): ReportItem[] {
   return dates.map((date, index) => ({
     dayOffset: index,
     date: isoDate(date),
-    status: index >= 5 ? '휴무' : index === 0 ? '작성중' : '예정',
+    status: index === 0 ? '작성중' : '보고대기',
     title: titles[index],
     memo: memos[index],
   }))
@@ -166,7 +202,7 @@ function fallbackReportsWithStatus(weekStart: string | undefined, date: string, 
           ...report,
           status,
           reporter: '블링크애드',
-          completedAt: status === '완료' ? new Date().toISOString() : undefined,
+          completedAt: isReportSent(status) ? new Date().toISOString() : undefined,
         }
       : report
   )
@@ -187,7 +223,7 @@ function fallbackReportHistory(weekStart?: string): ReportItem[] {
     reports.push({
       dayOffset: reports.length % 5,
       date: isoDate(date),
-      status: '완료' as ReportStatus,
+      status: '보고완료' as ReportStatus,
       title: titles[reports.length % 5],
       memo: '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
       reporter: '블링크애드',
@@ -209,7 +245,7 @@ function propertyValue(propSchema: any, value: string) {
   if (propSchema.type === 'email') return { email: value || null }
   if (propSchema.type === 'phone_number') return { phone_number: value || null }
   if (propSchema.type === 'number') return { number: Number(value) || null }
-  if (propSchema.type === 'checkbox') return { checkbox: value === '완료' || value === 'true' }
+  if (propSchema.type === 'checkbox') return { checkbox: value === '보고완료' || value === '완료' || value === 'true' }
   return undefined
 }
 
@@ -229,7 +265,10 @@ function reportSchemaMap(schema: Record<string, any>) {
     title: titlePropertyName(schema),
     store: findPropertyName(schema, propertyCandidates.store),
     product: findPropertyName(schema, propertyCandidates.product),
+    reportType: findPropertyName(schema, propertyCandidates.reportType),
     date: findPropertyName(schema, propertyCandidates.date),
+    periodStart: findPropertyName(schema, propertyCandidates.periodStart),
+    periodEnd: findPropertyName(schema, propertyCandidates.periodEnd),
     weekday: findPropertyName(schema, propertyCandidates.weekday),
     status: findPropertyName(schema, propertyCandidates.status),
     reporter: findPropertyName(schema, propertyCandidates.reporter),
@@ -237,6 +276,33 @@ function reportSchemaMap(schema: Record<string, any>) {
     summary: findPropertyName(schema, propertyCandidates.summary),
     nextAction: findPropertyName(schema, propertyCandidates.nextAction),
   }
+}
+
+function reportTypeForTitle(title: string) {
+  if (title.includes('키워드')) return '화요일 키워드 순위 보고'
+  if (title.includes('종합') || title.includes('데이터')) return '수요일 주간 성과 보고'
+  if (title.includes('마감')) return '금요일 주간 마감 보고'
+  if (title.includes('피드')) return '소식지 발행 보고'
+  return '일일 보고'
+}
+
+function displayTitleFromReportType(reportType: string, fallback: string) {
+  if (reportType.includes('키워드')) return '키워드순위보고'
+  if (reportType.includes('성과') || reportType.includes('데이터')) return '종합 데이터 분석'
+  if (reportType.includes('마감')) return '주간 마감 보고'
+  if (reportType.includes('소식지') || reportType.includes('피드')) return '피드업데이트'
+  return fallback
+}
+
+function displayReportTitle(properties: Record<string, any>, map: ReturnType<typeof reportSchemaMap>, fallback: string) {
+  const reportType = propText(properties[map.reportType])
+  const title = propText(properties[map.title])
+  if (reportType) return displayTitleFromReportType(reportType, fallback)
+  if (title.includes('키워드순위보고')) return '키워드순위보고'
+  if (title.includes('종합 데이터 분석')) return '종합 데이터 분석'
+  if (title.includes('주간 마감 보고')) return '주간 마감 보고'
+  if (title.includes('피드업데이트')) return '피드업데이트'
+  return fallback
 }
 
 function pageMatches(
@@ -280,8 +346,8 @@ function mergeReports(
       byDate.set(date, {
         ...fallback,
         id: page.id,
-        status: (propText(properties[map.status]) || fallback.status) as ReportStatus,
-        title: propText(properties[map.title]) || fallback.title,
+        status: normalizeReportStatus(propText(properties[map.status]), fallback.status),
+        title: displayReportTitle(properties, map, fallback.title),
         memo: propText(properties[map.summary]) || fallback.memo,
         reporter: propText(properties[map.reporter]),
         completedAt: propText(properties[map.completedAt]),
@@ -321,8 +387,8 @@ async function loadReportHistory(notion: Client, databaseId: string, store: stri
         id: page.id,
         dayOffset: parseDate(date).getDay(),
         date,
-        status: (propText(properties[map.status]) || '완료') as ReportStatus,
-        title: propText(properties[map.title]) || '작업보고',
+        status: normalizeReportStatus(propText(properties[map.status]), '보고완료'),
+        title: displayReportTitle(properties, map, '작업보고'),
         memo: propText(properties[map.summary]) || '',
         reporter: propText(properties[map.reporter]),
         completedAt: propText(properties[map.completedAt]),
@@ -330,6 +396,154 @@ async function loadReportHistory(notion: Client, databaseId: string, store: stri
     })
     .filter((report) => report.date)
     .sort((a, b) => b.date.localeCompare(a.date))
+}
+
+function numberText(value?: number) {
+  return typeof value === 'number' && Number.isFinite(value) ? `${value.toLocaleString('ko-KR')}회` : '데이터 연결 전'
+}
+
+function listText(values?: string[]) {
+  return values?.length ? values.map((value) => `- ${value}`).join('\n') : '- 데이터 연결 후 자동 반영'
+}
+
+async function loadGbpWinsorMetrics(store: string, weekStart?: string): Promise<GbpWinsorMetrics | null> {
+  const inlineJson = process.env.GBP_WINSOR_DATA_JSON || ''
+  if (inlineJson) {
+    try {
+      const parsed = JSON.parse(inlineJson)
+      return parsed?.[store] || parsed || null
+    } catch {
+      return null
+    }
+  }
+
+  const apiUrl = process.env.GBP_WINSOR_API_URL || process.env.WINSOR_GBP_API_URL || ''
+  if (!apiUrl) return null
+
+  try {
+    const url = new URL(apiUrl)
+    url.searchParams.set('store', store)
+    if (weekStart) url.searchParams.set('weekStart', weekStart)
+
+    const response = await fetch(url.toString(), {
+      headers: process.env.GBP_WINSOR_API_KEY
+        ? { Authorization: `Bearer ${process.env.GBP_WINSOR_API_KEY}` }
+        : undefined,
+      cache: 'no-store',
+    })
+    if (!response.ok) return null
+    return (await response.json()) as GbpWinsorMetrics
+  } catch {
+    return null
+  }
+}
+
+function automatedReportMemo(report: ReportItem, store: string, metrics: GbpWinsorMetrics | null) {
+  const dataNotice = metrics
+    ? '아래 내용은 GBP-빅쿼리-Winsor 데이터를 기준으로 정리했습니다.'
+    : '현재 GBP-빅쿼리-Winsor 데이터 연결값이 없어 수치 입력 전 보고 초안으로 생성했습니다.'
+
+  if (report.title.includes('키워드')) {
+    return `[${store}] 대표님, 안녕하세요.
+
+오늘은 Google 지도 기준 주요 키워드 노출 흐름을 점검했습니다.
+${dataNotice}
+
+핵심 확인 내용
+- 프로필 조회: ${numberText(metrics?.views)}
+- 검색 노출: ${numberText(metrics?.searches)}
+- 고객 행동: ${numberText(metrics?.actions)}
+
+주요 키워드/변동
+${listText(metrics?.keywordChanges || metrics?.topKeywords)}
+
+이번 주 키워드 흐름을 기준으로 다음 피드 업데이트와 프로필 문구에 반영하겠습니다.`
+  }
+
+  if (report.title.includes('종합') || report.title.includes('데이터')) {
+    return `[${store}] 대표님, 안녕하세요.
+
+오늘은 Google 프로필 운영 데이터를 종합적으로 점검했습니다.
+${dataNotice}
+
+데이터 요약
+- 프로필 조회: ${numberText(metrics?.views)}
+- 검색 노출: ${numberText(metrics?.searches)}
+- 전화 클릭: ${numberText(metrics?.calls)}
+- 길찾기 클릭: ${numberText(metrics?.directions)}
+- 웹사이트 이동: ${numberText(metrics?.websiteClicks)}
+
+운영 메모
+${listText(metrics?.notes)}
+
+데이터는 단순 수치 확인보다 어떤 정보가 고객 행동으로 이어지는지를 보는 것이 중요합니다. 이번 주 데이터 기준으로 다음 작업 우선순위를 정리해 운영에 반영하겠습니다.`
+  }
+
+  if (report.title.includes('마감')) {
+    return `[${store}] 대표님, 안녕하세요.
+
+이번 주 Google 프로필 운영 내용을 정리드립니다.
+${dataNotice}
+
+이번 주 주요 수치
+- 프로필 조회: ${numberText(metrics?.views)}
+- 검색 노출: ${numberText(metrics?.searches)}
+- 고객 행동: ${numberText(metrics?.actions)}
+- 전화/길찾기/웹사이트 이동: ${numberText((metrics?.calls || 0) + (metrics?.directions || 0) + (metrics?.websiteClicks || 0))}
+
+다음 주 작업 방향
+- 고객이 검색 후 바로 이해할 수 있는 정보 보강
+- 대표 메뉴/서비스 중심 콘텐츠 누적
+- 리뷰와 사진을 통한 신뢰 신호 강화
+- Google 프로필과 웹사이트/블로그 정보의 방향성 정리
+
+목표는 단순 게시물 작성이 아니라, Google과 AI가 매장을 더 정확히 이해할 수 있도록 공식 정보를 꾸준히 쌓는 것입니다.`
+  }
+
+  return report.memo
+}
+
+async function upsertReportPage(
+  notion: Client,
+  databaseId: string,
+  schema: Record<string, any>,
+  map: ReturnType<typeof reportSchemaMap>,
+  store: string,
+  product: string,
+  weekStart: string | undefined,
+  report: ReportItem,
+  status: ReportStatus,
+  memo: string
+) {
+  const productLabel = productLabels[product] || product
+  const dateSet = new Set([report.date])
+  const existing = await notion.databases.query({
+    database_id: databaseId,
+    page_size: 100,
+  })
+  const page = existing.results.find((item: any) => pageMatches(item, map, store, product, dateSet)) as any
+  const properties: Record<string, any> = {}
+  const reportTitle = `${store} ${productLabel} ${report.title} ${report.date}`
+
+  setProperty(properties, schema, map.title, reportTitle)
+  setProperty(properties, schema, map.store, store)
+  setProperty(properties, schema, map.product, productLabel)
+  setProperty(properties, schema, map.reportType, reportTypeForTitle(report.title))
+  setProperty(properties, schema, map.date, report.date)
+  setProperty(properties, schema, map.periodStart, weekStart || report.date)
+  setProperty(properties, schema, map.periodEnd, report.date)
+  setProperty(properties, schema, map.weekday, weekday(parseDate(report.date)))
+  setProperty(properties, schema, map.status, status)
+  setProperty(properties, schema, map.reporter, '블링크애드')
+  setProperty(properties, schema, map.completedAt, isReportSent(status) ? new Date().toISOString() : '')
+  setProperty(properties, schema, map.summary, memo)
+  setProperty(properties, schema, map.nextAction, '다음 작업 확인')
+
+  if (page?.id) {
+    await notion.pages.update({ page_id: page.id, properties })
+  } else {
+    await notion.pages.create({ parent: { database_id: databaseId }, properties })
+  }
 }
 
 export async function GET(request: NextRequest) {
@@ -372,6 +586,78 @@ export async function GET(request: NextRequest) {
   }
 }
 
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const store = String(body.store || '').trim()
+  const product = String(body.product || 'googleProfile').trim()
+  const weekStart = String(body.weekStart || '').slice(0, 10)
+  const token = resolveNotionToken()
+  const databaseId = reportDatabaseId()
+  const baseReports = fallbackReports(weekStart)
+  const targetReports = baseReports.filter(
+    (report) => report.title.includes('키워드') || report.title.includes('종합') || report.title.includes('마감')
+  )
+  const metrics = await loadGbpWinsorMetrics(store, weekStart)
+  const generatedReports = baseReports.map((report) =>
+    targetReports.some((target) => target.date === report.date)
+      ? {
+          ...report,
+          status: '생성완료' as ReportStatus,
+          memo: automatedReportMemo(report, store, metrics),
+          reporter: '블링크애드',
+        }
+      : report
+  )
+
+  if (!token || !store) {
+    return NextResponse.json({
+      source: 'fallback',
+      connected: false,
+      message: 'Notion 토큰 또는 매장명이 없어 ERP 화면에만 자동 생성 초안을 표시합니다.',
+      reports: generatedReports,
+    })
+  }
+
+  try {
+    const notion = new Client({ auth: token })
+    const database = await notion.databases.retrieve({ database_id: databaseId })
+    const schema = (database as any).properties || {}
+    const map = reportSchemaMap(schema)
+
+    for (const report of targetReports) {
+      await upsertReportPage(
+        notion,
+        databaseId,
+        schema,
+        map,
+        store,
+        product,
+        weekStart,
+        report,
+        '생성완료',
+        automatedReportMemo(report, store, metrics)
+      )
+    }
+
+    const reports = await loadReports(notion, databaseId, store, product, weekStart)
+    return NextResponse.json({
+      source: 'notion',
+      connected: true,
+      message: metrics
+        ? 'GBP-빅쿼리-Winsor 데이터 기준으로 화·수·금 보고 초안을 Notion에 저장했습니다.'
+        : 'GBP-빅쿼리-Winsor 데이터 연결값이 없어 화·수·금 보고 초안을 Notion에 저장했습니다.',
+      reports,
+    })
+  } catch (error) {
+    return NextResponse.json({
+      source: 'fallback',
+      connected: false,
+      message: reportConnectionErrorMessage(error),
+      reports: generatedReports,
+    })
+  }
+}
+
 export async function PATCH(request: NextRequest) {
   const body = await request.json()
   const store = String(body.store || '').trim()
@@ -380,7 +666,7 @@ export async function PATCH(request: NextRequest) {
   const weekStart = String(body.weekStart || date || '').slice(0, 10)
   const title = String(body.title || '작업보고').trim()
   const memo = String(body.memo || '').trim()
-  const status = (String(body.status || '완료').trim() || '완료') as ReportStatus
+  const status = normalizeReportStatus(String(body.status || '보고완료').trim(), '보고완료')
   const token = resolveNotionToken()
   const databaseId = reportDatabaseId()
 
@@ -406,16 +692,19 @@ export async function PATCH(request: NextRequest) {
     })
     const page = existing.results.find((item: any) => pageMatches(item, map, store, product, dateSet)) as any
     const properties: Record<string, any> = {}
-    const reportTitle = `${store} ${productLabel} ${date} 보고`
+    const reportTitle = `${store} ${productLabel} ${title} ${date}`
 
     setProperty(properties, schema, map.title, reportTitle)
     setProperty(properties, schema, map.store, store)
     setProperty(properties, schema, map.product, productLabel)
+    setProperty(properties, schema, map.reportType, reportTypeForTitle(title))
     setProperty(properties, schema, map.date, date)
+    setProperty(properties, schema, map.periodStart, weekStart || date)
+    setProperty(properties, schema, map.periodEnd, date)
     setProperty(properties, schema, map.weekday, weekday(parseDate(date)))
     setProperty(properties, schema, map.status, status)
     setProperty(properties, schema, map.reporter, '블링크애드')
-    setProperty(properties, schema, map.completedAt, status === '완료' ? new Date().toISOString() : '')
+    setProperty(properties, schema, map.completedAt, isReportSent(status) ? new Date().toISOString() : '')
     setProperty(properties, schema, map.summary, memo || title)
     setProperty(properties, schema, map.nextAction, '다음 작업 확인')
 
@@ -435,7 +724,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: `${date} 보고 상태를 ${status}(으)로 변경했습니다.`,
+      message: `${date} 발송상태를 ${status}(으)로 변경했습니다.`,
       reports,
     })
   } catch (error) {
