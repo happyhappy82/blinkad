@@ -2369,13 +2369,7 @@ function StoreOperationsPanel({
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
   const [generatingReportDate, setGeneratingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
-  const [expandedReport, setExpandedReport] = useState<{
-    report: StoreWeeklyReport
-    date: Date
-    dateKey: string
-    status: StoreWeeklyReportStatus
-    memo: string
-  } | null>(null)
+  const [selectedWeeklyReportDate, setSelectedWeeklyReportDate] = useState('')
   const [historyDetail, setHistoryDetail] = useState<{
     report: StoreWeeklyReport
     date: Date
@@ -2384,6 +2378,32 @@ function StoreOperationsPanel({
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
     : reportHistory
+  const weeklyReportItems = useMemo(
+    () =>
+      displayWeeklyReports.map((report) => {
+        const date = report.date
+          ? parseLocalDate(report.date)
+          : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
+        const dateKey = report.date || toISODate(date)
+
+        return {
+          report,
+          date,
+          dateKey,
+          draftMemo: reportDrafts[dateKey] ?? report.memo ?? '',
+        }
+      }),
+    [displayWeeklyReports, reportDrafts, weeklyReportDates]
+  )
+  const selectedWeeklyReport =
+    weeklyReportItems.find((item) => item.dateKey === selectedWeeklyReportDate) || weeklyReportItems[0]
+  const weeklyReportSummary = summarizeReports(weeklyReportItems.map((item) => item.report))
+  const selectedWeeklyReportUpdating = selectedWeeklyReport
+    ? updatingReportDate === selectedWeeklyReport.dateKey
+    : false
+  const selectedWeeklyReportGenerating = selectedWeeklyReport
+    ? generatingReportDate === selectedWeeklyReport.dateKey
+    : false
 
   useEffect(() => {
     const syncReportWeek = () => {
@@ -2404,6 +2424,17 @@ function StoreOperationsPanel({
       setActiveProduct(workspaces[0].key)
     }
   }, [activeProduct, workspaces])
+
+  useEffect(() => {
+    if (!weeklyReportItems.length) {
+      if (selectedWeeklyReportDate) setSelectedWeeklyReportDate('')
+      return
+    }
+
+    if (!weeklyReportItems.some((item) => item.dateKey === selectedWeeklyReportDate)) {
+      setSelectedWeeklyReportDate(weeklyReportItems[0].dateKey)
+    }
+  }, [selectedWeeklyReportDate, weeklyReportItems])
 
   const loadWeeklyReports = useCallback(async (silent = false) => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
@@ -2659,16 +2690,27 @@ function StoreOperationsPanel({
                 <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
               ) : null}
               {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
-              {displayWeeklyReports.length ? (
+              {weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
                       <p className="text-sm font-bold text-brand-blue">Weekly Report</p>
                       <h4 className="mt-2 text-xl font-black text-white">이번 주 작업보고 현황</h4>
+                      <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+                        <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+                          완료 {weeklyReportSummary.done}
+                        </span>
+                        <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+                          작성중 {weeklyReportSummary.inProgress}
+                        </span>
+                        <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-amber-100">
+                          대기 {weeklyReportSummary.pending}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-3 xl:items-end">
                       <div className="text-sm font-semibold text-gray-500 xl:text-right">
-                        <p className="keep-all">요일별 보고 진행 여부를 날짜와 함께 확인합니다.</p>
+                        <p className="keep-all">요일을 선택하면 아래에서 보고 내용을 넓게 확인하고 수정합니다.</p>
                         <p className="mt-1 keep-all">
                           {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
                         </p>
@@ -2683,106 +2725,131 @@ function StoreOperationsPanel({
                       </button>
                     </div>
                   </div>
-                  <div className="mt-4 grid gap-3 lg:grid-cols-5">
-                    {displayWeeklyReports.map((report) => {
-                      const date = report.date
-                        ? parseLocalDate(report.date)
-                        : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
-                      const reportDateKey = report.date || toISODate(date)
-                      const updating = updatingReportDate === reportDateKey
-                      const generating = generatingReportDate === reportDateKey
-                      const draftMemo = reportDrafts[reportDateKey] ?? report.memo ?? ''
+                  <div className="mt-5 grid gap-2 lg:grid-cols-5">
+                    {weeklyReportItems.map((item) => {
+                      const active = item.dateKey === selectedWeeklyReport.dateKey
 
                       return (
-                        <div
-                          key={`${activeWorkspace.key}-report-${reportDateKey}`}
-                          className={`flex min-h-[440px] flex-col rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
+                        <button
+                          key={`${activeWorkspace.key}-report-tab-${item.dateKey}`}
+                          type="button"
+                          onClick={() => setSelectedWeeklyReportDate(item.dateKey)}
+                          className={`min-h-[128px] rounded-lg border p-4 text-left transition ${
+                            active
+                              ? 'border-brand-blue/60 bg-brand-blue/15'
+                              : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
+                          }`}
                         >
                           <div className="flex items-start justify-between gap-2">
                             <div>
-                              <p className="text-xs font-black text-gray-500">{formatWeekday(date)}</p>
-                              <p className="mt-1 text-lg font-black text-white">{formatMonthDay(date)}</p>
+                              <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
+                              <p className="mt-1 text-lg font-black text-white">{formatMonthDay(item.date)}</p>
                             </div>
-                            <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${weeklyReportBadge(report.status)}`}>
-                              {report.status}
+                            <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${weeklyReportBadge(item.report.status)}`}>
+                              {item.report.status}
                             </span>
                           </div>
-                          <p className="mt-4 font-black text-white keep-all">{report.title}</p>
-                          <label className="mt-3 block flex-1">
-                            <span className="mb-1 block text-[11px] font-black text-gray-600">보고 내용</span>
-                            <textarea
-                              value={draftMemo}
-                              disabled={updating}
-                              onChange={(event) =>
-                                setReportDrafts((current) => ({
-                                  ...current,
-                                  [reportDateKey]: event.target.value,
-                                }))
-                              }
-                              className="min-h-[190px] w-full resize-none rounded-md border border-white/10 bg-black/35 px-3 py-2 text-xs font-semibold leading-5 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/20 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
-                              placeholder="오늘 보고한 내용을 입력하세요."
-                            />
-                          </label>
-                          {report.status === '보고완료' ? (
-                            <p className="mt-3 text-[11px] font-bold leading-5 text-emerald-100/80 keep-all">
-                              {report.reporter ? `${report.reporter} · ` : ''}
-                              {report.completedAt ? formatDateTime(report.completedAt) : '보고완료'}
-                            </p>
-                          ) : null}
-                          <label className="mt-4 block">
-                            <span className="mb-1 block text-[11px] font-black text-gray-600">발송상태</span>
-                            <select
-                              value={report.status}
-                              disabled={updating}
-                              onChange={(event) =>
-                                updateWeeklyReportStatus(report, reportDateKey, event.target.value as StoreWeeklyReportStatus, draftMemo)
-                              }
-                              className="h-9 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-xs font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
-                            >
-                              {REPORT_STATUS_OPTIONS.map((status) => (
-                                <option key={status} value={status}>
-                                  {status}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-                          <button
-                            type="button"
-                            disabled={updating || generating}
-                            onClick={() => updateWeeklyReportStatus(report, reportDateKey, report.status, draftMemo)}
-                            className="mt-2 h-9 rounded-md border border-white/15 bg-white/10 px-3 text-xs font-black text-white transition hover:border-brand-blue/40 hover:bg-brand-blue/15 disabled:cursor-not-allowed disabled:text-gray-500"
-                          >
-                            {updating ? '저장 중' : '보고 저장'}
-                          </button>
-                          {activeWorkspace.key === 'googleProfile' && canAutoGenerateReport(report.title) ? (
-                            <button
-                              type="button"
-                              disabled={updating || generating}
-                              onClick={() => generateReportMemo(report, reportDateKey)}
-                              className="mt-2 h-9 rounded-md border border-brand-blue/35 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
-                            >
-                              {generating ? '생성 중' : '멘트 자동생성'}
-                            </button>
-                          ) : null}
-                          <button
-                            type="button"
-                            disabled={updating || generating}
-                            onClick={() =>
-                              setExpandedReport({
-                                report,
-                                date,
-                                dateKey: reportDateKey,
-                                status: report.status,
-                                memo: draftMemo,
-                              })
-                            }
-                            className="mt-2 h-9 rounded-md border border-white/10 px-3 text-xs font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
-                          >
-                            확대 작성
-                          </button>
-                        </div>
+                          <p className="mt-4 font-black text-white keep-all">{item.report.title}</p>
+                          <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                            {item.draftMemo || '보고 내용 입력 전입니다.'}
+                          </p>
+                        </button>
                       )
                     })}
+                  </div>
+
+                  <div className="mt-5 grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 xl:grid-cols-[1fr_280px]">
+                    <div>
+                      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div>
+                          <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Selected Report</p>
+                          <h5 className="mt-2 text-2xl font-black text-white keep-all">{selectedWeeklyReport.report.title}</h5>
+                          <p className="mt-2 text-sm font-bold text-gray-500">
+                            {formatMonthDay(selectedWeeklyReport.date)} · {formatWeekday(selectedWeeklyReport.date)}
+                          </p>
+                        </div>
+                        <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-xs font-black ${weeklyReportBadge(selectedWeeklyReport.report.status)}`}>
+                          {selectedWeeklyReport.report.status}
+                        </span>
+                      </div>
+                      <label className="mt-4 block">
+                        <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
+                        <textarea
+                          value={selectedWeeklyReport.draftMemo}
+                          disabled={selectedWeeklyReportUpdating}
+                          onChange={(event) =>
+                            setReportDrafts((current) => ({
+                              ...current,
+                              [selectedWeeklyReport.dateKey]: event.target.value,
+                            }))
+                          }
+                          className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+                          placeholder="오늘 보고한 내용을 입력하세요."
+                        />
+                      </label>
+                    </div>
+
+                    <aside className="rounded-lg border border-white/10 bg-black p-4">
+                      <p className="text-sm font-black text-white">보고 액션</p>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                        선택한 보고의 상태와 내용을 저장합니다.
+                      </p>
+                      <label className="mt-4 block">
+                        <span className="mb-2 block text-[11px] font-black text-gray-600">발송상태</span>
+                        <select
+                          value={selectedWeeklyReport.report.status}
+                          disabled={selectedWeeklyReportUpdating}
+                          onChange={(event) =>
+                            updateWeeklyReportStatus(
+                              selectedWeeklyReport.report,
+                              selectedWeeklyReport.dateKey,
+                              event.target.value as StoreWeeklyReportStatus,
+                              selectedWeeklyReport.draftMemo
+                            )
+                          }
+                          className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
+                        >
+                          {REPORT_STATUS_OPTIONS.map((status) => (
+                            <option key={status} value={status}>
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <button
+                        type="button"
+                        disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
+                        onClick={() =>
+                          updateWeeklyReportStatus(
+                            selectedWeeklyReport.report,
+                            selectedWeeklyReport.dateKey,
+                            selectedWeeklyReport.report.status,
+                            selectedWeeklyReport.draftMemo
+                          )
+                        }
+                        className="mt-3 h-10 w-full rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-500"
+                      >
+                        {selectedWeeklyReportUpdating ? '저장 중' : '보고 저장'}
+                      </button>
+                      {activeWorkspace.key === 'googleProfile' && canAutoGenerateReport(selectedWeeklyReport.report.title) ? (
+                        <button
+                          type="button"
+                          disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
+                          onClick={() => generateReportMemo(selectedWeeklyReport.report, selectedWeeklyReport.dateKey)}
+                          className="mt-2 h-10 w-full rounded-md border border-brand-blue/35 bg-brand-blue/10 px-3 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                        >
+                          {selectedWeeklyReportGenerating ? '생성 중' : '멘트 자동생성'}
+                        </button>
+                      ) : null}
+                      {selectedWeeklyReport.report.status === '보고완료' ? (
+                        <p className="mt-4 text-xs font-bold leading-5 text-emerald-100/80 keep-all">
+                          {selectedWeeklyReport.report.reporter ? `${selectedWeeklyReport.report.reporter} · ` : ''}
+                          {selectedWeeklyReport.report.completedAt
+                            ? formatDateTime(selectedWeeklyReport.report.completedAt)
+                            : '보고완료'}
+                        </p>
+                      ) : null}
+                    </aside>
                   </div>
                 </div>
               ) : null}
@@ -2898,81 +2965,6 @@ function StoreOperationsPanel({
                       {historyDetail.report.memo || '보고 내용이 비어 있습니다.'}
                     </pre>
                   </div>
-                </div>
-              </div>
-            </div>
-          ) : null}
-          {expandedReport ? (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
-              <div className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl">
-                <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <p className="text-sm font-bold text-brand-blue">Report Detail</p>
-                    <h4 className="mt-2 text-2xl font-black text-white keep-all">{expandedReport.report.title}</h4>
-                    <p className="mt-2 text-sm font-semibold text-gray-500">
-                      {formatMonthDay(expandedReport.date)} · {formatWeekday(expandedReport.date)}
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setExpandedReport(null)}
-                    className="h-10 rounded-md border border-white/10 px-3 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
-                  >
-                    닫기
-                  </button>
-                </div>
-                <div className="space-y-4 p-5">
-                  <label className="block">
-                    <span className="mb-2 block text-xs font-black text-gray-500">발송상태</span>
-                    <select
-                      value={expandedReport.status}
-                      onChange={(event) =>
-                        setExpandedReport((current) =>
-                          current ? { ...current, status: event.target.value as StoreWeeklyReportStatus } : current
-                        )
-                      }
-                      className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white outline-none transition hover:border-white/25"
-                    >
-                      {REPORT_STATUS_OPTIONS.map((status) => (
-                        <option key={status} value={status}>
-                          {status}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="block">
-                    <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
-                    <textarea
-                      value={expandedReport.memo}
-                      onChange={(event) =>
-                        setExpandedReport((current) => (current ? { ...current, memo: event.target.value } : current))
-                      }
-                      className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50"
-                      placeholder="보고 내용을 자세히 입력하세요."
-                    />
-                  </label>
-                </div>
-                <div className="flex justify-end gap-2 border-t border-white/10 p-5">
-                  <button
-                    type="button"
-                    onClick={() => setExpandedReport(null)}
-                    className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
-                  >
-                    취소
-                  </button>
-                  <button
-                    type="button"
-                    disabled={updatingReportDate === expandedReport.dateKey}
-                    onClick={async () => {
-                      const current = expandedReport
-                      setReportDrafts((drafts) => ({ ...drafts, [current.dateKey]: current.memo }))
-                      await updateWeeklyReportStatus(current.report, current.dateKey, current.status, current.memo)
-                      setExpandedReport(null)
-                    }}
-                    className="h-10 rounded-md bg-brand-blue px-4 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
-                  >
-                    {updatingReportDate === expandedReport.dateKey ? '저장 중' : '저장'}
-                  </button>
                 </div>
               </div>
             </div>
@@ -3479,14 +3471,6 @@ function formatWeekday(date: Date) {
 
 function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
-}
-
-function weeklyReportClass(status: StoreWeeklyReportStatus) {
-  if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
-  if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
-  if (status === '실패') return 'border-rose-300/25 bg-rose-300/10'
-  if (status === '생성완료') return 'border-cyan-300/25 bg-cyan-300/10'
-  return 'border-white/10 bg-white/[0.04]'
 }
 
 function weeklyReportBadge(status: StoreWeeklyReportStatus) {
