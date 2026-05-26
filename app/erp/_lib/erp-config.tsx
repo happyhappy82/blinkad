@@ -867,42 +867,6 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       },
     ],
   },
-  card: {
-    kicker: 'Contact',
-    title: '명함관리',
-    description: '오프라인 미팅, 소개, 네트워킹에서 받은 명함을 리드와 고객 후보로 전환하기 위해 관리합니다.',
-    stats: [
-      { label: '신규 명함', value: '6' },
-      { label: '리드 전환', value: '3' },
-      { label: '연락 대기', value: '4' },
-    ],
-    rows: [
-      {
-        title: '병원 관계자 명함',
-        meta: '의료관광 · Google 프로필 상담 후보',
-        status: '연락 대기',
-        owner: '권순현',
-        due: 'D+1',
-        memo: '진료 항목과 외국인 환자 유입 니즈를 확인한 뒤 무료진단 제안으로 연결합니다.',
-      },
-      {
-        title: '요식업 대표 소개 리드',
-        meta: '로컬 매장 · 프랜차이즈 후보',
-        status: 'CRM 등록',
-        owner: '블링크애드',
-        due: '오늘',
-        memo: '명함 정보를 문의 CRM에 옮기고 구글맵 링크를 확인합니다.',
-      },
-      {
-        title: '상권 운영자 연락처',
-        meta: 'B2B 제휴 · 상권 단위 제안',
-        status: '보류',
-        owner: '권순현',
-        due: '다음 주',
-        memo: '개별 매장 제안보다 상권 단위 GBP 정비 제안으로 접근합니다.',
-      },
-    ],
-  },
   kpi: {
     kicker: 'KPI',
     title: 'KPI 분석',

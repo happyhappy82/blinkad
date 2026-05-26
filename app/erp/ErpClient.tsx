@@ -418,6 +418,9 @@ export default function ErpClient() {
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
+  const headerConnectionMessage = activeMenu === 'card' ? businessCardsMessage : connectionMessage
+  const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
+  const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
@@ -532,14 +535,14 @@ export default function ErpClient() {
 
               <div className="flex items-center gap-2">
                 <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
-                  {connectionMessage || 'DB 연결 확인 중'}
+                  {headerConnectionMessage || 'DB 연결 확인 중'}
                 </span>
                 <button
                   type="button"
-                  onClick={loadStores}
+                  onClick={refreshActiveMenu}
                   className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-3 text-sm font-bold text-gray-200 hover:border-white/30 hover:bg-white/5"
                 >
-                  <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${headerLoading ? 'animate-spin' : ''}`} />
                   새로고침
                 </button>
               </div>
