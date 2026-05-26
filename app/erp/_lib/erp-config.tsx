@@ -89,6 +89,29 @@ export type CalendarApiResponse = {
 
 export type SaveMeetingNoteHandler = (event: CalendarEvent, memo: string) => Promise<string>
 
+export type MeetingRecord = {
+  id: string
+  title: string
+  date: string
+  status: string
+  client: string
+  calendarName: string
+  location: string
+  attendees: string[]
+  memo: string
+  calendarEventId: string
+  notionUrl: string
+}
+
+export type MeetingsApiResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  message?: string
+  meetings: MeetingRecord[]
+}
+
+export type SaveMeetingRecordNoteHandler = (meeting: MeetingRecord, memo: string) => Promise<string>
+
 export type CalendarAccountView = {
   memberId: string
   name: string
