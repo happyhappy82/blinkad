@@ -2693,22 +2693,24 @@ function StoreOperationsPanel({
                           key={`${activeWorkspace.key}-report-tab-${item.dateKey}`}
                           type="button"
                           onClick={() => setSelectedWeeklyReportDate(item.dateKey)}
-                          className={`min-h-[128px] rounded-lg border p-4 text-left transition ${
+                          className={`min-h-[156px] rounded-lg border p-4 text-left transition ${
                             active
                               ? 'border-brand-blue/60 bg-brand-blue/15'
                               : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
                           }`}
                         >
-                          <div className="flex items-start justify-between gap-2">
-                            <div>
+                          <div className="flex min-h-16 items-start justify-between gap-3">
+                            <div className="min-w-0">
                               <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
-                              <p className="mt-1 text-lg font-black text-white">{formatMonthDay(item.date)}</p>
+                              <p className="mt-2 whitespace-nowrap text-3xl font-black leading-none tracking-tight text-white">
+                                {formatMonthDay(item.date)}
+                              </p>
                             </div>
-                            <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${weeklyReportBadge(item.report.status)}`}>
+                            <span className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
                               {item.report.status}
                             </span>
                           </div>
-                          <p className="mt-4 font-black text-white keep-all">{item.report.title}</p>
+                          <p className="mt-4 min-h-7 font-black leading-7 text-white keep-all">{item.report.title}</p>
                           <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
                             {item.draftMemo || '보고 내용 입력 전입니다.'}
                           </p>
