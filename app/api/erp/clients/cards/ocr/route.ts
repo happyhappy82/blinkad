@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client'
 import { execFileSync } from 'child_process'
 import { randomUUID } from 'crypto'
-import { readFileSync, unlinkSync, writeFileSync } from 'fs'
+import { mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs'
 import { NextRequest, NextResponse } from 'next/server'
 import { tmpdir } from 'os'
 import path from 'path'
@@ -16,6 +16,20 @@ const SUPPORTED_IMAGE_TYPES = new Map([
   ['image/webp', 'webp'],
   ['image/gif', 'gif'],
 ])
+
+const FREE_OCR_PROVIDER = 'free'
+const OPENAI_OCR_PROVIDER = 'openai'
+
+type BusinessCardExtraction = {
+  name: string
+  phone: string
+  email: string
+  company: string
+  title: string
+  rawText: string
+  confidence: number
+  source: string
+}
 
 function propText(prop: any): string {
   if (!prop) return ''
@@ -75,6 +89,13 @@ function richTextChunks(value: string) {
 
 function titleValue(value: string) {
   return [{ text: { content: value || '이름 확인 필요' } }]
+}
+
+function usefulExistingValue(value: string, placeholders: string[]) {
+  const normalized = value.trim()
+  if (!normalized) return ''
+  if (placeholders.includes(normalized)) return ''
+  return normalized
 }
 
 async function updateOcrState(notion: Client, pageId: string, ocrStatus: string, ocrText?: string) {
@@ -162,7 +183,141 @@ function parseJsonOutput(value: string) {
   return JSON.parse(match[0])
 }
 
-async function analyzeBusinessCard(imageBuffer: Buffer, contentType: string) {
+function formatPhoneNumber(value: string) {
+  let digits = value.replace(/\D/g, '')
+  if (digits.startsWith('82')) digits = `0${digits.slice(2)}`
+
+  const mobileMatch = digits.match(/01[016789]\d{7,8}/)
+  if (mobileMatch) digits = mobileMatch[0]
+
+  if (digits.length === 11) return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`
+  if (digits.length === 10) return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`
+  return value.trim()
+}
+
+function extractPhone(rawText: string) {
+  const directMatch = rawText.match(/(?:\+?82[-.\s]?)?0?1[016789][-\s.]?\d{3,4}[-\s.]?\d{4}/)
+  if (directMatch) return formatPhoneNumber(directMatch[0])
+
+  const compactMatch = rawText.replace(/\D/g, '').match(/01[016789]\d{7,8}/)
+  return compactMatch ? formatPhoneNumber(compactMatch[0]) : ''
+}
+
+function extractEmail(rawText: string) {
+  return rawText.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i)?.[0] || ''
+}
+
+function cleanOcrLine(line: string) {
+  return line
+    .replace(/[|[\]{}"'`~^*_+=<>]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+function isLikelyKoreanName(value: string) {
+  const normalized = value.trim()
+  const blocked = new Set([
+    '대표',
+    '서울',
+    '주소',
+    '전화',
+    '연락처',
+    '오늘',
+    '시세',
+    '정보',
+    '명함',
+    '미팅',
+    '인스타',
+  ])
+
+  return /^[가-힣]{2,5}$/.test(normalized) && !blocked.has(normalized)
+}
+
+function extractName(rawText: string) {
+  const lines = rawText
+    .split(/\n+/)
+    .map(cleanOcrLine)
+    .filter(Boolean)
+
+  const titleIndex = lines.findIndex((line) => /(대표|CEO|owner|manager)/i.test(line))
+  if (titleIndex >= 0) {
+    const sameLine = lines[titleIndex].replace(/대표|CEO|owner|manager/gi, '').trim()
+    const sameLineCandidate = sameLine.match(/[가-힣]{2,5}/)?.[0]
+    if (sameLineCandidate && isLikelyKoreanName(sameLineCandidate)) return sameLineCandidate
+
+    for (const line of lines.slice(titleIndex + 1, titleIndex + 9)) {
+      const candidates = line.match(/[가-힣]{2,5}/g) || []
+      const name = candidates.find(isLikelyKoreanName)
+      if (name) return name
+    }
+  }
+
+  const fallbackCandidates = lines.flatMap((line) => line.match(/[가-힣]{2,5}/g) || [])
+  return fallbackCandidates.find(isLikelyKoreanName) || ''
+}
+
+function extractCompany(rawText: string, name: string) {
+  const lines = rawText
+    .split(/\n+/)
+    .map(cleanOcrLine)
+    .filter(Boolean)
+
+  const companyLine = lines.find((line) => {
+    if (line === name) return false
+    return /(주식회사|회사|법인|마케팅|광고|카페|식당|특별시|대게|스튜디오)/.test(line)
+  })
+
+  return companyLine || ''
+}
+
+function compactOcrText(rawText: string) {
+  const seen = new Set<string>()
+  const meaningfulLines = rawText
+    .split(/\n+/)
+    .map(cleanOcrLine)
+    .filter((line) => {
+      if (!line || seen.has(line)) return false
+      seen.add(line)
+      return /01[016789]|@|대표|서울|instagram|인스타|[가-힣]{2,}/i.test(line)
+    })
+
+  return meaningfulLines.slice(0, 40).join('\n')
+}
+
+async function analyzeWithFreeOcr(imageBuffer: Buffer): Promise<BusinessCardExtraction> {
+  const { createWorker, PSM } = await import('tesseract.js')
+  const cachePath = path.join(tmpdir(), 'blinkad-tesseract-cache')
+  const workerPath = path.join(process.cwd(), 'node_modules/tesseract.js/src/worker-script/node/index.js')
+  mkdirSync(cachePath, { recursive: true })
+
+  const worker = await createWorker('kor+eng', undefined, { cachePath, workerPath })
+
+  try {
+    await worker.setParameters({
+      tessedit_pageseg_mode: PSM.SPARSE_TEXT,
+      preserve_interword_spaces: '1',
+    })
+
+    const result = await worker.recognize(imageBuffer)
+    const rawText = String(result.data.text || '').trim()
+    const name = extractName(rawText)
+
+    return {
+      name,
+      phone: extractPhone(rawText),
+      email: extractEmail(rawText),
+      company: extractCompany(rawText, name),
+      title: rawText.includes('대표') ? '대표' : '',
+      rawText,
+      confidence: Number(((result.data.confidence || 0) / 100).toFixed(2)),
+      source: FREE_OCR_PROVIDER,
+    }
+  } finally {
+    await worker.terminate()
+  }
+}
+
+async function analyzeWithOpenAI(imageBuffer: Buffer, contentType: string): Promise<BusinessCardExtraction> {
   const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) throw new Error('OPENAI_API_KEY가 필요합니다.')
 
@@ -206,7 +361,29 @@ async function analyzeBusinessCard(imageBuffer: Buffer, contentType: string) {
     title: String(result.title || '').trim(),
     rawText: String(result.rawText || '').trim(),
     confidence: Number(result.confidence || 0),
+    source: OPENAI_OCR_PROVIDER,
   }
+}
+
+async function analyzeBusinessCard(imageBuffer: Buffer, contentType: string) {
+  const provider = (process.env.BLINKAD_CARD_OCR_PROVIDER || FREE_OCR_PROVIDER).toLowerCase()
+
+  if (provider === OPENAI_OCR_PROVIDER) {
+    try {
+      return await analyzeWithOpenAI(imageBuffer, contentType)
+    } catch (error) {
+      if (process.env.BLINKAD_CARD_OCR_ALLOW_FREE_FALLBACK === 'false') throw error
+
+      const fallback = await analyzeWithFreeOcr(imageBuffer)
+      const message = error instanceof Error ? error.message : 'OpenAI OCR 분석에 실패했습니다.'
+      return {
+        ...fallback,
+        rawText: [`OpenAI 실패 후 무료 OCR로 대체했습니다: ${message}`, '', fallback.rawText].join('\n').trim(),
+      }
+    }
+  }
+
+  return analyzeWithFreeOcr(imageBuffer)
 }
 
 export async function POST(request: NextRequest) {
@@ -237,11 +414,16 @@ export async function POST(request: NextRequest) {
     const extracted = await analyzeBusinessCard(image.buffer, image.contentType)
     const currentName = propText(findProperty(properties, ['이름', '성명', 'Name']))
     const currentPhone = propText(findProperty(properties, ['연락처', '전화번호', 'Phone', 'Contact']))
-    const name = extracted.name || currentName || extracted.company || ''
-    const phone = extracted.phone || currentPhone || extracted.email || ''
+    const existingName = usefulExistingValue(currentName, ['이름 없음', '이름 확인 필요'])
+    const existingPhone = usefulExistingValue(currentPhone, ['연락처 미입력', '연락처 입력 필요'])
+    const name = existingName || extracted.name || extracted.company || ''
+    const phone = existingPhone || extracted.phone || extracted.email || ''
     const completed = Boolean(name && phone)
     const rawSummary = [
-      extracted.rawText,
+      `source: ${extracted.source}`,
+      `extracted_name: ${extracted.name}`,
+      `extracted_phone: ${extracted.phone}`,
+      compactOcrText(extracted.rawText),
       '',
       `company: ${extracted.company}`,
       `title: ${extracted.title}`,
