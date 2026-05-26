@@ -2357,7 +2357,7 @@ function StoreOperationsPanel({
   const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
-  const weeklyReportDates = useMemo(() => getCurrentWeekDates(), [])
+  const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
   const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
@@ -2380,6 +2380,20 @@ function StoreOperationsPanel({
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
     : reportHistory
+
+  useEffect(() => {
+    const syncReportWeek = () => {
+      setWeeklyReportDates((current) => {
+        const next = getCurrentWeekDates()
+        return toISODate(current[0]) === toISODate(next[0]) ? current : next
+      })
+    }
+    const interval = window.setInterval(syncReportWeek, 60 * 1000)
+
+    syncReportWeek()
+
+    return () => window.clearInterval(interval)
+  }, [])
 
   useEffect(() => {
     if (workspaces.length && !workspaces.some((workspace) => workspace.key === activeProduct)) {
@@ -3384,13 +3398,27 @@ function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean)
 }
 
 function getCurrentWeekDates() {
-  const today = new Date()
+  const today = getKstCalendarDate()
   const monday = startOfDay(today)
   const day = monday.getDay()
   const offset = day === 6 ? 2 : day === 0 ? 1 : 1 - day
   monday.setDate(monday.getDate() + offset)
 
   return Array.from({ length: 5 }, (_, index) => addDays(monday, index))
+}
+
+function getKstCalendarDate(value = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(value)
+  const year = Number(parts.find((part) => part.type === 'year')?.value)
+  const month = Number(parts.find((part) => part.type === 'month')?.value)
+  const day = Number(parts.find((part) => part.type === 'day')?.value)
+
+  return new Date(year, month - 1, day)
 }
 
 function toISODate(date: Date) {
