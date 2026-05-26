@@ -362,6 +362,7 @@ export default function ErpClient() {
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
+  const sidebarExpanded = !sidebarCollapsed || sidebarPreview
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
@@ -415,20 +416,18 @@ export default function ErpClient() {
           onMouseLeave={() => {
             if (sidebarCollapsed) setSidebarPreview(false)
           }}
-          className={`hidden w-64 border-r border-white/10 bg-black transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
-            sidebarCollapsed
-              ? `fixed inset-y-0 left-0 z-50 overflow-hidden rounded-r-[28px] shadow-[24px_0_80px_rgba(37,99,235,0.20)] ${
-                  sidebarPreview ? 'translate-x-0' : '-translate-x-[204px]'
-                }`
-              : 'relative shrink-0 translate-x-0'
+          className={`hidden shrink-0 overflow-hidden border-r border-white/10 bg-black transition-[width,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:flex lg:flex-col ${
+            sidebarExpanded ? 'w-64 shadow-[18px_0_60px_rgba(37,99,235,0.08)]' : 'w-[72px]'
           }`}
         >
-          {sidebarCollapsed ? (
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-0 w-14 bg-gradient-to-r from-transparent via-brand-blue/10 to-brand-blue/20" />
-          ) : null}
-
-          <div className="relative z-10 flex h-20 items-center justify-between gap-3 border-b border-white/10 px-4">
-            <a href="/" aria-label="BlinkAd home">
+          <div className={`flex h-20 shrink-0 items-center border-b border-white/10 px-4 ${sidebarExpanded ? 'justify-between' : 'justify-center'}`}>
+            <a
+              href="/"
+              aria-label="BlinkAd home"
+              className={`min-w-0 transition-all duration-200 ${
+                sidebarExpanded ? 'w-auto opacity-100' : 'w-0 -translate-x-3 opacity-0'
+              }`}
+            >
               <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
             </a>
             <button
@@ -442,10 +441,10 @@ export default function ErpClient() {
             </button>
           </div>
 
-          <nav className="relative z-10 space-y-6 px-3 py-5">
+          <nav className="space-y-6 px-3 py-5">
             {menuGroups.map((group) => (
               <div key={group.label}>
-                <p className="px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600">
+                <p className={`px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600 transition-opacity ${sidebarExpanded ? 'opacity-100' : 'h-0 overflow-hidden pb-0 opacity-0'}`}>
                   {group.label}
                 </p>
                 <div className="space-y-1">
@@ -458,14 +457,16 @@ export default function ErpClient() {
                       <button
                         type="button"
                         onClick={() => selectMenu(menu.id)}
-                        className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-bold transition ${
+                        className={`flex w-full items-center rounded-lg py-3 text-left text-sm font-bold transition ${
                           active ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                        }`}
+                        } ${sidebarExpanded ? 'gap-3 px-3' : 'justify-center px-0'}`}
                       >
                         <Icon className="h-4 w-4" />
-                        {menu.label}
+                        <span className={`whitespace-nowrap transition-opacity ${sidebarExpanded ? 'opacity-100' : 'sr-only opacity-0'}`}>
+                          {menu.label}
+                        </span>
                       </button>
-                      {menu.id === 'project' && activeMenu === 'project' ? (
+                      {sidebarExpanded && menu.id === 'project' && activeMenu === 'project' ? (
                         <div className="ml-7 mt-1 space-y-1 border-l border-white/10 pl-3">
                           {projectStores.map((store) => {
                             const storeActive = activeStoreTitle === store.title
