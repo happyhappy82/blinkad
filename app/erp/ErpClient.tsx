@@ -2407,7 +2407,7 @@ function StoreOperationsPanel({
   const [reportHistoryLoading, setReportHistoryLoading] = useState(false)
   const [weeklyReportMessage, setWeeklyReportMessage] = useState('')
   const [reportHistoryMessage, setReportHistoryMessage] = useState('')
-  const [historyDateFilter, setHistoryDateFilter] = useState('')
+  const [selectedHistoryWeekKey, setSelectedHistoryWeekKey] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
   const [generatingReportDate, setGeneratingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
@@ -2417,9 +2417,9 @@ function StoreOperationsPanel({
     date: Date
   } | null>(null)
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
-  const filteredReportHistory = historyDateFilter
-    ? reportHistory.filter((report) => report.date === historyDateFilter)
-    : reportHistory
+  const historyWeekGroups = useMemo(() => groupReportHistoryByWeek(reportHistory), [reportHistory])
+  const selectedHistoryWeek =
+    historyWeekGroups.find((group) => group.key === selectedHistoryWeekKey) || historyWeekGroups[0]
   const weeklyReportItems = useMemo(
     () =>
       displayWeeklyReports.map((report) => {
@@ -2477,6 +2477,17 @@ function StoreOperationsPanel({
       setSelectedWeeklyReportDate(weeklyReportItems[0].dateKey)
     }
   }, [selectedWeeklyReportDate, weeklyReportItems])
+
+  useEffect(() => {
+    if (!historyWeekGroups.length) {
+      if (selectedHistoryWeekKey) setSelectedHistoryWeekKey('')
+      return
+    }
+
+    if (!historyWeekGroups.some((group) => group.key === selectedHistoryWeekKey)) {
+      setSelectedHistoryWeekKey(historyWeekGroups[0].key)
+    }
+  }, [historyWeekGroups, selectedHistoryWeekKey])
 
   const loadWeeklyReports = useCallback(async (silent = false) => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
@@ -2866,74 +2877,106 @@ function StoreOperationsPanel({
                     <p className="text-sm font-bold text-brand-blue">Report History</p>
                     <h4 className="mt-2 text-xl font-black text-white">기존 보고 현황</h4>
                     <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
-                      완료된 보고와 이전 보고 내용을 날짜별로 확인합니다.
+                      완료된 보고와 이전 보고 내용을 주차별로 모아 확인합니다.
                     </p>
                   </div>
-                  <label className="w-full md:w-56">
-                    <span className="mb-2 block text-xs font-black text-gray-500">날짜 필터</span>
-                    <input
-                      type="date"
-                      value={historyDateFilter}
-                      onChange={(event) => setHistoryDateFilter(event.target.value)}
-                      className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-bold text-white outline-none transition hover:border-white/25"
-                    />
-                  </label>
+                  <p className="text-xs font-black text-gray-600">
+                    {historyWeekGroups.length ? `${historyWeekGroups.length}개 주차` : '보고 없음'}
+                  </p>
                 </div>
                 <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.025]">
                   <div className="flex items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
                     <p className="text-xs font-bold text-gray-500 keep-all">
                       {reportHistoryLoading ? '기존 보고 확인 중입니다.' : reportHistoryMessage}
                     </p>
-                    {historyDateFilter ? (
-                      <button
-                        type="button"
-                        onClick={() => setHistoryDateFilter('')}
-                        className="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs font-black text-gray-300 hover:border-white/25 hover:text-white"
-                      >
-                        필터 해제
-                      </button>
+                    {selectedHistoryWeek ? (
+                      <span className="shrink-0 text-xs font-black text-gray-500">
+                        {selectedHistoryWeek.rangeLabel}
+                      </span>
                     ) : null}
                   </div>
-                  <div className="divide-y divide-white/10">
-                    {filteredReportHistory.length ? (
-                      filteredReportHistory.slice(0, 12).map((report) => {
-                        const date = report.date ? parseLocalDate(report.date) : new Date()
+                  {historyWeekGroups.length && selectedHistoryWeek ? (
+                    <div className="grid lg:grid-cols-[300px_1fr]">
+                      <div className="max-h-[520px] overflow-auto border-b border-white/10 lg:border-b-0 lg:border-r">
+                        {historyWeekGroups.map((group) => {
+                          const active = group.key === selectedHistoryWeek.key
 
-                        return (
-                          <button
-                            type="button"
-                            key={`${activeWorkspace.key}-history-${report.id || report.date}-${report.title}`}
-                            onClick={() => setHistoryDetail({ report, date })}
-                            className="grid w-full gap-3 px-4 py-4 text-left transition hover:bg-white/[0.04] md:grid-cols-[150px_140px_1fr_170px]"
-                          >
-                            <div>
-                              <p className="text-sm font-black text-white">{formatMonthDay(date)}</p>
-                              <p className="mt-1 text-xs font-bold text-gray-500">{formatWeekday(date)}</p>
-                            </div>
-                            <div>
-                              <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${weeklyReportBadge(report.status)}`}>
-                                {report.status}
-                              </span>
-                            </div>
-                            <div>
-                              <p className="font-black text-white keep-all">{report.title}</p>
-                              <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
-                                {report.memo || '보고 내용이 비어 있습니다.'}
+                          return (
+                            <button
+                              key={`${activeWorkspace.key}-history-week-${group.key}`}
+                              type="button"
+                              onClick={() => setSelectedHistoryWeekKey(group.key)}
+                              className={`w-full px-4 py-4 text-left transition ${
+                                active ? 'bg-brand-blue/15' : 'hover:bg-white/[0.04]'
+                              }`}
+                            >
+                              <div className="flex items-start justify-between gap-3">
+                                <div>
+                                  <p className="font-black text-white">{group.label}</p>
+                                  <p className="mt-1 text-xs font-bold text-gray-500">{group.rangeLabel}</p>
+                                </div>
+                                <span className="shrink-0 rounded-full border border-white/10 bg-black px-2.5 py-1 text-[11px] font-black text-gray-300">
+                                  {group.summary.done}/{group.summary.total}
+                                </span>
+                              </div>
+                              <p className="mt-3 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                                {group.latestReport?.memo || group.latestReport?.title || '보고 내용이 비어 있습니다.'}
                               </p>
-                            </div>
-                            <div className="text-xs font-bold leading-5 text-gray-500 md:text-right">
-                              <p>{report.reporter || '블링크애드'}</p>
-                              <p>{report.completedAt ? formatDateTime(report.completedAt) : '-'}</p>
-                            </div>
-                          </button>
-                        )
-                      })
-                    ) : (
-                      <p className="px-4 py-6 text-sm font-bold text-gray-500">
-                        {historyDateFilter ? '선택한 날짜의 보고 내역이 없습니다.' : '기존 보고 내역이 없습니다.'}
-                      </p>
-                    )}
-                  </div>
+                            </button>
+                          )
+                        })}
+                      </div>
+                      <div className="p-4">
+                        <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                          <div>
+                            <p className="text-xs font-black text-brand-blue">Selected Week</p>
+                            <h5 className="mt-2 text-xl font-black text-white">{selectedHistoryWeek.label}</h5>
+                            <p className="mt-1 text-sm font-bold text-gray-500">{selectedHistoryWeek.rangeLabel}</p>
+                          </div>
+                          <div className="flex flex-wrap gap-2 text-xs font-black">
+                            <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+                              완료 {selectedHistoryWeek.summary.done}
+                            </span>
+                            <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-amber-100">
+                              대기 {selectedHistoryWeek.summary.pending}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="mt-4 divide-y divide-white/10 rounded-lg border border-white/10 bg-black">
+                          {selectedHistoryWeek.reports.map(({ report, date }) => (
+                            <button
+                              type="button"
+                              key={`${activeWorkspace.key}-history-${report.id || report.date}-${report.title}`}
+                              onClick={() => setHistoryDetail({ report, date })}
+                              className="grid w-full gap-3 px-4 py-4 text-left transition hover:bg-white/[0.04] md:grid-cols-[96px_120px_1fr_150px]"
+                            >
+                              <div>
+                                <p className="text-sm font-black text-white">{formatMonthDay(date)}</p>
+                                <p className="mt-1 text-xs font-bold text-gray-500">{formatWeekday(date)}</p>
+                              </div>
+                              <div>
+                                <span className={`inline-flex whitespace-nowrap rounded-full border px-2.5 py-1 text-xs font-black ${weeklyReportBadge(report.status)}`}>
+                                  {report.status}
+                                </span>
+                              </div>
+                              <div>
+                                <p className="font-black text-white keep-all">{report.title}</p>
+                                <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                                  {report.memo || '보고 내용이 비어 있습니다.'}
+                                </p>
+                              </div>
+                              <div className="text-xs font-bold leading-5 text-gray-500 md:text-right">
+                                <p>{report.reporter || '블링크애드'}</p>
+                                <p>{report.completedAt ? formatDateTime(report.completedAt) : '-'}</p>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="px-4 py-6 text-sm font-bold text-gray-500">기존 보고 내역이 없습니다.</p>
+                  )}
                 </div>
               </div>
             </div>
@@ -3245,6 +3288,76 @@ function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWork
       </div>
     </div>
   )
+}
+
+type ReportHistoryWeekGroup = {
+  key: string
+  label: string
+  rangeLabel: string
+  reports: { report: StoreWeeklyReport; date: Date }[]
+  summary: {
+    total: number
+    done: number
+    inProgress: number
+    failed: number
+    pending: number
+  }
+  latestReport?: StoreWeeklyReport
+}
+
+function groupReportHistoryByWeek(reports: StoreWeeklyReport[]): ReportHistoryWeekGroup[] {
+  const groups = new Map<string, { start: Date; end: Date; reports: { report: StoreWeeklyReport; date: Date }[] }>()
+
+  reports.forEach((report) => {
+    if (!report.date) return
+
+    const date = parseLocalDate(report.date)
+    const start = getMondayStart(date)
+    const key = toISODate(start)
+    const current = groups.get(key) || {
+      start,
+      end: addDays(start, 4),
+      reports: [],
+    }
+
+    current.reports.push({ report, date })
+    groups.set(key, current)
+  })
+
+  return Array.from(groups.entries())
+    .map(([key, group]) => {
+      const sortedReports = group.reports.sort((a, b) => (a.report.date || '').localeCompare(b.report.date || ''))
+      const summary = summarizeReports(sortedReports.map((item) => item.report))
+
+      return {
+        key,
+        label: formatReportWeekLabel(group.start),
+        rangeLabel: `${formatMonthDay(group.start)}~${formatMonthDay(group.end)}`,
+        reports: sortedReports,
+        summary,
+        latestReport: sortedReports[sortedReports.length - 1]?.report,
+      }
+    })
+    .sort((a, b) => b.key.localeCompare(a.key))
+}
+
+function getMondayStart(date: Date) {
+  const target = startOfDay(date)
+  const day = target.getDay()
+  const offset = day === 0 ? -6 : 1 - day
+  target.setDate(target.getDate() + offset)
+  return target
+}
+
+function formatReportWeekLabel(start: Date) {
+  const month = start.getMonth() + 1
+  return `${start.getFullYear()}년 ${month}월 ${getMonthWeek(start)}주차`
+}
+
+function getMonthWeek(date: Date) {
+  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay()
+  const mondayOffset = firstDay === 0 ? 6 : firstDay - 1
+  return Math.floor((date.getDate() + mondayOffset - 1) / 7) + 1
 }
 
 function summarizeReports(reports: StoreWeeklyReport[]) {
