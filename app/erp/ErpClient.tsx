@@ -933,6 +933,14 @@ function formatDateTime(value: string) {
   }).format(new Date(value))
 }
 
+function formatTimeOnly(value: string) {
+  if (!value) return '-'
+  return new Intl.DateTimeFormat('ko-KR', {
+    hour: '2-digit',
+    minute: '2-digit',
+  }).format(new Date(value))
+}
+
 function formatDateTimeRange(event: CalendarEvent) {
   if (!event.start) return '-'
   const start = new Date(event.start)
@@ -2210,7 +2218,7 @@ function MeetingDatabasePanel({
                   <tr key={meeting.id} className="align-top">
                     <td className="px-4 py-4">
                       <p className="text-sm font-black text-white">{formatDateLabel(meeting.date)}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(meeting.date)}</p>
+                      <p className="mt-1 text-xs font-bold text-gray-500">{formatTimeOnly(meeting.date)}</p>
                     </td>
                     <td className="px-4 py-4">
                       <p className="text-sm font-black leading-5 text-white keep-all">{meeting.title}</p>
@@ -2467,7 +2475,7 @@ function MeetingListPanel({
                   <tr key={event.id} className="align-top">
                     <td className="px-4 py-4">
                       <p className="text-sm font-black text-white">{formatDateLabel(event.start)}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(event.start)}</p>
+                      <p className="mt-1 text-xs font-bold text-gray-500">{formatTimeOnly(event.start)}</p>
                     </td>
                     <td className="px-4 py-4">
                       <p className="text-sm font-black leading-5 text-white keep-all">{event.title}</p>
