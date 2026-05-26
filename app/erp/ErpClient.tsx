@@ -93,6 +93,49 @@ function FileState({ count, emptyLabel }: { count: number; emptyLabel: string })
   )
 }
 
+type AdsSummary = {
+  rowCount: number
+  impressions: number
+  clicks: number
+  costMicros: number
+  localActionDirectionRequests: number
+  localActionCalls: number
+  localActionWebsiteClicks: number
+  localActions: number
+}
+
+type AdsDailyRow = {
+  date: string
+  storeName: string
+  adsCustomerId: string
+  impressions: number
+  clicks: number
+  costMicros: number
+  localActionDirectionRequests: number
+  localActionCalls: number
+  localActionWebsiteClicks: number
+  sourceSyncedAt: string
+}
+
+type GoogleAdsApiResponse = {
+  source: 'bigquery' | 'fallback'
+  connected: boolean
+  status: 'connected' | 'empty_table' | 'no_store_data' | 'missing_config' | 'error'
+  store: string
+  message: string
+  period: {
+    days: number
+    firstDate?: string
+    lastDate?: string
+  }
+  summary: AdsSummary
+  previousSummary: AdsSummary
+  daily: AdsDailyRow[]
+  adsCustomerIds: string[]
+  tableRowCount?: number
+  sourceSyncedAt?: string
+}
+
 function PrimaryButton({
   children,
   onClick,
@@ -2594,7 +2637,9 @@ function StoreOperationsPanel({
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
               <ProductWorkspaceWorkPanel workspace={activeWorkspace} reports={displayWeeklyReports} />
-              {activeWorkspace.key === 'googleAds' ? <GoogleAdsPerformancePanel workspace={activeWorkspace} /> : null}
+              {activeWorkspace.key === 'googleAds' ? (
+                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
+              ) : null}
               {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               {displayWeeklyReports.length ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
@@ -3045,55 +3090,195 @@ function ProductWorkspaceWorkPanel({
   )
 }
 
-function GoogleAdsPerformancePanel({ workspace }: { workspace: StoreProductWorkspace }) {
+function GoogleAdsPerformancePanel({
+  workspace,
+  storeTitle,
+}: {
+  workspace: StoreProductWorkspace
+  storeTitle: string
+}) {
+  const [adsData, setAdsData] = useState<GoogleAdsApiResponse | null>(null)
+  const [adsLoading, setAdsLoading] = useState(false)
+  const [adsMessage, setAdsMessage] = useState('')
+
+  const loadAdsData = useCallback(async () => {
+    setAdsLoading(true)
+    try {
+      const params = new URLSearchParams({ store: storeTitle, days: '30' })
+      const response = await fetch(`/api/erp/google/ads?${params.toString()}`, { cache: 'no-store' })
+      const data = (await response.json()) as GoogleAdsApiResponse
+      setAdsData(data)
+      setAdsMessage(data.message || 'Google Ads 데이터를 확인했습니다.')
+    } catch {
+      setAdsData(null)
+      setAdsMessage('Google Ads 데이터를 불러오지 못했습니다.')
+    } finally {
+      setAdsLoading(false)
+    }
+  }, [storeTitle])
+
+  useEffect(() => {
+    loadAdsData()
+  }, [loadAdsData])
+
+  const summary = adsData?.summary
+  const previousSummary = adsData?.previousSummary
+  const ctr = summary ? percent(summary.clicks, summary.impressions) : ''
+  const previousCtr = previousSummary ? percent(previousSummary.clicks, previousSummary.impressions) : ''
+  const cpc = summary && summary.clicks > 0 ? summary.costMicros / 1000000 / summary.clicks : 0
+  const previousCpc = previousSummary && previousSummary.clicks > 0 ? previousSummary.costMicros / 1000000 / previousSummary.clicks : 0
   const rows = [
     {
       label: '노출',
-      value: metricValue(workspace, '노출'),
+      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출'),
+      delta: summary && previousSummary ? deltaText(summary.impressions, previousSummary.impressions, '회') : '-',
       basis: '캠페인/광고그룹별 impressions',
       action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
     },
     {
-      label: '클릭·전환',
-      value: metricValue(workspace, '클릭') || metricValue(workspace, '전환'),
-      basis: '전화, 길찾기, 웹사이트 이동',
-      action: '매장 방문 의도가 높은 액션만 전환 기준으로 봅니다.',
+      label: '클릭',
+      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || '연동 전',
+      delta: summary && previousSummary ? deltaText(summary.clicks, previousSummary.clicks, '건') : '-',
+      basis: '광고 클릭수',
+      action: '실제 매장 행동으로 이어지는 클릭인지 로컬 액션과 함께 봅니다.',
+    },
+    {
+      label: 'CTR',
+      value: ctr || '-',
+      delta: ctr && previousCtr ? `${previousCtr} → ${ctr}` : '-',
+      basis: '클릭 / 노출',
+      action: '노출 대비 클릭 효율이 낮으면 키워드와 광고문안을 조정합니다.',
     },
     {
       label: '광고비',
-      value: metricValue(workspace, '광고비'),
+      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비'),
+      delta: summary && previousSummary ? deltaText(summary.costMicros / 1000000, previousSummary.costMicros / 1000000, '원') : '-',
       basis: '월 예산 대비 소진액',
       action: '운영 수수료와 광고비를 분리해 추적합니다.',
     },
+    {
+      label: 'CPC',
+      value: cpc ? `${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
+      delta: cpc && previousCpc ? `${Math.round(previousCpc).toLocaleString('ko-KR')}원 → ${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
+      basis: '광고비 / 클릭',
+      action: '클릭 단가가 오르면 지역·서비스 키워드 예산을 다시 나눕니다.',
+    },
+    {
+      label: '로컬 액션',
+      value: summary ? formatCount(summary.localActions) : '연동 전',
+      delta: summary && previousSummary ? deltaText(summary.localActions, previousSummary.localActions, '건') : '-',
+      basis: '길찾기, 전화, 웹사이트 클릭',
+      action: 'GBP 행동과 중복 집계하지 않고 광고 기여 행동으로 따로 봅니다.',
+    },
   ]
+  const localActionCards = summary
+    ? [
+        { label: '길찾기', value: summary.localActionDirectionRequests },
+        { label: '전화', value: summary.localActionCalls },
+        { label: '웹사이트', value: summary.localActionWebsiteClicks },
+      ]
+    : []
 
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
-      <div>
-        <p className="text-sm font-bold text-brand-blue">Google Ads</p>
-        <h4 className="mt-2 text-xl font-black text-white">성과 화면</h4>
-        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-          광고 API 연결 전에도 어떤 성과 지표를 볼지 먼저 고정해두고, 연동 후 같은 화면에 수치를 채웁니다.
-        </p>
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Google Ads</p>
+          <h4 className="mt-2 text-xl font-black text-white">언리미티드 광고 성과</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            BigQuery의 Google Ads 로컬 액션 테이블에서 매장별 노출, 클릭, 광고비, 길찾기·전화·웹사이트 행동을 불러옵니다.
+          </p>
+          <p className="mt-2 text-xs font-bold text-gray-500 keep-all">
+            {adsLoading ? 'Google Ads 데이터를 확인 중입니다.' : adsMessage}
+          </p>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3 xl:min-w-[430px]">
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">연결 상태</p>
+            <p className={`mt-2 inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${adsConnectionBadge(adsData, adsLoading)}`}>
+              {adsLoading ? '확인중' : adsData?.connected ? 'BigQuery 연결' : '연결 필요'}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">기준 기간</p>
+            <p className="mt-2 text-sm font-black text-white">
+              {adsData?.period.lastDate ? `최근 ${adsData.period.days}일` : '-'}
+            </p>
+            <p className="mt-1 text-[11px] font-bold text-gray-600">{adsData?.period.lastDate || '데이터 없음'}</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">적재 행</p>
+            <p className="mt-2 text-sm font-black text-white">{summary ? `${summary.rowCount}행` : '-'}</p>
+            <p className="mt-1 text-[11px] font-bold text-gray-600">
+              {adsData?.sourceSyncedAt ? formatDateTime(adsData.sourceSyncedAt) : '동기화 기록 없음'}
+            </p>
+          </div>
+        </div>
       </div>
+
+      {adsData && adsData.status !== 'connected' ? (
+        <div className="mt-4 rounded-lg border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm font-bold leading-6 text-amber-100 keep-all">
+          {adsData.message}
+        </div>
+      ) : null}
+
       <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
         <div className="min-w-[760px]">
-          <div className="grid grid-cols-[120px_140px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+          <div className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
             <span>지표</span>
             <span>현재값</span>
+            <span>전기 비교</span>
             <span>확인 기준</span>
             <span>운영 액션</span>
           </div>
           {rows.map((row) => (
-            <div key={row.label} className="grid grid-cols-[120px_140px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
+            <div key={row.label} className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
               <span className="font-black text-white">{row.label}</span>
-              <span className="font-black text-blue-100">{row.value || '연동 전'}</span>
+              <span className="font-black text-blue-100">{adsLoading ? '확인 중' : row.value || '-'}</span>
+              <span className="font-bold text-gray-400">{adsLoading ? '-' : row.delta}</span>
               <span className="font-semibold leading-6 text-gray-400 keep-all">{row.basis}</span>
               <span className="font-semibold leading-6 text-gray-500 keep-all">{row.action}</span>
             </div>
           ))}
         </div>
       </div>
+
+      {localActionCards.length ? (
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {localActionCards.map((item) => (
+            <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+              <p className="text-xs font-black text-gray-500">{item.label}</p>
+              <p className="mt-3 text-3xl font-black text-white">{item.value.toLocaleString('ko-KR')}</p>
+              <p className="mt-2 text-xs font-semibold text-gray-500">광고 로컬 액션 기준</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {adsData?.daily.length ? (
+        <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="border-b border-white/10 px-4 py-3">
+            <p className="text-sm font-black text-white">일별 광고 데이터</p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {adsData.daily.slice(0, 10).map((row) => {
+              const actions =
+                row.localActionDirectionRequests + row.localActionCalls + row.localActionWebsiteClicks
+
+              return (
+                <article key={`${row.date}-${row.adsCustomerId || row.storeName}`} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[110px_repeat(5,minmax(0,1fr))]">
+                  <p className="font-black text-white">{formatMonthDay(parseLocalDate(row.date))}</p>
+                  <p className="font-semibold text-gray-400">노출 {formatCount(row.impressions)}</p>
+                  <p className="font-semibold text-gray-400">클릭 {formatCount(row.clicks)}</p>
+                  <p className="font-semibold text-gray-400">비용 {formatCostMicros(row.costMicros)}</p>
+                  <p className="font-semibold text-gray-400">액션 {formatCount(actions)}</p>
+                  <p className="font-semibold text-gray-500">{row.adsCustomerId || '-'}</p>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -3166,6 +3351,36 @@ function taskStatusBadge(status: string) {
 
 function metricValue(workspace: StoreProductWorkspace, keyword: string) {
   return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
+}
+
+function formatCount(value: number) {
+  return `${Math.round(value || 0).toLocaleString('ko-KR')}`
+}
+
+function formatCostMicros(value: number) {
+  return `${Math.round((value || 0) / 1000000).toLocaleString('ko-KR')}원`
+}
+
+function percent(numerator: number, denominator: number) {
+  if (!denominator) return ''
+  return `${((numerator / denominator) * 100).toFixed(1)}%`
+}
+
+function deltaText(current: number, previous: number, unit: string) {
+  if (!previous && !current) return '-'
+  if (!previous) return `신규 ${Math.round(current).toLocaleString('ko-KR')}${unit}`
+
+  const diff = current - previous
+  const rate = (diff / previous) * 100
+  const sign = diff > 0 ? '+' : ''
+  return `${sign}${Math.round(diff).toLocaleString('ko-KR')}${unit} (${sign}${rate.toFixed(1)}%)`
+}
+
+function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean) {
+  if (loading) return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
+  if (data?.status === 'connected') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (data?.connected) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
 }
 
 function getCurrentWeekDates() {
