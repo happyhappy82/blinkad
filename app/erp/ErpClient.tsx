@@ -2613,28 +2613,19 @@ function StoreOperationsPanel({
       {selectedStore ? (
         <>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
-            <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-              <div>
-                <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
-                <h2 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">
-                  {selectedStore.title}
-                </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
-              </div>
-              <div className="grid gap-2 text-sm sm:grid-cols-3 xl:min-w-[520px]">
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">상태</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.status}</p>
-                </div>
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">담당</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.owner}</p>
-                </div>
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">기한</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.due}</p>
-                </div>
-              </div>
+            <div>
+              <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">
+                {selectedStore.title}
+              </h2>
+              {workspaces.length ? (
+                <StoreWorkspaceTabs
+                  workspaces={workspaces}
+                  activeProduct={activeWorkspace?.key || activeProduct}
+                  onSelectProduct={setActiveProduct}
+                />
+              ) : null}
+              <p className="mt-4 max-w-3xl text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
             </div>
 
             <div className="mt-5 flex gap-2 overflow-x-auto lg:hidden">
@@ -2651,33 +2642,6 @@ function StoreOperationsPanel({
                   }`}
                 >
                   {store.title}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <StoreOperationsSummary
-            store={selectedStore}
-            workspaces={workspaces}
-            activeProduct={activeWorkspace?.key || activeProduct}
-            activeReports={displayWeeklyReports}
-            onSelectProduct={setActiveProduct}
-          />
-
-          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black p-1">
-            <div className="grid min-w-[620px] grid-cols-3 gap-1">
-              {workspaces.map((workspace) => (
-                <button
-                  key={workspace.key}
-                  type="button"
-                  onClick={() => setActiveProduct(workspace.key)}
-                  className={`h-14 whitespace-nowrap rounded-md px-4 text-base font-black transition ${
-                    activeWorkspace?.key === workspace.key
-                      ? 'bg-white text-black'
-                      : 'text-gray-400 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  {workspace.label}
                 </button>
               ))}
             </div>
@@ -2979,43 +2943,18 @@ function StoreOperationsPanel({
   )
 }
 
-function StoreOperationsSummary({
-  store,
+function StoreWorkspaceTabs({
   workspaces,
   activeProduct,
-  activeReports,
   onSelectProduct,
 }: {
-  store: OperationRow
   workspaces: StoreProductWorkspace[]
   activeProduct: StoreProductKey
-  activeReports: StoreWeeklyReport[]
   onSelectProduct: (product: StoreProductKey) => void
 }) {
-  const taskSummary = summarizeWorkspaceTasks(workspaces)
-  const reportSummary = summarizeReports(
-    workspaces.flatMap((workspace) => (workspace.key === activeProduct ? activeReports : workspace.weeklyReports || []))
-  )
-
   return (
-    <section className="grid gap-3 xl:grid-cols-[1.2fr_repeat(3,minmax(0,1fr))]">
-      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
-        <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store Detail</p>
-        <h3 className="mt-2 text-xl font-black text-white keep-all">{store.title} 운영 상세</h3>
-        <p className="mt-2 text-sm font-semibold leading-6 text-gray-400 keep-all">
-          {store.products?.nextAction || store.memo}
-        </p>
-        <div className="mt-4 grid gap-2 sm:grid-cols-3">
-          <StoreSummaryMetric label="전체 작업" value={`${taskSummary.total}건`} note={`${taskSummary.active}건 진행`} />
-          <StoreSummaryMetric label="보고 완료" value={`${reportSummary.done}/${reportSummary.total || 0}`} note="이번 주 기준" />
-          <StoreSummaryMetric label="보고 대기" value={`${reportSummary.pending}건`} note="초안·대기·실패 포함" />
-        </div>
-      </div>
-
+    <div className="mt-4 grid w-full max-w-xl grid-cols-3 gap-1 rounded-lg border border-white/10 bg-black p-1">
       {workspaces.map((workspace) => {
-        const reports = workspace.key === activeProduct ? activeReports : workspace.weeklyReports || []
-        const workspaceTaskSummary = summarizeWorkspaceTasks([workspace])
-        const workspaceReportSummary = summarizeReports(reports)
         const active = workspace.key === activeProduct
 
         return (
@@ -3023,36 +2962,23 @@ function StoreOperationsSummary({
             key={workspace.key}
             type="button"
             onClick={() => onSelectProduct(workspace.key)}
-            className={`rounded-lg border p-5 text-left transition ${
-              active
-                ? 'border-brand-blue/50 bg-brand-blue/10'
-                : 'border-white/10 bg-black hover:border-white/25 hover:bg-white/[0.04]'
+            className={`min-h-12 rounded-md px-2 text-xs font-black transition sm:text-sm ${
+              active ? 'bg-white text-black' : 'text-gray-400 hover:bg-white/10 hover:text-white'
             }`}
           >
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">Product</p>
-                <h4 className="mt-2 text-lg font-black text-white">{workspace.label}</h4>
-              </div>
-              <span className={`rounded-full border px-2.5 py-1 text-[11px] font-black ${active ? 'border-brand-blue/40 bg-brand-blue/20 text-blue-100' : 'border-white/10 bg-white/5 text-gray-400'}`}>
-                {active ? '선택됨' : '보기'}
-              </span>
-            </div>
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              <StoreSummaryMetric label="작업" value={`${workspaceTaskSummary.total}건`} note={`${workspaceTaskSummary.active}건 진행`} compact />
-              <StoreSummaryMetric
-                label="보고"
-                value={workspaceReportSummary.total ? `${workspaceReportSummary.done}/${workspaceReportSummary.total}` : '-'}
-                note={workspaceReportSummary.total ? `${workspaceReportSummary.pending}건 대기` : '보고 없음'}
-                compact
-              />
-            </div>
-            <p className="mt-4 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{workspace.description}</p>
+            {workspaceTabLabel(workspace)}
           </button>
         )
       })}
-    </section>
+    </div>
   )
+}
+
+function workspaceTabLabel(workspace: StoreProductWorkspace) {
+  if (workspace.key === 'googleProfile') return '구글프로필'
+  if (workspace.key === 'googleAds') return '구글 애즈'
+  if (workspace.key === 'websiteBlog') return '웹사이트,블로그'
+  return workspace.label
 }
 
 function StoreSummaryMetric({
@@ -3359,20 +3285,6 @@ function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWork
       </div>
     </div>
   )
-}
-
-function summarizeWorkspaceTasks(workspaces: StoreProductWorkspace[]) {
-  const tasks = workspaces.flatMap((workspace) => workspace.tasks)
-  const active = tasks.filter((task) => statusIncludesAny(task.status, ['진행', '작성', '검수'])).length
-  const completed = tasks.filter((task) => statusIncludesAny(task.status, ['완료', '운영중'])).length
-  const waiting = Math.max(0, tasks.length - active - completed)
-
-  return {
-    total: tasks.length,
-    active,
-    completed,
-    waiting,
-  }
 }
 
 function summarizeReports(reports: StoreWeeklyReport[]) {
