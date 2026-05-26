@@ -4,6 +4,7 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   outputFileTracingRoot: path.join(__dirname),
+  serverExternalPackages: ['tesseract.js'],
   images: {
     remotePatterns: [
       {

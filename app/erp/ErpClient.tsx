@@ -46,6 +46,8 @@ import {
 } from './_lib/erp-config'
 import type {
   ApiResponse,
+  BusinessCardRecord,
+  BusinessCardsResponse,
   CalendarAccountView,
   CalendarAccountsResponse,
   CalendarApiResponse,
@@ -117,6 +119,12 @@ function PrimaryButton({
   )
 }
 
+type StoreMetric = {
+  label: string
+  value: string
+  detail?: string
+}
+
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
@@ -129,6 +137,10 @@ export default function ErpClient() {
   const [actionMessage, setActionMessage] = useState('')
   const [runningAction, setRunningAction] = useState<string | null>(null)
   const [updatingStoreStatus, setUpdatingStoreStatus] = useState<string | null>(null)
+  const [businessCards, setBusinessCards] = useState<BusinessCardRecord[]>([])
+  const [businessCardsLoading, setBusinessCardsLoading] = useState(false)
+  const [businessCardsMessage, setBusinessCardsMessage] = useState('')
+  const [runningCardOcr, setRunningCardOcr] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
@@ -175,11 +187,14 @@ export default function ErpClient() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pageId: store.id, status }),
       })
-      const data = (await response.json()) as { connected: boolean; message?: string }
+      const data = (await response.json()) as { connected: boolean; message?: string; store?: StoreRecord }
       if (!response.ok || !data.connected) {
         setStores(previousStores)
         setActionMessage(data.message || 'Notion 상태 변경에 실패했습니다.')
         return
+      }
+      if (data.store) {
+        setStores((current) => current.map((item) => (item.id === store.id ? data.store! : item)))
       }
       setActionMessage(`${store.name} 상태를 ${status}(으)로 변경했습니다.`)
     } catch {
@@ -320,7 +335,56 @@ export default function ErpClient() {
     }
   }
 
+  const loadBusinessCards = async () => {
+    setBusinessCardsLoading(true)
+    try {
+      const response = await fetch('/api/erp/clients/cards', { cache: 'no-store' })
+      const data = (await response.json()) as BusinessCardsResponse
+      setBusinessCards(data.cards)
+      setBusinessCardsMessage(
+        data.connected
+          ? 'Notion 명함 DB와 연결되었습니다.'
+          : data.message || 'Notion 명함 DB 연결이 없어 샘플 데이터로 표시 중입니다.'
+      )
+    } catch {
+      setBusinessCardsMessage('명함 DB를 불러오지 못했습니다.')
+    } finally {
+      setBusinessCardsLoading(false)
+    }
+  }
+
+  const analyzeBusinessCard = async (card: BusinessCardRecord) => {
+    setRunningCardOcr(card.id)
+    setActionMessage('')
+
+    try {
+      const response = await fetch('/api/erp/clients/cards/ocr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: card.id }),
+      })
+      const data = (await response.json()) as { connected: boolean; message?: string }
+
+      if (!response.ok || !data.connected) {
+        setActionMessage(data.message || '명함 분석에 실패했습니다.')
+        await loadBusinessCards()
+        return
+      }
+
+      setActionMessage(data.message || '명함 분석을 완료했습니다.')
+      await loadBusinessCards()
+    } catch {
+      setActionMessage('명함 분석 중 오류가 발생했습니다.')
+    } finally {
+      setRunningCardOcr(null)
+    }
+  }
+
   useEffect(() => {
+    if (activeMenu === 'card' && businessCards.length === 0 && !businessCardsLoading) {
+      loadBusinessCards()
+    }
+
     if (['schedule', 'meeting', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
       loadCalendarEvents()
     }
@@ -357,12 +421,74 @@ export default function ErpClient() {
       !statusIncludesAny(store.status, ['계약대기', '계약 대기', '답변완료', '답변 완료', '계약완료', '계약 완료', '취소/팔로업 중지'])
   )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
+  const crmMetrics = useMemo(() => {
+    const countByStatus = (keywords: string[]) =>
+      stores.filter((store) => statusIncludesAny(store.status, keywords)).length
+    const contractPendingCount = countByStatus(['계약대기', '계약 대기'])
+    const activeCustomerCount = countByStatus(['운영시작', '계약 완료', '계약완료'])
+
+    return {
+      inquiry: [
+        { label: '신규 문의', value: String(inquiryStores.length), detail: '처리상태 기준' },
+        { label: '미팅 확정', value: String(countByStatus(['미팅일정 확정', '미팅일정확정'])), detail: '상담 예정' },
+        { label: '팔로업', value: String(followupStores.length), detail: '견적/공동대응' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '전자계약 확인' },
+      ],
+      followup: [
+        { label: '팔로업 대상', value: String(followupStores.length), detail: '후속 연락 필요' },
+        { label: '공동 대응', value: String(countByStatus(['공동 대응', '공동대응'])), detail: '내부 협업' },
+        { label: '계약 전환 후보', value: String(contractPendingCount), detail: '상태 변경 완료' },
+      ],
+      customer: [
+        { label: '전체 고객', value: String(stores.length), detail: '문의 DB 전체' },
+        { label: '운영/계약 고객', value: String(activeCustomerCount), detail: '계약 이후' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '수주 직전' },
+      ],
+      contractPending: [
+        { label: '계약대기', value: String(contractPendingStores.length), detail: '처리상태 기준' },
+        {
+          label: '전자계약 링크',
+          value: String(contractPendingStores.filter((store) => store.contractUrl).length),
+          detail: 'Notion URL 매핑',
+        },
+        {
+          label: '계약서 등록',
+          value: String(contractPendingStores.filter((store) => store.contractCount > 0).length),
+          detail: '파일 속성 기준',
+        },
+      ],
+    } satisfies Record<string, StoreMetric[]>
+  }, [contractPendingStores, followupStores, inquiryStores, stores])
+  const businessCardMetrics = useMemo(
+    () => [
+      { label: '전체 명함', value: String(businessCards.length), detail: 'Notion 명함 DB' },
+      {
+        label: '사진 등록',
+        value: String(businessCards.filter((card) => card.imageUrl).length),
+        detail: '명함 사진 파일',
+      },
+      {
+        label: '입력필요',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.status, ['입력필요'])).length),
+        detail: '검수 대기',
+      },
+      {
+        label: 'OCR 완료',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.ocrStatus, ['완료'])).length),
+        detail: '자동 분석',
+      },
+    ],
+    [businessCards]
+  )
   const operationView =
-    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
+    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer' || activeMenu === 'card'
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
+  const headerConnectionMessage = activeMenu === 'card' ? businessCardsMessage : connectionMessage
+  const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
+  const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
@@ -517,14 +643,14 @@ export default function ErpClient() {
 
               <div className="flex items-center gap-2">
                 <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
-                  {connectionMessage || 'DB 연결 확인 중'}
+                  {headerConnectionMessage || 'DB 연결 확인 중'}
                 </span>
                 <button
                   type="button"
-                  onClick={loadStores}
+                  onClick={refreshActiveMenu}
                   className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-3 text-sm font-bold text-gray-200 hover:border-white/30 hover:bg-white/5"
                 >
-                  <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${headerLoading ? 'animate-spin' : ''}`} />
                   새로고침
                 </button>
               </div>
@@ -578,6 +704,8 @@ export default function ErpClient() {
                 stores={inquiryStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.inquiry}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -591,6 +719,8 @@ export default function ErpClient() {
                 stores={followupStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.followup}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -604,9 +734,38 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.customer}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'contractPending' && (
+              <StoreTable
+                title="계약대기 리스트"
+                description="Notion 문의관리 DB에서 계약대기 상태인 매장을 모아 전자계약 링크와 계약서 등록 여부를 확인합니다."
+                stores={contractPendingStores}
+                loading={loading}
+                columns="contract"
+                metrics={crmMetrics.contractPending}
+                enableStatusFilter
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'card' && (
+              <BusinessCardPanel
+                cards={businessCards}
+                loading={businessCardsLoading}
+                message={businessCardsMessage}
+                metrics={businessCardMetrics}
+                runningOcrId={runningCardOcr}
+                onRefresh={loadBusinessCards}
+                onAnalyze={analyzeBusinessCard}
               />
             )}
 
@@ -3200,6 +3359,13 @@ function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
 }
 
+function formatCrmDate(value: string) {
+  if (!value) return ''
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+  return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
+}
+
 function weeklyReportClass(status: StoreWeeklyReportStatus) {
   if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
@@ -3216,12 +3382,177 @@ function weeklyReportBadge(status: StoreWeeklyReportStatus) {
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
 }
 
+function BusinessCardPanel({
+  cards,
+  loading,
+  message,
+  metrics,
+  runningOcrId,
+  onRefresh,
+  onAnalyze,
+}: {
+  cards: BusinessCardRecord[]
+  loading: boolean
+  message: string
+  metrics: StoreMetric[]
+  runningOcrId: string | null
+  onRefresh: () => void
+  onAnalyze: (card: BusinessCardRecord) => void
+}) {
+  const [query, setQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const statusOptions = useMemo(
+    () => Array.from(new Set(cards.map((card) => card.status).filter(Boolean))),
+    [cards]
+  )
+  const filteredCards = cards.filter((card) => {
+    const searchableText = [card.name, card.phone, card.status, card.meetingTitles.join(' ')]
+      .join(' ')
+      .toLowerCase()
+    const matchesQuery = !query.trim() || searchableText.includes(query.trim().toLowerCase())
+    const matchesStatus = statusFilter === 'all' || card.status === statusFilter
+
+    return matchesQuery && matchesStatus
+  })
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Contact</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">명함관리</h2>
+          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+            Notion 명함 DB에 업로드된 명함 사진과 연락처를 ERP에서 확인합니다.
+          </p>
+          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+        </div>
+        <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row md:items-center">
+          <button
+            type="button"
+            onClick={onRefresh}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+          >
+            <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+            새로고침
+          </button>
+          <select
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none md:w-40"
+          >
+            <option value="all">전체 상태</option>
+            {statusOptions.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+          <div className="relative w-full md:w-72">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              className="h-11 w-full rounded-md border border-white/10 bg-black pl-9 pr-3 text-sm font-semibold text-white outline-none placeholder:text-gray-600"
+              placeholder="이름, 연락처, 미팅 검색"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid border-b border-white/10 md:grid-cols-4">
+        {metrics.map((metric) => (
+          <div key={metric.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{metric.label}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-white">{metric.value}</p>
+            {metric.detail ? <p className="mt-1 text-xs font-bold text-gray-500">{metric.detail}</p> : null}
+          </div>
+        ))}
+      </div>
+
+      {loading ? (
+        <p className="p-10 text-center text-sm font-bold text-gray-500">명함 DB를 불러오는 중입니다.</p>
+      ) : filteredCards.length === 0 ? (
+        <p className="p-10 text-center text-sm font-bold text-gray-500">표시할 명함이 없습니다.</p>
+      ) : (
+        <div className="grid gap-4 p-5 lg:grid-cols-2 2xl:grid-cols-3">
+          {filteredCards.map((card) => (
+            <article key={card.id} className="rounded-lg border border-white/10 bg-black p-4">
+              <div className="flex gap-4">
+                <div className="flex h-28 w-40 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
+                  {card.imageUrl ? (
+                    <img src={card.imageUrl} alt={card.imageName || card.name} className="h-full w-full object-cover" />
+                  ) : (
+                    <span className="text-xs font-bold text-gray-600">사진 없음</span>
+                  )}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-lg font-black text-white keep-all">{card.name}</h3>
+                    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.status)}`}>
+                      {card.status || '상태 없음'}
+                    </span>
+                    <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.ocrStatus)}`}>
+                      OCR {card.ocrStatus || '대기'}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm font-bold text-gray-300">{card.phone || '연락처 미입력'}</p>
+                  <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                    {card.meetingTitles.length ? card.meetingTitles.join(', ') : '관련 미팅 미연결'}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  disabled={!card.imageUrl || runningOcrId === card.id}
+                  onClick={() => onAnalyze(card)}
+                  className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                >
+                  <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
+                  {runningOcrId === card.id ? '분석 중' : card.ocrStatus === '완료' ? '다시 분석' : '분석하기'}
+                </button>
+                {card.imageUrl ? (
+                  <a
+                    href={card.imageUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-white/15 px-3 text-xs font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+                  >
+                    명함 이미지
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                ) : null}
+                {card.notionUrl ? (
+                  <a
+                    href={card.notionUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 hover:border-brand-blue/60 hover:bg-brand-blue/15"
+                  >
+                    Notion 보기
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                ) : null}
+                <span className="text-xs font-semibold text-gray-600">
+                  {card.lastEdited ? `수정 ${formatDateTime(card.lastEdited)}` : '수정일 없음'}
+                </span>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  )
+}
+
 function StoreTable({
   title,
   description,
   stores,
   loading,
   columns,
+  metrics,
+  enableStatusFilter,
   runningAction,
   statusOptions,
   updatingStatusId,
@@ -3234,6 +3565,8 @@ function StoreTable({
   stores: StoreRecord[]
   loading: boolean
   columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
+  metrics?: StoreMetric[]
+  enableStatusFilter?: boolean
   runningAction?: string | null
   statusOptions?: string[]
   updatingStatusId?: string | null
@@ -3242,9 +3575,29 @@ function StoreTable({
   onRunQuote?: (store: StoreRecord) => void
 }) {
   const [query, setQuery] = useState('')
-  const filteredStores = stores.filter((store) =>
-    [store.name, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
+  const [statusFilter, setStatusFilter] = useState('all')
+  const statusFilterOptions = useMemo(
+    () => Array.from(new Set(stores.map((store) => store.status).filter(Boolean))),
+    [stores]
   )
+  const filteredStores = stores.filter((store) => {
+    const searchableText = [
+      store.name,
+      store.status,
+      store.owner,
+      store.contact,
+      store.category,
+      store.inquirySource,
+      store.nextAction,
+    ]
+      .join(' ')
+      .toLowerCase()
+    const matchesQuery = !query.trim() || searchableText.includes(query.trim().toLowerCase())
+    const matchesStatus = statusFilter === 'all' || store.status === statusFilter
+
+    return matchesQuery && matchesStatus
+  })
+  const tableColumnCount = columns === 'crm' || columns === 'contract' ? 7 : 5
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -3266,6 +3619,20 @@ function StoreTable({
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
           ) : null}
+          {enableStatusFilter ? (
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value)}
+              className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none md:w-44"
+            >
+              <option value="all">전체 상태</option>
+              {statusFilterOptions.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          ) : null}
           <div className="relative w-full md:w-72">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
             <input
@@ -3278,12 +3645,26 @@ function StoreTable({
         </div>
       </div>
 
+      {metrics?.length ? (
+        <div className="grid border-b border-white/10 md:grid-cols-3 xl:grid-cols-4">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{metric.label}</p>
+              <p className="mt-2 text-3xl font-black tracking-tight text-white">{metric.value}</p>
+              {metric.detail ? <p className="mt-1 text-xs font-bold text-gray-500">{metric.detail}</p> : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
+
       <div className="overflow-x-auto">
         <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-5 py-4">매장명</th>
               <th className="px-5 py-4">상태</th>
+              {columns === 'crm' && <th className="px-5 py-4">문의 정보</th>}
+              {columns === 'crm' && <th className="px-5 py-4">팔로업</th>}
               {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
               {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
@@ -3298,13 +3679,13 @@ function StoreTable({
           <tbody>
             {loading ? (
               <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
+                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={tableColumnCount}>
                   문의관리 DB를 불러오는 중입니다.
                 </td>
               </tr>
             ) : filteredStores.length === 0 ? (
               <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
+                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={tableColumnCount}>
                   표시할 매장이 없습니다.
                 </td>
               </tr>
@@ -3341,6 +3722,28 @@ function StoreTable({
                       </span>
                     )}
                   </td>
+
+                  {columns === 'crm' && (
+                    <td className="px-5 py-4">
+                      <p className="font-bold text-gray-200">{store.category || '분류 미등록'}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">{store.inquirySource || '문의경로 미등록'}</p>
+                    </td>
+                  )}
+
+                  {columns === 'crm' && (
+                    <td className="px-5 py-4">
+                      <p className="max-w-[260px] font-bold leading-5 text-gray-200 keep-all">
+                        {store.nextAction || '후속 액션 미등록'}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">
+                        {store.followupDue
+                          ? `예정 ${formatCrmDate(store.followupDue)}`
+                          : store.lastContacted
+                            ? `최근 연락 ${formatCrmDate(store.lastContacted)}`
+                            : '일정 미등록'}
+                      </p>
+                    </td>
+                  )}
 
                   {columns === 'crm' && (
                     <td className="px-5 py-4">
