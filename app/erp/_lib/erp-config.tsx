@@ -27,8 +27,13 @@ export type StoreRecord = {
   name: string
   status: string
   contact: string
+  category: string
+  inquirySource: string
   owner: string
   googleMapUrl: string
+  followupDue: string
+  lastContacted: string
+  nextAction: string
   quoteCount: number
   diagnosisCount: number
   contractCount: number
@@ -134,6 +139,7 @@ export const menuGroups = [
       { id: 'crm', label: '문의관리', icon: Building2 },
       { id: 'followup', label: '팔로업 관리', icon: RefreshCw },
       { id: 'customer', label: '고객관리', icon: Users },
+      { id: 'contractPending', label: '계약대기', icon: ClipboardList },
       { id: 'card', label: '명함관리', icon: Badge },
     ],
   },

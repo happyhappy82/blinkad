@@ -113,6 +113,12 @@ function PrimaryButton({
   )
 }
 
+type StoreMetric = {
+  label: string
+  value: string
+  detail?: string
+}
+
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
   const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
@@ -166,11 +172,14 @@ export default function ErpClient() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pageId: store.id, status }),
       })
-      const data = (await response.json()) as { connected: boolean; message?: string }
+      const data = (await response.json()) as { connected: boolean; message?: string; store?: StoreRecord }
       if (!response.ok || !data.connected) {
         setStores(previousStores)
         setActionMessage(data.message || 'Notion 상태 변경에 실패했습니다.')
         return
+      }
+      if (data.store) {
+        setStores((current) => current.map((item) => (item.id === store.id ? data.store! : item)))
       }
       setActionMessage(`${store.name} 상태를 ${status}(으)로 변경했습니다.`)
     } catch {
@@ -290,6 +299,44 @@ export default function ErpClient() {
       !statusIncludesAny(store.status, ['계약대기', '계약 대기', '답변완료', '답변 완료', '계약완료', '계약 완료', '취소/팔로업 중지'])
   )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
+  const crmMetrics = useMemo(() => {
+    const countByStatus = (keywords: string[]) =>
+      stores.filter((store) => statusIncludesAny(store.status, keywords)).length
+    const contractPendingCount = countByStatus(['계약대기', '계약 대기'])
+    const activeCustomerCount = countByStatus(['운영시작', '계약 완료', '계약완료'])
+
+    return {
+      inquiry: [
+        { label: '신규 문의', value: String(inquiryStores.length), detail: '처리상태 기준' },
+        { label: '미팅 확정', value: String(countByStatus(['미팅일정 확정', '미팅일정확정'])), detail: '상담 예정' },
+        { label: '팔로업', value: String(followupStores.length), detail: '견적/공동대응' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '전자계약 확인' },
+      ],
+      followup: [
+        { label: '팔로업 대상', value: String(followupStores.length), detail: '후속 연락 필요' },
+        { label: '공동 대응', value: String(countByStatus(['공동 대응', '공동대응'])), detail: '내부 협업' },
+        { label: '계약 전환 후보', value: String(contractPendingCount), detail: '상태 변경 완료' },
+      ],
+      customer: [
+        { label: '전체 고객', value: String(stores.length), detail: '문의 DB 전체' },
+        { label: '운영/계약 고객', value: String(activeCustomerCount), detail: '계약 이후' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '수주 직전' },
+      ],
+      contractPending: [
+        { label: '계약대기', value: String(contractPendingStores.length), detail: '처리상태 기준' },
+        {
+          label: '전자계약 링크',
+          value: String(contractPendingStores.filter((store) => store.contractUrl).length),
+          detail: 'Notion URL 매핑',
+        },
+        {
+          label: '계약서 등록',
+          value: String(contractPendingStores.filter((store) => store.contractCount > 0).length),
+          detail: '파일 속성 기준',
+        },
+      ],
+    } satisfies Record<string, StoreMetric[]>
+  }, [contractPendingStores, followupStores, inquiryStores, stores])
   const operationView =
     realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
       ? undefined
@@ -470,6 +517,8 @@ export default function ErpClient() {
                 stores={inquiryStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.inquiry}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -483,6 +532,8 @@ export default function ErpClient() {
                 stores={followupStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.followup}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -496,6 +547,23 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.customer}
+                enableStatusFilter
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'contractPending' && (
+              <StoreTable
+                title="계약대기 리스트"
+                description="Notion 문의관리 DB에서 계약대기 상태인 매장을 모아 전자계약 링크와 계약서 등록 여부를 확인합니다."
+                stores={contractPendingStores}
+                loading={loading}
+                columns="contract"
+                metrics={crmMetrics.contractPending}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -2896,6 +2964,13 @@ function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
 }
 
+function formatCrmDate(value: string) {
+  if (!value) return ''
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+  return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
+}
+
 function weeklyReportClass(status: StoreWeeklyReportStatus) {
   if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
@@ -2918,6 +2993,8 @@ function StoreTable({
   stores,
   loading,
   columns,
+  metrics,
+  enableStatusFilter,
   runningAction,
   statusOptions,
   updatingStatusId,
@@ -2930,6 +3007,8 @@ function StoreTable({
   stores: StoreRecord[]
   loading: boolean
   columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
+  metrics?: StoreMetric[]
+  enableStatusFilter?: boolean
   runningAction?: string | null
   statusOptions?: string[]
   updatingStatusId?: string | null
@@ -2938,9 +3017,29 @@ function StoreTable({
   onRunQuote?: (store: StoreRecord) => void
 }) {
   const [query, setQuery] = useState('')
-  const filteredStores = stores.filter((store) =>
-    [store.name, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
+  const [statusFilter, setStatusFilter] = useState('all')
+  const statusFilterOptions = useMemo(
+    () => Array.from(new Set(stores.map((store) => store.status).filter(Boolean))),
+    [stores]
   )
+  const filteredStores = stores.filter((store) => {
+    const searchableText = [
+      store.name,
+      store.status,
+      store.owner,
+      store.contact,
+      store.category,
+      store.inquirySource,
+      store.nextAction,
+    ]
+      .join(' ')
+      .toLowerCase()
+    const matchesQuery = !query.trim() || searchableText.includes(query.trim().toLowerCase())
+    const matchesStatus = statusFilter === 'all' || store.status === statusFilter
+
+    return matchesQuery && matchesStatus
+  })
+  const tableColumnCount = columns === 'crm' || columns === 'contract' ? 7 : 5
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -2962,6 +3061,20 @@ function StoreTable({
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
           ) : null}
+          {enableStatusFilter ? (
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value)}
+              className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none md:w-44"
+            >
+              <option value="all">전체 상태</option>
+              {statusFilterOptions.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          ) : null}
           <div className="relative w-full md:w-72">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
             <input
@@ -2974,12 +3087,26 @@ function StoreTable({
         </div>
       </div>
 
+      {metrics?.length ? (
+        <div className="grid border-b border-white/10 md:grid-cols-3 xl:grid-cols-4">
+          {metrics.map((metric) => (
+            <div key={metric.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{metric.label}</p>
+              <p className="mt-2 text-3xl font-black tracking-tight text-white">{metric.value}</p>
+              {metric.detail ? <p className="mt-1 text-xs font-bold text-gray-500">{metric.detail}</p> : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
+
       <div className="overflow-x-auto">
         <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-5 py-4">매장명</th>
               <th className="px-5 py-4">상태</th>
+              {columns === 'crm' && <th className="px-5 py-4">문의 정보</th>}
+              {columns === 'crm' && <th className="px-5 py-4">팔로업</th>}
               {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
               {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
@@ -2994,13 +3121,13 @@ function StoreTable({
           <tbody>
             {loading ? (
               <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
+                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={tableColumnCount}>
                   문의관리 DB를 불러오는 중입니다.
                 </td>
               </tr>
             ) : filteredStores.length === 0 ? (
               <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
+                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={tableColumnCount}>
                   표시할 매장이 없습니다.
                 </td>
               </tr>
@@ -3037,6 +3164,28 @@ function StoreTable({
                       </span>
                     )}
                   </td>
+
+                  {columns === 'crm' && (
+                    <td className="px-5 py-4">
+                      <p className="font-bold text-gray-200">{store.category || '분류 미등록'}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">{store.inquirySource || '문의경로 미등록'}</p>
+                    </td>
+                  )}
+
+                  {columns === 'crm' && (
+                    <td className="px-5 py-4">
+                      <p className="max-w-[260px] font-bold leading-5 text-gray-200 keep-all">
+                        {store.nextAction || '후속 액션 미등록'}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">
+                        {store.followupDue
+                          ? `예정 ${formatCrmDate(store.followupDue)}`
+                          : store.lastContacted
+                            ? `최근 연락 ${formatCrmDate(store.lastContacted)}`
+                            : '일정 미등록'}
+                      </p>
+                    </td>
+                  )}
 
                   {columns === 'crm' && (
                     <td className="px-5 py-4">
