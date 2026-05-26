@@ -21,6 +21,7 @@ import {
   Handshake,
   LayoutDashboard,
   Mail,
+  Menu,
   Mic,
   ReceiptText,
   RefreshCw,
@@ -119,6 +120,7 @@ function PrimaryButton({
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarPreview, setSidebarPreview] = useState(false)
   const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
   const [stores, setStores] = useState<StoreRecord[]>([])
   const [statusOptions, setStatusOptions] = useState<string[]>(DEFAULT_CLIENT_STATUS_OPTIONS)
@@ -368,6 +370,17 @@ export default function ErpClient() {
     }
   }
 
+  const toggleSidebar = () => {
+    if (sidebarCollapsed) {
+      setSidebarCollapsed(false)
+      setSidebarPreview(false)
+      return
+    }
+
+    setSidebarCollapsed(true)
+    setSidebarPreview(false)
+  }
+
   const runAutomation = async (type: 'quote' | 'diagnosis', store: StoreRecord) => {
     setRunningAction(`${type}:${store.id}`)
     setActionMessage('')
@@ -395,23 +408,41 @@ export default function ErpClient() {
   return (
     <main className="min-h-screen bg-[#050608] text-white">
       <div className="flex min-h-screen">
-        <aside className={`${sidebarCollapsed ? 'hidden' : 'hidden w-64 shrink-0 border-r border-white/10 bg-black lg:block'}`}>
-          <div className="flex h-20 items-center justify-between gap-3 border-b border-white/10 px-6">
+        <aside
+          onMouseEnter={() => {
+            if (sidebarCollapsed) setSidebarPreview(true)
+          }}
+          onMouseLeave={() => {
+            if (sidebarCollapsed) setSidebarPreview(false)
+          }}
+          className={`hidden w-64 border-r border-white/10 bg-black transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block ${
+            sidebarCollapsed
+              ? `fixed inset-y-0 left-0 z-50 overflow-hidden rounded-r-[28px] shadow-[24px_0_80px_rgba(37,99,235,0.20)] ${
+                  sidebarPreview ? 'translate-x-0' : '-translate-x-[204px]'
+                }`
+              : 'relative shrink-0 translate-x-0'
+          }`}
+        >
+          {sidebarCollapsed ? (
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-0 w-14 bg-gradient-to-r from-transparent via-brand-blue/10 to-brand-blue/20" />
+          ) : null}
+
+          <div className="relative z-10 flex h-20 items-center justify-between gap-3 border-b border-white/10 px-4">
             <a href="/" aria-label="BlinkAd home">
               <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
             </a>
             <button
               type="button"
-              onClick={() => setSidebarCollapsed(true)}
+              onClick={toggleSidebar}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-gray-400 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
-              aria-label="왼쪽 메뉴 숨기기"
-              title="왼쪽 메뉴 숨기기"
+              aria-label={sidebarCollapsed ? '왼쪽 메뉴 고정하기' : '왼쪽 메뉴 숨기기'}
+              title={sidebarCollapsed ? '왼쪽 메뉴 고정하기' : '왼쪽 메뉴 숨기기'}
             >
-              <ChevronLeft className="h-4 w-4" />
+              <Menu className="h-4 w-4" />
             </button>
           </div>
 
-          <nav className="space-y-6 px-3 py-5">
+          <nav className="relative z-10 space-y-6 px-3 py-5">
             {menuGroups.map((group) => (
               <div key={group.label}>
                 <p className="px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600">
@@ -472,21 +503,7 @@ export default function ErpClient() {
         <section className="min-w-0 flex-1">
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[#050608]/95 backdrop-blur">
             <div className="flex min-h-20 flex-col justify-center gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between md:px-8">
-              <div className="flex items-start gap-3">
-                <button
-                  type="button"
-                  onClick={() => setSidebarCollapsed((current) => !current)}
-                  className={`inline-flex h-10 shrink-0 items-center justify-center gap-2 rounded-full px-3 text-sm font-black transition ${
-                    sidebarCollapsed
-                      ? 'bg-white text-black hover:bg-gray-200'
-                      : 'border border-white/15 text-gray-300 hover:border-white/30 hover:bg-white/5 hover:text-white'
-                  }`}
-                  aria-label={sidebarCollapsed ? '왼쪽 메뉴 보이기' : '왼쪽 메뉴 숨기기'}
-                  title={sidebarCollapsed ? '왼쪽 메뉴 보이기' : '왼쪽 메뉴 숨기기'}
-                >
-                  {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-                  <span>{sidebarCollapsed ? '메뉴 열기' : '메뉴 접기'}</span>
-                </button>
+              <div>
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
                     BlinkAd ERP
