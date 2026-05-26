@@ -3170,71 +3170,105 @@ function BusinessCardPanel({
       ) : filteredCards.length === 0 ? (
         <p className="p-10 text-center text-sm font-bold text-gray-500">표시할 명함이 없습니다.</p>
       ) : (
-        <div className="grid gap-4 p-5 lg:grid-cols-2 2xl:grid-cols-3">
-          {filteredCards.map((card) => (
-            <article key={card.id} className="rounded-lg border border-white/10 bg-black p-4">
-              <div className="flex gap-4">
-                <div className="flex h-28 w-40 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
-                  {card.imageUrl ? (
-                    <img src={card.imageUrl} alt={card.imageName || card.name} className="h-full w-full object-cover" />
-                  ) : (
-                    <span className="text-xs font-bold text-gray-600">사진 없음</span>
-                  )}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg font-black text-white keep-all">{card.name}</h3>
+        <div className="overflow-x-auto">
+          <table className="min-w-[1120px] w-full table-fixed border-collapse">
+            <thead className="bg-black/35">
+              <tr className="border-b border-white/10 text-left">
+                <th className="w-32 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">명함</th>
+                <th className="w-44 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">이름</th>
+                <th className="w-40 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">연락처</th>
+                <th className="w-32 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">상태</th>
+                <th className="w-32 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">OCR</th>
+                <th className="w-56 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">관련 미팅</th>
+                <th className="w-36 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">수정일</th>
+                <th className="w-48 px-5 py-3 text-xs font-black uppercase tracking-[0.14em] text-gray-500">작업</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredCards.map((card) => (
+                <tr key={card.id} className="border-b border-white/10 bg-[#07090d] align-middle last:border-b-0 hover:bg-white/[0.03]">
+                  <td className="px-5 py-4">
+                    <div className="flex h-14 w-24 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
+                      {card.imageUrl ? (
+                        <img src={card.imageUrl} alt={card.imageName || card.name} className="h-full w-full object-cover" />
+                      ) : (
+                        <span className="text-xs font-bold text-gray-600">사진 없음</span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-5 py-4">
+                    <p className="truncate text-sm font-black text-white" title={card.name}>
+                      {card.name}
+                    </p>
+                    <p className="mt-1 truncate text-xs font-semibold text-gray-600" title={card.imageName || '파일명 없음'}>
+                      {card.imageName || '파일명 없음'}
+                    </p>
+                  </td>
+                  <td className="px-5 py-4">
+                    <p className="whitespace-nowrap text-sm font-bold text-gray-200">{card.phone || '연락처 미입력'}</p>
+                  </td>
+                  <td className="px-5 py-4">
                     <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.status)}`}>
                       {card.status || '상태 없음'}
                     </span>
+                  </td>
+                  <td className="px-5 py-4">
                     <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(card.ocrStatus)}`}>
-                      OCR {card.ocrStatus || '대기'}
+                      {card.ocrStatus || '대기'}
                     </span>
-                  </div>
-                  <p className="mt-2 text-sm font-bold text-gray-300">{card.phone || '연락처 미입력'}</p>
-                  <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
-                    {card.meetingTitles.length ? card.meetingTitles.join(', ') : '관련 미팅 미연결'}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-4 flex flex-wrap items-center gap-2">
-                <button
-                  type="button"
-                  disabled={!card.imageUrl || runningOcrId === card.id}
-                  onClick={() => onAnalyze(card)}
-                  className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
-                >
-                  <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
-                  {runningOcrId === card.id ? '분석 중' : card.ocrStatus === '완료' ? '다시 분석' : '분석하기'}
-                </button>
-                {card.imageUrl ? (
-                  <a
-                    href={card.imageUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-white/15 px-3 text-xs font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                  >
-                    명함 이미지
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                ) : null}
-                {card.notionUrl ? (
-                  <a
-                    href={card.notionUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 hover:border-brand-blue/60 hover:bg-brand-blue/15"
-                  >
-                    Notion 보기
-                    <ExternalLink className="h-3.5 w-3.5" />
-                  </a>
-                ) : null}
-                <span className="text-xs font-semibold text-gray-600">
-                  {card.lastEdited ? `수정 ${formatDateTime(card.lastEdited)}` : '수정일 없음'}
-                </span>
-              </div>
-            </article>
-          ))}
+                  </td>
+                  <td className="px-5 py-4">
+                    <p
+                      className="line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all"
+                      title={card.meetingTitles.length ? card.meetingTitles.join(', ') : '관련 미팅 미연결'}
+                    >
+                      {card.meetingTitles.length ? card.meetingTitles.join(', ') : '관련 미팅 미연결'}
+                    </p>
+                  </td>
+                  <td className="px-5 py-4">
+                    <p className="whitespace-nowrap text-xs font-semibold text-gray-500">
+                      {card.lastEdited ? formatDateTime(card.lastEdited) : '수정일 없음'}
+                    </p>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        disabled={!card.imageUrl || runningOcrId === card.id}
+                        onClick={() => onAnalyze(card)}
+                        className="inline-flex h-9 items-center justify-center gap-1 rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
+                      >
+                        <FileSearch className={`h-3.5 w-3.5 ${runningOcrId === card.id ? 'animate-pulse' : ''}`} />
+                        {runningOcrId === card.id ? '분석 중' : card.ocrStatus === '완료' ? '다시 분석' : '분석'}
+                      </button>
+                      {card.imageUrl ? (
+                        <a
+                          href={card.imageUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/15 text-gray-200 hover:border-white/30 hover:bg-white/5"
+                          title="명함 이미지"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ) : null}
+                      {card.notionUrl ? (
+                        <a
+                          href={card.notionUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-9 items-center justify-center gap-1 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 hover:border-brand-blue/60 hover:bg-brand-blue/15"
+                        >
+                          Notion
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ) : null}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
     </section>
