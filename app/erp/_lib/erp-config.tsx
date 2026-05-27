@@ -262,6 +262,15 @@ export type StoreProductMetric = {
   note: string
 }
 
+export type StoreBlogContentPost = {
+  title: string
+  status: string
+  keyword: string
+  channel: string
+  publishedAt: string
+  memo: string
+}
+
 export type StoreWeeklyReportStatus = '초안' | '생성완료' | '보고대기' | '보고완료' | '실패' | '작성중'
 
 export type StoreWeeklyReport = {
@@ -289,6 +298,7 @@ export type StoreProductWorkspace = {
   description: string
   metrics: StoreProductMetric[]
   weeklyReports?: StoreWeeklyReport[]
+  blogPosts?: StoreBlogContentPost[]
   tasks: StoreProductTask[]
 }
 
@@ -649,8 +659,42 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
             description: '매장별로 어떤 웹사이트, 블로그, FAQ 작업이 들어가고 있는지 체크하기 위한 공간입니다.',
             metrics: [
               { label: '제작 상태', value: '기획중', note: '브랜드/지점 페이지 구조 정리' },
-              { label: '콘텐츠', value: '2건 대기', note: 'FAQ, 블로그 주제 정리 필요' },
+              { label: '콘텐츠', value: '4건 작성', note: '블로그 글 목록 샘플 기준' },
               { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
+            ],
+            blogPosts: [
+              {
+                title: '언리미티드 외국인 고객 방문 전 FAQ 정리',
+                status: '작성완료',
+                keyword: '언리미티드 외국인 방문',
+                channel: '공식 블로그',
+                publishedAt: '2026-05-27',
+                memo: '방문 전 자주 묻는 위치, 예약, 결제, 이용 흐름을 한 글에서 확인할 수 있게 정리합니다.',
+              },
+              {
+                title: 'Google 프로필에서 웹사이트로 이어지는 예약 동선 안내',
+                status: '검수중',
+                keyword: '언리미티드 예약 방법',
+                channel: '공식 블로그',
+                publishedAt: '2026-05-28',
+                memo: 'GBP 클릭 이후 고객이 공식 페이지에서 어떤 정보를 확인해야 하는지 순서대로 설명합니다.',
+              },
+              {
+                title: '외국인 고객이 처음 방문할 때 확인하는 매장 정보',
+                status: '작성중',
+                keyword: '외국인 고객 매장 정보',
+                channel: '블로그 초안',
+                publishedAt: '발행 전',
+                memo: '영업시간, 위치, 사진, 서비스 설명처럼 방문 판단에 필요한 기본 정보를 콘텐츠화합니다.',
+              },
+              {
+                title: '리뷰와 FAQ를 활용한 매장 신뢰도 개선 포인트',
+                status: '대기',
+                keyword: '매장 리뷰 FAQ 관리',
+                channel: '콘텐츠 주제',
+                publishedAt: '발행 전',
+                memo: 'Google 리뷰 응대와 FAQ 콘텐츠를 연결해 검색 고객이 신뢰할 수 있는 근거를 쌓습니다.',
+              },
             ],
             tasks: [
               {
