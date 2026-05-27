@@ -29,8 +29,12 @@ const fallbackStores = [
     category: '병원',
     status: '신규 문의',
     contact: '연락처 확인 필요',
+    inquirySource: '홈페이지 문의',
     owner: '블링크애드',
     googleMapUrl: '',
+    followupDue: '',
+    lastContacted: '',
+    nextAction: '첫 연락 후 니즈 확인',
     quoteCount: 0,
     diagnosisCount: 1,
     contractCount: 0,
@@ -47,8 +51,12 @@ const fallbackStores = [
     category: '요식업',
     status: '견적서 송부/팔로업 지속',
     contact: '연락처 확인 필요',
+    inquirySource: '소개 문의',
     owner: '블링크애드',
     googleMapUrl: '',
+    followupDue: '',
+    lastContacted: '',
+    nextAction: '견적 검토 여부 확인',
     quoteCount: 1,
     diagnosisCount: 1,
     contractCount: 0,
@@ -65,8 +73,12 @@ const fallbackStores = [
     category: '요식업',
     status: '공동대응',
     contact: '연락처 확인 필요',
+    inquirySource: '기존 네트워크',
     owner: '권순현',
     googleMapUrl: '',
+    followupDue: '',
+    lastContacted: '',
+    nextAction: '공동 대응 범위 정리',
     quoteCount: 1,
     diagnosisCount: 1,
     contractCount: 1,
@@ -83,8 +95,12 @@ const fallbackStores = [
     category: '로컬 매장',
     status: '운영시작',
     contact: '연락처 확인 필요',
+    inquirySource: '기존 고객',
     owner: '블링크애드',
     googleMapUrl: '',
+    followupDue: '',
+    lastContacted: '',
+    nextAction: '운영 착수 자료 확인',
     quoteCount: 1,
     diagnosisCount: 0,
     contractCount: 1,
@@ -223,8 +239,12 @@ function normalizePage(page: any) {
     category: propText(findProperty(properties, ['업종', '카테고리', '분류', 'Category'])),
     status,
     contact: propText(findProperty(properties, ['연락처', '전화번호', 'Phone', 'Contact'])),
+    inquirySource: propText(findProperty(properties, ['문의경로', '유입경로', '문의 채널', '채널', 'Source', 'Channel'])),
     owner: propText(findProperty(properties, ['담당자', '담당', '작성', 'Owner'])) || '블링크애드',
     googleMapUrl: pickGoogleMapUrl(properties),
+    followupDue: propText(findProperty(properties, ['팔로업 예정일', '팔로업일', '다음 연락일', '후속 연락일', 'Follow-up Date', 'Next Follow Up'])),
+    lastContacted: propText(findProperty(properties, ['마지막 연락일', '최근 연락일', '최종 연락일', 'Last Contacted', 'Last Contact'])),
+    nextAction: propText(findProperty(properties, ['다음 액션', '후속액션', '후속 액션', '팔로업 메모', '메모', '비고', 'Next Action', 'Memo'])),
     quoteCount: fileCount(properties['견적서']),
     diagnosisCount: fileCount(properties['분석자료']),
     contractCount: fileCount(findProperty(properties, ['계약서', '계약 파일', 'Contract'])),
@@ -383,7 +403,7 @@ export async function PATCH(request: NextRequest) {
       )
     }
 
-    await notion.pages.update({
+    const updatedPage = await notion.pages.update({
       page_id: pageId,
       properties: {
         [statusPropertyName]: value,
@@ -393,6 +413,7 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({
       connected: true,
       message: `상태를 ${status}(으)로 변경했습니다.`,
+      store: normalizePage(updatedPage),
     })
   } catch (error) {
     return NextResponse.json(

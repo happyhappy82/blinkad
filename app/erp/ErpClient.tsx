@@ -6,16 +6,13 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
   ClipboardList,
-  Clock3,
   Copy,
   CreditCard,
   ExternalLink,
-  FileSearch,
   FileSignature,
   Folder,
   Handshake,
@@ -25,17 +22,18 @@ import {
   Mic,
   ReceiptText,
   RefreshCw,
-  Search,
   Settings,
   UserCog,
   Users,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import { MeetingPanel, WeeklyMeetingPanel } from './_components/calendar/MeetingPanels'
+import { BusinessCardPanel } from './_components/crm/BusinessCardPanel'
+import { StoreTable } from './_components/shared/StoreTable'
 import {
   DEFAULT_CLIENT_STATUS_OPTIONS,
-  EFORMSIGN_URL,
   REPORT_STATUS_OPTIONS,
   TEAM_CALENDAR_LABEL,
   isMenuId,
@@ -46,6 +44,8 @@ import {
 } from './_lib/erp-config'
 import type {
   ApiResponse,
+  BusinessCardRecord,
+  BusinessCardsResponse,
   CalendarAccountView,
   CalendarAccountsResponse,
   CalendarApiResponse,
@@ -53,9 +53,12 @@ import type {
   CalendarEventDraft,
   MailApiResponse,
   MailItem,
+  MeetingRecord,
+  MeetingsApiResponse,
   MenuId,
   OperationRow,
   OperationView,
+  SaveMeetingRecordNoteHandler,
   SaveMeetingNoteHandler,
   StoreRecord,
   StoreProductKey,
@@ -68,30 +71,6 @@ import type {
 function statusIncludesAny(status: string, keywords: string[]) {
   const compactStatus = (status || '').replace(/\s+/g, '')
   return keywords.some((keyword) => compactStatus.includes(keyword.replace(/\s+/g, '')))
-}
-
-function statusBadge(status: string) {
-  if (statusIncludesAny(status, ['공동 대응', '공동대응'])) return 'border-red-300/30 bg-red-400/10 text-red-100'
-  if (statusIncludesAny(status, ['견적서 송부/팔로업 지속', '견적서송부/팔로업지속'])) return 'border-yellow-300/35 bg-yellow-300/10 text-yellow-100'
-  if (status.includes('운영')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
-  if (status.includes('계약')) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
-  if (status.includes('견적')) return 'border-blue-300/30 bg-brand-blue/15 text-blue-100'
-  if (status.includes('진단')) return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
-  return 'border-white/15 bg-white/10 text-gray-200'
-}
-
-function FileState({ count, emptyLabel }: { count: number; emptyLabel: string }) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-bold ${
-        count > 0
-          ? 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
-          : 'border-white/15 bg-white/5 text-gray-400'
-      }`}
-    >
-      {count > 0 ? `${count}개 저장` : emptyLabel}
-    </span>
-  )
 }
 
 type AdsSummary = {
@@ -137,25 +116,10 @@ type GoogleAdsApiResponse = {
   sourceSyncedAt?: string
 }
 
-function PrimaryButton({
-  children,
-  onClick,
-  disabled,
-}: {
-  children: React.ReactNode
-  onClick?: () => void
-  disabled?: boolean
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
-    >
-      {children}
-    </button>
-  )
+type StoreMetric = {
+  label: string
+  value: string
+  detail?: string
 }
 
 export default function ErpClient() {
@@ -170,9 +134,17 @@ export default function ErpClient() {
   const [actionMessage, setActionMessage] = useState('')
   const [runningAction, setRunningAction] = useState<string | null>(null)
   const [updatingStoreStatus, setUpdatingStoreStatus] = useState<string | null>(null)
+  const [businessCards, setBusinessCards] = useState<BusinessCardRecord[]>([])
+  const [businessCardsLoading, setBusinessCardsLoading] = useState(false)
+  const [businessCardsMessage, setBusinessCardsMessage] = useState('')
+  const [runningCardOcr, setRunningCardOcr] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
+  const [meetingRecords, setMeetingRecords] = useState<MeetingRecord[]>([])
+  const [meetingDbLoading, setMeetingDbLoading] = useState(false)
+  const [meetingDbMessage, setMeetingDbMessage] = useState('')
+  const lastMeetingSyncSignatureRef = useRef('')
   const [mailItems, setMailItems] = useState<MailItem[]>([])
   const [mailLoading, setMailLoading] = useState(false)
   const [mailMessage, setMailMessage] = useState('')
@@ -213,11 +185,14 @@ export default function ErpClient() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pageId: store.id, status }),
       })
-      const data = (await response.json()) as { connected: boolean; message?: string }
+      const data = (await response.json()) as { connected: boolean; message?: string; store?: StoreRecord }
       if (!response.ok || !data.connected) {
         setStores(previousStores)
         setActionMessage(data.message || 'Notion 상태 변경에 실패했습니다.')
         return
+      }
+      if (data.store) {
+        setStores((current) => current.map((item) => (item.id === store.id ? data.store! : item)))
       }
       setActionMessage(`${store.name} 상태를 ${status}(으)로 변경했습니다.`)
     } catch {
@@ -291,6 +266,56 @@ export default function ErpClient() {
     return data.message || '미팅 기록을 저장했습니다.'
   }
 
+  const syncMeetingRecords = useCallback(async (events: CalendarEvent[]) => {
+    setMeetingDbLoading(true)
+    try {
+      const meetingEvents = uniqueCalendarMeetingEvents(events)
+      const response = await fetch('/api/erp/meetings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ events: meetingEvents }),
+      })
+      const data = (await response.json()) as MeetingsApiResponse
+      setMeetingRecords(data.meetings || [])
+      setMeetingDbMessage(data.message || '미팅관리 DB를 동기화했습니다.')
+    } catch {
+      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+    } finally {
+      setMeetingDbLoading(false)
+    }
+  }, [])
+
+  const loadMeetingRecords = useCallback(async () => {
+    setMeetingDbLoading(true)
+    try {
+      const response = await fetch('/api/erp/meetings', { cache: 'no-store' })
+      const data = (await response.json()) as MeetingsApiResponse
+      setMeetingRecords(data.meetings || [])
+      setMeetingDbMessage(data.message || '미팅관리 DB와 연결되었습니다.')
+    } catch {
+      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+    } finally {
+      setMeetingDbLoading(false)
+    }
+  }, [])
+
+  const saveMeetingRecordNote: SaveMeetingRecordNoteHandler = async (meeting, memo) => {
+    const response = await fetch('/api/erp/meetings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: meeting.id, memo }),
+    })
+    const data = (await response.json()) as MeetingsApiResponse
+
+    if (!response.ok || !data.connected) {
+      throw new Error(data.message || '미팅관리 DB에 미팅 내용을 저장하지 못했습니다.')
+    }
+
+    setMeetingRecords(data.meetings || [])
+    setMeetingDbMessage(data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.')
+    return data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.'
+  }
+
   const loadMailItems = async () => {
     setMailLoading(true)
     try {
@@ -309,7 +334,56 @@ export default function ErpClient() {
     }
   }
 
+  const loadBusinessCards = async () => {
+    setBusinessCardsLoading(true)
+    try {
+      const response = await fetch('/api/erp/clients/cards', { cache: 'no-store' })
+      const data = (await response.json()) as BusinessCardsResponse
+      setBusinessCards(data.cards)
+      setBusinessCardsMessage(
+        data.connected
+          ? 'Notion 명함 DB와 연결되었습니다.'
+          : data.message || 'Notion 명함 DB 연결이 없어 샘플 데이터로 표시 중입니다.'
+      )
+    } catch {
+      setBusinessCardsMessage('명함 DB를 불러오지 못했습니다.')
+    } finally {
+      setBusinessCardsLoading(false)
+    }
+  }
+
+  const analyzeBusinessCard = async (card: BusinessCardRecord) => {
+    setRunningCardOcr(card.id)
+    setActionMessage('')
+
+    try {
+      const response = await fetch('/api/erp/clients/cards/ocr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: card.id }),
+      })
+      const data = (await response.json()) as { connected: boolean; message?: string }
+
+      if (!response.ok || !data.connected) {
+        setActionMessage(data.message || '명함 분석에 실패했습니다.')
+        await loadBusinessCards()
+        return
+      }
+
+      setActionMessage(data.message || '명함 분석을 완료했습니다.')
+      await loadBusinessCards()
+    } catch {
+      setActionMessage('명함 분석 중 오류가 발생했습니다.')
+    } finally {
+      setRunningCardOcr(null)
+    }
+  }
+
   useEffect(() => {
+    if (activeMenu === 'card' && businessCards.length === 0 && !businessCardsLoading) {
+      loadBusinessCards()
+    }
+
     if (['schedule', 'meeting', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
       loadCalendarEvents()
     }
@@ -318,6 +392,17 @@ export default function ErpClient() {
       loadMailItems()
     }
   }, [activeMenu])
+
+  useEffect(() => {
+    if (activeMenu !== 'meeting' || calendarLoading) return
+    const syncSignature = meetingSyncSignature(calendarEvents)
+    if (syncSignature && lastMeetingSyncSignatureRef.current !== syncSignature) {
+      lastMeetingSyncSignatureRef.current = syncSignature
+      syncMeetingRecords(calendarEvents)
+    } else {
+      loadMeetingRecords()
+    }
+  }, [activeMenu, calendarEvents, calendarLoading, loadMeetingRecords, syncMeetingRecords])
 
   const dashboard = useMemo(() => {
     const counts = statusGroups.map((group) => ({
@@ -337,12 +422,74 @@ export default function ErpClient() {
       !statusIncludesAny(store.status, ['계약대기', '계약 대기', '답변완료', '답변 완료', '계약완료', '계약 완료', '취소/팔로업 중지'])
   )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
+  const crmMetrics = useMemo(() => {
+    const countByStatus = (keywords: string[]) =>
+      stores.filter((store) => statusIncludesAny(store.status, keywords)).length
+    const contractPendingCount = countByStatus(['계약대기', '계약 대기'])
+    const activeCustomerCount = countByStatus(['운영시작', '계약 완료', '계약완료'])
+
+    return {
+      inquiry: [
+        { label: '신규 문의', value: String(inquiryStores.length), detail: '처리상태 기준' },
+        { label: '미팅 확정', value: String(countByStatus(['미팅일정 확정', '미팅일정확정'])), detail: '상담 예정' },
+        { label: '팔로업', value: String(followupStores.length), detail: '견적/공동대응' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '전자계약 확인' },
+      ],
+      followup: [
+        { label: '팔로업 대상', value: String(followupStores.length), detail: '후속 연락 필요' },
+        { label: '공동 대응', value: String(countByStatus(['공동 대응', '공동대응'])), detail: '내부 협업' },
+        { label: '계약 전환 후보', value: String(contractPendingCount), detail: '상태 변경 완료' },
+      ],
+      customer: [
+        { label: '전체 고객', value: String(stores.length), detail: '문의 DB 전체' },
+        { label: '운영/계약 고객', value: String(activeCustomerCount), detail: '계약 이후' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '수주 직전' },
+      ],
+      contractPending: [
+        { label: '계약대기', value: String(contractPendingStores.length), detail: '처리상태 기준' },
+        {
+          label: '전자계약 링크',
+          value: String(contractPendingStores.filter((store) => store.contractUrl).length),
+          detail: 'Notion URL 매핑',
+        },
+        {
+          label: '계약서 등록',
+          value: String(contractPendingStores.filter((store) => store.contractCount > 0).length),
+          detail: '파일 속성 기준',
+        },
+      ],
+    } satisfies Record<string, StoreMetric[]>
+  }, [contractPendingStores, followupStores, inquiryStores, stores])
+  const businessCardMetrics = useMemo(
+    () => [
+      { label: '전체 명함', value: String(businessCards.length), detail: 'Notion 명함 DB' },
+      {
+        label: '사진 등록',
+        value: String(businessCards.filter((card) => card.imageUrl).length),
+        detail: '명함 사진 파일',
+      },
+      {
+        label: '입력필요',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.status, ['입력필요'])).length),
+        detail: '검수 대기',
+      },
+      {
+        label: 'OCR 완료',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.ocrStatus, ['완료'])).length),
+        detail: '자동 분석',
+      },
+    ],
+    [businessCards]
+  )
   const operationView =
-    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
+    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer' || activeMenu === 'card'
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
+  const headerConnectionMessage = activeMenu === 'card' ? businessCardsMessage : connectionMessage
+  const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
+  const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
@@ -485,24 +632,26 @@ export default function ErpClient() {
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[#050608]/95 backdrop-blur">
             <div className="flex min-h-20 flex-col justify-center gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between md:px-8">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
-                  BlinkAd ERP
-                </p>
-                <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
-                  영업·미팅·견적·계약·운영·정산 관리
-                </h1>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
+                    BlinkAd ERP
+                  </p>
+                  <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
+                    영업·미팅·견적·계약·운영·정산 관리
+                  </h1>
+                </div>
               </div>
 
               <div className="flex items-center gap-2">
                 <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
-                  {connectionMessage || 'DB 연결 확인 중'}
+                  {headerConnectionMessage || 'DB 연결 확인 중'}
                 </span>
                 <button
                   type="button"
-                  onClick={loadStores}
+                  onClick={refreshActiveMenu}
                   className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-3 text-sm font-bold text-gray-200 hover:border-white/30 hover:bg-white/5"
                 >
-                  <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${headerLoading ? 'animate-spin' : ''}`} />
                   새로고침
                 </button>
               </div>
@@ -556,6 +705,8 @@ export default function ErpClient() {
                 stores={inquiryStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.inquiry}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -569,6 +720,8 @@ export default function ErpClient() {
                 stores={followupStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.followup}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -582,9 +735,38 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.customer}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'contractPending' && (
+              <StoreTable
+                title="계약대기 리스트"
+                description="Notion 문의관리 DB에서 계약대기 상태인 매장을 모아 전자계약 링크와 계약서 등록 여부를 확인합니다."
+                stores={contractPendingStores}
+                loading={loading}
+                columns="contract"
+                metrics={crmMetrics.contractPending}
+                enableStatusFilter
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'card' && (
+              <BusinessCardPanel
+                cards={businessCards}
+                loading={businessCardsLoading}
+                message={businessCardsMessage}
+                metrics={businessCardMetrics}
+                runningOcrId={runningCardOcr}
+                onRefresh={loadBusinessCards}
+                onAnalyze={analyzeBusinessCard}
               />
             )}
 
@@ -653,11 +835,11 @@ export default function ErpClient() {
 
             {activeMenu === 'meeting' && (
               <MeetingPanel
-                events={calendarEvents}
-                loading={calendarLoading}
-                message={calendarMessage}
-                onRefresh={loadCalendarEvents}
-                onSaveMeetingNote={saveMeetingNote}
+                meetings={meetingRecords}
+                loading={meetingDbLoading || calendarLoading}
+                message={meetingDbMessage || calendarMessage}
+                onRefresh={() => syncMeetingRecords(calendarEvents)}
+                onSaveMeetingNote={saveMeetingRecordNote}
               />
             )}
 
@@ -746,15 +928,6 @@ function addDays(date: Date, days: number) {
   const target = new Date(date)
   target.setDate(target.getDate() + days)
   return target
-}
-
-function formatDateLabel(value: string) {
-  if (!value) return '-'
-  return new Intl.DateTimeFormat('ko-KR', {
-    month: '2-digit',
-    day: '2-digit',
-    weekday: 'short',
-  }).format(new Date(value))
 }
 
 function formatCalendarRange(view: 'month' | 'week' | 'day', anchorDate: Date) {
@@ -914,6 +1087,32 @@ function isSameDate(left: Date, right: Date) {
 function isMeetingEvent(event: CalendarEvent) {
   const text = `${event.title} ${event.memo}`.toLowerCase()
   return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담')
+}
+
+function calendarMeetingKey(event: CalendarEvent) {
+  const id = String(event.id || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  if (id) return `event:${id}`
+  const title = String(event.title || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  const start = String(event.start || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  return `fallback:${title}:${start}`
+}
+
+function uniqueCalendarMeetingEvents(events: CalendarEvent[]) {
+  const seen = new Set<string>()
+  return events.filter((event) => {
+    if (!isMeetingEvent(event)) return false
+    const key = calendarMeetingKey(event)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function meetingSyncSignature(events: CalendarEvent[]) {
+  return uniqueCalendarMeetingEvents(events)
+    .map((event) => calendarMeetingKey(event))
+    .sort()
+    .join('|')
 }
 
 function eventTypeLabel(type: CalendarEvent['type']) {
@@ -1760,313 +1959,6 @@ function CalendarIntegrationPanel() {
             <p className="mt-3 text-sm leading-6 text-gray-500 keep-all">{step.description}</p>
           </div>
         ))}
-      </div>
-    </section>
-  )
-}
-
-function EventCard({ event }: { event: CalendarEvent }) {
-  return (
-    <div className="rounded-md border border-l-4 border-white/10 bg-white/[0.03] p-3" style={calendarEventStyle(event)}>
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="font-black text-white keep-all">{event.title}</p>
-          <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTime(event.start)}</p>
-          {event.calendarName ? (
-            <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
-              <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
-              {event.calendarName}
-            </p>
-          ) : null}
-        </div>
-        <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
-          {eventTypeLabel(event.type)}
-        </span>
-      </div>
-      {event.location ? <p className="mt-2 text-xs font-bold text-gray-400 keep-all">{event.location}</p> : null}
-      {event.memo ? <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">{event.memo}</p> : null}
-    </div>
-  )
-}
-
-function MeetingPanel({
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-}: {
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-}) {
-  const now = new Date()
-  const meetings = events
-    .filter((event) => isMeetingEvent(event) && new Date(event.start) <= now)
-    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
-
-  return (
-    <MeetingListPanel
-      kicker="Meeting DB"
-      title="총 미팅 DB"
-      description="지금까지 진행된 미팅을 날짜별로 모아보고, 각 미팅별 논의 내용과 후속 액션을 기록합니다."
-      events={meetings}
-      loading={loading}
-      message={message}
-      onRefresh={onRefresh}
-      onSaveMeetingNote={onSaveMeetingNote}
-      enableDateFilter
-      emptyLabel="지금까지 진행된 미팅이 없습니다."
-    />
-  )
-}
-
-function WeeklyMeetingPanel({
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-}: {
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-}) {
-  const now = new Date()
-  const sevenDaysLater = new Date(now)
-  sevenDaysLater.setDate(now.getDate() + 7)
-  sevenDaysLater.setHours(23, 59, 59, 999)
-  const weeklyMeetings = events
-    .filter((event) => {
-      const start = new Date(event.start)
-      return isMeetingEvent(event) && start >= now && start <= sevenDaysLater
-    })
-    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-
-  return (
-    <MeetingListPanel
-      kicker="Weekly Meeting"
-      title="위클리미팅"
-      description="오늘부터 앞으로 7일 이내 용올캘린더에 예정된 미팅 일정을 확인합니다."
-      events={weeklyMeetings}
-      loading={loading}
-      message={message}
-      onRefresh={onRefresh}
-      onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="앞으로 7일 이내 예정된 미팅이 없습니다."
-    />
-  )
-}
-
-function MeetingListPanel({
-  kicker,
-  title,
-  description,
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-  enableDateFilter = false,
-  emptyLabel,
-}: {
-  kicker: string
-  title: string
-  description: string
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-  enableDateFilter?: boolean
-  emptyLabel: string
-}) {
-  const [meetingNotes, setMeetingNotes] = useState<Record<string, string>>({})
-  const [savingNoteId, setSavingNoteId] = useState<string | null>(null)
-  const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
-  const [filterStart, setFilterStart] = useState('')
-  const [filterEnd, setFilterEnd] = useState('')
-
-  const filteredEvents = useMemo(() => {
-    if (!enableDateFilter) return events
-
-    return events.filter((event) => {
-      const start = new Date(event.start)
-      const from = filterStart ? startOfDay(parseLocalDate(filterStart)) : null
-      const to = filterEnd ? parseLocalDate(filterEnd) : null
-      if (to) to.setHours(23, 59, 59, 999)
-
-      return (!from || start >= from) && (!to || start <= to)
-    })
-  }, [enableDateFilter, events, filterEnd, filterStart])
-
-  const saveNote = async (event: CalendarEvent) => {
-    const note = meetingNotes[event.id] ?? event.memo ?? ''
-    setSavingNoteId(event.id)
-    setNoteMessages((current) => ({ ...current, [event.id]: '' }))
-
-    try {
-      const message = await onSaveMeetingNote(event, note)
-      setNoteMessages((current) => ({ ...current, [event.id]: message }))
-    } catch (error) {
-      setNoteMessages((current) => ({
-        ...current,
-        [event.id]: error instanceof Error ? error.message : '미팅 기록 저장 중 오류가 발생했습니다.',
-      }))
-    } finally {
-      setSavingNoteId(null)
-    }
-  }
-
-  return (
-    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">{kicker}</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
-          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
-        </div>
-        <button
-          type="button"
-          onClick={onRefresh}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-        >
-          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          일정 새로고침
-        </button>
-      </div>
-
-      <div className="grid gap-3 border-b border-white/10 p-5 md:grid-cols-[180px_1fr] md:p-6">
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-gray-500">
-            {enableDateFilter ? 'Filtered / Total' : 'Total Meetings'}
-          </p>
-          <p className="mt-3 text-4xl font-black text-white">
-            {enableDateFilter ? `${filteredEvents.length}/${events.length}` : events.length}
-          </p>
-        </div>
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          {enableDateFilter ? (
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="block">
-                  <span className="text-xs font-black text-gray-500">시작일</span>
-                  <input
-                    type="date"
-                    value={filterStart}
-                    onChange={(event) => setFilterStart(event.target.value)}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-xs font-black text-gray-500">종료일</span>
-                  <input
-                    type="date"
-                    value={filterEnd}
-                    onChange={(event) => setFilterEnd(event.target.value)}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
-                  />
-                </label>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setFilterStart('')
-                  setFilterEnd('')
-                }}
-                className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
-              >
-                필터 초기화
-              </button>
-            </div>
-          ) : (
-            <>
-              <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
-              <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
-                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="p-5 md:p-6">
-        {filteredEvents.length === 0 ? (
-          <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
-        ) : (
-          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-            <table className="min-w-[1180px] w-full border-collapse text-left">
-              <thead className="bg-white/[0.04]">
-                <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-                  <th className="w-[150px] px-4 py-3">날짜</th>
-                  <th className="w-[240px] px-4 py-3">미팅</th>
-                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
-                  <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
-                  <th className="w-[110px] px-4 py-3">저장</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {filteredEvents.map((event) => (
-                  <tr key={event.id} className="align-top">
-                    <td className="px-4 py-4">
-                      <p className="text-sm font-black text-white">{formatDateLabel(event.start)}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(event.start)}</p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <p className="text-sm font-black leading-5 text-white keep-all">{event.title}</p>
-                      <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
-                        {eventTypeLabel(event.type)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      {event.calendarName ? (
-                        <p className="inline-flex items-center gap-2 text-xs font-black text-gray-400">
-                          <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
-                          {event.calendarName}
-                        </p>
-                      ) : null}
-                      {event.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{event.location}</p> : null}
-                    </td>
-                    <td className="px-4 py-4">
-                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {event.attendees.length > 0 ? event.attendees.slice(0, 3).join(', ') : '-'}
-                      </p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <textarea
-                        value={meetingNotes[event.id] ?? event.memo ?? ''}
-                        onChange={(changeEvent) =>
-                          setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
-                        }
-                        className="min-h-28 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
-                      />
-                      {noteMessages[event.id] ? (
-                        <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
-                      ) : null}
-                    </td>
-                    <td className="px-4 py-4">
-                      <button
-                        type="button"
-                        onClick={() => saveNote(event)}
-                        disabled={savingNoteId === event.id}
-                        className="inline-flex h-9 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
-                      >
-                        {savingNoteId === event.id ? '저장 중' : '저장'}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
       </div>
     </section>
   )
@@ -3458,266 +3350,18 @@ function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
 }
 
+function weeklyReportClass(status: StoreWeeklyReportStatus) {
+  if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
+  if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
+  if (status === '실패') return 'border-rose-300/25 bg-rose-300/10'
+  if (status === '생성완료') return 'border-cyan-300/25 bg-cyan-300/10'
+  return 'border-white/10 bg-white/[0.04]'
+}
+
 function weeklyReportBadge(status: StoreWeeklyReportStatus) {
   if (status === '보고완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
   if (status === '실패') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
   if (status === '생성완료') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
-}
-
-function StoreTable({
-  title,
-  description,
-  stores,
-  loading,
-  columns,
-  runningAction,
-  statusOptions,
-  updatingStatusId,
-  onStatusChange,
-  onRunDiagnosis,
-  onRunQuote,
-}: {
-  title: string
-  description: string
-  stores: StoreRecord[]
-  loading: boolean
-  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
-  runningAction?: string | null
-  statusOptions?: string[]
-  updatingStatusId?: string | null
-  onStatusChange?: (store: StoreRecord, status: string) => void
-  onRunDiagnosis?: (store: StoreRecord) => void
-  onRunQuote?: (store: StoreRecord) => void
-}) {
-  const [query, setQuery] = useState('')
-  const filteredStores = stores.filter((store) =>
-    [store.name, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
-  )
-
-  return (
-    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">BlinkAd Operations</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
-        </div>
-        <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row md:items-center">
-          {columns === 'contract' ? (
-            <a
-              href={EFORMSIGN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/15"
-            >
-              이폼사인 바로가기
-              <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          ) : null}
-          <div className="relative w-full md:w-72">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="h-11 w-full rounded-md border border-white/10 bg-black pl-9 pr-3 text-sm font-semibold text-white outline-none placeholder:text-gray-600"
-              placeholder="매장명 검색"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
-          <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
-            <tr>
-              <th className="px-5 py-4">매장명</th>
-              <th className="px-5 py-4">상태</th>
-              {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
-              {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
-              {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
-              {columns === 'contract' && <th className="px-5 py-4">계약서</th>}
-              {columns === 'contract' && <th className="px-5 py-4">전자계약</th>}
-              {columns === 'contract' && <th className="px-5 py-4">계약 상태</th>}
-              {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
-              <th className="px-5 py-4">담당</th>
-              <th className="px-5 py-4">액션</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
-                  문의관리 DB를 불러오는 중입니다.
-                </td>
-              </tr>
-            ) : filteredStores.length === 0 ? (
-              <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
-                  표시할 매장이 없습니다.
-                </td>
-              </tr>
-            ) : (
-              filteredStores.map((store) => (
-                <tr key={store.id} className="border-t border-white/10">
-                  <td className="px-5 py-4">
-                    <p className="font-black text-white keep-all">{store.name}</p>
-                    <p className="mt-1 text-xs text-gray-500">{store.contact || '연락처 확인 필요'}</p>
-                  </td>
-                  <td className="px-5 py-4">
-                    {onStatusChange ? (
-                      <div className="relative inline-flex">
-                        <select
-                          value={store.status || ''}
-                          disabled={updatingStatusId === store.id}
-                          onChange={(event) => onStatusChange(store, event.target.value)}
-                          className={`h-9 min-w-[180px] appearance-none rounded-full border py-0 pl-3 pr-12 text-xs font-black outline-none transition disabled:cursor-not-allowed disabled:opacity-60 ${statusBadge(store.status)}`}
-                        >
-                          {store.status && !statusOptions?.includes(store.status) ? (
-                            <option value={store.status}>{store.status}</option>
-                          ) : null}
-                          {(statusOptions?.length ? statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS).map((status) => (
-                            <option key={status} value={status}>
-                              {status}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-current" />
-                      </div>
-                    ) : (
-                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
-                        {store.status || '상태 없음'}
-                      </span>
-                    )}
-                  </td>
-
-                  {columns === 'crm' && (
-                    <td className="px-5 py-4">
-                      {store.googleMapUrl ? (
-                        <a
-                          href={store.googleMapUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
-                        >
-                          열기
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <span className="font-semibold text-gray-500">미등록</span>
-                      )}
-                    </td>
-                  )}
-
-                  {columns === 'diagnosis' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.diagnosisCount} emptyLabel="미생성" />
-                    </td>
-                  )}
-
-                  {columns === 'quote' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.quoteCount} emptyLabel="미생성" />
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.contractCount} emptyLabel="미등록" />
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      {store.contractUrl ? (
-                        <a
-                          href={store.contractUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
-                        >
-                          전자계약 열기
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <span className="font-semibold text-gray-500">링크 미등록</span>
-                      )}
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.contractStatus)}`}>
-                        {store.contractStatus || '계약 전'}
-                      </span>
-                    </td>
-                  )}
-
-                  {columns === 'report' && (
-                    <td className="px-5 py-4">
-                      <span className="inline-flex items-center gap-2 font-bold text-gray-300">
-                        <Clock3 className="h-4 w-4 text-gray-500" />
-                        {store.reportStatus}
-                      </span>
-                    </td>
-                  )}
-
-                  <td className="px-5 py-4 font-semibold text-gray-400">{store.owner || '미지정'}</td>
-                  <td className="px-5 py-4">
-                    {columns === 'diagnosis' ? (
-                      <PrimaryButton
-                        disabled={!store.googleMapUrl || runningAction === `diagnosis:${store.id}`}
-                        onClick={() => onRunDiagnosis?.(store)}
-                      >
-                        {runningAction === `diagnosis:${store.id}` ? '생성 중' : '진단자료 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'quote' ? (
-                      <PrimaryButton
-                        disabled={runningAction === `quote:${store.id}`}
-                        onClick={() => onRunQuote?.(store)}
-                      >
-                        {runningAction === `quote:${store.id}` ? '생성 중' : '견적서 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'contract' ? (
-                      store.contractUrl ? (
-                        <a
-                          href={store.contractUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                        >
-                          전자계약 보기
-                        </a>
-                      ) : (
-                        <a
-                          href={EFORMSIGN_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                        >
-                          이폼사인 열기
-                        </a>
-                      )
-                    ) : store.notionUrl ? (
-                      <a
-                        href={store.notionUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                      >
-                        Notion 보기
-                      </a>
-                    ) : (
-                      <span className="font-semibold text-gray-600">-</span>
-                    )}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  )
 }

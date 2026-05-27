@@ -27,8 +27,13 @@ export type StoreRecord = {
   name: string
   status: string
   contact: string
+  category: string
+  inquirySource: string
   owner: string
   googleMapUrl: string
+  followupDue: string
+  lastContacted: string
+  nextAction: string
   quoteCount: number
   diagnosisCount: number
   contractCount: number
@@ -45,6 +50,28 @@ export type ApiResponse = {
   connected: boolean
   stores: StoreRecord[]
   statusOptions?: string[]
+  message?: string
+}
+
+export type BusinessCardRecord = {
+  id: string
+  name: string
+  phone: string
+  status: string
+  imageUrl: string
+  imageName: string
+  meetingIds: string[]
+  meetingTitles: string[]
+  ocrStatus: string
+  ocrText: string
+  lastEdited: string
+  notionUrl: string
+}
+
+export type BusinessCardsResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  cards: BusinessCardRecord[]
   message?: string
 }
 
@@ -88,6 +115,29 @@ export type CalendarApiResponse = {
 }
 
 export type SaveMeetingNoteHandler = (event: CalendarEvent, memo: string) => Promise<string>
+
+export type MeetingRecord = {
+  id: string
+  title: string
+  date: string
+  status: string
+  client: string
+  calendarName: string
+  location: string
+  attendees: string[]
+  memo: string
+  calendarEventId: string
+  notionUrl: string
+}
+
+export type MeetingsApiResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  message?: string
+  meetings: MeetingRecord[]
+}
+
+export type SaveMeetingRecordNoteHandler = (meeting: MeetingRecord, memo: string) => Promise<string>
 
 export type CalendarAccountView = {
   memberId: string
@@ -134,6 +184,7 @@ export const menuGroups = [
       { id: 'crm', label: '문의관리', icon: Building2 },
       { id: 'followup', label: '팔로업 관리', icon: RefreshCw },
       { id: 'customer', label: '고객관리', icon: Users },
+      { id: 'contractPending', label: '계약대기', icon: ClipboardList },
       { id: 'card', label: '명함관리', icon: Badge },
     ],
   },
@@ -162,7 +213,7 @@ export const menuGroups = [
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
       { id: 'meeting', label: '미팅관리', icon: Mic },
-      { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
+      { id: 'weekly', label: '주간미팅', icon: CalendarDays },
       { id: 'mail', label: '메일관리', icon: Mail },
     ],
   },
@@ -769,7 +820,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   },
   weekly: {
     kicker: 'Weekly',
-    title: '위클리미팅',
+    title: '주간미팅',
     description: '이번 주 영업, 제작, 운영 이슈를 주간 단위로 정리합니다.',
     stats: [
       { label: '이번 주 안건', value: '6' },
@@ -836,42 +887,6 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         owner: '권순현',
         due: 'D+1',
         memo: '논의 내용, 견적서, 다음 일정 포함',
-      },
-    ],
-  },
-  card: {
-    kicker: 'Contact',
-    title: '명함관리',
-    description: '오프라인 미팅, 소개, 네트워킹에서 받은 명함을 리드와 고객 후보로 전환하기 위해 관리합니다.',
-    stats: [
-      { label: '신규 명함', value: '6' },
-      { label: '리드 전환', value: '3' },
-      { label: '연락 대기', value: '4' },
-    ],
-    rows: [
-      {
-        title: '병원 관계자 명함',
-        meta: '의료관광 · Google 프로필 상담 후보',
-        status: '연락 대기',
-        owner: '권순현',
-        due: 'D+1',
-        memo: '진료 항목과 외국인 환자 유입 니즈를 확인한 뒤 무료진단 제안으로 연결합니다.',
-      },
-      {
-        title: '요식업 대표 소개 리드',
-        meta: '로컬 매장 · 프랜차이즈 후보',
-        status: 'CRM 등록',
-        owner: '블링크애드',
-        due: '오늘',
-        memo: '명함 정보를 문의 CRM에 옮기고 구글맵 링크를 확인합니다.',
-      },
-      {
-        title: '상권 운영자 연락처',
-        meta: 'B2B 제휴 · 상권 단위 제안',
-        status: '보류',
-        owner: '권순현',
-        due: '다음 주',
-        memo: '개별 매장 제안보다 상권 단위 GBP 정비 제안으로 접근합니다.',
       },
     ],
   },
