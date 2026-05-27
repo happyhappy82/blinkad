@@ -136,7 +136,6 @@ export default function ErpClient() {
   const [updatingStoreStatus, setUpdatingStoreStatus] = useState<string | null>(null)
   const [businessCards, setBusinessCards] = useState<BusinessCardRecord[]>([])
   const [businessCardsLoading, setBusinessCardsLoading] = useState(false)
-  const [businessCardsMessage, setBusinessCardsMessage] = useState('')
   const [runningCardOcr, setRunningCardOcr] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
@@ -340,13 +339,8 @@ export default function ErpClient() {
       const response = await fetch('/api/erp/clients/cards', { cache: 'no-store' })
       const data = (await response.json()) as BusinessCardsResponse
       setBusinessCards(data.cards)
-      setBusinessCardsMessage(
-        data.connected
-          ? 'Notion 명함 DB와 연결되었습니다.'
-          : data.message || 'Notion 명함 DB 연결이 없어 샘플 데이터로 표시 중입니다.'
-      )
     } catch {
-      setBusinessCardsMessage('명함 DB를 불러오지 못했습니다.')
+      setBusinessCards([])
     } finally {
       setBusinessCardsLoading(false)
     }
@@ -487,7 +481,7 @@ export default function ErpClient() {
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
-  const headerConnectionMessage = activeMenu === 'card' ? businessCardsMessage : connectionMessage
+  const headerConnectionMessage = activeMenu === 'card' ? '' : connectionMessage
   const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
   const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
 
@@ -643,9 +637,11 @@ export default function ErpClient() {
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
-                  {headerConnectionMessage || 'DB 연결 확인 중'}
-                </span>
+                {headerConnectionMessage ? (
+                  <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
+                    {headerConnectionMessage}
+                  </span>
+                ) : null}
                 <button
                   type="button"
                   onClick={refreshActiveMenu}
@@ -762,7 +758,6 @@ export default function ErpClient() {
               <BusinessCardPanel
                 cards={businessCards}
                 loading={businessCardsLoading}
-                message={businessCardsMessage}
                 metrics={businessCardMetrics}
                 runningOcrId={runningCardOcr}
                 onRefresh={loadBusinessCards}
