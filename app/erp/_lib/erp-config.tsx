@@ -117,6 +117,29 @@ export type CalendarApiResponse = {
 
 export type SaveMeetingNoteHandler = (event: CalendarEvent, memo: string) => Promise<string>
 
+export type MeetingRecord = {
+  id: string
+  title: string
+  date: string
+  status: string
+  client: string
+  calendarName: string
+  location: string
+  attendees: string[]
+  memo: string
+  calendarEventId: string
+  notionUrl: string
+}
+
+export type MeetingsApiResponse = {
+  source: 'notion' | 'fallback'
+  connected: boolean
+  message?: string
+  meetings: MeetingRecord[]
+}
+
+export type SaveMeetingRecordNoteHandler = (meeting: MeetingRecord, memo: string) => Promise<string>
+
 export type CalendarAccountView = {
   memberId: string
   name: string
@@ -191,7 +214,7 @@ export const menuGroups = [
     items: [
       { id: 'schedule', label: '일정관리', icon: Calendar },
       { id: 'meeting', label: '미팅관리', icon: Mic },
-      { id: 'weekly', label: '위클리미팅', icon: CalendarDays },
+      { id: 'weekly', label: '주간미팅', icon: CalendarDays },
       { id: 'mail', label: '메일관리', icon: Mail },
     ],
   },
@@ -798,7 +821,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   },
   weekly: {
     kicker: 'Weekly',
-    title: '위클리미팅',
+    title: '주간미팅',
     description: '이번 주 영업, 제작, 운영 이슈를 주간 단위로 정리합니다.',
     stats: [
       { label: '이번 주 안건', value: '6' },
