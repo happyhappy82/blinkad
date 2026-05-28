@@ -34,6 +34,8 @@ const Navbar: React.FC = () => {
       window.location.href = '/foreign-marketing';
     } else if (target === 'home') {
       window.location.href = '/';
+    } else if (target === 'contact') {
+      window.location.href = '/contact';
     } else {
       const element = document.getElementById(target);
       if (element) {

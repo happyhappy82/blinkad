@@ -24,7 +24,7 @@ export default function CaseStudiesPage() {
             <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</Link>
           </div>
           <Link
-            href="/#contact"
+            href="/contact"
             className="hidden sm:inline-flex bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors"
           >
             무료 진단하기
@@ -45,7 +45,7 @@ export default function CaseStudiesPage() {
               현재 검색, 지도, AI 답변 노출 상태를 먼저 확인하고 가장 빠르게 개선할 지점을 제안드립니다.
             </p>
             <Link
-              href="/#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 bg-white text-black px-7 py-3.5 rounded-full text-sm md:text-base font-semibold hover:bg-gray-200 transition-colors group"
             >
               무료 진단 신청하기
