@@ -10,8 +10,8 @@ const services = [
     label: '홈 · Google 프로필',
     title: <>발견의 시작은<br />Google 프로필입니다.</>,
     description: '사진, 리뷰, 영업정보, 게시물을 정비해 외국인 고객이 검색 단계에서 브랜드를 신뢰하도록 만듭니다.',
-    href: '#contact',
-    cta: '문의하기',
+    href: '/foreign-marketing',
+    cta: '외국인마케팅 보기',
     icon: MapPin,
     mockTitle: 'Google Profile Care',
     mockValue: 'ACTIVE',
@@ -320,7 +320,7 @@ const Services: React.FC = () => {
         <FadeIn className="max-w-4xl mb-10 md:mb-20">
           <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Services</p>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.08] keep-all">
-            구글에서 시작해,<br />
+            외국인마케팅은 구글에서 시작해,<br />
             AI 검색까지 설계합니다.
           </h2>
         </FadeIn>

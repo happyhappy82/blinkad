@@ -77,7 +77,7 @@ const Hero: React.FC = () => {
 
         <FadeIn delay={400}>
           <p className="text-sm sm:text-base md:text-xl text-gray-300 max-w-[21rem] md:max-w-3xl font-light leading-relaxed mb-6 md:mb-8 break-words drop-shadow-md">
-            블링크애드는 Google 비즈니스 프로필, 웹사이트, 블로그 콘텐츠를 연결해 외국인 고객 유입의 기반을 설계합니다.
+            블링크애드는 외국인마케팅 대행사로서 Google 비즈니스 프로필, 웹사이트, 블로그 콘텐츠를 연결해 외국인 고객 유입의 기반을 설계합니다.
           </p>
         </FadeIn>
 
@@ -89,10 +89,10 @@ const Hero: React.FC = () => {
                문의하기
              </button>
              <button
-               onClick={() => document.getElementById('services')?.scrollIntoView({behavior: 'smooth'})}
+               onClick={() => { window.location.href = '/foreign-marketing'; }}
                className="w-full sm:w-auto justify-center sm:justify-start text-brand-blue hover:text-blue-400 text-sm md:text-base font-semibold transition-colors flex items-center gap-2 group pointer-events-auto py-3"
              >
-               서비스 구조 보기
+               외국인마케팅 구조 보기
                <span className="group-hover:translate-x-1 transition-transform">→</span>
              </button>
         </FadeIn>

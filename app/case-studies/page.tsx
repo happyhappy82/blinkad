@@ -18,6 +18,7 @@ export default function CaseStudiesPage() {
             <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
           </Link>
           <div className="hidden sm:flex items-center gap-6 md:gap-8">
+            <Link href="/foreign-marketing" className="text-sm text-gray-400 hover:text-white transition-colors">외국인마케팅</Link>
             <Link href="/#services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</Link>
             <Link href="/case-studies" className="text-sm text-white">성공사례</Link>
             <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</Link>

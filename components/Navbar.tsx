@@ -30,11 +30,17 @@ const Navbar: React.FC = () => {
       window.location.href = '/services';
     } else if (target === 'case-studies-page') {
       window.location.href = '/case-studies';
+    } else if (target === 'foreign-marketing-page') {
+      window.location.href = '/foreign-marketing';
     } else if (target === 'home') {
       window.location.href = '/';
     } else {
       const element = document.getElementById(target);
-      if (element) element.scrollIntoView({ behavior: 'smooth' });
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.location.href = `/#${target}`;
+      }
     }
   };
 
@@ -47,19 +53,20 @@ const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-6 flex justify-between items-center">
-        <div
-            onClick={() => handleNavigate('home')}
-            className="cursor-pointer hover:opacity-80 transition-opacity"
+        <a
+            href="/"
+            className="hover:opacity-80 transition-opacity"
         >
           <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
-        </div>
+        </a>
 
-        <div className="hidden md:flex space-x-8">
-          <button onClick={() => handleNavigate('services')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">상품</button>
-          <button onClick={() => handleNavigate('ai-diagnostic')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">확장전략</button>
-          <button onClick={() => handleNavigate('method')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AEO 구조</button>
-          <button onClick={() => handleNavigate('case-studies-page')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</button>
-          <button onClick={() => handleNavigate('process')} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">진행과정</button>
+        <div className="hidden md:flex space-x-6">
+          <a href="/foreign-marketing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">외국인마케팅</a>
+          <a href="/#services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">상품</a>
+          <a href="/#ai-diagnostic" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">확장전략</a>
+          <a href="/#method" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">AEO 구조</a>
+          <a href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
+          <a href="/#process" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">진행과정</a>
         </div>
 
         <button

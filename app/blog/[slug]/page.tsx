@@ -179,6 +179,7 @@ export default async function BlogPost({ params }: Props) {
           </a>
 
           <div className="hidden md:flex space-x-8">
+            <a href="/foreign-marketing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">외국인마케팅</a>
             <a href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
             <a href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
             <Link href="/blog" className="text-sm font-medium text-white transition-colors">블로그</Link>
