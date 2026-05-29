@@ -22,10 +22,10 @@ type CalendarEventPayload = {
 }
 
 const propertyCandidates = {
-  title: ['미팅명', '미팅', '회의명', '일정명', '제목', '이름', 'Name'],
+  title: ['고객명', '매장명', '클라이언트', '미팅명', '미팅', '회의명', '일정명', '제목', '이름', 'Name'],
   eventId: ['캘린더 이벤트 ID', '캘린더ID', '이벤트ID', 'Calendar Event ID', 'Event ID'],
   date: ['미팅일시', '미팅일', '일시', '날짜', 'Date'],
-  status: ['상태', 'Status'],
+  status: ['처리상태', '상태', '계약완료', 'Status'],
   client: ['고객사', '매장명', '고객명', '클라이언트', 'Client', 'Store'],
   calendarName: ['캘린더', 'Calendar'],
   location: ['장소', 'Location'],
@@ -118,6 +118,21 @@ function meetingSchemaMap(schema: Record<string, any>) {
     memo: findPropertyName(schema, propertyCandidates.memo),
     source: findPropertyName(schema, propertyCandidates.source),
   }
+}
+
+function isClientDatabaseSchema(properties: Record<string, any>) {
+  const nameProperty = findPropertyName(properties, ['고객명', '매장명', '클라이언트', 'Client', 'Store'])
+  const clientSignals = [
+    '미팅 요약',
+    '구글맵링크',
+    '구글맵 링크',
+    '분석자료',
+    '견적서',
+    '처리상태',
+    '문의경로',
+  ]
+
+  return Boolean(nameProperty && findPropertyName(properties, clientSignals))
 }
 
 function optionName(propSchema: any, value: string, fallbacks: string[] = []) {
@@ -444,12 +459,19 @@ async function findClientDatabaseBySearch(notion: Client, cause?: unknown) {
 
 async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string) {
   try {
-    await notion.databases.retrieve({ database_id: databaseOrPageId })
-    return databaseOrPageId
+    const database = await notion.databases.retrieve({ database_id: databaseOrPageId })
+    const schema = (database as any).properties || {}
+    return isClientDatabaseSchema(schema) ? databaseOrPageId : findClientDatabaseBySearch(notion)
   } catch (error) {
     const message = error instanceof Error ? error.message : ''
     if (!message.includes('is a page')) {
       return findClientDatabaseBySearch(notion, error)
+    }
+
+    try {
+      return await findClientDatabaseBySearch(notion, error)
+    } catch {
+      // If search is unavailable, inspect child databases on the dashboard page.
     }
 
     const children = await notion.blocks.children.list({
@@ -465,8 +487,9 @@ async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string)
     for (const block of preferredBlocks) {
       if (!block?.id) continue
       try {
-        await notion.databases.retrieve({ database_id: block.id })
-        return block.id
+        const database = await notion.databases.retrieve({ database_id: block.id })
+        const schema = (database as any).properties || {}
+        if (isClientDatabaseSchema(schema)) return block.id
       } catch {
         // Linked DB blocks can be visible while the data source itself is not shared.
       }

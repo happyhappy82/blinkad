@@ -174,6 +174,21 @@ function statusOptionsFromSchema(properties: Record<string, any>) {
     : FALLBACK_STATUS_OPTIONS
 }
 
+function isClientDatabaseSchema(properties: Record<string, any>) {
+  const nameProperty = findPropertyName(properties, ['고객명', '매장명', '클라이언트', 'Client', 'Store'])
+  const clientSignals = [
+    '미팅 요약',
+    '구글맵링크',
+    '구글맵 링크',
+    '분석자료',
+    '견적서',
+    '처리상태',
+    '문의경로',
+  ]
+
+  return Boolean(nameProperty && findPropertyName(properties, clientSignals))
+}
+
 function statusPropertyValue(propertySchema: any, status: string) {
   if (!propertySchema) return undefined
   if (propertySchema.type === 'status') return { status: { name: status } }
@@ -275,12 +290,19 @@ function resolveNotionToken() {
 
 async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string) {
   try {
-    await notion.databases.retrieve({ database_id: databaseOrPageId })
-    return databaseOrPageId
+    const database = await notion.databases.retrieve({ database_id: databaseOrPageId })
+    const schema = (database as any).properties || {}
+    return isClientDatabaseSchema(schema) ? databaseOrPageId : findClientDatabaseBySearch(notion)
   } catch (error) {
     const message = error instanceof Error ? error.message : ''
     if (!message.includes('is a page')) {
       return findClientDatabaseBySearch(notion, error)
+    }
+
+    try {
+      return await findClientDatabaseBySearch(notion, error)
+    } catch {
+      // If search is unavailable, inspect child databases on the dashboard page.
     }
 
     const children = await notion.blocks.children.list({
@@ -296,8 +318,9 @@ async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string)
     for (const block of preferredBlocks) {
       if (!block?.id) continue
       try {
-        await notion.databases.retrieve({ database_id: block.id })
-        return block.id
+        const database = await notion.databases.retrieve({ database_id: block.id })
+        const schema = (database as any).properties || {}
+        if (isClientDatabaseSchema(schema)) return block.id
       } catch {
         // The shared dashboard can contain linked DB blocks that are visible as
         // blocks but whose data source is not shared with the integration.
