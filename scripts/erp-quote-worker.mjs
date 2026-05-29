@@ -3,11 +3,22 @@ import { existsSync } from 'node:fs'
 import { createServer } from 'node:http'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import dotenv from 'dotenv'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const blinkadRoot = path.resolve(__dirname, '..')
+
+for (const envFile of [path.join(blinkadRoot, '.env.local'), path.join(blinkadRoot, '.env')]) {
+  if (existsSync(envFile)) dotenv.config({ path: envFile, override: false })
+}
+
 const projectRoot = process.env.CLAUDE_CODE_ROOT || path.resolve(blinkadRoot, '../..')
+
+for (const envFile of [path.join(projectRoot, '.env.local'), path.join(projectRoot, '.env')]) {
+  if (existsSync(envFile)) dotenv.config({ path: envFile, override: false })
+}
+
 const port = Number(process.env.ERP_ACTION_WORKER_PORT || process.env.QUOTE_WORKER_PORT || 8787)
 const host = process.env.ERP_ACTION_WORKER_HOST || process.env.QUOTE_WORKER_HOST || '127.0.0.1'
 const workerSecret = process.env.ERP_ACTION_WORKER_SECRET || process.env.QUOTE_WORKER_SECRET || ''

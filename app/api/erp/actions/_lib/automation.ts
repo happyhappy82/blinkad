@@ -51,7 +51,17 @@ export function parseJsonOutput(stdout: string) {
 }
 
 export function resolveProjectRoot() {
+  const configuredRoot = process.env.CLAUDE_CODE_ROOT?.trim() || process.env.BLINKAD_WORKSPACE_ROOT?.trim()
+  if (configuredRoot) return path.resolve(configuredRoot)
+
   return path.resolve(process.cwd(), '../..')
+}
+
+export function shouldRunLocalSkills() {
+  if (process.env.ERP_ENABLE_LOCAL_SKILLS === 'true') return true
+  if (process.env.ERP_ENABLE_LOCAL_SKILLS === 'false') return false
+
+  return process.env.NODE_ENV === 'development' && process.env.VERCEL !== '1'
 }
 
 function appendActionPath(baseUrl: string, action: AutomationAction) {

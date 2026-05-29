@@ -25,6 +25,8 @@ npm run erp:action-worker
 | `POST /quote` | 견적서 PDF 생성 후 Notion `견적서` 열 업로드 | `storeName`, `notionName` |
 | `POST /diagnosis` | 진단자료 PDF 생성 후 Notion `분석자료` 열 업로드 | `storeName`, `notionName`, `googleMapUrl` |
 
+워커는 사이트 루트와 상위 작업 루트의 `.env.local`, `.env`를 자동으로 읽는다. 상위 작업 루트가 기본 위치와 다르면 `CLAUDE_CODE_ROOT` 또는 `BLINKAD_WORKSPACE_ROOT`로 지정한다.
+
 ## 배포 ERP와 연결
 
 로컬 워커를 배포 ERP에서 호출하려면 터널 주소가 필요하다.
@@ -63,10 +65,10 @@ QUOTE_WORKER_SECRET=같은_비밀값
 
 ## 로컬 개발 서버에서 직접 실행
 
-터널 없이 로컬 개발 서버에서만 테스트할 때는 기존 직접 실행 모드를 사용할 수 있다.
+터널 없이 로컬 개발 서버에서만 견적서 버튼을 바로 실행할 때는 아래 명령을 사용한다.
 
 ```bash
-ERP_ENABLE_LOCAL_SKILLS=true npm run dev
+npm run erp:dev-local-skills
 ```
 
-단, 이 방식은 로컬 Next.js 서버에서만 유효하고 Vercel 배포 환경에서는 로컬 파일 시스템의 Codex 스킬을 실행할 수 없다.
+`/erp?menu=quote`에서 `견적서 생성` 버튼을 누르면 로컬 Codex 견적서 스킬이 실행되고, 생성된 PDF가 Notion 문의관리 DB의 `견적서` 열에 저장된다. 이 방식은 로컬 Next.js 서버에서만 유효하고 Vercel 배포 환경에서는 로컬 파일 시스템의 Codex 스킬을 직접 실행할 수 없다.

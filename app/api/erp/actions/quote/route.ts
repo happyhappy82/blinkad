@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-import { forwardToLocalWorker, renderAndUploadQuote } from '../_lib/automation'
+import { forwardToLocalWorker, renderAndUploadQuote, shouldRunLocalSkills } from '../_lib/automation'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -35,11 +35,11 @@ export async function POST(request: Request) {
     )
   }
 
-  if (process.env.ERP_ENABLE_LOCAL_SKILLS !== 'true') {
+  if (!shouldRunLocalSkills()) {
     return NextResponse.json({
       ok: false,
       message:
-        '견적서 생성 버튼은 준비되었습니다. 배포 ERP에서 실행하려면 ERP_ACTION_WORKER_WEBHOOK_URL 또는 QUOTE_WORKER_WEBHOOK_URL로 로컬 워커를 연결해야 합니다.',
+        '견적서 생성 버튼은 준비되었습니다. 배포 ERP에서 실행하려면 ERP_ACTION_WORKER_WEBHOOK_URL 또는 QUOTE_WORKER_WEBHOOK_URL로 로컬 워커를 연결하거나, 이 맥북에서 npm run erp:dev-local-skills로 ERP를 실행해 주세요.',
     })
   }
 
