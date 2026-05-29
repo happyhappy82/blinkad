@@ -30,7 +30,7 @@ const propertyCandidates = {
   calendarName: ['캘린더', 'Calendar'],
   location: ['장소', 'Location'],
   attendees: ['참석자', 'Attendees'],
-  memo: ['미팅내용', '미팅 내용', '회의록', '논의내용', '내용', '메모', 'Summary', 'Note'],
+  memo: ['미팅 요약', '미팅요약', '미팅내용', '미팅 내용', '회의록', '논의내용', '내용', '메모', 'Summary', 'Note'],
   source: ['소스', 'Source'],
 }
 
@@ -708,7 +708,7 @@ export async function PATCH(request: Request) {
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: '미팅관리 DB에 미팅 내용을 저장했습니다.',
+      message: '미팅관리 DB에 미팅 요약을 저장했습니다.',
       meetings: enrichMeetingRecords(mapMeetingPages(pages, map), clients),
     })
   } catch (error) {

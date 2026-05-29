@@ -83,7 +83,7 @@ export function MeetingPanel({
     <MeetingDatabasePanel
       kicker="Meeting DB"
       title="미팅관리"
-      description="용올캘린더의 미팅 일정을 Notion 미팅관리 DB에 동기화하고, DB에 저장된 미팅 내용과 후속 액션을 관리합니다."
+      description="용올캘린더의 미팅 일정을 Notion 미팅관리 DB에 동기화하고, DB에 저장된 미팅 요약과 후속 액션을 관리합니다."
       meetings={meetings}
       loading={loading}
       message={message}
@@ -234,7 +234,7 @@ function MeetingDatabasePanel({
                   <th className="w-[220px] px-4 py-3">미팅</th>
                   <th className="w-[220px] px-4 py-3">매장명</th>
                   <th className="w-[180px] px-4 py-3">상태</th>
-                  <th className="px-4 py-3">미팅 내용</th>
+                  <th className="px-4 py-3">미팅 요약</th>
                   <th className="w-[120px] px-4 py-3">상세</th>
                 </tr>
               </thead>
@@ -295,7 +295,7 @@ function MeetingDatabasePanel({
                             overflow: 'hidden',
                           }}
                         >
-                          {(meetingNotes[meeting.id] ?? meeting.memo) || '미팅 내용을 입력하려면 클릭하세요.'}
+                          {(meetingNotes[meeting.id] ?? meeting.memo) || '미팅 요약을 입력하려면 클릭하세요.'}
                         </span>
                       </button>
                       {noteMessages[meeting.id] ? (
@@ -355,7 +355,7 @@ function MeetingDatabasePanel({
                   setMeetingNotes((current) => ({ ...current, [activeMeeting.id]: changeEvent.target.value }))
                 }
                 className="min-h-80 w-full rounded-md border border-white/10 bg-[#07080b] px-4 py-3 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+                placeholder="미팅 요약, 고객 니즈, 제안 포인트, 후속 액션"
               />
               {noteMessages[activeMeeting.id] ? (
                 <p className="mt-3 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[activeMeeting.id]}</p>
@@ -550,7 +550,7 @@ function MeetingListPanel({
             <>
               <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
               <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
-                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
+                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 요약 기록에 연결하는 구조로 확장합니다.
               </p>
             </>
           )}
@@ -569,7 +569,7 @@ function MeetingListPanel({
                   <th className="w-[240px] px-4 py-3">미팅</th>
                   <th className="w-[180px] px-4 py-3">캘린더/장소</th>
                   <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
+                  <th className="px-4 py-3">미팅 요약</th>
                   <th className="w-[110px] px-4 py-3">저장</th>
                 </tr>
               </thead>
@@ -607,7 +607,7 @@ function MeetingListPanel({
                           setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
                         }
                         className="min-h-28 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+                        placeholder="미팅 요약, 고객 니즈, 제안 포인트, 후속 액션"
                       />
                       {noteMessages[event.id] ? (
                         <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
