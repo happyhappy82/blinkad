@@ -85,7 +85,7 @@ export function StoreTable({
   description: string
   stores: StoreRecord[]
   loading: boolean
-  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
+  columns: 'crm' | 'customer' | 'diagnosis' | 'quote' | 'contract' | 'report'
   metrics?: StoreMetric[]
   enableStatusFilter?: boolean
   runningAction?: string | null
@@ -118,7 +118,10 @@ export function StoreTable({
 
     return matchesQuery && matchesStatus
   })
-  const tableColumnCount = columns === 'crm' || columns === 'contract' ? 7 : 5
+  const showsGoogleMap = columns === 'crm' || columns === 'customer'
+  const showsAction = columns !== 'customer'
+  const tableColumnCount = columns === 'customer' ? 4 : columns === 'crm' || columns === 'contract' ? 7 : 5
+  const tableMinWidth = columns === 'customer' ? 'min-w-[760px]' : 'min-w-[1080px]'
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -179,14 +182,14 @@ export function StoreTable({
       ) : null}
 
       <div className="overflow-x-auto">
-        <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
+        <table className={`${tableMinWidth} w-full border-collapse text-left text-sm`}>
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-5 py-4">매장명</th>
               <th className="px-5 py-4">상태</th>
               {columns === 'crm' && <th className="px-5 py-4">문의 정보</th>}
               {columns === 'crm' && <th className="px-5 py-4">팔로업</th>}
-              {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
+              {showsGoogleMap && <th className="px-5 py-4">구글맵</th>}
               {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
               {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
               {columns === 'contract' && <th className="px-5 py-4">계약서</th>}
@@ -194,7 +197,7 @@ export function StoreTable({
               {columns === 'contract' && <th className="px-5 py-4">계약 상태</th>}
               {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
               <th className="px-5 py-4">담당</th>
-              <th className="px-5 py-4">액션</th>
+              {showsAction && <th className="px-5 py-4">액션</th>}
             </tr>
           </thead>
           <tbody>
@@ -266,7 +269,7 @@ export function StoreTable({
                     </td>
                   )}
 
-                  {columns === 'crm' && (
+                  {showsGoogleMap && (
                     <td className="px-5 py-4">
                       {store.googleMapUrl ? (
                         <a
@@ -338,54 +341,56 @@ export function StoreTable({
                   )}
 
                   <td className="px-5 py-4 font-semibold text-gray-400">{store.owner || '미지정'}</td>
-                  <td className="px-5 py-4">
-                    {columns === 'diagnosis' ? (
-                      <PrimaryButton
-                        disabled={!store.googleMapUrl || runningAction === `diagnosis:${store.id}`}
-                        onClick={() => onRunDiagnosis?.(store)}
-                      >
-                        {runningAction === `diagnosis:${store.id}` ? '생성 중' : '진단자료 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'quote' ? (
-                      <PrimaryButton
-                        disabled={runningAction === `quote:${store.id}`}
-                        onClick={() => onRunQuote?.(store)}
-                      >
-                        {runningAction === `quote:${store.id}` ? '생성 중' : '견적서 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'contract' ? (
-                      store.contractUrl ? (
+                  {showsAction && (
+                    <td className="px-5 py-4">
+                      {columns === 'diagnosis' ? (
+                        <PrimaryButton
+                          disabled={!store.googleMapUrl || runningAction === `diagnosis:${store.id}`}
+                          onClick={() => onRunDiagnosis?.(store)}
+                        >
+                          {runningAction === `diagnosis:${store.id}` ? '생성 중' : '진단자료 생성'}
+                        </PrimaryButton>
+                      ) : columns === 'quote' ? (
+                        <PrimaryButton
+                          disabled={runningAction === `quote:${store.id}`}
+                          onClick={() => onRunQuote?.(store)}
+                        >
+                          {runningAction === `quote:${store.id}` ? '생성 중' : '견적서 생성'}
+                        </PrimaryButton>
+                      ) : columns === 'contract' ? (
+                        store.contractUrl ? (
+                          <a
+                            href={store.contractUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+                          >
+                            전자계약 보기
+                          </a>
+                        ) : (
+                          <a
+                            href={EFORMSIGN_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+                          >
+                            이폼사인 열기
+                          </a>
+                        )
+                      ) : store.notionUrl ? (
                         <a
-                          href={store.contractUrl}
+                          href={store.notionUrl}
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
                         >
-                          전자계약 보기
+                          Notion 보기
                         </a>
                       ) : (
-                        <a
-                          href={EFORMSIGN_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                        >
-                          이폼사인 열기
-                        </a>
-                      )
-                    ) : store.notionUrl ? (
-                      <a
-                        href={store.notionUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                      >
-                        Notion 보기
-                      </a>
-                    ) : (
-                      <span className="font-semibold text-gray-600">-</span>
-                    )}
-                  </td>
+                        <span className="font-semibold text-gray-600">-</span>
+                      )}
+                    </td>
+                  )}
                 </tr>
               ))
             )}
