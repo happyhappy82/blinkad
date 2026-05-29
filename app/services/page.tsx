@@ -1,13 +1,55 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { MapPin, FileText, Bot, ArrowLeft, Check } from 'lucide-react'
+import { MapPin, FileText, Bot, ArrowLeft, Check, Globe2 } from 'lucide-react'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: '서비스 - BlinkAd',
-  description: '블링크애드의 핵심 서비스. 구글 비즈니스 프로필 관리, 브랜드 블로그 운영, AI 검색 최적화.',
+  title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO 운영 - BlinkAd',
+  description: '블링크애드는 외국인 고객 유입을 위해 Google 비즈니스 프로필, 구글맵 리뷰, 브랜드 블로그, 웹사이트 콘텐츠, AI 검색 최적화를 연결해 운영합니다.',
+  alternates: {
+    canonical: 'https://www.blinkad.kr/services',
+  },
+  openGraph: {
+    title: '외국인마케팅 서비스 | BlinkAd',
+    description: 'Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해 외국인 고객 유입 구조를 만듭니다.',
+    url: 'https://www.blinkad.kr/services',
+    siteName: 'BlinkAd',
+    locale: 'ko_KR',
+    type: 'website',
+    images: [
+      {
+        url: 'https://www.blinkad.kr/og-image.png',
+        width: 1200,
+        height: 734,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '외국인마케팅 서비스 | BlinkAd',
+    description: 'Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해 외국인 고객 유입 구조를 만듭니다.',
+    images: ['https://www.blinkad.kr/og-image.png'],
+  },
 }
 
 const services = [
+  {
+    id: 'foreign-marketing',
+    title: '외국인마케팅 대행',
+    subtitle: '외국인 고객 유입 설계',
+    description: '식당, 카페, 병원, 뷰티, 관광상권 매장이 Google 검색과 Google Maps에서 발견되고 문의로 이어지도록 프로필, 리뷰, 콘텐츠, 문의 동선을 함께 설계합니다.',
+    features: [
+      '외국인 고객 검색 동선 진단',
+      'Google Maps 경쟁 업체 비교',
+      '업종별 다국어 정보 구조 정리',
+      '리뷰·사진·게시물 운영 기준 수립',
+      '웹사이트·블로그·프로필 내부 연결'
+    ],
+    icon: Globe2,
+    href: '/foreign-marketing',
+    cta: '외국인마케팅 보기'
+  },
   {
     id: 'gbp',
     title: '구글 비즈니스 프로필 관리',
@@ -20,7 +62,9 @@ const services = [
       '게시물·사진·업데이트 관리',
       '월간 인사이트 점검 및 리포트 제공'
     ],
-    icon: MapPin
+    icon: MapPin,
+    href: '/foreign-marketing#contact',
+    cta: '무료 진단 신청'
   },
   {
     id: 'blog',
@@ -34,7 +78,9 @@ const services = [
       '내부 링크 및 카테고리 구조 관리',
       '월간 운영 리포트 제공'
     ],
-    icon: FileText
+    icon: FileText,
+    href: '/blog',
+    cta: '콘텐츠 보기'
   },
   {
     id: 'ai-search',
@@ -48,26 +94,16 @@ const services = [
       '웹사이트·블로그·GBP 연결 구조 정비',
       'AI 검색 노출 및 인용 흐름 모니터링'
     ],
-    icon: Bot
+    icon: Bot,
+    href: '/foreign-marketing',
+    cta: '구조 보기'
   }
 ]
 
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
-          </Link>
-          <div className="flex items-center gap-8">
-            <Link href="/services" className="text-sm text-white">서비스</Link>
-            <Link href="/case-studies" className="text-sm text-gray-400 hover:text-white transition-colors">성공사례</Link>
-            <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</Link>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header */}
       <header className="pt-32 pb-16 px-6">
@@ -76,9 +112,9 @@ export default function ServicesPage() {
             <ArrowLeft className="w-5 h-5 mr-2 transform group-hover:-translate-x-1 transition-transform" />
             <span className="font-medium">홈으로 돌아가기</span>
           </Link>
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">Our Services.</h1>
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 keep-all">외국인 고객 유입을 위한 블링크애드 서비스</h1>
           <p className="text-xl text-gray-500 keep-all">
-            성장을 위한 핵심 서비스.<br />
+            Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해<br />
             온라인에서 발견되고 선택받는 브랜드를 만듭니다.
           </p>
         </div>
@@ -99,10 +135,10 @@ export default function ServicesPage() {
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">{service.title}</h2>
                   <p className="text-gray-400 leading-relaxed mb-8 keep-all">{service.description}</p>
                   <Link
-                    href="/#contact"
+                    href={service.href}
                     className="inline-flex items-center gap-2 bg-brand-blue text-white px-6 py-3 rounded-full font-medium hover:bg-blue-600 transition-colors"
                   >
-                    무료 상담 신청
+                    {service.cta}
                     <span>→</span>
                   </Link>
                 </div>
@@ -132,25 +168,16 @@ export default function ServicesPage() {
             제안해 드립니다.
           </p>
           <Link
-            href="/#contact"
+            href="/foreign-marketing#contact"
             className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-4 rounded-full font-medium hover:bg-blue-600 transition-colors text-lg"
           >
-            무료 상담 받기
+            외국인 고객 유입 무료진단
             <span>→</span>
           </Link>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/10 py-12">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <Link href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
-          </Link>
-          <p className="text-gray-500 text-sm">AEO·GEO Marketing Agency</p>
-          <p className="text-gray-600 text-xs mt-4">© {new Date().getFullYear()} BlinkAd. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

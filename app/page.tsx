@@ -72,13 +72,22 @@ export default function Home() {
                 <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-xl text-gray-400 mb-9 md:mb-12 keep-all">
                   Google Maps 운영, 외국인 고객 유입, 웹사이트·블로그 콘텐츠, AEO 전환에 대한 실무 기록.
                 </p>
-                <a
-                  href="/blog"
-                  className="inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-lg font-semibold transition-colors group"
-                >
-                  블로그 보기
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
+                <div className="flex flex-col items-start gap-4">
+                  <a
+                    href="/blog"
+                    className="inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-lg font-semibold transition-colors group"
+                  >
+                    블로그 보기
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                  <a
+                    href="/foreign-marketing"
+                    className="inline-flex items-center gap-2 text-white hover:text-blue-100 text-lg font-semibold transition-colors group"
+                  >
+                    외국인마케팅 대행 구조 보기
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                </div>
               </div>
 
               <BlogArticlePreview />

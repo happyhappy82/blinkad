@@ -11,10 +11,14 @@ const Footer: React.FC = () => {
           <div className="mb-6 md:mb-0 md:max-w-xl">
             <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto mb-4" />
             <p className="text-gray-400 text-sm leading-relaxed keep-all">
-              구글 마케팅 전문 블링크애드입니다. SEO와 AEO를 중심으로 브랜드가 검색 결과와 AI 답변에서 더 잘 발견되고 선택되도록 돕습니다. 검색 구조, 마케팅 인사이트, 브랜딩을 함께 설계해 노출이 아닌 전환 중심의 성장을 만듭니다.
+              구글 마케팅 전문 블링크애드입니다. 외국인마케팅, SEO, AEO를 중심으로 브랜드가 검색 결과와 AI 답변에서 더 잘 발견되고 선택되도록 돕습니다. 검색 구조, 마케팅 인사이트, 브랜딩을 함께 설계해 노출이 아닌 전환 중심의 성장을 만듭니다.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a href="/foreign-marketing" className="text-sm text-gray-400 hover:text-white transition-colors">외국인마케팅</a>
+            <a href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</a>
+            <a href="/case-studies" className="text-sm text-gray-400 hover:text-white transition-colors">성공사례</a>
+            <a href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</a>
             <a href="https://warm-hip-fe9.notion.site/2e9753ebc01380e8aa5dca28b76683eb" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
             <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">이용약관</a>
             <a href="https://www.youtube.com/@bizik_insight" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" aria-label="YouTube">
