@@ -40,7 +40,7 @@ const MethodStack: React.FC = () => {
               Google 프로필, 웹사이트, 블로그가 서로 다른 말을 하면 검색과 AI는 브랜드를 일관되게 이해하기 어렵습니다. 블링크애드는 같은 브랜드 설명이 모든 접점에 남도록 운영합니다.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
             >
               우리 브랜드 진단하기

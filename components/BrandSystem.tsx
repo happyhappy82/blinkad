@@ -249,10 +249,10 @@ const BrandSystem: React.FC = () => {
 
             <FadeIn delay={500}>
               <a
-                href="#services"
+                href="/foreign-marketing"
                 className="inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-base font-semibold transition-colors group"
               >
-                서비스 흐름 보기
+                외국인마케팅 대행 구조 보기
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </FadeIn>
