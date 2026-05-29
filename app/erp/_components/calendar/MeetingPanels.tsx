@@ -83,13 +83,13 @@ export function MeetingPanel({
     <MeetingDatabasePanel
       kicker="Meeting DB"
       title="미팅관리"
-      description="문의관리 DB의 매장명과 미팅 요약을 불러오고, 필요한 경우 ERP에서 바로 수정합니다."
+      description="용올 캘린더의 미팅 일정을 기준으로 문의관리 DB 매장을 매칭해 담당자, 상태, 미팅 요약만 정리합니다."
       meetings={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="문의관리 DB에 표시할 미팅 요약이 없습니다."
+      emptyLabel="용올 캘린더 미팅 일정과 매칭된 문의관리 DB 매장이 없습니다."
     />
   )
 }
@@ -231,8 +231,8 @@ function MeetingDatabasePanel({
               <thead className="bg-white/[0.04]">
                 <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
                   <th className="w-[150px] px-4 py-3">날짜</th>
-                  <th className="w-[220px] px-4 py-3">미팅</th>
-                  <th className="w-[220px] px-4 py-3">매장명</th>
+                  <th className="w-[260px] px-4 py-3">매장명</th>
+                  <th className="w-[160px] px-4 py-3">담당자</th>
                   <th className="w-[180px] px-4 py-3">상태</th>
                   <th className="px-4 py-3">미팅 요약</th>
                   <th className="w-[120px] px-4 py-3">상세</th>
@@ -246,34 +246,21 @@ function MeetingDatabasePanel({
                       <p className="mt-1 text-xs font-bold text-gray-500">{formatTimeOnly(meeting.date)}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm font-black leading-5 text-white keep-all">{meeting.title}</p>
-                      <span className="mt-2 inline-flex rounded-full border border-brand-blue/30 bg-brand-blue/15 px-2 py-1 text-[11px] font-black text-blue-100">
-                        {meeting.status || '미팅'}
-                      </span>
                       {meeting.notionUrl ? (
                         <a
                           href={meeting.notionUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="mt-2 inline-flex text-xs font-black text-brand-blue hover:text-blue-300"
-                        >
-                          Notion 열기
-                        </a>
-                      ) : null}
-                    </td>
-                    <td className="px-4 py-3">
-                      {meeting.clientNotionUrl ? (
-                        <a
-                          href={meeting.clientNotionUrl}
-                          target="_blank"
-                          rel="noreferrer"
                           className="text-sm font-black text-gray-200 underline-offset-4 hover:text-white hover:underline keep-all"
                         >
-                          {meeting.client || '-'}
+                          {meeting.storeName || meeting.client || '-'}
                         </a>
                       ) : (
-                        <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
+                        <p className="text-sm font-black text-gray-200 keep-all">{meeting.storeName || meeting.client || '-'}</p>
                       )}
+                    </td>
+                    <td className="px-4 py-3">
+                      <p className="text-sm font-black text-gray-300 keep-all">{meeting.managerName || '-'}</p>
                     </td>
                     <td className="px-4 py-3">
                       <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-black text-gray-300">
