@@ -10,7 +10,8 @@
     "validate:posts": "npx tsx scripts/validate-posts.ts",
     "erp:dev-local-skills": "ERP_ENABLE_LOCAL_SKILLS=true next dev",
     "erp:quote-worker": "node scripts/erp-quote-worker.mjs",
-    "erp:action-worker": "node scripts/erp-quote-worker.mjs"
+    "erp:action-worker": "node scripts/erp-quote-worker.mjs",
+    "erp:quote-bridge": "node scripts/erp-local-quote-bridge.mjs"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^8.3.1",

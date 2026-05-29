@@ -31,6 +31,14 @@ npm run erp:action-worker
 
 로컬 워커를 배포 ERP에서 호출하려면 터널 주소가 필요하다.
 
+견적서 버튼만 빠르게 연결할 때는 아래 명령이 로컬 워커와 터널을 함께 실행한다.
+
+```bash
+npm run erp:quote-bridge
+```
+
+기본 요청 터널 주소는 `https://blinkad-erp-automation-1976.loca.lt`이다. 터널 실행 로그의 `ERP_ACTION_WORKER_WEBHOOK_URL=...` 값을 Vercel `erp/automation` Preview에 등록하면 Preview의 `견적서 생성` 버튼이 이 맥북의 로컬 스킬을 호출한다.
+
 ```bash
 ngrok http 8787
 ```
