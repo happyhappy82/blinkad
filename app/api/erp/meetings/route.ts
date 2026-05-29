@@ -570,10 +570,10 @@ function meetingConnectionErrorMessage(error: unknown) {
     message.includes('Make sure the relevant pages and databases are shared')
 
   if (isMissingOrUnsharedDatabase) {
-    return 'Notion 미팅관리 DB가 Integration에 공유되지 않았습니다. DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
+    return 'Notion 문의관리 DB가 Integration에 공유되지 않았습니다. DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
   }
 
-  return message || 'Notion 미팅관리 DB 연결에 실패했습니다.'
+  return message || 'Notion 문의관리 DB 연결에 실패했습니다.'
 }
 
 async function getNotionAndDatabase() {
@@ -583,18 +583,21 @@ async function getNotionAndDatabase() {
     return {
       notion: null,
       databaseId: '',
-      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 미팅 데이터로 표시 중입니다.',
+      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 문의관리 데이터로 표시 중입니다.',
     }
   }
 
   const notion = new Client({ auth: token })
-  const databaseId = await resolveMeetingDatabaseId(notion)
+  const databaseId = await resolveClientDatabaseId(
+    notion,
+    process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_CLIENT_DATABASE_ID
+  )
 
   if (!databaseId) {
     return {
       notion: null,
       databaseId: '',
-      message: '미팅관리 Notion DB를 찾지 못했습니다. BLINKAD_MEETING_DATABASE_ID 또는 ERP_MEETING_DATABASE_ID를 설정해주세요.',
+      message: '문의관리 Notion DB를 찾지 못했습니다. BLINKAD_NOTION_DATABASE_ID를 설정해주세요.',
     }
   }
 
@@ -617,13 +620,12 @@ export async function GET() {
     const schema = (database as any).properties || {}
     const map = meetingSchemaMap(schema)
     const pages = await loadMeetingPages(notion, databaseId, map)
-    const clients = await loadClientRecords(notion)
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: 'Notion 미팅관리 DB와 연결되었습니다.',
-      meetings: enrichMeetingRecords(mapMeetingPages(pages, map), clients),
+      message: 'Notion 문의관리 DB의 미팅 요약과 연결되었습니다.',
+      meetings: mapMeetingPages(pages, map),
     })
   } catch (error) {
     return NextResponse.json({
@@ -635,9 +637,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as { events?: CalendarEventPayload[] }
-
+export async function POST() {
   try {
     const { notion, databaseId, message } = await getNotionAndDatabase()
     if (!notion || !databaseId) {
@@ -649,12 +649,16 @@ export async function POST(request: Request) {
       })
     }
 
-    const meetings = await syncCalendarMeetings(notion, databaseId, body.events || [])
+    const database = await notion.databases.retrieve({ database_id: databaseId })
+    const schema = (database as any).properties || {}
+    const map = meetingSchemaMap(schema)
+    const pages = await loadMeetingPages(notion, databaseId, map)
+
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: '용올캘린더 미팅 일정을 Notion 미팅관리 DB와 동기화했습니다.',
-      meetings,
+      message: '문의관리 DB의 매장명과 미팅 요약을 불러왔습니다.',
+      meetings: mapMeetingPages(pages, map),
     })
   } catch (error) {
     return NextResponse.json(
@@ -673,7 +677,7 @@ export async function PATCH(request: Request) {
   const body = (await request.json().catch(() => ({}))) as { id?: string; memo?: string; status?: string }
 
   if (!body.id) {
-    return NextResponse.json({ connected: false, message: '미팅관리 DB 페이지 ID가 필요합니다.' }, { status: 400 })
+    return NextResponse.json({ connected: false, message: '문의관리 DB 페이지 ID가 필요합니다.' }, { status: 400 })
   }
 
   try {
@@ -703,13 +707,12 @@ export async function PATCH(request: Request) {
     })
 
     const pages = await loadMeetingPages(notion, databaseId, map)
-    const clients = await loadClientRecords(notion)
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: '미팅관리 DB에 미팅 요약을 저장했습니다.',
-      meetings: enrichMeetingRecords(mapMeetingPages(pages, map), clients),
+      message: '문의관리 DB에 미팅 요약을 저장했습니다.',
+      meetings: mapMeetingPages(pages, map),
     })
   } catch (error) {
     return NextResponse.json(

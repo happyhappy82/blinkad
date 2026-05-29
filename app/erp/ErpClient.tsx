@@ -308,9 +308,9 @@ export default function ErpClient() {
       })
       const data = (await response.json()) as MeetingsApiResponse
       setMeetingRecords(data.meetings || [])
-      setMeetingDbMessage(data.message || '미팅관리 DB를 동기화했습니다.')
+      setMeetingDbMessage(data.message || '문의관리 DB의 미팅 요약을 동기화했습니다.')
     } catch {
-      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+      setMeetingDbMessage('문의관리 DB의 미팅 요약을 불러오지 못했습니다.')
     } finally {
       setMeetingDbLoading(false)
     }
@@ -322,9 +322,9 @@ export default function ErpClient() {
       const response = await fetch('/api/erp/meetings', { cache: 'no-store' })
       const data = (await response.json()) as MeetingsApiResponse
       setMeetingRecords(data.meetings || [])
-      setMeetingDbMessage(data.message || '미팅관리 DB와 연결되었습니다.')
+      setMeetingDbMessage(data.message || '문의관리 DB의 미팅 요약과 연결되었습니다.')
     } catch {
-      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+      setMeetingDbMessage('문의관리 DB의 미팅 요약을 불러오지 못했습니다.')
     } finally {
       setMeetingDbLoading(false)
     }
@@ -339,12 +339,12 @@ export default function ErpClient() {
     const data = (await response.json()) as MeetingsApiResponse
 
     if (!response.ok || !data.connected) {
-      throw new Error(data.message || '미팅관리 DB에 미팅 내용을 저장하지 못했습니다.')
+      throw new Error(data.message || '문의관리 DB에 미팅 요약을 저장하지 못했습니다.')
     }
 
     setMeetingRecords(data.meetings || [])
-    setMeetingDbMessage(data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.')
-    return data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.'
+    setMeetingDbMessage(data.message || '문의관리 DB에 미팅 요약을 저장했습니다.')
+    return data.message || '문의관리 DB에 미팅 요약을 저장했습니다.'
   }
 
   const loadMailItems = async () => {

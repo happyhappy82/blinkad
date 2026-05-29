@@ -83,13 +83,13 @@ export function MeetingPanel({
     <MeetingDatabasePanel
       kicker="Meeting DB"
       title="미팅관리"
-      description="용올캘린더의 미팅 일정을 Notion 미팅관리 DB에 동기화하고, DB에 저장된 미팅 요약과 후속 액션을 관리합니다."
+      description="문의관리 DB의 매장명과 미팅 요약을 불러오고, 필요한 경우 ERP에서 바로 수정합니다."
       meetings={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="미팅관리 DB에 표시할 미팅이 없습니다."
+      emptyLabel="문의관리 DB에 표시할 미팅 요약이 없습니다."
     />
   )
 }
