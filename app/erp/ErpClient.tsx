@@ -1558,24 +1558,29 @@ function CalendarPanel({
 
       <div className="p-5 md:p-6">
         <div className="mb-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-black p-3 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => moveCalendar(-1)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
-              aria-label="이전"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <p className="min-w-56 text-center text-lg font-black text-white">{formatCalendarRange(calendarView, anchorDate)}</p>
-            <button
-              type="button"
-              onClick={() => moveCalendar(1)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
-              aria-label="다음"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => moveCalendar(-1)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+                aria-label="이전"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <p className="min-w-56 text-center text-lg font-black text-white">{formatCalendarRange(calendarView, anchorDate)}</p>
+              <button
+                type="button"
+                onClick={() => moveCalendar(1)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+                aria-label="다음"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+            <span className="inline-flex h-9 items-center justify-center rounded-md border border-white/10 bg-white/[0.03] px-3 text-xs font-black text-gray-400">
+              표시 일정 {visibleRangeEvents.length}건
+            </span>
           </div>
           <div className="grid grid-cols-3 rounded-md border border-white/10 bg-white/[0.03] p-1">
             {[
@@ -1597,8 +1602,8 @@ function CalendarPanel({
           </div>
         </div>
 
-        <div className="grid gap-5 xl:grid-cols-[1fr_340px]">
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+        <div className="grid gap-5">
+          <div className="min-h-[760px] overflow-hidden rounded-lg border border-white/10 bg-black">
             {calendarView === 'month' ? (
               <>
                 <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
@@ -1623,7 +1628,7 @@ function CalendarPanel({
                         onDoubleClick={() => {
                           if (cell) openCreateModal(cell)
                         }}
-                        className={`min-h-32 cursor-default border-b border-r border-white/10 p-2 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'} ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
+                        className={`min-h-[150px] cursor-default border-b border-r border-white/10 p-2.5 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'} ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                       >
                         {cell ? (
                           <>
@@ -1631,9 +1636,9 @@ function CalendarPanel({
                               {cell.getDate()}
                             </p>
                             <div className="mt-2 space-y-1">
-                              {dayEvents.slice(0, 4).map((calendarEvent) => renderEventButton(calendarEvent, true))}
-                              {dayEvents.length > 4 ? (
-                                <p className="text-[11px] font-bold text-gray-500">+{dayEvents.length - 4}개</p>
+                              {dayEvents.slice(0, 6).map((calendarEvent) => renderEventButton(calendarEvent, true))}
+                              {dayEvents.length > 6 ? (
+                                <p className="text-[11px] font-bold text-gray-500">+{dayEvents.length - 6}개</p>
                               ) : null}
                             </div>
                           </>
@@ -1666,7 +1671,7 @@ function CalendarPanel({
                     ))}
                   </div>
                   {calendarHours.map((hour) => (
-                    <div key={hour} className="grid min-h-24 grid-cols-[64px_repeat(7,minmax(120px,1fr))] border-b border-white/10">
+                    <div key={hour} className="grid min-h-32 grid-cols-[64px_repeat(7,minmax(120px,1fr))] border-b border-white/10">
                       <div className="border-r border-white/10 px-2 py-2 text-xs font-bold text-gray-600">{String(hour).padStart(2, '0')}:00</div>
                       {weekDays.map((day) => {
                         const dayHourEvents = allEvents.filter((calendarEvent) => {
@@ -1706,7 +1711,7 @@ function CalendarPanel({
                   const slotKey = slotKeyFor(anchorDate, hour)
 
                   return (
-                    <div key={hour} className="grid min-h-24 grid-cols-[72px_1fr] border-b border-white/10">
+                    <div key={hour} className="grid min-h-32 grid-cols-[72px_1fr] border-b border-white/10">
                       <div className="border-r border-white/10 px-3 py-3 text-xs font-bold text-gray-600">{String(hour).padStart(2, '0')}:00</div>
                       <div
                         {...dropSlotProps(anchorDate, hour)}
@@ -1722,44 +1727,6 @@ function CalendarPanel({
             ) : null}
           </div>
 
-          <div className="rounded-lg border border-white/10 bg-black p-4">
-            <p className="text-sm font-black text-white">일정 목록</p>
-            <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">
-              일정을 클릭하면 상세 수정 팝업이 열립니다. 일정 카드를 캘린더 칸으로 끌어 옮기면 Google Calendar 수정 요청으로 저장됩니다.
-            </p>
-            <div className="mt-4 space-y-3">
-              {visibleRangeEvents.length === 0 ? (
-                <p className="rounded-md border border-white/10 px-3 py-4 text-sm font-bold text-gray-500">표시할 일정이 없습니다.</p>
-              ) : (
-                visibleRangeEvents.slice(0, 12).map((calendarEvent) => (
-                  <button
-                    key={calendarEvent.id}
-                    type="button"
-                    onClick={() => openEditModal(calendarEvent)}
-                    className="w-full rounded-md border border-l-4 border-white/10 bg-white/[0.03] p-3 text-left transition hover:border-white/25 hover:bg-white/[0.06]"
-                    style={calendarEventStyle(calendarEvent)}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <p className="font-black text-white keep-all">{calendarEvent.title}</p>
-                        <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTimeRange(calendarEvent)}</p>
-                        {calendarEvent.calendarName ? (
-                          <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
-                            <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(calendarEvent)} />
-                            {calendarEvent.calendarName}
-                          </p>
-                        ) : null}
-                      </div>
-                      <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(calendarEvent.type)}`}>
-                        {eventTypeLabel(calendarEvent.type)}
-                      </span>
-                    </div>
-                    {calendarEvent.location ? <p className="mt-2 text-xs font-bold text-gray-400 keep-all">{calendarEvent.location}</p> : null}
-                  </button>
-                ))
-              )}
-            </div>
-          </div>
         </div>
       </div>
 
