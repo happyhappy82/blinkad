@@ -263,7 +263,26 @@ function MeetingDatabasePanel({
                       ) : null}
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
+                      {meeting.clientNotionUrl ? (
+                        <a
+                          href={meeting.clientNotionUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm font-black text-gray-200 underline-offset-4 hover:text-white hover:underline keep-all"
+                        >
+                          {meeting.client || '-'}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
+                      )}
+                      {meeting.clientStatus ? (
+                        <span className="mt-2 inline-flex rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-black text-gray-400">
+                          {meeting.clientStatus}
+                        </span>
+                      ) : null}
+                      {meeting.clientContact ? (
+                        <p className="mt-2 text-xs font-semibold text-gray-500">{meeting.clientContact}</p>
+                      ) : null}
                     </td>
                     <td className="px-4 py-3">
                       {meeting.calendarName ? <p className="text-xs font-black text-gray-400">{meeting.calendarName}</p> : null}

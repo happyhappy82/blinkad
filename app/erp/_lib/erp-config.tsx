@@ -126,6 +126,9 @@ export type MeetingRecord = {
   date: string
   status: string
   client: string
+  clientStatus?: string
+  clientContact?: string
+  clientNotionUrl?: string
   calendarName: string
   location: string
   attendees: string[]
