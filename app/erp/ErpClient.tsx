@@ -779,7 +779,7 @@ export default function ErpClient() {
                 description="Notion 문의관리 DB의 전체 고객 리스트를 확인합니다."
                 stores={stores}
                 loading={loading}
-                columns="crm"
+                columns="customer"
                 metrics={crmMetrics.customer}
                 enableStatusFilter
                 statusOptions={statusOptions}
