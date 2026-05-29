@@ -1007,6 +1007,13 @@ function formatCurrency(value: number) {
   return new Intl.NumberFormat('ko-KR').format(value)
 }
 
+function formatBillingStoreName(name: string) {
+  const trimmedName = name.replace(/\s+/g, ' ').trim()
+
+  if (trimmedName.includes('언리미티드')) return '언리미티드'
+  return trimmedName
+}
+
 function buildBillingRecords(stores: StoreRecord[]) {
   const today = new Date()
   const year = today.getFullYear()
@@ -1045,7 +1052,7 @@ function buildBillingRecords(stores: StoreRecord[]) {
 
     return {
       id: `billing-${store.id}`,
-      storeName: store.name,
+      storeName: formatBillingStoreName(store.name),
       product: 'Google 프로필 월간 운영',
       amount: index % 3 === 0 ? 1_400_000 : index % 3 === 1 ? 1_200_000 : 950_000,
       dueDate: formatDateKey(dueDate),
