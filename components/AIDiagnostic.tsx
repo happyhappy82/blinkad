@@ -124,7 +124,7 @@ const AIDiagnostic: React.FC = () => {
               블링크애드는 고객이 실제로 확인하는 접점을 순서대로 설계하고 연결합니다.
             </p>
             <a
-              href="#contact"
+              href="/contact"
               className="mt-8 inline-flex items-center gap-2 text-brand-blue hover:text-blue-400 text-base font-semibold transition-colors group"
             >
               확장 전략 상담하기

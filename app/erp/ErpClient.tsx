@@ -6,35 +6,34 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
   ClipboardList,
-  Clock3,
   Copy,
   CreditCard,
   ExternalLink,
-  FileSearch,
   FileSignature,
   Folder,
   Handshake,
   LayoutDashboard,
   Mail,
+  Menu,
   Mic,
   ReceiptText,
   RefreshCw,
-  Search,
   Settings,
   UserCog,
   Users,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import { MeetingPanel, WeeklyMeetingPanel } from './_components/calendar/MeetingPanels'
+import { BusinessCardPanel } from './_components/crm/BusinessCardPanel'
+import { StoreTable } from './_components/shared/StoreTable'
 import {
   DEFAULT_CLIENT_STATUS_OPTIONS,
-  EFORMSIGN_URL,
   REPORT_STATUS_OPTIONS,
   TEAM_CALENDAR_LABEL,
   isMenuId,
@@ -45,6 +44,8 @@ import {
 } from './_lib/erp-config'
 import type {
   ApiResponse,
+  BusinessCardRecord,
+  BusinessCardsResponse,
   CalendarAccountView,
   CalendarAccountsResponse,
   CalendarApiResponse,
@@ -52,12 +53,16 @@ import type {
   CalendarEventDraft,
   MailApiResponse,
   MailItem,
+  MeetingRecord,
+  MeetingsApiResponse,
   MenuId,
   OperationRow,
   OperationView,
+  SaveMeetingRecordNoteHandler,
   SaveMeetingNoteHandler,
   StoreRecord,
   StoreProductKey,
+  StoreProductWorkspace,
   StoreWeeklyReport,
   StoreWeeklyReportStatus,
   WeeklyReportApiResponse,
@@ -68,53 +73,59 @@ function statusIncludesAny(status: string, keywords: string[]) {
   return keywords.some((keyword) => compactStatus.includes(keyword.replace(/\s+/g, '')))
 }
 
-function statusBadge(status: string) {
-  if (statusIncludesAny(status, ['공동 대응', '공동대응'])) return 'border-red-300/30 bg-red-400/10 text-red-100'
-  if (statusIncludesAny(status, ['견적서 송부/팔로업 지속', '견적서송부/팔로업지속'])) return 'border-yellow-300/35 bg-yellow-300/10 text-yellow-100'
-  if (status.includes('운영')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
-  if (status.includes('계약')) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
-  if (status.includes('견적')) return 'border-blue-300/30 bg-brand-blue/15 text-blue-100'
-  if (status.includes('진단')) return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
-  return 'border-white/15 bg-white/10 text-gray-200'
+type AdsSummary = {
+  rowCount: number
+  impressions: number
+  clicks: number
+  costMicros: number
+  localActionDirectionRequests: number
+  localActionCalls: number
+  localActionWebsiteClicks: number
+  localActions: number
 }
 
-function FileState({ count, emptyLabel }: { count: number; emptyLabel: string }) {
-  return (
-    <span
-      className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-bold ${
-        count > 0
-          ? 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
-          : 'border-white/15 bg-white/5 text-gray-400'
-      }`}
-    >
-      {count > 0 ? `${count}개 저장` : emptyLabel}
-    </span>
-  )
+type AdsDailyRow = {
+  date: string
+  storeName: string
+  adsCustomerId: string
+  impressions: number
+  clicks: number
+  costMicros: number
+  localActionDirectionRequests: number
+  localActionCalls: number
+  localActionWebsiteClicks: number
+  sourceSyncedAt: string
 }
 
-function PrimaryButton({
-  children,
-  onClick,
-  disabled,
-}: {
-  children: React.ReactNode
-  onClick?: () => void
-  disabled?: boolean
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className="inline-flex h-10 items-center justify-center rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
-    >
-      {children}
-    </button>
-  )
+type GoogleAdsApiResponse = {
+  source: 'bigquery' | 'fallback'
+  connected: boolean
+  status: 'connected' | 'empty_table' | 'no_store_data' | 'missing_config' | 'error'
+  store: string
+  message: string
+  period: {
+    days: number
+    firstDate?: string
+    lastDate?: string
+  }
+  summary: AdsSummary
+  previousSummary: AdsSummary
+  daily: AdsDailyRow[]
+  adsCustomerIds: string[]
+  tableRowCount?: number
+  sourceSyncedAt?: string
+}
+
+type StoreMetric = {
+  label: string
+  value: string
+  detail?: string
 }
 
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
+  const [sidebarPreview, setSidebarPreview] = useState(false)
   const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
   const [stores, setStores] = useState<StoreRecord[]>([])
   const [statusOptions, setStatusOptions] = useState<string[]>(DEFAULT_CLIENT_STATUS_OPTIONS)
@@ -123,9 +134,17 @@ export default function ErpClient() {
   const [actionMessage, setActionMessage] = useState('')
   const [runningAction, setRunningAction] = useState<string | null>(null)
   const [updatingStoreStatus, setUpdatingStoreStatus] = useState<string | null>(null)
+  const [businessCards, setBusinessCards] = useState<BusinessCardRecord[]>([])
+  const [businessCardsLoading, setBusinessCardsLoading] = useState(false)
+  const [businessCardsMessage, setBusinessCardsMessage] = useState('')
+  const [runningCardOcr, setRunningCardOcr] = useState<string | null>(null)
   const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([])
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
+  const [meetingRecords, setMeetingRecords] = useState<MeetingRecord[]>([])
+  const [meetingDbLoading, setMeetingDbLoading] = useState(false)
+  const [meetingDbMessage, setMeetingDbMessage] = useState('')
+  const lastMeetingSyncSignatureRef = useRef('')
   const [mailItems, setMailItems] = useState<MailItem[]>([])
   const [mailLoading, setMailLoading] = useState(false)
   const [mailMessage, setMailMessage] = useState('')
@@ -166,11 +185,14 @@ export default function ErpClient() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pageId: store.id, status }),
       })
-      const data = (await response.json()) as { connected: boolean; message?: string }
+      const data = (await response.json()) as { connected: boolean; message?: string; store?: StoreRecord }
       if (!response.ok || !data.connected) {
         setStores(previousStores)
         setActionMessage(data.message || 'Notion 상태 변경에 실패했습니다.')
         return
+      }
+      if (data.store) {
+        setStores((current) => current.map((item) => (item.id === store.id ? data.store! : item)))
       }
       setActionMessage(`${store.name} 상태를 ${status}(으)로 변경했습니다.`)
     } catch {
@@ -244,6 +266,56 @@ export default function ErpClient() {
     return data.message || '미팅 기록을 저장했습니다.'
   }
 
+  const syncMeetingRecords = useCallback(async (events: CalendarEvent[]) => {
+    setMeetingDbLoading(true)
+    try {
+      const meetingEvents = uniqueCalendarMeetingEvents(events)
+      const response = await fetch('/api/erp/meetings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ events: meetingEvents }),
+      })
+      const data = (await response.json()) as MeetingsApiResponse
+      setMeetingRecords(data.meetings || [])
+      setMeetingDbMessage(data.message || '미팅관리 DB를 동기화했습니다.')
+    } catch {
+      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+    } finally {
+      setMeetingDbLoading(false)
+    }
+  }, [])
+
+  const loadMeetingRecords = useCallback(async () => {
+    setMeetingDbLoading(true)
+    try {
+      const response = await fetch('/api/erp/meetings', { cache: 'no-store' })
+      const data = (await response.json()) as MeetingsApiResponse
+      setMeetingRecords(data.meetings || [])
+      setMeetingDbMessage(data.message || '미팅관리 DB와 연결되었습니다.')
+    } catch {
+      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
+    } finally {
+      setMeetingDbLoading(false)
+    }
+  }, [])
+
+  const saveMeetingRecordNote: SaveMeetingRecordNoteHandler = async (meeting, memo) => {
+    const response = await fetch('/api/erp/meetings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: meeting.id, memo }),
+    })
+    const data = (await response.json()) as MeetingsApiResponse
+
+    if (!response.ok || !data.connected) {
+      throw new Error(data.message || '미팅관리 DB에 미팅 내용을 저장하지 못했습니다.')
+    }
+
+    setMeetingRecords(data.meetings || [])
+    setMeetingDbMessage(data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.')
+    return data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.'
+  }
+
   const loadMailItems = async () => {
     setMailLoading(true)
     try {
@@ -262,7 +334,56 @@ export default function ErpClient() {
     }
   }
 
+  const loadBusinessCards = async () => {
+    setBusinessCardsLoading(true)
+    try {
+      const response = await fetch('/api/erp/clients/cards', { cache: 'no-store' })
+      const data = (await response.json()) as BusinessCardsResponse
+      setBusinessCards(data.cards)
+      setBusinessCardsMessage(
+        data.connected
+          ? 'Notion 명함 DB와 연결되었습니다.'
+          : data.message || 'Notion 명함 DB 연결이 없어 샘플 데이터로 표시 중입니다.'
+      )
+    } catch {
+      setBusinessCardsMessage('명함 DB를 불러오지 못했습니다.')
+    } finally {
+      setBusinessCardsLoading(false)
+    }
+  }
+
+  const analyzeBusinessCard = async (card: BusinessCardRecord) => {
+    setRunningCardOcr(card.id)
+    setActionMessage('')
+
+    try {
+      const response = await fetch('/api/erp/clients/cards/ocr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pageId: card.id }),
+      })
+      const data = (await response.json()) as { connected: boolean; message?: string }
+
+      if (!response.ok || !data.connected) {
+        setActionMessage(data.message || '명함 분석에 실패했습니다.')
+        await loadBusinessCards()
+        return
+      }
+
+      setActionMessage(data.message || '명함 분석을 완료했습니다.')
+      await loadBusinessCards()
+    } catch {
+      setActionMessage('명함 분석 중 오류가 발생했습니다.')
+    } finally {
+      setRunningCardOcr(null)
+    }
+  }
+
   useEffect(() => {
+    if (activeMenu === 'card' && businessCards.length === 0 && !businessCardsLoading) {
+      loadBusinessCards()
+    }
+
     if (['schedule', 'meeting', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
       loadCalendarEvents()
     }
@@ -271,6 +392,17 @@ export default function ErpClient() {
       loadMailItems()
     }
   }, [activeMenu])
+
+  useEffect(() => {
+    if (activeMenu !== 'meeting' || calendarLoading) return
+    const syncSignature = meetingSyncSignature(calendarEvents)
+    if (syncSignature && lastMeetingSyncSignatureRef.current !== syncSignature) {
+      lastMeetingSyncSignatureRef.current = syncSignature
+      syncMeetingRecords(calendarEvents)
+    } else {
+      loadMeetingRecords()
+    }
+  }, [activeMenu, calendarEvents, calendarLoading, loadMeetingRecords, syncMeetingRecords])
 
   const dashboard = useMemo(() => {
     const counts = statusGroups.map((group) => ({
@@ -290,17 +422,91 @@ export default function ErpClient() {
       !statusIncludesAny(store.status, ['계약대기', '계약 대기', '답변완료', '답변 완료', '계약완료', '계약 완료', '취소/팔로업 중지'])
   )
   const contractPendingStores = stores.filter((store) => statusIncludesAny(store.status, ['계약대기', '계약 대기']))
+  const crmMetrics = useMemo(() => {
+    const countByStatus = (keywords: string[]) =>
+      stores.filter((store) => statusIncludesAny(store.status, keywords)).length
+    const contractPendingCount = countByStatus(['계약대기', '계약 대기'])
+    const activeCustomerCount = countByStatus(['운영시작', '계약 완료', '계약완료'])
+
+    return {
+      inquiry: [
+        { label: '신규 문의', value: String(inquiryStores.length), detail: '처리상태 기준' },
+        { label: '미팅 확정', value: String(countByStatus(['미팅일정 확정', '미팅일정확정'])), detail: '상담 예정' },
+        { label: '팔로업', value: String(followupStores.length), detail: '견적/공동대응' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '전자계약 확인' },
+      ],
+      followup: [
+        { label: '팔로업 대상', value: String(followupStores.length), detail: '후속 연락 필요' },
+        { label: '공동 대응', value: String(countByStatus(['공동 대응', '공동대응'])), detail: '내부 협업' },
+        { label: '계약 전환 후보', value: String(contractPendingCount), detail: '상태 변경 완료' },
+      ],
+      customer: [
+        { label: '전체 고객', value: String(stores.length), detail: '문의 DB 전체' },
+        { label: '운영/계약 고객', value: String(activeCustomerCount), detail: '계약 이후' },
+        { label: '계약대기', value: String(contractPendingCount), detail: '수주 직전' },
+      ],
+      contractPending: [
+        { label: '계약대기', value: String(contractPendingStores.length), detail: '처리상태 기준' },
+        {
+          label: '전자계약 링크',
+          value: String(contractPendingStores.filter((store) => store.contractUrl).length),
+          detail: 'Notion URL 매핑',
+        },
+        {
+          label: '계약서 등록',
+          value: String(contractPendingStores.filter((store) => store.contractCount > 0).length),
+          detail: '파일 속성 기준',
+        },
+      ],
+    } satisfies Record<string, StoreMetric[]>
+  }, [contractPendingStores, followupStores, inquiryStores, stores])
+  const businessCardMetrics = useMemo(
+    () => [
+      { label: '전체 명함', value: String(businessCards.length), detail: 'Notion 명함 DB' },
+      {
+        label: '사진 등록',
+        value: String(businessCards.filter((card) => card.imageUrl).length),
+        detail: '명함 사진 파일',
+      },
+      {
+        label: '입력필요',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.status, ['입력필요'])).length),
+        detail: '검수 대기',
+      },
+      {
+        label: 'OCR 완료',
+        value: String(businessCards.filter((card) => statusIncludesAny(card.ocrStatus, ['완료'])).length),
+        detail: '자동 분석',
+      },
+    ],
+    [businessCards]
+  )
   const operationView =
-    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer'
+    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer' || activeMenu === 'card'
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
+  const sidebarExpanded = !sidebarCollapsed || sidebarPreview
+  const headerConnectionMessage = activeMenu === 'card' ? businessCardsMessage : connectionMessage
+  const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
+  const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
     if (menuId === 'project' && !activeStoreTitle) {
       setActiveStoreTitle(projectStores[0]?.title || '')
     }
+  }
+
+  const toggleSidebar = () => {
+    if (sidebarCollapsed) {
+      setSidebarCollapsed(false)
+      setSidebarPreview(false)
+      return
+    }
+
+    setSidebarCollapsed(true)
+    setSidebarPreview(false)
   }
 
   const runAutomation = async (type: 'quote' | 'diagnosis', store: StoreRecord) => {
@@ -330,17 +536,42 @@ export default function ErpClient() {
   return (
     <main className="min-h-screen bg-[#050608] text-white">
       <div className="flex min-h-screen">
-        <aside className="hidden w-64 shrink-0 border-r border-white/10 bg-black lg:block">
-          <div className="flex h-20 items-center border-b border-white/10 px-6">
-            <a href="/" aria-label="BlinkAd home">
+        <aside
+          onMouseEnter={() => {
+            if (sidebarCollapsed) setSidebarPreview(true)
+          }}
+          onMouseLeave={() => {
+            if (sidebarCollapsed) setSidebarPreview(false)
+          }}
+          className={`hidden shrink-0 overflow-hidden border-r border-white/10 bg-black transition-[width,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:flex lg:flex-col ${
+            sidebarExpanded ? 'w-64 shadow-[18px_0_60px_rgba(37,99,235,0.08)]' : 'w-[72px]'
+          }`}
+        >
+          <div className={`flex h-20 shrink-0 items-center border-b border-white/10 px-4 ${sidebarExpanded ? 'justify-between' : 'justify-center'}`}>
+            <a
+              href="/"
+              aria-label="BlinkAd home"
+              className={`min-w-0 transition-all duration-200 ${
+                sidebarExpanded ? 'w-auto opacity-100' : 'w-0 -translate-x-3 opacity-0'
+              }`}
+            >
               <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
             </a>
+            <button
+              type="button"
+              onClick={toggleSidebar}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-gray-400 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
+              aria-label={sidebarCollapsed ? '왼쪽 메뉴 고정하기' : '왼쪽 메뉴 숨기기'}
+              title={sidebarCollapsed ? '왼쪽 메뉴 고정하기' : '왼쪽 메뉴 숨기기'}
+            >
+              <Menu className="h-4 w-4" />
+            </button>
           </div>
 
           <nav className="space-y-6 px-3 py-5">
             {menuGroups.map((group) => (
               <div key={group.label}>
-                <p className="px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600">
+                <p className={`px-3 pb-2 text-[11px] font-black uppercase tracking-[0.18em] text-gray-600 transition-opacity ${sidebarExpanded ? 'opacity-100' : 'h-0 overflow-hidden pb-0 opacity-0'}`}>
                   {group.label}
                 </p>
                 <div className="space-y-1">
@@ -353,14 +584,16 @@ export default function ErpClient() {
                       <button
                         type="button"
                         onClick={() => selectMenu(menu.id)}
-                        className={`flex w-full items-center gap-3 rounded-lg px-3 py-3 text-left text-sm font-bold transition ${
+                        className={`flex w-full items-center rounded-lg py-3 text-left text-sm font-bold transition ${
                           active ? 'bg-brand-blue text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'
-                        }`}
+                        } ${sidebarExpanded ? 'gap-3 px-3' : 'justify-center px-0'}`}
                       >
                         <Icon className="h-4 w-4" />
-                        {menu.label}
+                        <span className={`whitespace-nowrap transition-opacity ${sidebarExpanded ? 'opacity-100' : 'sr-only opacity-0'}`}>
+                          {menu.label}
+                        </span>
                       </button>
-                      {menu.id === 'project' && activeMenu === 'project' ? (
+                      {sidebarExpanded && menu.id === 'project' && activeMenu === 'project' ? (
                         <div className="ml-7 mt-1 space-y-1 border-l border-white/10 pl-3">
                           {projectStores.map((store) => {
                             const storeActive = activeStoreTitle === store.title
@@ -399,24 +632,26 @@ export default function ErpClient() {
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[#050608]/95 backdrop-blur">
             <div className="flex min-h-20 flex-col justify-center gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between md:px-8">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
-                  BlinkAd ERP
-                </p>
-                <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
-                  영업·미팅·견적·계약·운영·정산 관리
-                </h1>
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-brand-blue">
+                    BlinkAd ERP
+                  </p>
+                  <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
+                    영업·미팅·견적·계약·운영·정산 관리
+                  </h1>
+                </div>
               </div>
 
               <div className="flex items-center gap-2">
                 <span className="hidden rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-gray-400 md:inline-flex">
-                  {connectionMessage || 'DB 연결 확인 중'}
+                  {headerConnectionMessage || 'DB 연결 확인 중'}
                 </span>
                 <button
                   type="button"
-                  onClick={loadStores}
+                  onClick={refreshActiveMenu}
                   className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-3 text-sm font-bold text-gray-200 hover:border-white/30 hover:bg-white/5"
                 >
-                  <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+                  <RefreshCw className={`h-4 w-4 ${headerLoading ? 'animate-spin' : ''}`} />
                   새로고침
                 </button>
               </div>
@@ -470,6 +705,8 @@ export default function ErpClient() {
                 stores={inquiryStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.inquiry}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -483,6 +720,8 @@ export default function ErpClient() {
                 stores={followupStores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.followup}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
@@ -496,9 +735,38 @@ export default function ErpClient() {
                 stores={stores}
                 loading={loading}
                 columns="crm"
+                metrics={crmMetrics.customer}
+                enableStatusFilter
                 statusOptions={statusOptions}
                 updatingStatusId={updatingStoreStatus}
                 onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'contractPending' && (
+              <StoreTable
+                title="계약대기 리스트"
+                description="Notion 문의관리 DB에서 계약대기 상태인 매장을 모아 전자계약 링크와 계약서 등록 여부를 확인합니다."
+                stores={contractPendingStores}
+                loading={loading}
+                columns="contract"
+                metrics={crmMetrics.contractPending}
+                enableStatusFilter
+                statusOptions={statusOptions}
+                updatingStatusId={updatingStoreStatus}
+                onStatusChange={updateStoreStatus}
+              />
+            )}
+
+            {activeMenu === 'card' && (
+              <BusinessCardPanel
+                cards={businessCards}
+                loading={businessCardsLoading}
+                message={businessCardsMessage}
+                metrics={businessCardMetrics}
+                runningOcrId={runningCardOcr}
+                onRefresh={loadBusinessCards}
+                onAnalyze={analyzeBusinessCard}
               />
             )}
 
@@ -567,11 +835,11 @@ export default function ErpClient() {
 
             {activeMenu === 'meeting' && (
               <MeetingPanel
-                events={calendarEvents}
-                loading={calendarLoading}
-                message={calendarMessage}
-                onRefresh={loadCalendarEvents}
-                onSaveMeetingNote={saveMeetingNote}
+                meetings={meetingRecords}
+                loading={meetingDbLoading || calendarLoading}
+                message={meetingDbMessage || calendarMessage}
+                onRefresh={() => syncMeetingRecords(calendarEvents)}
+                onSaveMeetingNote={saveMeetingRecordNote}
               />
             )}
 
@@ -660,15 +928,6 @@ function addDays(date: Date, days: number) {
   const target = new Date(date)
   target.setDate(target.getDate() + days)
   return target
-}
-
-function formatDateLabel(value: string) {
-  if (!value) return '-'
-  return new Intl.DateTimeFormat('ko-KR', {
-    month: '2-digit',
-    day: '2-digit',
-    weekday: 'short',
-  }).format(new Date(value))
 }
 
 function formatCalendarRange(view: 'month' | 'week' | 'day', anchorDate: Date) {
@@ -828,6 +1087,32 @@ function isSameDate(left: Date, right: Date) {
 function isMeetingEvent(event: CalendarEvent) {
   const text = `${event.title} ${event.memo}`.toLowerCase()
   return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담')
+}
+
+function calendarMeetingKey(event: CalendarEvent) {
+  const id = String(event.id || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  if (id) return `event:${id}`
+  const title = String(event.title || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  const start = String(event.start || '').replace(/\s+/g, ' ').trim().toLowerCase()
+  return `fallback:${title}:${start}`
+}
+
+function uniqueCalendarMeetingEvents(events: CalendarEvent[]) {
+  const seen = new Set<string>()
+  return events.filter((event) => {
+    if (!isMeetingEvent(event)) return false
+    const key = calendarMeetingKey(event)
+    if (seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+function meetingSyncSignature(events: CalendarEvent[]) {
+  return uniqueCalendarMeetingEvents(events)
+    .map((event) => calendarMeetingKey(event))
+    .sort()
+    .join('|')
 }
 
 function eventTypeLabel(type: CalendarEvent['type']) {
@@ -1679,313 +1964,6 @@ function CalendarIntegrationPanel() {
   )
 }
 
-function EventCard({ event }: { event: CalendarEvent }) {
-  return (
-    <div className="rounded-md border border-l-4 border-white/10 bg-white/[0.03] p-3" style={calendarEventStyle(event)}>
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="font-black text-white keep-all">{event.title}</p>
-          <p className="mt-1 text-xs font-semibold text-gray-500">{formatDateTime(event.start)}</p>
-          {event.calendarName ? (
-            <p className="mt-2 inline-flex items-center gap-2 text-xs font-black text-gray-400">
-              <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
-              {event.calendarName}
-            </p>
-          ) : null}
-        </div>
-        <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
-          {eventTypeLabel(event.type)}
-        </span>
-      </div>
-      {event.location ? <p className="mt-2 text-xs font-bold text-gray-400 keep-all">{event.location}</p> : null}
-      {event.memo ? <p className="mt-2 text-xs leading-5 text-gray-500 keep-all">{event.memo}</p> : null}
-    </div>
-  )
-}
-
-function MeetingPanel({
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-}: {
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-}) {
-  const now = new Date()
-  const meetings = events
-    .filter((event) => isMeetingEvent(event) && new Date(event.start) <= now)
-    .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime())
-
-  return (
-    <MeetingListPanel
-      kicker="Meeting DB"
-      title="총 미팅 DB"
-      description="지금까지 진행된 미팅을 날짜별로 모아보고, 각 미팅별 논의 내용과 후속 액션을 기록합니다."
-      events={meetings}
-      loading={loading}
-      message={message}
-      onRefresh={onRefresh}
-      onSaveMeetingNote={onSaveMeetingNote}
-      enableDateFilter
-      emptyLabel="지금까지 진행된 미팅이 없습니다."
-    />
-  )
-}
-
-function WeeklyMeetingPanel({
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-}: {
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-}) {
-  const now = new Date()
-  const sevenDaysLater = new Date(now)
-  sevenDaysLater.setDate(now.getDate() + 7)
-  sevenDaysLater.setHours(23, 59, 59, 999)
-  const weeklyMeetings = events
-    .filter((event) => {
-      const start = new Date(event.start)
-      return isMeetingEvent(event) && start >= now && start <= sevenDaysLater
-    })
-    .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
-
-  return (
-    <MeetingListPanel
-      kicker="Weekly Meeting"
-      title="위클리미팅"
-      description="오늘부터 앞으로 7일 이내 용올캘린더에 예정된 미팅 일정을 확인합니다."
-      events={weeklyMeetings}
-      loading={loading}
-      message={message}
-      onRefresh={onRefresh}
-      onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="앞으로 7일 이내 예정된 미팅이 없습니다."
-    />
-  )
-}
-
-function MeetingListPanel({
-  kicker,
-  title,
-  description,
-  events,
-  loading,
-  message,
-  onRefresh,
-  onSaveMeetingNote,
-  enableDateFilter = false,
-  emptyLabel,
-}: {
-  kicker: string
-  title: string
-  description: string
-  events: CalendarEvent[]
-  loading: boolean
-  message: string
-  onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingNoteHandler
-  enableDateFilter?: boolean
-  emptyLabel: string
-}) {
-  const [meetingNotes, setMeetingNotes] = useState<Record<string, string>>({})
-  const [savingNoteId, setSavingNoteId] = useState<string | null>(null)
-  const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
-  const [filterStart, setFilterStart] = useState('')
-  const [filterEnd, setFilterEnd] = useState('')
-
-  const filteredEvents = useMemo(() => {
-    if (!enableDateFilter) return events
-
-    return events.filter((event) => {
-      const start = new Date(event.start)
-      const from = filterStart ? startOfDay(parseLocalDate(filterStart)) : null
-      const to = filterEnd ? parseLocalDate(filterEnd) : null
-      if (to) to.setHours(23, 59, 59, 999)
-
-      return (!from || start >= from) && (!to || start <= to)
-    })
-  }, [enableDateFilter, events, filterEnd, filterStart])
-
-  const saveNote = async (event: CalendarEvent) => {
-    const note = meetingNotes[event.id] ?? event.memo ?? ''
-    setSavingNoteId(event.id)
-    setNoteMessages((current) => ({ ...current, [event.id]: '' }))
-
-    try {
-      const message = await onSaveMeetingNote(event, note)
-      setNoteMessages((current) => ({ ...current, [event.id]: message }))
-    } catch (error) {
-      setNoteMessages((current) => ({
-        ...current,
-        [event.id]: error instanceof Error ? error.message : '미팅 기록 저장 중 오류가 발생했습니다.',
-      }))
-    } finally {
-      setSavingNoteId(null)
-    }
-  }
-
-  return (
-    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">{kicker}</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
-          {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
-        </div>
-        <button
-          type="button"
-          onClick={onRefresh}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-        >
-          <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          일정 새로고침
-        </button>
-      </div>
-
-      <div className="grid gap-3 border-b border-white/10 p-5 md:grid-cols-[180px_1fr] md:p-6">
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-xs font-black uppercase tracking-[0.16em] text-gray-500">
-            {enableDateFilter ? 'Filtered / Total' : 'Total Meetings'}
-          </p>
-          <p className="mt-3 text-4xl font-black text-white">
-            {enableDateFilter ? `${filteredEvents.length}/${events.length}` : events.length}
-          </p>
-        </div>
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          {enableDateFilter ? (
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="block">
-                  <span className="text-xs font-black text-gray-500">시작일</span>
-                  <input
-                    type="date"
-                    value={filterStart}
-                    onChange={(event) => setFilterStart(event.target.value)}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-xs font-black text-gray-500">종료일</span>
-                  <input
-                    type="date"
-                    value={filterEnd}
-                    onChange={(event) => setFilterEnd(event.target.value)}
-                    className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
-                  />
-                </label>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setFilterStart('')
-                  setFilterEnd('')
-                }}
-                className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
-              >
-                필터 초기화
-              </button>
-            </div>
-          ) : (
-            <>
-              <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
-              <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
-                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
-              </p>
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="p-5 md:p-6">
-        {filteredEvents.length === 0 ? (
-          <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
-        ) : (
-          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-            <table className="min-w-[1180px] w-full border-collapse text-left">
-              <thead className="bg-white/[0.04]">
-                <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-                  <th className="w-[150px] px-4 py-3">날짜</th>
-                  <th className="w-[240px] px-4 py-3">미팅</th>
-                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
-                  <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
-                  <th className="w-[110px] px-4 py-3">저장</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/10">
-                {filteredEvents.map((event) => (
-                  <tr key={event.id} className="align-top">
-                    <td className="px-4 py-4">
-                      <p className="text-sm font-black text-white">{formatDateLabel(event.start)}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(event.start)}</p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <p className="text-sm font-black leading-5 text-white keep-all">{event.title}</p>
-                      <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${eventTypeClass(event.type)}`}>
-                        {eventTypeLabel(event.type)}
-                      </span>
-                    </td>
-                    <td className="px-4 py-4">
-                      {event.calendarName ? (
-                        <p className="inline-flex items-center gap-2 text-xs font-black text-gray-400">
-                          <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(event)} />
-                          {event.calendarName}
-                        </p>
-                      ) : null}
-                      {event.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{event.location}</p> : null}
-                    </td>
-                    <td className="px-4 py-4">
-                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {event.attendees.length > 0 ? event.attendees.slice(0, 3).join(', ') : '-'}
-                      </p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <textarea
-                        value={meetingNotes[event.id] ?? event.memo ?? ''}
-                        onChange={(changeEvent) =>
-                          setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
-                        }
-                        className="min-h-28 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
-                      />
-                      {noteMessages[event.id] ? (
-                        <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
-                      ) : null}
-                    </td>
-                    <td className="px-4 py-4">
-                      <button
-                        type="button"
-                        onClick={() => saveNote(event)}
-                        disabled={savingNoteId === event.id}
-                        className="inline-flex h-9 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
-                      >
-                        {savingNoteId === event.id ? '저장 중' : '저장'}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </div>
-    </section>
-  )
-}
-
 function MailPanel({
   mails,
   loading,
@@ -2313,7 +2291,7 @@ function StoreOperationsPanel({
   const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
-  const weeklyReportDates = useMemo(() => getCurrentWeekDates(), [])
+  const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
   const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
@@ -2325,17 +2303,72 @@ function StoreOperationsPanel({
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
   const [generatingReportDate, setGeneratingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
-  const [expandedReport, setExpandedReport] = useState<{
+  const [selectedWeeklyReportDate, setSelectedWeeklyReportDate] = useState('')
+  const [historyDetail, setHistoryDetail] = useState<{
     report: StoreWeeklyReport
     date: Date
-    dateKey: string
-    status: StoreWeeklyReportStatus
-    memo: string
   } | null>(null)
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
   const filteredReportHistory = historyDateFilter
     ? reportHistory.filter((report) => report.date === historyDateFilter)
     : reportHistory
+  const weeklyReportItems = useMemo(
+    () =>
+      displayWeeklyReports.map((report) => {
+        const date = report.date
+          ? parseLocalDate(report.date)
+          : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
+        const dateKey = report.date || toISODate(date)
+
+        return {
+          report,
+          date,
+          dateKey,
+          draftMemo: reportDrafts[dateKey] ?? report.memo ?? '',
+        }
+      }),
+    [displayWeeklyReports, reportDrafts, weeklyReportDates]
+  )
+  const selectedWeeklyReport =
+    weeklyReportItems.find((item) => item.dateKey === selectedWeeklyReportDate) || weeklyReportItems[0]
+  const weeklyReportSummary = summarizeReports(weeklyReportItems.map((item) => item.report))
+  const selectedWeeklyReportUpdating = selectedWeeklyReport
+    ? updatingReportDate === selectedWeeklyReport.dateKey
+    : false
+  const selectedWeeklyReportGenerating = selectedWeeklyReport
+    ? generatingReportDate === selectedWeeklyReport.dateKey
+    : false
+
+  useEffect(() => {
+    const syncReportWeek = () => {
+      setWeeklyReportDates((current) => {
+        const next = getCurrentWeekDates()
+        return toISODate(current[0]) === toISODate(next[0]) ? current : next
+      })
+    }
+    const interval = window.setInterval(syncReportWeek, 60 * 1000)
+
+    syncReportWeek()
+
+    return () => window.clearInterval(interval)
+  }, [])
+
+  useEffect(() => {
+    if (workspaces.length && !workspaces.some((workspace) => workspace.key === activeProduct)) {
+      setActiveProduct(workspaces[0].key)
+    }
+  }, [activeProduct, workspaces])
+
+  useEffect(() => {
+    if (!weeklyReportItems.length) {
+      if (selectedWeeklyReportDate) setSelectedWeeklyReportDate('')
+      return
+    }
+
+    if (!weeklyReportItems.some((item) => item.dateKey === selectedWeeklyReportDate)) {
+      setSelectedWeeklyReportDate(weeklyReportItems[0].dateKey)
+    }
+  }, [selectedWeeklyReportDate, weeklyReportItems])
 
   const loadWeeklyReports = useCallback(async (silent = false) => {
     if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
@@ -2514,28 +2547,19 @@ function StoreOperationsPanel({
       {selectedStore ? (
         <>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
-            <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
-              <div>
-                <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
-                <h2 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">
-                  {selectedStore.title}
-                </h2>
-                <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
-              </div>
-              <div className="grid gap-2 text-sm sm:grid-cols-3 xl:min-w-[520px]">
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">상태</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.status}</p>
-                </div>
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">담당</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.owner}</p>
-                </div>
-                <div className="rounded-lg border border-white/10 bg-black p-4">
-                  <p className="text-xs font-bold text-gray-500">기한</p>
-                  <p className="mt-2 font-black text-white">{selectedStore.due}</p>
-                </div>
-              </div>
+            <div>
+              <p className="text-sm font-bold text-brand-blue">{view.kicker}</p>
+              <h2 className="mt-2 text-3xl font-black tracking-tight text-white md:text-4xl">
+                {selectedStore.title}
+              </h2>
+              {workspaces.length ? (
+                <StoreWorkspaceTabs
+                  workspaces={workspaces}
+                  activeProduct={activeWorkspace?.key || activeProduct}
+                  onSelectProduct={setActiveProduct}
+                />
+              ) : null}
+              <p className="mt-4 max-w-3xl text-sm leading-6 text-gray-400 keep-all">{selectedStore.memo}</p>
             </div>
 
             <div className="mt-5 flex gap-2 overflow-x-auto lg:hidden">
@@ -2557,37 +2581,29 @@ function StoreOperationsPanel({
             </div>
           </div>
 
-          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black p-1">
-            <div className="grid min-w-[620px] grid-cols-3 gap-1">
-              {workspaces.map((workspace) => (
-                <button
-                  key={workspace.key}
-                  type="button"
-                  onClick={() => setActiveProduct(workspace.key)}
-                  className={`h-14 whitespace-nowrap rounded-md px-4 text-base font-black transition ${
-                    activeWorkspace?.key === workspace.key
-                      ? 'bg-white text-black'
-                      : 'text-gray-400 hover:bg-white/10 hover:text-white'
-                  }`}
-                >
-                  {workspace.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              {displayWeeklyReports.length ? (
+              {weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
                       <p className="text-sm font-bold text-brand-blue">Weekly Report</p>
                       <h4 className="mt-2 text-xl font-black text-white">이번 주 작업보고 현황</h4>
+                      <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+                        <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+                          완료 {weeklyReportSummary.done}
+                        </span>
+                        <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+                          작성중 {weeklyReportSummary.inProgress}
+                        </span>
+                        <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-amber-100">
+                          대기 {weeklyReportSummary.pending}
+                        </span>
+                      </div>
                     </div>
                     <div className="flex flex-col gap-3 xl:items-end">
                       <div className="text-sm font-semibold text-gray-500 xl:text-right">
-                        <p className="keep-all">요일별 보고 진행 여부를 날짜와 함께 확인합니다.</p>
+                        <p className="keep-all">요일을 선택하면 아래에서 보고 내용을 넓게 확인하고 수정합니다.</p>
                         <p className="mt-1 keep-all">
                           {weeklyReportLoading ? '보고 DB 확인 중입니다.' : weeklyReportMessage}
                         </p>
@@ -2602,109 +2618,140 @@ function StoreOperationsPanel({
                       </button>
                     </div>
                   </div>
-                  <div className="mt-4 grid gap-3 lg:grid-cols-5">
-                    {displayWeeklyReports.map((report) => {
-                      const date = report.date
-                        ? parseLocalDate(report.date)
-                        : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
-                      const reportDateKey = report.date || toISODate(date)
-                      const updating = updatingReportDate === reportDateKey
-                      const generating = generatingReportDate === reportDateKey
-                      const draftMemo = reportDrafts[reportDateKey] ?? report.memo ?? ''
+                  <div className="mt-5 grid gap-2 lg:grid-cols-5">
+                    {weeklyReportItems.map((item) => {
+                      const active = item.dateKey === selectedWeeklyReport.dateKey
 
                       return (
-                        <div
-                          key={`${activeWorkspace.key}-report-${reportDateKey}`}
-                          className={`flex min-h-[440px] flex-col rounded-lg border p-4 ${weeklyReportClass(report.status)}`}
+                        <button
+                          key={`${activeWorkspace.key}-report-tab-${item.dateKey}`}
+                          type="button"
+                          onClick={() => setSelectedWeeklyReportDate(item.dateKey)}
+                          className={`min-h-[156px] rounded-lg border p-4 text-left transition ${
+                            active
+                              ? 'border-brand-blue/60 bg-brand-blue/15'
+                              : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
+                          }`}
                         >
-                          <div className="flex items-start justify-between gap-2">
-                            <div>
-                              <p className="text-xs font-black text-gray-500">{formatWeekday(date)}</p>
-                              <p className="mt-1 text-lg font-black text-white">{formatMonthDay(date)}</p>
+                          <div className="flex min-h-16 items-start justify-between gap-3">
+                            <div className="min-w-0">
+                              <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
+                              <p className="mt-2 whitespace-nowrap text-3xl font-black leading-none tracking-tight text-white">
+                                {formatMonthDay(item.date)}
+                              </p>
                             </div>
-                            <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${weeklyReportBadge(report.status)}`}>
-                              {report.status}
+                            <span className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
+                              {item.report.status}
                             </span>
                           </div>
-                          <p className="mt-4 font-black text-white keep-all">{report.title}</p>
-                          <label className="mt-3 block flex-1">
-                            <span className="mb-1 block text-[11px] font-black text-gray-600">보고 내용</span>
-                            <textarea
-                              value={draftMemo}
-                              disabled={updating}
-                              onChange={(event) =>
-                                setReportDrafts((current) => ({
-                                  ...current,
-                                  [reportDateKey]: event.target.value,
-                                }))
-                              }
-                              className="min-h-[190px] w-full resize-none rounded-md border border-white/10 bg-black/35 px-3 py-2 text-xs font-semibold leading-5 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/20 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
-                              placeholder="오늘 보고한 내용을 입력하세요."
-                            />
-                          </label>
-                          {report.status === '보고완료' ? (
-                            <p className="mt-3 text-[11px] font-bold leading-5 text-emerald-100/80 keep-all">
-                              {report.reporter ? `${report.reporter} · ` : ''}
-                              {report.completedAt ? formatDateTime(report.completedAt) : '보고완료'}
-                            </p>
-                          ) : null}
-                          <label className="mt-4 block">
-                            <span className="mb-1 block text-[11px] font-black text-gray-600">발송상태</span>
-                            <select
-                              value={report.status}
-                              disabled={updating}
-                              onChange={(event) =>
-                                updateWeeklyReportStatus(report, reportDateKey, event.target.value as StoreWeeklyReportStatus, draftMemo)
-                              }
-                              className="h-9 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-xs font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
-                            >
-                              {REPORT_STATUS_OPTIONS.map((status) => (
-                                <option key={status} value={status}>
-                                  {status}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-                          <button
-                            type="button"
-                            disabled={updating || generating}
-                            onClick={() => updateWeeklyReportStatus(report, reportDateKey, report.status, draftMemo)}
-                            className="mt-2 h-9 rounded-md border border-white/15 bg-white/10 px-3 text-xs font-black text-white transition hover:border-brand-blue/40 hover:bg-brand-blue/15 disabled:cursor-not-allowed disabled:text-gray-500"
-                          >
-                            {updating ? '저장 중' : '보고 저장'}
-                          </button>
-                          {activeWorkspace.key === 'googleProfile' && canAutoGenerateReport(report.title) ? (
-                            <button
-                              type="button"
-                              disabled={updating || generating}
-                              onClick={() => generateReportMemo(report, reportDateKey)}
-                              className="mt-2 h-9 rounded-md border border-brand-blue/35 bg-brand-blue/10 px-3 text-xs font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
-                            >
-                              {generating ? '생성 중' : '멘트 자동생성'}
-                            </button>
-                          ) : null}
-                          <button
-                            type="button"
-                            disabled={updating || generating}
-                            onClick={() =>
-                              setExpandedReport({
-                                report,
-                                date,
-                                dateKey: reportDateKey,
-                                status: report.status,
-                                memo: draftMemo,
-                              })
-                            }
-                            className="mt-2 h-9 rounded-md border border-white/10 px-3 text-xs font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
-                          >
-                            확대 작성
-                          </button>
-                        </div>
+                          <p className="mt-4 min-h-7 font-black leading-7 text-white keep-all">{item.report.title}</p>
+                          <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                            {item.draftMemo || '보고 내용 입력 전입니다.'}
+                          </p>
+                        </button>
                       )
                     })}
                   </div>
+
+                  <div className="mt-5 grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 xl:grid-cols-[1fr_280px]">
+                    <div>
+                      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                        <div>
+                          <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Selected Report</p>
+                          <h5 className="mt-2 text-2xl font-black text-white keep-all">{selectedWeeklyReport.report.title}</h5>
+                          <p className="mt-2 text-sm font-bold text-gray-500">
+                            {formatMonthDay(selectedWeeklyReport.date)} · {formatWeekday(selectedWeeklyReport.date)}
+                          </p>
+                        </div>
+                        <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-xs font-black ${weeklyReportBadge(selectedWeeklyReport.report.status)}`}>
+                          {selectedWeeklyReport.report.status}
+                        </span>
+                      </div>
+                      <label className="mt-4 block">
+                        <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
+                        <textarea
+                          value={selectedWeeklyReport.draftMemo}
+                          disabled={selectedWeeklyReportUpdating}
+                          onChange={(event) =>
+                            setReportDrafts((current) => ({
+                              ...current,
+                              [selectedWeeklyReport.dateKey]: event.target.value,
+                            }))
+                          }
+                          className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+                          placeholder="오늘 보고한 내용을 입력하세요."
+                        />
+                      </label>
+                    </div>
+
+                    <aside className="rounded-lg border border-white/10 bg-black p-4">
+                      <p className="text-sm font-black text-white">보고 액션</p>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                        선택한 보고의 상태와 내용을 저장합니다.
+                      </p>
+                      <label className="mt-4 block">
+                        <span className="mb-2 block text-[11px] font-black text-gray-600">발송상태</span>
+                        <select
+                          value={selectedWeeklyReport.report.status}
+                          disabled={selectedWeeklyReportUpdating}
+                          onChange={(event) =>
+                            updateWeeklyReportStatus(
+                              selectedWeeklyReport.report,
+                              selectedWeeklyReport.dateKey,
+                              event.target.value as StoreWeeklyReportStatus,
+                              selectedWeeklyReport.draftMemo
+                            )
+                          }
+                          className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
+                        >
+                          {REPORT_STATUS_OPTIONS.map((status) => (
+                            <option key={status} value={status}>
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <button
+                        type="button"
+                        disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
+                        onClick={() =>
+                          updateWeeklyReportStatus(
+                            selectedWeeklyReport.report,
+                            selectedWeeklyReport.dateKey,
+                            selectedWeeklyReport.report.status,
+                            selectedWeeklyReport.draftMemo
+                          )
+                        }
+                        className="mt-3 h-10 w-full rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-500"
+                      >
+                        {selectedWeeklyReportUpdating ? '저장 중' : '보고 저장'}
+                      </button>
+                      {activeWorkspace.key === 'googleProfile' && canAutoGenerateReport(selectedWeeklyReport.report.title) ? (
+                        <button
+                          type="button"
+                          disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
+                          onClick={() => generateReportMemo(selectedWeeklyReport.report, selectedWeeklyReport.dateKey)}
+                          className="mt-2 h-10 w-full rounded-md border border-brand-blue/35 bg-brand-blue/10 px-3 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/20 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                        >
+                          {selectedWeeklyReportGenerating ? '생성 중' : '멘트 자동생성'}
+                        </button>
+                      ) : null}
+                      {selectedWeeklyReport.report.status === '보고완료' ? (
+                        <p className="mt-4 text-xs font-bold leading-5 text-emerald-100/80 keep-all">
+                          {selectedWeeklyReport.report.reporter ? `${selectedWeeklyReport.report.reporter} · ` : ''}
+                          {selectedWeeklyReport.report.completedAt
+                            ? formatDateTime(selectedWeeklyReport.report.completedAt)
+                            : '보고완료'}
+                        </p>
+                      ) : null}
+                    </aside>
+                  </div>
                 </div>
               ) : null}
+              {activeWorkspace.key === 'googleAds' ? (
+                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
+              ) : null}
+              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               <div className="border-b border-white/10 p-5 md:p-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                   <div>
@@ -2745,9 +2792,11 @@ function StoreOperationsPanel({
                         const date = report.date ? parseLocalDate(report.date) : new Date()
 
                         return (
-                          <article
+                          <button
+                            type="button"
                             key={`${activeWorkspace.key}-history-${report.id || report.date}-${report.title}`}
-                            className="grid gap-3 px-4 py-4 md:grid-cols-[150px_140px_1fr_170px]"
+                            onClick={() => setHistoryDetail({ report, date })}
+                            className="grid w-full gap-3 px-4 py-4 text-left transition hover:bg-white/[0.04] md:grid-cols-[150px_140px_1fr_170px]"
                           >
                             <div>
                               <p className="text-sm font-black text-white">{formatMonthDay(date)}</p>
@@ -2760,13 +2809,15 @@ function StoreOperationsPanel({
                             </div>
                             <div>
                               <p className="font-black text-white keep-all">{report.title}</p>
-                              <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{report.memo}</p>
+                              <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                                {report.memo || '보고 내용이 비어 있습니다.'}
+                              </p>
                             </div>
                             <div className="text-xs font-bold leading-5 text-gray-500 md:text-right">
                               <p>{report.reporter || '블링크애드'}</p>
                               <p>{report.completedAt ? formatDateTime(report.completedAt) : '-'}</p>
                             </div>
-                          </article>
+                          </button>
                         )
                       })
                     ) : (
@@ -2783,77 +2834,36 @@ function StoreOperationsPanel({
               등록된 상품별 업무가 없습니다.
             </p>
           )}
-          {expandedReport ? (
+          {historyDetail ? (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm">
               <div className="w-full max-w-3xl rounded-lg border border-white/10 bg-[#0b0d12] shadow-2xl">
                 <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-start md:justify-between">
                   <div>
-                    <p className="text-sm font-bold text-brand-blue">Report Detail</p>
-                    <h4 className="mt-2 text-2xl font-black text-white keep-all">{expandedReport.report.title}</h4>
-                    <p className="mt-2 text-sm font-semibold text-gray-500">
-                      {formatMonthDay(expandedReport.date)} · {formatWeekday(expandedReport.date)}
-                    </p>
+                    <p className="text-sm font-bold text-brand-blue">Report History</p>
+                    <h4 className="mt-2 text-2xl font-black text-white keep-all">{historyDetail.report.title}</h4>
+                    <div className="mt-2 flex flex-wrap items-center gap-2 text-xs font-bold text-gray-500">
+                      <span>{formatMonthDay(historyDetail.date)} · {formatWeekday(historyDetail.date)}</span>
+                      <span className={`inline-flex rounded-full border px-2 py-1 font-black ${weeklyReportBadge(historyDetail.report.status)}`}>
+                        {historyDetail.report.status}
+                      </span>
+                      <span>{historyDetail.report.reporter || '블링크애드'}</span>
+                      <span>{historyDetail.report.completedAt ? formatDateTime(historyDetail.report.completedAt) : '-'}</span>
+                    </div>
                   </div>
                   <button
                     type="button"
-                    onClick={() => setExpandedReport(null)}
+                    onClick={() => setHistoryDetail(null)}
                     className="h-10 rounded-md border border-white/10 px-3 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
                   >
                     닫기
                   </button>
                 </div>
-                <div className="space-y-4 p-5">
-                  <label className="block">
-                    <span className="mb-2 block text-xs font-black text-gray-500">발송상태</span>
-                    <select
-                      value={expandedReport.status}
-                      onChange={(event) =>
-                        setExpandedReport((current) =>
-                          current ? { ...current, status: event.target.value as StoreWeeklyReportStatus } : current
-                        )
-                      }
-                      className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white outline-none transition hover:border-white/25"
-                    >
-                      {REPORT_STATUS_OPTIONS.map((status) => (
-                        <option key={status} value={status}>
-                          {status}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label className="block">
-                    <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
-                    <textarea
-                      value={expandedReport.memo}
-                      onChange={(event) =>
-                        setExpandedReport((current) => (current ? { ...current, memo: event.target.value } : current))
-                      }
-                      className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50"
-                      placeholder="보고 내용을 자세히 입력하세요."
-                    />
-                  </label>
-                </div>
-                <div className="flex justify-end gap-2 border-t border-white/10 p-5">
-                  <button
-                    type="button"
-                    onClick={() => setExpandedReport(null)}
-                    className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-300 transition hover:border-white/30 hover:bg-white/5 hover:text-white"
-                  >
-                    취소
-                  </button>
-                  <button
-                    type="button"
-                    disabled={updatingReportDate === expandedReport.dateKey}
-                    onClick={async () => {
-                      const current = expandedReport
-                      setReportDrafts((drafts) => ({ ...drafts, [current.dateKey]: current.memo }))
-                      await updateWeeklyReportStatus(current.report, current.dateKey, current.status, current.memo)
-                      setExpandedReport(null)
-                    }}
-                    className="h-10 rounded-md bg-brand-blue px-4 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-400"
-                  >
-                    {updatingReportDate === expandedReport.dateKey ? '저장 중' : '저장'}
-                  </button>
+                <div className="p-5">
+                  <div className="max-h-[60vh] overflow-auto rounded-lg border border-white/10 bg-black p-4">
+                    <pre className="whitespace-pre-wrap break-keep font-sans text-sm font-semibold leading-7 text-gray-200">
+                      {historyDetail.report.memo || '보고 내용이 비어 있습니다.'}
+                    </pre>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2868,14 +2878,345 @@ function StoreOperationsPanel({
   )
 }
 
+function StoreWorkspaceTabs({
+  workspaces,
+  activeProduct,
+  onSelectProduct,
+}: {
+  workspaces: StoreProductWorkspace[]
+  activeProduct: StoreProductKey
+  onSelectProduct: (product: StoreProductKey) => void
+}) {
+  return (
+    <div className="mt-4 grid w-full max-w-xl grid-cols-3 gap-1 rounded-lg border border-white/10 bg-black p-1">
+      {workspaces.map((workspace) => {
+        const active = workspace.key === activeProduct
+
+        return (
+          <button
+            key={workspace.key}
+            type="button"
+            onClick={() => onSelectProduct(workspace.key)}
+            className={`min-h-12 rounded-md px-2 text-xs font-black transition sm:text-sm ${
+              active ? 'bg-white text-black' : 'text-gray-400 hover:bg-white/10 hover:text-white'
+            }`}
+          >
+            {workspaceTabLabel(workspace)}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function workspaceTabLabel(workspace: StoreProductWorkspace) {
+  if (workspace.key === 'googleProfile') return '구글프로필'
+  if (workspace.key === 'googleAds') return '구글 애즈'
+  if (workspace.key === 'websiteBlog') return '웹사이트,블로그'
+  return workspace.label
+}
+
+function GoogleAdsPerformancePanel({
+  workspace,
+  storeTitle,
+}: {
+  workspace: StoreProductWorkspace
+  storeTitle: string
+}) {
+  const [adsData, setAdsData] = useState<GoogleAdsApiResponse | null>(null)
+  const [adsLoading, setAdsLoading] = useState(false)
+  const [adsMessage, setAdsMessage] = useState('')
+
+  const loadAdsData = useCallback(async () => {
+    setAdsLoading(true)
+    try {
+      const params = new URLSearchParams({ store: storeTitle, days: '30' })
+      const response = await fetch(`/api/erp/google/ads?${params.toString()}`, { cache: 'no-store' })
+      const data = (await response.json()) as GoogleAdsApiResponse
+      setAdsData(data)
+      setAdsMessage(data.message || 'Google Ads 데이터를 확인했습니다.')
+    } catch {
+      setAdsData(null)
+      setAdsMessage('Google Ads 데이터를 불러오지 못했습니다.')
+    } finally {
+      setAdsLoading(false)
+    }
+  }, [storeTitle])
+
+  useEffect(() => {
+    loadAdsData()
+  }, [loadAdsData])
+
+  const summary = adsData?.summary
+  const previousSummary = adsData?.previousSummary
+  const ctr = summary ? percent(summary.clicks, summary.impressions) : ''
+  const previousCtr = previousSummary ? percent(previousSummary.clicks, previousSummary.impressions) : ''
+  const cpc = summary && summary.clicks > 0 ? summary.costMicros / 1000000 / summary.clicks : 0
+  const previousCpc = previousSummary && previousSummary.clicks > 0 ? previousSummary.costMicros / 1000000 / previousSummary.clicks : 0
+  const rows = [
+    {
+      label: '노출',
+      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출'),
+      delta: summary && previousSummary ? deltaText(summary.impressions, previousSummary.impressions, '회') : '-',
+      basis: '캠페인/광고그룹별 impressions',
+      action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
+    },
+    {
+      label: '클릭',
+      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || '연동 전',
+      delta: summary && previousSummary ? deltaText(summary.clicks, previousSummary.clicks, '건') : '-',
+      basis: '광고 클릭수',
+      action: '실제 매장 행동으로 이어지는 클릭인지 로컬 액션과 함께 봅니다.',
+    },
+    {
+      label: 'CTR',
+      value: ctr || '-',
+      delta: ctr && previousCtr ? `${previousCtr} → ${ctr}` : '-',
+      basis: '클릭 / 노출',
+      action: '노출 대비 클릭 효율이 낮으면 키워드와 광고문안을 조정합니다.',
+    },
+    {
+      label: '광고비',
+      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비'),
+      delta: summary && previousSummary ? deltaText(summary.costMicros / 1000000, previousSummary.costMicros / 1000000, '원') : '-',
+      basis: '월 예산 대비 소진액',
+      action: '운영 수수료와 광고비를 분리해 추적합니다.',
+    },
+    {
+      label: 'CPC',
+      value: cpc ? `${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
+      delta: cpc && previousCpc ? `${Math.round(previousCpc).toLocaleString('ko-KR')}원 → ${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
+      basis: '광고비 / 클릭',
+      action: '클릭 단가가 오르면 지역·서비스 키워드 예산을 다시 나눕니다.',
+    },
+    {
+      label: '로컬 액션',
+      value: summary ? formatCount(summary.localActions) : '연동 전',
+      delta: summary && previousSummary ? deltaText(summary.localActions, previousSummary.localActions, '건') : '-',
+      basis: '길찾기, 전화, 웹사이트 클릭',
+      action: 'GBP 행동과 중복 집계하지 않고 광고 기여 행동으로 따로 봅니다.',
+    },
+  ]
+  const localActionCards = summary
+    ? [
+        { label: '길찾기', value: summary.localActionDirectionRequests },
+        { label: '전화', value: summary.localActionCalls },
+        { label: '웹사이트', value: summary.localActionWebsiteClicks },
+      ]
+    : []
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Google Ads</p>
+          <h4 className="mt-2 text-xl font-black text-white">언리미티드 광고 성과</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            BigQuery의 Google Ads 로컬 액션 테이블에서 매장별 노출, 클릭, 광고비, 길찾기·전화·웹사이트 행동을 불러옵니다.
+          </p>
+          <p className="mt-2 text-xs font-bold text-gray-500 keep-all">
+            {adsLoading ? 'Google Ads 데이터를 확인 중입니다.' : adsMessage}
+          </p>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3 xl:min-w-[430px]">
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">연결 상태</p>
+            <p className={`mt-2 inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${adsConnectionBadge(adsData, adsLoading)}`}>
+              {adsLoading ? '확인중' : adsData?.connected ? 'BigQuery 연결' : '연결 필요'}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">기준 기간</p>
+            <p className="mt-2 text-sm font-black text-white">
+              {adsData?.period.lastDate ? `최근 ${adsData.period.days}일` : '-'}
+            </p>
+            <p className="mt-1 text-[11px] font-bold text-gray-600">{adsData?.period.lastDate || '데이터 없음'}</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">적재 행</p>
+            <p className="mt-2 text-sm font-black text-white">{summary ? `${summary.rowCount}행` : '-'}</p>
+            <p className="mt-1 text-[11px] font-bold text-gray-600">
+              {adsData?.sourceSyncedAt ? formatDateTime(adsData.sourceSyncedAt) : '동기화 기록 없음'}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {adsData && adsData.status !== 'connected' ? (
+        <div className="mt-4 rounded-lg border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm font-bold leading-6 text-amber-100 keep-all">
+          {adsData.message}
+        </div>
+      ) : null}
+
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
+        <div className="min-w-[760px]">
+          <div className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>지표</span>
+            <span>현재값</span>
+            <span>전기 비교</span>
+            <span>확인 기준</span>
+            <span>운영 액션</span>
+          </div>
+          {rows.map((row) => (
+            <div key={row.label} className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
+              <span className="font-black text-white">{row.label}</span>
+              <span className="font-black text-blue-100">{adsLoading ? '확인 중' : row.value || '-'}</span>
+              <span className="font-bold text-gray-400">{adsLoading ? '-' : row.delta}</span>
+              <span className="font-semibold leading-6 text-gray-400 keep-all">{row.basis}</span>
+              <span className="font-semibold leading-6 text-gray-500 keep-all">{row.action}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {localActionCards.length ? (
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {localActionCards.map((item) => (
+            <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+              <p className="text-xs font-black text-gray-500">{item.label}</p>
+              <p className="mt-3 text-3xl font-black text-white">{item.value.toLocaleString('ko-KR')}</p>
+              <p className="mt-2 text-xs font-semibold text-gray-500">광고 로컬 액션 기준</p>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {adsData?.daily.length ? (
+        <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="border-b border-white/10 px-4 py-3">
+            <p className="text-sm font-black text-white">일별 광고 데이터</p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {adsData.daily.slice(0, 10).map((row) => {
+              const actions =
+                row.localActionDirectionRequests + row.localActionCalls + row.localActionWebsiteClicks
+
+              return (
+                <article key={`${row.date}-${row.adsCustomerId || row.storeName}`} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[110px_repeat(5,minmax(0,1fr))]">
+                  <p className="font-black text-white">{formatMonthDay(parseLocalDate(row.date))}</p>
+                  <p className="font-semibold text-gray-400">노출 {formatCount(row.impressions)}</p>
+                  <p className="font-semibold text-gray-400">클릭 {formatCount(row.clicks)}</p>
+                  <p className="font-semibold text-gray-400">비용 {formatCostMicros(row.costMicros)}</p>
+                  <p className="font-semibold text-gray-400">액션 {formatCount(actions)}</p>
+                  <p className="font-semibold text-gray-500">{row.adsCustomerId || '-'}</p>
+                </article>
+              )
+            })}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
+function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWorkspace }) {
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div>
+        <p className="text-sm font-bold text-brand-blue">Website · Blog</p>
+        <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 작업 현황</h4>
+        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+          GBP에서 연결할 공식 페이지, FAQ, 블로그 주제를 같은 흐름으로 관리합니다.
+        </p>
+      </div>
+      <div className="mt-4 grid gap-3 lg:grid-cols-3">
+        {workspace.tasks.map((task, index) => (
+          <article key={`${workspace.key}-stage-${task.title}`} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-sm font-black text-black">
+                {index + 1}
+              </span>
+              <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
+                {task.status}
+              </span>
+            </div>
+            <h5 className="mt-4 font-black text-white keep-all">{task.title}</h5>
+            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function summarizeReports(reports: StoreWeeklyReport[]) {
+  const done = reports.filter((report) => report.status === '보고완료').length
+  const inProgress = reports.filter((report) => report.status === '작성중' || report.status === '생성완료').length
+  const failed = reports.filter((report) => report.status === '실패').length
+  const pending = Math.max(0, reports.length - done - inProgress - failed)
+
+  return {
+    total: reports.length,
+    done,
+    inProgress,
+    failed,
+    pending: pending + failed,
+  }
+}
+
+function taskStatusBadge(status: string) {
+  if (statusIncludesAny(status, ['진행', '작성', '검수'])) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (statusIncludesAny(status, ['대기', '예정'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-300'
+}
+
+function metricValue(workspace: StoreProductWorkspace, keyword: string) {
+  return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
+}
+
+function formatCount(value: number) {
+  return `${Math.round(value || 0).toLocaleString('ko-KR')}`
+}
+
+function formatCostMicros(value: number) {
+  return `${Math.round((value || 0) / 1000000).toLocaleString('ko-KR')}원`
+}
+
+function percent(numerator: number, denominator: number) {
+  if (!denominator) return ''
+  return `${((numerator / denominator) * 100).toFixed(1)}%`
+}
+
+function deltaText(current: number, previous: number, unit: string) {
+  if (!previous && !current) return '-'
+  if (!previous) return `신규 ${Math.round(current).toLocaleString('ko-KR')}${unit}`
+
+  const diff = current - previous
+  const rate = (diff / previous) * 100
+  const sign = diff > 0 ? '+' : ''
+  return `${sign}${Math.round(diff).toLocaleString('ko-KR')}${unit} (${sign}${rate.toFixed(1)}%)`
+}
+
+function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean) {
+  if (loading) return 'border-brand-blue/30 bg-brand-blue/15 text-blue-100'
+  if (data?.status === 'connected') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (data?.connected) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+}
+
 function getCurrentWeekDates() {
-  const today = new Date()
+  const today = getKstCalendarDate()
   const monday = startOfDay(today)
   const day = monday.getDay()
   const offset = day === 6 ? 2 : day === 0 ? 1 : 1 - day
   monday.setDate(monday.getDate() + offset)
 
   return Array.from({ length: 5 }, (_, index) => addDays(monday, index))
+}
+
+function getKstCalendarDate(value = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  }).formatToParts(value)
+  const year = Number(parts.find((part) => part.type === 'year')?.value)
+  const month = Number(parts.find((part) => part.type === 'month')?.value)
+  const day = Number(parts.find((part) => part.type === 'day')?.value)
+
+  return new Date(year, month - 1, day)
 }
 
 function toISODate(date: Date) {
@@ -2910,260 +3251,4 @@ function weeklyReportBadge(status: StoreWeeklyReportStatus) {
   if (status === '실패') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
   if (status === '생성완료') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
-}
-
-function StoreTable({
-  title,
-  description,
-  stores,
-  loading,
-  columns,
-  runningAction,
-  statusOptions,
-  updatingStatusId,
-  onStatusChange,
-  onRunDiagnosis,
-  onRunQuote,
-}: {
-  title: string
-  description: string
-  stores: StoreRecord[]
-  loading: boolean
-  columns: 'crm' | 'diagnosis' | 'quote' | 'contract' | 'report'
-  runningAction?: string | null
-  statusOptions?: string[]
-  updatingStatusId?: string | null
-  onStatusChange?: (store: StoreRecord, status: string) => void
-  onRunDiagnosis?: (store: StoreRecord) => void
-  onRunQuote?: (store: StoreRecord) => void
-}) {
-  const [query, setQuery] = useState('')
-  const filteredStores = stores.filter((store) =>
-    [store.name, store.status, store.owner].join(' ').toLowerCase().includes(query.toLowerCase())
-  )
-
-  return (
-    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-      <div className="flex flex-col gap-4 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">BlinkAd Operations</p>
-          <h2 className="mt-2 text-2xl font-black tracking-tight text-white">{title}</h2>
-          <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">{description}</p>
-        </div>
-        <div className="flex w-full flex-col gap-2 md:w-auto md:flex-row md:items-center">
-          {columns === 'contract' ? (
-            <a
-              href={EFORMSIGN_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-md border border-brand-blue/30 bg-brand-blue/10 px-3 text-sm font-black text-blue-100 transition hover:border-brand-blue/60 hover:bg-brand-blue/15"
-            >
-              이폼사인 바로가기
-              <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          ) : null}
-          <div className="relative w-full md:w-72">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            <input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="h-11 w-full rounded-md border border-white/10 bg-black pl-9 pr-3 text-sm font-semibold text-white outline-none placeholder:text-gray-600"
-              placeholder="매장명 검색"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-[1080px] w-full border-collapse text-left text-sm">
-          <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
-            <tr>
-              <th className="px-5 py-4">매장명</th>
-              <th className="px-5 py-4">상태</th>
-              {columns === 'crm' && <th className="px-5 py-4">구글맵</th>}
-              {columns === 'diagnosis' && <th className="px-5 py-4">분석자료</th>}
-              {columns === 'quote' && <th className="px-5 py-4">견적서</th>}
-              {columns === 'contract' && <th className="px-5 py-4">계약서</th>}
-              {columns === 'contract' && <th className="px-5 py-4">전자계약</th>}
-              {columns === 'contract' && <th className="px-5 py-4">계약 상태</th>}
-              {columns === 'report' && <th className="px-5 py-4">보고 현황</th>}
-              <th className="px-5 py-4">담당</th>
-              <th className="px-5 py-4">액션</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
-                  문의관리 DB를 불러오는 중입니다.
-                </td>
-              </tr>
-            ) : filteredStores.length === 0 ? (
-              <tr>
-                <td className="px-5 py-10 text-center font-bold text-gray-500" colSpan={7}>
-                  표시할 매장이 없습니다.
-                </td>
-              </tr>
-            ) : (
-              filteredStores.map((store) => (
-                <tr key={store.id} className="border-t border-white/10">
-                  <td className="px-5 py-4">
-                    <p className="font-black text-white keep-all">{store.name}</p>
-                    <p className="mt-1 text-xs text-gray-500">{store.contact || '연락처 확인 필요'}</p>
-                  </td>
-                  <td className="px-5 py-4">
-                    {onStatusChange ? (
-                      <div className="relative inline-flex">
-                        <select
-                          value={store.status || ''}
-                          disabled={updatingStatusId === store.id}
-                          onChange={(event) => onStatusChange(store, event.target.value)}
-                          className={`h-9 min-w-[180px] appearance-none rounded-full border py-0 pl-3 pr-12 text-xs font-black outline-none transition disabled:cursor-not-allowed disabled:opacity-60 ${statusBadge(store.status)}`}
-                        >
-                          {store.status && !statusOptions?.includes(store.status) ? (
-                            <option value={store.status}>{store.status}</option>
-                          ) : null}
-                          {(statusOptions?.length ? statusOptions : DEFAULT_CLIENT_STATUS_OPTIONS).map((status) => (
-                            <option key={status} value={status}>
-                              {status}
-                            </option>
-                          ))}
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-current" />
-                      </div>
-                    ) : (
-                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.status)}`}>
-                        {store.status || '상태 없음'}
-                      </span>
-                    )}
-                  </td>
-
-                  {columns === 'crm' && (
-                    <td className="px-5 py-4">
-                      {store.googleMapUrl ? (
-                        <a
-                          href={store.googleMapUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
-                        >
-                          열기
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <span className="font-semibold text-gray-500">미등록</span>
-                      )}
-                    </td>
-                  )}
-
-                  {columns === 'diagnosis' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.diagnosisCount} emptyLabel="미생성" />
-                    </td>
-                  )}
-
-                  {columns === 'quote' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.quoteCount} emptyLabel="미생성" />
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      <FileState count={store.contractCount} emptyLabel="미등록" />
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      {store.contractUrl ? (
-                        <a
-                          href={store.contractUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1 font-bold text-brand-blue hover:text-blue-300"
-                        >
-                          전자계약 열기
-                          <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      ) : (
-                        <span className="font-semibold text-gray-500">링크 미등록</span>
-                      )}
-                    </td>
-                  )}
-
-                  {columns === 'contract' && (
-                    <td className="px-5 py-4">
-                      <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-bold ${statusBadge(store.contractStatus)}`}>
-                        {store.contractStatus || '계약 전'}
-                      </span>
-                    </td>
-                  )}
-
-                  {columns === 'report' && (
-                    <td className="px-5 py-4">
-                      <span className="inline-flex items-center gap-2 font-bold text-gray-300">
-                        <Clock3 className="h-4 w-4 text-gray-500" />
-                        {store.reportStatus}
-                      </span>
-                    </td>
-                  )}
-
-                  <td className="px-5 py-4 font-semibold text-gray-400">{store.owner || '미지정'}</td>
-                  <td className="px-5 py-4">
-                    {columns === 'diagnosis' ? (
-                      <PrimaryButton
-                        disabled={!store.googleMapUrl || runningAction === `diagnosis:${store.id}`}
-                        onClick={() => onRunDiagnosis?.(store)}
-                      >
-                        {runningAction === `diagnosis:${store.id}` ? '생성 중' : '진단자료 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'quote' ? (
-                      <PrimaryButton
-                        disabled={runningAction === `quote:${store.id}`}
-                        onClick={() => onRunQuote?.(store)}
-                      >
-                        {runningAction === `quote:${store.id}` ? '생성 중' : '견적서 생성'}
-                      </PrimaryButton>
-                    ) : columns === 'contract' ? (
-                      store.contractUrl ? (
-                        <a
-                          href={store.contractUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                        >
-                          전자계약 보기
-                        </a>
-                      ) : (
-                        <a
-                          href={EFORMSIGN_URL}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                        >
-                          이폼사인 열기
-                        </a>
-                      )
-                    ) : store.notionUrl ? (
-                      <a
-                        href={store.notionUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
-                      >
-                        Notion 보기
-                      </a>
-                    ) : (
-                      <span className="font-semibold text-gray-600">-</span>
-                    )}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  )
 }
