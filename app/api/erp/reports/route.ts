@@ -815,7 +815,7 @@ export async function PATCH(request: NextRequest) {
     setProperty(properties, schema, map.status, status)
     setProperty(properties, schema, map.reporter, '블링크애드')
     setProperty(properties, schema, map.completedAt, isReportSent(status) ? new Date().toISOString() : '')
-    setProperty(properties, schema, map.summary, memo || title)
+    setProperty(properties, schema, map.summary, memo)
     setProperty(properties, schema, map.nextAction, '다음 작업 확인')
 
     if (page?.id) {
