@@ -97,10 +97,10 @@ export function StoreTable({
 }) {
   const [query, setQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
-  const statusFilterOptions = useMemo(
-    () => Array.from(new Set(stores.map((store) => store.status).filter(Boolean))),
-    [stores]
-  )
+  const statusFilterOptions = useMemo(() => {
+    const options = [...(statusOptions?.length ? statusOptions : []), ...stores.map((store) => store.status)]
+    return Array.from(new Set(options.filter(Boolean)))
+  }, [statusOptions, stores])
   const filteredStores = stores.filter((store) => {
     const searchableText = [
       store.name,
@@ -141,18 +141,23 @@ export function StoreTable({
             </a>
           ) : null}
           {enableStatusFilter ? (
-            <select
-              value={statusFilter}
-              onChange={(event) => setStatusFilter(event.target.value)}
-              className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none md:w-44"
-            >
-              <option value="all">전체 상태</option>
-              {statusFilterOptions.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
+            <label className="w-full md:w-52">
+              <span className="mb-1 block text-[11px] font-black uppercase tracking-[0.12em] text-gray-500">
+                상태 필터
+              </span>
+              <select
+                value={statusFilter}
+                onChange={(event) => setStatusFilter(event.target.value)}
+                className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none"
+              >
+                <option value="all">전체 상태</option>
+                {statusFilterOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </label>
           ) : null}
           <div className="relative w-full md:w-72">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />

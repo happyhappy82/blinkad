@@ -1,9 +1,7 @@
 import { Client } from '@notionhq/client'
 import { execFileSync } from 'child_process'
-import { randomUUID } from 'crypto'
-import { readFileSync, unlinkSync, writeFileSync } from 'fs'
+import convert from 'heic-convert'
 import { NextRequest, NextResponse } from 'next/server'
-import { tmpdir } from 'os'
 import path from 'path'
 
 export const dynamic = 'force-dynamic'
@@ -63,27 +61,16 @@ function contentTypeFromFile(name: string, contentType: string) {
   return ''
 }
 
-function convertHeicToJpeg(buffer: Buffer) {
-  const id = randomUUID()
-  const inputPath = path.join(tmpdir(), `${id}.heic`)
-  const outputPath = path.join(tmpdir(), `${id}.jpg`)
+async function convertHeicToJpeg(buffer: Buffer) {
+  const output = await convert({
+    buffer,
+    format: 'JPEG',
+    quality: 0.92,
+  })
 
-  try {
-    writeFileSync(inputPath, buffer)
-    execFileSync('sips', ['-s', 'format', 'jpeg', inputPath, '--out', outputPath], {
-      encoding: 'utf-8',
-      timeout: 15000,
-    })
-
-    return readFileSync(outputPath)
-  } finally {
-    try {
-      unlinkSync(inputPath)
-    } catch {}
-    try {
-      unlinkSync(outputPath)
-    } catch {}
-  }
+  if (Buffer.isBuffer(output)) return output
+  if (output instanceof ArrayBuffer) return Buffer.from(new Uint8Array(output))
+  return Buffer.from(output)
 }
 
 async function downloadFile(url: string) {
@@ -96,14 +83,14 @@ async function downloadFile(url: string) {
   }
 }
 
-function normalizeDisplayImage(buffer: Buffer, fileName: string, contentType: string) {
+async function normalizeDisplayImage(buffer: Buffer, fileName: string, contentType: string) {
   const detectedContentType = contentTypeFromFile(fileName, contentType)
   if (DISPLAY_IMAGE_TYPES.has(detectedContentType)) {
     return { buffer, contentType: detectedContentType === 'image/jpg' ? 'image/jpeg' : detectedContentType }
   }
 
   if (detectedContentType === 'image/heic' || detectedContentType === 'image/heif') {
-    return { buffer: convertHeicToJpeg(buffer), contentType: 'image/jpeg' }
+    return { buffer: await convertHeicToJpeg(buffer), contentType: 'image/jpeg' }
   }
 
   throw new Error('표시할 수 없는 명함 이미지 형식입니다.')
@@ -128,7 +115,7 @@ export async function GET(request: NextRequest) {
     }
 
     const downloaded = await downloadFile(file.url)
-    const image = normalizeDisplayImage(downloaded.buffer, file.name, file.contentType || downloaded.contentType)
+    const image = await normalizeDisplayImage(downloaded.buffer, file.name, file.contentType || downloaded.contentType)
 
     return new NextResponse(new Uint8Array(image.buffer), {
       headers: {

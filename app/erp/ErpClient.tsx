@@ -73,6 +73,13 @@ function statusIncludesAny(status: string, keywords: string[]) {
   return keywords.some((keyword) => compactStatus.includes(keyword.replace(/\s+/g, '')))
 }
 
+function menuFromQuery(menu: string | null): MenuId {
+  if (menu === 'calendarIntegration') return 'settings'
+  if (menu === 'profile' || menu === 'request') return 'project'
+  if (menu && isMenuId(menu)) return menu
+  return 'dashboard'
+}
+
 type AdsSummary = {
   rowCount: number
   impressions: number
@@ -124,6 +131,7 @@ type StoreMetric = {
 
 export default function ErpClient() {
   const [activeMenu, setActiveMenu] = useState<MenuId>('dashboard')
+  const [menuSynced, setMenuSynced] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [sidebarPreview, setSidebarPreview] = useState(false)
   const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
@@ -203,15 +211,22 @@ export default function ErpClient() {
   }
 
   useEffect(() => {
-    const menu = new URLSearchParams(window.location.search).get('menu')
-    if (menu === 'calendarIntegration') {
-      setActiveMenu('settings')
-    } else if (menu === 'profile' || menu === 'request') {
-      setActiveMenu('project')
-    } else if (menu && isMenuId(menu)) {
-      setActiveMenu(menu)
-    }
+    setActiveMenu(menuFromQuery(new URLSearchParams(window.location.search).get('menu')))
+    setMenuSynced(true)
   }, [])
+
+  useEffect(() => {
+    if (!menuSynced) return
+
+    const currentUrl = new URL(window.location.href)
+    if (activeMenu === 'dashboard') {
+      currentUrl.searchParams.delete('menu')
+    } else {
+      currentUrl.searchParams.set('menu', activeMenu)
+    }
+
+    window.history.replaceState(null, '', `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`)
+  }, [activeMenu, menuSynced])
 
   const loadCalendarEvents = async () => {
     setCalendarLoading(true)
@@ -482,8 +497,23 @@ export default function ErpClient() {
   const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
   const headerConnectionMessage = activeMenu === 'card' ? '' : connectionMessage
-  const headerLoading = activeMenu === 'card' ? businessCardsLoading : loading
-  const refreshActiveMenu = activeMenu === 'card' ? loadBusinessCards : loadStores
+  const headerLoading =
+    activeMenu === 'card'
+      ? businessCardsLoading
+      : ['schedule', 'weekly'].includes(activeMenu)
+        ? calendarLoading
+        : activeMenu === 'meeting'
+          ? meetingDbLoading || calendarLoading
+          : activeMenu === 'mail'
+            ? mailLoading
+            : loading
+  const refreshActiveMenu = () => {
+    if (activeMenu === 'card') return loadBusinessCards()
+    if (activeMenu === 'schedule' || activeMenu === 'weekly') return loadCalendarEvents()
+    if (activeMenu === 'meeting') return calendarEvents.length ? syncMeetingRecords(calendarEvents) : loadMeetingRecords()
+    if (activeMenu === 'mail') return loadMailItems()
+    return loadStores()
+  }
 
   const selectMenu = (menuId: MenuId) => {
     setActiveMenu(menuId)
