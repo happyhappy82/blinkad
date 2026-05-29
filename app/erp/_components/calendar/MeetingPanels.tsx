@@ -227,14 +227,12 @@ function MeetingDatabasePanel({
           <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
         ) : (
           <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-            <table className="min-w-[1240px] w-full border-collapse text-left">
+            <table className="min-w-[980px] w-full border-collapse text-left">
               <thead className="bg-white/[0.04]">
                 <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
                   <th className="w-[150px] px-4 py-3">날짜</th>
                   <th className="w-[220px] px-4 py-3">미팅</th>
-                  <th className="w-[160px] px-4 py-3">고객사</th>
-                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
-                  <th className="w-[160px] px-4 py-3">참석자</th>
+                  <th className="w-[220px] px-4 py-3">매장명 / 상태</th>
                   <th className="px-4 py-3">미팅 내용</th>
                   <th className="w-[120px] px-4 py-3">상세</th>
                 </tr>
@@ -279,19 +277,14 @@ function MeetingDatabasePanel({
                         <span className="mt-2 inline-flex rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-black text-gray-400">
                           {meeting.clientStatus}
                         </span>
+                      ) : meeting.status ? (
+                        <span className="mt-2 inline-flex rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[11px] font-black text-gray-400">
+                          {meeting.status}
+                        </span>
                       ) : null}
                       {meeting.clientContact ? (
                         <p className="mt-2 text-xs font-semibold text-gray-500">{meeting.clientContact}</p>
                       ) : null}
-                    </td>
-                    <td className="px-4 py-3">
-                      {meeting.calendarName ? <p className="text-xs font-black text-gray-400">{meeting.calendarName}</p> : null}
-                      {meeting.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{meeting.location}</p> : null}
-                    </td>
-                    <td className="px-4 py-3">
-                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {meeting.attendees.length > 0 ? meeting.attendees.slice(0, 3).join(', ') : '-'}
-                      </p>
                     </td>
                     <td className="px-4 py-3">
                       <button

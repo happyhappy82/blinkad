@@ -80,6 +80,31 @@ function menuFromQuery(menu: string | null): MenuId {
   return 'dashboard'
 }
 
+function readPersistedMenu(): MenuId {
+  if (typeof window === 'undefined') return 'dashboard'
+
+  const queryMenu = new URLSearchParams(window.location.search).get('menu')
+  if (queryMenu) return menuFromQuery(queryMenu)
+
+  const sessionMenu = window.sessionStorage.getItem('blinkad-erp-active-menu')
+  return menuFromQuery(sessionMenu)
+}
+
+function persistMenu(menu: MenuId) {
+  if (typeof window === 'undefined') return
+
+  window.sessionStorage.setItem('blinkad-erp-active-menu', menu)
+
+  const currentUrl = new URL(window.location.href)
+  if (menu === 'dashboard') {
+    currentUrl.searchParams.delete('menu')
+  } else {
+    currentUrl.searchParams.set('menu', menu)
+  }
+
+  window.history.replaceState(null, '', `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`)
+}
+
 type AdsSummary = {
   rowCount: number
   impressions: number
@@ -211,21 +236,13 @@ export default function ErpClient() {
   }
 
   useEffect(() => {
-    setActiveMenu(menuFromQuery(new URLSearchParams(window.location.search).get('menu')))
+    setActiveMenu(readPersistedMenu())
     setMenuSynced(true)
   }, [])
 
   useEffect(() => {
     if (!menuSynced) return
-
-    const currentUrl = new URL(window.location.href)
-    if (activeMenu === 'dashboard') {
-      currentUrl.searchParams.delete('menu')
-    } else {
-      currentUrl.searchParams.set('menu', activeMenu)
-    }
-
-    window.history.replaceState(null, '', `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`)
+    persistMenu(activeMenu)
   }, [activeMenu, menuSynced])
 
   const loadCalendarEvents = async () => {
@@ -508,6 +525,7 @@ export default function ErpClient() {
             ? mailLoading
             : loading
   const refreshActiveMenu = () => {
+    persistMenu(activeMenu)
     if (activeMenu === 'card') return loadBusinessCards()
     if (activeMenu === 'schedule' || activeMenu === 'weekly') return loadCalendarEvents()
     if (activeMenu === 'meeting') return calendarEvents.length ? syncMeetingRecords(calendarEvents) : loadMeetingRecords()
@@ -516,6 +534,7 @@ export default function ErpClient() {
   }
 
   const selectMenu = (menuId: MenuId) => {
+    persistMenu(menuId)
     setActiveMenu(menuId)
     if (menuId === 'project' && !activeStoreTitle) {
       setActiveStoreTitle(projectStores[0]?.title || '')
