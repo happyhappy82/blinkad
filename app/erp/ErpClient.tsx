@@ -2296,9 +2296,17 @@ function StoreOperationsPanel({
   const [reportHistoryMessage, setReportHistoryMessage] = useState('')
   const [selectedHistoryWeekKey, setSelectedHistoryWeekKey] = useState('')
   const [updatingReportDate, setUpdatingReportDate] = useState<string | null>(null)
+  const [autoSavingReportDate, setAutoSavingReportDate] = useState<string | null>(null)
+  const [autoSavedReportDate, setAutoSavedReportDate] = useState<string | null>(null)
+  const [autoSaveErrorDate, setAutoSaveErrorDate] = useState<string | null>(null)
   const [generatingReportDate, setGeneratingReportDate] = useState<string | null>(null)
   const [reportDrafts, setReportDrafts] = useState<Record<string, string>>({})
   const [selectedWeeklyReportDate, setSelectedWeeklyReportDate] = useState('')
+  const reportDraftsRef = useRef(reportDrafts)
+  const lastSavedReportMemoRef = useRef<Record<string, string>>({})
+  const savingReportMemoRef = useRef<Record<string, string>>({})
+  const autoSaveTimerRef = useRef<number | null>(null)
+  const autoSaveVersionRef = useRef(0)
   const [historyDetail, setHistoryDetail] = useState<{
     report: StoreWeeklyReport
     date: Date
@@ -2333,6 +2341,19 @@ function StoreOperationsPanel({
   const selectedWeeklyReportGenerating = selectedWeeklyReport
     ? generatingReportDate === selectedWeeklyReport.dateKey
     : false
+  const selectedWeeklyReportAutoSaveStatus = selectedWeeklyReport
+    ? autoSavingReportDate === selectedWeeklyReport.dateKey
+      ? '저장 중'
+      : autoSaveErrorDate === selectedWeeklyReport.dateKey
+        ? '자동저장 실패'
+        : autoSavedReportDate === selectedWeeklyReport.dateKey
+          ? '자동저장됨'
+          : '자동저장 대기'
+    : ''
+
+  useEffect(() => {
+    reportDraftsRef.current = reportDrafts
+  }, [reportDrafts])
 
   useEffect(() => {
     const syncReportWeek = () => {
@@ -2410,7 +2431,9 @@ function StoreOperationsPanel({
       const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
       setWeeklyReports(data.reports || [])
       setReportHistory(historyData.reports || [])
-      setReportDrafts(Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || ''])))
+      const nextReportDrafts = Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || '']))
+      lastSavedReportMemoRef.current = nextReportDrafts
+      setReportDrafts(nextReportDrafts)
       setWeeklyReportMessage(
         data.message ||
           (data.connected ? 'Notion 보고 DB와 연결되었습니다.' : '보고 DB 연결 전 샘플 데이터로 표시 중입니다.')
@@ -2421,14 +2444,14 @@ function StoreOperationsPanel({
       )
     } catch {
       setWeeklyReports(activeWorkspace.weeklyReports || [])
-      setReportDrafts(
-        Object.fromEntries(
-          (activeWorkspace.weeklyReports || []).map((report) => {
-            const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
-            return [date, report.memo || '']
-          })
-        )
+      const nextReportDrafts = Object.fromEntries(
+        (activeWorkspace.weeklyReports || []).map((report) => {
+          const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
+          return [date, report.memo || '']
+        })
       )
+      lastSavedReportMemoRef.current = nextReportDrafts
+      setReportDrafts(nextReportDrafts)
       setReportHistory([])
       setWeeklyReportMessage('보고 DB를 불러오지 못해 기본 주간 보고표로 표시 중입니다.')
       setReportHistoryMessage('기존 보고 현황을 불러오지 못했습니다.')
@@ -2465,16 +2488,33 @@ function StoreOperationsPanel({
     }
   }, [loadWeeklyReports])
 
-  const updateWeeklyReportStatus = async (
-    report: StoreWeeklyReport,
-    reportDateKey: string,
-    status: StoreWeeklyReportStatus,
-    memoOverride?: string
-  ) => {
-    if (!selectedStore || !activeWorkspace) return
+  const saveWeeklyReport = useCallback(async ({
+    report,
+    reportDateKey,
+    status,
+    memo,
+    mode = 'manual',
+  }: {
+    report: StoreWeeklyReport
+    reportDateKey: string
+    status: StoreWeeklyReportStatus
+    memo: string
+    mode?: 'manual' | 'auto'
+  }) => {
+    if (!selectedStore || !activeWorkspace) return false
 
-    const reportMemo = memoOverride ?? reportDrafts[reportDateKey] ?? report.memo
-    setUpdatingReportDate(reportDateKey)
+    const reportMemo = memo
+    if (mode === 'manual') {
+      setUpdatingReportDate(reportDateKey)
+    } else {
+      setAutoSavingReportDate(reportDateKey)
+      setAutoSavedReportDate(null)
+      setAutoSaveErrorDate(null)
+      savingReportMemoRef.current = {
+        ...savingReportMemoRef.current,
+        [reportDateKey]: reportMemo,
+      }
+    }
     setWeeklyReports((current) => {
       const source = current.length ? current : displayWeeklyReports
       return source.map((item) => {
@@ -2508,15 +2548,126 @@ function StoreOperationsPanel({
       const data = (await response.json()) as WeeklyReportApiResponse
       if (data.connected) {
         setWeeklyReports(data.reports || [])
-        setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
+        const nextReportDrafts = Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || '']))
+        lastSavedReportMemoRef.current = {
+          ...lastSavedReportMemoRef.current,
+          ...nextReportDrafts,
+          [reportDateKey]: reportMemo,
+        }
+        setReportDrafts((current) => ({
+          ...nextReportDrafts,
+          ...current,
+          [reportDateKey]: current[reportDateKey] === reportMemo ? nextReportDrafts[reportDateKey] || reportMemo : current[reportDateKey],
+        }))
+      } else {
+        lastSavedReportMemoRef.current = {
+          ...lastSavedReportMemoRef.current,
+          [reportDateKey]: reportMemo,
+        }
       }
-      setWeeklyReportMessage(data.message || '발송상태를 변경했습니다.')
+      if (mode === 'manual') {
+        setWeeklyReportMessage(data.message || '보고 내용을 저장했습니다.')
+      } else {
+        setWeeklyReportMessage(data.message || '보고 내용이 자동 저장되었습니다.')
+        setAutoSavedReportDate(reportDateKey)
+      }
+      return true
     } catch {
-      setWeeklyReportMessage('발송상태 변경 중 오류가 발생했습니다.')
+      if (mode === 'manual') {
+        setWeeklyReportMessage('보고 내용 저장 중 오류가 발생했습니다.')
+      } else {
+        setWeeklyReportMessage('보고 내용 자동저장 중 오류가 발생했습니다.')
+        setAutoSaveErrorDate(reportDateKey)
+      }
+      return false
     } finally {
-      setUpdatingReportDate(null)
+      if (mode === 'manual') {
+        setUpdatingReportDate(null)
+      } else {
+        window.setTimeout(() => {
+          if (savingReportMemoRef.current[reportDateKey] === reportMemo) {
+            const nextSavingMemos = { ...savingReportMemoRef.current }
+            delete nextSavingMemos[reportDateKey]
+            savingReportMemoRef.current = nextSavingMemos
+          }
+        }, 0)
+        setAutoSavingReportDate(null)
+      }
     }
+  }, [activeWorkspace, displayWeeklyReports, selectedStore, weekStart, weeklyReportDates])
+
+  const updateWeeklyReportStatus = async (
+    report: StoreWeeklyReport,
+    reportDateKey: string,
+    status: StoreWeeklyReportStatus,
+    memoOverride?: string
+  ) => {
+    const reportMemo = memoOverride ?? reportDrafts[reportDateKey] ?? report.memo
+    if (autoSaveTimerRef.current) {
+      window.clearTimeout(autoSaveTimerRef.current)
+      autoSaveTimerRef.current = null
+    }
+    autoSaveVersionRef.current += 1
+    await saveWeeklyReport({
+      report,
+      reportDateKey,
+      status,
+      memo: reportMemo,
+      mode: 'manual',
+    })
   }
+
+  useEffect(() => {
+    if (!selectedWeeklyReport || !selectedStore || !activeWorkspace) return
+
+    const reportDateKey = selectedWeeklyReport.dateKey
+    const reportMemo = selectedWeeklyReport.draftMemo
+    const lastSavedMemo =
+      savingReportMemoRef.current[reportDateKey] ??
+      lastSavedReportMemoRef.current[reportDateKey] ??
+      selectedWeeklyReport.report.memo ??
+      ''
+
+    if (autoSaveTimerRef.current) {
+      window.clearTimeout(autoSaveTimerRef.current)
+      autoSaveTimerRef.current = null
+    }
+
+    if (reportMemo === lastSavedMemo) return
+
+    const autoSaveVersion = autoSaveVersionRef.current + 1
+    autoSaveVersionRef.current = autoSaveVersion
+    setAutoSavedReportDate(null)
+    setAutoSaveErrorDate(null)
+
+    autoSaveTimerRef.current = window.setTimeout(async () => {
+      const saved = await saveWeeklyReport({
+        report: selectedWeeklyReport.report,
+        reportDateKey,
+        status: selectedWeeklyReport.report.status,
+        memo: reportMemo,
+        mode: 'auto',
+      })
+
+      if (
+        saved &&
+        autoSaveVersionRef.current === autoSaveVersion &&
+        reportDraftsRef.current[reportDateKey] === reportMemo
+      ) {
+        lastSavedReportMemoRef.current = {
+          ...lastSavedReportMemoRef.current,
+          [reportDateKey]: reportMemo,
+        }
+      }
+    }, 900)
+
+    return () => {
+      if (autoSaveTimerRef.current) {
+        window.clearTimeout(autoSaveTimerRef.current)
+        autoSaveTimerRef.current = null
+      }
+    }
+  }, [activeWorkspace, saveWeeklyReport, selectedStore, selectedWeeklyReport])
 
   const canAutoGenerateReport = (title: string) =>
     title.includes('키워드') || title.includes('종합') || title.includes('데이터') || title.includes('마감')
@@ -2539,7 +2690,9 @@ function StoreOperationsPanel({
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       setWeeklyReports(data.reports || [])
-      setReportDrafts(Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || ''])))
+      const nextReportDrafts = Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || '']))
+      lastSavedReportMemoRef.current = nextReportDrafts
+      setReportDrafts(nextReportDrafts)
       setWeeklyReportMessage(data.message || `${report.title} 보고 내용을 자동 생성했습니다.`)
     } catch {
       setWeeklyReportMessage(`${report.title} 보고 자동 생성 중 오류가 발생했습니다.`)
@@ -2674,7 +2827,12 @@ function StoreOperationsPanel({
                         </span>
                       </div>
                       <label className="mt-4 block">
-                        <span className="mb-2 block text-xs font-black text-gray-500">보고 내용</span>
+                        <span className="mb-2 flex items-center justify-between gap-3 text-xs font-black text-gray-500">
+                          <span>보고 내용</span>
+                          <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] leading-none ${autoSaveStatusBadge(selectedWeeklyReportAutoSaveStatus)}`}>
+                            {selectedWeeklyReportAutoSaveStatus}
+                          </span>
+                        </span>
                         <textarea
                           value={selectedWeeklyReport.draftMemo}
                           disabled={selectedWeeklyReportUpdating}
@@ -3313,6 +3471,13 @@ function taskStatusBadge(status: string) {
   if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (statusIncludesAny(status, ['대기', '예정'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
   return 'border-white/15 bg-white/5 text-gray-300'
+}
+
+function autoSaveStatusBadge(status: string) {
+  if (status.includes('실패')) return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+  if (status.includes('저장 중')) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (status.includes('자동저장됨')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  return 'border-white/15 bg-white/5 text-gray-400'
 }
 
 function metricValue(workspace: StoreProductWorkspace, keyword: string) {
