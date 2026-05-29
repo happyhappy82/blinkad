@@ -6,32 +6,14 @@ import path from 'path'
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-type CalendarEventPayload = {
-  id?: string
-  title?: string
-  start?: string
-  end?: string
-  type?: string
-  location?: string
-  attendees?: string[]
-  status?: string
-  memo?: string
-  source?: string
-  calendarName?: string
-  calendarId?: string
-}
+const meetingSourcePageId = '2ea753ebc01380e18b25c0bc664238b8'
+const preferredMeetingDatabaseTitle = '팔로업 대상 리스트'
 
 const propertyCandidates = {
-  title: ['미팅명', '미팅', '회의명', '일정명', '제목', '이름', 'Name'],
-  eventId: ['캘린더 이벤트 ID', '캘린더ID', '이벤트ID', 'Calendar Event ID', 'Event ID'],
-  date: ['미팅일시', '미팅일', '일시', '날짜', 'Date'],
-  status: ['상태', 'Status'],
-  client: ['고객사', '매장명', '고객명', '클라이언트', 'Client', 'Store'],
-  calendarName: ['캘린더', 'Calendar'],
-  location: ['장소', 'Location'],
-  attendees: ['참석자', 'Attendees'],
-  memo: ['미팅내용', '미팅 내용', '회의록', '논의내용', '내용', '메모', 'Summary', 'Note'],
-  source: ['소스', 'Source'],
+  storeName: ['매장명', '상호명', '고객사', '고객명', '클라이언트', 'Client', 'Store', 'Name'],
+  managerName: ['담당자명', '담당자', '연락담당자', '대표자', 'Manager', 'Owner'],
+  status: ['처리상태', '진행상태', '상태', 'Status'],
+  meetingSummary: ['미팅요약', '미팅 요약', '미팅내용', '미팅 내용', '회의록', '논의내용', '메모', 'Summary', 'Note'],
 }
 
 function resolveNotionToken() {
@@ -52,27 +34,49 @@ function resolveNotionToken() {
 
 function configuredMeetingDatabaseId() {
   return (
-    process.env.BLINKAD_MEETING_DATABASE_ID ||
-    process.env.BLINKAD_NOTION_MEETING_DATABASE_ID ||
-    process.env.ERP_MEETING_DATABASE_ID ||
-    process.env.NOTION_MEETING_DATABASE_ID ||
+    process.env.BLINKAD_MEETING_SOURCE_DATABASE_ID ||
+    process.env.ERP_MEETING_SOURCE_DATABASE_ID ||
+    process.env.NOTION_MEETING_SOURCE_DATABASE_ID ||
     ''
   )
 }
 
-function propText(prop: any): string {
-  if (!prop) return ''
-  if (prop.type === 'title') return prop.title?.map((item: any) => item.plain_text).join('') || ''
-  if (prop.type === 'rich_text') return prop.rich_text?.map((item: any) => item.plain_text).join('') || ''
-  if (prop.type === 'select') return prop.select?.name || ''
-  if (prop.type === 'status') return prop.status?.name || ''
-  if (prop.type === 'multi_select') return prop.multi_select?.map((item: any) => item.name).join(', ') || ''
-  if (prop.type === 'date') return prop.date?.start || ''
-  if (prop.type === 'url') return prop.url || ''
-  if (prop.type === 'email') return prop.email || ''
-  if (prop.type === 'phone_number') return prop.phone_number || ''
-  if (prop.type === 'number') return String(prop.number ?? '')
-  if (prop.type === 'checkbox') return prop.checkbox ? 'true' : 'false'
+function configuredMeetingSourcePageId() {
+  return process.env.BLINKAD_MEETING_SOURCE_PAGE_ID || process.env.ERP_MEETING_SOURCE_PAGE_ID || meetingSourcePageId
+}
+
+function plainText(property: any): string {
+  if (!property) return ''
+  if (property.type === 'title') return property.title?.map((item: any) => item.plain_text).join('') || ''
+  if (property.type === 'rich_text') return property.rich_text?.map((item: any) => item.plain_text).join('') || ''
+  if (property.type === 'select') return property.select?.name || ''
+  if (property.type === 'status') return property.status?.name || ''
+  if (property.type === 'multi_select') return property.multi_select?.map((item: any) => item.name).join(', ') || ''
+  if (property.type === 'date') return property.date?.start || ''
+  if (property.type === 'url') return property.url || ''
+  if (property.type === 'email') return property.email || ''
+  if (property.type === 'phone_number') return property.phone_number || ''
+  if (property.type === 'number') return String(property.number ?? '')
+  if (property.type === 'checkbox') return property.checkbox ? 'true' : 'false'
+  if (property.type === 'people') {
+    return property.people?.map((person: any) => person.name || person.person?.email || '').filter(Boolean).join(', ') || ''
+  }
+  if (property.type === 'formula') {
+    const formula = property.formula
+    if (!formula) return ''
+    if (formula.type === 'string') return formula.string || ''
+    if (formula.type === 'number') return String(formula.number ?? '')
+    if (formula.type === 'boolean') return formula.boolean ? 'true' : 'false'
+    if (formula.type === 'date') return formula.date?.start || ''
+  }
+  if (property.type === 'rollup') {
+    const rollup = property.rollup
+    if (!rollup) return ''
+    if (rollup.type === 'array') return rollup.array?.map(plainText).filter(Boolean).join(', ') || ''
+    if (rollup.type === 'number') return String(rollup.number ?? '')
+    if (rollup.type === 'date') return rollup.date?.start || ''
+  }
+  if (property.type === 'relation') return property.relation?.length ? `${property.relation.length}개 연결` : ''
   return ''
 }
 
@@ -92,229 +96,89 @@ function findPropertyName(properties: Record<string, any>, candidates: string[],
 }
 
 function titlePropertyName(properties: Record<string, any>) {
-  return findPropertyName(properties, propertyCandidates.title, 'title') || Object.entries(properties).find(([, prop]) => prop.type === 'title')?.[0] || ''
+  return Object.entries(properties).find(([, prop]) => prop.type === 'title')?.[0] || ''
 }
 
 function meetingSchemaMap(schema: Record<string, any>) {
+  const title = titlePropertyName(schema)
+
   return {
-    title: titlePropertyName(schema),
-    eventId: findPropertyName(schema, propertyCandidates.eventId),
-    date: findPropertyName(schema, propertyCandidates.date),
+    storeName: findPropertyName(schema, propertyCandidates.storeName) || title,
+    managerName: findPropertyName(schema, propertyCandidates.managerName),
     status: findPropertyName(schema, propertyCandidates.status),
-    client: findPropertyName(schema, propertyCandidates.client),
-    calendarName: findPropertyName(schema, propertyCandidates.calendarName),
-    location: findPropertyName(schema, propertyCandidates.location),
-    attendees: findPropertyName(schema, propertyCandidates.attendees),
-    memo: findPropertyName(schema, propertyCandidates.memo),
-    source: findPropertyName(schema, propertyCandidates.source),
+    meetingSummary: findPropertyName(schema, propertyCandidates.meetingSummary),
+    title,
   }
 }
 
-function optionName(propSchema: any, value: string, fallbacks: string[] = []) {
-  const options = propSchema?.[propSchema.type]?.options || []
-  const names = options.map((option: any) => option.name).filter(Boolean)
-  if (!names.length) return value
-  if (names.includes(value)) return value
-  return fallbacks.find((fallback) => names.includes(fallback)) || undefined
+function databaseTitle(database: any) {
+  return database.title?.map((item: any) => item.plain_text).join('') || ''
 }
 
-function propertyValue(propSchema: any, value: string, fallbacks: string[] = []) {
-  if (!propSchema) return undefined
-  if (propSchema.type === 'title') return { title: value ? [{ text: { content: value } }] : [] }
-  if (propSchema.type === 'rich_text') return { rich_text: value ? [{ text: { content: value } }] : [] }
-  if (propSchema.type === 'select') {
-    const name = value ? optionName(propSchema, value, fallbacks) : undefined
-    return name ? { select: { name } } : { select: null }
-  }
-  if (propSchema.type === 'status') {
-    const name = value ? optionName(propSchema, value, fallbacks) : undefined
-    return name ? { status: { name } } : undefined
-  }
-  if (propSchema.type === 'date') return value ? { date: { start: value } } : { date: null }
-  if (propSchema.type === 'url') return { url: value || null }
-  if (propSchema.type === 'email') return { email: value || null }
-  if (propSchema.type === 'phone_number') return { phone_number: value || null }
-  if (propSchema.type === 'number') return { number: Number(value) || null }
-  if (propSchema.type === 'checkbox') return { checkbox: value === '완료' || value === 'true' }
-  if (propSchema.type === 'multi_select') {
-    return value
-      ? { multi_select: value.split(',').map((item) => ({ name: item.trim() })).filter((item) => item.name) }
-      : { multi_select: [] }
-  }
-  return undefined
-}
+async function findChildMeetingDatabaseId(notion: Client) {
+  const sourcePageId = configuredMeetingSourcePageId()
+  let cursor: string | undefined
 
-function setProperty(target: Record<string, any>, schema: Record<string, any>, name: string, value: string, fallbacks: string[] = []) {
-  if (!name) return
-  const converted = propertyValue(schema[name], value, fallbacks)
-  if (converted) target[name] = converted
-}
+  do {
+    const response = await notion.blocks.children.list({
+      block_id: sourcePageId,
+      page_size: 100,
+      start_cursor: cursor,
+    })
 
-function normalizeMeetingStatus(status?: string) {
-  const value = String(status || '').toLowerCase()
-  if (value.includes('cancel') || value.includes('취소')) return '취소'
-  if (value.includes('done') || value.includes('complete') || value.includes('완료')) return '완료'
-  return '예정'
-}
+    const childDatabase = response.results.find((block: any) => {
+      const title = block.child_database?.title || ''
+      return block.type === 'child_database' && title.replace(/\s+/g, '').includes(preferredMeetingDatabaseTitle.replace(/\s+/g, ''))
+    }) as any
 
-function isMeetingEvent(event: CalendarEventPayload) {
-  const text = `${event.title || ''} ${event.memo || ''}`.toLowerCase()
-  return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담') || text.includes('meet')
-}
+    if (childDatabase?.id) return childDatabase.id
+    cursor = response.next_cursor || undefined
+  } while (cursor)
 
-function clientNameFromTitle(title: string) {
-  return title
-    .replace(/제안\s*미팅|상담|회의|미팅|打合せ|meeting/gi, '')
-    .replace(/\s{2,}/g, ' ')
-    .trim()
-}
-
-function meetingRecordFromPage(page: any, map: ReturnType<typeof meetingSchemaMap>) {
-  const properties = page.properties || {}
-  const attendees = propText(properties[map.attendees])
-
-  return {
-    id: page.id,
-    title: propText(properties[map.title]) || '제목 없는 미팅',
-    date: propText(properties[map.date]) || page.created_time || '',
-    status: propText(properties[map.status]) || '예정',
-    client: propText(properties[map.client]),
-    calendarName: propText(properties[map.calendarName]),
-    location: propText(properties[map.location]),
-    attendees: attendees ? attendees.split(',').map((item) => item.trim()).filter(Boolean) : [],
-    memo: propText(properties[map.memo]),
-    calendarEventId: propText(properties[map.eventId]),
-    notionUrl: page.url || '',
-  }
-}
-
-function sortMeetings(a: ReturnType<typeof meetingRecordFromPage>, b: ReturnType<typeof meetingRecordFromPage>) {
-  return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
-}
-
-async function findMeetingDatabaseBySearch(notion: Client) {
-  const response = await notion.search({
-    query: '미팅관리',
-    filter: { property: 'object', value: 'database' },
-    page_size: 10,
-  })
-  const database = response.results.find((result: any) => {
-    const title = result.title?.map((item: any) => item.plain_text).join('') || ''
-    return title.replace(/\s+/g, '').includes('미팅관리')
-  })
-  return database?.id || ''
+  return ''
 }
 
 async function resolveMeetingDatabaseId(notion: Client) {
   const configured = configuredMeetingDatabaseId()
   if (configured) return configured
-  return findMeetingDatabaseBySearch(notion)
+  return findChildMeetingDatabaseId(notion)
 }
 
-async function loadMeetingPages(notion: Client, databaseId: string, map: ReturnType<typeof meetingSchemaMap>) {
-  const sorts = map.date ? [{ property: map.date, direction: 'descending' as const }] : undefined
+async function loadMeetingPages(notion: Client, databaseId: string) {
   const response = await notion.databases.query({
     database_id: databaseId,
     page_size: 100,
-    ...(sorts ? { sorts } : {}),
   })
   return response.results as any[]
 }
 
-function matchExistingPage(
-  pages: any[],
-  map: ReturnType<typeof meetingSchemaMap>,
-  event: CalendarEventPayload
-) {
-  const eventId = event.id || ''
-  const title = event.title || ''
-  const start = event.start || ''
+function meetingRecordFromPage(page: any, map: ReturnType<typeof meetingSchemaMap>) {
+  const properties = page.properties || {}
+  const storeName = plainText(properties[map.storeName])
+  const managerName = plainText(properties[map.managerName])
+  const status = plainText(properties[map.status])
+  const meetingSummary = plainText(properties[map.meetingSummary])
 
-  if (eventId && map.eventId) {
-    const byEventId = pages.find((page) => propText(page.properties?.[map.eventId]) === eventId)
-    if (byEventId) return byEventId
+  return {
+    id: page.id,
+    storeName,
+    managerName,
+    meetingSummary,
+    title: storeName || plainText(properties[map.title]) || '매장명 없음',
+    date: page.created_time || '',
+    status,
+    client: storeName,
+    calendarName: '',
+    location: '',
+    attendees: managerName ? [managerName] : [],
+    memo: meetingSummary,
+    calendarEventId: '',
+    notionUrl: page.url || '',
   }
-
-  return pages.find((page) => {
-    const properties = page.properties || {}
-    return propText(properties[map.title]) === title && propText(properties[map.date]) === start
-  })
-}
-
-function eventProperties(
-  schema: Record<string, any>,
-  map: ReturnType<typeof meetingSchemaMap>,
-  event: CalendarEventPayload,
-  existing?: any
-) {
-  const properties: Record<string, any> = {}
-  const existingMemo = existing && map.memo ? propText(existing.properties?.[map.memo]) : ''
-  const attendees = (event.attendees || []).join(', ')
-  const title = event.title || '제목 없는 미팅'
-
-  setProperty(properties, schema, map.title, title)
-  setProperty(properties, schema, map.eventId, event.id || '')
-  setProperty(properties, schema, map.date, event.start || '')
-  setProperty(properties, schema, map.status, normalizeMeetingStatus(event.status), ['예정', '미팅 예정', '진행 예정', '대기'])
-  setProperty(properties, schema, map.client, clientNameFromTitle(title))
-  setProperty(properties, schema, map.calendarName, event.calendarName || '')
-  setProperty(properties, schema, map.location, event.location || '')
-  setProperty(properties, schema, map.attendees, attendees)
-  setProperty(properties, schema, map.source, '용올캘린더')
-
-  if (!existingMemo && event.memo) {
-    setProperty(properties, schema, map.memo, event.memo)
-  }
-
-  return properties
-}
-
-async function syncCalendarMeetings(notion: Client, databaseId: string, events: CalendarEventPayload[]) {
-  const database = await notion.databases.retrieve({ database_id: databaseId })
-  const schema = (database as any).properties || {}
-  const map = meetingSchemaMap(schema)
-
-  if (!map.title) {
-    throw new Error('미팅관리 DB에서 제목 속성을 찾지 못했습니다.')
-  }
-
-  const pages = await loadMeetingPages(notion, databaseId, map)
-  const meetingEvents = events.filter(isMeetingEvent)
-
-  for (const event of meetingEvents) {
-    const existing = matchExistingPage(pages, map, event)
-    const properties = eventProperties(schema, map, event, existing)
-
-    if (existing) {
-      await notion.pages.update({ page_id: existing.id, properties })
-    } else {
-      await notion.pages.create({
-        parent: { database_id: databaseId },
-        properties,
-      })
-    }
-  }
-
-  const updatedPages = await loadMeetingPages(notion, databaseId, map)
-  return updatedPages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings)
 }
 
 function fallbackMeetings() {
-  return [
-    {
-      id: 'fallback-meeting-1',
-      title: '역대짬뽕 제안 미팅',
-      date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
-      status: '샘플',
-      client: '역대짬뽕',
-      calendarName: '용올캘린더',
-      location: '오프라인 미팅',
-      attendees: ['권순현', '역대짬뽕 대표'],
-      memo: 'Google 프로필과 지점별 웹페이지 연결 전략 설명',
-      calendarEventId: 'sample-meeting-1',
-      notionUrl: '',
-    },
-  ]
+  return []
 }
 
 function meetingConnectionErrorMessage(error: unknown) {
@@ -323,10 +187,11 @@ function meetingConnectionErrorMessage(error: unknown) {
   const isMissingOrUnsharedDatabase =
     code === 'object_not_found' ||
     message.includes('Could not find database') ||
+    message.includes('does not contain any data sources accessible') ||
     message.includes('Make sure the relevant pages and databases are shared')
 
   if (isMissingOrUnsharedDatabase) {
-    return 'Notion 미팅관리 DB가 Integration에 공유되지 않았습니다. DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
+    return `${preferredMeetingDatabaseTitle} DB가 Notion Integration에 공유되지 않았습니다. 링크 페이지가 아니라 DB 자체의 공유/연결 메뉴에서 Integration 권한을 추가해주세요.`
   }
 
   return message || 'Notion 미팅관리 DB 연결에 실패했습니다.'
@@ -339,7 +204,7 @@ async function getNotionAndDatabase() {
     return {
       notion: null,
       databaseId: '',
-      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 미팅 데이터로 표시 중입니다.',
+      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 미팅관리 DB를 불러오지 못했습니다.',
     }
   }
 
@@ -350,7 +215,7 @@ async function getNotionAndDatabase() {
     return {
       notion: null,
       databaseId: '',
-      message: '미팅관리 Notion DB를 찾지 못했습니다. BLINKAD_MEETING_DATABASE_ID 또는 ERP_MEETING_DATABASE_ID를 설정해주세요.',
+      message: `${preferredMeetingDatabaseTitle} DB를 찾지 못했습니다. BLINKAD_MEETING_SOURCE_DATABASE_ID를 설정해주세요.`,
     }
   }
 
@@ -372,13 +237,13 @@ export async function GET() {
     const database = await notion.databases.retrieve({ database_id: databaseId })
     const schema = (database as any).properties || {}
     const map = meetingSchemaMap(schema)
-    const pages = await loadMeetingPages(notion, databaseId, map)
+    const pages = await loadMeetingPages(notion, databaseId)
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: 'Notion 미팅관리 DB와 연결되었습니다.',
-      meetings: pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings),
+      message: `${databaseTitle(database) || preferredMeetingDatabaseTitle}에서 매장명, 담당자명, 처리상태, 미팅요약을 불러왔습니다.`,
+      meetings: pages.map((page) => meetingRecordFromPage(page, map)),
     })
   } catch (error) {
     return NextResponse.json({
@@ -387,93 +252,5 @@ export async function GET() {
       message: meetingConnectionErrorMessage(error),
       meetings: fallbackMeetings(),
     })
-  }
-}
-
-export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as { events?: CalendarEventPayload[] }
-
-  try {
-    const { notion, databaseId, message } = await getNotionAndDatabase()
-    if (!notion || !databaseId) {
-      return NextResponse.json({
-        source: 'fallback',
-        connected: false,
-        message,
-        meetings: fallbackMeetings(),
-      })
-    }
-
-    const meetings = await syncCalendarMeetings(notion, databaseId, body.events || [])
-    return NextResponse.json({
-      source: 'notion',
-      connected: true,
-      message: '용올캘린더 미팅 일정을 Notion 미팅관리 DB와 동기화했습니다.',
-      meetings,
-    })
-  } catch (error) {
-    return NextResponse.json(
-      {
-        source: 'fallback',
-        connected: false,
-        message: meetingConnectionErrorMessage(error),
-        meetings: fallbackMeetings(),
-      },
-      { status: 500 }
-    )
-  }
-}
-
-export async function PATCH(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as { id?: string; memo?: string; status?: string }
-
-  if (!body.id) {
-    return NextResponse.json({ connected: false, message: '미팅관리 DB 페이지 ID가 필요합니다.' }, { status: 400 })
-  }
-
-  try {
-    const { notion, databaseId, message } = await getNotionAndDatabase()
-    if (!notion || !databaseId) {
-      return NextResponse.json({
-        source: 'fallback',
-        connected: false,
-        message,
-        meetings: fallbackMeetings(),
-      })
-    }
-
-    const database = await notion.databases.retrieve({ database_id: databaseId })
-    const schema = (database as any).properties || {}
-    const map = meetingSchemaMap(schema)
-    const properties: Record<string, any> = {}
-
-    setProperty(properties, schema, map.memo, String(body.memo || ''))
-    if (body.status) {
-      setProperty(properties, schema, map.status, body.status, ['예정', '미팅 예정', '진행 예정', '대기'])
-    }
-
-    await notion.pages.update({
-      page_id: body.id,
-      properties,
-    })
-
-    const pages = await loadMeetingPages(notion, databaseId, map)
-
-    return NextResponse.json({
-      source: 'notion',
-      connected: true,
-      message: '미팅관리 DB에 미팅 내용을 저장했습니다.',
-      meetings: pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings),
-    })
-  } catch (error) {
-    return NextResponse.json(
-      {
-        source: 'fallback',
-        connected: false,
-        message: meetingConnectionErrorMessage(error),
-        meetings: fallbackMeetings(),
-      },
-      { status: 500 }
-    )
   }
 }

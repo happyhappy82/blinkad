@@ -30,7 +30,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import {
   DEFAULT_CLIENT_STATUS_OPTIONS,
@@ -57,7 +57,6 @@ import type {
   MenuId,
   OperationRow,
   OperationView,
-  SaveMeetingRecordNoteHandler,
   SaveMeetingNoteHandler,
   StoreRecord,
   StoreProductKey,
@@ -131,6 +130,7 @@ export default function ErpClient() {
   const [calendarLoading, setCalendarLoading] = useState(false)
   const [calendarMessage, setCalendarMessage] = useState('')
   const [meetingRecords, setMeetingRecords] = useState<MeetingRecord[]>([])
+  const meetingRecordsRequested = useRef(false)
   const [meetingDbLoading, setMeetingDbLoading] = useState(false)
   const [meetingDbMessage, setMeetingDbMessage] = useState('')
   const [mailItems, setMailItems] = useState<MailItem[]>([])
@@ -251,54 +251,20 @@ export default function ErpClient() {
     return data.message || '미팅 기록을 저장했습니다.'
   }
 
-  const syncMeetingRecords = useCallback(async (events: CalendarEvent[]) => {
-    setMeetingDbLoading(true)
-    try {
-      const response = await fetch('/api/erp/meetings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ events }),
-      })
-      const data = (await response.json()) as MeetingsApiResponse
-      setMeetingRecords(data.meetings || [])
-      setMeetingDbMessage(data.message || '미팅관리 DB를 동기화했습니다.')
-    } catch {
-      setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
-    } finally {
-      setMeetingDbLoading(false)
-    }
-  }, [])
-
   const loadMeetingRecords = useCallback(async () => {
+    meetingRecordsRequested.current = true
     setMeetingDbLoading(true)
     try {
       const response = await fetch('/api/erp/meetings', { cache: 'no-store' })
       const data = (await response.json()) as MeetingsApiResponse
       setMeetingRecords(data.meetings || [])
-      setMeetingDbMessage(data.message || '미팅관리 DB와 연결되었습니다.')
+      setMeetingDbMessage(data.message || '미팅관리 DB에서 목록을 불러왔습니다.')
     } catch {
       setMeetingDbMessage('미팅관리 DB를 불러오지 못했습니다.')
     } finally {
       setMeetingDbLoading(false)
     }
   }, [])
-
-  const saveMeetingRecordNote: SaveMeetingRecordNoteHandler = async (meeting, memo) => {
-    const response = await fetch('/api/erp/meetings', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: meeting.id, memo }),
-    })
-    const data = (await response.json()) as MeetingsApiResponse
-
-    if (!response.ok || !data.connected) {
-      throw new Error(data.message || '미팅관리 DB에 미팅 내용을 저장하지 못했습니다.')
-    }
-
-    setMeetingRecords(data.meetings || [])
-    setMeetingDbMessage(data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.')
-    return data.message || '미팅관리 DB에 미팅 내용을 저장했습니다.'
-  }
 
   const loadMailItems = async () => {
     setMailLoading(true)
@@ -319,7 +285,7 @@ export default function ErpClient() {
   }
 
   useEffect(() => {
-    if (['schedule', 'meeting', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
+    if (['schedule', 'weekly'].includes(activeMenu) && calendarEvents.length === 0 && !calendarLoading) {
       loadCalendarEvents()
     }
 
@@ -329,13 +295,10 @@ export default function ErpClient() {
   }, [activeMenu])
 
   useEffect(() => {
-    if (activeMenu !== 'meeting' || calendarLoading) return
-    if (calendarEvents.length > 0) {
-      syncMeetingRecords(calendarEvents)
-    } else {
+    if (activeMenu === 'meeting' && !meetingRecordsRequested.current && !meetingDbLoading) {
       loadMeetingRecords()
     }
-  }, [activeMenu, calendarEvents, calendarLoading, loadMeetingRecords, syncMeetingRecords])
+  }, [activeMenu, loadMeetingRecords, meetingDbLoading])
 
   const dashboard = useMemo(() => {
     const counts = statusGroups.map((group) => ({
@@ -658,10 +621,9 @@ export default function ErpClient() {
             {activeMenu === 'meeting' && (
               <MeetingPanel
                 meetings={meetingRecords}
-                loading={meetingDbLoading || calendarLoading}
-                message={meetingDbMessage || calendarMessage}
-                onRefresh={() => syncMeetingRecords(calendarEvents)}
-                onSaveMeetingNote={saveMeetingRecordNote}
+                loading={meetingDbLoading}
+                message={meetingDbMessage}
+                onRefresh={loadMeetingRecords}
               />
             )}
 
@@ -1798,25 +1760,22 @@ function MeetingPanel({
   loading,
   message,
   onRefresh,
-  onSaveMeetingNote,
 }: {
   meetings: MeetingRecord[]
   loading: boolean
   message: string
   onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingRecordNoteHandler
 }) {
   return (
     <MeetingDatabasePanel
       kicker="Meeting DB"
       title="미팅관리"
-      description="용올캘린더의 미팅 일정을 Notion 미팅관리 DB에 동기화하고, DB에 저장된 미팅 내용과 후속 액션을 관리합니다."
+      description="Notion DB의 매장명, 담당자명, 처리상태, 미팅요약만 모아 확인합니다."
       meetings={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
-      onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="미팅관리 DB에 표시할 미팅이 없습니다."
+      emptyLabel="표시할 미팅관리 항목이 없습니다."
     />
   )
 }
@@ -1829,7 +1788,6 @@ function MeetingDatabasePanel({
   loading,
   message,
   onRefresh,
-  onSaveMeetingNote,
   emptyLabel,
 }: {
   kicker: string
@@ -1839,43 +1797,26 @@ function MeetingDatabasePanel({
   loading: boolean
   message: string
   onRefresh: () => void
-  onSaveMeetingNote: SaveMeetingRecordNoteHandler
   emptyLabel: string
 }) {
-  const [meetingNotes, setMeetingNotes] = useState<Record<string, string>>({})
-  const [savingNoteId, setSavingNoteId] = useState<string | null>(null)
-  const [noteMessages, setNoteMessages] = useState<Record<string, string>>({})
-  const [filterStart, setFilterStart] = useState('')
-  const [filterEnd, setFilterEnd] = useState('')
+  const [query, setQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState('')
+
+  const statusOptions = useMemo(() => {
+    return Array.from(new Set(meetings.map((meeting) => meeting.status).filter(Boolean)))
+  }, [meetings])
 
   const filteredMeetings = useMemo(() => {
+    const keyword = query.trim().toLowerCase()
+
     return meetings.filter((meeting) => {
-      const start = new Date(meeting.date)
-      const from = filterStart ? startOfDay(parseLocalDate(filterStart)) : null
-      const to = filterEnd ? parseLocalDate(filterEnd) : null
-      if (to) to.setHours(23, 59, 59, 999)
+      const searchable = `${meeting.storeName} ${meeting.managerName} ${meeting.status} ${meeting.meetingSummary}`.toLowerCase()
+      const matchesQuery = !keyword || searchable.includes(keyword)
+      const matchesStatus = !statusFilter || meeting.status === statusFilter
 
-      return (!from || start >= from) && (!to || start <= to)
+      return matchesQuery && matchesStatus
     })
-  }, [filterEnd, filterStart, meetings])
-
-  const saveNote = async (meeting: MeetingRecord) => {
-    const note = meetingNotes[meeting.id] ?? meeting.memo ?? ''
-    setSavingNoteId(meeting.id)
-    setNoteMessages((current) => ({ ...current, [meeting.id]: '' }))
-
-    try {
-      const message = await onSaveMeetingNote(meeting, note)
-      setNoteMessages((current) => ({ ...current, [meeting.id]: message }))
-    } catch (error) {
-      setNoteMessages((current) => ({
-        ...current,
-        [meeting.id]: error instanceof Error ? error.message : '미팅 기록 저장 중 오류가 발생했습니다.',
-      }))
-    } finally {
-      setSavingNoteId(null)
-    }
-  }
+  }, [meetings, query, statusFilter])
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -1889,10 +1830,10 @@ function MeetingDatabasePanel({
         <button
           type="button"
           onClick={onRefresh}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
+          className="inline-flex h-10 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-white/15 px-3 text-sm font-black text-gray-200 hover:border-white/30 hover:bg-white/5"
         >
           <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
-          캘린더-DB 동기화
+          DB 새로고침
         </button>
       </div>
 
@@ -1903,31 +1844,39 @@ function MeetingDatabasePanel({
         </div>
         <div className="rounded-lg border border-white/10 bg-black p-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="grid gap-3 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-xs font-black text-gray-500">시작일</span>
+            <label className="block min-w-0 flex-1">
+              <span className="text-xs font-black text-gray-500">검색</span>
+              <span className="mt-1 flex h-10 items-center gap-2 rounded-md border border-white/10 bg-[#07080b] px-3">
+                <Search className="h-4 w-4 text-gray-600" />
                 <input
-                  type="date"
-                  value={filterStart}
-                  onChange={(event) => setFilterStart(event.target.value)}
-                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
+                  type="search"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  className="min-w-0 flex-1 bg-transparent text-sm font-bold text-white outline-none placeholder:text-gray-700"
+                  placeholder="매장명, 담당자명, 요약 검색"
                 />
-              </label>
-              <label className="block">
-                <span className="text-xs font-black text-gray-500">종료일</span>
-                <input
-                  type="date"
-                  value={filterEnd}
-                  onChange={(event) => setFilterEnd(event.target.value)}
-                  className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
-                />
-              </label>
-            </div>
+              </span>
+            </label>
+            <label className="block w-full lg:w-56">
+              <span className="text-xs font-black text-gray-500">처리상태</span>
+              <select
+                value={statusFilter}
+                onChange={(event) => setStatusFilter(event.target.value)}
+                className="mt-1 h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/60"
+              >
+                <option value="">전체</option>
+                {statusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </label>
             <button
               type="button"
               onClick={() => {
-                setFilterStart('')
-                setFilterEnd('')
+                setQuery('')
+                setStatusFilter('')
               }}
               className="inline-flex h-10 items-center justify-center rounded-md border border-white/15 px-3 text-sm font-black text-gray-300 hover:border-white/30 hover:bg-white/5"
             >
@@ -1942,75 +1891,49 @@ function MeetingDatabasePanel({
           <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
         ) : (
           <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-            <table className="min-w-[1240px] w-full border-collapse text-left">
+            <table className="min-w-[980px] w-full border-collapse text-left">
               <thead className="bg-white/[0.04]">
                 <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-                  <th className="w-[150px] px-4 py-3">날짜</th>
-                  <th className="w-[220px] px-4 py-3">미팅</th>
-                  <th className="w-[160px] px-4 py-3">고객사</th>
-                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
-                  <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
-                  <th className="w-[120px] px-4 py-3">저장</th>
+                  <th className="w-[230px] px-4 py-3">매장명</th>
+                  <th className="w-[170px] px-4 py-3">담당자명</th>
+                  <th className="w-[150px] px-4 py-3">처리상태</th>
+                  <th className="px-4 py-3">미팅요약</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-white/10">
                 {filteredMeetings.map((meeting) => (
                   <tr key={meeting.id} className="align-top">
                     <td className="px-4 py-4">
-                      <p className="text-sm font-black text-white">{formatDateLabel(meeting.date)}</p>
-                      <p className="mt-1 text-xs font-bold text-gray-500">{formatDateTime(meeting.date)}</p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <p className="text-sm font-black leading-5 text-white keep-all">{meeting.title}</p>
-                      <span className="mt-2 inline-flex rounded-full border border-brand-blue/30 bg-brand-blue/15 px-2 py-1 text-[11px] font-black text-blue-100">
-                        {meeting.status || '미팅'}
-                      </span>
                       {meeting.notionUrl ? (
                         <a
                           href={meeting.notionUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="mt-2 inline-flex text-xs font-black text-brand-blue hover:text-blue-300"
+                          className="inline-flex items-center gap-1 text-sm font-black leading-5 text-white hover:text-brand-blue"
                         >
-                          Notion 열기
+                          <span className="keep-all">{meeting.storeName || '-'}</span>
+                          <ExternalLink className="h-3.5 w-3.5 shrink-0" />
                         </a>
-                      ) : null}
+                      ) : (
+                        <p className="text-sm font-black leading-5 text-white keep-all">{meeting.storeName || '-'}</p>
+                      )}
                     </td>
                     <td className="px-4 py-4">
-                      <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
+                      <p className="text-sm font-bold text-gray-300 keep-all">{meeting.managerName || '-'}</p>
                     </td>
                     <td className="px-4 py-4">
-                      {meeting.calendarName ? <p className="text-xs font-black text-gray-400">{meeting.calendarName}</p> : null}
-                      {meeting.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{meeting.location}</p> : null}
+                      {meeting.status ? (
+                        <span className="inline-flex rounded-full border border-brand-blue/30 bg-brand-blue/15 px-2 py-1 text-[11px] font-black text-blue-100">
+                          {meeting.status}
+                        </span>
+                      ) : (
+                        <span className="text-sm font-bold text-gray-600">-</span>
+                      )}
                     </td>
                     <td className="px-4 py-4">
-                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {meeting.attendees.length > 0 ? meeting.attendees.slice(0, 3).join(', ') : '-'}
+                      <p className="whitespace-pre-wrap text-sm font-semibold leading-6 text-gray-300 keep-all">
+                        {meeting.meetingSummary || '-'}
                       </p>
-                    </td>
-                    <td className="px-4 py-4">
-                      <textarea
-                        value={meetingNotes[meeting.id] ?? meeting.memo ?? ''}
-                        onChange={(changeEvent) =>
-                          setMeetingNotes((current) => ({ ...current, [meeting.id]: changeEvent.target.value }))
-                        }
-                        className="min-h-32 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
-                      />
-                      {noteMessages[meeting.id] ? (
-                        <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[meeting.id]}</p>
-                      ) : null}
-                    </td>
-                    <td className="px-4 py-4">
-                      <button
-                        type="button"
-                        onClick={() => saveNote(meeting)}
-                        disabled={savingNoteId === meeting.id}
-                        className="inline-flex h-9 w-full items-center justify-center rounded-md bg-brand-blue px-3 text-xs font-black text-white transition hover:bg-blue-600 disabled:bg-gray-700"
-                      >
-                        {savingNoteId === meeting.id ? '저장 중' : 'DB 저장'}
-                      </button>
                     </td>
                   </tr>
                 ))}

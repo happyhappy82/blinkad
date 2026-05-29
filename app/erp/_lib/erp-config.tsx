@@ -91,6 +91,9 @@ export type SaveMeetingNoteHandler = (event: CalendarEvent, memo: string) => Pro
 
 export type MeetingRecord = {
   id: string
+  storeName: string
+  managerName: string
+  meetingSummary: string
   title: string
   date: string
   status: string
@@ -109,8 +112,6 @@ export type MeetingsApiResponse = {
   message?: string
   meetings: MeetingRecord[]
 }
-
-export type SaveMeetingRecordNoteHandler = (meeting: MeetingRecord, memo: string) => Promise<string>
 
 export type CalendarAccountView = {
   memberId: string
