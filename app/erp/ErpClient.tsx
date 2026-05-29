@@ -26,7 +26,7 @@ import {
   UserCog,
   Users,
 } from 'lucide-react'
-import type { Dispatch, DragEvent, FormEvent, SetStateAction } from 'react'
+import type { Dispatch, DragEvent, FormEvent, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { MeetingPanel, WeeklyMeetingPanel } from './_components/calendar/MeetingPanels'
@@ -152,6 +152,31 @@ type StoreMetric = {
   label: string
   value: string
   detail?: string
+}
+
+type CalendarContextMenu =
+  | { kind: 'event'; x: number; y: number; event: CalendarEvent }
+  | { kind: 'slot'; x: number; y: number; date: Date; hour?: number }
+  | { kind: 'calendar'; x: number; y: number; calendar: CalendarEvent }
+
+type CalendarContextMenuInput =
+  | { kind: 'event'; event: CalendarEvent }
+  | { kind: 'slot'; date: Date; hour?: number }
+  | { kind: 'calendar'; calendar: CalendarEvent }
+
+type BillingStatus = '청구예정' | '청구완료' | '입금완료' | '연체' | '보류'
+
+type BillingRecord = {
+  id: string
+  storeName: string
+  product: string
+  amount: number
+  dueDate: string
+  dueDay: number
+  status: BillingStatus
+  owner: string
+  taxInvoice: string
+  memo: string
 }
 
 export default function ErpClient() {
@@ -486,6 +511,7 @@ export default function ErpClient() {
       ],
     } satisfies Record<string, StoreMetric[]>
   }, [contractPendingStores, followupStores, inquiryStores, stores])
+  const billingRecords = useMemo(() => buildBillingRecords(stores), [stores])
   const businessCardMetrics = useMemo(
     () => [
       { label: '전체 명함', value: String(businessCards.length), detail: 'Notion 명함 DB' },
@@ -508,7 +534,11 @@ export default function ErpClient() {
     [businessCards]
   )
   const operationView =
-    realtimeMenuIds.includes(activeMenu) || activeMenu === 'followup' || activeMenu === 'customer' || activeMenu === 'card'
+    realtimeMenuIds.includes(activeMenu) ||
+    activeMenu === 'followup' ||
+    activeMenu === 'customer' ||
+    activeMenu === 'card' ||
+    activeMenu === 'billing'
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
@@ -866,6 +896,14 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'billing' && (
+              <BillingPanel
+                records={billingRecords}
+                loading={loading}
+                message={connectionMessage}
+              />
+            )}
+
             {activeMenu === 'schedule' && (
               <CalendarPanel
                 events={calendarEvents}
@@ -949,6 +987,75 @@ function formatDateTimeRange(event: CalendarEvent) {
   }).format(end)
 
   return `${date} ${startTime} - ${endTime}`
+}
+
+function formatDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+}
+
+function formatBillingDate(value: string) {
+  if (!value) return '-'
+  const date = new Date(`${value}T00:00:00`)
+  return new Intl.DateTimeFormat('ko-KR', {
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short',
+  }).format(date)
+}
+
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat('ko-KR').format(value)
+}
+
+function buildBillingRecords(stores: StoreRecord[]) {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = today.getMonth()
+  const monthLastDate = new Date(year, month + 1, 0).getDate()
+  const dueDays = [5, 10, 15, 20, 25]
+  const billableStores = stores.filter((store) =>
+    statusIncludesAny(store.status, ['운영시작', '운영 시작', '계약완료', '계약 완료', '계약대기', '계약 대기'])
+  )
+  const sourceStores =
+    billableStores.length > 0
+      ? billableStores
+      : stores.length > 0
+        ? stores.slice(0, 6)
+        : [
+            {
+              id: 'sample-unlimited',
+              name: '언리미티드',
+              status: '계약 완료',
+              owner: '권순현',
+            } as StoreRecord,
+          ]
+
+  return sourceStores.map((store, index) => {
+    const dueDay = Math.min(dueDays[index % dueDays.length], monthLastDate)
+    const dueDate = new Date(year, month, dueDay)
+    const isPastDue = dueDate < startOfDay(today)
+    const baseStatus: BillingStatus =
+      index % 5 === 0
+        ? '입금완료'
+        : isPastDue
+          ? '연체'
+          : index % 3 === 0
+            ? '청구완료'
+            : '청구예정'
+
+    return {
+      id: `billing-${store.id}`,
+      storeName: store.name,
+      product: 'Google 프로필 월간 운영',
+      amount: index % 3 === 0 ? 1_400_000 : index % 3 === 1 ? 1_200_000 : 950_000,
+      dueDate: formatDateKey(dueDate),
+      dueDay,
+      status: baseStatus,
+      owner: store.owner || '권순현',
+      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행대기',
+      memo: '정기 운영료와 광고비를 분리해서 확인합니다.',
+    } satisfies BillingRecord
+  })
 }
 
 function toDateTimeLocalValue(date: Date) {
@@ -1177,6 +1284,21 @@ function calendarColor(event: CalendarEvent) {
   return event.calendarColor || (event.source === 'google' ? '#0b57d0' : '')
 }
 
+function calendarKey(event: CalendarEvent) {
+  return event.calendarId || event.calendarName || event.source || 'local'
+}
+
+function googleCalendarDayUrl(value: string | Date) {
+  const date = value instanceof Date ? value : new Date(value)
+  return `https://calendar.google.com/calendar/u/0/r/day/${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+}
+
+function googleCalendarUrl(calendarId?: string) {
+  return calendarId
+    ? `https://calendar.google.com/calendar/u/0/r?cid=${encodeURIComponent(calendarId)}`
+    : 'https://calendar.google.com/calendar/u/0/r'
+}
+
 function hexToRgba(hex: string, alpha: number) {
   const normalized = hex.replace('#', '')
   if (!/^[0-9a-f]{6}$/i.test(normalized)) return `rgba(11, 87, 208, ${alpha})`
@@ -1226,8 +1348,11 @@ function CalendarPanel({
   const [eventDraft, setEventDraft] = useState<CalendarEventDraft>(() => defaultDraft())
   const [draggingEventId, setDraggingEventId] = useState<string | null>(null)
   const [dragOverSlot, setDragOverSlot] = useState<string | null>(null)
+  const [contextMenu, setContextMenu] = useState<CalendarContextMenu | null>(null)
+  const [hiddenCalendarKeys, setHiddenCalendarKeys] = useState<Set<string>>(() => new Set())
+  const [soloCalendarKey, setSoloCalendarKey] = useState<string | null>(null)
 
-  const allEvents = useMemo(() => {
+  const mergedEvents = useMemo(() => {
     const eventMap = new Map<string, CalendarEvent>()
     events.forEach((event) => {
       if (!deletedEventIds.has(event.id)) eventMap.set(event.id, event)
@@ -1237,6 +1362,24 @@ function CalendarPanel({
     })
     return Array.from(eventMap.values()).sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
   }, [events, localEvents, deletedEventIds])
+
+  const visibleCalendars = useMemo(() => {
+    const calendarMap = new Map<string, CalendarEvent>()
+    mergedEvents.forEach((calendarEvent) => {
+      const key = calendarKey(calendarEvent)
+      if (key && !calendarMap.has(key)) calendarMap.set(key, calendarEvent)
+    })
+    return Array.from(calendarMap.values())
+  }, [mergedEvents])
+
+  const allEvents = useMemo(() => {
+    return mergedEvents.filter((calendarEvent) => {
+      const key = calendarKey(calendarEvent)
+
+      if (soloCalendarKey) return key === soloCalendarKey
+      return !hiddenCalendarKeys.has(key)
+    })
+  }, [hiddenCalendarKeys, mergedEvents, soloCalendarKey])
 
   const year = anchorDate.getFullYear()
   const month = anchorDate.getMonth()
@@ -1267,14 +1410,30 @@ function CalendarPanel({
       return start.getFullYear() === year && start.getMonth() === month
     })
 
-  const visibleCalendars = useMemo(() => {
-    const calendarMap = new Map<string, CalendarEvent>()
-    allEvents.forEach((calendarEvent) => {
-      const key = calendarEvent.calendarId || calendarEvent.calendarName
-      if (key && !calendarMap.has(key)) calendarMap.set(key, calendarEvent)
-    })
-    return Array.from(calendarMap.values())
-  }, [allEvents])
+  useEffect(() => {
+    if (!contextMenu) return
+
+    const closeMenu = () => setContextMenu(null)
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') closeMenu()
+    }
+
+    window.addEventListener('click', closeMenu)
+    window.addEventListener('scroll', closeMenu, true)
+    window.addEventListener('keydown', closeOnEscape)
+
+    return () => {
+      window.removeEventListener('click', closeMenu)
+      window.removeEventListener('scroll', closeMenu, true)
+      window.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [contextMenu])
+
+  const openContextMenu = (mouseEvent: MouseEvent<HTMLElement>, menu: CalendarContextMenuInput) => {
+    mouseEvent.preventDefault()
+    mouseEvent.stopPropagation()
+    setContextMenu({ ...menu, x: mouseEvent.clientX, y: mouseEvent.clientY } as CalendarContextMenu)
+  }
 
   const moveCalendar = (offset: number) => {
     if (calendarView === 'month') {
@@ -1290,9 +1449,19 @@ function CalendarPanel({
     setAnchorDate((current) => addDays(current, offset))
   }
 
-  const openCreateModal = (date?: Date, hour = 10) => {
+  const openCreateModal = (date?: Date, hour = 10, draftPatch: Partial<CalendarEventDraft> = {}) => {
     setSelectedEvent(null)
-    setEventDraft(defaultDraft(date || anchorDate, hour))
+    setEventDraft({ ...defaultDraft(date || anchorDate, hour), ...draftPatch })
+    setActionStatus('')
+    setModalMode('create')
+  }
+
+  const openCopyModal = (calendarEvent: CalendarEvent) => {
+    setSelectedEvent(null)
+    setEventDraft({
+      ...draftFromEvent(calendarEvent),
+      title: `${calendarEvent.title} 복사`,
+    })
     setActionStatus('')
     setModalMode('create')
   }
@@ -1353,8 +1522,8 @@ function CalendarPanel({
     }
   }
 
-  const deleteCalendarEvent = async () => {
-    if (!selectedEvent) return
+  const deleteCalendarEvent = async (eventToDelete = selectedEvent) => {
+    if (!eventToDelete) return
     setSaving(true)
     setActionStatus('')
 
@@ -1362,7 +1531,7 @@ function CalendarPanel({
       const response = await fetch('/api/erp/google/calendar', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: selectedEvent.id }),
+        body: JSON.stringify({ id: eventToDelete.id }),
       })
       const data = (await response.json()) as { message?: string }
 
@@ -1372,17 +1541,19 @@ function CalendarPanel({
 
       setDeletedEventIds((current) => {
         const next = new Set(current)
-        next.add(selectedEvent.id)
+        next.add(eventToDelete.id)
         return next
       })
-      setLocalEvents((current) => current.filter((item) => item.id !== selectedEvent.id))
+      setLocalEvents((current) => current.filter((item) => item.id !== eventToDelete.id))
       setActionStatus(data.message || '일정을 삭제했습니다.')
 
-      if (selectedEvent.source === 'google') {
+      if (eventToDelete.source === 'google') {
         await onRefresh()
       }
 
-      closeModal()
+      if (selectedEvent?.id === eventToDelete.id) {
+        closeModal()
+      }
     } catch (error) {
       setActionStatus(error instanceof Error ? error.message : '일정을 삭제하지 못했습니다.')
     } finally {
@@ -1497,6 +1668,7 @@ function CalendarPanel({
         clickEvent.stopPropagation()
         openEditModal(calendarEvent)
       }}
+      onContextMenu={(mouseEvent) => openContextMenu(mouseEvent, { kind: 'event', event: calendarEvent })}
       className={`w-full cursor-grab truncate rounded border border-l-4 text-left font-bold text-gray-100 transition hover:brightness-125 active:cursor-grabbing ${draggingEventId === calendarEvent.id ? 'opacity-45' : ''} ${compact ? 'px-2 py-1 text-[11px]' : 'px-2.5 py-2 text-xs'} ${calendarColor(calendarEvent) ? '' : eventTypeClass(calendarEvent.type)}`}
       style={calendarEventStyle(calendarEvent)}
       title={calendarEvent.title}
@@ -1504,6 +1676,11 @@ function CalendarPanel({
       {compact ? calendarEvent.title : `${formatDateTime(calendarEvent.start)} · ${calendarEvent.title}`}
     </button>
   )
+
+  const contextButtonClass =
+    'block w-full rounded-md px-3 py-2 text-left text-sm font-black text-gray-200 transition hover:bg-white/10 hover:text-white'
+  const dangerContextButtonClass =
+    'block w-full rounded-md px-3 py-2 text-left text-sm font-black text-red-100 transition hover:bg-red-400/15'
 
   return (
     <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
@@ -1517,15 +1694,30 @@ function CalendarPanel({
           {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
           {visibleCalendars.length > 0 ? (
             <div className="mt-3 flex flex-wrap gap-2">
-              {visibleCalendars.map((calendarEvent) => (
-                <span
-                  key={calendarEvent.calendarId || calendarEvent.calendarName || calendarEvent.id}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-black text-gray-200"
-                >
-                  <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(calendarEvent)} />
-                  {calendarEvent.calendarName || '팀 공유 캘린더'}
-                </span>
-              ))}
+              {visibleCalendars.map((calendarEvent) => {
+                const key = calendarKey(calendarEvent)
+                const hidden = hiddenCalendarKeys.has(key)
+                const solo = soloCalendarKey === key
+
+                return (
+                  <button
+                    key={key}
+                    type="button"
+                    onContextMenu={(mouseEvent) => openContextMenu(mouseEvent, { kind: 'calendar', calendar: calendarEvent })}
+                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-black transition ${
+                      hidden
+                        ? 'border-white/10 bg-white/[0.02] text-gray-600'
+                        : solo
+                          ? 'border-brand-blue/50 bg-brand-blue/15 text-blue-100'
+                          : 'border-white/10 bg-white/[0.04] text-gray-200 hover:border-white/25 hover:bg-white/[0.07]'
+                    }`}
+                    title="우클릭으로 캘린더 보기 옵션 열기"
+                  >
+                    <span className="h-2.5 w-2.5 rounded-full" style={calendarDotStyle(calendarEvent)} />
+                    {calendarEvent.calendarName || '팀 공유 캘린더'}
+                  </button>
+                )
+              })}
             </div>
           ) : null}
           {actionStatus ? <p className="mt-2 text-xs font-bold text-blue-100">{actionStatus}</p> : null}
@@ -1628,6 +1820,9 @@ function CalendarPanel({
                         onDoubleClick={() => {
                           if (cell) openCreateModal(cell)
                         }}
+                        onContextMenu={(mouseEvent) => {
+                          if (cell) openContextMenu(mouseEvent, { kind: 'slot', date: cell })
+                        }}
                         className={`min-h-[150px] cursor-default border-b border-r border-white/10 p-2.5 transition ${cell ? 'bg-[#07080b] hover:bg-white/[0.04]' : 'bg-white/[0.02]'} ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                       >
                         {cell ? (
@@ -1685,6 +1880,7 @@ function CalendarPanel({
                             key={`${day.toISOString()}-${hour}`}
                             {...dropSlotProps(day, hour)}
                             onDoubleClick={() => openCreateModal(day, hour)}
+                            onContextMenu={(mouseEvent) => openContextMenu(mouseEvent, { kind: 'slot', date: day, hour })}
                             className={`space-y-1 border-r border-white/10 p-1.5 transition hover:bg-white/[0.04] ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                           >
                             {dayHourEvents.map((calendarEvent) => renderEventButton(calendarEvent, true))}
@@ -1716,6 +1912,7 @@ function CalendarPanel({
                       <div
                         {...dropSlotProps(anchorDate, hour)}
                         onDoubleClick={() => openCreateModal(anchorDate, hour)}
+                        onContextMenu={(mouseEvent) => openContextMenu(mouseEvent, { kind: 'slot', date: anchorDate, hour })}
                         className={`space-y-2 p-2 transition hover:bg-white/[0.04] ${dragOverSlot === slotKey ? 'bg-brand-blue/10 ring-2 ring-inset ring-brand-blue/60' : ''}`}
                       >
                         {hourEvents.map((calendarEvent) => renderEventButton(calendarEvent))}
@@ -1729,6 +1926,152 @@ function CalendarPanel({
 
         </div>
       </div>
+
+      {contextMenu ? (
+        <div
+          className="fixed z-[70] w-56 rounded-lg border border-white/10 bg-[#11141b] p-2 shadow-2xl shadow-black/40"
+          style={{
+            left: contextMenu.x,
+            top: contextMenu.y,
+          }}
+          onClick={(event) => event.stopPropagation()}
+        >
+          {contextMenu.kind === 'event' ? (
+            <>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  openEditModal(contextMenu.event)
+                  setContextMenu(null)
+                }}
+              >
+                일정 수정
+              </button>
+              <button
+                type="button"
+                className={dangerContextButtonClass}
+                onClick={() => {
+                  void deleteCalendarEvent(contextMenu.event)
+                  setContextMenu(null)
+                }}
+              >
+                일정 삭제
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  window.open(googleCalendarDayUrl(contextMenu.event.start), '_blank', 'noopener,noreferrer')
+                  setContextMenu(null)
+                }}
+              >
+                Google Calendar에서 열기
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  openCopyModal(contextMenu.event)
+                  setContextMenu(null)
+                }}
+              >
+                일정 복사
+              </button>
+            </>
+          ) : null}
+
+          {contextMenu.kind === 'slot' ? (
+            <>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  openCreateModal(contextMenu.date, contextMenu.hour)
+                  setContextMenu(null)
+                }}
+              >
+                일정 추가
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  openCreateModal(contextMenu.date, contextMenu.hour, { title: '미팅', type: 'meeting' })
+                  setContextMenu(null)
+                }}
+              >
+                미팅 일정 추가
+              </button>
+            </>
+          ) : null}
+
+          {contextMenu.kind === 'calendar' ? (
+            <>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  setSoloCalendarKey(calendarKey(contextMenu.calendar))
+                  setHiddenCalendarKeys(new Set())
+                  setContextMenu(null)
+                }}
+              >
+                이 캘린더만 보기
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  const key = calendarKey(contextMenu.calendar)
+                  setHiddenCalendarKeys((current) => {
+                    const next = new Set(current)
+                    next.add(key)
+                    return next
+                  })
+                  setSoloCalendarKey((current) => (current === key ? null : current))
+                  setContextMenu(null)
+                }}
+              >
+                이 캘린더 숨기기
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  window.open(googleCalendarUrl(contextMenu.calendar.calendarId), '_blank', 'noopener,noreferrer')
+                  setContextMenu(null)
+                }}
+              >
+                Google Calendar에서 열기
+              </button>
+              <button
+                type="button"
+                className={contextButtonClass}
+                onClick={() => {
+                  onRefresh()
+                  setContextMenu(null)
+                }}
+              >
+                새로고침
+              </button>
+              {(soloCalendarKey || hiddenCalendarKeys.size > 0) ? (
+                <button
+                  type="button"
+                  className={contextButtonClass}
+                  onClick={() => {
+                    setSoloCalendarKey(null)
+                    setHiddenCalendarKeys(new Set())
+                    setContextMenu(null)
+                  }}
+                >
+                  전체 캘린더 보기
+                </button>
+              ) : null}
+            </>
+          ) : null}
+        </div>
+      ) : null}
 
       {modalMode ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
@@ -1765,7 +2108,7 @@ function CalendarPanel({
             {modalMode === 'edit' ? (
               <button
                 type="button"
-                onClick={deleteCalendarEvent}
+                onClick={() => void deleteCalendarEvent()}
                 disabled={saving}
                 className="mt-3 inline-flex h-10 w-full items-center justify-center rounded-md border border-red-400/25 bg-red-400/10 px-3 text-sm font-black text-red-100 transition hover:border-red-400/50 hover:bg-red-400/15 disabled:cursor-not-allowed disabled:opacity-50"
               >
@@ -1775,6 +2118,237 @@ function CalendarPanel({
           </div>
         </div>
       ) : null}
+    </section>
+  )
+}
+
+const billingStatusOptions: BillingStatus[] = ['청구예정', '청구완료', '입금완료', '연체', '보류']
+
+function billingStatusClass(status: BillingStatus) {
+  if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '연체') return 'border-red-400/35 bg-red-400/10 text-red-100'
+  if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
+  if (status === '보류') return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+  return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function BillingPanel({
+  records,
+  loading,
+  message,
+}: {
+  records: BillingRecord[]
+  loading: boolean
+  message: string
+}) {
+  const [anchorDate, setAnchorDate] = useState(() => new Date())
+  const [statusOverrides, setStatusOverrides] = useState<Record<string, BillingStatus>>({})
+
+  const currentRecords = useMemo(
+    () => records.map((record) => ({ ...record, status: statusOverrides[record.id] || record.status })),
+    [records, statusOverrides]
+  )
+  const year = anchorDate.getFullYear()
+  const month = anchorDate.getMonth()
+  const firstDay = new Date(year, month, 1).getDay()
+  const lastDate = new Date(year, month + 1, 0).getDate()
+  const cells = Array.from({ length: 42 }, (_, index) => {
+    const dateNumber = index - firstDay + 1
+    return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
+  })
+  const monthRecords = currentRecords
+    .filter((record) => {
+      const date = new Date(`${record.dueDate}T00:00:00`)
+      return date.getFullYear() === year && date.getMonth() === month
+    })
+    .sort((a, b) => a.dueDate.localeCompare(b.dueDate))
+  const completedRecords = monthRecords.filter((record) => record.status === '입금완료')
+  const overdueRecords = monthRecords.filter((record) => record.status === '연체')
+  const pendingRecords = monthRecords.filter((record) => record.status !== '입금완료')
+  const totalPendingAmount = pendingRecords.reduce((sum, record) => sum + record.amount, 0)
+  const weekDayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
+  const updateBillingStatus = (recordId: string, status: BillingStatus) => {
+    setStatusOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_520px] md:p-6">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Billing</p>
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-white">청구관리</h2>
+            <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+              매장별 정산일을 캘린더로 먼저 확인하고, 아래 리스트에서 청구·입금·연체 상태를 처리합니다.
+            </p>
+            {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+          </div>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
+            <div className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">이번 달 청구</p>
+              <p className="mt-3 text-3xl font-black text-white">{monthRecords.length}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">입금 완료</p>
+              <p className="mt-3 text-3xl font-black text-white">{completedRecords.length}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">미수/연체</p>
+              <p className="mt-3 text-3xl font-black text-white">{overdueRecords.length}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">미입금액</p>
+              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalPendingAmount)}</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-5 md:p-6">
+          <div className="mb-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-black p-3 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setAnchorDate(new Date(year, month - 1, 1))}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+                aria-label="이전 달"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <p className="min-w-44 text-center text-lg font-black text-white">{formatCalendarRange('month', anchorDate)}</p>
+              <button
+                type="button"
+                onClick={() => setAnchorDate(new Date(year, month + 1, 1))}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5"
+                aria-label="다음 달"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-2 text-xs font-black">
+              {billingStatusOptions.map((status) => (
+                <span key={status} className={`rounded-full border px-2.5 py-1 ${billingStatusClass(status)}`}>
+                  {status}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
+              {weekDayLabels.map((day) => (
+                <div key={day} className="py-3">
+                  {day}
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-7">
+              {cells.map((cell, index) => {
+                const dateKey = cell ? formatDateKey(cell) : ''
+                const dayRecords = cell ? monthRecords.filter((record) => record.dueDate === dateKey) : []
+
+                return (
+                  <div
+                    key={`billing-${year}-${month}-${index}`}
+                    className={`min-h-[138px] border-b border-r border-white/10 p-2.5 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
+                  >
+                    {cell ? (
+                      <>
+                        <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
+                          {cell.getDate()}
+                        </p>
+                        <div className="mt-2 space-y-1.5">
+                          {dayRecords.slice(0, 4).map((record) => (
+                            <button
+                              key={record.id}
+                              type="button"
+                              onClick={() => updateBillingStatus(record.id, record.status === '입금완료' ? '청구완료' : '입금완료')}
+                              className={`w-full rounded border px-2 py-1.5 text-left text-[11px] font-black transition hover:brightness-125 ${billingStatusClass(record.status)}`}
+                              title="클릭하면 입금완료 상태를 토글합니다."
+                            >
+                              <span className="block truncate">{record.storeName}</span>
+                              <span className="mt-0.5 block text-[10px] opacity-80">{formatCurrency(record.amount)}원</span>
+                            </button>
+                          ))}
+                          {dayRecords.length > 4 ? (
+                            <p className="text-[11px] font-bold text-gray-500">+{dayRecords.length - 4}건</p>
+                          ) : null}
+                        </div>
+                      </>
+                    ) : null}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Settlement List</p>
+            <h3 className="mt-2 text-xl font-black text-white">정산 처리 리스트</h3>
+            <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">
+              캘린더에서 날짜를 보고, 리스트에서 상태와 세금계산서 발행 여부를 확인합니다.
+            </p>
+          </div>
+          {loading ? <p className="text-xs font-bold text-gray-500">불러오는 중</p> : null}
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-[1040px] w-full border-collapse text-left text-sm">
+            <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+              <tr>
+                <th className="px-5 py-4">매장명</th>
+                <th className="px-5 py-4">상품</th>
+                <th className="px-5 py-4">정산일</th>
+                <th className="px-5 py-4">금액</th>
+                <th className="px-5 py-4">상태</th>
+                <th className="px-5 py-4">세금계산서</th>
+                <th className="px-5 py-4">담당</th>
+                <th className="px-5 py-4">메모</th>
+              </tr>
+            </thead>
+            <tbody>
+              {monthRecords.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-5 py-10 text-center font-bold text-gray-500">
+                    이 달에 표시할 정산 일정이 없습니다.
+                  </td>
+                </tr>
+              ) : (
+                monthRecords.map((record) => (
+                  <tr key={record.id} className="border-t border-white/10">
+                    <td className="px-5 py-4">
+                      <p className="font-black text-white keep-all">{record.storeName}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">매월 {record.dueDay}일 기준</p>
+                    </td>
+                    <td className="px-5 py-4 font-semibold text-gray-300">{record.product}</td>
+                    <td className="px-5 py-4 font-black text-white">{formatBillingDate(record.dueDate)}</td>
+                    <td className="px-5 py-4 font-black text-white">{formatCurrency(record.amount)}원</td>
+                    <td className="px-5 py-4">
+                      <select
+                        value={record.status}
+                        onChange={(event) => updateBillingStatus(record.id, event.target.value as BillingStatus)}
+                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${billingStatusClass(record.status)}`}
+                      >
+                        {billingStatusOptions.map((status) => (
+                          <option key={status} value={status} className="bg-[#11141b] text-white">
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-5 py-4 font-semibold text-gray-300">{record.taxInvoice}</td>
+                    <td className="px-5 py-4 font-semibold text-gray-300">{record.owner}</td>
+                    <td className="max-w-sm px-5 py-4 font-semibold leading-6 text-gray-500 keep-all">{record.memo}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </section>
   )
 }
