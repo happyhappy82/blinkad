@@ -195,17 +195,23 @@ function clientNameFromTitle(title: string) {
 function meetingRecordFromPage(page: any, map: ReturnType<typeof meetingSchemaMap>) {
   const properties = page.properties || {}
   const attendees = propText(properties[map.attendees])
+  const title = propText(properties[map.title]) || '제목 없는 미팅'
+  const client = propText(properties[map.client])
+  const memo = propText(properties[map.memo])
 
   return {
     id: page.id,
-    title: propText(properties[map.title]) || '제목 없는 미팅',
+    storeName: client || title,
+    managerName: attendees,
+    meetingSummary: memo,
+    title,
     date: propText(properties[map.date]) || page.created_time || '',
     status: propText(properties[map.status]) || '예정',
-    client: propText(properties[map.client]),
+    client,
     calendarName: propText(properties[map.calendarName]),
     location: propText(properties[map.location]),
     attendees: attendees ? attendees.split(',').map((item) => item.trim()).filter(Boolean) : [],
-    memo: propText(properties[map.memo]),
+    memo,
     calendarEventId: propText(properties[map.eventId]),
     notionUrl: page.url || '',
   }
