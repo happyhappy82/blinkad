@@ -1,6 +1,6 @@
 # BlinkAd ERP Resume
 
-Updated: 2026-05-30 KST
+Updated: 2026-05-30 19:45 KST
 
 ## 작업공간
 
@@ -8,8 +8,21 @@ Updated: 2026-05-30 KST
 - 통합 브랜치: `erp/integration`
 - 운영 URL: `https://www.blinkad.kr/erp`
 - 최근 커밋 기준:
+  - `ff2b7fd Add ERP resume instructions`
   - `3a3fdad Normalize unlimited billing store name`
   - `29df44a Add ERP calendar context menus and billing view`
+
+## 메인에이전트 세팅
+
+이 작업공간의 에이전트는 BlinkAd ERP의 메인에이전트이자 통합 담당입니다.
+
+- 기준 디렉토리: `/Users/mcbookpro/Documents/Claude Code/sites/blinkad-erp-integration`
+- 기준 브랜치: `erp/integration`
+- 역할: 서브 에이전트의 완료 보고를 받아 순서대로 통합, 충돌 해결, 검증, Preview 확인, 최종 main 병합 준비
+- 직접 작업 전 확인: `AGENTS.md`, `docs/ERP_RESUME.md`, `git status --short`, `git branch --show-current`
+- 서브 에이전트 완료 보고에서 반드시 확인할 것: 브랜치, 최신 커밋, 변경 파일, 검증 결과, 충돌 가능 파일, Preview 또는 로컬 확인 URL
+- 통합 순서 기본값: `erp/calendar` -> `erp/crm` -> `erp/automation` -> `erp/ops`
+- 금지: 서브 브랜치를 `main`에 직접 병합, 사용자/다른 에이전트 변경 되돌리기, `context/` 폴더 무단 수정, `~/.claude/` 수정, Notion 작업큐 상태 변경
 
 ## 재개 명령
 
