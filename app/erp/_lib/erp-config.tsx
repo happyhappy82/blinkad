@@ -1,5 +1,6 @@
 import {
   Badge,
+  BarChart3,
   Building2,
   Calendar,
   CalendarDays,
@@ -207,6 +208,12 @@ export const menuGroups = [
     label: '프로젝트/작업관리',
     items: [
       { id: 'project', label: '매장 운영관리', icon: Folder },
+    ],
+  },
+  {
+    label: '자사 마케팅',
+    items: [
+      { id: 'blinkadMarketing', label: '블링크애드 마케팅', icon: BarChart3 },
     ],
   },
   {

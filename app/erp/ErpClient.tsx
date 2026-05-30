@@ -896,6 +896,8 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'blinkadMarketing' && <BlinkAdMarketingPanel />}
+
             {activeMenu === 'billing' && (
               <BillingPanel
                 records={billingRecords}
@@ -3709,12 +3711,41 @@ function workspaceTabLabel(workspace: StoreProductWorkspace) {
   return workspace.label
 }
 
+function BlinkAdMarketingPanel() {
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Owned Marketing</p>
+        <h2 className="mt-2 text-2xl font-black text-white">블링크애드 마케팅</h2>
+        <p className="mt-3 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+          고객 매장 보고 화면이 아니라, 블링크애드 자체 문의 유입을 만드는 광고 채널만 확인합니다.
+        </p>
+      </div>
+
+      <div className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+        <GoogleAdsPerformancePanel
+          storeTitle="블링크애드"
+          heading="블링크애드 Google Ads 성과"
+          description="BigQuery의 Google Ads 로컬 액션 테이블에서 블링크애드 자체 광고의 노출, 클릭, 광고비, 전화·길찾기·웹사이트 행동을 불러옵니다."
+          emptyValue="연동 전"
+        />
+      </div>
+    </section>
+  )
+}
+
 function GoogleAdsPerformancePanel({
   workspace,
   storeTitle,
+  heading,
+  description,
+  emptyValue = '-',
 }: {
-  workspace: StoreProductWorkspace
+  workspace?: StoreProductWorkspace
   storeTitle: string
+  heading?: string
+  description?: string
+  emptyValue?: string
 }) {
   const [adsData, setAdsData] = useState<GoogleAdsApiResponse | null>(null)
   const [adsLoading, setAdsLoading] = useState(false)
@@ -3749,14 +3780,14 @@ function GoogleAdsPerformancePanel({
   const rows = [
     {
       label: '노출',
-      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출'),
+      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출') || emptyValue,
       delta: summary && previousSummary ? deltaText(summary.impressions, previousSummary.impressions, '회') : '-',
       basis: '캠페인/광고그룹별 impressions',
       action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
     },
     {
       label: '클릭',
-      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || '연동 전',
+      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || emptyValue,
       delta: summary && previousSummary ? deltaText(summary.clicks, previousSummary.clicks, '건') : '-',
       basis: '광고 클릭수',
       action: '실제 매장 행동으로 이어지는 클릭인지 로컬 액션과 함께 봅니다.',
@@ -3770,7 +3801,7 @@ function GoogleAdsPerformancePanel({
     },
     {
       label: '광고비',
-      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비'),
+      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비') || emptyValue,
       delta: summary && previousSummary ? deltaText(summary.costMicros / 1000000, previousSummary.costMicros / 1000000, '원') : '-',
       basis: '월 예산 대비 소진액',
       action: '운영 수수료와 광고비를 분리해 추적합니다.',
@@ -3784,7 +3815,7 @@ function GoogleAdsPerformancePanel({
     },
     {
       label: '로컬 액션',
-      value: summary ? formatCount(summary.localActions) : '연동 전',
+      value: summary ? formatCount(summary.localActions) : emptyValue,
       delta: summary && previousSummary ? deltaText(summary.localActions, previousSummary.localActions, '건') : '-',
       basis: '길찾기, 전화, 웹사이트 클릭',
       action: 'GBP 행동과 중복 집계하지 않고 광고 기여 행동으로 따로 봅니다.',
@@ -3803,9 +3834,9 @@ function GoogleAdsPerformancePanel({
       <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
         <div>
           <p className="text-sm font-bold text-brand-blue">Google Ads</p>
-          <h4 className="mt-2 text-xl font-black text-white">언리미티드 광고 성과</h4>
+          <h4 className="mt-2 text-xl font-black text-white">{heading || `${storeTitle} 광고 성과`}</h4>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            BigQuery의 Google Ads 로컬 액션 테이블에서 매장별 노출, 클릭, 광고비, 길찾기·전화·웹사이트 행동을 불러옵니다.
+            {description || 'BigQuery의 Google Ads 로컬 액션 테이블에서 매장별 노출, 클릭, 광고비, 길찾기·전화·웹사이트 행동을 불러옵니다.'}
           </p>
           <p className="mt-2 text-xs font-bold text-gray-500 keep-all">
             {adsLoading ? 'Google Ads 데이터를 확인 중입니다.' : adsMessage}
@@ -4077,7 +4108,8 @@ function autoSaveStatusBadge(status: string) {
   return 'border-white/15 bg-white/5 text-gray-400'
 }
 
-function metricValue(workspace: StoreProductWorkspace, keyword: string) {
+function metricValue(workspace: StoreProductWorkspace | undefined, keyword: string) {
+  if (!workspace) return ''
   return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
 }
 
