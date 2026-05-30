@@ -1,13 +1,16 @@
 # BlinkAd ERP Resume
 
-Updated: 2026-05-30 19:45 KST
+Updated: 2026-05-30 19:49 KST
 
 ## 작업공간
 
 - 통합 작업공간: `/Users/mcbookpro/Documents/Claude Code/sites/blinkad-erp-integration`
 - 통합 브랜치: `erp/integration`
 - 운영 URL: `https://www.blinkad.kr/erp`
+- 통합 Preview URL(고정 alias): `https://blinkad-git-erp-integration-aijeonginsight-1976s-projects.vercel.app/erp`
+- 확인한 Ready 배포 URL: `https://blinkad-llt0s469u-aijeonginsight-1976s-projects.vercel.app/erp`
 - 최근 커밋 기준:
+  - `8dd78bd docs: refresh ERP main agent resume`
   - `ff2b7fd Add ERP resume instructions`
   - `3a3fdad Normalize unlimited billing store name`
   - `29df44a Add ERP calendar context menus and billing view`
