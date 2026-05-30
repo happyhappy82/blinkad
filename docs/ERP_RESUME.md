@@ -8,7 +8,7 @@ Updated: 2026-05-30 19:49 KST
 - 통합 브랜치: `erp/integration`
 - 운영 URL: `https://www.blinkad.kr/erp`
 - 통합 Preview URL(고정 alias): `https://blinkad-git-erp-integration-aijeonginsight-1976s-projects.vercel.app/erp`
-- 확인한 Ready 배포 URL: `https://blinkad-llt0s469u-aijeonginsight-1976s-projects.vercel.app/erp`
+- 개별 배포 URL은 push마다 바뀌므로, 통합 검수는 위 고정 alias를 기준으로 확인한다.
 - 최근 커밋 기준:
   - `8dd78bd docs: refresh ERP main agent resume`
   - `ff2b7fd Add ERP resume instructions`
