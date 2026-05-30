@@ -2,6 +2,7 @@ import { Client } from '@notionhq/client'
 import { execFileSync } from 'child_process'
 import { NextResponse } from 'next/server'
 import path from 'path'
+import { getCalendarAuth } from '@/lib/erp-google-calendar-store'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -21,17 +22,48 @@ type CalendarEventPayload = {
   calendarId?: string
 }
 
+type GoogleCalendarEvent = {
+  id?: string
+  summary?: string
+  description?: string
+  location?: string
+  status?: string
+  start?: { dateTime?: string; date?: string }
+  end?: { dateTime?: string; date?: string }
+  attendees?: { email?: string; displayName?: string }[]
+}
+
+type GoogleCalendarListEntry = {
+  id?: string
+  summary?: string
+  backgroundColor?: string
+  foregroundColor?: string
+}
+
 const propertyCandidates = {
-  title: ['미팅명', '미팅', '회의명', '일정명', '제목', '이름', 'Name'],
+  title: ['고객명', '매장명', '클라이언트', '미팅명', '미팅', '회의명', '일정명', '제목', '이름', 'Name'],
   eventId: ['캘린더 이벤트 ID', '캘린더ID', '이벤트ID', 'Calendar Event ID', 'Event ID'],
   date: ['미팅일시', '미팅일', '일시', '날짜', 'Date'],
-  status: ['상태', 'Status'],
+  status: ['처리상태', '상태', '계약완료', 'Status'],
   client: ['고객사', '매장명', '고객명', '클라이언트', 'Client', 'Store'],
   calendarName: ['캘린더', 'Calendar'],
   location: ['장소', 'Location'],
   attendees: ['참석자', 'Attendees'],
-  memo: ['미팅내용', '미팅 내용', '회의록', '논의내용', '내용', '메모', 'Summary', 'Note'],
+  memo: ['미팅 요약', '미팅요약', '미팅내용', '미팅 내용', '회의록', '논의내용', '내용', '메모', 'Summary', 'Note'],
   source: ['소스', 'Source'],
+}
+
+const DEFAULT_CLIENT_DATABASE_ID = '18f451110c9945d997de4ce4fd86d074'
+const CLIENT_DATABASE_SEARCH_QUERY = '통합 문의 관리 DB'
+
+type ClientRecord = {
+  id: string
+  name: string
+  status: string
+  contact: string
+  managerName: string
+  meetingSummary: string
+  notionUrl: string
 }
 
 function resolveNotionToken() {
@@ -110,6 +142,21 @@ function meetingSchemaMap(schema: Record<string, any>) {
   }
 }
 
+function isClientDatabaseSchema(properties: Record<string, any>) {
+  const nameProperty = findPropertyName(properties, ['고객명', '매장명', '클라이언트', 'Client', 'Store'])
+  const clientSignals = [
+    '미팅 요약',
+    '구글맵링크',
+    '구글맵 링크',
+    '분석자료',
+    '견적서',
+    '처리상태',
+    '문의경로',
+  ]
+
+  return Boolean(nameProperty && findPropertyName(properties, clientSignals))
+}
+
 function optionName(propSchema: any, value: string, fallbacks: string[] = []) {
   const options = propSchema?.[propSchema.type]?.options || []
   const names = options.map((option: any) => option.name).filter(Boolean)
@@ -157,6 +204,154 @@ function normalizeMeetingStatus(status?: string) {
   return '예정'
 }
 
+function cleanEventDescription(value = '') {
+  return value
+    .split('\n')
+    .filter((line) => !line.trim().startsWith('ERP_TYPE:'))
+    .join('\n')
+    .trim()
+}
+
+function normalizeCalendarName(value: string) {
+  return value.replace(/\s+/g, '').toLowerCase()
+}
+
+function targetTeamCalendarName() {
+  return process.env.GOOGLE_CALENDAR_TEAM_NAME || process.env.GOOGLE_TEAM_CALENDAR_NAME || '용올캘린더'
+}
+
+function targetTeamCalendarNameCandidates() {
+  const targetName = targetTeamCalendarName()
+  const names = new Set([targetName, targetName.replace(/캘린더$/i, ''), targetName.replace(/calendar$/i, '')])
+  return Array.from(names).map(normalizeCalendarName).filter(Boolean)
+}
+
+async function fetchCalendarList(accessToken: string) {
+  const response = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList?showDeleted=false&maxResults=250', {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    throw new Error(`Google Calendar list API ${response.status}`)
+  }
+
+  const data = (await response.json()) as { items?: GoogleCalendarListEntry[] }
+  return data.items || []
+}
+
+async function resolveTeamCalendar(accessToken: string, storedCalendarId: string) {
+  const calendars = await fetchCalendarList(accessToken)
+  const configuredCalendarId = process.env.GOOGLE_CALENDAR_ID || ''
+  const storedTeamCalendarId = storedCalendarId && storedCalendarId !== 'primary' ? storedCalendarId : ''
+  const targetId = configuredCalendarId || storedTeamCalendarId
+  const normalizedTargetNames = targetTeamCalendarNameCandidates()
+
+  if (targetId) {
+    const byId = calendars.find((calendar) => calendar.id === targetId)
+    if (byId) return byId
+  }
+
+  const exactNameMatch = calendars.find((calendar) => normalizedTargetNames.includes(normalizeCalendarName(calendar.summary || '')))
+  if (exactNameMatch) return exactNameMatch
+
+  const partialNameMatch = calendars.find((calendar) => {
+    const calendarName = normalizeCalendarName(calendar.summary || '')
+    return normalizedTargetNames.some((targetName) => calendarName.includes(targetName) || targetName.includes(calendarName))
+  })
+  if (partialNameMatch) return partialNameMatch
+
+  return null
+}
+
+function normalizeGoogleCalendarEvent(event: GoogleCalendarEvent, calendar: GoogleCalendarListEntry): CalendarEventPayload {
+  const start = event.start?.dateTime || event.start?.date || ''
+  const end = event.end?.dateTime || event.end?.date || start
+
+  return {
+    id: event.id || `${event.summary}-${start}`,
+    title: event.summary || '제목 없는 일정',
+    start,
+    end,
+    type: isMeetingEvent({ title: event.summary, memo: event.description }) ? 'meeting' : 'operation',
+    location: event.location || '',
+    attendees: event.attendees?.map((attendee) => attendee.displayName || attendee.email || '').filter(Boolean) || [],
+    status: event.status || 'confirmed',
+    memo: cleanEventDescription(event.description || ''),
+    source: 'google',
+    calendarId: calendar.id || '',
+    calendarName: calendar.summary || targetTeamCalendarName(),
+  }
+}
+
+async function fetchTeamCalendarMeetingEvents() {
+  const auth = await getCalendarAuth('owner')
+  const { accessToken, calendarId } = auth
+
+  if (!accessToken) {
+    return {
+      connected: false,
+      message: 'Google Calendar OAuth 연결이 없어 용올 캘린더 미팅을 확인하지 못했습니다.',
+      events: [] as CalendarEventPayload[],
+    }
+  }
+
+  const teamCalendar = await resolveTeamCalendar(accessToken, calendarId)
+
+  if (!teamCalendar?.id) {
+    return {
+      connected: true,
+      message: `팀 공유 캘린더 "${targetTeamCalendarName()}"를 찾지 못했습니다.`,
+      events: [] as CalendarEventPayload[],
+    }
+  }
+
+  const timeMin = new Date()
+  timeMin.setMonth(timeMin.getMonth() - 6)
+  const timeMax = new Date()
+  timeMax.setMonth(timeMax.getMonth() + 6)
+
+  const params = new URLSearchParams({
+    singleEvents: 'true',
+    orderBy: 'startTime',
+    maxResults: '250',
+    timeMin: timeMin.toISOString(),
+    timeMax: timeMax.toISOString(),
+  })
+
+  const response = await fetch(
+    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(teamCalendar.id)}/events?${params.toString()}`,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      cache: 'no-store',
+    }
+  )
+
+  if (!response.ok) {
+    throw new Error(`Google Calendar API ${response.status}`)
+  }
+
+  const data = (await response.json()) as { items?: GoogleCalendarEvent[] }
+  const events = (data.items || []).map((event) => normalizeGoogleCalendarEvent(event, teamCalendar)).filter(isMeetingEvent)
+
+  return {
+    connected: true,
+    message: `용올 캘린더 미팅 ${events.length}건을 확인했습니다.`,
+    events,
+  }
+}
+
+function normalizeMatchText(value?: string) {
+  return String(value || '')
+    .replace(/\s+/g, '')
+    .replace(/[()[\]{}·ㆍ|/\\_-]/g, '')
+    .toLowerCase()
+}
+
 function isMeetingEvent(event: CalendarEventPayload) {
   const text = `${event.title || ''} ${event.memo || ''}`.toLowerCase()
   return event.type === 'meeting' || text.includes('미팅') || text.includes('회의') || text.includes('상담') || text.includes('meet')
@@ -192,22 +387,85 @@ function clientNameFromTitle(title: string) {
     .trim()
 }
 
+function clientNameVariants(name: string) {
+  const variants = new Set<string>()
+  const trimmed = name.trim()
+  if (trimmed) variants.add(trimmed)
+
+  const withoutParentheses = trimmed.replace(/\([^)]*\)/g, '').replace(/\[[^\]]*\]/g, '').trim()
+  if (withoutParentheses) variants.add(withoutParentheses)
+
+  const parentheticalMatches = trimmed.matchAll(/\(([^)]*)\)|\[([^\]]*)\]/g)
+  for (const match of parentheticalMatches) {
+    const value = (match[1] || match[2] || '').trim()
+    if (value) variants.add(value)
+  }
+
+  const firstSegment = trimmed.split(/[(/|]/)[0]?.trim()
+  if (firstSegment) variants.add(firstSegment)
+
+  return Array.from(variants)
+}
+
+function matchClientFromText(text: string, clients: ClientRecord[]) {
+  const normalizedText = normalizeMatchText(text)
+  if (!normalizedText) return null
+
+  const matches = clients
+    .map((client) => {
+      const score = clientNameVariants(client.name).reduce((best, variant) => {
+        const normalizedVariant = normalizeMatchText(variant)
+        if (normalizedVariant.length < 2) return best
+        return normalizedText.includes(normalizedVariant) ? Math.max(best, normalizedVariant.length) : best
+      }, 0)
+
+      return { client, score }
+    })
+    .filter((match) => match.score > 0)
+    .sort((a, b) => b.score - a.score)
+
+  return matches[0]?.client || null
+}
+
+function matchClientForEvent(event: CalendarEventPayload, clients: ClientRecord[]) {
+  return matchClientFromText(
+    `${event.title || ''} ${event.memo || ''} ${event.location || ''} ${(event.attendees || []).join(' ')}`,
+    clients
+  )
+}
+
+function matchClientForRecord(record: ReturnType<typeof meetingRecordFromPage>, clients: ClientRecord[]) {
+  return matchClientFromText(
+    `${record.client || ''} ${record.title || ''} ${record.memo || ''} ${record.location || ''} ${record.attendees.join(' ')}`,
+    clients
+  )
+}
+
 function meetingRecordFromPage(page: any, map: ReturnType<typeof meetingSchemaMap>) {
   const properties = page.properties || {}
   const attendees = propText(properties[map.attendees])
+  const title = propText(properties[map.title]) || '제목 없는 미팅'
+  const client = propText(properties[map.client])
+  const memo = propText(properties[map.memo])
 
   return {
     id: page.id,
-    title: propText(properties[map.title]) || '제목 없는 미팅',
+    storeName: client || title,
+    managerName: attendees,
+    meetingSummary: memo,
+    title,
     date: propText(properties[map.date]) || page.created_time || '',
     status: propText(properties[map.status]) || '예정',
-    client: propText(properties[map.client]),
+    client,
     calendarName: propText(properties[map.calendarName]),
     location: propText(properties[map.location]),
     attendees: attendees ? attendees.split(',').map((item) => item.trim()).filter(Boolean) : [],
-    memo: propText(properties[map.memo]),
+    memo,
     calendarEventId: propText(properties[map.eventId]),
     notionUrl: page.url || '',
+    clientStatus: '',
+    clientContact: '',
+    clientNotionUrl: '',
   }
 }
 
@@ -298,22 +556,42 @@ function mapMeetingPages(pages: any[], map: ReturnType<typeof meetingSchemaMap>)
   return uniqueMeetingRecords(pages.map((page) => meetingRecordFromPage(page, map)).sort(sortMeetings))
 }
 
+function enrichMeetingRecords(records: ReturnType<typeof meetingRecordFromPage>[], clients: ClientRecord[]) {
+  if (!clients.length) return records
+
+  return records.map((record) => {
+    const client = matchClientForRecord(record, clients)
+    if (!client) return record
+
+    return {
+      ...record,
+      storeName: client.name,
+      client: client.name,
+      clientStatus: client.status,
+      clientContact: client.contact,
+      clientNotionUrl: client.notionUrl,
+    }
+  })
+}
+
 function eventProperties(
   schema: Record<string, any>,
   map: ReturnType<typeof meetingSchemaMap>,
   event: CalendarEventPayload,
-  existing?: any
+  existing?: any,
+  matchedClient?: ClientRecord | null
 ) {
   const properties: Record<string, any> = {}
   const existingMemo = existing && map.memo ? propText(existing.properties?.[map.memo]) : ''
   const attendees = (event.attendees || []).join(', ')
   const title = event.title || '제목 없는 미팅'
+  const clientName = matchedClient?.name || clientNameFromTitle(title)
 
   setProperty(properties, schema, map.title, title)
   setProperty(properties, schema, map.eventId, event.id || '')
   setProperty(properties, schema, map.date, event.start || '')
   setProperty(properties, schema, map.status, normalizeMeetingStatus(event.status), ['예정', '미팅 예정', '진행 예정', '대기'])
-  setProperty(properties, schema, map.client, clientNameFromTitle(title))
+  setProperty(properties, schema, map.client, clientName)
   setProperty(properties, schema, map.calendarName, event.calendarName || '')
   setProperty(properties, schema, map.location, event.location || '')
   setProperty(properties, schema, map.attendees, attendees)
@@ -324,6 +602,148 @@ function eventProperties(
   }
 
   return properties
+}
+
+async function findClientDatabaseBySearch(notion: Client, cause?: unknown) {
+  const response = await notion.search({
+    query: CLIENT_DATABASE_SEARCH_QUERY,
+    filter: { property: 'object', value: 'database' },
+    page_size: 10,
+  })
+  const database = response.results.find((result: any) =>
+    (result.title || []).some((text: any) => text.plain_text?.includes(CLIENT_DATABASE_SEARCH_QUERY))
+  ) || response.results[0]
+
+  if (database?.id) return database.id
+
+  const detail = cause instanceof Error ? ` 원인: ${cause.message}` : ''
+  throw new Error(`문의관리 DB를 찾지 못했습니다.${detail}`)
+}
+
+async function resolveClientDatabaseId(notion: Client, databaseOrPageId: string) {
+  try {
+    const database = await notion.databases.retrieve({ database_id: databaseOrPageId })
+    const schema = (database as any).properties || {}
+    return isClientDatabaseSchema(schema) ? databaseOrPageId : findClientDatabaseBySearch(notion)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : ''
+    if (!message.includes('is a page')) {
+      return findClientDatabaseBySearch(notion, error)
+    }
+
+    try {
+      return await findClientDatabaseBySearch(notion, error)
+    } catch {
+      // If search is unavailable, inspect child databases on the dashboard page.
+    }
+
+    const children = await notion.blocks.children.list({
+      block_id: databaseOrPageId,
+      page_size: 100,
+    })
+    const databaseBlocks = children.results.filter((block: any) => block.type === 'child_database') as any[]
+    const preferredBlocks = [
+      ...databaseBlocks.filter((block) => (block.child_database?.title || '').includes('문의')),
+      ...databaseBlocks,
+    ]
+
+    for (const block of preferredBlocks) {
+      if (!block?.id) continue
+      try {
+        const database = await notion.databases.retrieve({ database_id: block.id })
+        const schema = (database as any).properties || {}
+        if (isClientDatabaseSchema(schema)) return block.id
+      } catch {
+        // Linked DB blocks can be visible while the data source itself is not shared.
+      }
+    }
+
+    return findClientDatabaseBySearch(notion, error)
+  }
+}
+
+function clientRecordFromPage(page: any): ClientRecord {
+  const properties = page.properties || {}
+  const titleName =
+    propText(properties['고객명']) ||
+    propText(properties['매장명']) ||
+    propText(properties[titlePropertyName(properties)])
+  const memoName = findPropertyName(properties, propertyCandidates.memo)
+
+  return {
+    id: page.id,
+    name: titleName || '이름 없음',
+    status: propText(properties[findPropertyName(properties, ['처리상태', '상태', '계약완료', 'Status'])]),
+    contact: propText(properties[findPropertyName(properties, ['연락처', '전화번호', 'Phone', 'Contact'])]),
+    managerName: propText(properties[findPropertyName(properties, ['담당자', '담당', '작성', 'Owner'])]) || '블링크애드',
+    meetingSummary: propText(properties[memoName]),
+    notionUrl: page.url || '',
+  }
+}
+
+async function loadClientRecords(notion: Client, databaseId?: string) {
+  try {
+    const targetDatabaseId = databaseId || process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_CLIENT_DATABASE_ID
+    const resolvedDatabaseId = await resolveClientDatabaseId(notion, targetDatabaseId)
+    const response = await notion.databases.query({
+      database_id: resolvedDatabaseId,
+      page_size: 100,
+    })
+
+    return response.results
+      .map(clientRecordFromPage)
+      .filter((client) => client.name && client.name !== '이름 없음')
+  } catch {
+    return []
+  }
+}
+
+function matchedMeetingRecord(client: ClientRecord, event: CalendarEventPayload) {
+  return {
+    id: client.id,
+    storeName: client.name,
+    managerName: client.managerName,
+    meetingSummary: client.meetingSummary,
+    title: event.title || `${client.name} 미팅`,
+    date: event.start || '',
+    status: client.status,
+    client: client.name,
+    calendarName: event.calendarName || targetTeamCalendarName(),
+    location: event.location || '',
+    attendees: event.attendees || [],
+    memo: client.meetingSummary,
+    calendarEventId: event.id || '',
+    notionUrl: client.notionUrl,
+    clientStatus: client.status,
+    clientContact: client.contact,
+    clientNotionUrl: client.notionUrl,
+  }
+}
+
+function sortCalendarMeetingRecords(a: ReturnType<typeof matchedMeetingRecord>, b: ReturnType<typeof matchedMeetingRecord>) {
+  return new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime()
+}
+
+async function loadCalendarMatchedMeetings(notion: Client, databaseId: string) {
+  const clients = await loadClientRecords(notion, databaseId)
+  const calendar = await fetchTeamCalendarMeetingEvents()
+  const meetingEvents = uniqueMeetingEvents(calendar.events)
+    .filter(isMeetingEvent)
+    .sort((a, b) => new Date(b.start || 0).getTime() - new Date(a.start || 0).getTime())
+  const seenClientIds = new Set<string>()
+  const meetings: ReturnType<typeof matchedMeetingRecord>[] = []
+
+  for (const event of meetingEvents) {
+    const client = matchClientForEvent(event, clients)
+    if (!client || seenClientIds.has(client.id)) continue
+    seenClientIds.add(client.id)
+    meetings.push(matchedMeetingRecord(client, event))
+  }
+
+  return {
+    message: `${calendar.message} 문의관리 DB 매장 ${meetings.length}개가 매칭되었습니다.`,
+    meetings: meetings.sort(sortCalendarMeetingRecords),
+  }
 }
 
 async function syncCalendarMeetings(notion: Client, databaseId: string, events: CalendarEventPayload[]) {
@@ -338,10 +758,11 @@ async function syncCalendarMeetings(notion: Client, databaseId: string, events: 
   const pages = await loadMeetingPages(notion, databaseId, map)
   const knownPages = uniqueMeetingPages(pages, map)
   const meetingEvents = uniqueMeetingEvents(events.filter(isMeetingEvent))
+  const clients = await loadClientRecords(notion)
 
   for (const event of meetingEvents) {
     const existing = matchExistingPage(knownPages, map, event)
-    const properties = eventProperties(schema, map, event, existing)
+    const properties = eventProperties(schema, map, event, existing, matchClientForEvent(event, clients))
 
     if (existing) {
       const updatedPage = await notion.pages.update({ page_id: existing.id, properties })
@@ -357,13 +778,16 @@ async function syncCalendarMeetings(notion: Client, databaseId: string, events: 
   }
 
   const updatedPages = await loadMeetingPages(notion, databaseId, map)
-  return mapMeetingPages(updatedPages, map)
+  return enrichMeetingRecords(mapMeetingPages(updatedPages, map), clients)
 }
 
 function fallbackMeetings() {
   return [
     {
       id: 'fallback-meeting-1',
+      storeName: '역대짬뽕',
+      managerName: '권순현',
+      meetingSummary: 'Google 프로필과 지점별 웹페이지 연결 전략 설명',
       title: '역대짬뽕 제안 미팅',
       date: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
       status: '샘플',
@@ -374,6 +798,9 @@ function fallbackMeetings() {
       memo: 'Google 프로필과 지점별 웹페이지 연결 전략 설명',
       calendarEventId: 'sample-meeting-1',
       notionUrl: '',
+      clientStatus: '샘플',
+      clientContact: '',
+      clientNotionUrl: '',
     },
   ]
 }
@@ -387,10 +814,10 @@ function meetingConnectionErrorMessage(error: unknown) {
     message.includes('Make sure the relevant pages and databases are shared')
 
   if (isMissingOrUnsharedDatabase) {
-    return 'Notion 미팅관리 DB가 Integration에 공유되지 않았습니다. DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
+    return 'Notion 문의관리 DB가 Integration에 공유되지 않았습니다. DB 우측 상단 공유/연결에서 Integration 권한을 추가해주세요.'
   }
 
-  return message || 'Notion 미팅관리 DB 연결에 실패했습니다.'
+  return message || 'Notion 문의관리 DB 연결에 실패했습니다.'
 }
 
 async function getNotionAndDatabase() {
@@ -400,18 +827,21 @@ async function getNotionAndDatabase() {
     return {
       notion: null,
       databaseId: '',
-      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 미팅 데이터로 표시 중입니다.',
+      message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 문의관리 데이터로 표시 중입니다.',
     }
   }
 
   const notion = new Client({ auth: token })
-  const databaseId = await resolveMeetingDatabaseId(notion)
+  const databaseId = await resolveClientDatabaseId(
+    notion,
+    process.env.BLINKAD_NOTION_DATABASE_ID || DEFAULT_CLIENT_DATABASE_ID
+  )
 
   if (!databaseId) {
     return {
       notion: null,
       databaseId: '',
-      message: '미팅관리 Notion DB를 찾지 못했습니다. BLINKAD_MEETING_DATABASE_ID 또는 ERP_MEETING_DATABASE_ID를 설정해주세요.',
+      message: '문의관리 Notion DB를 찾지 못했습니다. BLINKAD_NOTION_DATABASE_ID를 설정해주세요.',
     }
   }
 
@@ -430,16 +860,13 @@ export async function GET() {
       })
     }
 
-    const database = await notion.databases.retrieve({ database_id: databaseId })
-    const schema = (database as any).properties || {}
-    const map = meetingSchemaMap(schema)
-    const pages = await loadMeetingPages(notion, databaseId, map)
+    const result = await loadCalendarMatchedMeetings(notion, databaseId)
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: 'Notion 미팅관리 DB와 연결되었습니다.',
-      meetings: mapMeetingPages(pages, map),
+      message: result.message,
+      meetings: result.meetings,
     })
   } catch (error) {
     return NextResponse.json({
@@ -451,9 +878,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
-  const body = (await request.json().catch(() => ({}))) as { events?: CalendarEventPayload[] }
-
+export async function POST() {
   try {
     const { notion, databaseId, message } = await getNotionAndDatabase()
     if (!notion || !databaseId) {
@@ -465,12 +890,13 @@ export async function POST(request: Request) {
       })
     }
 
-    const meetings = await syncCalendarMeetings(notion, databaseId, body.events || [])
+    const result = await loadCalendarMatchedMeetings(notion, databaseId)
+
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: '용올캘린더 미팅 일정을 Notion 미팅관리 DB와 동기화했습니다.',
-      meetings,
+      message: result.message,
+      meetings: result.meetings,
     })
   } catch (error) {
     return NextResponse.json(
@@ -489,7 +915,7 @@ export async function PATCH(request: Request) {
   const body = (await request.json().catch(() => ({}))) as { id?: string; memo?: string; status?: string }
 
   if (!body.id) {
-    return NextResponse.json({ connected: false, message: '미팅관리 DB 페이지 ID가 필요합니다.' }, { status: 400 })
+    return NextResponse.json({ connected: false, message: '문의관리 DB 페이지 ID가 필요합니다.' }, { status: 400 })
   }
 
   try {
@@ -518,13 +944,13 @@ export async function PATCH(request: Request) {
       properties,
     })
 
-    const pages = await loadMeetingPages(notion, databaseId, map)
+    const result = await loadCalendarMatchedMeetings(notion, databaseId)
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
-      message: '미팅관리 DB에 미팅 내용을 저장했습니다.',
-      meetings: mapMeetingPages(pages, map),
+      message: '문의관리 DB에 미팅 요약을 저장했습니다.',
+      meetings: result.meetings,
     })
   } catch (error) {
     return NextResponse.json(

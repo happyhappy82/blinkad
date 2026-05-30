@@ -83,13 +83,13 @@ export function MeetingPanel({
     <MeetingDatabasePanel
       kicker="Meeting DB"
       title="미팅관리"
-      description="용올캘린더의 미팅 일정을 Notion 미팅관리 DB에 동기화하고, DB에 저장된 미팅 내용과 후속 액션을 관리합니다."
+      description="용올 캘린더의 미팅 일정을 기준으로 문의관리 DB 매장을 매칭해 담당자, 상태, 미팅 요약만 정리합니다."
       meetings={meetings}
       loading={loading}
       message={message}
       onRefresh={onRefresh}
       onSaveMeetingNote={onSaveMeetingNote}
-      emptyLabel="미팅관리 DB에 표시할 미팅이 없습니다."
+      emptyLabel="용올 캘린더 미팅 일정과 매칭된 문의관리 DB 매장이 없습니다."
     />
   )
 }
@@ -227,15 +227,14 @@ function MeetingDatabasePanel({
           <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">{emptyLabel}</p>
         ) : (
           <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
-            <table className="min-w-[1240px] w-full border-collapse text-left">
+            <table className="min-w-[1040px] w-full border-collapse text-left">
               <thead className="bg-white/[0.04]">
                 <tr className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">
                   <th className="w-[150px] px-4 py-3">날짜</th>
-                  <th className="w-[220px] px-4 py-3">미팅</th>
-                  <th className="w-[160px] px-4 py-3">고객사</th>
-                  <th className="w-[180px] px-4 py-3">캘린더/장소</th>
-                  <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
+                  <th className="w-[260px] px-4 py-3">매장명</th>
+                  <th className="w-[160px] px-4 py-3">담당자</th>
+                  <th className="w-[180px] px-4 py-3">상태</th>
+                  <th className="px-4 py-3">미팅 요약</th>
                   <th className="w-[120px] px-4 py-3">상세</th>
                 </tr>
               </thead>
@@ -247,32 +246,26 @@ function MeetingDatabasePanel({
                       <p className="mt-1 text-xs font-bold text-gray-500">{formatTimeOnly(meeting.date)}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm font-black leading-5 text-white keep-all">{meeting.title}</p>
-                      <span className="mt-2 inline-flex rounded-full border border-brand-blue/30 bg-brand-blue/15 px-2 py-1 text-[11px] font-black text-blue-100">
-                        {meeting.status || '미팅'}
-                      </span>
                       {meeting.notionUrl ? (
                         <a
                           href={meeting.notionUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="mt-2 inline-flex text-xs font-black text-brand-blue hover:text-blue-300"
+                          className="text-sm font-black text-gray-200 underline-offset-4 hover:text-white hover:underline keep-all"
                         >
-                          Notion 열기
+                          {meeting.storeName || meeting.client || '-'}
                         </a>
-                      ) : null}
+                      ) : (
+                        <p className="text-sm font-black text-gray-200 keep-all">{meeting.storeName || meeting.client || '-'}</p>
+                      )}
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-sm font-black text-gray-200 keep-all">{meeting.client || '-'}</p>
+                      <p className="text-sm font-black text-gray-300 keep-all">{meeting.managerName || '-'}</p>
                     </td>
                     <td className="px-4 py-3">
-                      {meeting.calendarName ? <p className="text-xs font-black text-gray-400">{meeting.calendarName}</p> : null}
-                      {meeting.location ? <p className="mt-2 text-xs font-semibold text-gray-500 keep-all">{meeting.location}</p> : null}
-                    </td>
-                    <td className="px-4 py-3">
-                      <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {meeting.attendees.length > 0 ? meeting.attendees.slice(0, 3).join(', ') : '-'}
-                      </p>
+                      <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs font-black text-gray-300">
+                        {meeting.clientStatus || meeting.status || '-'}
+                      </span>
                     </td>
                     <td className="px-4 py-3">
                       <button
@@ -289,7 +282,7 @@ function MeetingDatabasePanel({
                             overflow: 'hidden',
                           }}
                         >
-                          {(meetingNotes[meeting.id] ?? meeting.memo) || '미팅 내용을 입력하려면 클릭하세요.'}
+                          {(meetingNotes[meeting.id] ?? meeting.memo) || '미팅 요약을 입력하려면 클릭하세요.'}
                         </span>
                       </button>
                       {noteMessages[meeting.id] ? (
@@ -349,7 +342,7 @@ function MeetingDatabasePanel({
                   setMeetingNotes((current) => ({ ...current, [activeMeeting.id]: changeEvent.target.value }))
                 }
                 className="min-h-80 w-full rounded-md border border-white/10 bg-[#07080b] px-4 py-3 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+                placeholder="미팅 요약, 고객 니즈, 제안 포인트, 후속 액션"
               />
               {noteMessages[activeMeeting.id] ? (
                 <p className="mt-3 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[activeMeeting.id]}</p>
@@ -544,7 +537,7 @@ function MeetingListPanel({
             <>
               <p className="text-xs font-black text-brand-blue">Drive 회의록 연동 준비</p>
               <p className="mt-2 text-sm font-bold leading-6 text-gray-400 keep-all">
-                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 내용 기록에 연결하는 구조로 확장합니다.
+                추후 녹음 파일을 Google Drive에 저장하면, 음성 분석 결과를 아래 미팅 요약 기록에 연결하는 구조로 확장합니다.
               </p>
             </>
           )}
@@ -563,7 +556,7 @@ function MeetingListPanel({
                   <th className="w-[240px] px-4 py-3">미팅</th>
                   <th className="w-[180px] px-4 py-3">캘린더/장소</th>
                   <th className="w-[160px] px-4 py-3">참석자</th>
-                  <th className="px-4 py-3">미팅 내용</th>
+                  <th className="px-4 py-3">미팅 요약</th>
                   <th className="w-[110px] px-4 py-3">저장</th>
                 </tr>
               </thead>
@@ -601,7 +594,7 @@ function MeetingListPanel({
                           setMeetingNotes((current) => ({ ...current, [event.id]: changeEvent.target.value }))
                         }
                         className="min-h-28 w-full rounded-md border border-white/10 bg-[#07080b] px-3 py-2 text-sm font-semibold leading-6 text-white outline-none focus:border-brand-blue/60"
-                        placeholder="미팅에서 다룬 내용, 고객 니즈, 제안 포인트, 후속 액션"
+                        placeholder="미팅 요약, 고객 니즈, 제안 포인트, 후속 액션"
                       />
                       {noteMessages[event.id] ? (
                         <p className="mt-2 text-xs font-bold leading-5 text-gray-500 keep-all">{noteMessages[event.id]}</p>
