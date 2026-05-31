@@ -183,6 +183,11 @@ function googleAdsId(value: string | undefined) {
   return (value || '').replace(/\D/g, '')
 }
 
+function publicGoogleAdsId(value: string | number | undefined) {
+  const id = String(value || '').replace(/\D/g, '')
+  return id ? `***${id.slice(-4)}` : ''
+}
+
 function googleAdsApiVersion() {
   const version = process.env.GOOGLE_ADS_API_VERSION || 'v22'
   return /^v\d+$/.test(version) ? version : 'v22'
@@ -375,7 +380,7 @@ async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAd
 
 function mapGoogleAdsCampaign(row: GoogleAdsSearchRow): GoogleAdsCampaign {
   return {
-    id: String(row.campaign?.id || ''),
+    id: publicGoogleAdsId(row.campaign?.id),
     name: row.campaign?.name || '',
     status: row.campaign?.status || '',
     channel: row.campaign?.advertisingChannelType || '',
@@ -435,7 +440,7 @@ async function loadBlinkAdLiveAds(store: string, days: number) {
       summary: emptySummary(),
       previousSummary: emptySummary(),
       daily: [],
-      adsCustomerIds: [customerId],
+      adsCustomerIds: [publicGoogleAdsId(customerId)],
       campaigns,
       sourceSyncedAt: new Date().toISOString(),
     }
@@ -511,7 +516,7 @@ async function loadBlinkAdLiveAds(store: string, days: number) {
       storeName: store,
       campaignName: row.campaign?.name || campaignName,
       campaignStatus: row.campaign?.status || '',
-      adsCustomerId: customerId,
+      adsCustomerId: publicGoogleAdsId(customerId),
       impressions: numberValue(row.metrics?.impressions),
       clicks: numberValue(row.metrics?.clicks),
       costMicros: numberValue(row.metrics?.costMicros),
@@ -520,7 +525,7 @@ async function loadBlinkAdLiveAds(store: string, days: number) {
       localActionWebsiteClicks: 0,
       sourceSyncedAt: new Date().toISOString(),
     })),
-    adsCustomerIds: [customerId],
+    adsCustomerIds: [publicGoogleAdsId(customerId)],
     campaigns,
     sourceSyncedAt: new Date().toISOString(),
   }
