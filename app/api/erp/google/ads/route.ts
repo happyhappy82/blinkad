@@ -17,6 +17,61 @@ type AdsSummary = {
   localActions: number
 }
 
+type GoogleAdsCampaign = {
+  id: string
+  name: string
+  status: string
+  channel: string
+  startDate: string
+  endDate: string
+}
+
+type GoogleAdsSearchRow = {
+  campaign?: {
+    id?: string | number
+    name?: string
+    status?: string
+    advertisingChannelType?: string
+    startDate?: string
+    endDate?: string
+  }
+  customer?: {
+    id?: string | number
+    descriptiveName?: string
+    manager?: boolean
+  }
+  customerClient?: {
+    id?: string | number
+    descriptiveName?: string
+    manager?: boolean
+    level?: string | number
+    status?: string
+  }
+  metrics?: {
+    impressions?: string | number
+    clicks?: string | number
+    costMicros?: string | number
+  }
+  segments?: {
+    date?: string
+  }
+}
+
+type ResolvedAdsAccount = {
+  customerId: string
+  loginCustomerId: string
+}
+
+class GoogleAdsLiveError extends Error {
+  status?: number
+
+  constructor(message: string, status?: number) {
+    super(message)
+    this.name = 'GoogleAdsLiveError'
+    this.status = status
+  }
+}
+
 function loadSharedEnv() {
   const envPaths = [
     path.resolve(process.cwd(), '.env.local'),
@@ -110,12 +165,395 @@ function connectionErrorMessage(error: unknown) {
   return message || 'Google Ads 데이터를 불러오지 못했습니다.'
 }
 
+function isBlinkAdStore(store: string) {
+  const normalized = store.replace(/\s+/g, '').toLowerCase()
+  return normalized.includes('블링크애드') || normalized.includes('blinkad')
+}
+
+function googleAdsConfigMissing() {
+  return [
+    'GOOGLE_ADS_DEVELOPER_TOKEN',
+    'GOOGLE_ADS_CLIENT_ID',
+    'GOOGLE_ADS_CLIENT_SECRET',
+    'GOOGLE_ADS_REFRESH_TOKEN',
+  ].filter((key) => !process.env[key])
+}
+
+function googleAdsId(value: string | undefined) {
+  return (value || '').replace(/\D/g, '')
+}
+
+function googleAdsApiVersion() {
+  const version = process.env.GOOGLE_ADS_API_VERSION || 'v22'
+  return /^v\d+$/.test(version) ? version : 'v22'
+}
+
+function escapeGaqlString(value: string) {
+  return value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+}
+
+function utcDateOnly(value: Date) {
+  return value.toISOString().slice(0, 10)
+}
+
+function addUtcDays(value: Date, days: number) {
+  const next = new Date(Date.UTC(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate()))
+  next.setUTCDate(next.getUTCDate() + days)
+  return next
+}
+
+function dateRange(days: number) {
+  const end = addUtcDays(new Date(), 0)
+  const start = addUtcDays(end, -(days - 1))
+  const previousEnd = addUtcDays(start, -1)
+  const previousStart = addUtcDays(previousEnd, -(days - 1))
+
+  return {
+    startDate: utcDateOnly(start),
+    endDate: utcDateOnly(end),
+    previousStartDate: utcDateOnly(previousStart),
+    previousEndDate: utcDateOnly(previousEnd),
+  }
+}
+
+async function fetchGoogleAdsAccessToken() {
+  const missing = googleAdsConfigMissing()
+  if (missing.length) {
+    throw new GoogleAdsLiveError(`Google Ads API 환경변수가 부족합니다: ${missing.join(', ')}`)
+  }
+
+  const params = new URLSearchParams({
+    client_id: process.env.GOOGLE_ADS_CLIENT_ID || '',
+    client_secret: process.env.GOOGLE_ADS_CLIENT_SECRET || '',
+    refresh_token: process.env.GOOGLE_ADS_REFRESH_TOKEN || '',
+    grant_type: 'refresh_token',
+  })
+  const response = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    body: params,
+  })
+
+  if (!response.ok) {
+    throw new GoogleAdsLiveError('Google Ads OAuth 토큰을 갱신하지 못했습니다.', response.status)
+  }
+
+  const data = (await response.json()) as { access_token?: string }
+  if (!data.access_token) {
+    throw new GoogleAdsLiveError('Google Ads OAuth 응답에 access token이 없습니다.')
+  }
+  return data.access_token
+}
+
+async function googleAdsSearch(
+  accessToken: string,
+  customerId: string,
+  query: string,
+  loginCustomerId?: string
+) {
+  const headers: Record<string, string> = {
+    authorization: `Bearer ${accessToken}`,
+    'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN || '',
+    'content-type': 'application/json',
+  }
+  if (loginCustomerId) headers['login-customer-id'] = loginCustomerId
+
+  const response = await fetch(
+    `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers/${customerId}/googleAds:searchStream`,
+    {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ query }),
+    }
+  )
+  const text = await response.text()
+
+  if (!response.ok) {
+    let detail = ''
+    try {
+      const parsed = JSON.parse(text) as {
+        error?: { details?: Array<{ errors?: Array<{ message?: string; errorCode?: Record<string, string> }> }> }
+      }
+      const apiError = parsed.error?.details?.[0]?.errors?.[0]
+      const code = apiError?.errorCode ? Object.values(apiError.errorCode)[0] : ''
+      detail = apiError?.message || code
+    } catch {
+      detail = ''
+    }
+    throw new GoogleAdsLiveError(detail || 'Google Ads API 조회에 실패했습니다.', response.status)
+  }
+
+  const chunks = JSON.parse(text) as Array<{ results?: GoogleAdsSearchRow[] }>
+  return chunks.flatMap((chunk) => chunk.results || [])
+}
+
+async function listAccessibleGoogleAdsCustomers(accessToken: string) {
+  const response = await fetch(
+    `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers:listAccessibleCustomers`,
+    {
+      headers: {
+        authorization: `Bearer ${accessToken}`,
+        'developer-token': process.env.GOOGLE_ADS_DEVELOPER_TOKEN || '',
+      },
+    }
+  )
+  if (!response.ok) {
+    throw new GoogleAdsLiveError('접근 가능한 Google Ads 고객 계정을 조회하지 못했습니다.', response.status)
+  }
+  const data = (await response.json()) as { resourceNames?: string[] }
+  return (data.resourceNames || []).map((name) => name.replace('customers/', ''))
+}
+
+async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAdsAccount> {
+  const explicitCustomerId = googleAdsId(process.env.BLINKAD_GOOGLE_ADS_CUSTOMER_ID)
+  const explicitLoginCustomerId = googleAdsId(
+    process.env.BLINKAD_GOOGLE_ADS_LOGIN_CUSTOMER_ID || process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID
+  )
+
+  if (explicitCustomerId) {
+    return { customerId: explicitCustomerId, loginCustomerId: explicitLoginCustomerId }
+  }
+
+  const accessibleCustomerIds = await listAccessibleGoogleAdsCustomers(accessToken)
+  const managerIds = new Set<string>()
+  if (explicitLoginCustomerId) managerIds.add(explicitLoginCustomerId)
+
+  for (const customerId of accessibleCustomerIds) {
+    try {
+      const rows = await googleAdsSearch(
+        accessToken,
+        customerId,
+        'SELECT customer.id, customer.descriptive_name, customer.manager FROM customer LIMIT 1'
+      )
+      const customer = rows[0]?.customer
+      if (customer?.manager && String(customer.descriptiveName || '').includes('블링크애드')) {
+        managerIds.add(customerId)
+      }
+    } catch {
+      // Some accessible accounts require manager scoping; those are handled by the child lookup below.
+    }
+  }
+
+  for (const managerId of managerIds) {
+    try {
+      const rows = await googleAdsSearch(
+        accessToken,
+        managerId,
+        `
+          SELECT
+            customer_client.id,
+            customer_client.descriptive_name,
+            customer_client.manager,
+            customer_client.level,
+            customer_client.status
+          FROM customer_client
+          WHERE customer_client.level = 1
+            AND customer_client.status = ENABLED
+          LIMIT 100
+        `
+      )
+      const child = rows.find((row) => {
+        const client = row.customerClient
+        return client && !client.manager && String(client.descriptiveName || '').includes('블링크애드')
+      })
+      const childId = googleAdsId(String(child?.customerClient?.id || ''))
+      if (childId) {
+        return { customerId: childId, loginCustomerId: managerId }
+      }
+    } catch {
+      // Keep searching other manager candidates when a stale login-customer-id is configured.
+    }
+  }
+
+  const fallbackCustomerId = googleAdsId(process.env.GOOGLE_ADS_CUSTOMER_ID)
+  if (fallbackCustomerId) {
+    return { customerId: fallbackCustomerId, loginCustomerId: explicitLoginCustomerId }
+  }
+
+  throw new GoogleAdsLiveError('블링크애드 하위 Google Ads 고객 계정을 찾지 못했습니다.')
+}
+
+function mapGoogleAdsCampaign(row: GoogleAdsSearchRow): GoogleAdsCampaign {
+  return {
+    id: String(row.campaign?.id || ''),
+    name: row.campaign?.name || '',
+    status: row.campaign?.status || '',
+    channel: row.campaign?.advertisingChannelType || '',
+    startDate: row.campaign?.startDate || '',
+    endDate: row.campaign?.endDate || '',
+  }
+}
+
+function aggregateGoogleAdsRows(rows: GoogleAdsSearchRow[]): AdsSummary {
+  return rows.reduce(
+    (summary, row) => ({
+      ...summary,
+      impressions: summary.impressions + numberValue(row.metrics?.impressions),
+      clicks: summary.clicks + numberValue(row.metrics?.clicks),
+      costMicros: summary.costMicros + numberValue(row.metrics?.costMicros),
+    }),
+    { ...emptySummary(), rowCount: rows.length }
+  )
+}
+
+async function loadBlinkAdLiveAds(store: string, days: number) {
+  const accessToken = await fetchGoogleAdsAccessToken()
+  const { customerId, loginCustomerId } = await resolveBlinkAdAdsAccount(accessToken)
+  const campaignName = process.env.BLINKAD_GOOGLE_ADS_CAMPAIGN_NAME || '블링크애드 클라이언트유치'
+  const campaignNameFilter = escapeGaqlString(campaignName)
+  const { startDate, endDate, previousStartDate, previousEndDate } = dateRange(days)
+  const campaignWhere = `campaign.name = '${campaignNameFilter}' AND campaign.status != REMOVED`
+
+  const campaignRows = await googleAdsSearch(
+    accessToken,
+    customerId,
+    `
+      SELECT
+        campaign.id,
+        campaign.name,
+        campaign.status,
+        campaign.advertising_channel_type,
+        campaign.start_date,
+        campaign.end_date
+      FROM campaign
+      WHERE ${campaignWhere}
+      ORDER BY campaign.id DESC
+      LIMIT 20
+    `,
+    loginCustomerId
+  )
+  const campaigns = campaignRows.map(mapGoogleAdsCampaign)
+
+  if (!campaigns.length) {
+    return {
+      source: 'google_ads_api',
+      connected: true,
+      status: 'campaign_not_found',
+      store,
+      message: `${campaignName} 캠페인을 Google Ads API에서 찾지 못했습니다.`,
+      period: { days, firstDate: startDate, lastDate: endDate },
+      summary: emptySummary(),
+      previousSummary: emptySummary(),
+      daily: [],
+      adsCustomerIds: [customerId],
+      campaigns,
+      sourceSyncedAt: new Date().toISOString(),
+    }
+  }
+
+  const summaryRows = await googleAdsSearch(
+    accessToken,
+    customerId,
+    `
+      SELECT
+        campaign.id,
+        campaign.name,
+        metrics.impressions,
+        metrics.clicks,
+        metrics.cost_micros
+      FROM campaign
+      WHERE ${campaignWhere}
+        AND segments.date BETWEEN '${startDate}' AND '${endDate}'
+    `,
+    loginCustomerId
+  )
+  const previousRows = await googleAdsSearch(
+    accessToken,
+    customerId,
+    `
+      SELECT
+        campaign.id,
+        campaign.name,
+        metrics.impressions,
+        metrics.clicks,
+        metrics.cost_micros
+      FROM campaign
+      WHERE ${campaignWhere}
+        AND segments.date BETWEEN '${previousStartDate}' AND '${previousEndDate}'
+    `,
+    loginCustomerId
+  )
+  const dailyRows = await googleAdsSearch(
+    accessToken,
+    customerId,
+    `
+      SELECT
+        segments.date,
+        campaign.id,
+        campaign.name,
+        campaign.status,
+        metrics.impressions,
+        metrics.clicks,
+        metrics.cost_micros
+      FROM campaign
+      WHERE ${campaignWhere}
+        AND segments.date BETWEEN '${startDate}' AND '${endDate}'
+      ORDER BY segments.date DESC
+      LIMIT 90
+    `,
+    loginCustomerId
+  )
+  const statuses = Array.from(new Set(campaigns.map((campaign) => campaign.status).filter(Boolean)))
+
+  return {
+    source: 'google_ads_api',
+    connected: true,
+    status: 'connected',
+    store,
+    message: `${campaignName} 캠페인을 Google Ads API에서 불러왔습니다.${
+      statuses.length ? ` 현재 상태: ${statuses.join(', ')}` : ''
+    }`,
+    period: { days, firstDate: startDate, lastDate: endDate },
+    summary: aggregateGoogleAdsRows(summaryRows),
+    previousSummary: aggregateGoogleAdsRows(previousRows),
+    daily: dailyRows.map((row) => ({
+      date: row.segments?.date || '',
+      storeName: store,
+      campaignName: row.campaign?.name || campaignName,
+      campaignStatus: row.campaign?.status || '',
+      adsCustomerId: customerId,
+      impressions: numberValue(row.metrics?.impressions),
+      clicks: numberValue(row.metrics?.clicks),
+      costMicros: numberValue(row.metrics?.costMicros),
+      localActionDirectionRequests: 0,
+      localActionCalls: 0,
+      localActionWebsiteClicks: 0,
+      sourceSyncedAt: new Date().toISOString(),
+    })),
+    adsCustomerIds: [customerId],
+    campaigns,
+    sourceSyncedAt: new Date().toISOString(),
+  }
+}
+
 export async function GET(request: NextRequest) {
   loadSharedEnv()
 
   const { searchParams } = new URL(request.url)
   const store = (searchParams.get('store') || '언리미티드').trim()
   const days = Math.min(Math.max(Number(searchParams.get('days') || 30), 7), 90)
+
+  if (isBlinkAdStore(store)) {
+    try {
+      return NextResponse.json(await loadBlinkAdLiveAds(store, days))
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Google Ads API 데이터를 불러오지 못했습니다.'
+      return NextResponse.json({
+        source: 'google_ads_api',
+        connected: false,
+        status: 'error',
+        store,
+        message,
+        period: { days },
+        summary: emptySummary(),
+        previousSummary: emptySummary(),
+        daily: [],
+        adsCustomerIds: [],
+        campaigns: [],
+      })
+    }
+  }
+
   const project = safeIdentifier(process.env.GOOGLE_CLOUD_PROJECT || '', /^[A-Za-z0-9_-]+$/)
   const dataset = safeIdentifier(process.env.BIGQUERY_DATASET || 'gbp_ops', /^[A-Za-z0-9_]+$/)
   const location = process.env.BIGQUERY_LOCATION || 'asia-northeast3'

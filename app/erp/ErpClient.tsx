@@ -119,6 +119,8 @@ type AdsSummary = {
 type AdsDailyRow = {
   date: string
   storeName: string
+  campaignName?: string
+  campaignStatus?: string
   adsCustomerId: string
   impressions: number
   clicks: number
@@ -129,10 +131,19 @@ type AdsDailyRow = {
   sourceSyncedAt: string
 }
 
+type AdsCampaign = {
+  id: string
+  name: string
+  status: string
+  channel: string
+  startDate: string
+  endDate: string
+}
+
 type GoogleAdsApiResponse = {
-  source: 'bigquery' | 'fallback'
+  source: 'bigquery' | 'google_ads_api' | 'fallback'
   connected: boolean
-  status: 'connected' | 'empty_table' | 'no_store_data' | 'missing_config' | 'error'
+  status: 'connected' | 'empty_table' | 'no_store_data' | 'missing_config' | 'campaign_not_found' | 'error'
   store: string
   message: string
   period: {
@@ -144,6 +155,7 @@ type GoogleAdsApiResponse = {
   previousSummary: AdsSummary
   daily: AdsDailyRow[]
   adsCustomerIds: string[]
+  campaigns?: AdsCampaign[]
   tableRowCount?: number
   sourceSyncedAt?: string
 }
@@ -3726,7 +3738,7 @@ function BlinkAdMarketingPanel() {
         <GoogleAdsPerformancePanel
           storeTitle="블링크애드"
           heading="블링크애드 Google Ads 성과"
-          description="BigQuery의 Google Ads 로컬 액션 테이블에서 블링크애드 자체 광고의 노출, 클릭, 광고비, 전화·길찾기·웹사이트 행동을 불러옵니다."
+          description="Google Ads API에서 블링크애드 클라이언트유치 캠페인의 노출, 클릭, 광고비를 직접 불러옵니다."
           emptyValue="연동 전"
         />
       </div>
@@ -3846,7 +3858,7 @@ function GoogleAdsPerformancePanel({
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
             <p className="text-xs font-black text-gray-500">연결 상태</p>
             <p className={`mt-2 inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${adsConnectionBadge(adsData, adsLoading)}`}>
-              {adsLoading ? '확인중' : adsData?.connected ? 'BigQuery 연결' : '연결 필요'}
+              {adsLoading ? '확인중' : adsSourceLabel(adsData)}
             </p>
           </div>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
@@ -3857,10 +3869,20 @@ function GoogleAdsPerformancePanel({
             <p className="mt-1 text-[11px] font-bold text-gray-600">{adsData?.period.lastDate || '데이터 없음'}</p>
           </div>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
-            <p className="text-xs font-black text-gray-500">적재 행</p>
-            <p className="mt-2 text-sm font-black text-white">{summary ? `${summary.rowCount}행` : '-'}</p>
+            <p className="text-xs font-black text-gray-500">{adsData?.source === 'google_ads_api' ? '조회 캠페인' : '데이터 행'}</p>
+            <p className="mt-2 text-sm font-black text-white">
+              {adsData?.source === 'google_ads_api'
+                ? `${adsData.campaigns?.length || 0}개`
+                : summary
+                  ? `${summary.rowCount}행`
+                  : '-'}
+            </p>
             <p className="mt-1 text-[11px] font-bold text-gray-600">
-              {adsData?.sourceSyncedAt ? formatDateTime(adsData.sourceSyncedAt) : '동기화 기록 없음'}
+              {adsData?.source === 'google_ads_api'
+                ? adsData.campaigns?.[0]?.name || '캠페인 없음'
+                : adsData?.sourceSyncedAt
+                  ? formatDateTime(adsData.sourceSyncedAt)
+                  : '동기화 기록 없음'}
             </p>
           </div>
         </div>
@@ -3916,13 +3938,13 @@ function GoogleAdsPerformancePanel({
                 row.localActionDirectionRequests + row.localActionCalls + row.localActionWebsiteClicks
 
               return (
-                <article key={`${row.date}-${row.adsCustomerId || row.storeName}`} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[110px_repeat(5,minmax(0,1fr))]">
+                <article key={`${row.date}-${row.adsCustomerId || row.storeName}-${row.campaignName || ''}`} className="grid gap-3 px-4 py-4 text-sm md:grid-cols-[110px_repeat(5,minmax(0,1fr))]">
                   <p className="font-black text-white">{formatMonthDay(parseLocalDate(row.date))}</p>
                   <p className="font-semibold text-gray-400">노출 {formatCount(row.impressions)}</p>
                   <p className="font-semibold text-gray-400">클릭 {formatCount(row.clicks)}</p>
                   <p className="font-semibold text-gray-400">비용 {formatCostMicros(row.costMicros)}</p>
                   <p className="font-semibold text-gray-400">액션 {formatCount(actions)}</p>
-                  <p className="font-semibold text-gray-500">{row.adsCustomerId || '-'}</p>
+                  <p className="font-semibold text-gray-500">{row.campaignName || row.adsCustomerId || '-'}</p>
                 </article>
               )
             })}
@@ -4141,6 +4163,13 @@ function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean)
   if (data?.status === 'connected') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (data?.connected) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
   return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+}
+
+function adsSourceLabel(data: GoogleAdsApiResponse | null) {
+  if (!data?.connected) return '연결 필요'
+  if (data.source === 'google_ads_api') return 'Google Ads API'
+  if (data.source === 'bigquery') return 'BigQuery 연결'
+  return '연결됨'
 }
 
 function getCurrentWeekDates() {
