@@ -45,7 +45,7 @@ const defaultAccounts: CalendarAccount[] = [
   {
     memberId: 'owner',
     name: '권순현',
-    email: 'blinkadceo@gmail.com',
+    email: 'travelingtoseoul@gmail.com',
     role: '관리자',
     calendarId: process.env.GOOGLE_CALENDAR_ID || 'primary',
   },
@@ -361,9 +361,13 @@ export async function readCalendarAccounts() {
 
   defaultAccounts.forEach((account) => merged.set(account.memberId, account))
   storedAccounts.forEach((account) => {
+    const defaultAccount = merged.get(account.memberId)
     merged.set(account.memberId, {
-      ...(merged.get(account.memberId) || {}),
+      ...(defaultAccount || {}),
       ...account,
+      name: defaultAccount?.name || account.name,
+      email: defaultAccount?.email || account.email,
+      role: defaultAccount?.role || account.role,
     })
   })
 
