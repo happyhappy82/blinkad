@@ -23,12 +23,13 @@ export async function GET() {
 
   const accounts = await readCalendarAccounts()
   const storage = calendarTokenStoreStatus()
+  const publicAccounts = accounts.map(publicCalendarAccount)
 
   return NextResponse.json({
-    connected: true,
+    connected: publicAccounts.some((account) => account.connected),
     storage,
     message: storage.message,
-    accounts: accounts.map(publicCalendarAccount),
+    accounts: publicAccounts,
   })
 }
 
