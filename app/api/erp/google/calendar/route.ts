@@ -257,7 +257,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       source: 'sample',
       connected: false,
-      message: 'Google Calendar OAuth 연결 또는 서버 토큰이 없어 샘플 일정으로 표시 중입니다.',
+      message: 'Google Calendar OAuth 권한이 만료 또는 해제되어 샘플 일정으로 표시 중입니다. 설정에서 Google 계정을 재연결해주세요.',
       events: sampleEvents,
     })
   }
@@ -343,7 +343,7 @@ export async function POST(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar OAuth 연결 또는 쓰기 토큰이 없어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 권한이 만료 또는 해제되어 ERP 화면에서만 생성 요청을 확인했습니다. 실제 캘린더 저장은 재연결 후 가능합니다.',
       event: localEventFromBody(body),
     })
   }
@@ -415,7 +415,7 @@ export async function PUT(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar OAuth 연결 또는 수정 토큰이 없어 ERP 화면에서만 수정 요청을 확인했습니다. 실제 캘린더 수정은 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 권한이 만료 또는 해제되어 ERP 화면에서만 수정 요청을 확인했습니다. 실제 캘린더 수정은 재연결 후 가능합니다.',
       event: localEventFromBody(body, body.id),
     })
   }
@@ -487,7 +487,7 @@ export async function DELETE(request: Request) {
   if (!accessToken) {
     return NextResponse.json({
       connected: false,
-      message: 'Google Calendar OAuth 연결 또는 삭제 토큰이 없어 ERP 화면에서만 삭제 처리했습니다. 실제 캘린더 삭제는 OAuth 연결 후 가능합니다.',
+      message: 'Google Calendar OAuth 권한이 만료 또는 해제되어 ERP 화면에서만 삭제 처리했습니다. 실제 캘린더 삭제는 재연결 후 가능합니다.',
     })
   }
 

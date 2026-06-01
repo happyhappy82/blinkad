@@ -481,7 +481,12 @@ async function refreshAccessToken(account: CalendarAccount) {
   })
   const data = (await response.json()) as TokenResponse
 
-  if (!response.ok || !data.access_token) return ''
+  if (!response.ok || !data.access_token) {
+    if (data.error === 'invalid_grant') {
+      await clearCalendarAccountToken(account.memberId)
+    }
+    return ''
+  }
 
   const saved = await saveCalendarAccountToken({
     memberId: account.memberId,

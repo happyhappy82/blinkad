@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import {
   calendarTokenStoreStatus,
   clearCalendarAccountToken,
+  getCalendarAuth,
   publicCalendarAccount,
   readCalendarAccounts,
 } from '@/lib/erp-google-calendar-store'
@@ -10,6 +11,16 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 export async function GET() {
+  const initialAccounts = await readCalendarAccounts()
+  await Promise.all(
+    initialAccounts.map(async (account) => {
+      if (!account.refreshToken || (account.accessToken && account.expiresAt && account.expiresAt > Date.now() + 60_000)) {
+        return
+      }
+      await getCalendarAuth(account.memberId).catch(() => null)
+    })
+  )
+
   const accounts = await readCalendarAccounts()
   const storage = calendarTokenStoreStatus()
 
