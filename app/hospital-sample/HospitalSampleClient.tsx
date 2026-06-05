@@ -1,33 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import {
-  AlertTriangle,
-  ArrowUpRight,
-  BookOpen,
-  CalendarCheck,
-  CheckCircle2,
-  ClipboardCheck,
-  ExternalLink,
-  FileText,
-  Globe2,
-  Hospital,
-  Languages,
-  MapPin,
-  Phone,
-  ShieldCheck,
-  Stethoscope,
-  UserRound,
-} from 'lucide-react'
-
-const heroImage =
-  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=2400&q=88'
-const consultationImage =
-  'https://images.unsplash.com/photo-1588776814546-1ffcf47267a1?auto=format&fit=crop&w=1600&q=85'
-const treatmentImage =
-  'https://images.unsplash.com/photo-1588776813677-77aaf5595d19?auto=format&fit=crop&w=1600&q=85'
-const clinicImage =
-  'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=85'
+import { Languages, Menu, X } from 'lucide-react'
 
 const languages = [
   { code: 'ko', label: 'KO', native: '한국어' },
@@ -38,414 +12,507 @@ const languages = [
 
 type Lang = (typeof languages)[number]['code']
 
+const doctorPhoto =
+  'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=240&q=80'
+
 const copy = {
   ko: {
-    nav: {
-      answers: '답변',
-      procedures: '시술',
-      doctors: '의료진',
-      visit: '방문',
-      book: '상담 예약',
-    },
-    hero: {
-      eyebrow: '병원 AEO/GEO 콘텐츠 허브',
-      title: 'Seoul Clinic Answers',
-      subtitle:
-        '강남 피부·성형 시술 질문을 의료진 검수 답변, 근거 출처, 다국어 방문 정보로 축적하는 별도 하위 사이트 샘플입니다.',
-      primary: '답변 보기',
-      secondary: '의료진 확인',
-      reviewed: '최종 의학 검토 2026.06.05',
-    },
-    quick: [
-      { label: '전문영역', value: '피부과 · 미용시술' },
-      { label: '콘텐츠', value: '질문별 직접 답변' },
-      { label: '언어', value: '한국어 · 영어 · 일본어 · 중국어' },
-      { label: '목적', value: '교육용 정보 · 진료 대체 아님' },
+    brand: 'SEOUL SKIN CLINIC',
+    official: '공식 홈페이지 →',
+    nav: ['홈', 'Q&A', '칼럼', '시술정보', '의료진', '소개'],
+    mobileMenu: '메뉴',
+    toc: '목차',
+    articleLabel: '서울스킨클리닉',
+    title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
+    author: '이민재 대표원장',
+    authorTitle: '피부과 진료 · 서울스킨클리닉 강남점',
+    readTime: '9 min read',
+    date: '2026-06-05',
+    reviewed: '의학 검토 2026-06-05',
+    lead: [
+      '"여드름은 가라앉았는데 얼굴이 움푹 패여 보여요. 시간이 지나면 나아질까요?"',
+      '"프락셀, 서브시전, TCA 크로스가 너무 많아서 어디서부터 시작해야 할지 모르겠어요."',
+      '"한두 번만 받으면 되는 건지, 여러 번 계획을 잡아야 하는지도 궁금해요."',
     ],
-    answers: {
-      eyebrow: 'AEO answer blocks',
-      title: 'AI가 바로 추출할 수 있는 질문 단위 답변',
-      subtitle:
-        '각 답변은 2~5문장 결론, 개인차, 진료 필요 조건, 감수 의료진, 검토일을 함께 보여줍니다.',
-      items: [
-        {
-          q: '보톡스 효과는 얼마나 지속되나요?',
-          a: '보툴리눔 톡신 효과는 부위와 용량, 근육 사용량에 따라 다르지만 일반적으로 3~6개월 정도 유지됩니다. 이마·미간은 3~4개월, 턱·승모근처럼 근육량이 큰 부위는 4~6개월 이상으로 안내되는 경우가 많습니다. 반복 간격은 내성 위험과 시술 부위를 고려해 의료진이 정해야 합니다.',
-          tag: '보톡스 지속기간',
+    intro: [
+      '진료실에서 여드름 흉터 상담을 할 때 가장 자주 듣는 질문입니다. 검색하면 장비 이름과 후기성 표현이 많아서 오히려 더 헷갈리기 쉽습니다.',
+      '저는 처음 상담할 때 어떤 시술이 가장 센지보다, 지금 얼굴에 남은 흉터가 어떤 타입인지부터 함께 정리합니다. 흉터 타입이 달라지면 시작해야 할 치료도 달라지기 때문입니다.',
+    ],
+    summary: [
+      '여드름 흉터는 한 번에 없애는 치료가 아니라 여러 차례 계획을 세워 덜 보이게 만드는 치료에 가깝습니다.',
+      '패인 흉터는 한 종류가 아닙니다. 같은 얼굴에도 아이스픽, 박스카, 롤링 흉터가 섞여 있는 경우가 많습니다.',
+      '새 여드름이 계속 올라오는 시기라면 흉터 치료보다 여드름 조절이 먼저일 수 있습니다.',
+      '시술 선택 전에는 피부톤, 복용 약, 색소침착 위험, 회복 기간을 함께 확인해야 합니다.',
+    ],
+    sections: [
+      {
+        id: 'mark-or-scar',
+        title: '흉터와 자국, 먼저 구분해야 합니다',
+        body: [
+          '환자분들이 흉터라고 부르는 흔적은 크게 두 가지입니다. 붉은 자국이나 갈색 자국처럼 색만 남은 상태가 있고, 피부 표면이 실제로 꺼진 위축성 흉터가 있습니다.',
+          '붉은 자국은 시간이 지나며 옅어지는 경우가 적지 않습니다. 반면 패인 흉터는 색이 좋아져도 피부 단차가 남아 보일 수 있어 치료 방향이 달라집니다.',
+        ],
+        questions: [
+          {
+            q: '아직 여드름이 계속 올라오는데 흉터 치료부터 해도 되나요?',
+            a: '대개는 여드름을 먼저 안정시키는 쪽을 권합니다. 염증성 여드름이 계속 생기면 새 흉터가 추가될 수 있어 기존 흉터 치료 계획도 흔들릴 수 있습니다.',
+          },
+          {
+            q: '붉은 자국과 패인 흉터를 집에서 구분할 수 있나요?',
+            a: '밝은 조명에서 옆으로 비춰봤을 때 단차가 느껴지면 구조적인 흉터 가능성이 있습니다. 다만 실제 상담에서는 피부를 당겨 보거나 각도를 바꿔 확인합니다.',
+          },
+        ],
+      },
+      {
+        id: 'scar-types',
+        title: '패인 흉터는 타입별로 접근이 달라집니다',
+        body: [
+          '패인 흉터는 한 덩어리가 아니라 모양이 다른 여러 타입으로 섞여 있는 경우가 많습니다. 좁고 깊은 아이스픽, 경계가 비교적 뚜렷한 박스카, 넓게 물결처럼 꺼지는 롤링 흉터를 구분해 봅니다.',
+          '이 구분이 중요한 이유는 치료 시작점이 다르기 때문입니다. 좁고 깊은 흉터와 피부 아래가 당겨져 보이는 흉터는 같은 장비 하나로 설명하기 어렵습니다.',
+        ],
+        table: {
+          headers: ['타입', '보이는 모양', '상담 때 확인하는 점'],
+          rows: [
+            ['아이스픽', '좁고 깊은 V자 모양', '입구는 작지만 아래로 깊게 내려가는지'],
+            ['박스카', '경계가 비교적 뚜렷한 웅덩이', '넓이와 깊이, 가장자리 각도'],
+            ['롤링', '넓고 완만한 물결 모양', '피부를 당겼을 때 꺼짐이 줄어드는지'],
+          ],
         },
-        {
-          q: '인모드는 몇 주 간격으로 받나요?',
-          a: '인모드 계열 고주파 시술은 피부 두께, 통증 민감도, 멍 발생 여부에 따라 간격이 달라집니다. 보통 초기 관리는 2~4주 간격으로 계획하지만, 같은 장비라도 모드와 에너지 설정에 따라 회복 시간이 달라질 수 있습니다. 시술 전에는 최근 레이저·필러·실리프팅 이력을 확인해야 합니다.',
-          tag: '인모드 간격',
+      },
+      {
+        id: 'treatment-order',
+        title: '시술은 하나를 고르기보다 순서를 짜야 합니다',
+        body: [
+          '롤링 흉터가 두드러지면 피부 아래 당김을 풀어주는 서브시전을 먼저 고려할 수 있습니다. 박스카 흉터와 피부결 변화가 섞여 있으면 프랙셔널 레이저나 RF 마이크로니들링이 계획에 들어갈 수 있습니다.',
+          '아이스픽처럼 좁고 깊은 흉터에는 TCA 크로스처럼 국소적으로 접근하는 치료가 논의될 수 있습니다. 하지만 실제 계획은 흉터 타입, 피부톤, 회복 가능 기간, 이전 시술 이력에 따라 달라집니다.',
+        ],
+        table: {
+          headers: ['주된 고민', '먼저 보는 치료', '함께 확인할 점'],
+          rows: [
+            ['물결처럼 꺼지는 흉터', '서브시전', '멍, 붓기, 필러 병행 여부'],
+            ['넓은 패임과 피부결', '프랙셔널 레이저 또는 RF', '붉은기, 색소침착, 회복 기간'],
+            ['좁고 깊은 패임', 'TCA 크로스', '딱지, 색소 변화, 반복 간격'],
+          ],
         },
-        {
-          q: '기미 치료는 레이저 한 번으로 되나요?',
-          a: '기미는 멜라닌, 염증, 호르몬, 자외선 노출이 함께 작용하는 경우가 많아 한 번의 레이저로 완결되는 질환이 아닙니다. 토닝, 미백 관리, 자외선 차단, 재발 관리가 함께 필요하며 과한 에너지는 오히려 색소를 악화시킬 수 있습니다. 피부 진단 후 강도를 낮게 시작하는 편이 안전합니다.',
-          tag: '기미 치료',
-        },
-      ],
-    },
-    procedures: {
-      eyebrow: 'Procedure library',
-      title: '시술별 페이지로 확장되는 정보 구조',
-      subtitle:
-        '홈은 허브 역할만 하고, 실제 AEO 성과는 시술·질문·지역 조합의 개별 URL이 누적되면서 만들어집니다.',
-      headers: ['시술', '직접답변에 필요한 핵심', '개별 URL 예시'],
-      rows: [
-        ['보톡스', '효과 시작, 지속기간, 부위별 차이, 내성', '/qa/botox-duration'],
-        ['피코토닝', '적합 색소, 횟수, 악화 가능성, 자외선 관리', '/procedures/pico-toning'],
-        ['인모드', '간격, 멍, 통증, 유지관리, 병행 시술', '/qa/inmode-interval'],
-        ['여드름 흉터', '흉터 유형, 프락셀/니들/RF 차이, 회복', '/conditions/acne-scar'],
-      ],
-    },
-    doctor: {
-      eyebrow: 'Reviewed by physician',
-      title: '답변 하단까지 이어지는 의료진 신뢰 신호',
-      name: '이민재 대표원장',
-      role: '피부과 진료 · 미용시술 감수',
-      bio:
-        '상담실에서 반복되는 질문을 진료 경험과 공개 가능한 의학 근거로 정리합니다. 모든 답변은 개인 진단이 아니라 상담 전 이해를 돕기 위한 교육용 자료입니다.',
-      credentials: ['의사 면허 SAMPLE-24819', '피부·레이저 시술 상담 12년', '콘텐츠 최종 검토 2026.06.05'],
-    },
-    visit: {
-      eyebrow: 'For international patients',
-      title: '외국인 환자가 방문 전 확인해야 할 정보',
-      items: [
-        {
-          title: '상담 언어',
-          body: '영어, 일본어, 중국어 안내문을 제공하고 실제 진료 내용은 의료진 상담에서 확정합니다.',
-        },
-        {
-          title: '방문 준비',
-          body: '최근 시술 이력, 복용 약, 알레르기, 임신·수유 여부를 예약 전 확인합니다.',
-        },
-        {
-          title: '위치 연결',
-          body: '공식 홈페이지, Google Business Profile, 네이버 플레이스 링크를 동일한 병원 엔티티로 연결합니다.',
-        },
-      ],
-    },
-    policy: {
-      title: '출처와 의료 고지',
-      body:
-        '이 사이트는 의료정보 이해를 돕기 위한 교육용 콘텐츠입니다. 진단, 처방, 시술 결정은 대면 진료와 의료진 판단이 필요합니다.',
-      items: ['의료진 감수자 표기', '페이지별 lastReviewed', '학회·식약처·논문 등 근거 링크', '의료광고 표현 검수'],
-    },
+      },
+      {
+        id: 'aftercare',
+        title: '치료 후 관리가 결과를 크게 좌우합니다',
+        body: [
+          '시술만큼 중요한 것이 치료 후 관리입니다. 자외선 차단, 새 여드름 조절, 피부 뜯지 않기, 자극 적은 세안과 보습은 흉터 치료 만족도에 직접 영향을 줍니다.',
+          '특히 시술 후 갈색 자국이 오래 남기 쉬운 피부톤이라면 강도와 간격을 더 보수적으로 잡는 편이 안전합니다. 이상 증상이 생기면 자가 처치보다 병원에 문의해야 합니다.',
+        ],
+        checklist: ['SPF 30 이상 자외선 차단제를 꾸준히 사용합니다.', '새 여드름이 올라오면 흉터 치료와 별도로 조절합니다.', '딱지나 각질을 억지로 떼지 않습니다.', '복용 중인 약과 최근 시술 이력을 의료진에게 알립니다.'],
+      },
+      {
+        id: 'faq',
+        title: '자주 받는 질문 모음',
+        body: ['본문에서 다 못 담은 질문들을 모았습니다.'],
+        questions: [
+          {
+            q: '한 번 치료로 얼마나 좋아지나요?',
+            a: '한 번에 큰 변화를 약속하기는 어렵습니다. 여러 차례 반복하면서 서서히 덜 눈에 띄게 만드는 쪽이 현실적인 기대치입니다.',
+          },
+          {
+            q: '집에서 쓰는 더마롤러는 효과가 있나요?',
+            a: '가정용 롤러의 근거는 제한적이고, 잘못 쓰면 자극이나 감염 위험이 있습니다. 패인 흉터 치료 목적이라면 병변에 맞춘 치료 계획을 먼저 권합니다.',
+          },
+          {
+            q: '비용은 어느 정도 생각하면 될까요?',
+            a: '시술 종류, 병변 수, 반복 횟수에 따라 차이가 커서 평균가만으로 판단하기 어렵습니다. 상담 때는 1회 비용보다 전체 치료 계획을 같이 확인하는 편이 낫습니다.',
+          },
+        ],
+      },
+    ],
+    relatedTitle: '함께 읽으면 좋은 글',
+    related: ['여드름 치료, 어디서부터 시작해야 맞는 걸까?', '기미 치료, 레이저 전에 확인해야 할 것', '보톡스 효과 지속 기간은 얼마나 될까?'],
+    referencesTitle: '참고문헌',
+    references: [
+      'Jacob CI, Dover JS, Kaminer MS. Acne scarring: a classification system and review of treatment options. J Am Acad Dermatol. 2001.',
+      'Fabbrocini G, Annunziata MC, D\'Arco V, et al. Acne scars: pathogenesis, classification and treatment. Dermatol Res Pract. 2010.',
+      'American Academy of Dermatology. Acne scars: Consultation and treatment.',
+      'American Academy of Dermatology. Acne scars: How to care for your skin after treatment.',
+    ],
+    disclaimer:
+      '본 콘텐츠는 일반 의학 정보 제공 목적이며 개인별 진단·치료를 대체하지 않습니다. 여드름 흉터 치료는 흉터 타입, 피부톤, 현재 복용 중인 약에 따라 계획이 달라지고 색소침착, 붉은기, 붓기, 감염 같은 부작용이 생길 수 있습니다. 정확한 치료 여부는 대면 진료에서 확인해 주세요.',
     footer: {
-      title: '병원 공식 홈페이지와 별도로 쌓이는 답변 자산',
-      body:
-        '기존 병원 홈페이지는 예약과 브랜드 소개를 맡고, 이 하위 사이트는 AI 검색이 인용하기 쉬운 의료 Q&A와 다국어 방문 정보를 담당합니다.',
-      phone: '+82 2 555 0148',
-      website: '병원 공식 홈페이지',
+      clinic: '서울스킨클리닉 강남점',
+      address: '서울 강남구 테헤란로10길 12, 5층',
+      phone: '02-555-0148',
+      business: '사업자등록번호: 000-00-00000',
+      legal: 'Medical Disclaimer',
+      privacy: '개인정보처리방침',
+      note: '본 사이트의 의학 정보는 전문의의 직접 진료를 대체하지 않습니다.',
     },
   },
   en: {
-    nav: {
-      answers: 'Answers',
-      procedures: 'Procedures',
-      doctors: 'Doctor',
-      visit: 'Visit',
-      book: 'Book consult',
-    },
-    hero: {
-      eyebrow: 'Hospital AEO/GEO content hub',
-      title: 'Seoul Clinic Answers',
-      subtitle:
-        'A separate sample sub-site that turns common dermatology and aesthetic procedure questions into doctor-reviewed multilingual answers with sources and visit guidance.',
-      primary: 'View answers',
-      secondary: 'Check reviewer',
-      reviewed: 'Medically reviewed on June 5, 2026',
-    },
-    quick: [
-      { label: 'Specialty', value: 'Dermatology · Aesthetics' },
-      { label: 'Format', value: 'Question-level answers' },
-      { label: 'Languages', value: 'Korean · English · Japanese · Chinese' },
-      { label: 'Purpose', value: 'Education · Not a diagnosis' },
+    brand: 'SEOUL SKIN CLINIC',
+    official: 'Official website →',
+    nav: ['Home', 'Q&A', 'Column', 'Procedures', 'Doctors', 'About'],
+    mobileMenu: 'Menu',
+    toc: 'Contents',
+    articleLabel: 'Seoul Skin Clinic',
+    title: 'Acne scar treatment: where should you start?',
+    author: 'Dr. Min Jae Lee',
+    authorTitle: 'Dermatology care · Seoul Skin Clinic Gangnam',
+    readTime: '9 min read',
+    date: 'June 5, 2026',
+    reviewed: 'Medically reviewed June 5, 2026',
+    lead: [
+      '"My acne has settled, but my skin still looks indented. Will it improve over time?"',
+      '"There are too many options: fractional laser, subcision, TCA CROSS. Where should I start?"',
+      '"Do I need one or two sessions, or should I plan repeated treatment?"',
     ],
-    answers: {
-      eyebrow: 'AEO answer blocks',
-      title: 'Question pages written for direct extraction',
-      subtitle:
-        'Each answer includes a concise conclusion, variability, when to consult, reviewer, and review date.',
-      items: [
-        {
-          q: 'How long does Botox usually last?',
-          a: 'Botulinum toxin effects vary by area, dose, and muscle activity, but many patients are told to expect roughly three to six months. Forehead and frown lines are often shorter, while jaw or trapezius treatments may last longer. Treatment intervals should be decided by a licensed clinician to reduce resistance risk.',
-          tag: 'Botox duration',
+    intro: [
+      'These are common questions in acne scar consultations. Search results often focus on device names, which can make the decision harder.',
+      'In consultation, I first check the scar type rather than choosing the strongest procedure. Different scar shapes usually need different starting points.',
+    ],
+    summary: [
+      'Acne scar care is usually a plan to make scars less visible over several sessions, not a one-time eraser.',
+      'Indented scars are not one single type. Ice pick, boxcar, and rolling scars often appear together.',
+      'If active acne is still frequent, acne control may need to come before scar procedures.',
+      'Skin tone, medications, pigmentation risk, and downtime should be checked before choosing treatment.',
+    ],
+    sections: [
+      {
+        id: 'mark-or-scar',
+        title: 'First, separate marks from scars',
+        body: [
+          'What patients call scars often falls into two groups: red or brown marks that mainly involve color, and atrophic scars where the skin surface is truly indented.',
+          'Color marks can fade over time. Indented scars may remain visible even when redness improves, so the treatment direction changes.',
+        ],
+        questions: [
+          {
+            q: 'Can I treat scars while new acne is still active?',
+            a: 'Often, controlling active acne comes first. Ongoing inflammation can create new scars and make scar treatment planning less stable.',
+          },
+          {
+            q: 'Can I tell at home whether it is a mark or a scar?',
+            a: 'Side lighting can show whether there is a true surface depression, but a consultation checks angles, stretching, and skin texture more accurately.',
+          },
+        ],
+      },
+      {
+        id: 'scar-types',
+        title: 'Indented scars need type-based planning',
+        body: [
+          'Indented acne scars often include several shapes. I look for narrow deep ice pick scars, more defined boxcar depressions, and broad rolling scars.',
+          'This matters because each type tends to need a different starting point. One device rarely explains every scar pattern.',
+        ],
+        table: {
+          headers: ['Type', 'Appearance', 'What is checked'],
+          rows: [
+            ['Ice pick', 'Narrow and deep V-shaped pit', 'Small opening with depth'],
+            ['Boxcar', 'Defined round or oval depression', 'Width, depth, edge angle'],
+            ['Rolling', 'Broad wave-like depression', 'Whether stretching improves it'],
+          ],
         },
-        {
-          q: 'How often can InMode be done?',
-          a: 'InMode-style radiofrequency treatment intervals depend on skin thickness, bruising, pain sensitivity, and energy settings. Initial sessions are often planned every two to four weeks, but the exact schedule changes by mode and recovery. Recent laser, filler, or thread lifting history should be checked first.',
-          tag: 'InMode interval',
+      },
+      {
+        id: 'treatment-order',
+        title: 'Treatment is about sequence, not one device',
+        body: [
+          'When rolling scars dominate, subcision may be discussed to release tethering under the skin. For boxcar scars and texture change, fractional laser or RF microneedling may be part of the plan.',
+          'For narrow and deep ice pick scars, a focal approach such as TCA CROSS may be considered. The final plan depends on scar type, skin tone, downtime, and treatment history.',
+        ],
+        table: {
+          headers: ['Main concern', 'Common starting point', 'What to discuss'],
+          rows: [
+            ['Wave-like depression', 'Subcision', 'Bruising, swelling, filler support'],
+            ['Wide dents and texture', 'Fractional laser or RF', 'Redness, pigmentation, downtime'],
+            ['Narrow deep pits', 'TCA CROSS', 'Crusting, color change, intervals'],
+          ],
         },
-        {
-          q: 'Can melasma improve after one laser session?',
-          a: 'Melasma is commonly affected by pigment, inflammation, hormones, and ultraviolet exposure, so one laser session is rarely a complete answer. Toning, pigment care, sun protection, and recurrence management usually work together. Excessive energy can worsen pigmentation, so assessment matters.',
-          tag: 'Melasma care',
-        },
-      ],
-    },
-    procedures: {
-      eyebrow: 'Procedure library',
-      title: 'A structure that expands into procedure pages',
-      subtitle:
-        'The home page acts as a hub. AEO value grows through individual URLs for procedure, question, and local intent combinations.',
-      headers: ['Procedure', 'Answer requirements', 'URL example'],
-      rows: [
-        ['Botox', 'Onset, duration, area differences, resistance', '/qa/botox-duration'],
-        ['Pico toning', 'Pigment type, sessions, aggravation risk, sun care', '/procedures/pico-toning'],
-        ['InMode', 'Interval, bruising, pain, maintenance, combinations', '/qa/inmode-interval'],
-        ['Acne scars', 'Scar type, fractional laser, RF, recovery', '/conditions/acne-scar'],
-      ],
-    },
-    doctor: {
-      eyebrow: 'Reviewed by physician',
-      title: 'Trust signals carried through every answer',
-      name: 'Dr. Min Jae Lee',
-      role: 'Dermatology care · Aesthetic procedure reviewer',
-      bio:
-        'Common consultation-room questions are rewritten with clinical experience and publicly citeable medical sources. The answers support understanding before a consultation and do not replace diagnosis.',
-      credentials: ['Medical license SAMPLE-24819', '12 years of skin and laser consultation', 'Last reviewed June 5, 2026'],
-    },
-    visit: {
-      eyebrow: 'For international patients',
-      title: 'What visitors should check before a clinic visit',
-      items: [
-        {
-          title: 'Consultation language',
-          body: 'English, Japanese, and Chinese guides are provided. Final medical decisions are confirmed during consultation.',
-        },
-        {
-          title: 'Before visiting',
-          body: 'Recent procedures, current medication, allergies, pregnancy, and breastfeeding status should be checked before booking.',
-        },
-        {
-          title: 'Entity links',
-          body: 'Official website, Google Business Profile, and Naver Place links are connected to the same clinic entity.',
-        },
-      ],
-    },
-    policy: {
-      title: 'Sources and medical notice',
-      body:
-        'This site provides educational medical information. Diagnosis, prescriptions, and procedure decisions require an in-person consultation and clinician judgment.',
-      items: ['Physician reviewer shown', 'Page-level lastReviewed', 'Guideline, regulator, or paper references', 'Medical advertising review'],
-    },
+      },
+      {
+        id: 'aftercare',
+        title: 'Aftercare strongly affects results',
+        body: [
+          'Aftercare matters as much as the procedure itself. Sun protection, acne control, not picking, gentle cleansing, and moisturization all affect satisfaction.',
+          'If your skin is prone to prolonged brown marks after irritation, treatment energy and intervals may need to be more conservative.',
+        ],
+        checklist: ['Use broad-spectrum SPF 30 or higher.', 'Continue acne control to prevent new scars.', 'Do not pick crusts or flakes.', 'Tell your clinician about medications and recent procedures.'],
+      },
+      {
+        id: 'faq',
+        title: 'Frequently asked questions',
+        body: ['Here are additional questions patients often ask.'],
+        questions: [
+          {
+            q: 'How much improvement can I expect after one session?',
+            a: 'It is difficult to promise a large change after one session. Scar treatment usually works gradually over repeated treatments.',
+          },
+          {
+            q: 'Do home derma rollers help?',
+            a: 'Evidence for home rollers is limited, and incorrect use can cause irritation or infection. A scar-specific plan is safer.',
+          },
+          {
+            q: 'How should I think about cost?',
+            a: 'Cost varies by procedure, lesion count, and number of sessions. It is better to review the full plan rather than only a one-session price.',
+          },
+        ],
+      },
+    ],
+    relatedTitle: 'Recommended reading',
+    related: ['How to start acne treatment', 'What to check before laser for melasma', 'How long does Botox last?'],
+    referencesTitle: 'References',
+    references: [
+      'Jacob CI, Dover JS, Kaminer MS. Acne scarring: a classification system and review of treatment options. J Am Acad Dermatol. 2001.',
+      'Fabbrocini G, Annunziata MC, D\'Arco V, et al. Acne scars: pathogenesis, classification and treatment. Dermatol Res Pract. 2010.',
+      'American Academy of Dermatology. Acne scars: Consultation and treatment.',
+      'American Academy of Dermatology. Acne scars: How to care for your skin after treatment.',
+    ],
+    disclaimer:
+      'This content is for general medical education and does not replace diagnosis or treatment. Acne scar treatment plans depend on scar type, skin tone, medication history, and individual risks. Please confirm treatment options during an in-person consultation.',
     footer: {
-      title: 'Answer assets built separately from the clinic website',
-      body:
-        'The main clinic website handles booking and brand introduction. This sub-site handles AI-citable medical Q&A and multilingual visit preparation.',
-      phone: '+82 2 555 0148',
-      website: 'Official clinic website',
+      clinic: 'Seoul Skin Clinic Gangnam',
+      address: '5F, 12 Teheran-ro 10-gil, Gangnam-gu, Seoul',
+      phone: '+82-2-555-0148',
+      business: 'Business registration: 000-00-00000',
+      legal: 'Medical Disclaimer',
+      privacy: 'Privacy Policy',
+      note: 'Medical information on this site does not replace direct care from a licensed clinician.',
     },
   },
   ja: {
-    nav: {
-      answers: '回答',
-      procedures: '施術',
-      doctors: '医師',
-      visit: '来院',
-      book: '相談予約',
-    },
-    hero: {
-      eyebrow: '病院AEO/GEOコンテンツハブ',
-      title: 'Seoul Clinic Answers',
-      subtitle:
-        '皮膚科・美容施術の質問を、医師監修の多言語回答、根拠、来院情報として蓄積する別サイト型サンプルです。',
-      primary: '回答を見る',
-      secondary: '監修医を見る',
-      reviewed: '医学的確認日 2026.06.05',
-    },
-    quick: [
-      { label: '専門分野', value: '皮膚科 · 美容施術' },
-      { label: '形式', value: '質問ごとの直接回答' },
-      { label: '言語', value: '韓国語 · 英語 · 日本語 · 中国語' },
-      { label: '目的', value: '教育用情報 · 診断ではありません' },
+    brand: 'SEOUL SKIN CLINIC',
+    official: '公式サイト →',
+    nav: ['ホーム', 'Q&A', 'コラム', '施術情報', '医師', '紹介'],
+    mobileMenu: 'メニュー',
+    toc: '目次',
+    articleLabel: 'Seoul Skin Clinic',
+    title: 'ニキビ跡治療、どこから始めるべきですか？',
+    author: 'イ・ミンジェ代表院長',
+    authorTitle: '皮膚科診療 · Seoul Skin Clinic 江南院',
+    readTime: '9 min read',
+    date: '2026-06-05',
+    reviewed: '医学的確認 2026-06-05',
+    lead: [
+      '「ニキビは落ち着いたのに、肌がへこんで見えます。自然に良くなりますか？」',
+      '「フラクショナルレーザー、サブシジョン、TCA CROSSが多すぎて迷います。」',
+      '「1〜2回でよいのか、何回か計画するべきか知りたいです。」',
     ],
-    answers: {
-      eyebrow: 'AEO answer blocks',
-      title: 'AIが抽出しやすい質問単位の回答',
-      subtitle:
-        '各回答には結論、個人差、受診が必要な条件、監修医、確認日を含めます。',
-      items: [
-        {
-          q: 'ボトックスの効果はどのくらい続きますか？',
-          a: 'ボツリヌストキシンの効果は部位、量、筋肉の使い方によって異なりますが、一般的には3〜6か月程度と案内されます。額や眉間は短め、顎や僧帽筋のように筋肉量が多い部位は長めになる場合があります。間隔は耐性リスクと部位を考慮して医師が判断します。',
-          tag: 'ボトックス持続期間',
+    intro: [
+      'ニキビ跡相談でよく聞く質問です。検索では機器名が多く、かえって判断しにくいことがあります。',
+      '私はまず強い施術を選ぶより、残っている瘢痕のタイプを確認します。タイプにより治療の出発点が変わるからです。',
+    ],
+    summary: [
+      'ニキビ跡治療は一度で消すものではなく、数回に分けて目立ちにくくする治療に近いです。',
+      'へこんだ跡は一種類ではありません。アイスピック、ボックスカー、ローリングが混在します。',
+      '新しいニキビが続く時期は、跡治療よりニキビの安定化が先になる場合があります。',
+      '治療前に肌色、服薬、色素沈着リスク、ダウンタイムを確認します。',
+    ],
+    sections: [
+      {
+        id: 'mark-or-scar',
+        title: 'まず跡と瘢痕を分けて考えます',
+        body: [
+          '患者さんがニキビ跡と呼ぶものには、赤みや茶色い色だけが残る状態と、実際に皮膚表面がへこんだ萎縮性瘢痕があります。',
+          '色だけの跡は時間とともに薄くなる場合があります。一方でへこみは赤みが引いても残ることがあり、治療方針が異なります。',
+        ],
+        questions: [
+          {
+            q: 'まだニキビが出ている時に跡治療をしてもよいですか？',
+            a: '多くの場合、まずニキビを安定させます。炎症が続くと新しい瘢痕が増える可能性があります。',
+          },
+          {
+            q: '自宅で跡か瘢痕か分かりますか？',
+            a: '横から光を当てるとへこみの有無が見えやすいですが、診察では角度や皮膚を引いた時の変化も確認します。',
+          },
+        ],
+      },
+      {
+        id: 'scar-types',
+        title: 'へこんだ瘢痕はタイプ別に見ます',
+        body: [
+          'へこんだニキビ跡には、狭く深いアイスピック、境界が比較的はっきりしたボックスカー、広く波のようなローリングがあります。',
+          'この分類が大切なのは、タイプによって治療の出発点が違うためです。',
+        ],
+        table: {
+          headers: ['タイプ', '見え方', '診察で見る点'],
+          rows: [
+            ['アイスピック', '狭く深いV字型', '入口の小ささと深さ'],
+            ['ボックスカー', '境界がはっきりしたへこみ', '幅、深さ、縁の角度'],
+            ['ローリング', '広い波のようなへこみ', '皮膚を引くと改善するか'],
+          ],
         },
-        {
-          q: 'インモードは何週間おきに受けますか？',
-          a: '高周波系施術の間隔は皮膚の厚さ、痛み、内出血、出力設定で変わります。初期管理では2〜4週間間隔で計画されることがありますが、モードや回復により調整が必要です。直近のレーザー、フィラー、糸リフト歴も確認します。',
-          tag: 'インモード間隔',
+      },
+      {
+        id: 'treatment-order',
+        title: '一つの機器より治療の順番が重要です',
+        body: [
+          'ローリングが強い場合は皮膚下の引きつれを緩めるサブシジョンを検討します。ボックスカーや肌質の変化にはフラクショナルレーザーやRFマイクロニードルを考えることがあります。',
+          '狭く深い瘢痕にはTCA CROSSのような局所治療を検討します。実際の計画は瘢痕タイプ、肌色、休める期間、過去の施術歴で変わります。',
+        ],
+        table: {
+          headers: ['主な悩み', '最初に見る治療', '確認する点'],
+          rows: [
+            ['波のようなへこみ', 'サブシジョン', '内出血、腫れ、フィラー併用'],
+            ['広いへこみと肌質', 'レーザーまたはRF', '赤み、色素沈着、回復期間'],
+            ['狭く深いへこみ', 'TCA CROSS', 'かさぶた、色変化、間隔'],
+          ],
         },
-        {
-          q: '肝斑はレーザー1回で改善しますか？',
-          a: '肝斑はメラニン、炎症、ホルモン、紫外線が関係するため、1回のレーザーで完結しにくい状態です。トーニング、美白管理、日焼け対策、再発管理を組み合わせます。強すぎる出力は悪化につながるため診断が重要です。',
-          tag: '肝斑治療',
-        },
-      ],
-    },
-    procedures: {
-      eyebrow: 'Procedure library',
-      title: '施術別ページに広がる情報構造',
-      subtitle:
-        'トップページはハブで、実際のAEO効果は施術・質問・地域の個別URLが増えることで作られます。',
-      headers: ['施術', '回答に必要な要素', 'URL例'],
-      rows: [
-        ['ボトックス', '効果発現、持続期間、部位差、耐性', '/qa/botox-duration'],
-        ['ピコトーニング', '色素タイプ、回数、悪化リスク、紫外線管理', '/procedures/pico-toning'],
-        ['インモード', '間隔、内出血、痛み、維持、併用施術', '/qa/inmode-interval'],
-        ['ニキビ跡', '瘢痕タイプ、レーザー/RF差、回復', '/conditions/acne-scar'],
-      ],
-    },
-    doctor: {
-      eyebrow: 'Reviewed by physician',
-      title: '各回答につながる医師の信頼シグナル',
-      name: 'イ・ミンジェ代表院長',
-      role: '皮膚科診療 · 美容施術監修',
-      bio:
-        '相談室で繰り返される質問を、診療経験と公開可能な医学的根拠に基づいて整理します。回答は個別診断ではなく、相談前の理解を助ける教育用情報です。',
-      credentials: ['医師免許 SAMPLE-24819', '皮膚・レーザー相談12年', '最終確認 2026.06.05'],
-    },
-    visit: {
-      eyebrow: 'For international patients',
-      title: '外国人患者が来院前に確認する情報',
-      items: [
-        {
-          title: '相談言語',
-          body: '英語、日本語、中国語の案内を提供し、実際の診療内容は医師相談で確定します。',
-        },
-        {
-          title: '来院前準備',
-          body: '最近の施術歴、服薬、アレルギー、妊娠・授乳の有無を予約前に確認します。',
-        },
-        {
-          title: '位置情報連携',
-          body: '公式サイト、Google Business Profile、Naver Placeを同じ医院エンティティに接続します。',
-        },
-      ],
-    },
-    policy: {
-      title: '根拠と医療情報の注意',
-      body:
-        'このサイトは医療情報の理解を助ける教育用コンテンツです。診断、処方、施術決定には対面診療と医師判断が必要です。',
-      items: ['監修医の表示', 'ページ別lastReviewed', '学会・規制機関・論文の根拠', '医療広告表現の確認'],
-    },
+      },
+      {
+        id: 'aftercare',
+        title: '治療後の管理も結果に影響します',
+        body: [
+          '紫外線対策、新しいニキビの管理、触らないこと、刺激の少ない洗顔と保湿は満足度に影響します。',
+          '刺激後に茶色い跡が長く残りやすい肌では、出力や間隔を慎重に決めます。',
+        ],
+        checklist: ['SPF 30以上の日焼け止めを使います。', '新しいニキビをコントロールします。', 'かさぶたや角質を無理に取らないでください。', '服薬や最近の施術歴を医師に伝えます。'],
+      },
+      {
+        id: 'faq',
+        title: 'よくある質問',
+        body: ['本文で触れきれなかった質問です。'],
+        questions: [
+          { q: '一回でどのくらい改善しますか？', a: '一回で大きな変化を約束するのは難しいです。複数回で徐々に目立ちにくくする治療です。' },
+          { q: '家庭用ローラーは効果がありますか？', a: '根拠は限られ、誤った使用は刺激や感染につながることがあります。病変に合った計画を先に相談することを勧めます。' },
+          { q: '費用はどのように考えればいいですか？', a: '施術、病変数、回数で大きく変わります。1回費用だけでなく全体計画を確認しましょう。' },
+        ],
+      },
+    ],
+    relatedTitle: 'あわせて読みたい記事',
+    related: ['ニキビ治療、どこから始めるべき？', '肝斑レーザー前に確認すること', 'ボトックス効果はどのくらい続く？'],
+    referencesTitle: '参考文献',
+    references: [
+      'Jacob CI, Dover JS, Kaminer MS. Acne scarring: a classification system and review of treatment options. J Am Acad Dermatol. 2001.',
+      'Fabbrocini G, Annunziata MC, D\'Arco V, et al. Acne scars: pathogenesis, classification and treatment. Dermatol Res Pract. 2010.',
+      'American Academy of Dermatology. Acne scars: Consultation and treatment.',
+      'American Academy of Dermatology. Acne scars: How to care for your skin after treatment.',
+    ],
+    disclaimer:
+      'この内容は一般的な医学情報であり、個別の診断や治療に代わるものではありません。治療の可否は対面診療でご確認ください。',
     footer: {
-      title: '医院公式サイトとは別に蓄積される回答資産',
-      body:
-        '公式サイトは予約とブランド紹介を担当し、この下位サイトはAIが引用しやすい医療Q&Aと多言語来院情報を担当します。',
-      phone: '+82 2 555 0148',
-      website: '医院公式サイト',
+      clinic: 'Seoul Skin Clinic 江南院',
+      address: 'ソウル特別市 江南区 テヘラン路10キル 12, 5階',
+      phone: '+82-2-555-0148',
+      business: '事業者登録番号: 000-00-00000',
+      legal: 'Medical Disclaimer',
+      privacy: 'プライバシーポリシー',
+      note: '本サイトの医学情報は医師による直接診療に代わるものではありません。',
     },
   },
   zh: {
-    nav: {
-      answers: '问答',
-      procedures: '项目',
-      doctors: '医生',
-      visit: '到访',
-      book: '预约咨询',
-    },
-    hero: {
-      eyebrow: '医院 AEO/GEO 内容中心',
-      title: 'Seoul Clinic Answers',
-      subtitle:
-        '这是一个独立子站样本，把皮肤科和医美项目问题整理成医生审核、多语言、带依据和到访信息的内容资产。',
-      primary: '查看回答',
-      secondary: '查看医生',
-      reviewed: '医学审核日期 2026.06.05',
-    },
-    quick: [
-      { label: '专业领域', value: '皮肤科 · 医美项目' },
-      { label: '内容形式', value: '按问题提供直接回答' },
-      { label: '语言', value: '韩语 · 英语 · 日语 · 中文' },
-      { label: '目的', value: '教育信息 · 不替代诊断' },
+    brand: 'SEOUL SKIN CLINIC',
+    official: '官方网站 →',
+    nav: ['首页', '问答', '专栏', '项目信息', '医生', '介绍'],
+    mobileMenu: '菜单',
+    toc: '目录',
+    articleLabel: 'Seoul Skin Clinic',
+    title: '痘坑痘疤治疗，应该从哪里开始？',
+    author: '李敏宰代表院长',
+    authorTitle: '皮肤科诊疗 · Seoul Skin Clinic 江南店',
+    readTime: '9 min read',
+    date: '2026-06-05',
+    reviewed: '医学审核 2026-06-05',
+    lead: [
+      '“痘痘已经好了，但脸上还是有凹陷，会自己变好吗？”',
+      '“点阵激光、皮下分离、TCA CROSS 太多了，不知道从哪里开始。”',
+      '“做一两次就够，还是需要多次计划？”',
     ],
-    answers: {
-      eyebrow: 'AEO answer blocks',
-      title: '适合 AI 直接提取的问题级回答',
-      subtitle:
-        '每个回答都包含简短结论、个体差异、需要咨询医生的情况、审核医生和审核日期。',
-      items: [
-        {
-          q: '肉毒素效果通常能维持多久？',
-          a: '肉毒素效果会根据部位、剂量和肌肉使用量而不同，通常可维持约3至6个月。额头和眉间可能较短，下颌或斜方肌等肌肉量较大的部位可能更长。治疗间隔应由医生根据耐药风险和部位决定。',
-          tag: '肉毒素维持时间',
+    intro: [
+      '这是痘疤咨询中很常见的问题。网上常看到各种设备名称，反而更难判断。',
+      '咨询时我会先看疤痕类型，而不是先选择最强的项目。不同类型的疤痕，治疗起点不同。',
+    ],
+    summary: [
+      '痘坑治疗通常不是一次清除，而是通过多次计划让疤痕变得不明显。',
+      '凹陷疤痕不止一种。冰锥型、厢车型、滚动型常常混合出现。',
+      '如果新痘痘还在反复出现，可能需要先控制痘痘。',
+      '选择治疗前需要一起确认肤色、用药、色沉风险和恢复期。',
+    ],
+    sections: [
+      {
+        id: 'mark-or-scar',
+        title: '先区分痘印和凹陷疤痕',
+        body: [
+          '患者说的痘疤大致分为两类：红色或褐色的痘印，以及皮肤表面真正凹陷的萎缩性疤痕。',
+          '颜色型痘印可能随时间变淡，但凹陷疤痕即使红色消退也可能留下皮肤落差，因此治疗方向不同。',
+        ],
+        questions: [
+          { q: '新痘痘还在长，可以先做痘疤治疗吗？', a: '多数情况下会先稳定痘痘。炎症持续出现，可能会继续形成新的疤痕。' },
+          { q: '在家能区分痘印和凹陷吗？', a: '侧光下可以大致观察是否有凹陷，但面诊会通过不同角度和牵拉皮肤来判断。' },
+        ],
+      },
+      {
+        id: 'scar-types',
+        title: '凹陷疤痕需要按类型判断',
+        body: [
+          '凹陷痘疤通常包括狭窄较深的冰锥型、边界较清楚的厢车型，以及较宽的滚动型。',
+          '分类很重要，因为不同类型的治疗起点不同，一个设备很难解释所有疤痕。',
+        ],
+        table: {
+          headers: ['类型', '外观', '咨询时确认'],
+          rows: [
+            ['冰锥型', '狭窄且深的V形凹陷', '入口大小和深度'],
+            ['厢车型', '边界较清楚的凹陷', '宽度、深度和边缘'],
+            ['滚动型', '宽而波浪状的凹陷', '牵拉皮肤后是否改善'],
+          ],
         },
-        {
-          q: 'InMode 通常间隔多久做一次？',
-          a: '射频类项目的间隔取决于皮肤厚度、疼痛敏感度、淤青情况和能量设置。初期管理常以2至4周为一个参考范围，但不同模式和恢复情况会改变计划。近期激光、填充或线雕经历也需要先确认。',
-          tag: 'InMode 间隔',
+      },
+      {
+        id: 'treatment-order',
+        title: '治疗重点是顺序，而不是单一设备',
+        body: [
+          '滚动型明显时，可能会讨论皮下分离来松解牵拉。厢车型和肤质变化明显时，点阵激光或射频微针可能进入计划。',
+          '狭窄较深的冰锥型疤痕，可以考虑 TCA CROSS 等局部治疗。最终计划取决于疤痕类型、肤色、恢复期和既往治疗。',
+        ],
+        table: {
+          headers: ['主要问题', '常见起点', '需要讨论'],
+          rows: [
+            ['波浪状凹陷', '皮下分离', '淤青、肿胀、填充辅助'],
+            ['较宽凹陷和肤质', '点阵激光或射频', '泛红、色沉、恢复期'],
+            ['狭窄深凹陷', 'TCA CROSS', '结痂、颜色变化、间隔'],
+          ],
         },
-        {
-          q: '黄褐斑一次激光就能好吗？',
-          a: '黄褐斑通常与色素、炎症、激素和紫外线有关，单次激光很少能完全解决。通常需要淡斑治疗、防晒和复发管理一起进行。能量过强可能加重色素，因此皮肤评估很重要。',
-          tag: '黄褐斑治疗',
-        },
-      ],
-    },
-    procedures: {
-      eyebrow: 'Procedure library',
-      title: '可扩展为项目页面的信息结构',
-      subtitle:
-        '首页只是内容入口，真正的 AEO 价值来自项目、问题和地区组合的独立 URL 积累。',
-      headers: ['项目', '直接回答需要的重点', 'URL 示例'],
-      rows: [
-        ['肉毒素', '起效时间、维持时间、部位差异、耐药', '/qa/botox-duration'],
-        ['皮秒淡斑', '色素类型、次数、加重风险、防晒', '/procedures/pico-toning'],
-        ['InMode', '间隔、淤青、疼痛、维持、联合项目', '/qa/inmode-interval'],
-        ['痘坑痘疤', '疤痕类型、点阵/RF差异、恢复期', '/conditions/acne-scar'],
-      ],
-    },
-    doctor: {
-      eyebrow: 'Reviewed by physician',
-      title: '贯穿每个回答的医生可信信号',
-      name: '李敏宰代表院长',
-      role: '皮肤科诊疗 · 医美项目审核',
-      bio:
-        '把咨询室里反复出现的问题，用临床经验和可公开引用的医学依据整理成内容。所有回答用于咨询前理解，不等同于个人诊断。',
-      credentials: ['医生执照 SAMPLE-24819', '皮肤与激光咨询12年', '最后审核 2026.06.05'],
-    },
-    visit: {
-      eyebrow: 'For international patients',
-      title: '海外患者到访前需要确认的信息',
-      items: [
-        {
-          title: '咨询语言',
-          body: '提供英语、日语、中文说明，最终医疗决定需在医生咨询中确认。',
-        },
-        {
-          title: '到访准备',
-          body: '预约前需要确认近期项目经历、正在服用的药物、过敏、怀孕或哺乳情况。',
-        },
-        {
-          title: '位置链接',
-          body: '官方网站、Google Business Profile 和 Naver Place 连接到同一个诊所实体。',
-        },
-      ],
-    },
-    policy: {
-      title: '依据与医疗声明',
-      body:
-        '本网站提供教育性医疗信息。诊断、处方和项目选择必须通过线下咨询和医生判断完成。',
-      items: ['显示医生审核人', '每页 lastReviewed', '学会、监管机构或论文依据', '医疗广告表达审核'],
-    },
+      },
+      {
+        id: 'aftercare',
+        title: '术后管理会影响结果',
+        body: [
+          '防晒、控制新痘痘、不抠皮肤、温和清洁和保湿都会影响治疗满意度。',
+          '如果肤色容易留下褐色痕迹，能量和间隔通常需要更保守。',
+        ],
+        checklist: ['坚持使用 SPF 30 以上防晒。', '继续控制新痘痘，减少新疤痕。', '不要强行抠掉结痂或角质。', '告诉医生用药和近期项目经历。'],
+      },
+      {
+        id: 'faq',
+        title: '常见问题',
+        body: ['这里整理了一些常见问题。'],
+        questions: [
+          { q: '一次治疗能改善多少？', a: '很难承诺一次就有明显变化。痘坑治疗通常是多次逐渐改善。' },
+          { q: '家用滚轮有帮助吗？', a: '证据有限，使用不当可能刺激或感染。建议先制定适合病灶的治疗计划。' },
+          { q: '费用应该怎么判断？', a: '费用会根据项目、病灶数量和次数不同而变化。建议看整体治疗计划，而不是只看单次价格。' },
+        ],
+      },
+    ],
+    relatedTitle: '推荐阅读',
+    related: ['痘痘治疗，从哪里开始？', '黄褐斑激光前要确认什么', '肉毒素效果能维持多久？'],
+    referencesTitle: '参考文献',
+    references: [
+      'Jacob CI, Dover JS, Kaminer MS. Acne scarring: a classification system and review of treatment options. J Am Acad Dermatol. 2001.',
+      'Fabbrocini G, Annunziata MC, D\'Arco V, et al. Acne scars: pathogenesis, classification and treatment. Dermatol Res Pract. 2010.',
+      'American Academy of Dermatology. Acne scars: Consultation and treatment.',
+      'American Academy of Dermatology. Acne scars: How to care for your skin after treatment.',
+    ],
+    disclaimer:
+      '本内容仅用于一般医学信息说明，不能替代个人诊断或治疗。具体治疗方案请通过线下面诊确认。',
     footer: {
-      title: '独立于医院官网积累的回答资产',
-      body:
-        '医院官网负责预约和品牌介绍，这个子站负责 AI 更容易引用的医疗问答和多语言到访准备信息。',
-      phone: '+82 2 555 0148',
-      website: '医院官方网站',
+      clinic: 'Seoul Skin Clinic 江南店',
+      address: '首尔江南区德黑兰路10街12号5层',
+      phone: '+82-2-555-0148',
+      business: '营业执照号: 000-00-00000',
+      legal: 'Medical Disclaimer',
+      privacy: '隐私政策',
+      note: '本网站医学信息不能替代医生的直接诊疗。',
     },
   },
 } as const
 
-const quickIcons = [Stethoscope, BookOpen, Globe2, ShieldCheck]
-const visitIcons = [Languages, ClipboardCheck, MapPin]
-
 export default function HospitalSampleClient() {
   const [lang, setLang] = useState<Lang>('ko')
+  const [menuOpen, setMenuOpen] = useState(false)
   const t = copy[lang]
   const activeLanguage = useMemo(
     () => languages.find((item) => item.code === lang) ?? languages[0],
@@ -455,343 +522,386 @@ export default function HospitalSampleClient() {
   return (
     <main
       lang={lang}
-      className="min-h-screen bg-[#f6f3ee] text-[#18221f] [font-family:var(--font-pretendard)]"
+      className="min-h-screen bg-white text-[#222] [--color-primary:#4b3539] [--color-accent:#b46b78] [--color-bg-alt:#faf7f5] [--color-border:#e7dfdb] [--color-text-light:#707070] [--radius:4px] [font-family:var(--font-pretendard)]"
     >
-      <section className="relative min-h-[78svh] overflow-hidden bg-[#17332f]">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 bg-[#102622]/72" />
+      <div className="bg-[var(--color-primary)] px-4 py-2 text-xs text-white">
+        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
+          <span className="font-semibold">{t.brand}</span>
+          <a href="#contact" className="underline opacity-80 transition hover:opacity-100">
+            {t.official}
+          </a>
+        </div>
+      </div>
 
-        <header className="absolute left-0 right-0 top-0 z-20 border-b border-white/12 bg-[#102622]/78 backdrop-blur-md">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10">
-            <a href="#top" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/24 bg-white/10">
-                <Hospital className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <span className="text-base font-semibold text-white">SEOUL CLINIC ANSWERS</span>
-            </a>
-
-            <nav className="hidden items-center gap-7 text-sm text-white/76 lg:flex">
-              <a className="transition hover:text-white" href="#answers">
-                {t.nav.answers}
-              </a>
-              <a className="transition hover:text-white" href="#procedures">
-                {t.nav.procedures}
-              </a>
-              <a className="transition hover:text-white" href="#doctors">
-                {t.nav.doctors}
-              </a>
-              <a className="transition hover:text-white" href="#visit">
-                {t.nav.visit}
-              </a>
-            </nav>
-
-            <div className="flex items-center gap-2">
-              <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-black/20 p-1 sm:flex">
-                <Languages className="ml-2 h-4 w-4 text-white/68" aria-hidden="true" />
-                {languages.map((item) => (
-                  <button
-                    key={item.code}
-                    type="button"
-                    aria-pressed={item.code === lang}
-                    title={item.native}
-                    onClick={() => setLang(item.code)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                      item.code === lang
-                        ? 'bg-[#f6f3ee] text-[#17332f]'
-                        : 'text-white/72 hover:bg-white/10 hover:text-white'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
+      <nav className="relative border-b border-[var(--color-border)] bg-white">
+        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4 md:justify-center md:px-6">
+          <div className="hidden items-center gap-8 text-sm md:flex">
+            {t.nav.map((item, index) => (
               <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full bg-[#e06b4f] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#c85a42]"
+                key={item}
+                href={index === 0 ? '#top' : index === 1 ? '#faq' : '#article'}
+                className={index === 0 ? 'font-semibold transition hover:opacity-70' : 'transition hover:opacity-70'}
               >
-                <CalendarCheck className="h-4 w-4" aria-hidden="true" />
-                {t.nav.book}
+                {item}
               </a>
+            ))}
+          </div>
+
+          <span className="text-sm font-semibold md:hidden">{t.brand}</span>
+          <button
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] md:hidden"
+            aria-expanded={menuOpen}
+            aria-label={t.mobileMenu}
+            onClick={() => setMenuOpen((current) => !current)}
+          >
+            {menuOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
+          </button>
+        </div>
+        {menuOpen && (
+          <div className="border-t border-[var(--color-border)] px-4 py-3 md:hidden">
+            <div className="grid gap-2 text-sm">
+              {t.nav.map((item, index) => (
+                <a
+                  key={item}
+                  href={index === 0 ? '#top' : index === 1 ? '#faq' : '#article'}
+                  className="py-2"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item}
+                </a>
+              ))}
             </div>
           </div>
-          <div className="flex gap-1 overflow-x-auto border-t border-white/10 px-5 py-2 sm:hidden">
+        )}
+      </nav>
+
+      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-alt)] px-4 py-3">
+        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-light)]">
+            <Languages className="h-4 w-4 text-[var(--color-accent)]" aria-hidden="true" />
+            {activeLanguage.native}
+          </div>
+          <div className="flex flex-wrap gap-1">
             {languages.map((item) => (
               <button
                 key={item.code}
                 type="button"
                 aria-pressed={item.code === lang}
                 onClick={() => setLang(item.code)}
-                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold ${
-                  item.code === lang ? 'bg-[#f6f3ee] text-[#17332f]' : 'text-white/72'
+                className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                  item.code === lang
+                    ? 'bg-[var(--color-primary)] text-white'
+                    : 'border border-[var(--color-border)] bg-white text-[var(--color-text-light)] hover:text-[#222]'
                 }`}
               >
-                {item.native}
+                {item.label}
               </button>
             ))}
           </div>
-        </header>
-
-        <div
-          id="top"
-          className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-32 md:px-10 md:pb-16"
-        >
-          <p className="mb-5 max-w-2xl text-sm font-semibold uppercase text-[#99dfcf]">
-            {t.hero.eyebrow}
-          </p>
-          <h1 className="max-w-5xl text-5xl font-semibold leading-none tracking-normal text-white md:text-7xl">
-            {t.hero.title}
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/86 md:text-2xl md:leading-10">
-            {t.hero.subtitle}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="#answers"
-              className="inline-flex items-center gap-2 rounded-full bg-[#e06b4f] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#c85a42]"
-            >
-              <BookOpen className="h-4 w-4" aria-hidden="true" />
-              {t.hero.primary}
-            </a>
-            <a
-              href="#doctors"
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20"
-            >
-              <UserRound className="h-4 w-4" aria-hidden="true" />
-              {t.hero.secondary}
-            </a>
-          </div>
-          <p className="mt-8 inline-flex max-w-max items-center gap-2 rounded-full border border-white/18 bg-black/24 px-4 py-2 text-sm font-semibold text-white/84">
-            <ShieldCheck className="h-4 w-4 text-[#99dfcf]" aria-hidden="true" />
-            {t.hero.reviewed}
-          </p>
         </div>
-      </section>
+      </div>
 
-      <section className="border-y border-[#d9d2c5] bg-[#fcfaf6]">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-[#ded6ca] px-5 md:grid-cols-4 md:divide-x md:divide-y-0 md:px-10">
-          {t.quick.map((item, index) => {
-            const Icon = quickIcons[index]
-            return (
-              <div key={item.label} className="flex min-h-28 items-center gap-4 py-6 md:px-6">
-                <Icon className="h-5 w-5 shrink-0 text-[#0c7a6d]" aria-hidden="true" />
-                <div>
-                  <p className="text-xs font-semibold uppercase text-[#69736f]">{item.label}</p>
-                  <p className="mt-2 text-base font-semibold text-[#18221f]">{item.value}</p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      <section id="answers" className="bg-[#f6f3ee] py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase text-[#0c7a6d]">{t.answers.eyebrow}</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight text-[#18221f] md:text-6xl">
-              {t.answers.title}
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-[#56615d]">{t.answers.subtitle}</p>
-          </div>
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {t.answers.items.map((item) => (
-              <article key={item.q} className="rounded-md border border-[#d9d2c5] bg-white p-6">
-                <p className="inline-flex items-center gap-2 rounded-full bg-[#e9f6f2] px-3 py-1 text-xs font-bold text-[#0c6b61]">
-                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden="true" />
-                  {item.tag}
-                </p>
-                <h3 className="mt-5 text-2xl font-semibold leading-snug text-[#18221f]">{item.q}</h3>
-                <p className="mt-4 text-base leading-8 text-[#4c5753]">{item.a}</p>
-                <div className="mt-6 border-t border-[#e3ddd3] pt-4 text-sm text-[#69736f]">
-                  <p className="font-semibold text-[#18221f]">Reviewed by Dr. Min Jae Lee</p>
-                  <p className="mt-1">lastReviewed 2026-06-05 · FAQPage ready</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="procedures" className="bg-[#17332f] py-20 text-white md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold uppercase text-[#99dfcf]">
-                {t.procedures.eyebrow}
-              </p>
-              <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">
-                {t.procedures.title}
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-white/72">{t.procedures.subtitle}</p>
-            </div>
-            <div
-              className="min-h-[360px] rounded-md bg-cover bg-center"
-              style={{ backgroundImage: `url(${consultationImage})` }}
-              aria-label="Doctor reviewing medical information with a patient"
-            />
-          </div>
-
-          <div className="mt-12 overflow-x-auto rounded-md border border-white/14 bg-white/6">
-            <table className="min-w-[760px] w-full border-collapse text-left">
-              <thead>
-                <tr className="border-b border-white/14 bg-white/8 text-sm text-white/72">
-                  {t.procedures.headers.map((header) => (
-                    <th key={header} className="px-5 py-4 font-semibold">
-                      {header}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {t.procedures.rows.map((row) => (
-                  <tr key={row[0]} className="border-b border-white/10 last:border-b-0">
-                    <td className="px-5 py-5 text-lg font-semibold">{row[0]}</td>
-                    <td className="px-5 py-5 text-white/76">{row[1]}</td>
-                    <td className="px-5 py-5">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-[#f6f3ee] px-3 py-1 text-sm font-semibold text-[#17332f]">
-                        {row[2]}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section id="doctors" className="bg-[#fcfaf6] py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center md:px-10">
-          <div
-            className="min-h-[520px] rounded-md bg-cover bg-center"
-            style={{ backgroundImage: `url(${treatmentImage})` }}
-            aria-label="Clinical consultation room"
-          />
-          <div>
-            <p className="text-sm font-semibold uppercase text-[#0c7a6d]">{t.doctor.eyebrow}</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight text-[#18221f] md:text-6xl">
-              {t.doctor.title}
-            </h2>
-            <div className="mt-8 rounded-md border border-[#d9d2c5] bg-white p-6">
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-md bg-[#e9f6f2]">
-                  <Stethoscope className="h-10 w-10 text-[#0c7a6d]" aria-hidden="true" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-semibold text-[#18221f]">{t.doctor.name}</h3>
-                  <p className="mt-1 text-[#56615d]">{t.doctor.role}</p>
-                </div>
-              </div>
-              <p className="mt-6 text-base leading-8 text-[#4c5753]">{t.doctor.bio}</p>
-              <ul className="mt-6 divide-y divide-[#e3ddd3] border-y border-[#e3ddd3]">
-                {t.doctor.credentials.map((item) => (
-                  <li key={item} className="py-4 text-sm font-semibold text-[#34413c]">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="visit" className="bg-[#e9f6f2] py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-            <div>
-              <p className="text-sm font-semibold uppercase text-[#0c7a6d]">{t.visit.eyebrow}</p>
-              <h2 className="mt-4 text-4xl font-semibold leading-tight text-[#18221f] md:text-6xl">
-                {t.visit.title}
-              </h2>
-              <p className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#b8d9d0] bg-white px-4 py-2 text-sm font-semibold text-[#34413c]">
-                <Globe2 className="h-4 w-4 text-[#0c7a6d]" aria-hidden="true" />
-                {activeLanguage.native}
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {t.visit.items.map((item, index) => {
-                const Icon = visitIcons[index]
-                return (
-                  <article key={item.title} className="rounded-md border border-[#b8d9d0] bg-white p-6">
-                    <Icon className="h-6 w-6 text-[#0c7a6d]" aria-hidden="true" />
-                    <h3 className="mt-5 text-xl font-semibold text-[#18221f]">{item.title}</h3>
-                    <p className="mt-3 leading-7 text-[#56615d]">{item.body}</p>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f6f3ee] py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-[1.05fr_0.95fr] lg:items-center md:px-10">
-          <div>
-            <p className="text-sm font-semibold uppercase text-[#0c7a6d]">Editorial policy</p>
-            <h2 className="mt-4 text-4xl font-semibold leading-tight text-[#18221f] md:text-6xl">
-              {t.policy.title}
-            </h2>
-            <p className="mt-6 text-lg leading-8 text-[#56615d]">{t.policy.body}</p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {t.policy.items.map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-md border border-[#d9d2c5] bg-white p-4">
-                  <FileText className="h-5 w-5 shrink-0 text-[#0c7a6d]" aria-hidden="true" />
-                  <span className="text-sm font-semibold text-[#34413c]">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div
-            className="min-h-[500px] rounded-md bg-cover bg-center"
-            style={{ backgroundImage: `url(${clinicImage})` }}
-            aria-label="Hospital corridor"
-          />
-        </div>
-      </section>
-
-      <section id="contact" className="bg-[#17332f] py-20 text-white md:py-28">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
-            <div>
-              <h2 className="text-4xl font-semibold leading-tight md:text-6xl">{t.footer.title}</h2>
-              <p className="mt-6 text-lg leading-8 text-white/72">{t.footer.body}</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <a
-                href="tel:+8225550148"
-                className="inline-flex min-h-24 items-center justify-between gap-4 rounded-md bg-[#e06b4f] p-6 text-left font-bold text-white transition hover:bg-[#c85a42]"
-              >
-                <span className="inline-flex items-center gap-3">
-                  <Phone className="h-5 w-5" aria-hidden="true" />
-                  {t.footer.phone}
-                </span>
-                <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-              </a>
-              <a
-                href="https://www.blinkad.kr"
-                className="inline-flex min-h-24 items-center justify-between gap-4 rounded-md border border-white/22 bg-white/8 p-6 text-left font-bold text-white transition hover:bg-white/14"
-              >
-                <span className="inline-flex items-center gap-3">
-                  <ExternalLink className="h-5 w-5" aria-hidden="true" />
-                  {t.footer.website}
-                </span>
-                <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-          <div className="mt-10 rounded-md border border-white/14 bg-black/18 p-5">
-            <p className="flex items-start gap-3 text-sm leading-7 text-white/72">
-              <AlertTriangle className="mt-1 h-4 w-4 shrink-0 text-[#f0c46c]" aria-hidden="true" />
-              Seoul Clinic Answers is a sample content hub. It does not provide diagnosis, prescription,
-              procedure recommendation, or emergency medical guidance.
+      <div id="article" className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-20">
+        <div className="flex gap-16">
+          <article data-toc-content className="min-w-0 flex-1" style={{ maxWidth: '700px' }}>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">
+              {t.articleLabel}
             </p>
-          </div>
+            <h1 id="top">{t.title}</h1>
+
+            <div className="mt-8 mb-3 flex flex-wrap items-center gap-3">
+              <img
+                src={doctorPhoto}
+                alt={t.author}
+                className="m-0 h-11 w-11 rounded-full object-cover"
+              />
+              <span className="text-sm font-medium">{t.author}</span>
+              <span className="text-sm text-[var(--color-text-light)]">·</span>
+              <span className="text-sm text-[var(--color-text-light)]">{t.authorTitle}</span>
+              <span className="text-sm text-[var(--color-text-light)]">·</span>
+              <span className="text-sm text-[var(--color-text-light)]">{t.readTime}</span>
+              <span className="text-sm text-[var(--color-text-light)]">·</span>
+              <span className="text-sm text-[var(--color-text-light)]">{t.date}</span>
+            </div>
+
+            <p className="mb-8 text-sm font-medium text-[var(--color-text-light)]">{t.reviewed}</p>
+            <hr />
+
+            <blockquote>
+              {t.lead.map((item) => (
+                <p key={item}>{item}</p>
+              ))}
+            </blockquote>
+
+            {t.intro.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            <ul>
+              {t.summary.map((item) => (
+                <li key={item}>
+                  <strong>{item}</strong>
+                </li>
+              ))}
+            </ul>
+
+            {t.sections.map((section) => (
+              <section key={section.id}>
+                <h2 id={section.id}>{section.title}</h2>
+                {section.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+
+                {'table' in section && section.table && (
+                  <table>
+                    <thead>
+                      <tr>
+                        {section.table.headers.map((header) => (
+                          <th key={header}>{header}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {section.table.rows.map((row) => (
+                        <tr key={row.join('-')}>
+                          {row.map((cell) => (
+                            <td key={cell}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+
+                {'checklist' in section && section.checklist && (
+                  <ul>
+                    {section.checklist.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {'questions' in section && section.questions && (
+                  <div className="mt-6">
+                    <p>
+                      <strong>{lang === 'ko' ? '이 주제로 자주 받는 질문' : lang === 'ja' ? 'このテーマでよくある質問' : lang === 'zh' ? '本主题常见问题' : 'Common questions about this topic'}</strong>
+                    </p>
+                    {section.questions.map((item) => (
+                      <p key={item.q}>
+                        <strong>Q. {item.q}</strong>
+                        <br />
+                        A. {item.a}
+                      </p>
+                    ))}
+                  </div>
+                )}
+              </section>
+            ))}
+
+            <h2>{t.relatedTitle}</h2>
+            <ul>
+              {t.related.map((item) => (
+                <li key={item}>
+                  <a href="#article">{item}</a>
+                </li>
+              ))}
+            </ul>
+
+            <hr />
+
+            <h2>{t.referencesTitle}</h2>
+            <ol className="text-xs text-[var(--color-text-light)]">
+              {t.references.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ol>
+
+            <p className="mt-8 text-xs italic text-[var(--color-text-light)]">{t.disclaimer}</p>
+          </article>
+
+          <aside className="sticky top-24 hidden w-56 flex-shrink-0 self-start lg:block">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-light)]">
+              {t.toc}
+            </p>
+            <ul className="space-y-1.5 border-l border-[var(--color-border)] text-sm">
+              {t.sections.map((section) => (
+                <li key={section.id}>
+                  <a
+                    href={`#${section.id}`}
+                    className="block border-l-2 border-transparent py-0.5 pl-3 text-[var(--color-text-light)] transition hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                  >
+                    {section.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
-      </section>
+      </div>
+
+      <footer
+        id="contact"
+        className="bg-[var(--color-primary)] px-4 py-8 text-xs leading-relaxed text-white/70 md:px-6"
+      >
+        <div className="mx-auto max-w-4xl space-y-2">
+          <p className="font-semibold text-white">{t.footer.clinic}</p>
+          <p className="break-words">{t.footer.address}</p>
+          <p>{t.footer.phone}</p>
+          <p>{t.footer.business}</p>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <a href="#article" className="underline">
+              {t.footer.legal}
+            </a>
+            <a href="#article" className="underline">
+              {t.footer.privacy}
+            </a>
+          </div>
+          <p className="pt-2 opacity-60">{t.footer.note}</p>
+        </div>
+      </footer>
+
+      <style jsx global>{`
+        [data-toc-content] h1 {
+          color: #000;
+          font-size: 2.5rem;
+          font-weight: 800;
+          letter-spacing: 0;
+          line-height: 1.2;
+          margin: 0 0 0.5rem;
+          word-break: keep-all;
+        }
+
+        [data-toc-content] h2 {
+          border-bottom: 1px solid var(--color-border);
+          color: #222;
+          font-size: 1.625rem;
+          font-weight: 700;
+          letter-spacing: 0;
+          line-height: 1.35;
+          margin: 3rem 0 1rem;
+          padding-bottom: 0.625rem;
+          word-break: keep-all;
+        }
+
+        [data-toc-content] p {
+          color: #333;
+          font-size: 1.125rem;
+          line-height: 1.9;
+          margin-bottom: 1.5rem;
+          word-break: keep-all;
+        }
+
+        [data-toc-content] strong {
+          color: #222;
+          font-weight: 600;
+        }
+
+        [data-toc-content] blockquote {
+          background: var(--color-bg-alt);
+          border-left: 3px solid var(--color-accent);
+          border-radius: 0 var(--radius) var(--radius) 0;
+          color: #333;
+          font-size: 1.0625rem;
+          line-height: 1.8;
+          margin: 2rem 0;
+          padding: 1.25rem 1.5rem;
+        }
+
+        [data-toc-content] blockquote p {
+          margin-bottom: 0.25rem;
+        }
+
+        [data-toc-content] ul,
+        [data-toc-content] ol {
+          margin-bottom: 1.5rem;
+          padding-left: 1.75rem;
+        }
+
+        [data-toc-content] ul {
+          list-style: disc;
+        }
+
+        [data-toc-content] ol {
+          list-style: decimal;
+        }
+
+        [data-toc-content] li {
+          color: #333;
+          font-size: 1.0625rem;
+          line-height: 1.85;
+          margin-bottom: 0.5rem;
+        }
+
+        [data-toc-content] li::marker {
+          color: var(--color-accent);
+          font-weight: 600;
+        }
+
+        [data-toc-content] table {
+          border-collapse: collapse;
+          font-size: 0.875rem;
+          margin: 1.5rem 0;
+          width: 100%;
+        }
+
+        [data-toc-content] th {
+          background: var(--color-bg-alt);
+          border-bottom: 2px solid var(--color-border);
+          color: #222;
+          font-weight: 600;
+          padding: 0.625rem 0.75rem;
+          text-align: left;
+        }
+
+        [data-toc-content] td {
+          border-bottom: 1px solid var(--color-border);
+          color: #333;
+          padding: 0.625rem 0.75rem;
+        }
+
+        [data-toc-content] a {
+          color: var(--color-accent);
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+
+        [data-toc-content] hr {
+          border: 0;
+          border-top: 1px solid var(--color-border);
+          margin: 2.5rem 0;
+        }
+
+        [data-toc-content] img {
+          margin: 0;
+        }
+
+        @media (max-width: 768px) {
+          [data-toc-content] h1 {
+            font-size: 2rem;
+          }
+
+          [data-toc-content] h2 {
+            font-size: 1.375rem;
+            margin-top: 2.5rem;
+          }
+
+          [data-toc-content] p {
+            font-size: 1.0625rem;
+            line-height: 1.85;
+          }
+
+          [data-toc-content] li {
+            font-size: 1rem;
+            line-height: 1.8;
+          }
+
+          [data-toc-content] blockquote {
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
+          }
+        }
+      `}</style>
     </main>
   )
 }

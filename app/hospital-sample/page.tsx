@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import HospitalSampleClient from './HospitalSampleClient'
 
 export const metadata: Metadata = {
-  title: 'Seoul Clinic Answers | Hospital AEO Website Sample',
+  title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까? | Seoul Skin Clinic',
   description:
-    'A multilingual hospital AEO content hub sample for doctor-reviewed Q&A, procedure guides, patient education, and AI answer visibility.',
+    '여드름 흉터 타입별 치료 순서와 프랙셔널 레이저, 서브시전, TCA 크로스, RF 마이크로니들링 선택 기준을 의료진 검수 콘텐츠로 정리합니다.',
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: 'Seoul Clinic Answers | Hospital AEO Website Sample',
+    title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
     description:
-      'Doctor-reviewed multilingual Q&A and procedure guide sample for hospital AEO and GEO strategy.',
+      '여드름 흉터 타입별 치료 순서와 시술 전 확인할 점을 의료진 검수 콘텐츠로 정리합니다.',
     url: 'https://www.blinkad.kr/hospital-sample',
     siteName: 'BlinkAd',
     images: [
@@ -33,11 +33,11 @@ const hospitalJsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalOrganization',
-    name: 'Seoul Clinic Answers',
-    alternateName: ['서울클리닉답변', 'ソウルクリニックアンサー', '首尔诊所问答'],
+    name: 'Seoul Skin Clinic',
+    alternateName: ['서울스킨클리닉', 'Seoul Skin Clinic Gangnam', 'ソウルスキンクリニック', '首尔皮肤诊所'],
     url: 'https://www.blinkad.kr/hospital-sample',
     description:
-      'A doctor-reviewed multilingual patient education hub for dermatology and aesthetic procedure questions.',
+      'Doctor-reviewed dermatology information for acne scar treatment, laser procedures, and international patient preparation.',
     medicalSpecialty: ['Dermatology', 'PlasticSurgery'],
     sameAs: [
       'https://www.blinkad.kr',
@@ -45,7 +45,7 @@ const hospitalJsonLd = [
     ],
     department: {
       '@type': 'MedicalBusiness',
-      name: 'Seoul Clinic Answers Gangnam',
+      name: 'Seoul Skin Clinic Gangnam',
       telephone: '+82-2-555-0148',
       address: {
         '@type': 'PostalAddress',
@@ -80,7 +80,7 @@ const hospitalJsonLd = [
     medicalSpecialty: 'Dermatology',
     worksFor: {
       '@type': 'MedicalOrganization',
-      name: 'Seoul Clinic Answers',
+      name: 'Seoul Skin Clinic',
     },
     identifier: 'KMA-SAMPLE-24819',
     sameAs: [
@@ -91,9 +91,9 @@ const hospitalJsonLd = [
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
     url: 'https://www.blinkad.kr/hospital-sample',
-    name: 'Seoul Clinic Answers',
+    name: 'Acne scar treatment guide',
     description:
-      'Doctor-reviewed dermatology and aesthetic procedure Q&A for patients and international visitors.',
+      'Doctor-reviewed patient education about acne scar types, treatment order, aftercare, and consultation preparation.',
     inLanguage: ['ko', 'en', 'ja', 'zh'],
     audience: 'https://schema.org/Patient',
     specialty: 'https://schema.org/Dermatology',
@@ -101,10 +101,10 @@ const hospitalJsonLd = [
     datePublished: reviewedAt,
     dateModified: reviewedAt,
     mainContentOfPage: [
-      'Procedure answers',
-      'Patient education',
-      'Doctor review',
-      'Multilingual visit information',
+      'Acne scar types',
+      'Treatment order',
+      'Aftercare',
+      'Frequently asked questions',
     ],
     reviewedBy: {
       '@type': 'Physician',
@@ -113,7 +113,7 @@ const hospitalJsonLd = [
     },
     publisher: {
       '@type': 'MedicalOrganization',
-      name: 'Seoul Clinic Answers',
+      name: 'Seoul Skin Clinic',
     },
   },
   {
@@ -122,10 +122,10 @@ const hospitalJsonLd = [
     mainEntity: [
       {
         '@type': 'Question',
-        name: 'How long does Botox usually last?',
+        name: 'Can acne scar treatment be done while active acne is still present?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Botulinum toxin treatment commonly starts to show effect within a few days and often lasts around three to six months depending on the area, dose, and individual muscle activity. A licensed clinician should assess the treatment interval.',
+          text: 'Active acne often needs to be controlled before acne scar procedures. Ongoing inflammation can create new scars and make the treatment plan less stable.',
           author: {
             '@type': 'Physician',
             name: 'Dr. Min Jae Lee',
@@ -135,10 +135,10 @@ const hospitalJsonLd = [
       },
       {
         '@type': 'Question',
-        name: 'Can international patients use this guide before visiting a Korean clinic?',
+        name: 'How much improvement can be expected after one acne scar treatment?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'This guide is for patient education and visit preparation only. Diagnosis, treatment choice, and medical advice must be confirmed during an in-person consultation with a licensed clinician.',
+          text: 'A single session usually cannot guarantee a large change. Acne scar treatment is commonly planned over repeated sessions to make scars gradually less visible.',
           author: {
             '@type': 'Physician',
             name: 'Dr. Min Jae Lee',
