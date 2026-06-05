@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import HospitalSampleClient from './HospitalSampleClient'
 
 export const metadata: Metadata = {
+  applicationName: 'Seoul Skin Clinic',
   title: 'Seoul Skin Clinic | 피부과 시술 정보',
   description:
     '서울스킨클리닉 강남점의 피부과 시술 정보, 의료진 검수 Q&A, 다국어 방문 안내를 한곳에서 확인할 수 있습니다.',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description:
       '여드름 흉터, 보톡스, 기미 치료 등 피부과 상담 전 확인할 정보를 의료진 검수 콘텐츠로 제공합니다.',
     url: 'https://www.blinkad.kr/hospital-sample',
-    siteName: 'BlinkAd',
+    siteName: 'Seoul Skin Clinic',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85',
@@ -24,6 +25,15 @@ export const metadata: Metadata = {
     ],
     locale: 'ko_KR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Seoul Skin Clinic | 피부과 시술 정보',
+    description:
+      '서울스킨클리닉 강남점의 피부과 시술 정보와 의료진 검수 Q&A를 확인할 수 있습니다.',
+    images: [
+      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85',
+    ],
   },
 }
 

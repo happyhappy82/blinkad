@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import ColumnArticleClient from './ColumnArticleClient'
 
 export const metadata: Metadata = {
+  applicationName: 'Seoul Skin Clinic',
   title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까? | Seoul Skin Clinic',
   description:
     '여드름 흉터 타입별 치료 순서와 프랙셔널 레이저, 서브시전, TCA 크로스, RF 마이크로니들링 선택 기준을 의료진 검수 콘텐츠로 정리합니다.',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description:
       '여드름 흉터 타입별 치료 순서와 시술 전 확인할 점을 의료진 검수 콘텐츠로 정리합니다.',
     url: 'https://www.blinkad.kr/hospital-sample/columns/acne-scar-treatment',
-    siteName: 'BlinkAd',
+    siteName: 'Seoul Skin Clinic',
     images: [
       {
         url: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85',
@@ -24,6 +25,15 @@ export const metadata: Metadata = {
     ],
     locale: 'ko_KR',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
+    description:
+      '여드름 흉터 타입별 치료 순서와 시술 전 확인할 점을 의료진 검수 콘텐츠로 정리합니다.',
+    images: [
+      'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85',
+    ],
   },
 }
 
