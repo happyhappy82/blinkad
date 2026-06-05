@@ -486,7 +486,10 @@ export default function RestaurantSampleClient() {
   )
 
   return (
-    <main lang={lang} className="min-h-screen bg-[#10100f] text-[#f8f2e8]">
+    <main
+      lang={lang}
+      className="min-h-screen bg-[#10100f] text-[#f8f2e8] [font-family:var(--font-pretendard)]"
+    >
       <section className="relative min-h-[92svh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -501,7 +504,7 @@ export default function RestaurantSampleClient() {
               <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10">
                 <Utensils className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="text-base font-semibold tracking-[0.18em]">HANEUL TABLE</span>
+              <span className="text-base font-semibold">HANEUL TABLE</span>
             </a>
 
             <nav className="hidden items-center gap-7 text-sm text-white/78 lg:flex">
@@ -569,7 +572,7 @@ export default function RestaurantSampleClient() {
           id="top"
           className="relative z-10 mx-auto flex min-h-[92svh] max-w-7xl flex-col justify-end px-5 pb-14 pt-32 md:px-10 md:pb-24"
         >
-          <p className="mb-5 max-w-2xl text-sm font-semibold uppercase tracking-[0.28em] text-[#e5c076]">
+          <p className="mb-5 max-w-2xl text-sm font-semibold uppercase text-[#e5c076]">
             {t.hero.eyebrow}
           </p>
           <h1 className="max-w-5xl text-5xl font-semibold leading-none tracking-normal text-white md:text-7xl lg:text-8xl">
@@ -614,7 +617,7 @@ export default function RestaurantSampleClient() {
               <div key={item.label} className="flex min-h-28 items-center gap-4 py-6 md:px-6">
                 <Icon className="h-5 w-5 shrink-0 text-[#e5c076]" aria-hidden="true" />
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/42">
+                  <p className="text-xs font-semibold uppercase text-white/42">
                     {item.label}
                   </p>
                   <p className="mt-2 text-base font-semibold text-white">{item.value}</p>
@@ -628,7 +631,7 @@ export default function RestaurantSampleClient() {
       <section id="story" className="bg-[#10100f] py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-[0.95fr_1.05fr] md:items-center md:px-10">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#70b986]">
+            <p className="text-sm font-semibold uppercase text-[#70b986]">
               {t.story.eyebrow}
             </p>
             <h2 className="mt-5 text-4xl font-semibold leading-tight text-white md:text-6xl">
@@ -657,7 +660,7 @@ export default function RestaurantSampleClient() {
       <section id="visit" className="bg-[#f4efe6] py-20 text-[#1b1815] md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#8f5b2f]">
+            <p className="text-sm font-semibold uppercase text-[#8f5b2f]">
               {activeLanguage.native}
             </p>
             <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">
@@ -684,7 +687,7 @@ export default function RestaurantSampleClient() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#e5c076]">
+              <p className="text-sm font-semibold uppercase text-[#e5c076]">
                 Signature
               </p>
               <h2 className="mt-4 text-4xl font-semibold leading-tight text-white md:text-6xl">
