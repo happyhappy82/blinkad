@@ -2,17 +2,17 @@ import type { Metadata } from 'next'
 import HospitalSampleClient from './HospitalSampleClient'
 
 export const metadata: Metadata = {
-  title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까? | Seoul Skin Clinic',
+  title: 'Seoul Skin Clinic | 피부과 시술 정보',
   description:
-    '여드름 흉터 타입별 치료 순서와 프랙셔널 레이저, 서브시전, TCA 크로스, RF 마이크로니들링 선택 기준을 의료진 검수 콘텐츠로 정리합니다.',
+    '서울스킨클리닉 강남점의 피부과 시술 정보, 의료진 검수 Q&A, 다국어 방문 안내를 한곳에서 확인할 수 있습니다.',
   robots: {
     index: false,
     follow: false,
   },
   openGraph: {
-    title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
+    title: 'Seoul Skin Clinic | 피부과 시술 정보',
     description:
-      '여드름 흉터 타입별 치료 순서와 시술 전 확인할 점을 의료진 검수 콘텐츠로 정리합니다.',
+      '여드름 흉터, 보톡스, 기미 치료 등 피부과 상담 전 확인할 정보를 의료진 검수 콘텐츠로 제공합니다.',
     url: 'https://www.blinkad.kr/hospital-sample',
     siteName: 'BlinkAd',
     images: [
@@ -37,12 +37,8 @@ const hospitalJsonLd = [
     alternateName: ['서울스킨클리닉', 'Seoul Skin Clinic Gangnam', 'ソウルスキンクリニック', '首尔皮肤诊所'],
     url: 'https://www.blinkad.kr/hospital-sample',
     description:
-      'Doctor-reviewed dermatology information for acne scar treatment, laser procedures, and international patient preparation.',
+      'Doctor-reviewed dermatology information for acne scars, botulinum toxin treatment, pigmentation care, and international patient preparation.',
     medicalSpecialty: ['Dermatology', 'PlasticSurgery'],
-    sameAs: [
-      'https://www.blinkad.kr',
-      'https://www.blinkad.kr/hospital-sample',
-    ],
     department: {
       '@type': 'MedicalBusiness',
       name: 'Seoul Skin Clinic Gangnam',
@@ -55,57 +51,20 @@ const hospitalJsonLd = [
         postalCode: '06234',
         addressCountry: 'KR',
       },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '10:00',
-          closes: '19:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Saturday',
-          opens: '10:00',
-          closes: '15:00',
-        },
-      ],
     },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Physician',
-    name: 'Dr. Min Jae Lee',
-    alternateName: '이민재 원장',
-    jobTitle: 'Medical Director',
-    medicalSpecialty: 'Dermatology',
-    worksFor: {
-      '@type': 'MedicalOrganization',
-      name: 'Seoul Skin Clinic',
-    },
-    identifier: 'KMA-SAMPLE-24819',
-    sameAs: [
-      'https://www.blinkad.kr/hospital-sample#doctors',
-    ],
   },
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
     url: 'https://www.blinkad.kr/hospital-sample',
-    name: 'Acne scar treatment guide',
+    name: 'Seoul Skin Clinic patient education',
     description:
-      'Doctor-reviewed patient education about acne scar types, treatment order, aftercare, and consultation preparation.',
+      'Patient education and clinic visit information reviewed by a physician.',
     inLanguage: ['ko', 'en', 'ja', 'zh'],
     audience: 'https://schema.org/Patient',
     specialty: 'https://schema.org/Dermatology',
     lastReviewed: reviewedAt,
-    datePublished: reviewedAt,
     dateModified: reviewedAt,
-    mainContentOfPage: [
-      'Acne scar types',
-      'Treatment order',
-      'Aftercare',
-      'Frequently asked questions',
-    ],
     reviewedBy: {
       '@type': 'Physician',
       name: 'Dr. Min Jae Lee',
@@ -115,38 +74,6 @@ const hospitalJsonLd = [
       '@type': 'MedicalOrganization',
       name: 'Seoul Skin Clinic',
     },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'Can acne scar treatment be done while active acne is still present?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Active acne often needs to be controlled before acne scar procedures. Ongoing inflammation can create new scars and make the treatment plan less stable.',
-          author: {
-            '@type': 'Physician',
-            name: 'Dr. Min Jae Lee',
-          },
-          dateModified: reviewedAt,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How much improvement can be expected after one acne scar treatment?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'A single session usually cannot guarantee a large change. Acne scar treatment is commonly planned over repeated sessions to make scars gradually less visible.',
-          author: {
-            '@type': 'Physician',
-            name: 'Dr. Min Jae Lee',
-          },
-          dateModified: reviewedAt,
-        },
-      },
-    ],
   },
 ]
 
