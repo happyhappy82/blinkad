@@ -1,7 +1,85 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+const ERP_AUTH_REALM = 'BlinkAd ERP'
+const DEFAULT_ERP_AUTH_USER = 'blinkad'
+const DEFAULT_ERP_AUTH_PASSWORD_SHA256 =
+  'bf0747c7604dd7dacb73bd9908d7e9e212a664d617211e13ac287cc98c8a1c84'
+
+function isProtectedErpPath(pathname: string) {
+  return (
+    pathname === '/erp' ||
+    pathname.startsWith('/erp/') ||
+    pathname === '/api/erp' ||
+    pathname.startsWith('/api/erp/')
+  )
+}
+
+function unauthorized() {
+  return new NextResponse('Authentication required', {
+    status: 401,
+    headers: {
+      'WWW-Authenticate': `Basic realm="${ERP_AUTH_REALM}", charset="UTF-8"`,
+      'Cache-Control': 'no-store',
+    },
+  })
+}
+
+function decodeBasicCredentials(authorization: string | null) {
+  if (!authorization?.startsWith('Basic ')) {
+    return null
+  }
+
+  try {
+    const decoded = atob(authorization.slice('Basic '.length))
+    const separatorIndex = decoded.indexOf(':')
+
+    if (separatorIndex < 0) {
+      return null
+    }
+
+    return {
+      user: decoded.slice(0, separatorIndex),
+      password: decoded.slice(separatorIndex + 1),
+    }
+  } catch {
+    return null
+  }
+}
+
+async function sha256Hex(value: string) {
+  const digest = await crypto.subtle.digest(
+    'SHA-256',
+    new TextEncoder().encode(value),
+  )
+
+  return Array.from(new Uint8Array(digest))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+async function isErpAuthorized(request: NextRequest) {
+  const credentials = decodeBasicCredentials(request.headers.get('authorization'))
+
+  if (!credentials) {
+    return false
+  }
+
+  const envUser = process.env.ERP_AUTH_USER?.trim()
+  const envPassword = process.env.ERP_AUTH_PASSWORD
+
+  if (envUser && envPassword) {
+    return credentials.user === envUser && credentials.password === envPassword
+  }
+
+  if (credentials.user !== DEFAULT_ERP_AUTH_USER) {
+    return false
+  }
+
+  return (await sha256Hex(credentials.password)) === DEFAULT_ERP_AUTH_PASSWORD_SHA256
+}
+
+export async function middleware(request: NextRequest) {
   const hostname = request.headers.get('host') || ''
   const pathname = request.nextUrl.pathname
   const search = request.nextUrl.search
@@ -42,11 +120,16 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  if (isProtectedErpPath(pathname) && !(await isErpAuthorized(request))) {
+    return unauthorized()
+  }
+
   return NextResponse.next()
 }
 
 export const config = {
   matcher: [
+    '/api/erp/:path*',
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
