@@ -14,6 +14,8 @@ type Lang = (typeof languages)[number]['code']
 
 const doctorPhoto =
   'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=240&q=80'
+const coverImage =
+  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=86'
 
 const copy = {
   ko: {
@@ -522,35 +524,35 @@ export default function ColumnArticleClient() {
   return (
     <main
       lang={lang}
-      className="min-h-screen bg-white text-[#222] [--color-primary:#4b3539] [--color-accent:#b46b78] [--color-bg-alt:#faf7f5] [--color-border:#e7dfdb] [--color-text-light:#707070] [--radius:4px] [font-family:var(--font-pretendard)]"
+      className="min-h-screen bg-[#fdfcfb] text-[#1f1f1f] [--color-primary:#2d2a26] [--color-accent:#7f5f4a] [--color-bg-alt:#f6f2ed] [--color-border:#e5ded5] [--color-text-light:#75706a] [--radius:6px] [font-family:var(--font-pretendard)]"
     >
-      <div className="bg-[var(--color-primary)] px-4 py-2 text-xs text-white">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
-          <span className="font-semibold">{t.brand}</span>
-          <a href="#contact" className="underline opacity-80 transition hover:opacity-100">
+      <div className="border-b border-[var(--color-border)] bg-[#fdfcfb] px-4 py-3 text-xs text-[var(--color-primary)]">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4">
+          <span className="font-semibold tracking-normal">{t.brand}</span>
+          <a href="#contact" className="font-medium text-[var(--color-text-light)] transition hover:text-[var(--color-primary)]">
             {t.official}
           </a>
         </div>
       </div>
 
-      <nav className="relative border-b border-[var(--color-border)] bg-white">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-4 py-4 md:justify-center md:px-6">
-          <div className="hidden items-center gap-8 text-sm md:flex">
+      <nav className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[#fdfcfb]/92 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-8">
+          <div className="hidden items-center gap-7 text-sm text-[var(--color-text-light)] md:flex">
             {t.nav.map((item, index) => (
               <a
                 key={item}
-                href={index === 0 ? '#top' : index === 1 ? '#faq' : '#article'}
-                className={index === 0 ? 'font-semibold transition hover:opacity-70' : 'transition hover:opacity-70'}
+                href={index === 0 ? '/hospital-sample' : index === 1 ? '#faq' : '#article'}
+                className={index === 0 ? 'font-semibold text-[var(--color-primary)] transition hover:opacity-70' : 'transition hover:text-[var(--color-primary)]'}
               >
                 {item}
               </a>
             ))}
           </div>
 
-          <span className="text-sm font-semibold md:hidden">{t.brand}</span>
+          <span className="text-sm font-semibold text-[var(--color-primary)] md:hidden">{t.brand}</span>
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] text-[var(--color-primary)] md:hidden"
             aria-expanded={menuOpen}
             aria-label={t.mobileMenu}
             onClick={() => setMenuOpen((current) => !current)}
@@ -564,7 +566,7 @@ export default function ColumnArticleClient() {
               {t.nav.map((item, index) => (
                 <a
                   key={item}
-                  href={index === 0 ? '#top' : index === 1 ? '#faq' : '#article'}
+                  href={index === 0 ? '/hospital-sample' : index === 1 ? '#faq' : '#article'}
                   className="py-2"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -576,8 +578,8 @@ export default function ColumnArticleClient() {
         )}
       </nav>
 
-      <div className="border-b border-[var(--color-border)] bg-[var(--color-bg-alt)] px-4 py-3">
-        <div className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3">
+      <div className="border-b border-[var(--color-border)] bg-[#f8f5f1] px-4 py-3">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-light)]">
             <Languages className="h-4 w-4 text-[var(--color-accent)]" aria-hidden="true" />
             {activeLanguage.native}
@@ -602,9 +604,9 @@ export default function ColumnArticleClient() {
         </div>
       </div>
 
-      <div id="article" className="mx-auto max-w-5xl px-4 py-12 md:px-8 md:py-20">
+      <div id="article" className="mx-auto max-w-6xl px-5 py-12 md:px-8 md:py-20">
         <div className="flex gap-16">
-          <article data-toc-content className="min-w-0 flex-1" style={{ maxWidth: '700px' }}>
+          <article data-toc-content className="min-w-0 flex-1" style={{ maxWidth: '720px' }}>
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-accent)]">
               {t.articleLabel}
             </p>
@@ -626,7 +628,23 @@ export default function ColumnArticleClient() {
             </div>
 
             <p className="mb-8 text-sm font-medium text-[var(--color-text-light)]">{t.reviewed}</p>
-            <hr />
+
+            <figure className="my-10">
+              <img
+                src={coverImage}
+                alt={t.title}
+                className="aspect-[16/9] w-full rounded-[var(--radius)] object-cover"
+              />
+              <figcaption className="mt-3 text-center text-xs leading-relaxed text-[var(--color-text-light)]">
+                {lang === 'ko'
+                  ? '상담 전 확인해야 할 핵심 정보를 의료진 검수 콘텐츠 형태로 정리한 샘플 칼럼입니다.'
+                  : lang === 'ja'
+                    ? '相談前に確認したい情報を医師確認コンテンツとして整理したサンプルコラムです。'
+                    : lang === 'zh'
+                      ? '这是将咨询前需要确认的信息整理成医生审核内容的示例专栏。'
+                      : 'A sample doctor-reviewed column designed to answer pre-consultation questions.'}
+              </figcaption>
+            </figure>
 
             <blockquote>
               {t.lead.map((item) => (
@@ -638,13 +656,16 @@ export default function ColumnArticleClient() {
               <p key={paragraph}>{paragraph}</p>
             ))}
 
-            <ul>
-              {t.summary.map((item) => (
-                <li key={item}>
-                  <strong>{item}</strong>
-                </li>
-              ))}
-            </ul>
+            <section className="answer-box" aria-label="Article summary">
+              <p className="eyebrow">
+                {lang === 'ko' ? '먼저 보는 결론' : lang === 'ja' ? '先に見る結論' : lang === 'zh' ? '先看结论' : 'Key takeaways'}
+              </p>
+              <ul>
+                {t.summary.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
 
             {t.sections.map((section) => (
               <section key={section.id}>
@@ -654,28 +675,30 @@ export default function ColumnArticleClient() {
                 ))}
 
                 {'table' in section && section.table && (
-                  <table>
-                    <thead>
-                      <tr>
-                        {section.table.headers.map((header) => (
-                          <th key={header}>{header}</th>
-                        ))}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {section.table.rows.map((row) => (
-                        <tr key={row.join('-')}>
-                          {row.map((cell) => (
-                            <td key={cell}>{cell}</td>
+                  <div className="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          {section.table.headers.map((header) => (
+                            <th key={header}>{header}</th>
                           ))}
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map((row) => (
+                          <tr key={row.join('-')}>
+                            {row.map((cell) => (
+                              <td key={cell}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 )}
 
                 {'checklist' in section && section.checklist && (
-                  <ul>
+                  <ul className="checklist">
                     {section.checklist.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -683,41 +706,45 @@ export default function ColumnArticleClient() {
                 )}
 
                 {'questions' in section && section.questions && (
-                  <div className="mt-6">
-                    <p>
-                      <strong>{lang === 'ko' ? '이 주제로 자주 받는 질문' : lang === 'ja' ? 'このテーマでよくある質問' : lang === 'zh' ? '本主题常见问题' : 'Common questions about this topic'}</strong>
+                  <div className="question-block">
+                    <p className="question-heading">
+                      {lang === 'ko' ? '이 주제로 자주 받는 질문' : lang === 'ja' ? 'このテーマでよくある質問' : lang === 'zh' ? '本主题常见问题' : 'Common questions about this topic'}
                     </p>
                     {section.questions.map((item) => (
-                      <p key={item.q}>
-                        <strong>Q. {item.q}</strong>
-                        <br />
-                        A. {item.a}
-                      </p>
+                      <div key={item.q} className="qa-item">
+                        <p className="qa-q">Q. {item.q}</p>
+                        <p className="qa-a">A. {item.a}</p>
+                      </div>
                     ))}
                   </div>
                 )}
               </section>
             ))}
 
-            <h2>{t.relatedTitle}</h2>
-            <ul>
-              {t.related.map((item) => (
-                <li key={item}>
-                  <a href="#article">{item}</a>
-                </li>
-              ))}
-            </ul>
+            <section className="related-section">
+              <h2>{t.relatedTitle}</h2>
+              <div className="grid gap-3">
+                {t.related.map((item) => (
+                  <a key={item} href="#article" className="related-link">
+                    <span>{item}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                ))}
+              </div>
+            </section>
 
-            <hr />
+            <section className="references-section">
+              <h2>{t.referencesTitle}</h2>
+              <ol>
+                {t.references.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </section>
 
-            <h2>{t.referencesTitle}</h2>
-            <ol className="text-xs text-[var(--color-text-light)]">
-              {t.references.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ol>
-
-            <p className="mt-8 text-xs italic text-[var(--color-text-light)]">{t.disclaimer}</p>
+            <section className="notice-section">
+              <p>{t.disclaimer}</p>
+            </section>
           </article>
 
           <aside className="sticky top-24 hidden w-56 flex-shrink-0 self-start lg:block">
@@ -742,52 +769,57 @@ export default function ColumnArticleClient() {
 
       <footer
         id="contact"
-        className="bg-[var(--color-primary)] px-4 py-8 text-xs leading-relaxed text-white/70 md:px-6"
+        className="border-t border-[var(--color-border)] bg-[#f7f3ee] px-5 py-10 text-xs leading-relaxed text-[var(--color-text-light)] md:px-8"
       >
-        <div className="mx-auto max-w-4xl space-y-2">
-          <p className="font-semibold text-white">{t.footer.clinic}</p>
+        <div className="mx-auto max-w-[720px] space-y-2">
+          <p className="font-semibold text-[var(--color-primary)]">{t.footer.clinic}</p>
           <p className="break-words">{t.footer.address}</p>
           <p>{t.footer.phone}</p>
           <p>{t.footer.business}</p>
           <div className="flex flex-wrap gap-4 pt-2">
-            <a href="#article" className="underline">
+            <a href="#article" className="underline underline-offset-2">
               {t.footer.legal}
             </a>
-            <a href="#article" className="underline">
+            <a href="#article" className="underline underline-offset-2">
               {t.footer.privacy}
             </a>
+            <a href="#contact" className="underline underline-offset-2">
+              {t.official}
+            </a>
           </div>
-          <p className="pt-2 opacity-60">{t.footer.note}</p>
+          <p className="pt-2">{t.footer.note}</p>
         </div>
       </footer>
 
       <style jsx global>{`
         [data-toc-content] h1 {
-          color: #000;
-          font-size: 2.5rem;
+          color: #151515;
+          font-size: clamp(2.375rem, 6vw, 4.625rem);
           font-weight: 800;
           letter-spacing: 0;
-          line-height: 1.2;
-          margin: 0 0 0.5rem;
+          line-height: 1.08;
+          margin: 0;
+          text-wrap: balance;
           word-break: keep-all;
         }
 
         [data-toc-content] h2 {
-          border-bottom: 1px solid var(--color-border);
-          color: #222;
-          font-size: 1.625rem;
-          font-weight: 700;
+          color: #1f1f1f;
+          font-size: clamp(1.625rem, 3vw, 2.25rem);
+          font-weight: 750;
           letter-spacing: 0;
-          line-height: 1.35;
-          margin: 3rem 0 1rem;
-          padding-bottom: 0.625rem;
+          line-height: 1.28;
+          margin: 4.25rem 0 1.25rem;
+          scroll-margin-top: 5rem;
+          text-wrap: balance;
           word-break: keep-all;
         }
 
         [data-toc-content] p {
-          color: #333;
+          color: #2f2f2f;
           font-size: 1.125rem;
-          line-height: 1.9;
+          letter-spacing: 0;
+          line-height: 1.95;
           margin-bottom: 1.5rem;
           word-break: keep-all;
         }
@@ -798,18 +830,19 @@ export default function ColumnArticleClient() {
         }
 
         [data-toc-content] blockquote {
-          background: var(--color-bg-alt);
-          border-left: 3px solid var(--color-accent);
-          border-radius: 0 var(--radius) var(--radius) 0;
-          color: #333;
-          font-size: 1.0625rem;
-          line-height: 1.8;
-          margin: 2rem 0;
-          padding: 1.25rem 1.5rem;
+          border-bottom: 1px solid var(--color-border);
+          border-top: 1px solid var(--color-border);
+          color: #4a4039;
+          margin: 2.5rem 0;
+          padding: 1.5rem 0 0.5rem;
         }
 
         [data-toc-content] blockquote p {
-          margin-bottom: 0.25rem;
+          color: #4a4039;
+          font-size: 1.25rem;
+          font-weight: 650;
+          line-height: 1.75;
+          margin-bottom: 1rem;
         }
 
         [data-toc-content] ul,
@@ -874,6 +907,139 @@ export default function ColumnArticleClient() {
 
         [data-toc-content] img {
           margin: 0;
+        }
+
+        .answer-box {
+          background: #f5efe8;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          margin: 2.25rem 0 3.25rem;
+          padding: 1.35rem 1.5rem;
+        }
+
+        .answer-box .eyebrow {
+          color: var(--color-accent);
+          font-size: 0.75rem;
+          font-weight: 800;
+          letter-spacing: 0.12em;
+          line-height: 1.4;
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+        }
+
+        .answer-box ul,
+        .checklist,
+        .references-section ol {
+          margin: 0;
+          padding-left: 1.35rem;
+        }
+
+        .answer-box li,
+        .checklist li {
+          color: #2f2f2f;
+          font-size: 1rem;
+          line-height: 1.75;
+          margin-bottom: 0.65rem;
+        }
+
+        .answer-box li:last-child,
+        .checklist li:last-child {
+          margin-bottom: 0;
+        }
+
+        [data-toc-content] section:not(.answer-box):not(.related-section):not(.references-section):not(.notice-section) {
+          border-top: 1px solid rgba(229, 222, 213, 0.75);
+          margin-top: 3.5rem;
+        }
+
+        .table-wrap {
+          margin: 1.75rem 0;
+          overflow-x: auto;
+        }
+
+        [data-toc-content] table {
+          min-width: 560px;
+        }
+
+        .question-block {
+          background: #fff;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          margin-top: 2rem;
+          padding: 1.25rem 1.35rem;
+        }
+
+        .question-heading {
+          color: var(--color-accent);
+          font-size: 0.875rem;
+          font-weight: 800;
+          line-height: 1.5;
+          margin-bottom: 0.75rem;
+        }
+
+        .qa-item {
+          border-top: 1px solid var(--color-border);
+          padding-top: 1rem;
+        }
+
+        .qa-item:first-of-type {
+          border-top: 0;
+          padding-top: 0;
+        }
+
+        .qa-q {
+          color: #1f1f1f;
+          font-size: 1rem;
+          font-weight: 750;
+          line-height: 1.7;
+          margin-bottom: 0.3rem;
+        }
+
+        .qa-a {
+          color: #3d3935;
+          font-size: 1rem;
+          line-height: 1.8;
+          margin-bottom: 1rem;
+        }
+
+        .related-section,
+        .references-section,
+        .notice-section {
+          border-top: 1px solid var(--color-border);
+          margin-top: 4rem;
+          padding-top: 2rem;
+        }
+
+        .related-section h2,
+        .references-section h2 {
+          font-size: 1.375rem;
+          margin: 0 0 1rem;
+        }
+
+        .related-link {
+          align-items: center;
+          border-bottom: 1px solid var(--color-border);
+          color: #1f1f1f;
+          display: flex;
+          font-size: 1rem;
+          font-weight: 650;
+          justify-content: space-between;
+          padding: 0.95rem 0;
+        }
+
+        .references-section li {
+          color: var(--color-text-light);
+          font-size: 0.8125rem;
+          line-height: 1.65;
+          margin-bottom: 0.5rem;
+        }
+
+        .notice-section p {
+          color: var(--color-text-light);
+          font-size: 0.875rem;
+          font-style: italic;
+          line-height: 1.75;
+          margin-bottom: 0;
         }
 
         @media (max-width: 768px) {

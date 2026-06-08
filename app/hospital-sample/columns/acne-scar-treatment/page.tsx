@@ -38,6 +38,9 @@ export const metadata: Metadata = {
 }
 
 const reviewedAt = '2026-06-05'
+const articleUrl = 'https://www.blinkad.kr/hospital-sample/columns/acne-scar-treatment'
+const articleImage =
+  'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=85'
 
 const hospitalJsonLd = [
   {
@@ -51,7 +54,7 @@ const hospitalJsonLd = [
     medicalSpecialty: ['Dermatology', 'PlasticSurgery'],
     sameAs: [
       'https://www.blinkad.kr',
-      'https://www.blinkad.kr/hospital-sample/columns/acne-scar-treatment',
+      articleUrl,
     ],
     department: {
       '@type': 'MedicalBusiness',
@@ -100,7 +103,7 @@ const hospitalJsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'MedicalWebPage',
-    url: 'https://www.blinkad.kr/hospital-sample/columns/acne-scar-treatment',
+    url: articleUrl,
     name: 'Acne scar treatment guide',
     description:
       'Doctor-reviewed patient education about acne scar types, treatment order, aftercare, and consultation preparation.',
@@ -125,6 +128,47 @@ const hospitalJsonLd = [
       '@type': 'MedicalOrganization',
       name: 'Seoul Skin Clinic',
     },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
+    alternativeHeadline: 'Acne scar treatment: where should you start?',
+    image: [articleImage],
+    url: articleUrl,
+    mainEntityOfPage: articleUrl,
+    datePublished: reviewedAt,
+    dateModified: reviewedAt,
+    author: {
+      '@type': 'Physician',
+      name: 'Dr. Min Jae Lee',
+      alternateName: '이민재 원장',
+      medicalSpecialty: 'Dermatology',
+      worksFor: {
+        '@type': 'MedicalOrganization',
+        name: 'Seoul Skin Clinic',
+      },
+    },
+    reviewedBy: {
+      '@type': 'Physician',
+      name: 'Dr. Min Jae Lee',
+      jobTitle: 'Medical Director',
+    },
+    publisher: {
+      '@type': 'MedicalOrganization',
+      name: 'Seoul Skin Clinic',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.blinkad.kr/logo-black-nav.png',
+      },
+    },
+    about: [
+      'Acne scar treatment',
+      'Dermatology',
+      'Fractional laser',
+      'Subcision',
+      'TCA CROSS',
+    ],
   },
   {
     '@context': 'https://schema.org',
@@ -155,6 +199,30 @@ const hospitalJsonLd = [
           },
           dateModified: reviewedAt,
         },
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Hospital sample',
+        item: 'https://www.blinkad.kr/hospital-sample',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Columns',
+        item: 'https://www.blinkad.kr/hospital-sample#columns',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Acne scar treatment',
+        item: articleUrl,
       },
     ],
   },
