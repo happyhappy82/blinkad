@@ -51,87 +51,87 @@ const copy = {
       book: '상담 예약',
     },
     hero: {
-      eyebrow: '서울스킨클리닉 강남점',
-      title: '피부과 상담 전, 필요한 정보를 먼저 확인하세요',
+      eyebrow: '블링크 피부과의원 · 강남 피부과 정보 허브',
+      title: '피부과 상담 전, 가장 많이 묻는 질문을 먼저 확인하세요',
       subtitle:
-        '여드름 흉터, 보톡스, 기미 치료처럼 상담 전 많이 묻는 질문을 의료진 검수 콘텐츠와 다국어 방문 안내로 정리했습니다.',
+        '여드름, 여드름 흉터, 보톡스, 기미·색소, 리프팅처럼 상담 전 자주 묻는 질문을 의료진 검수 답변과 지역 방문 정보로 정리했습니다.',
       primary: '자주 묻는 질문 보기',
       secondary: '칼럼 읽기',
       reviewed: '최종 의학 검토 2026.06.05',
     },
     quick: [
-      { label: '전문영역', value: '피부과 · 미용시술' },
+      { label: '지역', value: '강남역 인근 피부과' },
+      { label: '진료영역', value: '여드름 · 색소 · 보톡스 · 리프팅' },
       { label: '콘텐츠', value: '의료진 검수 Q&A' },
       { label: '언어', value: '한국어 · 영어 · 일본어 · 중국어' },
-      { label: '목적', value: '상담 전 이해를 돕는 정보' },
     ],
     answers: {
       eyebrow: 'Questions patients ask',
-      title: '진료실에서 자주 받는 질문',
+      title: '환자가 실제로 검색하고 묻는 질문',
       subtitle:
-        '온라인 후기보다 먼저 확인해야 할 기본 정보를 짧은 답변으로 정리했습니다. 개인별 진단은 대면 상담에서 확정됩니다.',
+        '상담 전 바로 이해할 수 있도록 결론을 먼저 제시합니다. 개인별 진단과 시술 가능 여부는 대면 상담에서 확정됩니다.',
       items: [
         {
+          q: '강남 피부과에서 여드름 치료는 어디서부터 시작하나요?',
+          a: '반복되는 여드름은 압출이나 장비명보다 원인 확인이 먼저입니다. 염증 정도, 피지 분비, 생활 패턴, 복용 약을 확인한 뒤 약물, 스킨케어, 레이저 보조치료를 단계적으로 조합합니다.',
+          tag: '강남 피부과 여드름',
+        },
+        {
           q: '보톡스 효과는 얼마나 지속되나요?',
-          a: '보툴리눔 톡신 효과는 부위와 용량, 근육 사용량에 따라 다르지만 일반적으로 3~6개월 정도 유지됩니다. 반복 간격은 내성 위험과 시술 부위를 고려해 의료진이 정해야 합니다.',
+          a: '보툴리눔 톡신 효과는 부위, 용량, 근육 사용량에 따라 다르지만 일반적으로 3~6개월 정도 유지됩니다. 반복 간격은 내성 위험과 시술 부위를 고려해 의료진과 정해야 합니다.',
           tag: '보톡스 지속기간',
         },
         {
-          q: '인모드는 몇 주 간격으로 받나요?',
-          a: '고주파 시술 간격은 피부 두께, 멍 발생 여부, 통증 민감도, 에너지 설정에 따라 달라집니다. 최근 레이저·필러·실리프팅 이력도 함께 확인해야 합니다.',
-          tag: '인모드 간격',
-        },
-        {
           q: '기미 치료는 레이저 한 번으로 되나요?',
-          a: '기미는 멜라닌, 염증, 호르몬, 자외선 노출이 함께 작용하는 경우가 많아 한 번의 레이저로 완결되기 어렵습니다. 재발 관리와 자외선 차단이 함께 필요합니다.',
-          tag: '기미 치료',
+          a: '기미와 색소는 멜라닌, 염증, 호르몬, 자외선 노출이 함께 작용하는 경우가 많아 한 번의 레이저로 끝나기 어렵습니다. 악화 위험과 재발 관리를 먼저 설명받는 것이 중요합니다.',
+          tag: '기미·색소 치료',
         },
       ],
     },
     procedures: {
       eyebrow: 'Procedure guide',
-      title: '시술별로 확인해야 할 기준',
+      title: '시술명보다 먼저 확인해야 할 기준',
       subtitle:
-        '시술 이름만 보고 결정하기보다 적합 대상, 회복 기간, 부작용 가능성, 반복 간격을 함께 확인하는 편이 안전합니다.',
-      headers: ['시술/고민', '상담 때 확인할 점', '관련 콘텐츠'],
+        '피부과 선택 전에는 가격이나 장비명보다 내 피부 상태, 회복 기간, 반복 간격, 부작용 가능성을 함께 확인해야 합니다.',
+      headers: ['질문/고민', '상담 때 확인할 점', '관련 콘텐츠'],
       rows: [
         ['여드름 흉터', '흉터 타입, 피부톤, 회복 기간, 복용 약', '칼럼 보기'],
+        ['여드름 치료', '염증 단계, 피지, 압출 필요성, 약물 병행', 'Q&A 준비중'],
         ['보톡스', '부위별 지속기간, 반복 간격, 내성 가능성', 'Q&A 준비중'],
         ['기미·색소', '악화 가능성, 자외선 관리, 병행 관리', '시술정보 준비중'],
-        ['리프팅', '피부 두께, 멍, 통증, 유지관리', 'Q&A 준비중'],
       ],
     },
     column: {
       eyebrow: 'Doctor column',
-      title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
+      title: '강남 피부과 여드름 흉터 치료, 어떤 순서로 시작해야 할까?',
       body:
-        '아이스픽·박스카·롤링 흉터의 차이와 서브시전, 프랙셔널 레이저, TCA 크로스 선택 기준을 진료실 설명 방식으로 정리했습니다.',
+        '상담 전 바로 이해할 수 있도록 아이스픽·박스카·롤링 흉터의 차이와 서브시전, 프랙셔널 레이저, TCA 크로스 선택 기준을 정리했습니다.',
       cta: '칼럼 읽기',
     },
     doctor: {
       eyebrow: 'Reviewed by physician',
       title: '콘텐츠를 검토한 의료진',
-      name: '이민재 대표원장',
-      role: '피부과 진료 · 미용시술 감수',
+      name: '김민서 대표원장',
+      role: '피부과 진료 · 여드름·색소·레이저 콘텐츠 감수',
       bio:
-        '상담실에서 반복되는 질문을 진료 경험과 공개 가능한 의학 근거로 정리합니다. 모든 답변은 개인 진단이 아니라 상담 전 이해를 돕기 위한 교육용 자료입니다.',
-      credentials: ['의사 면허 SAMPLE-24819', '피부·레이저 시술 상담 12년', '콘텐츠 최종 검토 2026.06.05'],
+        '블링크 피부과의원은 상담실에서 반복되는 질문을 의료진 검수 답변으로 정리합니다. 모든 답변은 개인 진단이 아니라 상담 전 이해를 돕기 위한 교육용 자료입니다.',
+      credentials: ['의사 면허 SAMPLE-24819', '피부·레이저 상담 12년', '콘텐츠 최종 검토 2026.06.05'],
     },
     visit: {
       eyebrow: 'For international patients',
-      title: '외국인 환자가 방문 전 확인해야 할 정보',
+      title: '강남 피부과 방문 전 확인해야 할 정보',
       items: [
         {
-          title: '상담 언어',
-          body: '영어, 일본어, 중국어 안내문을 제공하고 실제 진료 내용은 의료진 상담에서 확정합니다.',
+          title: '위치와 접근성',
+          body: '강남역 인근 방문을 기준으로 주소, 전화번호, 진료 시간, 예약 가능 여부를 한 페이지에서 확인할 수 있게 정리합니다.',
         },
         {
           title: '방문 준비',
           body: '최근 시술 이력, 복용 약, 알레르기, 임신·수유 여부를 예약 전 확인합니다.',
         },
         {
-          title: '위치 안내',
-          body: '강남역 인근 위치, 진료 시간, 예약 연락처를 방문 전 확인할 수 있습니다.',
+          title: '다국어 안내',
+          body: '외국인 환자를 위해 영어, 일본어, 중국어 안내문을 제공하고 실제 진료 내용은 의료진 상담에서 확정합니다.',
         },
       ],
     },
@@ -142,7 +142,7 @@ const copy = {
       items: ['의료진 감수자 표기', '최종 검토일 표시', '학회·논문 등 근거 참고', '의료광고 표현 검수'],
     },
     footer: {
-      title: '상담 전 이해를 돕는 병원 정보 페이지',
+      title: '블링크 피부과의원 상담 안내',
       body:
         '예약 전 궁금한 내용을 먼저 확인하고, 개인별 치료 가능 여부는 의료진 상담에서 결정합니다.',
       phone: '+82 2 555 0148',
@@ -159,7 +159,7 @@ const copy = {
       book: 'Book consult',
     },
     hero: {
-      eyebrow: 'Seoul Skin Clinic Gangnam',
+      eyebrow: 'Blink Dermatology Clinic Gangnam',
       title: 'Check the essentials before your dermatology consultation',
       subtitle:
         'Doctor-reviewed answers and multilingual visit guidance for common questions about acne scars, Botox, pigmentation care, and skin procedures.',
@@ -219,7 +219,7 @@ const copy = {
     doctor: {
       eyebrow: 'Reviewed by physician',
       title: 'Medical reviewer',
-      name: 'Dr. Min Jae Lee',
+      name: 'Dr. Min Seo Kim',
       role: 'Dermatology care · Aesthetic procedure reviewer',
       bio:
         'Common consultation-room questions are rewritten with clinical experience and publicly citeable medical sources. The answers support understanding before a consultation and do not replace diagnosis.',
@@ -267,7 +267,7 @@ const copy = {
       book: '相談予約',
     },
     hero: {
-      eyebrow: 'Seoul Skin Clinic 江南院',
+      eyebrow: 'Blink Dermatology Clinic 江南院',
       title: '皮膚科相談の前に、必要な情報を確認できます',
       subtitle:
         'ニキビ跡、ボトックス、肝斑治療など、相談前によくある質問を医師監修コンテンツと多言語の来院案内で整理しました。',
@@ -327,7 +327,7 @@ const copy = {
     doctor: {
       eyebrow: 'Reviewed by physician',
       title: '監修医',
-      name: 'イ・ミンジェ代表院長',
+      name: 'キム・ミンソ代表院長',
       role: '皮膚科診療 · 美容施術監修',
       bio:
         '診察室で繰り返される質問を、診療経験と公開可能な医学的根拠に基づいて整理します。回答は個別診断ではなく相談前の理解を助ける教育用情報です。',
@@ -375,7 +375,7 @@ const copy = {
       book: '预约咨询',
     },
     hero: {
-      eyebrow: 'Seoul Skin Clinic 江南店',
+      eyebrow: 'Blink Dermatology Clinic 江南店',
       title: '皮肤科咨询前，先确认必要信息',
       subtitle:
         '把痘坑、肉毒素、黄褐斑治疗等常见问题整理成医生审核内容和多语言到访说明。',
@@ -435,7 +435,7 @@ const copy = {
     doctor: {
       eyebrow: 'Reviewed by physician',
       title: '审核医生',
-      name: '李敏宰代表院长',
+      name: '金敏瑞代表院长',
       role: '皮肤科诊疗 · 医美项目审核',
       bio:
         '把咨询室里反复出现的问题，用临床经验和可公开引用的医学依据整理成内容。所有回答用于咨询前理解，不等同于个人诊断。',
@@ -506,7 +506,7 @@ export default function HospitalSampleClient() {
               <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/24 bg-white/10">
                 <Hospital className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="text-base font-semibold text-white">SEOUL SKIN CLINIC</span>
+              <span className="text-base font-semibold text-white">BLINK DERMATOLOGY CLINIC</span>
             </a>
 
             <nav className="hidden items-center gap-7 text-sm text-white/76 lg:flex">
@@ -645,7 +645,7 @@ export default function HospitalSampleClient() {
                 <h3 className="mt-5 text-2xl font-semibold leading-snug text-[#18221f]">{item.q}</h3>
                 <p className="mt-4 text-base leading-8 text-[#4c5753]">{item.a}</p>
                 <div className="mt-6 border-t border-[#e3ddd3] pt-4 text-sm text-[#69736f]">
-                  <p className="font-semibold text-[#18221f]">Reviewed by Dr. Min Jae Lee</p>
+                  <p className="font-semibold text-[#18221f]">Reviewed by Dr. Min Seo Kim</p>
                   <p className="mt-1">lastReviewed 2026-06-05</p>
                 </div>
               </article>
@@ -820,7 +820,7 @@ export default function HospitalSampleClient() {
           <div className="rounded-md border border-[#d9d2c5] bg-white p-6">
             <p className="flex items-start gap-3 text-sm leading-7 text-[#56615d]">
               <AlertTriangle className="mt-1 h-4 w-4 shrink-0 text-[#bf7b2f]" aria-hidden="true" />
-              Seoul Skin Clinic information pages are for patient education. They do not provide diagnosis,
+              Blink Dermatology Clinic information pages are for patient education. They do not provide diagnosis,
               prescriptions, emergency guidance, or individual procedure recommendations.
             </p>
           </div>

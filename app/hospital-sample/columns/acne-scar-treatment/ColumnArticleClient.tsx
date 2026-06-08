@@ -19,15 +19,15 @@ const coverImage =
 
 const copy = {
   ko: {
-    brand: 'SEOUL SKIN CLINIC',
+    brand: 'BLINK DERMATOLOGY CLINIC',
     official: '공식 홈페이지 →',
     nav: ['홈', 'Q&A', '칼럼', '시술정보', '의료진', '소개'],
     mobileMenu: '메뉴',
     toc: '목차',
-    articleLabel: '서울스킨클리닉',
-    title: '여드름 흉터 치료, 어떤 방법부터 시작해야 좋을까?',
-    author: '이민재 대표원장',
-    authorTitle: '피부과 진료 · 서울스킨클리닉 강남점',
+    articleLabel: '블링크 피부과의원 칼럼',
+    title: '강남 피부과 여드름 흉터 치료, 어떤 순서로 시작해야 할까?',
+    author: '김민서 대표원장',
+    authorTitle: '피부과 진료 · 블링크 피부과의원',
     readTime: '9 min read',
     date: '2026-06-05',
     reviewed: '의학 검토 2026-06-05',
@@ -37,14 +37,14 @@ const copy = {
       '"한두 번만 받으면 되는 건지, 여러 번 계획을 잡아야 하는지도 궁금해요."',
     ],
     intro: [
-      '진료실에서 여드름 흉터 상담을 할 때 가장 자주 듣는 질문입니다. 검색하면 장비 이름과 후기성 표현이 많아서 오히려 더 헷갈리기 쉽습니다.',
-      '저는 처음 상담할 때 어떤 시술이 가장 센지보다, 지금 얼굴에 남은 흉터가 어떤 타입인지부터 함께 정리합니다. 흉터 타입이 달라지면 시작해야 할 치료도 달라지기 때문입니다.',
+      '강남 피부과에서 여드름 흉터 상담을 할 때 가장 자주 듣는 질문입니다. 검색하면 장비 이름과 후기성 표현이 많아서 오히려 더 헷갈리기 쉽습니다.',
+      '블링크 피부과의원에서는 처음 상담할 때 어떤 시술이 가장 센지보다, 지금 얼굴에 남은 흉터가 어떤 타입인지부터 함께 정리합니다. 흉터 타입이 달라지면 시작해야 할 치료도 달라지기 때문입니다.',
     ],
     summary: [
       '여드름 흉터는 한 번에 없애는 치료가 아니라 여러 차례 계획을 세워 덜 보이게 만드는 치료에 가깝습니다.',
       '패인 흉터는 한 종류가 아닙니다. 같은 얼굴에도 아이스픽, 박스카, 롤링 흉터가 섞여 있는 경우가 많습니다.',
       '새 여드름이 계속 올라오는 시기라면 흉터 치료보다 여드름 조절이 먼저일 수 있습니다.',
-      '시술 선택 전에는 피부톤, 복용 약, 색소침착 위험, 회복 기간을 함께 확인해야 합니다.',
+      '강남 피부과를 찾기 전에는 피부톤, 복용 약, 색소침착 위험, 회복 기간을 함께 확인해야 합니다.',
     ],
     sections: [
       {
@@ -138,7 +138,7 @@ const copy = {
     disclaimer:
       '본 콘텐츠는 일반 의학 정보 제공 목적이며 개인별 진단·치료를 대체하지 않습니다. 여드름 흉터 치료는 흉터 타입, 피부톤, 현재 복용 중인 약에 따라 계획이 달라지고 색소침착, 붉은기, 붓기, 감염 같은 부작용이 생길 수 있습니다. 정확한 치료 여부는 대면 진료에서 확인해 주세요.',
     footer: {
-      clinic: '서울스킨클리닉 강남점',
+      clinic: '블링크 피부과의원',
       address: '서울 강남구 테헤란로10길 12, 5층',
       phone: '02-555-0148',
       business: '사업자등록번호: 000-00-00000',
@@ -148,15 +148,15 @@ const copy = {
     },
   },
   en: {
-    brand: 'SEOUL SKIN CLINIC',
+    brand: 'BLINK DERMATOLOGY CLINIC',
     official: 'Official website →',
     nav: ['Home', 'Q&A', 'Column', 'Procedures', 'Doctors', 'About'],
     mobileMenu: 'Menu',
     toc: 'Contents',
-    articleLabel: 'Seoul Skin Clinic',
+    articleLabel: 'Blink Dermatology Clinic',
     title: 'Acne scar treatment: where should you start?',
-    author: 'Dr. Min Jae Lee',
-    authorTitle: 'Dermatology care · Seoul Skin Clinic Gangnam',
+    author: 'Dr. Min Seo Kim',
+    authorTitle: 'Dermatology care · Blink Dermatology Clinic Gangnam',
     readTime: '9 min read',
     date: 'June 5, 2026',
     reviewed: 'Medically reviewed June 5, 2026',
@@ -267,7 +267,7 @@ const copy = {
     disclaimer:
       'This content is for general medical education and does not replace diagnosis or treatment. Acne scar treatment plans depend on scar type, skin tone, medication history, and individual risks. Please confirm treatment options during an in-person consultation.',
     footer: {
-      clinic: 'Seoul Skin Clinic Gangnam',
+      clinic: 'Blink Dermatology Clinic Gangnam',
       address: '5F, 12 Teheran-ro 10-gil, Gangnam-gu, Seoul',
       phone: '+82-2-555-0148',
       business: 'Business registration: 000-00-00000',
@@ -277,15 +277,15 @@ const copy = {
     },
   },
   ja: {
-    brand: 'SEOUL SKIN CLINIC',
+    brand: 'BLINK DERMATOLOGY CLINIC',
     official: '公式サイト →',
     nav: ['ホーム', 'Q&A', 'コラム', '施術情報', '医師', '紹介'],
     mobileMenu: 'メニュー',
     toc: '目次',
-    articleLabel: 'Seoul Skin Clinic',
+    articleLabel: 'Blink Dermatology Clinic',
     title: 'ニキビ跡治療、どこから始めるべきですか？',
-    author: 'イ・ミンジェ代表院長',
-    authorTitle: '皮膚科診療 · Seoul Skin Clinic 江南院',
+    author: 'キム・ミンソ代表院長',
+    authorTitle: '皮膚科診療 · Blink Dermatology Clinic 江南院',
     readTime: '9 min read',
     date: '2026-06-05',
     reviewed: '医学的確認 2026-06-05',
@@ -387,7 +387,7 @@ const copy = {
     disclaimer:
       'この内容は一般的な医学情報であり、個別の診断や治療に代わるものではありません。治療の可否は対面診療でご確認ください。',
     footer: {
-      clinic: 'Seoul Skin Clinic 江南院',
+      clinic: 'Blink Dermatology Clinic 江南院',
       address: 'ソウル特別市 江南区 テヘラン路10キル 12, 5階',
       phone: '+82-2-555-0148',
       business: '事業者登録番号: 000-00-00000',
@@ -397,15 +397,15 @@ const copy = {
     },
   },
   zh: {
-    brand: 'SEOUL SKIN CLINIC',
+    brand: 'BLINK DERMATOLOGY CLINIC',
     official: '官方网站 →',
     nav: ['首页', '问答', '专栏', '项目信息', '医生', '介绍'],
     mobileMenu: '菜单',
     toc: '目录',
-    articleLabel: 'Seoul Skin Clinic',
+    articleLabel: 'Blink Dermatology Clinic',
     title: '痘坑痘疤治疗，应该从哪里开始？',
-    author: '李敏宰代表院长',
-    authorTitle: '皮肤科诊疗 · Seoul Skin Clinic 江南店',
+    author: '金敏瑞代表院长',
+    authorTitle: '皮肤科诊疗 · Blink Dermatology Clinic 江南店',
     readTime: '9 min read',
     date: '2026-06-05',
     reviewed: '医学审核 2026-06-05',
@@ -501,7 +501,7 @@ const copy = {
     disclaimer:
       '本内容仅用于一般医学信息说明，不能替代个人诊断或治疗。具体治疗方案请通过线下面诊确认。',
     footer: {
-      clinic: 'Seoul Skin Clinic 江南店',
+      clinic: 'Blink Dermatology Clinic 江南店',
       address: '首尔江南区德黑兰路10街12号5层',
       phone: '+82-2-555-0148',
       business: '营业执照号: 000-00-00000',
