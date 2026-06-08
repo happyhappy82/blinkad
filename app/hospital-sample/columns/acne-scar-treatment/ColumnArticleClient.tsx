@@ -794,10 +794,10 @@ export default function ColumnArticleClient() {
       <style jsx global>{`
         [data-toc-content] h1 {
           color: #151515;
-          font-size: clamp(2.375rem, 6vw, 4.625rem);
+          font-size: clamp(1.875rem, 4.2vw, 3.25rem);
           font-weight: 800;
           letter-spacing: 0;
-          line-height: 1.08;
+          line-height: 1.16;
           margin: 0;
           text-wrap: balance;
           word-break: keep-all;
@@ -910,11 +910,10 @@ export default function ColumnArticleClient() {
         }
 
         .answer-box {
-          background: #f5efe8;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius);
-          margin: 2.25rem 0 3.25rem;
-          padding: 1.35rem 1.5rem;
+          border-bottom: 1px solid var(--color-border);
+          border-top: 1px solid var(--color-border);
+          margin: 2rem 0 3.25rem;
+          padding: 1.5rem 0 1.25rem;
         }
 
         .answer-box .eyebrow {
@@ -937,9 +936,9 @@ export default function ColumnArticleClient() {
         .answer-box li,
         .checklist li {
           color: #2f2f2f;
-          font-size: 1rem;
-          line-height: 1.75;
-          margin-bottom: 0.65rem;
+          font-size: 1.0625rem;
+          line-height: 1.85;
+          margin-bottom: 0.55rem;
         }
 
         .answer-box li:last-child,
@@ -962,11 +961,9 @@ export default function ColumnArticleClient() {
         }
 
         .question-block {
-          background: #fff;
-          border: 1px solid var(--color-border);
-          border-radius: var(--radius);
+          border-top: 1px solid var(--color-border);
           margin-top: 2rem;
-          padding: 1.25rem 1.35rem;
+          padding-top: 1.25rem;
         }
 
         .question-heading {
@@ -978,13 +975,11 @@ export default function ColumnArticleClient() {
         }
 
         .qa-item {
-          border-top: 1px solid var(--color-border);
-          padding-top: 1rem;
+          margin-top: 1.25rem;
         }
 
         .qa-item:first-of-type {
-          border-top: 0;
-          padding-top: 0;
+          margin-top: 0;
         }
 
         .qa-q {
@@ -999,7 +994,7 @@ export default function ColumnArticleClient() {
           color: #3d3935;
           font-size: 1rem;
           line-height: 1.8;
-          margin-bottom: 1rem;
+          margin-bottom: 0.85rem;
         }
 
         .related-section,
@@ -1044,7 +1039,8 @@ export default function ColumnArticleClient() {
 
         @media (max-width: 768px) {
           [data-toc-content] h1 {
-            font-size: 2rem;
+            font-size: 1.55rem;
+            line-height: 1.24;
           }
 
           [data-toc-content] h2 {
