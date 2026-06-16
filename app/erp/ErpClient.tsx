@@ -179,6 +179,54 @@ type StoreMetric = {
   detail?: string
 }
 
+type ContractRevenueRecord = {
+  storeName: string
+  contractMonths: number
+  productGroup: string
+  productDetail: string
+  monthlyVatIncluded: number
+  firstPaymentVatIncluded: number
+  contractValueVatIncluded: number
+  memo: string
+}
+
+const contractRevenueRecords: ContractRevenueRecord[] = [
+  {
+    storeName: '언리미티드',
+    contractMonths: 1,
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
+    monthlyVatIncluded: 990_000,
+    firstPaymentVatIncluded: 990_000,
+    contractValueVatIncluded: 990_000,
+    memo: '1개월 계약 · VAT 포함 99만원',
+  },
+  {
+    storeName: '웰믹스 광화문점',
+    contractMonths: 1,
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
+    monthlyVatIncluded: 990_000,
+    firstPaymentVatIncluded: 990_000,
+    contractValueVatIncluded: 990_000,
+    memo: '1개월 계약 · VAT 포함 99만원',
+  },
+  {
+    storeName: '바다당 해운대점',
+    contractMonths: 12,
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '프로필·애즈·웹사이트/블로그 통합 운영',
+    monthlyVatIncluded: 1_450_000,
+    firstPaymentVatIncluded: 1_450_000,
+    contractValueVatIncluded: 1_450_000 * 12,
+    memo: '12개월 계약 · 첫달 입금 140만원, VAT 포함 145만원 기준',
+  },
+]
+
+function sumRevenue(records: ContractRevenueRecord[], key: keyof Pick<ContractRevenueRecord, 'monthlyVatIncluded' | 'firstPaymentVatIncluded' | 'contractValueVatIncluded'>) {
+  return records.reduce((sum, record) => sum + record[key], 0)
+}
+
 type CalendarContextMenu =
   | { kind: 'event'; x: number; y: number; event: CalendarEvent }
   | { kind: 'slot'; x: number; y: number; date: Date; hour?: number }
@@ -488,6 +536,48 @@ export default function ErpClient() {
 
     return { counts }
   }, [stores])
+  const contractRevenue = useMemo(() => {
+    const contractMonthGroups = Array.from(
+      contractRevenueRecords.reduce((map, record) => {
+        const current = map.get(record.contractMonths) || {
+          contractMonths: record.contractMonths,
+          storeCount: 0,
+          monthlyVatIncluded: 0,
+          contractValueVatIncluded: 0,
+        }
+        current.storeCount += 1
+        current.monthlyVatIncluded += record.monthlyVatIncluded
+        current.contractValueVatIncluded += record.contractValueVatIncluded
+        map.set(record.contractMonths, current)
+        return map
+      }, new Map<number, { contractMonths: number; storeCount: number; monthlyVatIncluded: number; contractValueVatIncluded: number }>())
+    ).map(([, value]) => value)
+
+    const productGroups = Array.from(
+      contractRevenueRecords.reduce((map, record) => {
+        const current = map.get(record.productGroup) || {
+          productGroup: record.productGroup,
+          storeCount: 0,
+          monthlyVatIncluded: 0,
+          contractValueVatIncluded: 0,
+        }
+        current.storeCount += 1
+        current.monthlyVatIncluded += record.monthlyVatIncluded
+        current.contractValueVatIncluded += record.contractValueVatIncluded
+        map.set(record.productGroup, current)
+        return map
+      }, new Map<string, { productGroup: string; storeCount: number; monthlyVatIncluded: number; contractValueVatIncluded: number }>())
+    ).map(([, value]) => value)
+
+    return {
+      records: contractRevenueRecords,
+      monthlyVatIncluded: sumRevenue(contractRevenueRecords, 'monthlyVatIncluded'),
+      firstPaymentVatIncluded: sumRevenue(contractRevenueRecords, 'firstPaymentVatIncluded'),
+      contractValueVatIncluded: sumRevenue(contractRevenueRecords, 'contractValueVatIncluded'),
+      contractMonthGroups,
+      productGroups,
+    }
+  }, [])
 
   const inquiryStores = stores.filter((store) => statusIncludesAny(store.status, ['신규 문의', '신규문의']))
   const followupStores = stores.filter((store) =>
@@ -704,14 +794,13 @@ export default function ErpClient() {
                                   setActiveMenu('project')
                                   setActiveStoreTitle(store.title)
                                 }}
-                                className={`flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left text-xs font-black transition ${
+                                className={`flex w-full items-center rounded-md px-3 py-2 text-left text-xs font-black transition ${
                                   storeActive
                                     ? 'bg-white text-black'
                                     : 'text-gray-500 hover:bg-white/5 hover:text-white'
                                 }`}
                               >
                                 <span>{store.title}</span>
-                                <span className={storeActive ? 'text-black/55' : 'text-gray-600'}>{store.status}</span>
                               </button>
                             )
                           })}
@@ -785,17 +874,7 @@ export default function ErpClient() {
             ) : null}
 
             {activeMenu === 'dashboard' && (
-              <section>
-                <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
-                  {dashboard.counts.map((item) => (
-                    <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
-                      <p className="text-sm font-bold text-gray-400">{item.label}</p>
-                      <p className="mt-4 text-5xl font-black tracking-tight text-white">{item.count}</p>
-                      <p className="mt-3 text-sm leading-6 text-gray-500">문의관리 DB 기준</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+              <DashboardPanel counts={dashboard.counts} contractRevenue={contractRevenue} />
             )}
 
             {activeMenu === 'crm' && (
@@ -985,6 +1064,199 @@ export default function ErpClient() {
   )
 }
 
+function DashboardPanel({
+  counts,
+  contractRevenue,
+}: {
+  counts: { label: string; count: number }[]
+  contractRevenue: {
+    records: ContractRevenueRecord[]
+    monthlyVatIncluded: number
+    firstPaymentVatIncluded: number
+    contractValueVatIncluded: number
+    contractMonthGroups: {
+      contractMonths: number
+      storeCount: number
+      monthlyVatIncluded: number
+      contractValueVatIncluded: number
+    }[]
+    productGroups: {
+      productGroup: string
+      storeCount: number
+      monthlyVatIncluded: number
+      contractValueVatIncluded: number
+    }[]
+  }
+}) {
+  const revenueCards = [
+    {
+      label: '계약 매장',
+      value: `${contractRevenue.records.length}개`,
+      detail: '운영 계약 기준',
+    },
+    {
+      label: '월 입금 기준 매출',
+      value: formatRevenueManwon(contractRevenue.monthlyVatIncluded),
+      detail: 'VAT 포함 월 기준',
+    },
+    {
+      label: '첫달 입금 합계',
+      value: formatRevenueManwon(contractRevenue.firstPaymentVatIncluded),
+      detail: '현재 입금 확인 기준',
+    },
+    {
+      label: '계약기간 환산 매출',
+      value: formatRevenueManwon(contractRevenue.contractValueVatIncluded),
+      detail: '바다당 12개월 반영',
+    },
+  ]
+
+  return (
+    <section className="space-y-5">
+      <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
+        {counts.map((item) => (
+          <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
+            <p className="text-sm font-bold text-gray-400">{item.label}</p>
+            <p className="mt-4 text-5xl font-black tracking-tight text-white">{item.count}</p>
+            <p className="mt-3 text-sm leading-6 text-gray-500">문의관리 DB 기준</p>
+          </div>
+        ))}
+      </div>
+
+      <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:p-6 xl:flex-row xl:items-end xl:justify-between">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Revenue Dashboard</p>
+            <h2 className="mt-2 text-2xl font-black tracking-tight text-white">계약 매장·매출 현황</h2>
+            <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+              계약개월, 상품구성, VAT 포함 입금액 기준으로 현재 계약 매장의 매출을 확인합니다.
+            </p>
+          </div>
+          <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
+            바다당 해운대점은 첫달 VAT 포함 입금액 145만원을 기준으로 12개월 환산했습니다.
+          </p>
+        </div>
+
+        <div className="grid border-b border-white/10 md:grid-cols-2 xl:grid-cols-4">
+          {revenueCards.map((card) => (
+            <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
+              <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
+              <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="grid gap-5 p-5 md:p-6 xl:grid-cols-[1.35fr_0.65fr]">
+          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+            <div className="border-b border-white/10 px-4 py-3">
+              <h3 className="text-sm font-black text-white">매장별 계약 리스트</h3>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="min-w-[920px] w-full border-collapse text-left text-sm">
+                <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+                  <tr>
+                    <th className="px-4 py-3">매장명</th>
+                    <th className="px-4 py-3">상품구성</th>
+                    <th className="px-4 py-3">계약개월</th>
+                    <th className="px-4 py-3">월 입금</th>
+                    <th className="px-4 py-3">계약기간 환산</th>
+                    <th className="px-4 py-3">메모</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {contractRevenue.records.map((record) => (
+                    <tr key={record.storeName} className="border-t border-white/10">
+                      <td className="px-4 py-4">
+                        <p className="font-black text-white keep-all">{record.storeName}</p>
+                      </td>
+                      <td className="max-w-[260px] px-4 py-4">
+                        <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
+                        <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{record.productDetail}</p>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">
+                          {record.contractMonths}개월
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 font-black text-white">{formatCurrency(record.monthlyVatIncluded)}원</td>
+                      <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(record.contractValueVatIncluded)}원</td>
+                      <td className="max-w-[220px] px-4 py-4 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                        {record.memo}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <RevenueGroupCard
+              title="계약개월별"
+              rows={contractRevenue.contractMonthGroups
+                .sort((a, b) => a.contractMonths - b.contractMonths)
+                .map((row) => ({
+                  label: `${row.contractMonths}개월 계약`,
+                  count: `${row.storeCount}개 매장`,
+                  monthly: row.monthlyVatIncluded,
+                  total: row.contractValueVatIncluded,
+                }))}
+            />
+            <RevenueGroupCard
+              title="상품구성별"
+              rows={contractRevenue.productGroups.map((row) => ({
+                label: row.productGroup,
+                count: `${row.storeCount}개 매장`,
+                monthly: row.monthlyVatIncluded,
+                total: row.contractValueVatIncluded,
+              }))}
+            />
+          </div>
+        </div>
+      </section>
+    </section>
+  )
+}
+
+function RevenueGroupCard({
+  title,
+  rows,
+}: {
+  title: string
+  rows: { label: string; count: string; monthly: number; total: number }[]
+}) {
+  return (
+    <article className="rounded-lg border border-white/10 bg-black">
+      <div className="border-b border-white/10 px-4 py-3">
+        <h3 className="text-sm font-black text-white">{title}</h3>
+      </div>
+      <div className="divide-y divide-white/10">
+        {rows.map((row) => (
+          <div key={row.label} className="px-4 py-4">
+            <div className="flex items-start justify-between gap-3">
+              <p className="font-black leading-6 text-white keep-all">{row.label}</p>
+              <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs font-black text-gray-300">
+                {row.count}
+              </span>
+            </div>
+            <div className="mt-3 grid grid-cols-2 gap-2 text-xs font-bold">
+              <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
+                <p className="text-gray-600">월 기준</p>
+                <p className="mt-1 text-sm font-black text-white">{formatRevenueManwon(row.monthly)}</p>
+              </div>
+              <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
+                <p className="text-gray-600">기간 환산</p>
+                <p className="mt-1 text-sm font-black text-emerald-100">{formatRevenueManwon(row.total)}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </article>
+  )
+}
+
 function formatDateTime(value: string) {
   if (!value) return '-'
   return new Intl.DateTimeFormat('ko-KR', {
@@ -1032,6 +1304,10 @@ function formatBillingDate(value: string) {
 
 function formatCurrency(value: number) {
   return new Intl.NumberFormat('ko-KR').format(value)
+}
+
+function formatRevenueManwon(value: number) {
+  return `${formatCurrency(Math.round(value / 10000))}만원`
 }
 
 function formatBillingStoreName(name: string) {
@@ -3106,12 +3382,7 @@ function StoreReportOverviewPanel({
                 }`}
               >
                 <div className="min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h4 className="font-black text-white keep-all">{store.title}</h4>
-                    <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(store.status)}`}>
-                      {store.status}
-                    </span>
-                  </div>
+                  <h4 className="font-black text-white keep-all">{store.title}</h4>
                   <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
                     {store.meta}
                   </p>
