@@ -140,6 +140,11 @@ type AdsCampaign = {
   endDate: string
 }
 
+type AdsCampaignSummary = AdsCampaign &
+  AdsSummary & {
+    previousSummary?: AdsSummary
+  }
+
 type GoogleAdsApiResponse = {
   source: 'bigquery' | 'google_ads_api' | 'fallback'
   connected: boolean
@@ -156,6 +161,7 @@ type GoogleAdsApiResponse = {
   daily: AdsDailyRow[]
   adsCustomerIds: string[]
   campaigns?: AdsCampaign[]
+  campaignSummaries?: AdsCampaignSummary[]
   tableRowCount?: number
   sourceSyncedAt?: string
 }
@@ -3983,6 +3989,7 @@ function GoogleAdsPerformancePanel({
   const previousCtr = previousSummary ? percent(previousSummary.clicks, previousSummary.impressions) : ''
   const cpc = summary && summary.clicks > 0 ? summary.costMicros / 1000000 / summary.clicks : 0
   const previousCpc = previousSummary && previousSummary.clicks > 0 ? previousSummary.costMicros / 1000000 / previousSummary.clicks : 0
+  const campaignSummaries = adsData?.campaignSummaries || []
   const rows = [
     {
       label: '노출',
@@ -4085,6 +4092,63 @@ function GoogleAdsPerformancePanel({
       {adsData && adsData.status !== 'connected' ? (
         <div className="mt-4 rounded-lg border border-amber-300/20 bg-amber-300/10 px-4 py-3 text-sm font-bold leading-6 text-amber-100 keep-all">
           {adsData.message}
+        </div>
+      ) : null}
+
+      {campaignSummaries.length ? (
+        <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="flex flex-col gap-1 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-end sm:justify-between">
+            <p className="text-sm font-black text-white">캠페인별 광고 성과</p>
+            <p className="text-xs font-bold text-gray-500">
+              {adsData?.period.days ? `최근 ${adsData.period.days}일 기준` : '최근 기간 기준'}
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <div className="min-w-[980px]">
+              <div className="grid grid-cols-[minmax(280px,1.7fr)_88px_repeat(6,minmax(96px,0.8fr))] gap-3 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.08em] text-gray-500">
+                <span>캠페인명</span>
+                <span>상태</span>
+                <span className="text-right">노출</span>
+                <span className="text-right">클릭</span>
+                <span className="text-right">CTR</span>
+                <span className="text-right">광고비</span>
+                <span className="text-right">CPC</span>
+                <span className="text-right">액션</span>
+              </div>
+              {campaignSummaries.map((campaign) => {
+                const campaignCtr = percent(campaign.clicks, campaign.impressions) || '-'
+                const campaignCpc =
+                  campaign.clicks > 0
+                    ? `${Math.round(campaign.costMicros / 1000000 / campaign.clicks).toLocaleString('ko-KR')}원`
+                    : '-'
+
+                return (
+                  <div
+                    key={campaign.id || campaign.name}
+                    className="grid grid-cols-[minmax(280px,1.7fr)_88px_repeat(6,minmax(96px,0.8fr))] gap-3 border-t border-white/10 px-4 py-4 text-sm"
+                  >
+                    <div className="min-w-0">
+                      <p className="break-all font-black text-white">{campaign.name || '-'}</p>
+                      <p className="mt-1 text-[11px] font-bold text-gray-600">
+                        {campaign.channel || '-'} · {campaign.startDate || '시작일 없음'}
+                      </p>
+                    </div>
+                    <span
+                      className={`inline-flex h-fit w-fit rounded-full border px-2 py-1 text-[11px] font-black ${adsCampaignStatusBadge(campaign.status)}`}
+                    >
+                      {campaign.status || '-'}
+                    </span>
+                    <span className="text-right font-black text-blue-100">{formatCount(campaign.impressions)}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(campaign.clicks)}</span>
+                    <span className="text-right font-bold text-gray-300">{campaignCtr}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCostMicros(campaign.costMicros)}</span>
+                    <span className="text-right font-bold text-gray-300">{campaignCpc}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCount(campaign.localActions)}</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -4386,6 +4450,13 @@ function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean)
   if (data?.status === 'connected') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (data?.connected) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
   return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+}
+
+function adsCampaignStatusBadge(status: string) {
+  const normalized = status.toUpperCase()
+  if (normalized === 'ENABLED') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (normalized === 'PAUSED') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-white/10 bg-white/[0.04] text-gray-300'
 }
 
 function adsSourceLabel(data: GoogleAdsApiResponse | null) {

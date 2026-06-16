@@ -26,6 +26,11 @@ type GoogleAdsCampaign = {
   endDate: string
 }
 
+type GoogleAdsCampaignSummary = GoogleAdsCampaign &
+  AdsSummary & {
+    previousSummary: AdsSummary
+  }
+
 type GoogleAdsSearchRow = {
   campaign?: {
     id?: string | number
@@ -544,6 +549,28 @@ function aggregateGoogleAdsRows(rows: GoogleAdsSearchRow[]): AdsSummary {
   )
 }
 
+function buildGoogleAdsCampaignSummaries(
+  campaignRows: GoogleAdsSearchRow[],
+  summaryRows: GoogleAdsSearchRow[],
+  previousRows: GoogleAdsSearchRow[]
+): GoogleAdsCampaignSummary[] {
+  return campaignRows.map((campaignRow) => {
+    const campaignId = googleAdsCampaignId(campaignRow)
+    const currentSummary = aggregateGoogleAdsRows(
+      summaryRows.filter((row) => googleAdsCampaignId(row) === campaignId)
+    )
+    const previousSummary = aggregateGoogleAdsRows(
+      previousRows.filter((row) => googleAdsCampaignId(row) === campaignId)
+    )
+
+    return {
+      ...mapGoogleAdsCampaign(campaignRow),
+      ...currentSummary,
+      previousSummary,
+    }
+  })
+}
+
 async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStoreConfig) {
   const accessToken = await fetchGoogleAdsAccessToken()
   const campaignName =
@@ -573,6 +600,7 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
       daily: [],
       adsCustomerIds: [publicGoogleAdsId(customerId)],
       campaigns,
+      campaignSummaries: [],
       sourceSyncedAt: new Date().toISOString(),
     }
   }
@@ -631,6 +659,7 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
     loginCustomerId
   )
   const statuses = Array.from(new Set(campaigns.map((campaign) => campaign.status).filter(Boolean)))
+  const campaignSummaries = buildGoogleAdsCampaignSummaries(campaignRows, summaryRows, previousRows)
 
   return {
     source: 'google_ads_api',
@@ -659,6 +688,7 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
     })),
     adsCustomerIds: [publicGoogleAdsId(customerId)],
     campaigns,
+    campaignSummaries,
     sourceSyncedAt: new Date().toISOString(),
   }
 }
