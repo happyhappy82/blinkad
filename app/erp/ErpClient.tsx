@@ -196,7 +196,7 @@ export default function ErpClient() {
   const [menuSynced, setMenuSynced] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [sidebarPreview, setSidebarPreview] = useState(false)
-  const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
+  const [activeStoreTitle, setActiveStoreTitle] = useState('')
   const [stores, setStores] = useState<StoreRecord[]>([])
   const [statusOptions, setStatusOptions] = useState<string[]>(DEFAULT_CLIENT_STATUS_OPTIONS)
   const [loading, setLoading] = useState(true)
@@ -578,8 +578,8 @@ export default function ErpClient() {
   const selectMenu = (menuId: MenuId) => {
     persistMenu(menuId)
     setActiveMenu(menuId)
-    if (menuId === 'project' && !activeStoreTitle) {
-      setActiveStoreTitle(projectStores[0]?.title || '')
+    if (menuId === 'project') {
+      setActiveStoreTitle('')
     }
   }
 
@@ -3074,7 +3074,7 @@ function StoreOperationsPanel({
   onSelectStore?: (storeTitle: string) => void
 }) {
   const [activeProduct, setActiveProduct] = useState<StoreProductKey>('googleProfile')
-  const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
+  const selectedStore = selectedStoreTitle ? view.rows.find((row) => row.title === selectedStoreTitle) : undefined
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
   const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
@@ -3494,10 +3494,10 @@ function StoreOperationsPanel({
 
   return (
     <section className="space-y-5">
-      {view.rows.length ? (
+      {!selectedStore && view.rows.length ? (
         <StoreReportOverviewPanel
           stores={view.rows}
-          selectedStoreTitle={selectedStore?.title}
+          selectedStoreTitle={selectedStoreTitle}
           weekDates={weeklyReportDates}
           weekStart={weekStart}
           onSelectStore={(storeTitle) => {
@@ -3869,9 +3869,11 @@ function StoreOperationsPanel({
           ) : null}
         </>
       ) : (
-        <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
-          등록된 운영 매장이 없습니다.
-        </p>
+        !view.rows.length ? (
+          <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
+            등록된 운영 매장이 없습니다.
+          </p>
+        ) : null
       )}
     </section>
   )
