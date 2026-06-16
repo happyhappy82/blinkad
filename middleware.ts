@@ -15,6 +15,20 @@ function isProtectedErpPath(pathname: string) {
   )
 }
 
+function isLocalDevelopmentRequest(hostname: string) {
+  if (process.env.NODE_ENV === 'production') return false
+
+  const host = hostname.toLowerCase()
+  return (
+    host === 'localhost' ||
+    host.startsWith('localhost:') ||
+    host === '127.0.0.1' ||
+    host.startsWith('127.0.0.1:') ||
+    host === '[::1]' ||
+    host.startsWith('[::1]:')
+  )
+}
+
 function unauthorized() {
   return new NextResponse('Authentication required', {
     status: 401,
@@ -120,8 +134,14 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  if (isProtectedErpPath(pathname) && !(await isErpAuthorized(request))) {
-    return unauthorized()
+  if (isProtectedErpPath(pathname)) {
+    if (isLocalDevelopmentRequest(hostname)) {
+      return NextResponse.next()
+    }
+
+    if (!(await isErpAuthorized(request))) {
+      return unauthorized()
+    }
   }
 
   return NextResponse.next()
