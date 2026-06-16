@@ -2884,6 +2884,186 @@ function ReportOperationsPanel({
   )
 }
 
+function StoreReportOverviewPanel({
+  stores,
+  selectedStoreTitle,
+  weekDates,
+  weekStart,
+  onSelectStore,
+}: {
+  stores: OperationRow[]
+  selectedStoreTitle?: string
+  weekDates: Date[]
+  weekStart: string
+  onSelectStore?: (storeTitle: string) => void
+}) {
+  const [reportsByStore, setReportsByStore] = useState<Record<string, StoreWeeklyReport[]>>({})
+  const [overviewLoading, setOverviewLoading] = useState(false)
+  const [overviewMessage, setOverviewMessage] = useState('')
+
+  const storeRows = stores.map((store) => {
+    const reports = reportsForStoreWeek(store, reportsByStore[store.title], weekDates)
+    return {
+      store,
+      reports,
+      summary: summarizeReports(reports),
+    }
+  })
+  const allReports = storeRows.flatMap((row) => row.reports)
+  const allSummary = summarizeReports(allReports)
+
+  const loadOverviewReports = useCallback(async () => {
+    if (!stores.length) {
+      setReportsByStore({})
+      setOverviewMessage('')
+      return
+    }
+
+    setOverviewLoading(true)
+    try {
+      const entries = await Promise.all(
+        stores.map(async (store) => {
+          const params = new URLSearchParams({
+            store: store.title,
+            product: 'googleProfile',
+            weekStart,
+          })
+          const response = await fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' })
+          const data = (await response.json()) as WeeklyReportApiResponse
+          return [store.title, data.reports || []] as const
+        })
+      )
+      setReportsByStore(Object.fromEntries(entries))
+      setOverviewMessage('매장별 이번 주 보고 현황을 불러왔습니다.')
+    } catch {
+      setReportsByStore({})
+      setOverviewMessage('보고 DB를 불러오지 못해 기본 보고표로 표시 중입니다.')
+    } finally {
+      setOverviewLoading(false)
+    }
+  }, [stores, weekStart])
+
+  useEffect(() => {
+    loadOverviewReports()
+  }, [loadOverviewReports])
+
+  return (
+    <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Store Report Board</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">
+            전체 매장 보고 현황
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-400 keep-all">
+            매장운영관리에 등록된 전체 매장의 월-금 보고 상태를 구글프로필 기준으로 먼저 확인합니다.
+            아래 매장 리스트를 누르면 해당 매장의 상세 보고 화면으로 이동합니다.
+          </p>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3 xl:min-w-[430px]">
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">총 매장</p>
+            <p className="mt-2 text-2xl font-black text-white">{stores.length}개</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">이번 주 완료</p>
+            <p className="mt-2 text-2xl font-black text-emerald-100">
+              {allSummary.done}/{allSummary.total}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">대기/작성</p>
+            <p className="mt-2 text-2xl font-black text-amber-100">
+              {allSummary.pending + allSummary.inProgress}건
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 rounded-lg border border-white/10 bg-black">
+        <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store List</p>
+            <h3 className="mt-2 text-lg font-black text-white">매장별 월-금 보고 체크</h3>
+          </div>
+          <div className="flex items-center gap-2">
+            <p className="text-xs font-bold text-gray-500">
+              {overviewLoading ? '보고 현황 동기화 중입니다.' : overviewMessage}
+            </p>
+            <button
+              type="button"
+              onClick={loadOverviewReports}
+              disabled={overviewLoading}
+              className="h-9 rounded-md border border-white/10 px-3 text-xs font-black text-gray-300 transition hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-white disabled:cursor-not-allowed disabled:text-gray-600"
+            >
+              {overviewLoading ? '확인 중' : '새로고침'}
+            </button>
+          </div>
+        </div>
+
+        <div className="divide-y divide-white/10">
+          {storeRows.map(({ store, reports, summary }) => {
+            const selected = store.title === selectedStoreTitle
+
+            return (
+              <button
+                key={store.title}
+                type="button"
+                onClick={() => onSelectStore?.(store.title)}
+                className={`grid w-full gap-4 px-4 py-4 text-left transition lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_120px_150px] ${
+                  selected ? 'bg-brand-blue/10' : 'hover:bg-white/[0.04]'
+                }`}
+              >
+                <div className="min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="font-black text-white keep-all">{store.title}</h4>
+                    <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(store.status)}`}>
+                      {store.status}
+                    </span>
+                  </div>
+                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                    {store.meta}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-5 gap-2">
+                  {reports.map((report, index) => (
+                    <div
+                      key={`${store.title}-${report.date || index}`}
+                      className={`min-h-[82px] rounded-md border px-2.5 py-2 ${weeklyReportClass(report.status)}`}
+                    >
+                      <p className="text-[11px] font-black text-gray-500">{formatWeekday(weekDates[index])}</p>
+                      <p className="mt-2 text-xs font-black text-white">{reportStatusShort(report.status)}</p>
+                      <p className="mt-1 line-clamp-1 text-[11px] font-semibold text-gray-500">{report.title}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-black text-gray-600">완료율</p>
+                  <p className="mt-2 text-lg font-black text-white">
+                    {summary.total ? Math.round((summary.done / summary.total) * 100) : 0}%
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-gray-500">
+                    완료 {summary.done} · 대기 {summary.pending}
+                  </p>
+                </div>
+
+                <div className="lg:text-right">
+                  <p className="text-[11px] font-black text-gray-600">다음 액션</p>
+                  <p className="mt-2 text-sm font-bold leading-6 text-gray-300 keep-all">
+                    {store.products?.nextAction || store.due}
+                  </p>
+                </div>
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function StoreOperationsPanel({
   view,
   selectedStoreTitle,
@@ -3314,6 +3494,18 @@ function StoreOperationsPanel({
 
   return (
     <section className="space-y-5">
+      {view.rows.length ? (
+        <StoreReportOverviewPanel
+          stores={view.rows}
+          selectedStoreTitle={selectedStore?.title}
+          weekDates={weeklyReportDates}
+          weekStart={weekStart}
+          onSelectStore={(storeTitle) => {
+            onSelectStore?.(storeTitle)
+            setActiveProduct('googleProfile')
+          }}
+        />
+      ) : null}
       {selectedStore ? (
         <>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
@@ -4116,6 +4308,35 @@ function summarizeReports(reports: StoreWeeklyReport[]) {
   }
 }
 
+function reportsForStoreWeek(store: OperationRow, apiReports: StoreWeeklyReport[] | undefined, weekDates: Date[]) {
+  const googleProfileReports =
+    store.productWorkspaces?.find((workspace) => workspace.key === 'googleProfile')?.weeklyReports || []
+  const sourceReports = apiReports?.length ? apiReports : googleProfileReports
+
+  return weekDates.map((date, index) => {
+    const dateKey = toISODate(date)
+    const report =
+      sourceReports.find((item) => item.date === dateKey) ||
+      sourceReports.find((item) => !item.date && item.dayOffset === index)
+
+    if (report) {
+      return {
+        ...report,
+        date: report.date || dateKey,
+        dayOffset: index,
+      }
+    }
+
+    return {
+      dayOffset: index,
+      date: dateKey,
+      status: '보고대기' as StoreWeeklyReportStatus,
+      title: '보고 예정',
+      memo: '',
+    }
+  })
+}
+
 function taskStatusBadge(status: string) {
   if (statusIncludesAny(status, ['진행', '작성', '검수'])) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
   if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
@@ -4228,4 +4449,13 @@ function weeklyReportBadge(status: StoreWeeklyReportStatus) {
   if (status === '실패') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
   if (status === '생성완료') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function reportStatusShort(status: StoreWeeklyReportStatus) {
+  if (status === '보고완료') return '완료'
+  if (status === '작성중') return '작성중'
+  if (status === '생성완료') return '생성'
+  if (status === '실패') return '실패'
+  if (status === '초안') return '초안'
+  return '대기'
 }
