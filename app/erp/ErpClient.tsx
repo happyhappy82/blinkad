@@ -2782,7 +2782,7 @@ function OperationsPanel({
                         {row.products.googleAds}
                       </td>
                       <td className="max-w-[190px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                        {row.products.website}
+                        {row.products.website || '계약 제외'}
                       </td>
                       <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
                         {row.products.material}
@@ -2913,6 +2913,7 @@ function StoreReportOverviewPanel({
   const [reportsByStore, setReportsByStore] = useState<Record<string, StoreWeeklyReport[]>>({})
   const [overviewLoading, setOverviewLoading] = useState(false)
   const [overviewMessage, setOverviewMessage] = useState('')
+  const [quickUpdatingReportKey, setQuickUpdatingReportKey] = useState('')
 
   const storeRows = stores.map((store) => {
     const reports = reportsForStoreWeek(store, reportsByStore[store.title], weekDates)
@@ -2959,6 +2960,75 @@ function StoreReportOverviewPanel({
   useEffect(() => {
     loadOverviewReports()
   }, [loadOverviewReports])
+
+  const completeOverviewReport = async (
+    store: OperationRow,
+    report: StoreWeeklyReport,
+    reportIndex: number,
+    sourceReports: StoreWeeklyReport[]
+  ) => {
+    const doneStatus: StoreWeeklyReportStatus = '보고완료'
+    const reportDate = report.date || toISODate(weekDates[report.dayOffset] || weekDates[reportIndex] || weekDates[0])
+    const quickKey = `${store.title}-${reportDate}`
+    const reportMemo = report.memo || ''
+
+    setQuickUpdatingReportKey(quickKey)
+    setReportsByStore((current) => {
+      const source = current[store.title]?.length
+        ? reportsForStoreWeek(store, current[store.title], weekDates)
+        : sourceReports
+      const nextReports = source.map((item, index) => {
+        const itemDate = item.date || toISODate(weekDates[item.dayOffset] || weekDates[index] || weekDates[0])
+
+        return itemDate === reportDate
+          ? {
+              ...item,
+              date: itemDate,
+              status: doneStatus,
+              memo: reportMemo,
+              reporter: item.reporter || '블링크애드',
+              completedAt: item.completedAt || new Date().toISOString(),
+            }
+          : {
+              ...item,
+              date: itemDate,
+            }
+      })
+
+      return {
+        ...current,
+        [store.title]: nextReports,
+      }
+    })
+
+    try {
+      const response = await fetch('/api/erp/reports', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          store: store.title,
+          product: 'googleProfile',
+          date: reportDate,
+          weekStart,
+          title: report.title,
+          memo: reportMemo,
+          status: doneStatus,
+        }),
+      })
+      const data = (await response.json()) as WeeklyReportApiResponse
+      if (data.reports?.length) {
+        setReportsByStore((current) => ({
+          ...current,
+          [store.title]: data.reports,
+        }))
+      }
+      setOverviewMessage(data.message || `${store.title} ${reportDate} 보고를 완료 처리했습니다.`)
+    } catch {
+      setOverviewMessage(`${store.title} ${reportDate} 보고완료 처리 중 오류가 발생했습니다.`)
+    } finally {
+      setQuickUpdatingReportKey('')
+    }
+  }
 
   return (
     <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
@@ -3019,11 +3089,19 @@ function StoreReportOverviewPanel({
             const selected = store.title === selectedStoreTitle
 
             return (
-              <button
+              <article
                 key={store.title}
-                type="button"
                 onClick={() => onSelectStore?.(store.title)}
-                className={`grid w-full gap-4 px-4 py-4 text-left transition lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_120px_150px] ${
+                onKeyDown={(event) => {
+                  if ((event.target as HTMLElement).closest('button')) return
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    onSelectStore?.(store.title)
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                className={`grid w-full cursor-pointer gap-4 px-4 py-4 text-left outline-none transition lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_120px_150px] ${
                   selected ? 'bg-brand-blue/10' : 'hover:bg-white/[0.04]'
                 }`}
               >
@@ -3040,16 +3118,38 @@ function StoreReportOverviewPanel({
                 </div>
 
                 <div className="grid grid-cols-5 gap-2">
-                  {reports.map((report, index) => (
-                    <div
-                      key={`${store.title}-${report.date || index}`}
-                      className={`min-h-[82px] rounded-md border px-2.5 py-2 ${weeklyReportClass(report.status)}`}
-                    >
-                      <p className="text-[11px] font-black text-gray-500">{formatWeekday(weekDates[index])}</p>
-                      <p className="mt-2 text-xs font-black text-white">{reportStatusShort(report.status)}</p>
-                      <p className="mt-1 line-clamp-1 text-[11px] font-semibold text-gray-500">{report.title}</p>
-                    </div>
-                  ))}
+                  {reports.map((report, index) => {
+                    const reportDate = report.date || toISODate(weekDates[report.dayOffset] || weekDates[index] || weekDates[0])
+                    const quickKey = `${store.title}-${reportDate}`
+                    const quickUpdating = quickUpdatingReportKey === quickKey
+                    const reportDone = report.status === '보고완료'
+
+                    return (
+                      <div
+                        key={`${store.title}-${reportDate}`}
+                        className={`min-h-[116px] rounded-md border px-2.5 py-2 ${weeklyReportClass(report.status)}`}
+                      >
+                        <p className="text-[11px] font-black text-gray-500">{formatWeekday(weekDates[index])}</p>
+                        <p className="mt-2 text-xs font-black text-white">{reportStatusShort(report.status)}</p>
+                        <p className="mt-1 line-clamp-1 text-[11px] font-semibold text-gray-500">{report.title}</p>
+                        <button
+                          type="button"
+                          disabled={quickUpdating || reportDone}
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            completeOverviewReport(store, report, index, reports)
+                          }}
+                          className={`mt-2 h-7 w-full rounded-md border px-2 text-[11px] font-black transition ${
+                            reportDone
+                              ? 'border-emerald-300/20 bg-emerald-300/10 text-emerald-100'
+                              : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                          } disabled:cursor-not-allowed disabled:opacity-80`}
+                        >
+                          {quickUpdating ? '처리중' : reportDone ? '완료됨' : '완료'}
+                        </button>
+                      </div>
+                    )
+                  })}
                 </div>
 
                 <div>
@@ -3068,7 +3168,7 @@ function StoreReportOverviewPanel({
                     {store.products?.nextAction || store.due}
                   </p>
                 </div>
-              </button>
+              </article>
             )
           })}
         </div>
@@ -3556,6 +3656,8 @@ function StoreOperationsPanel({
             </div>
           </div>
 
+          {selectedStore.processSteps?.length ? <StoreProcessRoadmap store={selectedStore} /> : null}
+
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
               {weeklyReportItems.length && selectedWeeklyReport ? (
@@ -3596,13 +3698,23 @@ function StoreOperationsPanel({
                   <div className="mt-5 grid gap-2 lg:grid-cols-5">
                     {weeklyReportItems.map((item) => {
                       const active = item.dateKey === selectedWeeklyReport.dateKey
+                      const reportUpdating = updatingReportDate === item.dateKey
+                      const reportDone = item.report.status === '보고완료'
 
                       return (
-                        <button
+                        <article
                           key={`${activeWorkspace.key}-report-tab-${item.dateKey}`}
-                          type="button"
                           onClick={() => setSelectedWeeklyReportDate(item.dateKey)}
-                          className={`min-h-[156px] rounded-lg border p-4 text-left transition ${
+                          onKeyDown={(event) => {
+                            if ((event.target as HTMLElement).closest('button')) return
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              setSelectedWeeklyReportDate(item.dateKey)
+                            }
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          className={`min-h-[188px] cursor-pointer rounded-lg border p-4 text-left outline-none transition ${
                             active
                               ? 'border-brand-blue/60 bg-brand-blue/15'
                               : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
@@ -3623,7 +3735,22 @@ function StoreOperationsPanel({
                           <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
                             {item.draftMemo || '보고 내용 입력 전입니다.'}
                           </p>
-                        </button>
+                          <button
+                            type="button"
+                            disabled={reportUpdating || reportDone}
+                            onClick={(event) => {
+                              event.stopPropagation()
+                              updateWeeklyReportStatus(item.report, item.dateKey, '보고완료', item.draftMemo)
+                            }}
+                            className={`mt-3 h-9 w-full rounded-md border px-3 text-xs font-black transition ${
+                              reportDone
+                                ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                                : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                            } disabled:cursor-not-allowed disabled:opacity-80`}
+                          >
+                            {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
+                          </button>
+                        </article>
                       )
                     })}
                   </div>
@@ -3691,6 +3818,25 @@ function StoreOperationsPanel({
                           ))}
                         </select>
                       </label>
+                      <button
+                        type="button"
+                        disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating || selectedWeeklyReport.report.status === '보고완료'}
+                        onClick={() =>
+                          updateWeeklyReportStatus(
+                            selectedWeeklyReport.report,
+                            selectedWeeklyReport.dateKey,
+                            '보고완료',
+                            selectedWeeklyReport.draftMemo
+                          )
+                        }
+                        className="mt-3 h-10 w-full rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                      >
+                        {selectedWeeklyReportUpdating
+                          ? '처리 중'
+                          : selectedWeeklyReport.report.status === '보고완료'
+                            ? '보고완료됨'
+                            : '보고완료 처리'}
+                      </button>
                       <button
                         type="button"
                         disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
@@ -3892,6 +4038,71 @@ function StoreOperationsPanel({
   )
 }
 
+function StoreProcessRoadmap({ store }: { store: OperationRow }) {
+  const steps = store.processSteps || []
+  const doneCount = steps.filter((step) => step.status === '완료').length
+  const inProgressCount = steps.filter((step) => step.status === '진행중').length
+  const packageLabel = store.meta.replace('계약상품 · ', '')
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Process Roadmap</p>
+          <h3 className="mt-2 text-xl font-black text-white">작업 진행 프로세스</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            계약 상품 구성에 맞춰 온보딩부터 유지/관리 단계까지 현재 위치를 표시합니다.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 text-xs font-black">
+          <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-gray-300">{packageLabel}</span>
+          <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+            완료 {doneCount}
+          </span>
+          <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+            진행 {inProgressCount}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 xl:grid-cols-6">
+        {steps.map((step, index) => {
+          const last = index === steps.length - 1
+
+          return (
+            <article
+              key={`${store.title}-process-${step.title}`}
+              className="rounded-lg border border-white/10 bg-black p-4"
+            >
+              <div className="flex items-center gap-2">
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border ${processNodeClass(step.status)}`}>
+                  {step.status === '완료' ? (
+                    <CheckCircle2 className="h-5 w-5" />
+                  ) : step.status === '진행중' ? (
+                    <RefreshCw className="h-4 w-4" />
+                  ) : (
+                    <CircleDot className="h-4 w-4" />
+                  )}
+                </span>
+                {!last ? <span className="hidden h-px min-w-8 flex-1 bg-white/10 xl:block" /> : null}
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <p className="text-[11px] font-black text-gray-600">STEP {index + 1}</p>
+                <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${processStatusBadge(step.status)}`}>
+                  {step.status}
+                </span>
+              </div>
+              <p className="mt-3 min-h-10 text-sm font-black leading-5 text-white keep-all">{step.title}</p>
+              <p className="mt-2 text-[11px] font-black text-brand-blue">{step.product}</p>
+              <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-gray-500 keep-all">{step.memo}</p>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 function StoreWorkspaceTabs({
   workspaces,
   activeProduct,
@@ -3901,8 +4112,10 @@ function StoreWorkspaceTabs({
   activeProduct: StoreProductKey
   onSelectProduct: (product: StoreProductKey) => void
 }) {
+  const gridClass = workspaces.length >= 3 ? 'grid-cols-3' : workspaces.length === 2 ? 'grid-cols-2' : 'grid-cols-1'
+
   return (
-    <div className="mt-4 grid w-full max-w-xl grid-cols-3 gap-1 rounded-lg border border-white/10 bg-black p-1">
+    <div className={`mt-4 grid w-full max-w-xl ${gridClass} gap-1 rounded-lg border border-white/10 bg-black p-1`}>
       {workspaces.map((workspace) => {
         const active = workspace.key === activeProduct
 
@@ -4371,6 +4584,18 @@ function taskStatusBadge(status: string) {
   if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (statusIncludesAny(status, ['대기', '예정'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
   return 'border-white/15 bg-white/5 text-gray-300'
+}
+
+function processNodeClass(status: string) {
+  if (status === '완료') return 'border-emerald-300/35 bg-emerald-300/10 text-emerald-100'
+  if (status === '진행중') return 'border-brand-blue/40 bg-brand-blue/15 text-blue-100'
+  return 'border-white/15 bg-white/5 text-gray-400'
+}
+
+function processStatusBadge(status: string) {
+  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '진행중') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  return 'border-white/15 bg-white/5 text-gray-400'
 }
 
 function autoSaveStatusBadge(status: string) {

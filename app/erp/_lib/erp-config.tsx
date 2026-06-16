@@ -316,6 +316,15 @@ export type StoreProductWorkspace = {
   tasks: StoreProductTask[]
 }
 
+export type StoreProcessStepStatus = '완료' | '진행중' | '대기'
+
+export type StoreProcessStep = {
+  title: string
+  product: string
+  status: StoreProcessStepStatus
+  memo: string
+}
+
 export type OperationRow = {
   title: string
   meta: string
@@ -327,11 +336,12 @@ export type OperationRow = {
   products?: {
     googleProfile: string
     googleAds: string
-    website: string
+    website?: string
     material: string
     nextAction: string
   }
   productWorkspaces?: StoreProductWorkspace[]
+  processSteps?: StoreProcessStep[]
 }
 
 export type OperationView = {
@@ -544,16 +554,16 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   project: {
     kicker: 'Store Operations',
     title: '매장 운영관리',
-    description: '매장별로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 한 화면에서 확인합니다.',
+    description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
       { label: '운영 매장', value: '3' },
-      { label: '진행 상품', value: '9' },
+      { label: '진행 상품', value: '7' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
       {
         title: '언리미티드',
-        meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
+        meta: '계약상품 · 구글프로필 + 구글애즈',
         status: '계약완료 · 운영중',
         owner: '권순현',
         due: '이번 주',
@@ -561,10 +571,41 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         products: {
           googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
           googleAds: '계정/캠페인 구조 확인',
-          website: '브랜드 페이지 구조 기획',
           material: '대표 사진·서비스 설명 요청',
           nextAction: 'Google 프로필 기본정보와 대표사진 정리',
         },
+        processSteps: [
+          {
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '완료',
+            memo: '카테고리, 영업시간, 연락처, 대표 설명 기준을 먼저 맞춥니다.',
+          },
+          {
+            title: '사진·리뷰·피드 운영 기준',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '대표 사진 정렬, 리뷰 응대, 주 2회 피드 업데이트 루틴을 운영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 점검',
+            product: '구글애즈',
+            status: '진행중',
+            memo: '브랜드, 지역, 서비스 키워드를 분리해 클릭과 로컬 액션을 봅니다.',
+          },
+          {
+            title: '주간 보고 루틴',
+            product: '공통',
+            status: '진행중',
+            memo: '월-금 작업보고를 누락 없이 남기고 월 1회 성과보고로 정리합니다.',
+          },
+          {
+            title: '월간 성과 점검·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '클릭, 길찾기, 전화, 리뷰 흐름을 보고 다음 달 운영 기준을 조정합니다.',
+          },
+        ],
         productWorkspaces: [
           {
             key: 'googleProfile',
@@ -666,90 +707,53 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
               },
             ],
           },
-          {
-            key: 'websiteBlog',
-            label: '웹사이트·블로그',
-            heading: '제작·콘텐츠 현황',
-            description: '매장별로 어떤 웹사이트, 블로그, FAQ 작업이 들어가고 있는지 체크하기 위한 공간입니다.',
-            metrics: [
-              { label: '제작 상태', value: '기획중', note: '브랜드/지점 페이지 구조 정리' },
-              { label: '콘텐츠', value: '4건 작성', note: '블로그 글 목록 샘플 기준' },
-              { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
-            ],
-            blogPosts: [
-              {
-                title: '언리미티드 외국인 고객 방문 전 FAQ 정리',
-                status: '작성완료',
-                keyword: '언리미티드 외국인 방문',
-                channel: '공식 블로그',
-                publishedAt: '2026-05-27',
-                memo: '방문 전 자주 묻는 위치, 예약, 결제, 이용 흐름을 한 글에서 확인할 수 있게 정리합니다.',
-              },
-              {
-                title: 'Google 프로필에서 웹사이트로 이어지는 예약 동선 안내',
-                status: '검수중',
-                keyword: '언리미티드 예약 방법',
-                channel: '공식 블로그',
-                publishedAt: '2026-05-28',
-                memo: 'GBP 클릭 이후 고객이 공식 페이지에서 어떤 정보를 확인해야 하는지 순서대로 설명합니다.',
-              },
-              {
-                title: '외국인 고객이 처음 방문할 때 확인하는 매장 정보',
-                status: '작성중',
-                keyword: '외국인 고객 매장 정보',
-                channel: '블로그 초안',
-                publishedAt: '발행 전',
-                memo: '영업시간, 위치, 사진, 서비스 설명처럼 방문 판단에 필요한 기본 정보를 콘텐츠화합니다.',
-              },
-              {
-                title: '리뷰와 FAQ를 활용한 매장 신뢰도 개선 포인트',
-                status: '대기',
-                keyword: '매장 리뷰 FAQ 관리',
-                channel: '콘텐츠 주제',
-                publishedAt: '발행 전',
-                memo: 'Google 리뷰 응대와 FAQ 콘텐츠를 연결해 검색 고객이 신뢰할 수 있는 근거를 쌓습니다.',
-              },
-            ],
-            tasks: [
-              {
-                title: '브랜드/지점 페이지 구조 기획',
-                status: '진행중',
-                owner: '권순현',
-                due: '이번 주',
-                memo: 'GBP에서 연결할 공식 페이지의 메뉴, 서비스 설명, 위치 정보를 먼저 설계합니다.',
-              },
-              {
-                title: 'FAQ 콘텐츠 주제 정리',
-                status: '대기',
-                owner: '블링크애드',
-                due: '다음 주',
-                memo: '외국인 고객이 방문 전 궁금해할 질문을 FAQ와 블로그 주제로 전환합니다.',
-              },
-              {
-                title: 'Google 프로필 연결 URL 확정',
-                status: '대기',
-                owner: '권순현',
-                due: '페이지 초안 후',
-                memo: '예약 링크만 연결하지 않고, 브랜드 설명이 쌓이는 공식 페이지로 연결합니다.',
-              },
-            ],
-          },
         ],
       },
       {
         title: '웰믹스 광화문점',
-        meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
+        meta: '계약상품 · 구글프로필 + 구글애즈',
         status: '계약완료 · 운영중',
         owner: '권순현',
         due: '이번 주',
-        memo: '광화문 상권 기준으로 Google 프로필 정보, 광고 전환, 웹사이트 콘텐츠 운영 상태를 함께 관리합니다.',
+        memo: '광화문 상권 기준으로 Google 프로필 정보와 광고 전환 상태를 함께 관리합니다.',
         products: {
           googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
           googleAds: '지역 키워드와 길찾기 전환 중심 점검',
-          website: '브랜드/지점 페이지와 운영 콘텐츠 정리',
           material: '대표 메뉴·공간 사진·영문 안내 자료 요청',
           nextAction: 'Google 프로필 사진과 대표 메뉴 정보를 우선 정리',
         },
+        processSteps: [
+          {
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '완료',
+            memo: '광화문점 카테고리, 영업시간, 연락처, 대표 메뉴 정보를 정리합니다.',
+          },
+          {
+            title: '사진·리뷰·피드 운영 기준',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '대표 메뉴와 공간 사진을 정렬하고 리뷰 응대 기준을 운영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 점검',
+            product: '구글애즈',
+            status: '진행중',
+            memo: '광화문 지역 키워드와 메뉴 키워드를 분리해 길찾기 전환을 확인합니다.',
+          },
+          {
+            title: '주간 보고 루틴',
+            product: '공통',
+            status: '진행중',
+            memo: '월-금 작업보고를 남기고 월 1회 광고·프로필 성과보고로 묶습니다.',
+          },
+          {
+            title: '월간 성과 점검·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '클릭, 길찾기, 전화, 리뷰 흐름을 기준으로 다음 달 운영 기준을 조정합니다.',
+          },
+        ],
         productWorkspaces: [
           {
             key: 'googleProfile',
@@ -851,58 +855,6 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
               },
             ],
           },
-          {
-            key: 'websiteBlog',
-            label: '웹사이트·블로그',
-            heading: '제작·콘텐츠 현황',
-            description: '웰믹스 광화문점의 지점 페이지, FAQ, 블로그 콘텐츠 작업 흐름을 관리합니다.',
-            metrics: [
-              { label: '제작 상태', value: '기획중', note: '브랜드/지점 페이지 구조 정리' },
-              { label: '콘텐츠', value: '2건 기획', note: '초기 콘텐츠 주제 정리 기준' },
-              { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
-            ],
-            blogPosts: [
-              {
-                title: '웰믹스 광화문점 방문 전 확인할 매장 정보',
-                status: '작성중',
-                keyword: '웰믹스 광화문점',
-                channel: '공식 블로그',
-                publishedAt: '발행 전',
-                memo: '위치, 영업시간, 대표 메뉴, 이용 흐름을 방문 전 확인할 수 있게 정리합니다.',
-              },
-              {
-                title: '광화문 근처 외국인 고객을 위한 메뉴 안내',
-                status: '대기',
-                keyword: '광화문 외국인 식당',
-                channel: '콘텐츠 주제',
-                publishedAt: '발행 전',
-                memo: '외국인 고객이 주문 전 궁금해할 메뉴, 결제, 위치 정보를 콘텐츠화합니다.',
-              },
-            ],
-            tasks: [
-              {
-                title: '브랜드/지점 페이지 구조 기획',
-                status: '진행중',
-                owner: '권순현',
-                due: '이번 주',
-                memo: 'GBP에서 연결할 공식 페이지의 메뉴, 매장 설명, 위치 정보를 먼저 설계합니다.',
-              },
-              {
-                title: 'FAQ 콘텐츠 주제 정리',
-                status: '대기',
-                owner: '블링크애드',
-                due: '다음 주',
-                memo: '외국인 고객이 방문 전 궁금해할 질문을 FAQ와 블로그 주제로 전환합니다.',
-              },
-              {
-                title: 'Google 프로필 연결 URL 확정',
-                status: '대기',
-                owner: '권순현',
-                due: '페이지 초안 후',
-                memo: '예약 링크만 연결하지 않고, 브랜드 설명이 쌓이는 공식 페이지로 연결합니다.',
-              },
-            ],
-          },
         ],
       },
       {
@@ -919,6 +871,44 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
           material: '대표 메뉴·공간 사진·외국어 안내 자료 요청',
           nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
         },
+        processSteps: [
+          {
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+          },
+          {
+            title: '사진·메뉴·외국어 자료 수령',
+            product: '구글프로필',
+            status: '대기',
+            memo: '외관, 내부, 대표 메뉴, 외국어 안내 자료를 받아 프로필과 콘텐츠에 반영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 세팅',
+            product: '구글애즈',
+            status: '대기',
+            memo: '해운대 지역 키워드, 대표 메뉴 키워드, 방문 전환 기준을 세팅합니다.',
+          },
+          {
+            title: '웹사이트·블로그 구조 기획',
+            product: '웹사이트·블로그',
+            status: '대기',
+            memo: '지점 페이지, 메뉴 안내, FAQ, 위치 콘텐츠 구조를 먼저 설계합니다.',
+          },
+          {
+            title: '콘텐츠 누적·GBP 연결',
+            product: '웹사이트·블로그',
+            status: '대기',
+            memo: '콘텐츠가 쌓이면 Google 프로필에서 연결할 공식 페이지와 블로그 흐름을 정리합니다.',
+          },
+          {
+            title: '월간 보고·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '월 1회 프로필, 광고, 콘텐츠 성과를 묶어 다음 운영 기준을 조정합니다.',
+          },
+        ],
         productWorkspaces: [
           {
             key: 'googleProfile',
