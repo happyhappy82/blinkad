@@ -574,37 +574,6 @@ export default function ErpClient() {
     return { counts }
   }, [stores])
   const contractRevenue = useMemo(() => {
-    const contractMonthGroups = Array.from(
-      contractRevenueRecords.reduce((map, record) => {
-        const current = map.get(record.contractMonths) || {
-          contractMonths: record.contractMonths,
-          storeCount: 0,
-          firstMonthAmount: 0,
-          contractTotalAmount: 0,
-        }
-        current.storeCount += 1
-        current.firstMonthAmount += firstMonthRevenue(record)
-        current.contractTotalAmount += contractRevenueTotal(record)
-        map.set(record.contractMonths, current)
-        return map
-      }, new Map<number, { contractMonths: number; storeCount: number; firstMonthAmount: number; contractTotalAmount: number }>())
-    ).map(([, value]) => value)
-
-    const productGroups = Array.from(
-      contractRevenueRecords.reduce((map, record) => {
-        const current = map.get(record.productGroup) || {
-          productGroup: record.productGroup,
-          storeCount: 0,
-          firstMonthAmount: 0,
-          contractTotalAmount: 0,
-        }
-        current.storeCount += 1
-        current.firstMonthAmount += firstMonthRevenue(record)
-        current.contractTotalAmount += contractRevenueTotal(record)
-        map.set(record.productGroup, current)
-        return map
-      }, new Map<string, { productGroup: string; storeCount: number; firstMonthAmount: number; contractTotalAmount: number }>())
-    ).map(([, value]) => value)
     const monthlyRows = monthlyRevenueSchedule(contractRevenueRecords)
 
     return {
@@ -613,8 +582,6 @@ export default function ErpClient() {
       contractTotalAmount: contractRevenueRecords.reduce((sum, record) => sum + contractRevenueTotal(record), 0),
       badadangTotalAmount:
         contractRevenueRecords.find((record) => record.storeName === '바다당 해운대점')?.monthlyAmounts.reduce((sum, amount) => sum + amount, 0) || 0,
-      contractMonthGroups,
-      productGroups,
       monthlyRows,
     }
   }, [])
@@ -1114,18 +1081,6 @@ function DashboardPanel({
     firstMonthAmount: number
     contractTotalAmount: number
     badadangTotalAmount: number
-    contractMonthGroups: {
-      contractMonths: number
-      storeCount: number
-      firstMonthAmount: number
-      contractTotalAmount: number
-    }[]
-    productGroups: {
-      productGroup: string
-      storeCount: number
-      firstMonthAmount: number
-      contractTotalAmount: number
-    }[]
     monthlyRows: {
       month: number
       monthLabel: string
@@ -1195,7 +1150,7 @@ function DashboardPanel({
 
         <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
-        <div className="grid gap-5 p-5 md:p-6 xl:grid-cols-[1.35fr_0.65fr]">
+        <div className="p-5 md:p-6">
           <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
             <div className="border-b border-white/10 px-4 py-3">
               <h3 className="text-sm font-black text-white">매장별 계약 리스트</h3>
@@ -1238,70 +1193,9 @@ function DashboardPanel({
               </table>
             </div>
           </div>
-
-          <div className="space-y-4">
-            <RevenueGroupCard
-              title="계약개월별"
-              rows={contractRevenue.contractMonthGroups
-                .sort((a, b) => a.contractMonths - b.contractMonths)
-                .map((row) => ({
-                  label: `${row.contractMonths}개월 계약`,
-                  count: `${row.storeCount}개 매장`,
-                  monthly: row.firstMonthAmount,
-                  total: row.contractTotalAmount,
-                }))}
-            />
-            <RevenueGroupCard
-              title="상품구성별"
-              rows={contractRevenue.productGroups.map((row) => ({
-                label: row.productGroup,
-                count: `${row.storeCount}개 매장`,
-                monthly: row.firstMonthAmount,
-                total: row.contractTotalAmount,
-              }))}
-            />
-          </div>
         </div>
       </section>
     </section>
-  )
-}
-
-function RevenueGroupCard({
-  title,
-  rows,
-}: {
-  title: string
-  rows: { label: string; count: string; monthly: number; total: number }[]
-}) {
-  return (
-    <article className="rounded-lg border border-white/10 bg-black">
-      <div className="border-b border-white/10 px-4 py-3">
-        <h3 className="text-sm font-black text-white">{title}</h3>
-      </div>
-      <div className="divide-y divide-white/10">
-        {rows.map((row) => (
-          <div key={row.label} className="px-4 py-4">
-            <div className="flex items-start justify-between gap-3">
-              <p className="font-black leading-6 text-white keep-all">{row.label}</p>
-              <span className="shrink-0 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs font-black text-gray-300">
-                {row.count}
-              </span>
-            </div>
-            <div className="mt-3 grid grid-cols-2 gap-2 text-xs font-bold">
-              <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
-                <p className="text-gray-600">1개월차</p>
-                <p className="mt-1 text-sm font-black text-white">{formatRevenueManwon(row.monthly)}</p>
-              </div>
-              <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
-                <p className="text-gray-600">계약기간 합계</p>
-                <p className="mt-1 text-sm font-black text-emerald-100">{formatRevenueManwon(row.total)}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </article>
   )
 }
 
