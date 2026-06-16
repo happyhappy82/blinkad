@@ -23,6 +23,12 @@ import {
   Users,
 } from 'lucide-react'
 
+export type StoreFileRecord = {
+  name: string
+  url: string
+  expiresAt?: string
+}
+
 export type StoreRecord = {
   id: string
   name: string
@@ -37,6 +43,8 @@ export type StoreRecord = {
   nextAction: string
   quoteCount: number
   diagnosisCount: number
+  quoteFiles: StoreFileRecord[]
+  diagnosisFiles: StoreFileRecord[]
   contractCount: number
   contractStatus: string
   contractUrl: string
@@ -199,7 +207,7 @@ export const menuGroups = [
   {
     label: '견적/수주',
     items: [
-      { id: 'diagnosis', label: '진단자료', icon: FileSearch },
+      { id: 'diagnosis', label: '분석자료', icon: FileSearch },
       { id: 'quote', label: '견적서', icon: ReceiptText },
       { id: 'contract', label: '계약서', icon: FileSignature },
     ],
@@ -499,7 +507,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       },
       {
         title: '월하동',
-        meta: '요식업 · 진단자료/견적서 완료',
+        meta: '요식업 · 분석자료/견적서 완료',
         status: '계약대기',
         owner: '권순현',
         due: 'D+2',
@@ -527,7 +535,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     rows: [
       {
         title: '광주미의원',
-        meta: '병원 · GBP 진단자료 제안',
+        meta: '병원 · GBP 분석자료 제안',
         status: '재연락',
         owner: '권순현',
         due: 'D+2',
@@ -1223,8 +1231,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         memo: '매장명 기준 Notion 견적서 열 업로드',
       },
       {
-        title: '진단자료 템플릿 고정',
-        meta: 'GBP 무료진단자료',
+        title: '분석자료 템플릿 고정',
+        meta: 'GBP 무료분석자료',
         status: '운영 중',
         owner: '블링크애드',
         due: '상시',

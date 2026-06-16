@@ -871,8 +871,8 @@ export default function ErpClient() {
 
             {activeMenu === 'diagnosis' && (
               <StoreTable
-                title="진단자료 생성"
-                description="각 매장별 Google 맵 링크를 기준으로 진단자료 PDF를 생성하고 분석자료 열에 저장합니다."
+                title="분석자료 생성"
+                description="각 매장별 Google 맵 링크를 기준으로 분석자료 PDF를 생성하고 Notion 분석자료 열에 저장합니다."
                 stores={stores}
                 loading={loading}
                 columns="diagnosis"
@@ -886,9 +886,9 @@ export default function ErpClient() {
 
             {activeMenu === 'quote' && (
               <StoreTable
-                title="견적서 생성"
-                description="계약대기, 답변완료, 계약완료, 취소/팔로업 중지 상태를 제외한 매장을 견적서 생성 대상으로 표시합니다."
-                stores={quoteCandidateStores}
+                title="견적서 조회/생성"
+                description="Notion 문의관리 DB의 견적서 열에 저장된 PDF를 바로 조회하고, 필요한 매장은 견적서를 생성합니다."
+                stores={stores}
                 loading={loading}
                 columns="quote"
                 runningAction={runningAction}
