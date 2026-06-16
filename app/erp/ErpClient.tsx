@@ -184,9 +184,7 @@ type ContractRevenueRecord = {
   contractMonths: number
   productGroup: string
   productDetail: string
-  monthlyVatIncluded: number
-  firstPaymentVatIncluded: number
-  contractValueVatIncluded: number
+  monthlyAmounts: number[]
   memo: string
 }
 
@@ -196,9 +194,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     contractMonths: 1,
     productGroup: '구글애즈 + 구글프로필관리',
     productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
-    monthlyVatIncluded: 990_000,
-    firstPaymentVatIncluded: 990_000,
-    contractValueVatIncluded: 990_000,
+    monthlyAmounts: [990_000],
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
@@ -206,9 +202,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     contractMonths: 1,
     productGroup: '구글애즈 + 구글프로필관리',
     productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
-    monthlyVatIncluded: 990_000,
-    firstPaymentVatIncluded: 990_000,
-    contractValueVatIncluded: 990_000,
+    monthlyAmounts: [990_000],
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
@@ -216,15 +210,49 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     contractMonths: 12,
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '프로필·애즈·웹사이트/블로그 통합 운영',
-    monthlyVatIncluded: 1_450_000,
-    firstPaymentVatIncluded: 1_450_000,
-    contractValueVatIncluded: 1_450_000 * 12,
-    memo: '12개월 계약 · 첫달 입금 140만원, VAT 포함 145만원 기준',
+    monthlyAmounts: [
+      1_400_000,
+      1_300_000,
+      1_200_000,
+      1_000_000,
+      1_000_000,
+      1_000_000,
+      750_000,
+      750_000,
+      750_000,
+      750_000,
+      750_000,
+      750_000,
+    ],
+    memo: '12개월 계약 · 총 1,140만원 기준',
   },
 ]
 
-function sumRevenue(records: ContractRevenueRecord[], key: keyof Pick<ContractRevenueRecord, 'monthlyVatIncluded' | 'firstPaymentVatIncluded' | 'contractValueVatIncluded'>) {
-  return records.reduce((sum, record) => sum + record[key], 0)
+function contractRevenueTotal(record: ContractRevenueRecord) {
+  return record.monthlyAmounts.reduce((sum, amount) => sum + amount, 0)
+}
+
+function firstMonthRevenue(record: ContractRevenueRecord) {
+  return record.monthlyAmounts[0] || 0
+}
+
+function monthlyRevenueSchedule(records: ContractRevenueRecord[]) {
+  const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
+
+  return Array.from({ length: maxMonths }, (_, index) => {
+    const stores = records
+      .map((record) => ({
+        storeName: record.storeName,
+        amount: record.monthlyAmounts[index] || 0,
+      }))
+      .filter((item) => item.amount > 0)
+
+    return {
+      month: index + 1,
+      amount: stores.reduce((sum, item) => sum + item.amount, 0),
+      stores,
+    }
+  })
 }
 
 type CalendarContextMenu =
@@ -542,15 +570,15 @@ export default function ErpClient() {
         const current = map.get(record.contractMonths) || {
           contractMonths: record.contractMonths,
           storeCount: 0,
-          monthlyVatIncluded: 0,
-          contractValueVatIncluded: 0,
+          firstMonthAmount: 0,
+          contractTotalAmount: 0,
         }
         current.storeCount += 1
-        current.monthlyVatIncluded += record.monthlyVatIncluded
-        current.contractValueVatIncluded += record.contractValueVatIncluded
+        current.firstMonthAmount += firstMonthRevenue(record)
+        current.contractTotalAmount += contractRevenueTotal(record)
         map.set(record.contractMonths, current)
         return map
-      }, new Map<number, { contractMonths: number; storeCount: number; monthlyVatIncluded: number; contractValueVatIncluded: number }>())
+      }, new Map<number, { contractMonths: number; storeCount: number; firstMonthAmount: number; contractTotalAmount: number }>())
     ).map(([, value]) => value)
 
     const productGroups = Array.from(
@@ -558,24 +586,27 @@ export default function ErpClient() {
         const current = map.get(record.productGroup) || {
           productGroup: record.productGroup,
           storeCount: 0,
-          monthlyVatIncluded: 0,
-          contractValueVatIncluded: 0,
+          firstMonthAmount: 0,
+          contractTotalAmount: 0,
         }
         current.storeCount += 1
-        current.monthlyVatIncluded += record.monthlyVatIncluded
-        current.contractValueVatIncluded += record.contractValueVatIncluded
+        current.firstMonthAmount += firstMonthRevenue(record)
+        current.contractTotalAmount += contractRevenueTotal(record)
         map.set(record.productGroup, current)
         return map
-      }, new Map<string, { productGroup: string; storeCount: number; monthlyVatIncluded: number; contractValueVatIncluded: number }>())
+      }, new Map<string, { productGroup: string; storeCount: number; firstMonthAmount: number; contractTotalAmount: number }>())
     ).map(([, value]) => value)
+    const monthlyRows = monthlyRevenueSchedule(contractRevenueRecords)
 
     return {
       records: contractRevenueRecords,
-      monthlyVatIncluded: sumRevenue(contractRevenueRecords, 'monthlyVatIncluded'),
-      firstPaymentVatIncluded: sumRevenue(contractRevenueRecords, 'firstPaymentVatIncluded'),
-      contractValueVatIncluded: sumRevenue(contractRevenueRecords, 'contractValueVatIncluded'),
+      firstMonthAmount: monthlyRows[0]?.amount || 0,
+      contractTotalAmount: contractRevenueRecords.reduce((sum, record) => sum + contractRevenueTotal(record), 0),
+      badadangTotalAmount:
+        contractRevenueRecords.find((record) => record.storeName === '바다당 해운대점')?.monthlyAmounts.reduce((sum, amount) => sum + amount, 0) || 0,
       contractMonthGroups,
       productGroups,
+      monthlyRows,
     }
   }, [])
 
@@ -1071,20 +1102,25 @@ function DashboardPanel({
   counts: { label: string; count: number }[]
   contractRevenue: {
     records: ContractRevenueRecord[]
-    monthlyVatIncluded: number
-    firstPaymentVatIncluded: number
-    contractValueVatIncluded: number
+    firstMonthAmount: number
+    contractTotalAmount: number
+    badadangTotalAmount: number
     contractMonthGroups: {
       contractMonths: number
       storeCount: number
-      monthlyVatIncluded: number
-      contractValueVatIncluded: number
+      firstMonthAmount: number
+      contractTotalAmount: number
     }[]
     productGroups: {
       productGroup: string
       storeCount: number
-      monthlyVatIncluded: number
-      contractValueVatIncluded: number
+      firstMonthAmount: number
+      contractTotalAmount: number
+    }[]
+    monthlyRows: {
+      month: number
+      amount: number
+      stores: { storeName: string; amount: number }[]
     }[]
   }
 }) {
@@ -1095,19 +1131,19 @@ function DashboardPanel({
       detail: '운영 계약 기준',
     },
     {
-      label: '월 입금 기준 매출',
-      value: formatRevenueManwon(contractRevenue.monthlyVatIncluded),
-      detail: 'VAT 포함 월 기준',
+      label: '1개월차 매출',
+      value: formatRevenueManwon(contractRevenue.firstMonthAmount),
+      detail: '1개월 계약 2건 포함',
     },
     {
-      label: '첫달 입금 합계',
-      value: formatRevenueManwon(contractRevenue.firstPaymentVatIncluded),
-      detail: '현재 입금 확인 기준',
+      label: '총 계약 매출',
+      value: formatRevenueManwon(contractRevenue.contractTotalAmount),
+      detail: '월별 스케줄 합산',
     },
     {
-      label: '계약기간 환산 매출',
-      value: formatRevenueManwon(contractRevenue.contractValueVatIncluded),
-      detail: '바다당 12개월 반영',
+      label: '바다당 12개월',
+      value: formatRevenueManwon(contractRevenue.badadangTotalAmount),
+      detail: '1,140만원 계약',
     },
   ]
 
@@ -1129,11 +1165,11 @@ function DashboardPanel({
             <p className="text-sm font-bold text-brand-blue">Revenue Dashboard</p>
             <h2 className="mt-2 text-2xl font-black tracking-tight text-white">계약 매장·매출 현황</h2>
             <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-              계약개월, 상품구성, VAT 포함 입금액 기준으로 현재 계약 매장의 매출을 확인합니다.
+              계약개월, 상품구성, 월차별 입금 스케줄 기준으로 현재 계약 매장의 매출을 확인합니다.
             </p>
           </div>
           <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
-            바다당 해운대점은 첫달 VAT 포함 입금액 145만원을 기준으로 12개월 환산했습니다.
+            바다당 해운대점은 1개월차 140만원, 2개월차 130만원, 3개월차 120만원, 4~6개월차 월 100만원, 7~12개월차 월 75만원 기준입니다.
           </p>
         </div>
 
@@ -1147,6 +1183,8 @@ function DashboardPanel({
           ))}
         </div>
 
+        <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
+
         <div className="grid gap-5 p-5 md:p-6 xl:grid-cols-[1.35fr_0.65fr]">
           <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
             <div className="border-b border-white/10 px-4 py-3">
@@ -1159,8 +1197,8 @@ function DashboardPanel({
                     <th className="px-4 py-3">매장명</th>
                     <th className="px-4 py-3">상품구성</th>
                     <th className="px-4 py-3">계약개월</th>
-                    <th className="px-4 py-3">월 입금</th>
-                    <th className="px-4 py-3">계약기간 환산</th>
+                    <th className="px-4 py-3">1개월차 매출</th>
+                    <th className="px-4 py-3">계약기간 합계</th>
                     <th className="px-4 py-3">메모</th>
                   </tr>
                 </thead>
@@ -1179,8 +1217,8 @@ function DashboardPanel({
                           {record.contractMonths}개월
                         </span>
                       </td>
-                      <td className="px-4 py-4 font-black text-white">{formatCurrency(record.monthlyVatIncluded)}원</td>
-                      <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(record.contractValueVatIncluded)}원</td>
+                      <td className="px-4 py-4 font-black text-white">{formatCurrency(firstMonthRevenue(record))}원</td>
+                      <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(contractRevenueTotal(record))}원</td>
                       <td className="max-w-[220px] px-4 py-4 text-xs font-semibold leading-5 text-gray-500 keep-all">
                         {record.memo}
                       </td>
@@ -1199,8 +1237,8 @@ function DashboardPanel({
                 .map((row) => ({
                   label: `${row.contractMonths}개월 계약`,
                   count: `${row.storeCount}개 매장`,
-                  monthly: row.monthlyVatIncluded,
-                  total: row.contractValueVatIncluded,
+                  monthly: row.firstMonthAmount,
+                  total: row.contractTotalAmount,
                 }))}
             />
             <RevenueGroupCard
@@ -1208,8 +1246,8 @@ function DashboardPanel({
               rows={contractRevenue.productGroups.map((row) => ({
                 label: row.productGroup,
                 count: `${row.storeCount}개 매장`,
-                monthly: row.monthlyVatIncluded,
-                total: row.contractValueVatIncluded,
+                monthly: row.firstMonthAmount,
+                total: row.contractTotalAmount,
               }))}
             />
           </div>
@@ -1242,11 +1280,11 @@ function RevenueGroupCard({
             </div>
             <div className="mt-3 grid grid-cols-2 gap-2 text-xs font-bold">
               <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
-                <p className="text-gray-600">월 기준</p>
+                <p className="text-gray-600">1개월차</p>
                 <p className="mt-1 text-sm font-black text-white">{formatRevenueManwon(row.monthly)}</p>
               </div>
               <div className="rounded-md border border-white/10 bg-white/[0.025] p-3">
-                <p className="text-gray-600">기간 환산</p>
+                <p className="text-gray-600">계약기간 합계</p>
                 <p className="mt-1 text-sm font-black text-emerald-100">{formatRevenueManwon(row.total)}</p>
               </div>
             </div>
@@ -1254,6 +1292,63 @@ function RevenueGroupCard({
         ))}
       </div>
     </article>
+  )
+}
+
+function MonthlyRevenueScheduleTable({
+  rows,
+}: {
+  rows: {
+    month: number
+    amount: number
+    stores: { storeName: string; amount: number }[]
+  }[]
+}) {
+  const maxAmount = Math.max(...rows.map((row) => row.amount), 1)
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Monthly Revenue</p>
+          <h3 className="mt-2 text-xl font-black text-white">월별 매출 스케줄</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            1개월 계약은 1개월차에만 반영하고, 12개월 계약은 월차별 계약금액으로 나눠 집계합니다.
+          </p>
+        </div>
+        <p className="text-xs font-black text-gray-600">{rows.length}개월 기준</p>
+      </div>
+
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
+        <div className="min-w-[820px]">
+          <div className="grid grid-cols-[96px_150px_1fr_280px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>월차</span>
+            <span>매출</span>
+            <span>비중</span>
+            <span>포함 매장</span>
+          </div>
+
+          {rows.map((row) => (
+            <div
+              key={`monthly-revenue-${row.month}`}
+              className="grid grid-cols-[96px_150px_1fr_280px] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
+            >
+              <span className="font-black text-white">{row.month}개월차</span>
+              <span className="font-black text-emerald-100">{formatCurrency(row.amount)}원</span>
+              <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className="h-full rounded-full bg-brand-blue"
+                  style={{ width: `${Math.max(6, (row.amount / maxAmount) * 100)}%` }}
+                />
+              </div>
+              <span className="text-xs font-semibold leading-5 text-gray-500 keep-all">
+                {row.stores.map((store) => `${store.storeName} ${formatRevenueManwon(store.amount)}`).join(' · ')}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
