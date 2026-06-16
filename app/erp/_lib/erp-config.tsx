@@ -195,6 +195,12 @@ export const menuGroups = [
     items: [{ id: 'dashboard', label: '대시보드', icon: LayoutDashboard }],
   },
   {
+    label: '프로젝트/작업관리',
+    items: [
+      { id: 'project', label: '매장 운영관리', icon: Folder },
+    ],
+  },
+  {
     label: 'CRM/영업',
     items: [
       { id: 'crm', label: '문의관리', icon: Building2 },
@@ -210,12 +216,6 @@ export const menuGroups = [
       { id: 'diagnosis', label: '분석자료', icon: FileSearch },
       { id: 'quote', label: '견적서', icon: ReceiptText },
       { id: 'contract', label: '계약서', icon: FileSignature },
-    ],
-  },
-  {
-    label: '프로젝트/작업관리',
-    items: [
-      { id: 'project', label: '매장 운영관리', icon: Folder },
     ],
   },
   {

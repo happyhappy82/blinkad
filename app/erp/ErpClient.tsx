@@ -188,6 +188,9 @@ type ContractRevenueRecord = {
   memo: string
 }
 
+const CONTRACT_REVENUE_START_YEAR = 2026
+const CONTRACT_REVENUE_START_MONTH = 6
+
 const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '언리미티드',
@@ -236,6 +239,11 @@ function firstMonthRevenue(record: ContractRevenueRecord) {
   return record.monthlyAmounts[0] || 0
 }
 
+function contractRevenueMonthLabel(monthIndex: number) {
+  const date = new Date(CONTRACT_REVENUE_START_YEAR, CONTRACT_REVENUE_START_MONTH - 1 + monthIndex, 1)
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월`
+}
+
 function monthlyRevenueSchedule(records: ContractRevenueRecord[]) {
   const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
 
@@ -249,6 +257,7 @@ function monthlyRevenueSchedule(records: ContractRevenueRecord[]) {
 
     return {
       month: index + 1,
+      monthLabel: contractRevenueMonthLabel(index),
       amount: stores.reduce((sum, item) => sum + item.amount, 0),
       stores,
     }
@@ -1119,6 +1128,7 @@ function DashboardPanel({
     }[]
     monthlyRows: {
       month: number
+      monthLabel: string
       amount: number
       stores: { storeName: string; amount: number }[]
     }[]
@@ -1131,7 +1141,7 @@ function DashboardPanel({
       detail: '운영 계약 기준',
     },
     {
-      label: '1개월차 매출',
+      label: `${contractRevenue.monthlyRows[0]?.monthLabel || '2026년 6월'} 매출`,
       value: formatRevenueManwon(contractRevenue.firstMonthAmount),
       detail: '1개월 계약 2건 포함',
     },
@@ -1169,7 +1179,7 @@ function DashboardPanel({
             </p>
           </div>
           <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
-            바다당 해운대점은 1개월차 140만원, 2개월차 130만원, 3개월차 120만원, 4~6개월차 월 100만원, 7~12개월차 월 75만원 기준입니다.
+            바다당 해운대점은 2026년 6월 140만원, 7월 130만원, 8월 120만원, 9~11월 월 100만원, 12월~2027년 5월 월 75만원 기준입니다.
           </p>
         </div>
 
@@ -1300,6 +1310,7 @@ function MonthlyRevenueScheduleTable({
 }: {
   rows: {
     month: number
+    monthLabel: string
     amount: number
     stores: { storeName: string; amount: number }[]
   }[]
@@ -1313,7 +1324,7 @@ function MonthlyRevenueScheduleTable({
           <p className="text-sm font-bold text-brand-blue">Monthly Revenue</p>
           <h3 className="mt-2 text-xl font-black text-white">월별 매출 스케줄</h3>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            1개월 계약은 1개월차에만 반영하고, 12개월 계약은 월차별 계약금액으로 나눠 집계합니다.
+            2026년 6월을 시작월로 두고, 1개월 계약은 6월에만 반영하며 12개월 계약은 월차별 계약금액으로 나눠 집계합니다.
           </p>
         </div>
         <p className="text-xs font-black text-gray-600">{rows.length}개월 기준</p>
@@ -1321,8 +1332,8 @@ function MonthlyRevenueScheduleTable({
 
       <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
         <div className="min-w-[820px]">
-          <div className="grid grid-cols-[96px_150px_1fr_280px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-            <span>월차</span>
+          <div className="grid grid-cols-[132px_150px_1fr_280px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>정산월</span>
             <span>매출</span>
             <span>비중</span>
             <span>포함 매장</span>
@@ -1331,9 +1342,12 @@ function MonthlyRevenueScheduleTable({
           {rows.map((row) => (
             <div
               key={`monthly-revenue-${row.month}`}
-              className="grid grid-cols-[96px_150px_1fr_280px] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
+              className="grid grid-cols-[132px_150px_1fr_280px] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
             >
-              <span className="font-black text-white">{row.month}개월차</span>
+              <span>
+                <span className="block font-black text-white">{row.monthLabel}</span>
+                <span className="mt-1 block text-xs font-bold text-gray-600">{row.month}개월차</span>
+              </span>
               <span className="font-black text-emerald-100">{formatCurrency(row.amount)}원</span>
               <div className="h-2 overflow-hidden rounded-full bg-white/10">
                 <div
