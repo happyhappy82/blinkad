@@ -166,6 +166,13 @@ type GoogleAdsApiResponse = {
   sourceSyncedAt?: string
 }
 
+type AdsMonthlyReportPreview = {
+  periodLabel: string
+  summaryLines: string[]
+  actionItems: string[]
+  campaignLines: string[]
+}
+
 type StoreMetric = {
   label: string
   value: string
@@ -3722,7 +3729,7 @@ function StoreOperationsPanel({
                 </div>
               ) : null}
               {activeWorkspace.key === 'googleAds' ? (
-                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
+                <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
               {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               <div className="border-b border-white/10 p-5 md:p-6">
@@ -3939,7 +3946,6 @@ function BlinkAdMarketingPanel() {
           storeTitle="블링크애드"
           heading="블링크애드 Google Ads 성과"
           description="Google Ads API에서 블링크애드 클라이언트유치 캠페인의 노출, 클릭, 광고비를 직접 불러옵니다."
-          emptyValue="연동 전"
         />
       </div>
     </section>
@@ -3947,17 +3953,13 @@ function BlinkAdMarketingPanel() {
 }
 
 function GoogleAdsPerformancePanel({
-  workspace,
   storeTitle,
   heading,
   description,
-  emptyValue = '-',
 }: {
-  workspace?: StoreProductWorkspace
   storeTitle: string
   heading?: string
   description?: string
-  emptyValue?: string
 }) {
   const [adsData, setAdsData] = useState<GoogleAdsApiResponse | null>(null)
   const [adsLoading, setAdsLoading] = useState(false)
@@ -3984,63 +3986,10 @@ function GoogleAdsPerformancePanel({
   }, [loadAdsData])
 
   const summary = adsData?.summary
-  const previousSummary = adsData?.previousSummary
-  const ctr = summary ? percent(summary.clicks, summary.impressions) : ''
-  const previousCtr = previousSummary ? percent(previousSummary.clicks, previousSummary.impressions) : ''
-  const cpc = summary && summary.clicks > 0 ? summary.costMicros / 1000000 / summary.clicks : 0
-  const previousCpc = previousSummary && previousSummary.clicks > 0 ? previousSummary.costMicros / 1000000 / previousSummary.clicks : 0
   const campaignSummaries = adsData?.campaignSummaries || []
-  const rows = [
-    {
-      label: '노출',
-      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.impressions, previousSummary.impressions, '회') : '-',
-      basis: '캠페인/광고그룹별 impressions',
-      action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
-    },
-    {
-      label: '클릭',
-      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.clicks, previousSummary.clicks, '건') : '-',
-      basis: '광고 클릭수',
-      action: '실제 매장 행동으로 이어지는 클릭인지 로컬 액션과 함께 봅니다.',
-    },
-    {
-      label: 'CTR',
-      value: ctr || '-',
-      delta: ctr && previousCtr ? `${previousCtr} → ${ctr}` : '-',
-      basis: '클릭 / 노출',
-      action: '노출 대비 클릭 효율이 낮으면 키워드와 광고문안을 조정합니다.',
-    },
-    {
-      label: '광고비',
-      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.costMicros / 1000000, previousSummary.costMicros / 1000000, '원') : '-',
-      basis: '월 예산 대비 소진액',
-      action: '운영 수수료와 광고비를 분리해 추적합니다.',
-    },
-    {
-      label: 'CPC',
-      value: cpc ? `${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
-      delta: cpc && previousCpc ? `${Math.round(previousCpc).toLocaleString('ko-KR')}원 → ${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
-      basis: '광고비 / 클릭',
-      action: '클릭 단가가 오르면 지역·서비스 키워드 예산을 다시 나눕니다.',
-    },
-    {
-      label: '로컬 액션',
-      value: summary ? formatCount(summary.localActions) : emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.localActions, previousSummary.localActions, '건') : '-',
-      basis: '길찾기, 전화, 웹사이트 클릭',
-      action: 'GBP 행동과 중복 집계하지 않고 광고 기여 행동으로 따로 봅니다.',
-    },
-  ]
-  const localActionCards = summary
-    ? [
-        { label: '길찾기', value: summary.localActionDirectionRequests },
-        { label: '전화', value: summary.localActionCalls },
-        { label: '웹사이트', value: summary.localActionWebsiteClicks },
-      ]
-    : []
+  const monthlyReportPreview = adsData
+    ? buildAdsMonthlyReportPreview(storeTitle, adsData, campaignSummaries)
+    : null
 
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
@@ -4152,36 +4101,50 @@ function GoogleAdsPerformancePanel({
         </div>
       ) : null}
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-        <div className="min-w-[760px]">
-          <div className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-            <span>지표</span>
-            <span>현재값</span>
-            <span>전기 비교</span>
-            <span>확인 기준</span>
-            <span>운영 액션</span>
+      {monthlyReportPreview ? (
+        <div className="mt-4 rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Monthly Report</p>
+              <h5 className="mt-2 text-lg font-black text-white">월간 광고 성과 보고서 미리보기</h5>
+            </div>
+            <p className="text-xs font-black text-gray-600">{monthlyReportPreview.periodLabel} · 월 1회 보고</p>
           </div>
-          {rows.map((row) => (
-            <div key={row.label} className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
-              <span className="font-black text-white">{row.label}</span>
-              <span className="font-black text-blue-100">{adsLoading ? '확인 중' : row.value || '-'}</span>
-              <span className="font-bold text-gray-400">{adsLoading ? '-' : row.delta}</span>
-              <span className="font-semibold leading-6 text-gray-400 keep-all">{row.basis}</span>
-              <span className="font-semibold leading-6 text-gray-500 keep-all">{row.action}</span>
+          <div className="grid gap-4 p-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <p className="text-xs font-black text-gray-500">보고 요약</p>
+              <div className="mt-3 space-y-3">
+                {monthlyReportPreview.summaryLines.map((line) => (
+                  <p key={line} className="text-sm font-semibold leading-6 text-gray-300 keep-all">
+                    {line}
+                  </p>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {localActionCards.length ? (
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {localActionCards.map((item) => (
-            <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-              <p className="text-xs font-black text-gray-500">{item.label}</p>
-              <p className="mt-3 text-3xl font-black text-white">{item.value.toLocaleString('ko-KR')}</p>
-              <p className="mt-2 text-xs font-semibold text-gray-500">광고 로컬 액션 기준</p>
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <p className="text-xs font-black text-gray-500">다음 운영 액션</p>
+              <div className="mt-3 space-y-2">
+                {monthlyReportPreview.actionItems.map((item, index) => (
+                  <div key={item} className="flex gap-3 rounded-md bg-white/[0.03] px-3 py-2">
+                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded bg-white text-[11px] font-black text-black">
+                      {index + 1}
+                    </span>
+                    <p className="text-sm font-semibold leading-6 text-gray-300 keep-all">{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4 lg:col-span-2">
+              <p className="text-xs font-black text-gray-500">캠페인별 보고 문구</p>
+              <div className="mt-3 grid gap-2 md:grid-cols-2">
+                {monthlyReportPreview.campaignLines.map((line) => (
+                  <p key={line} className="rounded-md bg-white/[0.03] px-3 py-2 text-sm font-semibold leading-6 text-gray-400 keep-all">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -4417,11 +4380,6 @@ function autoSaveStatusBadge(status: string) {
   return 'border-white/15 bg-white/5 text-gray-400'
 }
 
-function metricValue(workspace: StoreProductWorkspace | undefined, keyword: string) {
-  if (!workspace) return ''
-  return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
-}
-
 function formatCount(value: number) {
   return `${Math.round(value || 0).toLocaleString('ko-KR')}`
 }
@@ -4435,14 +4393,76 @@ function percent(numerator: number, denominator: number) {
   return `${((numerator / denominator) * 100).toFixed(1)}%`
 }
 
-function deltaText(current: number, previous: number, unit: string) {
-  if (!previous && !current) return '-'
-  if (!previous) return `신규 ${Math.round(current).toLocaleString('ko-KR')}${unit}`
+function buildAdsMonthlyReportPreview(
+  storeTitle: string,
+  data: GoogleAdsApiResponse,
+  campaigns: AdsCampaignSummary[]
+): AdsMonthlyReportPreview {
+  const summary = data.summary
+  const periodLabel =
+    data.period.firstDate && data.period.lastDate
+      ? `${data.period.firstDate} ~ ${data.period.lastDate}`
+      : `최근 ${data.period.days || 30}일`
+  const ctr = percent(summary.clicks, summary.impressions) || '-'
+  const cpc = summary.clicks > 0 ? `${Math.round(summary.costMicros / 1000000 / summary.clicks).toLocaleString('ko-KR')}원` : '-'
+  const hasTraffic = summary.impressions > 0 || summary.clicks > 0 || summary.costMicros > 0 || summary.localActions > 0
+  const allPaused = campaigns.length > 0 && campaigns.every((campaign) => campaign.status.toUpperCase() === 'PAUSED')
+  const enabledCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'ENABLED').length
+  const pausedCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'PAUSED').length
+  const topCampaign = [...campaigns].sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )[0]
 
-  const diff = current - previous
-  const rate = (diff / previous) * 100
-  const sign = diff > 0 ? '+' : ''
-  return `${sign}${Math.round(diff).toLocaleString('ko-KR')}${unit} (${sign}${rate.toFixed(1)}%)`
+  const statusLine = allPaused
+    ? `${storeTitle}의 Google Ads 캠페인 ${campaigns.length}개는 현재 모두 일시중지 상태입니다.`
+    : `${storeTitle}의 Google Ads 캠페인 ${campaigns.length}개 중 운영중 ${enabledCount}개, 일시중지 ${pausedCount}개로 확인됩니다.`
+
+  const performanceLine = hasTraffic
+    ? `조회 기간 동안 전체 노출 ${formatCount(summary.impressions)}회, 클릭 ${formatCount(summary.clicks)}건, CTR ${ctr}, 광고비 ${formatCostMicros(summary.costMicros)}, 평균 CPC ${cpc}, 광고 액션 ${formatCount(summary.localActions)}건입니다.`
+    : '조회 기간 내 노출, 클릭, 광고비, 광고 액션은 아직 발생하지 않았습니다.'
+
+  const topCampaignLine =
+    topCampaign && hasTraffic
+      ? `가장 반응이 높은 캠페인은 ${topCampaign.name}이며, 클릭 ${formatCount(topCampaign.clicks)}건과 광고비 ${formatCostMicros(topCampaign.costMicros)} 기준으로 우선 확인합니다.`
+      : '캠페인별 성과 비교는 실제 집행 데이터가 쌓인 뒤 언어별, 키워드별 반응 차이를 중심으로 정리합니다.'
+
+  const actionItems = allPaused
+    ? [
+        '집행 시작 전 캠페인 상태, 일 예산, 최종 URL, 위치 확장 연결을 먼저 확인합니다.',
+        '한국어와 영어 캠페인을 우선 점검하고, 일본어·중국어 캠페인은 예산과 검색량을 보며 순차적으로 운영합니다.',
+        '집행 첫 주에는 검색어, CPC, 클릭 후 행동을 확인해 제외 키워드와 광고 문구를 조정합니다.',
+      ]
+    : summary.impressions > 0 && summary.clicks === 0
+      ? [
+          '노출은 발생했지만 클릭이 없으므로 검색어와 광고 문구의 매장 방문 의도를 다시 확인합니다.',
+          '지역명, 메뉴명, 외국어 키워드별로 CTR 차이를 보고 예산 배분을 조정합니다.',
+          '클릭을 유도할 대표 메뉴, 위치, 예약 가능 여부를 광고 문구에 반영합니다.',
+        ]
+      : summary.clicks > 0 && summary.localActions === 0
+        ? [
+            '클릭 이후 길찾기, 전화, 웹사이트 행동이 이어지는지 전환 추적 기준을 재점검합니다.',
+            '랜딩 페이지와 Google 프로필의 영업시간, 위치, 대표 메뉴 정보가 광고와 일치하는지 확인합니다.',
+            '클릭 단가가 높은 캠페인은 검색어 리포트 기준으로 제외 키워드를 추가합니다.',
+          ]
+        : [
+            '성과가 발생한 캠페인의 검색어와 광고 문구를 우선 유지하고 예산 소진 속도를 확인합니다.',
+            'CTR과 CPC가 불리한 캠페인은 키워드 묶음과 광고 문구를 분리해 테스트합니다.',
+            '길찾기와 전화 행동이 발생한 시간대, 언어권, 키워드를 다음 달 운영 기준으로 정리합니다.',
+          ]
+
+  const campaignLines = campaigns.length
+    ? campaigns.slice(0, 6).map((campaign) => {
+        const campaignCtr = percent(campaign.clicks, campaign.impressions) || '-'
+        return `${campaign.name}: ${campaign.status}, 노출 ${formatCount(campaign.impressions)}회, 클릭 ${formatCount(campaign.clicks)}건, CTR ${campaignCtr}, 광고비 ${formatCostMicros(campaign.costMicros)}, 액션 ${formatCount(campaign.localActions)}건`
+      })
+    : ['연결된 캠페인이 아직 없어 월간 보고서에는 계정 연결 상태와 데이터 적재 필요 항목을 먼저 기록합니다.']
+
+  return {
+    periodLabel,
+    summaryLines: [statusLine, performanceLine, topCampaignLine],
+    actionItems,
+    campaignLines,
+  }
 }
 
 function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean) {
