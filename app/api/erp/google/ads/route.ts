@@ -31,6 +31,15 @@ type GoogleAdsCampaignSummary = GoogleAdsCampaign &
     previousSummary: AdsSummary
   }
 
+type GoogleAdsSearchTermSummary = {
+  searchTerm: string
+  campaignName: string
+  adGroupName: string
+  impressions: number
+  clicks: number
+  costMicros: number
+}
+
 type GoogleAdsSearchRow = {
   campaign?: {
     id?: string | number
@@ -51,6 +60,13 @@ type GoogleAdsSearchRow = {
     manager?: boolean
     level?: string | number
     status?: string
+  }
+  adGroup?: {
+    id?: string | number
+    name?: string
+  }
+  searchTermView?: {
+    searchTerm?: string
   }
   metrics?: {
     impressions?: string | number
@@ -571,6 +587,37 @@ function buildGoogleAdsCampaignSummaries(
   })
 }
 
+function buildGoogleAdsSearchTermSummaries(rows: GoogleAdsSearchRow[]): GoogleAdsSearchTermSummary[] {
+  const grouped = new Map<string, GoogleAdsSearchTermSummary>()
+
+  rows.forEach((row) => {
+    const searchTerm = (row.searchTermView?.searchTerm || '').trim()
+    if (!searchTerm) return
+
+    const campaignName = row.campaign?.name || ''
+    const adGroupName = row.adGroup?.name || ''
+    const key = `${searchTerm}\u0000${campaignName}\u0000${adGroupName}`
+    const current =
+      grouped.get(key) || {
+        searchTerm,
+        campaignName,
+        adGroupName,
+        impressions: 0,
+        clicks: 0,
+        costMicros: 0,
+      }
+
+    current.impressions += numberValue(row.metrics?.impressions)
+    current.clicks += numberValue(row.metrics?.clicks)
+    current.costMicros += numberValue(row.metrics?.costMicros)
+    grouped.set(key, current)
+  })
+
+  return Array.from(grouped.values()).sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )
+}
+
 async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStoreConfig) {
   const accessToken = await fetchGoogleAdsAccessToken()
   const campaignName =
@@ -601,6 +648,7 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
       adsCustomerIds: [publicGoogleAdsId(customerId)],
       campaigns,
       campaignSummaries: [],
+      searchTerms: [],
       sourceSyncedAt: new Date().toISOString(),
     }
   }
@@ -658,6 +706,37 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
     `,
     loginCustomerId
   )
+  let searchTerms: GoogleAdsSearchTermSummary[] = []
+  let searchTermMessage = ''
+  try {
+    const searchTermRows = await googleAdsSearch(
+      accessToken,
+      customerId,
+      `
+        SELECT
+          campaign.name,
+          ad_group.name,
+          search_term_view.search_term,
+          metrics.impressions,
+          metrics.clicks,
+          metrics.cost_micros
+        FROM search_term_view
+        WHERE ${campaignWhere}
+          AND segments.date BETWEEN '${startDate}' AND '${endDate}'
+          AND metrics.clicks > 0
+        ORDER BY metrics.clicks DESC
+        LIMIT 50
+      `,
+      loginCustomerId
+    )
+    searchTerms = buildGoogleAdsSearchTermSummaries(searchTermRows).slice(0, 50)
+  } catch (error) {
+    searchTermMessage =
+      error instanceof Error
+        ? `검색어 세부 데이터를 불러오지 못했습니다: ${error.message}`
+        : '검색어 세부 데이터를 불러오지 못했습니다.'
+  }
+
   const statuses = Array.from(new Set(campaigns.map((campaign) => campaign.status).filter(Boolean)))
   const campaignSummaries = buildGoogleAdsCampaignSummaries(campaignRows, summaryRows, previousRows)
 
@@ -689,6 +768,8 @@ async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStor
     adsCustomerIds: [publicGoogleAdsId(customerId)],
     campaigns,
     campaignSummaries,
+    searchTerms,
+    searchTermMessage,
     sourceSyncedAt: new Date().toISOString(),
   }
 }
@@ -718,6 +799,8 @@ export async function GET(request: NextRequest) {
         daily: [],
         adsCustomerIds: [],
         campaigns: [],
+        campaignSummaries: [],
+        searchTerms: [],
       })
     }
   }

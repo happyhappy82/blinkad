@@ -145,6 +145,15 @@ type AdsCampaignSummary = AdsCampaign &
     previousSummary?: AdsSummary
   }
 
+type AdsSearchTermSummary = {
+  searchTerm: string
+  campaignName: string
+  adGroupName: string
+  impressions: number
+  clicks: number
+  costMicros: number
+}
+
 type GoogleAdsApiResponse = {
   source: 'bigquery' | 'google_ads_api' | 'fallback'
   connected: boolean
@@ -162,6 +171,8 @@ type GoogleAdsApiResponse = {
   adsCustomerIds: string[]
   campaigns?: AdsCampaign[]
   campaignSummaries?: AdsCampaignSummary[]
+  searchTerms?: AdsSearchTermSummary[]
+  searchTermMessage?: string
   tableRowCount?: number
   sourceSyncedAt?: string
 }
@@ -4474,6 +4485,7 @@ function GoogleAdsPerformancePanel({
 
   const summary = adsData?.summary
   const campaignSummaries = adsData?.campaignSummaries || []
+  const searchTerms = adsData?.searchTerms || []
   const monthlyReportPreview = adsData
     ? buildAdsMonthlyReportPreview(storeTitle, adsData, campaignSummaries)
     : null
@@ -4585,6 +4597,63 @@ function GoogleAdsPerformancePanel({
               })}
             </div>
           </div>
+        </div>
+      ) : null}
+
+      {adsData?.source === 'google_ads_api' ? (
+        <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="flex flex-col gap-1 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-black text-white">클릭 발생 검색어</p>
+              <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                실제 사용자가 검색한 검색어 기준입니다. Google Ads 정책상 낮은 볼륨 검색어는 일부 표시되지 않을 수 있습니다.
+              </p>
+            </div>
+            <p className="text-xs font-bold text-gray-500">
+              {searchTerms.length ? `상위 ${searchTerms.length}개` : '검색어 없음'}
+            </p>
+          </div>
+          {searchTerms.length ? (
+            <div className="overflow-x-auto">
+              <div className="min-w-[980px]">
+                <div className="grid grid-cols-[minmax(240px,1.4fr)_minmax(240px,1.2fr)_minmax(160px,0.8fr)_repeat(4,minmax(92px,0.55fr))] gap-3 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.08em] text-gray-500">
+                  <span>검색어</span>
+                  <span>캠페인</span>
+                  <span>광고그룹</span>
+                  <span className="text-right">노출</span>
+                  <span className="text-right">클릭</span>
+                  <span className="text-right">CTR</span>
+                  <span className="text-right">광고비</span>
+                </div>
+                {searchTerms.map((term) => (
+                  <div
+                    key={`${term.searchTerm}-${term.campaignName}-${term.adGroupName}`}
+                    className="grid grid-cols-[minmax(240px,1.4fr)_minmax(240px,1.2fr)_minmax(160px,0.8fr)_repeat(4,minmax(92px,0.55fr))] gap-3 border-t border-white/10 px-4 py-4 text-sm"
+                  >
+                    <span className="break-all font-black text-white">{term.searchTerm}</span>
+                    <span className="break-all font-bold text-gray-300">{term.campaignName || '-'}</span>
+                    <span className="break-all font-bold text-gray-500">{term.adGroupName || '-'}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(term.impressions)}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(term.clicks)}</span>
+                    <span className="text-right font-bold text-gray-300">{percent(term.clicks, term.impressions) || '-'}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCostMicros(term.costMicros)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="px-4 py-5 text-sm font-semibold leading-6 text-gray-500 keep-all">
+              {adsData.searchTermMessage ||
+                (summary?.clicks
+                  ? '클릭은 발생했지만 Google Ads에서 공개 가능한 검색어가 아직 내려오지 않았습니다.'
+                  : '클릭이 발생한 검색어가 아직 없습니다.')}
+            </div>
+          )}
+          {adsData.searchTermMessage && searchTerms.length ? (
+            <div className="border-t border-white/10 px-4 py-3 text-xs font-semibold leading-5 text-amber-100 keep-all">
+              {adsData.searchTermMessage}
+            </div>
+          ) : null}
         </div>
       ) : null}
 
@@ -4908,7 +4977,11 @@ function buildAdsMonthlyReportPreview(
   const allPaused = campaigns.length > 0 && campaigns.every((campaign) => campaign.status.toUpperCase() === 'PAUSED')
   const enabledCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'ENABLED').length
   const pausedCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'PAUSED').length
+  const searchTerms = data.searchTerms || []
   const topCampaign = [...campaigns].sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )[0]
+  const topSearchTerm = [...searchTerms].sort(
     (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
   )[0]
 
@@ -4924,6 +4997,13 @@ function buildAdsMonthlyReportPreview(
     topCampaign && hasTraffic
       ? `가장 반응이 높은 캠페인은 ${topCampaign.name}이며, 클릭 ${formatCount(topCampaign.clicks)}건과 광고비 ${formatCostMicros(topCampaign.costMicros)} 기준으로 우선 확인합니다.`
       : '캠페인별 성과 비교는 실제 집행 데이터가 쌓인 뒤 언어별, 키워드별 반응 차이를 중심으로 정리합니다.'
+
+  const topSearchTermLine =
+    topSearchTerm && summary.clicks > 0
+      ? `클릭이 발생한 주요 검색어는 "${topSearchTerm.searchTerm}"이며, 노출 ${formatCount(topSearchTerm.impressions)}회, 클릭 ${formatCount(topSearchTerm.clicks)}건, 광고비 ${formatCostMicros(topSearchTerm.costMicros)}로 확인됩니다.`
+      : summary.clicks > 0
+        ? '클릭은 발생했으나 Google Ads에서 공개 가능한 검색어가 아직 제한적이어서, 다음 보고 시 검색어 공개 여부를 함께 확인합니다.'
+        : ''
 
   const actionItems = allPaused
     ? [
@@ -4958,7 +5038,7 @@ function buildAdsMonthlyReportPreview(
 
   return {
     periodLabel,
-    summaryLines: [statusLine, performanceLine, topCampaignLine],
+    summaryLines: [statusLine, performanceLine, topCampaignLine, topSearchTermLine].filter(Boolean),
     actionItems,
     campaignLines,
   }
