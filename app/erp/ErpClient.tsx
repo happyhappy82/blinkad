@@ -3539,6 +3539,7 @@ function StoreOperationsPanel({
           ? '자동저장됨'
           : '자동저장 대기'
     : ''
+  const showOperationalReportPanels = activeWorkspace?.key !== 'googleAds'
 
   useEffect(() => {
     reportDraftsRef.current = reportDrafts
@@ -3941,11 +3942,13 @@ function StoreOperationsPanel({
             </div>
           </div>
 
-          {selectedStore.processSteps?.length ? <StoreProcessRoadmap store={selectedStore} /> : null}
+          {showOperationalReportPanels && selectedStore.processSteps?.length ? (
+            <StoreProcessRoadmap store={selectedStore} />
+          ) : null}
 
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              {weeklyReportItems.length && selectedWeeklyReport ? (
+              {showOperationalReportPanels && weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
@@ -4163,6 +4166,7 @@ function StoreOperationsPanel({
                 <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
               {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
+              {showOperationalReportPanels ? (
               <div className="border-b border-white/10 p-5 md:p-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                   <div>
@@ -4271,6 +4275,7 @@ function StoreOperationsPanel({
                   )}
                 </div>
               </div>
+              ) : null}
             </div>
           ) : (
             <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
