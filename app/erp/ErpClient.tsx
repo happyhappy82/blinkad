@@ -193,6 +193,7 @@ type StoreMetric = {
 type ContractRevenueRecord = {
   storeName: string
   contractMonths: number
+  contractStartDate?: string
   productGroup: string
   productDetail: string
   monthlyAmounts: number[]
@@ -206,6 +207,12 @@ type WeeklyReportItem = {
   draftMemo: string
 }
 
+type WebsiteBlogCycle = {
+  index: number
+  start: Date
+  end: Date
+}
+
 const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 
@@ -213,6 +220,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '언리미티드',
     contractMonths: 1,
+    contractStartDate: '2026-06-01',
     productGroup: '구글애즈 + 구글프로필관리',
     productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
     monthlyAmounts: [990_000],
@@ -221,6 +229,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '웰믹스 광화문점',
     contractMonths: 1,
+    contractStartDate: '2026-06-10',
     productGroup: '구글애즈 + 구글프로필관리',
     productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
     monthlyAmounts: [990_000],
@@ -229,6 +238,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '주도락 강남점',
     contractMonths: 1,
+    contractStartDate: '2026-06-20',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_400_000],
@@ -237,6 +247,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '주도락 마곡발산점',
     contractMonths: 1,
+    contractStartDate: '2026-06-20',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_400_000],
@@ -245,6 +256,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '바다당 해운대점',
     contractMonths: 12,
+    contractStartDate: '2026-06-16',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '프로필·애즈·웹사이트/블로그 통합 운영',
     monthlyAmounts: [
@@ -1368,6 +1380,14 @@ function formatBillingDate(value: string) {
     month: '2-digit',
     day: '2-digit',
     weekday: 'short',
+  }).format(date)
+}
+
+function formatDateShort(date: Date) {
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
   }).format(date)
 }
 
@@ -3518,7 +3538,7 @@ function StoreOperationsPanel({
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
   const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
-  const [websiteBlogMonthAnchor, setWebsiteBlogMonthAnchor] = useState(() => startOfMonth(getKstCalendarDate()))
+  const [websiteBlogCycleIndex, setWebsiteBlogCycleIndex] = useState(0)
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
   const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
@@ -3543,9 +3563,17 @@ function StoreOperationsPanel({
     report: StoreWeeklyReport
     date: Date
   } | null>(null)
+  const websiteBlogContractStart = useMemo(
+    () => websiteBlogContractStartForStore(selectedStore?.title),
+    [selectedStore?.title]
+  )
+  const websiteBlogCycle = useMemo(
+    () => websiteBlogCycleRange(websiteBlogContractStart, websiteBlogCycleIndex),
+    [websiteBlogContractStart, websiteBlogCycleIndex]
+  )
   const websiteBlogDefaultReports = useMemo(
-    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForMonth(websiteBlogMonthAnchor) : []),
-    [activeWorkspace?.key, websiteBlogMonthAnchor]
+    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForCycle(websiteBlogCycle) : []),
+    [activeWorkspace?.key, websiteBlogCycle]
   )
   const workspaceDefaultReports = activeWorkspace?.weeklyReports?.length
     ? activeWorkspace.weeklyReports
@@ -3615,6 +3643,20 @@ function StoreOperationsPanel({
 
     return () => window.clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    if (activeWorkspace?.key !== 'websiteBlog') return
+
+    setWebsiteBlogCycleIndex(websiteBlogCurrentCycleIndex(websiteBlogContractStart, getKstCalendarDate()))
+  }, [activeWorkspace?.key, selectedStore?.title, websiteBlogContractStart])
+
+  useEffect(() => {
+    if (activeWorkspace?.key !== 'websiteBlog') return
+
+    setWeeklyReports(websiteBlogDefaultReports)
+    setReportDrafts(Object.fromEntries(websiteBlogDefaultReports.map((report) => [report.date, report.memo || ''])))
+    setSelectedWeeklyReportDate(websiteBlogDefaultReports[0]?.date || '')
+  }, [activeWorkspace?.key, selectedStore?.title, websiteBlogCycleIndex, websiteBlogDefaultReports])
 
   useEffect(() => {
     if (workspaces.length && !workspaces.some((workspace) => workspace.key === activeProduct)) {
@@ -4263,14 +4305,10 @@ function StoreOperationsPanel({
                   updatingDate={updatingReportDate}
                   selectedUpdating={selectedWeeklyReportUpdating}
                   autoSaveStatus={selectedWeeklyReportAutoSaveStatus}
-                  monthAnchor={websiteBlogMonthAnchor}
+                  cycle={websiteBlogCycle}
                   onRefresh={() => loadWeeklyReports()}
-                  onPreviousMonth={() =>
-                    setWebsiteBlogMonthAnchor((current) => new Date(current.getFullYear(), current.getMonth() - 1, 1))
-                  }
-                  onNextMonth={() =>
-                    setWebsiteBlogMonthAnchor((current) => new Date(current.getFullYear(), current.getMonth() + 1, 1))
-                  }
+                  onPreviousCycle={() => setWebsiteBlogCycleIndex((current) => Math.max(0, current - 1))}
+                  onNextCycle={() => setWebsiteBlogCycleIndex((current) => current + 1)}
                   onSelectDate={setSelectedWeeklyReportDate}
                   onChangeMemo={(dateKey, value) =>
                     setReportDrafts((current) => ({
@@ -4943,10 +4981,10 @@ function WebsiteBlogWorkLogPanel({
   updatingDate,
   selectedUpdating,
   autoSaveStatus,
-  monthAnchor,
+  cycle,
   onRefresh,
-  onPreviousMonth,
-  onNextMonth,
+  onPreviousCycle,
+  onNextCycle,
   onSelectDate,
   onChangeMemo,
   onSave,
@@ -4959,24 +4997,24 @@ function WebsiteBlogWorkLogPanel({
   updatingDate: string | null
   selectedUpdating: boolean
   autoSaveStatus: string
-  monthAnchor: Date
+  cycle: WebsiteBlogCycle
   onRefresh: () => void
-  onPreviousMonth: () => void
-  onNextMonth: () => void
+  onPreviousCycle: () => void
+  onNextCycle: () => void
   onSelectDate: (dateKey: string) => void
   onChangeMemo: (dateKey: string, value: string) => void
   onSave: (item: WeeklyReportItem, status: StoreWeeklyReportStatus, memo: string) => void
 }) {
-  const monthGroups = websiteBlogMonthGroups(items, monthAnchor)
+  const cycleGroups = websiteBlogCycleGroups(items, cycle)
 
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
       <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <p className="text-sm font-bold text-brand-blue">Monthly Blog Work Log</p>
-          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 월 8회 작업현황</h4>
+          <p className="text-sm font-bold text-brand-blue">Operation Cycle Work Log</p>
+          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 운영회차별 8회 작업현황</h4>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            주 2회 기준으로 월 8회 작업 슬롯을 주차별로 관리합니다.
+            계약 시작일 기준 1개월 운영기간마다 8회 작업 슬롯을 주차별로 관리합니다.
           </p>
           <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
             <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-gray-200">
@@ -4997,24 +5035,27 @@ function WebsiteBlogWorkLogPanel({
           <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={onPreviousMonth}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
-              aria-label="이전 달"
+              onClick={onPreviousCycle}
+              disabled={cycle.index === 0}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:text-gray-700 disabled:hover:bg-transparent"
+              aria-label="이전 운영회차"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
-            <p className="min-w-36 text-center text-sm font-black text-white">{formatCalendarRange('month', monthAnchor)}</p>
+            <p className="min-w-64 text-center text-sm font-black text-white">
+              {cycle.index + 1}개월차 · {formatDateShort(cycle.start)}~{formatDateShort(cycle.end)}
+            </p>
             <button
               type="button"
-              onClick={onNextMonth}
+              onClick={onNextCycle}
               className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
-              aria-label="다음 달"
+              aria-label="다음 운영회차"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
           <p className="text-sm font-semibold leading-6 text-gray-500 xl:text-right keep-all">
-            {loading ? '보고 DB 확인 중입니다.' : message || '월별 웹사이트·블로그 작업내역을 확인합니다.'}
+            {loading ? '보고 DB 확인 중입니다.' : message || '운영회차별 웹사이트·블로그 작업내역을 확인합니다.'}
           </p>
           <button
             type="button"
@@ -5028,8 +5069,8 @@ function WebsiteBlogWorkLogPanel({
       </div>
 
       <div className="mt-5 grid gap-3 xl:grid-cols-4">
-        {monthGroups.map((group) => (
-          <section key={`website-blog-month-group-${group.label}`} className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
+        {cycleGroups.map((group) => (
+          <section key={`website-blog-cycle-group-${group.label}`} className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-black text-white">{group.label}</p>
@@ -5309,17 +5350,47 @@ function reportsForStoreWeek(store: OperationRow, apiReports: StoreWeeklyReport[
   })
 }
 
-function websiteBlogReportsForMonth(monthAnchor: Date): StoreWeeklyReport[] {
-  const monthStart = startOfMonth(monthAnchor)
-  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
-  const slotDays = Array.from({ length: 4 }, (_, weekIndex) => {
-    const startDay = weekIndex * 7 + 1
-    return [Math.min(startDay + 1, lastDate), Math.min(startDay + 4, lastDate)]
-  }).flat()
+function websiteBlogContractStartForStore(storeTitle?: string) {
+  const contract = contractRevenueRecords.find((record) => record.storeName === storeTitle)
+  if (contract?.contractStartDate) return parseLocalDate(contract.contractStartDate)
+  return startOfMonth(getKstCalendarDate())
+}
 
-  return slotDays.map((day, index) => ({
+function websiteBlogCurrentCycleIndex(contractStart: Date, today: Date) {
+  if (today < contractStart) return 0
+
+  for (let index = 0; index < 60; index += 1) {
+    const cycle = websiteBlogCycleRange(contractStart, index)
+    if (today >= cycle.start && today <= cycle.end) return index
+  }
+
+  return 0
+}
+
+function websiteBlogCycleRange(contractStart: Date, cycleIndex: number): WebsiteBlogCycle {
+  const start = addCalendarMonths(contractStart, cycleIndex)
+  const nextStart = addCalendarMonths(contractStart, cycleIndex + 1)
+
+  return {
+    index: cycleIndex,
+    start,
+    end: addDays(nextStart, -1),
+  }
+}
+
+function websiteBlogReportsForCycle(cycle: WebsiteBlogCycle): StoreWeeklyReport[] {
+  const slotDays = Array.from({ length: 4 }, (_, weekIndex) => {
+    const segmentStart = addDays(cycle.start, weekIndex * 7)
+    const segmentEnd = weekIndex === 3 ? cycle.end : minDate(addDays(segmentStart, 6), cycle.end)
+    const firstSlot = minDate(addDays(segmentStart, 1), segmentEnd)
+    const secondSlot = minDate(addDays(segmentStart, 4), segmentEnd)
+
+    return [firstSlot, secondSlot]
+  })
+
+  return slotDays.flat().map((date, index) => ({
     dayOffset: index,
-    date: toISODate(new Date(monthStart.getFullYear(), monthStart.getMonth(), day)),
+    date: toISODate(date),
     status: index === 0 ? '작성중' : '보고대기',
     title: `${index + 1}회차 블로그 작업내역`,
     memo: '',
@@ -5355,23 +5426,29 @@ function upsertReportHistory(current: StoreWeeklyReport[], report: StoreWeeklyRe
   )
 }
 
-function websiteBlogMonthGroups(items: WeeklyReportItem[], monthAnchor: Date) {
+function websiteBlogCycleGroups(items: WeeklyReportItem[], cycle: WebsiteBlogCycle) {
   return Array.from({ length: 4 }, (_, weekIndex) => ({
     label: `${weekIndex + 1}주차`,
-    rangeLabel: websiteBlogMonthWeekRangeLabel(monthAnchor, weekIndex),
+    rangeLabel: websiteBlogCycleWeekRangeLabel(cycle, weekIndex),
     items: items.filter((item) => Math.floor(item.report.dayOffset / 2) === weekIndex),
   }))
 }
 
-function websiteBlogMonthWeekRangeLabel(monthAnchor: Date, weekIndex: number) {
-  const monthStart = startOfMonth(monthAnchor)
-  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
-  const startDay = weekIndex * 7 + 1
-  const endDay = weekIndex === 3 ? lastDate : Math.min(startDay + 6, lastDate)
-  const start = new Date(monthStart.getFullYear(), monthStart.getMonth(), startDay)
-  const end = new Date(monthStart.getFullYear(), monthStart.getMonth(), endDay)
+function websiteBlogCycleWeekRangeLabel(cycle: WebsiteBlogCycle, weekIndex: number) {
+  const start = addDays(cycle.start, weekIndex * 7)
+  const end = weekIndex === 3 ? cycle.end : minDate(addDays(start, 6), cycle.end)
 
   return `${formatMonthDay(start)}~${formatMonthDay(end)}`
+}
+
+function addCalendarMonths(date: Date, months: number) {
+  const monthStart = new Date(date.getFullYear(), date.getMonth() + months, 1)
+  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
+  return new Date(monthStart.getFullYear(), monthStart.getMonth(), Math.min(date.getDate(), lastDate))
+}
+
+function minDate(a: Date, b: Date) {
+  return a <= b ? a : b
 }
 
 function taskStatusBadge(status: string) {
