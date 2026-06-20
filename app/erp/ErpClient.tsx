@@ -1446,42 +1446,30 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
 
   const checkedCount = settlement.records.filter((record) => checkedItems[record.key]).length
   const completeRate = settlement.records.length ? Math.round((checkedCount / settlement.records.length) * 100) : 0
-  const settlementRows = [
+  const summaryCards = [
     {
-      label: 'VAT 포함 입금액',
-      basis: `정산 대상 ${settlement.records.length}개 매장 ${settlement.monthLabel} 매출 합산`,
-      amount: settlement.grossAmount,
-      highlight: false,
-    },
-    {
-      label: '부가세',
-      basis: 'VAT 포함 입금액에서 분리',
-      amount: settlement.vatAmount,
+      label: '입금액',
+      value: formatRevenueManwon(settlement.grossAmount),
+      detail: `${settlement.records.length}개 매장 합산`,
       highlight: false,
     },
     {
       label: 'VAT 제외 매출',
-      basis: '공급가액 기준',
-      amount: settlement.netSalesAmount,
-      highlight: false,
-    },
-    {
-      label: `${Math.round(settlement.reserveRate * 100)}% 충당금`,
-      basis: '도메인, 구독비 등 운영 예비비',
-      amount: settlement.reserveAmount,
-      highlight: false,
-    },
-    {
-      label: '작업자 운용비',
-      basis: `${formatCurrency(settlement.workerCostPerStore)}원 x ${settlement.records.length}개 매장`,
-      amount: settlement.workerCostAmount,
+      value: formatRevenueManwon(settlement.netSalesAmount),
+      detail: `부가세 ${formatRevenueManwon(settlement.vatAmount)} 제외`,
       highlight: false,
     },
     {
       label: '예상 순수익',
-      basis: 'VAT 제외 매출 - 충당금 - 작업자 운용비',
-      amount: settlement.profitAmount,
+      value: formatRevenueManwon(settlement.profitAmount),
+      detail: `충당금 ${formatRevenueManwon(settlement.reserveAmount)} · 작업비 ${formatRevenueManwon(settlement.workerCostAmount)}`,
       highlight: true,
+    },
+    {
+      label: '체크 완료',
+      value: `${checkedCount}/${settlement.records.length}`,
+      detail: `${completeRate}% 완료`,
+      highlight: false,
     },
   ]
 
@@ -1489,11 +1477,8 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
     <div className="border-b border-white/10 p-5 md:p-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm font-bold text-brand-blue">Settlement Estimate</p>
           <h3 className="mt-2 text-xl font-black text-white">월별 정산 예상표</h3>
-          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            정산월을 선택하면 해당 월의 부가세, 충당금, 작업자 운용비, 예상 순수익과 날짜별 체크 항목을 확인합니다.
-          </p>
+          <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">정산월 선택 후 핵심 금액과 체크 상태만 확인합니다.</p>
         </div>
         <p className="text-xs font-bold leading-5 text-gray-600 md:text-right keep-all">
           제외 매장: {settlement.excludedStoreNames.join(', ')}
@@ -1513,62 +1498,53 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
             }`}
           >
             {summary.monthLabel}
-            <span className="ml-2 text-white/70">{formatRevenueManwon(summary.profitAmount)}</span>
           </button>
         ))}
       </div>
 
-      <div className="mt-4 grid gap-3 md:grid-cols-3">
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-xs font-black text-gray-500">정산 대상</p>
-          <p className="mt-2 text-3xl font-black text-white">{settlement.records.length}개</p>
-          <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
-            {settlement.monthLabel} · {settlement.records.map((record) => record.storeName).join(' · ')}
-          </p>
-        </div>
-        <div className="rounded-lg border border-white/10 bg-black p-4">
-          <p className="text-xs font-black text-gray-500">VAT 제외 매출</p>
-          <p className="mt-2 text-3xl font-black text-white">{formatRevenueManwon(settlement.netSalesAmount)}</p>
-          <p className="mt-2 text-xs font-semibold text-gray-500">부가세 {formatCurrency(settlement.vatAmount)}원 제외</p>
-        </div>
-        <div className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 p-4">
-          <p className="text-xs font-black text-emerald-100/70">예상 순수익</p>
-          <p className="mt-2 text-3xl font-black text-emerald-50">{formatRevenueManwon(settlement.profitAmount)}</p>
-          <p className="mt-2 text-xs font-semibold text-emerald-100/70">5% 충당금, 작업자 운용비 제외</p>
-        </div>
+      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-4">
+        {summaryCards.map((card) => (
+          <div
+            key={`settlement-summary-${card.label}`}
+            className={`border-white/10 px-4 py-4 md:border-r last:border-r-0 ${card.highlight ? 'bg-emerald-300/10' : ''}`}
+          >
+            <p className={card.highlight ? 'text-xs font-black text-emerald-100/70' : 'text-xs font-black text-gray-500'}>{card.label}</p>
+            <p className={card.highlight ? 'mt-2 text-2xl font-black text-emerald-50' : 'mt-2 text-2xl font-black text-white'}>
+              {card.value}
+            </p>
+            <p className={card.highlight ? 'mt-1 text-xs font-semibold text-emerald-100/70' : 'mt-1 text-xs font-semibold text-gray-500'}>
+              {card.detail}
+            </p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-4 rounded-lg border border-white/10 bg-black p-4">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <p className="text-xs font-black text-brand-blue">Date Check</p>
-            <h4 className="mt-2 text-lg font-black text-white">날짜별 정산 체크</h4>
-            <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">
-              월별 정산 확인, 작업자 지급, 충당금 반영 여부를 날짜별로 체크합니다.
-            </p>
+            <h4 className="text-lg font-black text-white">날짜별 정산 체크</h4>
+            <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">{settlement.monthLabel} 정산 대상 매장만 표시합니다.</p>
           </div>
           <div className="text-left md:text-right">
-            <p className="text-2xl font-black text-white">{checkedCount}/{settlement.records.length}</p>
-            <p className="text-xs font-bold text-gray-500">체크 완료 {completeRate}%</p>
+            <p className="text-2xl font-black text-white">{completeRate}%</p>
+            <p className="text-xs font-bold text-gray-500">{checkedCount}/{settlement.records.length} 완료</p>
           </div>
         </div>
 
         <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-          <div className="min-w-[900px]">
-            <div className="grid grid-cols-[72px_112px_180px_130px_130px_130px_130px_110px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+          <div className="min-w-[720px]">
+            <div className="grid grid-cols-[72px_112px_1fr_140px_140px_110px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
               <span>체크</span>
               <span>날짜</span>
               <span>매장</span>
               <span className="text-right">입금액</span>
-              <span className="text-right">VAT 제외</span>
-              <span className="text-right">작업비</span>
               <span className="text-right">예상 순수익</span>
               <span className="text-right">상태</span>
             </div>
             {settlement.records.map((record) => (
               <label
                 key={record.key}
-                className={`grid cursor-pointer grid-cols-[72px_112px_180px_130px_130px_130px_130px_110px] items-center border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
+                className={`grid cursor-pointer grid-cols-[72px_112px_1fr_140px_140px_110px] items-center border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
                   checkedItems[record.key] ? 'bg-emerald-300/10' : ''
                 }`}
               >
@@ -1588,8 +1564,6 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
                 <span className="font-black text-white">{formatDateShort(parseLocalDate(record.checkDate))}</span>
                 <span className="font-black text-white keep-all">{record.storeName}</span>
                 <span className="text-right font-black text-gray-200">{formatCurrency(record.grossAmount)}원</span>
-                <span className="text-right font-black text-gray-200">{formatCurrency(record.netSalesAmount)}원</span>
-                <span className="text-right font-black text-gray-200">{formatCurrency(record.workerCostAmount)}원</span>
                 <span className="text-right font-black text-emerald-100">{formatCurrency(record.profitAmount)}원</span>
                 <span className="text-right">
                   <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${billingStatusBadge(record.status)}`}>
@@ -1599,30 +1573,6 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
               </label>
             ))}
           </div>
-        </div>
-      </div>
-
-      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
-        <div className="min-w-[760px]">
-          <div className="grid grid-cols-[1fr_1.5fr_150px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-            <span>항목</span>
-            <span>계산 기준</span>
-            <span className="text-right">금액</span>
-          </div>
-          {settlementRows.map((row) => (
-            <div
-              key={`settlement-row-${row.label}`}
-              className={`grid grid-cols-[1fr_1.5fr_150px] border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
-                row.highlight ? 'bg-emerald-300/10' : ''
-              }`}
-            >
-              <span className={row.highlight ? 'font-black text-emerald-100' : 'font-black text-white'}>{row.label}</span>
-              <span className="text-xs font-semibold leading-5 text-gray-500 keep-all">{row.basis}</span>
-              <span className={row.highlight ? 'text-right font-black text-emerald-100' : 'text-right font-black text-gray-200'}>
-                {formatCurrency(row.amount)}원
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </div>
