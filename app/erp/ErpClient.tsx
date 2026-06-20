@@ -213,8 +213,23 @@ type ContractRevenueRecord = {
   memo: string
 }
 
+type SettlementRecord = {
+  key: string
+  storeName: string
+  checkDate: string
+  status: BillingStatus
+  memo: string
+  grossAmount: number
+  netSalesAmount: number
+  reserveAmount: number
+  workerCostAmount: number
+  profitAmount: number
+}
+
 type SettlementSummary = {
-  records: ContractRevenueRecord[]
+  monthIndex: number
+  monthLabel: string
+  records: SettlementRecord[]
   excludedStoreNames: string[]
   grossAmount: number
   vatAmount: number
@@ -245,6 +260,7 @@ const SETTLEMENT_EXCLUDED_STORE_NAMES = ['언리미티드']
 const SETTLEMENT_RESERVE_RATE = 0.05
 const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
 const VAT_RATE = 0.1
+const SETTLEMENT_CHECK_STORAGE_KEY = 'blinkad-erp-settlement-checks'
 
 const contractRevenueRecords: ContractRevenueRecord[] = [
   {
@@ -355,17 +371,51 @@ function firstMonthRevenue(record: ContractRevenueRecord) {
   return record.monthlyAmounts[0] || 0
 }
 
-function buildSettlementSummary(records: ContractRevenueRecord[]): SettlementSummary {
-  const settlementRecords = records.filter(
-    (record) => !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && firstMonthRevenue(record) > 0
+function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
+  const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
+
+  return Array.from({ length: maxMonths }, (_, monthIndex) => buildSettlementSummary(records, monthIndex)).filter(
+    (summary) => summary.records.length > 0
   )
-  const grossAmount = settlementRecords.reduce((sum, record) => sum + firstMonthRevenue(record), 0)
+}
+
+function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: number): SettlementSummary {
+  const settlementRecords = records
+    .filter(
+      (record) =>
+        !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && (record.monthlyAmounts[monthIndex] || 0) > 0
+    )
+    .map((record) => {
+      const grossAmount = record.monthlyAmounts[monthIndex] || 0
+      const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+      const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+      const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+      const checkDate = settlementCheckDateForStore(record.storeName, monthIndex)
+
+      return {
+        key: `${monthIndex}:${record.storeName}:${checkDate}`,
+        storeName: record.storeName,
+        checkDate,
+        status: settlementStatusForStore(record.storeName, monthIndex),
+        memo: record.memo,
+        grossAmount,
+        netSalesAmount,
+        reserveAmount,
+        workerCostAmount,
+        profitAmount: netSalesAmount - reserveAmount - workerCostAmount,
+      }
+    })
+    .sort((a, b) => a.checkDate.localeCompare(b.checkDate) || a.storeName.localeCompare(b.storeName))
+
+  const grossAmount = settlementRecords.reduce((sum, record) => sum + record.grossAmount, 0)
   const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
   const vatAmount = grossAmount - netSalesAmount
   const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
   const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
 
   return {
+    monthIndex,
+    monthLabel: contractRevenueMonthLabel(monthIndex),
     records: settlementRecords,
     excludedStoreNames: SETTLEMENT_EXCLUDED_STORE_NAMES,
     grossAmount,
@@ -379,8 +429,45 @@ function buildSettlementSummary(records: ContractRevenueRecord[]): SettlementSum
   }
 }
 
+function settlementCheckDateForStore(storeName: string, monthIndex: number) {
+  const schedule = billingScheduleByStore[storeName]
+  if (monthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
+
+  const date = contractRevenueMonthDate(monthIndex)
+  const dueDay = schedule?.dueDay || 25
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+
+  return toISODate(new Date(date.getFullYear(), date.getMonth(), Math.min(dueDay, lastDay)))
+}
+
+function settlementStatusForStore(storeName: string, monthIndex: number): BillingStatus {
+  const schedule = billingScheduleByStore[storeName]
+  if (monthIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
+  return '청구예정'
+}
+
+function contractRevenueMonthDate(monthIndex: number) {
+  return new Date(CONTRACT_REVENUE_START_YEAR, CONTRACT_REVENUE_START_MONTH - 1 + monthIndex, 1)
+}
+
+function readSettlementChecks() {
+  if (typeof window === 'undefined') return {}
+
+  try {
+    return JSON.parse(window.localStorage.getItem(SETTLEMENT_CHECK_STORAGE_KEY) || '{}') as Record<string, boolean>
+  } catch {
+    return {}
+  }
+}
+
+function persistSettlementChecks(value: Record<string, boolean>) {
+  if (typeof window === 'undefined') return
+
+  window.localStorage.setItem(SETTLEMENT_CHECK_STORAGE_KEY, JSON.stringify(value))
+}
+
 function contractRevenueMonthLabel(monthIndex: number) {
-  const date = new Date(CONTRACT_REVENUE_START_YEAR, CONTRACT_REVENUE_START_MONTH - 1 + monthIndex, 1)
+  const date = contractRevenueMonthDate(monthIndex)
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월`
 }
 
@@ -724,7 +811,7 @@ export default function ErpClient() {
       badadangTotalAmount:
         contractRevenueRecords.find((record) => record.storeName === '바다당 해운대점')?.monthlyAmounts.reduce((sum, amount) => sum + amount, 0) || 0,
       monthlyRows,
-      settlement: buildSettlementSummary(contractRevenueRecords),
+      settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
     }
   }, [])
 
@@ -1223,7 +1310,7 @@ function DashboardPanel({
     firstMonthAmount: number
     contractTotalAmount: number
     badadangTotalAmount: number
-    settlement: SettlementSummary
+    settlementMonths: SettlementSummary[]
     monthlyRows: {
       month: number
       monthLabel: string
@@ -1303,7 +1390,7 @@ function DashboardPanel({
 
         <MonthlyRevenueBarChart rows={contractRevenue.monthlyRows} />
 
-        <RevenueSettlementPanel settlement={contractRevenue.settlement} />
+        <RevenueSettlementPanel settlementMonths={contractRevenue.settlementMonths} />
 
         <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
@@ -1408,11 +1495,37 @@ function MonthlyRevenueBarChart({
   )
 }
 
-function RevenueSettlementPanel({ settlement }: { settlement: SettlementSummary }) {
+function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+  const [selectedMonthIndex, setSelectedMonthIndex] = useState(() => settlementMonths[0]?.monthIndex || 0)
+  const [checkedItems, setCheckedItems] = useState<Record<string, boolean>>({})
+  const [checksLoaded, setChecksLoaded] = useState(false)
+  const settlement =
+    settlementMonths.find((summary) => summary.monthIndex === selectedMonthIndex) || settlementMonths[0]
+
+  useEffect(() => {
+    setCheckedItems(readSettlementChecks())
+    setChecksLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    if (!settlementMonths.length) return
+    if (!settlementMonths.some((summary) => summary.monthIndex === selectedMonthIndex)) {
+      setSelectedMonthIndex(settlementMonths[0].monthIndex)
+    }
+  }, [selectedMonthIndex, settlementMonths])
+
+  useEffect(() => {
+    if (checksLoaded) persistSettlementChecks(checkedItems)
+  }, [checkedItems, checksLoaded])
+
+  if (!settlement) return null
+
+  const checkedCount = settlement.records.filter((record) => checkedItems[record.key]).length
+  const completeRate = settlement.records.length ? Math.round((checkedCount / settlement.records.length) * 100) : 0
   const settlementRows = [
     {
       label: 'VAT 포함 입금액',
-      basis: `정산 대상 ${settlement.records.length}개 매장 1개월차 매출 합산`,
+      basis: `정산 대상 ${settlement.records.length}개 매장 ${settlement.monthLabel} 매출 합산`,
       amount: settlement.grossAmount,
       highlight: false,
     },
@@ -1453,9 +1566,9 @@ function RevenueSettlementPanel({ settlement }: { settlement: SettlementSummary 
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-sm font-bold text-brand-blue">Settlement Estimate</p>
-          <h3 className="mt-2 text-xl font-black text-white">정산 예상표</h3>
+          <h3 className="mt-2 text-xl font-black text-white">월별 정산 예상표</h3>
           <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            계약 매장 기준으로 부가세, 충당금, 작업자 운용비를 제외한 예상 순수익을 자동 계산합니다.
+            정산월을 선택하면 해당 월의 부가세, 충당금, 작업자 운용비, 예상 순수익과 날짜별 체크 항목을 확인합니다.
           </p>
         </div>
         <p className="text-xs font-bold leading-5 text-gray-600 md:text-right keep-all">
@@ -1463,12 +1576,30 @@ function RevenueSettlementPanel({ settlement }: { settlement: SettlementSummary 
         </p>
       </div>
 
+      <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
+        {settlementMonths.map((summary) => (
+          <button
+            key={`settlement-month-${summary.monthIndex}`}
+            type="button"
+            onClick={() => setSelectedMonthIndex(summary.monthIndex)}
+            className={`shrink-0 rounded-full border px-3 py-2 text-xs font-black transition ${
+              summary.monthIndex === settlement.monthIndex
+                ? 'border-brand-blue bg-brand-blue text-white'
+                : 'border-white/10 bg-black text-gray-400 hover:border-white/25 hover:text-white'
+            }`}
+          >
+            {summary.monthLabel}
+            <span className="ml-2 text-white/70">{formatRevenueManwon(summary.profitAmount)}</span>
+          </button>
+        ))}
+      </div>
+
       <div className="mt-4 grid gap-3 md:grid-cols-3">
         <div className="rounded-lg border border-white/10 bg-black p-4">
           <p className="text-xs font-black text-gray-500">정산 대상</p>
           <p className="mt-2 text-3xl font-black text-white">{settlement.records.length}개</p>
           <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
-            {settlement.records.map((record) => record.storeName).join(' · ')}
+            {settlement.monthLabel} · {settlement.records.map((record) => record.storeName).join(' · ')}
           </p>
         </div>
         <div className="rounded-lg border border-white/10 bg-black p-4">
@@ -1480,6 +1611,70 @@ function RevenueSettlementPanel({ settlement }: { settlement: SettlementSummary 
           <p className="text-xs font-black text-emerald-100/70">예상 순수익</p>
           <p className="mt-2 text-3xl font-black text-emerald-50">{formatRevenueManwon(settlement.profitAmount)}</p>
           <p className="mt-2 text-xs font-semibold text-emerald-100/70">5% 충당금, 작업자 운용비 제외</p>
+        </div>
+      </div>
+
+      <div className="mt-4 rounded-lg border border-white/10 bg-black p-4">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-xs font-black text-brand-blue">Date Check</p>
+            <h4 className="mt-2 text-lg font-black text-white">날짜별 정산 체크</h4>
+            <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">
+              월별 정산 확인, 작업자 지급, 충당금 반영 여부를 날짜별로 체크합니다.
+            </p>
+          </div>
+          <div className="text-left md:text-right">
+            <p className="text-2xl font-black text-white">{checkedCount}/{settlement.records.length}</p>
+            <p className="text-xs font-bold text-gray-500">체크 완료 {completeRate}%</p>
+          </div>
+        </div>
+
+        <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
+          <div className="min-w-[900px]">
+            <div className="grid grid-cols-[72px_112px_180px_130px_130px_130px_130px_110px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+              <span>체크</span>
+              <span>날짜</span>
+              <span>매장</span>
+              <span className="text-right">입금액</span>
+              <span className="text-right">VAT 제외</span>
+              <span className="text-right">작업비</span>
+              <span className="text-right">예상 순수익</span>
+              <span className="text-right">상태</span>
+            </div>
+            {settlement.records.map((record) => (
+              <label
+                key={record.key}
+                className={`grid cursor-pointer grid-cols-[72px_112px_180px_130px_130px_130px_130px_110px] items-center border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
+                  checkedItems[record.key] ? 'bg-emerald-300/10' : ''
+                }`}
+              >
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={Boolean(checkedItems[record.key])}
+                    onChange={(event) =>
+                      setCheckedItems((current) => ({
+                        ...current,
+                        [record.key]: event.target.checked,
+                      }))
+                    }
+                    className="h-4 w-4 accent-brand-blue"
+                  />
+                </span>
+                <span className="font-black text-white">{formatDateShort(parseLocalDate(record.checkDate))}</span>
+                <span className="font-black text-white keep-all">{record.storeName}</span>
+                <span className="text-right font-black text-gray-200">{formatCurrency(record.grossAmount)}원</span>
+                <span className="text-right font-black text-gray-200">{formatCurrency(record.netSalesAmount)}원</span>
+                <span className="text-right font-black text-gray-200">{formatCurrency(record.workerCostAmount)}원</span>
+                <span className="text-right font-black text-emerald-100">{formatCurrency(record.profitAmount)}원</span>
+                <span className="text-right">
+                  <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${billingStatusBadge(record.status)}`}>
+                    {record.status}
+                  </span>
+                </span>
+              </label>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -5778,6 +5973,14 @@ function autoSaveStatusBadge(status: string) {
   if (status.includes('저장 중')) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
   if (status.includes('자동저장됨')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   return 'border-white/15 bg-white/5 text-gray-400'
+}
+
+function billingStatusBadge(status: BillingStatus) {
+  if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (status === '연체') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+  if (status === '보류') return 'border-white/15 bg-white/5 text-gray-400'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
 }
 
 function blogPostWorkflowBadge(post: StoreBlogContentPost) {
