@@ -4294,7 +4294,6 @@ function StoreOperationsPanel({
               {activeWorkspace.key === 'googleAds' ? (
                 <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
-              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
               {activeWorkspace.key === 'websiteBlog' && weeklyReportItems.length && selectedWeeklyReport ? (
                 <WebsiteBlogWorkLogPanel
                   items={weeklyReportItems}
@@ -4889,82 +4888,6 @@ function GoogleAdsPerformancePanel({
                 </article>
               )
             })}
-          </div>
-        </div>
-      ) : null}
-    </div>
-  )
-}
-
-function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWorkspace }) {
-  const blogPosts = workspace.blogPosts || []
-
-  return (
-    <div className="border-b border-white/10 p-5 md:p-6">
-      <div>
-        <p className="text-sm font-bold text-brand-blue">Website · Blog</p>
-        <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 작업 현황</h4>
-        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-          GBP에서 연결할 공식 페이지, FAQ, 블로그 주제를 같은 흐름으로 관리합니다.
-        </p>
-      </div>
-      <div className="mt-4 grid gap-3 lg:grid-cols-3">
-        {workspace.tasks.map((task, index) => (
-          <article key={`${workspace.key}-stage-${task.title}`} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-            <div className="flex items-center justify-between gap-3">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-sm font-black text-black">
-                {index + 1}
-              </span>
-              <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
-                {task.status}
-              </span>
-            </div>
-            <h5 className="mt-4 font-black text-white keep-all">{task.title}</h5>
-            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
-          </article>
-        ))}
-      </div>
-      {blogPosts.length ? (
-        <div className="mt-5 rounded-lg border border-white/10 bg-white/[0.025]">
-          <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Blog Content</p>
-              <h5 className="mt-2 text-lg font-black text-white">작성 콘텐츠 목록</h5>
-              <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-                실제로 작성한 블로그 글을 제목, 타깃 키워드, 발행 상태 기준으로 확인합니다.
-              </p>
-            </div>
-            <p className="text-xs font-black text-gray-600">{blogPosts.length}개 글</p>
-          </div>
-          <div className="divide-y divide-white/10">
-            {blogPosts.map((post, index) => (
-              <article
-                key={`${workspace.key}-blog-post-${post.title}`}
-                className="grid gap-4 px-4 py-4 text-sm lg:grid-cols-[44px_minmax(0,1.5fr)_minmax(140px,0.65fr)_minmax(120px,0.55fr)_minmax(112px,0.45fr)]"
-              >
-                <span className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-black text-xs font-black text-gray-400">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div className="min-w-0">
-                  <h6 className="font-black leading-6 text-white keep-all">{post.title}</h6>
-                  <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{post.memo}</p>
-                </div>
-                <div>
-                  <p className="text-[11px] font-black text-gray-600">타깃 키워드</p>
-                  <p className="mt-2 font-bold leading-6 text-gray-300 keep-all">{post.keyword}</p>
-                </div>
-                <div>
-                  <p className="text-[11px] font-black text-gray-600">채널</p>
-                  <p className="mt-2 font-bold leading-6 text-gray-300">{post.channel}</p>
-                  <p className="mt-1 text-xs font-semibold text-gray-600">{post.publishedAt}</p>
-                </div>
-                <div className="flex items-start lg:justify-end">
-                  <span className={`inline-flex rounded-full border px-2.5 py-1.5 text-xs font-black ${taskStatusBadge(post.status)}`}>
-                    {post.status}
-                  </span>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       ) : null}
