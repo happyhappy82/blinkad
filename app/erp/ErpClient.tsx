@@ -213,6 +213,19 @@ type ContractRevenueRecord = {
   memo: string
 }
 
+type SettlementSummary = {
+  records: ContractRevenueRecord[]
+  excludedStoreNames: string[]
+  grossAmount: number
+  vatAmount: number
+  netSalesAmount: number
+  reserveRate: number
+  reserveAmount: number
+  workerCostPerStore: number
+  workerCostAmount: number
+  profitAmount: number
+}
+
 type WeeklyReportItem = {
   report: StoreWeeklyReport
   date: Date
@@ -228,6 +241,10 @@ type WebsiteBlogCycle = {
 
 const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
+const SETTLEMENT_EXCLUDED_STORE_NAMES = ['언리미티드']
+const SETTLEMENT_RESERVE_RATE = 0.05
+const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
+const VAT_RATE = 0.1
 
 const contractRevenueRecords: ContractRevenueRecord[] = [
   {
@@ -336,6 +353,30 @@ function contractRevenueTotal(record: ContractRevenueRecord) {
 
 function firstMonthRevenue(record: ContractRevenueRecord) {
   return record.monthlyAmounts[0] || 0
+}
+
+function buildSettlementSummary(records: ContractRevenueRecord[]): SettlementSummary {
+  const settlementRecords = records.filter(
+    (record) => !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && firstMonthRevenue(record) > 0
+  )
+  const grossAmount = settlementRecords.reduce((sum, record) => sum + firstMonthRevenue(record), 0)
+  const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+  const vatAmount = grossAmount - netSalesAmount
+  const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+  const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
+
+  return {
+    records: settlementRecords,
+    excludedStoreNames: SETTLEMENT_EXCLUDED_STORE_NAMES,
+    grossAmount,
+    vatAmount,
+    netSalesAmount,
+    reserveRate: SETTLEMENT_RESERVE_RATE,
+    reserveAmount,
+    workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
+    workerCostAmount,
+    profitAmount: netSalesAmount - reserveAmount - workerCostAmount,
+  }
 }
 
 function contractRevenueMonthLabel(monthIndex: number) {
@@ -683,6 +724,7 @@ export default function ErpClient() {
       badadangTotalAmount:
         contractRevenueRecords.find((record) => record.storeName === '바다당 해운대점')?.monthlyAmounts.reduce((sum, amount) => sum + amount, 0) || 0,
       monthlyRows,
+      settlement: buildSettlementSummary(contractRevenueRecords),
     }
   }, [])
 
@@ -1181,6 +1223,7 @@ function DashboardPanel({
     firstMonthAmount: number
     contractTotalAmount: number
     badadangTotalAmount: number
+    settlement: SettlementSummary
     monthlyRows: {
       month: number
       monthLabel: string
@@ -1259,6 +1302,8 @@ function DashboardPanel({
         </div>
 
         <MonthlyRevenueBarChart rows={contractRevenue.monthlyRows} />
+
+        <RevenueSettlementPanel settlement={contractRevenue.settlement} />
 
         <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
@@ -1358,6 +1403,108 @@ function MonthlyRevenueBarChart({
             </div>
           )
         })}
+      </div>
+    </div>
+  )
+}
+
+function RevenueSettlementPanel({ settlement }: { settlement: SettlementSummary }) {
+  const settlementRows = [
+    {
+      label: 'VAT 포함 입금액',
+      basis: `정산 대상 ${settlement.records.length}개 매장 1개월차 매출 합산`,
+      amount: settlement.grossAmount,
+      highlight: false,
+    },
+    {
+      label: '부가세',
+      basis: 'VAT 포함 입금액에서 분리',
+      amount: settlement.vatAmount,
+      highlight: false,
+    },
+    {
+      label: 'VAT 제외 매출',
+      basis: '공급가액 기준',
+      amount: settlement.netSalesAmount,
+      highlight: false,
+    },
+    {
+      label: `${Math.round(settlement.reserveRate * 100)}% 충당금`,
+      basis: '도메인, 구독비 등 운영 예비비',
+      amount: settlement.reserveAmount,
+      highlight: false,
+    },
+    {
+      label: '작업자 운용비',
+      basis: `${formatCurrency(settlement.workerCostPerStore)}원 x ${settlement.records.length}개 매장`,
+      amount: settlement.workerCostAmount,
+      highlight: false,
+    },
+    {
+      label: '예상 순수익',
+      basis: 'VAT 제외 매출 - 충당금 - 작업자 운용비',
+      amount: settlement.profitAmount,
+      highlight: true,
+    },
+  ]
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Settlement Estimate</p>
+          <h3 className="mt-2 text-xl font-black text-white">정산 예상표</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            계약 매장 기준으로 부가세, 충당금, 작업자 운용비를 제외한 예상 순수익을 자동 계산합니다.
+          </p>
+        </div>
+        <p className="text-xs font-bold leading-5 text-gray-600 md:text-right keep-all">
+          제외 매장: {settlement.excludedStoreNames.join(', ')}
+        </p>
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-3">
+        <div className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-xs font-black text-gray-500">정산 대상</p>
+          <p className="mt-2 text-3xl font-black text-white">{settlement.records.length}개</p>
+          <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+            {settlement.records.map((record) => record.storeName).join(' · ')}
+          </p>
+        </div>
+        <div className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-xs font-black text-gray-500">VAT 제외 매출</p>
+          <p className="mt-2 text-3xl font-black text-white">{formatRevenueManwon(settlement.netSalesAmount)}</p>
+          <p className="mt-2 text-xs font-semibold text-gray-500">부가세 {formatCurrency(settlement.vatAmount)}원 제외</p>
+        </div>
+        <div className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 p-4">
+          <p className="text-xs font-black text-emerald-100/70">예상 순수익</p>
+          <p className="mt-2 text-3xl font-black text-emerald-50">{formatRevenueManwon(settlement.profitAmount)}</p>
+          <p className="mt-2 text-xs font-semibold text-emerald-100/70">5% 충당금, 작업자 운용비 제외</p>
+        </div>
+      </div>
+
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
+        <div className="min-w-[760px]">
+          <div className="grid grid-cols-[1fr_1.5fr_150px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>항목</span>
+            <span>계산 기준</span>
+            <span className="text-right">금액</span>
+          </div>
+          {settlementRows.map((row) => (
+            <div
+              key={`settlement-row-${row.label}`}
+              className={`grid grid-cols-[1fr_1.5fr_150px] border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
+                row.highlight ? 'bg-emerald-300/10' : ''
+              }`}
+            >
+              <span className={row.highlight ? 'font-black text-emerald-100' : 'font-black text-white'}>{row.label}</span>
+              <span className="text-xs font-semibold leading-5 text-gray-500 keep-all">{row.basis}</span>
+              <span className={row.highlight ? 'text-right font-black text-emerald-100' : 'text-right font-black text-gray-200'}>
+                {formatCurrency(row.amount)}원
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
