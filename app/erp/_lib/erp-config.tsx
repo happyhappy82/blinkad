@@ -499,8 +499,14 @@ export function isMenuId(value: string): value is MenuId {
   return menuIds.includes(value as MenuId)
 }
 
+const JOODORAK_POSTS_DB_URL_BY_BRANCH: Record<string, string> = {
+  강남점: 'https://www.notion.so/Posts-385753ebc01380569952e42053ffdfb8?source=copy_link',
+  마곡발산점: 'https://www.notion.so/Posts-385753ebc01380e7a077e2663f324b3a?source=copy_link',
+}
+
 function createJoodorakOperationRow(branchName: string, areaName: string, areaKeyword: string): OperationRow {
   const title = `주도락 ${branchName}`
+  const postsDbUrl = JOODORAK_POSTS_DB_URL_BY_BRANCH[branchName]
 
   return {
     title,
@@ -662,25 +668,113 @@ function createJoodorakOperationRow(branchName: string, areaName: string, areaKe
         description: `${title}의 지점 페이지, FAQ, 블로그 콘텐츠 작업 흐름을 관리합니다.`,
         metrics: [
           { label: '제작 상태', value: '기획중', note: '지점 페이지 구조와 콘텐츠 주제 정리' },
-          { label: '콘텐츠', value: '2건 기획', note: '초기 콘텐츠 주제 정리 기준' },
+          { label: '콘텐츠', value: '8회 슬롯', note: '계약 시작일 기준 1개월 8회 운영' },
           { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
         ],
+        contentDb: postsDbUrl
+          ? {
+              name: `${title} Posts DB`,
+              url: postsDbUrl,
+              workflow: '글 작성 후 Review 상태로 저장하고, 발행일을 지정한 뒤 Published 상태로 전환합니다.',
+              publishRule: 'Published 상태와 발행일이 함께 있는 글은 해당 날짜 기준 자동 발행 큐로 관리합니다.',
+            }
+          : undefined,
         blogPosts: [
           {
             title: `${title} 방문 전 확인할 매장 정보`,
-            status: '기획중',
+            status: 'Review',
+            notionStatus: 'Review',
             keyword: title,
-            channel: '공식 블로그',
-            publishedAt: '발행 전',
+            channel: 'Posts DB',
+            publishedAt: '2026-06-21 검수',
+            publishDate: '2026-06-21',
+            cycleSlot: 1,
             memo: '위치, 영업시간, 대표 메뉴, 이용 흐름을 방문 전 확인할 수 있게 정리합니다.',
+            nextAction: '본문 검수 후 Published 전환',
           },
           {
             title: `${areaName} 방문 외국인 고객을 위한 메뉴 안내`,
-            status: '대기',
+            status: 'Published',
+            notionStatus: 'Published',
             keyword: `${areaKeyword} 외국인 식당`,
-            channel: '콘텐츠 주제',
-            publishedAt: '발행 전',
+            channel: 'Posts DB',
+            publishedAt: '2026-06-24 예약',
+            publishDate: '2026-06-24',
+            cycleSlot: 2,
             memo: '외국인 고객이 주문 전 궁금해할 메뉴, 결제, 위치 정보를 콘텐츠화합니다.',
+            nextAction: '발행 후 GBP 웹사이트 URL 연결 후보 확인',
+          },
+          {
+            title: `${title} 대표 메뉴 주문 전 확인사항`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${title} 메뉴`,
+            channel: 'Posts DB',
+            publishedAt: '2026-06-28 검수',
+            publishDate: '2026-06-28',
+            cycleSlot: 3,
+            memo: '대표 메뉴 구성, 추천 주문 순서, 사진 기준 설명을 정리합니다.',
+            nextAction: '대표 메뉴 사진 반영',
+          },
+          {
+            title: `${areaName}역 주변에서 주도락 찾는 방법`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 주도락 위치`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-01 검수',
+            publishDate: '2026-07-01',
+            cycleSlot: 4,
+            memo: '길찾기 전환과 연결될 수 있도록 지하철, 도보, 주차 정보를 정리합니다.',
+            nextAction: '지도 캡처와 위치 설명 보강',
+          },
+          {
+            title: `${title} 이용 FAQ`,
+            status: 'Published',
+            notionStatus: 'Published',
+            keyword: `${areaKeyword} 식당 FAQ`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-05 예약',
+            publishDate: '2026-07-05',
+            cycleSlot: 5,
+            memo: '예약, 대기, 결제, 메뉴 선택, 영업시간 관련 질문을 FAQ로 정리합니다.',
+            nextAction: '발행 후 Google 프로필 FAQ 문구와 맞춤',
+          },
+          {
+            title: `${areaName} 회식 장소를 고를 때 확인할 것`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 회식 식당`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-08 검수',
+            publishDate: '2026-07-08',
+            cycleSlot: 6,
+            memo: '회식 고객 관점에서 위치, 메뉴, 대기, 이동 시간을 비교하는 콘텐츠입니다.',
+            nextAction: 'CTA와 내부 링크 정리',
+          },
+          {
+            title: `${title} 단체 방문 전 확인사항`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 단체 식당`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-12 검수',
+            publishDate: '2026-07-12',
+            cycleSlot: 7,
+            memo: '단체 방문 시 문의할 정보, 좌석, 시간대, 메뉴 선택 기준을 정리합니다.',
+            nextAction: '매장 확인 필요 항목 체크',
+          },
+          {
+            title: `${title} 월간 콘텐츠 운영 정리`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${title} 후기`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-15 검수',
+            publishDate: '2026-07-15',
+            cycleSlot: 8,
+            memo: '1개월차 콘텐츠 누적 현황과 다음 달 보강할 주제를 정리합니다.',
+            nextAction: '월간 보고서에 반영',
           },
         ],
         tasks: [
