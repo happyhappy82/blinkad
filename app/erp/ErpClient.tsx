@@ -808,8 +808,6 @@ export default function ErpClient() {
       records: contractRevenueRecords,
       firstMonthAmount: monthlyRows[0]?.amount || 0,
       contractTotalAmount: contractRevenueRecords.reduce((sum, record) => sum + contractRevenueTotal(record), 0),
-      badadangTotalAmount:
-        contractRevenueRecords.find((record) => record.storeName === '바다당 해운대점')?.monthlyAmounts.reduce((sum, amount) => sum + amount, 0) || 0,
       monthlyRows,
       settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
     }
@@ -1309,7 +1307,6 @@ function DashboardPanel({
     records: ContractRevenueRecord[]
     firstMonthAmount: number
     contractTotalAmount: number
-    badadangTotalAmount: number
     settlementMonths: SettlementSummary[]
     monthlyRows: {
       month: number
@@ -1319,27 +1316,21 @@ function DashboardPanel({
     }[]
   }
 }) {
-  const oneMonthContractCount = contractRevenue.records.filter((record) => record.contractMonths === 1).length
   const revenueCards = [
     {
-      label: '계약 매장',
+      label: '계약매장 개수',
       value: `${contractRevenue.records.length}개`,
       detail: '운영 계약 기준',
     },
     {
-      label: `${contractRevenue.monthlyRows[0]?.monthLabel || '2026년 6월'} 매출`,
+      label: '이번달 매출',
       value: formatRevenueManwon(contractRevenue.firstMonthAmount),
-      detail: `1개월 계약 ${oneMonthContractCount}건 포함`,
+      detail: `${contractRevenue.monthlyRows[0]?.monthLabel || '2026년 6월'} 기준`,
     },
     {
-      label: '총 계약 매출',
+      label: '총 계약매출',
       value: formatRevenueManwon(contractRevenue.contractTotalAmount),
       detail: '월별 스케줄 합산',
-    },
-    {
-      label: '바다당 12개월',
-      value: formatRevenueManwon(contractRevenue.badadangTotalAmount),
-      detail: `${formatRevenueManwon(contractRevenue.badadangTotalAmount)} 계약`,
     },
   ]
 
@@ -1356,19 +1347,6 @@ function DashboardPanel({
       </div>
 
       <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-        <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:p-6 xl:flex-row xl:items-end xl:justify-between">
-          <div>
-            <p className="text-sm font-bold text-brand-blue">Revenue Dashboard</p>
-            <h2 className="mt-2 text-2xl font-black tracking-tight text-white">계약 매장·매출 현황</h2>
-            <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-              계약개월, 상품구성, 월차별 입금 스케줄 기준으로 현재 계약 매장의 매출을 확인합니다.
-            </p>
-          </div>
-          <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
-            주도락 강남점·마곡발산점은 각 1개월 VAT 포함 154만원 기준이며, 바다당 해운대점은 1개월차 VAT 포함 154만원 기준입니다.
-          </p>
-        </div>
-
         <div className="border-b border-white/10 p-5 md:p-6">
           <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
@@ -1377,7 +1355,7 @@ function DashboardPanel({
             </div>
             <p className="text-xs font-bold text-gray-600">청구·입금 상태는 청구관리 메뉴에서 확인</p>
           </div>
-          <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
             {revenueCards.map((card) => (
               <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
