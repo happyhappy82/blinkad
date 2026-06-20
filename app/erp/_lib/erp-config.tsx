@@ -291,6 +291,18 @@ export type StoreBlogContentPost = {
   channel: string
   publishedAt: string
   memo: string
+  notionStatus?: string
+  publishDate?: string
+  cycleSlot?: number
+  notionUrl?: string
+  nextAction?: string
+}
+
+export type StoreContentDb = {
+  name: string
+  url: string
+  workflow: string
+  publishRule: string
 }
 
 export type StoreWeeklyReportStatus = '초안' | '생성완료' | '보고대기' | '보고완료' | '실패' | '작성중'
@@ -319,6 +331,7 @@ export type StoreProductWorkspace = {
   heading: string
   description: string
   metrics: StoreProductMetric[]
+  contentDb?: StoreContentDb
   weeklyReports?: StoreWeeklyReport[]
   blogPosts?: StoreBlogContentPost[]
   tasks: StoreProductTask[]
@@ -1237,25 +1250,111 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
             description: '바다당 해운대점의 지점 페이지, FAQ, 블로그 콘텐츠 작업 흐름을 관리합니다.',
             metrics: [
               { label: '제작 상태', value: '기획중', note: '지점 페이지 구조와 콘텐츠 주제 정리' },
-              { label: '콘텐츠', value: '2건 기획', note: '초기 콘텐츠 주제 정리 기준' },
+              { label: '콘텐츠', value: '8회 슬롯', note: '계약 시작일 기준 1개월 8회 운영' },
               { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
             ],
+            contentDb: {
+              name: '바다당 해운대점 Posts DB',
+              url: 'https://www.notion.so/Posts-385753ebc01380c4af92f5e6db8bb28e?source=copy_link',
+              workflow: '글 작성 후 Review 상태로 저장하고, 발행일을 지정한 뒤 Published 상태로 전환합니다.',
+              publishRule: 'Published 상태와 발행일이 함께 있는 글은 해당 날짜 기준 자동 발행 큐로 관리합니다.',
+            },
             blogPosts: [
               {
                 title: '바다당 해운대점 방문 전 확인할 매장 정보',
-                status: '기획중',
+                status: 'Review',
+                notionStatus: 'Review',
                 keyword: '바다당 해운대점',
-                channel: '공식 블로그',
-                publishedAt: '발행 전',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-17 검수',
+                publishDate: '2026-06-17',
+                cycleSlot: 1,
                 memo: '위치, 영업시간, 대표 메뉴, 이용 흐름을 방문 전 확인할 수 있게 정리합니다.',
+                nextAction: '본문 검수 후 Published 전환',
               },
               {
                 title: '해운대 방문 외국인 고객을 위한 메뉴 안내',
-                status: '대기',
+                status: 'Published',
+                notionStatus: 'Published',
                 keyword: '해운대 외국인 식당',
-                channel: '콘텐츠 주제',
-                publishedAt: '발행 전',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-20 예약',
+                publishDate: '2026-06-20',
+                cycleSlot: 2,
                 memo: '외국인 고객이 주문 전 궁금해할 메뉴, 결제, 위치 정보를 콘텐츠화합니다.',
+                nextAction: '발행 후 GBP 웹사이트 URL 연결 후보 확인',
+              },
+              {
+                title: '바다당 대표 메뉴를 처음 주문하는 고객을 위한 안내',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '바다당 메뉴',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-24 검수',
+                publishDate: '2026-06-24',
+                cycleSlot: 3,
+                memo: '대표 메뉴 구성, 추천 주문 순서, 사진 기준 설명을 정리합니다.',
+                nextAction: '대표 메뉴 사진 반영',
+              },
+              {
+                title: '해운대역에서 바다당까지 이동 방법',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대역 바다당',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-27 검수',
+                publishDate: '2026-06-27',
+                cycleSlot: 4,
+                memo: '길찾기 전환과 연결될 수 있도록 지하철, 도보, 주차 정보를 정리합니다.',
+                nextAction: '지도 캡처와 위치 설명 보강',
+              },
+              {
+                title: '외국인 고객이 자주 묻는 바다당 이용 FAQ',
+                status: 'Published',
+                notionStatus: 'Published',
+                keyword: '해운대 식당 FAQ',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-01 예약',
+                publishDate: '2026-07-01',
+                cycleSlot: 5,
+                memo: '예약, 대기, 결제, 메뉴 선택, 영업시간 관련 질문을 FAQ로 정리합니다.',
+                nextAction: '발행 후 Google 프로필 FAQ 문구와 맞춤',
+              },
+              {
+                title: '해운대 여행 중 저녁 식사 장소를 고를 때 확인할 것',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대 저녁 식사',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-04 검수',
+                publishDate: '2026-07-04',
+                cycleSlot: 6,
+                memo: '여행객 관점에서 위치, 메뉴, 대기, 이동 시간을 비교하는 콘텐츠입니다.',
+                nextAction: 'CTA와 내부 링크 정리',
+              },
+              {
+                title: '바다당 해운대점 단체 방문 전 확인사항',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대 단체 식당',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-08 검수',
+                publishDate: '2026-07-08',
+                cycleSlot: 7,
+                memo: '단체 방문 시 문의할 정보, 좌석, 시간대, 메뉴 선택 기준을 정리합니다.',
+                nextAction: '매장 확인 필요 항목 체크',
+              },
+              {
+                title: '바다당 해운대점 월간 콘텐츠 운영 정리',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '바다당 해운대점 후기',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-11 검수',
+                publishDate: '2026-07-11',
+                cycleSlot: 8,
+                memo: '1개월차 콘텐츠 누적 현황과 다음 달 보강할 주제를 정리합니다.',
+                nextAction: '월간 보고서에 반영',
               },
             ],
             tasks: [

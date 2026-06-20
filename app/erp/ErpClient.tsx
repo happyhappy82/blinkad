@@ -60,6 +60,7 @@ import type {
   OperationView,
   SaveMeetingRecordNoteHandler,
   SaveMeetingNoteHandler,
+  StoreBlogContentPost,
   StoreRecord,
   StoreProductKey,
   StoreProductWorkspace,
@@ -88,6 +89,18 @@ function readPersistedMenu(): MenuId {
 
   const sessionMenu = window.sessionStorage.getItem('blinkad-erp-active-menu')
   return menuFromQuery(sessionMenu)
+}
+
+function readQueryStoreTitle() {
+  if (typeof window === 'undefined') return ''
+  return new URLSearchParams(window.location.search).get('store') || ''
+}
+
+function readQueryProduct(): StoreProductKey {
+  if (typeof window === 'undefined') return 'googleProfile'
+  const product = new URLSearchParams(window.location.search).get('product')
+
+  return product === 'googleAds' || product === 'websiteBlog' ? product : 'googleProfile'
 }
 
 function persistMenu(menu: MenuId) {
@@ -458,6 +471,7 @@ export default function ErpClient() {
 
   useEffect(() => {
     setActiveMenu(readPersistedMenu())
+    setActiveStoreTitle(readQueryStoreTitle())
     setMenuSynced(true)
   }, [])
 
@@ -3533,7 +3547,7 @@ function StoreOperationsPanel({
   selectedStoreTitle?: string
   onSelectStore?: (storeTitle: string) => void
 }) {
-  const [activeProduct, setActiveProduct] = useState<StoreProductKey>('googleProfile')
+  const [activeProduct, setActiveProduct] = useState<StoreProductKey>(() => readQueryProduct())
   const selectedStore = selectedStoreTitle ? view.rows.find((row) => row.title === selectedStoreTitle) : undefined
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
@@ -4294,6 +4308,14 @@ function StoreOperationsPanel({
               {activeWorkspace.key === 'googleAds' ? (
                 <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
+              {activeWorkspace.key === 'websiteBlog' ? (
+                <WebsiteBlogContentQueuePanel
+                  storeTitle={selectedStore.title}
+                  workspace={activeWorkspace}
+                  cycle={websiteBlogCycle}
+                  items={weeklyReportItems}
+                />
+              ) : null}
               {activeWorkspace.key === 'websiteBlog' && weeklyReportItems.length && selectedWeeklyReport ? (
                 <WebsiteBlogWorkLogPanel
                   items={weeklyReportItems}
@@ -4895,6 +4917,154 @@ function GoogleAdsPerformancePanel({
   )
 }
 
+function WebsiteBlogContentQueuePanel({
+  storeTitle,
+  workspace,
+  cycle,
+  items,
+}: {
+  storeTitle: string
+  workspace: StoreProductWorkspace
+  cycle: WebsiteBlogCycle
+  items: WeeklyReportItem[]
+}) {
+  const posts = workspace.blogPosts || []
+  const contentDb = workspace.contentDb
+
+  if (!posts.length && !contentDb) return null
+
+  const reviewCount = posts.filter((post) => (post.notionStatus || post.status) === 'Review').length
+  const publishedCount = posts.filter((post) => (post.notionStatus || post.status) === 'Published').length
+  const doneSlotCount = items.filter((item) => item.report.status === '보고완료').length
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Content Publishing Queue</p>
+          <h4 className="mt-2 text-xl font-black text-white">Notion Posts DB 발행 큐</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            {contentDb?.workflow ||
+              `${storeTitle} 웹사이트·블로그 글을 검수 상태와 발행일 기준으로 관리합니다.`}
+          </p>
+        </div>
+        {contentDb?.url ? (
+          <a
+            href={contentDb.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+          >
+            Posts DB 열기
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        ) : null}
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-4">
+        <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+          <p className="text-xs font-black text-gray-500">연결 DB</p>
+          <p className="mt-2 text-lg font-black text-white keep-all">{contentDb?.name || 'Posts DB 미지정'}</p>
+          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+            {contentDb?.publishRule || 'Notion DB 연결 후 자동 발행 규칙을 표시합니다.'}
+          </p>
+        </div>
+        <div className="rounded-lg border border-brand-blue/20 bg-brand-blue/10 p-4">
+          <p className="text-xs font-black text-blue-100/70">Review</p>
+          <p className="mt-2 text-3xl font-black text-blue-50">{reviewCount}</p>
+          <p className="mt-2 text-xs font-semibold text-blue-100/70">검수 대기 글</p>
+        </div>
+        <div className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 p-4">
+          <p className="text-xs font-black text-emerald-100/70">Published</p>
+          <p className="mt-2 text-3xl font-black text-emerald-50">{publishedCount}</p>
+          <p className="mt-2 text-xs font-semibold text-emerald-100/70">발행 예약/완료 글</p>
+        </div>
+        <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+          <p className="text-xs font-black text-gray-500">ERP 작업 슬롯</p>
+          <p className="mt-2 text-3xl font-black text-white">{doneSlotCount}/{items.length || posts.length}</p>
+          <p className="mt-2 text-xs font-semibold text-gray-500">
+            {cycle.index + 1}개월차 · {formatDateShort(cycle.start)}~{formatDateShort(cycle.end)}
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 lg:grid-cols-3">
+        {[
+          {
+            label: '1. 글 작성/검수',
+            value: 'Review',
+            memo: '작성된 글은 먼저 Review 상태로 두고 제목, 본문, 사진, 내부 링크를 확인합니다.',
+          },
+          {
+            label: '2. 발행 예약',
+            value: 'Published + 날짜',
+            memo: '검수 후 발행일을 넣고 Published로 바꾸면 해당 날짜 자동 발행 대상으로 봅니다.',
+          },
+          {
+            label: '3. ERP 기록',
+            value: '작업현황 저장',
+            memo: '발행 또는 수정한 내용은 아래 8회 작업현황과 날짜별 작업내역 보관에 남깁니다.',
+          },
+        ].map((step) => (
+          <article key={step.label} className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-brand-blue">{step.label}</p>
+            <p className="mt-2 text-lg font-black text-white">{step.value}</p>
+            <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{step.memo}</p>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-5 overflow-hidden rounded-lg border border-white/10 bg-black">
+        <div className="grid gap-3 border-b border-white/10 px-4 py-3 text-xs font-black text-gray-600 lg:grid-cols-[76px_minmax(220px,1.3fr)_120px_128px_minmax(180px,0.9fr)_128px]">
+          <p>회차</p>
+          <p>콘텐츠</p>
+          <p>DB 상태</p>
+          <p>발행일</p>
+          <p>다음 액션</p>
+          <p className="lg:text-right">ERP 상태</p>
+        </div>
+        {posts.map((post, index) => {
+          const slot = post.cycleSlot || index + 1
+          const slotItem = items.find((item) => item.report.dayOffset + 1 === slot)
+          const erpStatus = slotItem?.report.status || '보고대기'
+
+          return (
+            <article
+              key={`${storeTitle}-content-queue-${post.title}`}
+              className="grid gap-3 border-b border-white/10 px-4 py-4 text-sm last:border-b-0 lg:grid-cols-[76px_minmax(220px,1.3fr)_120px_128px_minmax(180px,0.9fr)_128px]"
+            >
+              <div>
+                <p className="font-black text-white">{slot}회차</p>
+                <p className="mt-1 text-xs font-bold text-gray-600">{post.channel}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="font-black leading-6 text-white keep-all">{post.title}</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                  {post.keyword} · {post.memo}
+                </p>
+              </div>
+              <div>
+                <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${blogPostWorkflowBadge(post)}`}>
+                  {post.notionStatus || post.status}
+                </span>
+              </div>
+              <p className="font-bold text-gray-400">{post.publishDate || post.publishedAt}</p>
+              <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
+                {post.nextAction || '검수 후 발행 상태를 업데이트합니다.'}
+              </p>
+              <div className="lg:text-right">
+                <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${weeklyReportBadge(erpStatus as StoreWeeklyReportStatus)}`}>
+                  {erpStatus}
+                </span>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function WebsiteBlogWorkLogPanel({
   items,
   selectedItem,
@@ -5398,6 +5568,15 @@ function autoSaveStatusBadge(status: string) {
   if (status.includes('저장 중')) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
   if (status.includes('자동저장됨')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   return 'border-white/15 bg-white/5 text-gray-400'
+}
+
+function blogPostWorkflowBadge(post: StoreBlogContentPost) {
+  const status = post.notionStatus || post.status
+
+  if (status === 'Published') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === 'Review') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (statusIncludesAny(status, ['대기', '예정', '기획'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-300'
 }
 
 function formatCount(value: number) {
