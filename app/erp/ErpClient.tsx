@@ -273,7 +273,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '프로필·애즈·웹사이트/블로그 통합 운영',
     monthlyAmounts: [
-      1_400_000,
+      1_540_000,
       1_300_000,
       1_200_000,
       1_000_000,
@@ -286,7 +286,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
       750_000,
       750_000,
     ],
-    memo: '12개월 계약 · 총 1,140만원 기준',
+    memo: '12개월 계약 · 1개월차 VAT 포함 154만원 · 총 1,154만원 기준',
   },
 ]
 
@@ -1209,7 +1209,7 @@ function DashboardPanel({
     {
       label: '바다당 12개월',
       value: formatRevenueManwon(contractRevenue.badadangTotalAmount),
-      detail: '1,140만원 계약',
+      detail: `${formatRevenueManwon(contractRevenue.badadangTotalAmount)} 계약`,
     },
   ]
 
@@ -1235,19 +1235,30 @@ function DashboardPanel({
             </p>
           </div>
           <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
-            주도락 강남점·마곡발산점은 각 1개월 VAT 포함 154만원 기준이며, 바다당 해운대점은 12개월 총 1,140만원 기준입니다.
+            주도락 강남점·마곡발산점은 각 1개월 VAT 포함 154만원 기준이며, 바다당 해운대점은 1개월차 VAT 포함 154만원 기준입니다.
           </p>
         </div>
 
-        <div className="grid border-b border-white/10 md:grid-cols-2 xl:grid-cols-4">
-          {revenueCards.map((card) => (
-            <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
-              <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
-              <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
+        <div className="border-b border-white/10 p-5 md:p-6">
+          <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold text-brand-blue">Contract Summary</p>
+              <h3 className="mt-2 text-xl font-black text-white">계약 매장 요약</h3>
             </div>
-          ))}
+            <p className="text-xs font-bold text-gray-600">청구·입금 상태는 청구관리 메뉴에서 확인</p>
+          </div>
+          <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-2 xl:grid-cols-4">
+            {revenueCards.map((card) => (
+              <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
+                <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
+                <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
+              </div>
+            ))}
+          </div>
         </div>
+
+        <MonthlyRevenueBarChart rows={contractRevenue.monthlyRows} />
 
         <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
@@ -1297,6 +1308,58 @@ function DashboardPanel({
         </div>
       </section>
     </section>
+  )
+}
+
+function MonthlyRevenueBarChart({
+  rows,
+}: {
+  rows: {
+    month: number
+    monthLabel: string
+    amount: number
+    stores: { storeName: string; amount: number }[]
+  }[]
+}) {
+  const maxAmount = Math.max(...rows.map((row) => row.amount), 1)
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Confirmed Revenue</p>
+          <h3 className="mt-2 text-xl font-black text-white">월별 확정 매출 그래프</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            계약서 기준으로 확정된 월별 매출만 표시합니다. 입금 여부는 청구관리에서 따로 확인합니다.
+          </p>
+        </div>
+        <p className="text-xs font-black text-gray-600">{rows.length}개월</p>
+      </div>
+
+      <div className="mt-4 space-y-3 rounded-lg border border-white/10 bg-black p-4">
+        {rows.map((row) => {
+          const width = `${Math.max(6, Math.round((row.amount / maxAmount) * 100))}%`
+
+          return (
+            <div key={`monthly-revenue-chart-${row.month}`} className="grid gap-3 md:grid-cols-[120px_1fr_140px] md:items-center">
+              <div>
+                <p className="text-sm font-black text-white">{row.monthLabel}</p>
+                <p className="mt-1 text-xs font-bold text-gray-600">{row.month}개월차</p>
+              </div>
+              <div className="h-9 overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
+                <div
+                  className="flex h-full items-center justify-end rounded-md bg-brand-blue px-3 text-xs font-black text-white"
+                  style={{ width }}
+                >
+                  {row.stores.length}개
+                </div>
+              </div>
+              <p className="font-black text-emerald-100 md:text-right">{formatRevenueManwon(row.amount)}</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 
