@@ -220,6 +220,22 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
+    storeName: '주도락 강남점',
+    contractMonths: 1,
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '블링크애드 1개월 상품 · 통합 운영',
+    monthlyAmounts: [1_400_000],
+    memo: '1개월 계약 · VAT 별도 140만원',
+  },
+  {
+    storeName: '주도락 마곡발산점',
+    contractMonths: 1,
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '블링크애드 1개월 상품 · 통합 운영',
+    monthlyAmounts: [1_400_000],
+    memo: '1개월 계약 · VAT 별도 140만원',
+  },
+  {
     storeName: '바다당 해운대점',
     contractMonths: 12,
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
@@ -1100,6 +1116,7 @@ function DashboardPanel({
     }[]
   }
 }) {
+  const oneMonthContractCount = contractRevenue.records.filter((record) => record.contractMonths === 1).length
   const revenueCards = [
     {
       label: '계약 매장',
@@ -1109,7 +1126,7 @@ function DashboardPanel({
     {
       label: `${contractRevenue.monthlyRows[0]?.monthLabel || '2026년 6월'} 매출`,
       value: formatRevenueManwon(contractRevenue.firstMonthAmount),
-      detail: '1개월 계약 2건 포함',
+      detail: `1개월 계약 ${oneMonthContractCount}건 포함`,
     },
     {
       label: '총 계약 매출',
@@ -1145,7 +1162,7 @@ function DashboardPanel({
             </p>
           </div>
           <p className="text-xs font-bold leading-5 text-gray-600 xl:text-right keep-all">
-            바다당 해운대점은 2026년 6월 140만원, 7월 130만원, 8월 120만원, 9~11월 월 100만원, 12월~2027년 5월 월 75만원 기준입니다.
+            주도락 강남점·마곡발산점은 각 1개월 140만원 VAT 별도 기준이며, 바다당 해운대점은 12개월 총 1,140만원 기준입니다.
           </p>
         </div>
 
