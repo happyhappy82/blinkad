@@ -1366,11 +1366,9 @@ function DashboardPanel({
           </div>
         </div>
 
-        <MonthlyRevenueBarChart rows={contractRevenue.monthlyRows} />
+        <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
         <RevenueSettlementPanel settlementMonths={contractRevenue.settlementMonths} />
-
-        <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
 
         <div className="p-5 md:p-6">
           <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
@@ -1418,58 +1416,6 @@ function DashboardPanel({
         </div>
       </section>
     </section>
-  )
-}
-
-function MonthlyRevenueBarChart({
-  rows,
-}: {
-  rows: {
-    month: number
-    monthLabel: string
-    amount: number
-    stores: { storeName: string; amount: number }[]
-  }[]
-}) {
-  const maxAmount = Math.max(...rows.map((row) => row.amount), 1)
-
-  return (
-    <div className="border-b border-white/10 p-5 md:p-6">
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-sm font-bold text-brand-blue">Confirmed Revenue</p>
-          <h3 className="mt-2 text-xl font-black text-white">월별 확정 매출 그래프</h3>
-          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-            계약서 기준으로 확정된 월별 매출만 표시합니다. 입금 여부는 청구관리에서 따로 확인합니다.
-          </p>
-        </div>
-        <p className="text-xs font-black text-gray-600">{rows.length}개월</p>
-      </div>
-
-      <div className="mt-4 space-y-3 rounded-lg border border-white/10 bg-black p-4">
-        {rows.map((row) => {
-          const width = `${Math.max(6, Math.round((row.amount / maxAmount) * 100))}%`
-
-          return (
-            <div key={`monthly-revenue-chart-${row.month}`} className="grid gap-3 md:grid-cols-[120px_1fr_140px] md:items-center">
-              <div>
-                <p className="text-sm font-black text-white">{row.monthLabel}</p>
-                <p className="mt-1 text-xs font-bold text-gray-600">{row.month}개월차</p>
-              </div>
-              <div className="h-9 overflow-hidden rounded-md border border-white/10 bg-white/[0.04]">
-                <div
-                  className="flex h-full items-center justify-end rounded-md bg-brand-blue px-3 text-xs font-black text-white"
-                  style={{ width }}
-                >
-                  {row.stores.length}개
-                </div>
-              </div>
-              <p className="font-black text-emerald-100 md:text-right">{formatRevenueManwon(row.amount)}</p>
-            </div>
-          )
-        })}
-      </div>
-    </div>
   )
 }
 
