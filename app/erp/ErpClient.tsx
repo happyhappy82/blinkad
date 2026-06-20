@@ -265,6 +265,46 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   },
 ]
 
+const billingScheduleByStore: Record<
+  string,
+  {
+    dueDay: number
+    firstPaidDate?: string
+    firstStatus?: BillingStatus
+    memo: string
+  }
+> = {
+  언리미티드: {
+    dueDay: 30,
+    firstStatus: '청구예정',
+    memo: '입금일 추후 확인',
+  },
+  '웰믹스 광화문점': {
+    dueDay: 10,
+    firstPaidDate: '2026-06-10',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 10일 입금완료',
+  },
+  '바다당 해운대점': {
+    dueDay: 16,
+    firstPaidDate: '2026-06-16',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 16일 입금완료',
+  },
+  '주도락 강남점': {
+    dueDay: 20,
+    firstPaidDate: '2026-06-20',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 20일 입금완료',
+  },
+  '주도락 마곡발산점': {
+    dueDay: 20,
+    firstPaidDate: '2026-06-20',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 20일 입금완료',
+  },
+}
+
 function contractRevenueTotal(record: ContractRevenueRecord) {
   return record.monthlyAmounts.reduce((sum, amount) => sum + amount, 0)
 }
@@ -1244,8 +1284,6 @@ function MonthlyRevenueScheduleTable({
     stores: { storeName: string; amount: number }[]
   }[]
 }) {
-  const maxAmount = Math.max(...rows.map((row) => row.amount), 1)
-
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -1261,31 +1299,24 @@ function MonthlyRevenueScheduleTable({
 
       <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
         <div className="min-w-[820px]">
-          <div className="grid grid-cols-[132px_150px_1fr_280px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+          <div className="grid grid-cols-[132px_160px_1fr] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
             <span>정산월</span>
             <span>매출</span>
-            <span>비중</span>
             <span>포함 매장</span>
           </div>
 
           {rows.map((row) => (
             <div
               key={`monthly-revenue-${row.month}`}
-              className="grid grid-cols-[132px_150px_1fr_280px] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
+              className="grid grid-cols-[132px_160px_1fr] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
             >
               <span>
                 <span className="block font-black text-white">{row.monthLabel}</span>
                 <span className="mt-1 block text-xs font-bold text-gray-600">{row.month}개월차</span>
               </span>
               <span className="font-black text-emerald-100">{formatCurrency(row.amount)}원</span>
-              <div className="h-2 overflow-hidden rounded-full bg-white/10">
-                <div
-                  className="h-full rounded-full bg-brand-blue"
-                  style={{ width: `${Math.max(6, (row.amount / maxAmount) * 100)}%` }}
-                />
-              </div>
               <span className="text-xs font-semibold leading-5 text-gray-500 keep-all">
-                {row.stores.map((store) => `${store.storeName} ${formatRevenueManwon(store.amount)}`).join(' · ')}
+                {row.stores.map((store) => store.storeName).join(' · ')}
               </span>
             </div>
           ))}
@@ -1348,61 +1379,44 @@ function formatRevenueManwon(value: number) {
   return `${formatCurrency(Math.round(value / 10000))}만원`
 }
 
-function formatBillingStoreName(name: string) {
-  const trimmedName = name.replace(/\s+/g, ' ').trim()
+function buildBillingRecords(_stores: StoreRecord[]) {
+  return contractRevenueRecords.flatMap((contract) => {
+    const schedule = billingScheduleByStore[contract.storeName] || {
+      dueDay: 25,
+      firstStatus: '청구예정' as BillingStatus,
+      memo: '정산 일정 확인 필요',
+    }
 
-  if (trimmedName.includes('언리미티드')) return '언리미티드'
-  return trimmedName
-}
+    return contract.monthlyAmounts.map((amount, monthIndex) => {
+      const billingMonth = new Date(
+        CONTRACT_REVENUE_START_YEAR,
+        CONTRACT_REVENUE_START_MONTH - 1 + monthIndex,
+        1
+      )
+      const monthLastDate = new Date(billingMonth.getFullYear(), billingMonth.getMonth() + 1, 0).getDate()
+      const dueDay = Math.min(schedule.dueDay, monthLastDate)
+      const scheduledDate = formatDateKey(new Date(billingMonth.getFullYear(), billingMonth.getMonth(), dueDay))
+      const dueDate = monthIndex === 0 && schedule.firstPaidDate ? schedule.firstPaidDate : scheduledDate
+      const status: BillingStatus =
+        monthIndex === 0 && schedule.firstStatus ? schedule.firstStatus : '청구예정'
+      const memo =
+        monthIndex === 0
+          ? schedule.memo
+          : `${contract.storeName} ${monthIndex + 1}개월차 정산 예정`
 
-function buildBillingRecords(stores: StoreRecord[]) {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = today.getMonth()
-  const monthLastDate = new Date(year, month + 1, 0).getDate()
-  const dueDays = [5, 10, 15, 20, 25]
-  const billableStores = stores.filter((store) =>
-    statusIncludesAny(store.status, ['운영시작', '운영 시작', '계약완료', '계약 완료', '계약대기', '계약 대기'])
-  )
-  const sourceStores =
-    billableStores.length > 0
-      ? billableStores
-      : stores.length > 0
-        ? stores.slice(0, 6)
-        : [
-            {
-              id: 'sample-unlimited',
-              name: '언리미티드',
-              status: '계약 완료',
-              owner: '권순현',
-            } as StoreRecord,
-          ]
-
-  return sourceStores.map((store, index) => {
-    const dueDay = Math.min(dueDays[index % dueDays.length], monthLastDate)
-    const dueDate = new Date(year, month, dueDay)
-    const isPastDue = dueDate < startOfDay(today)
-    const baseStatus: BillingStatus =
-      index % 5 === 0
-        ? '입금완료'
-        : isPastDue
-          ? '연체'
-          : index % 3 === 0
-            ? '청구완료'
-            : '청구예정'
-
-    return {
-      id: `billing-${store.id}`,
-      storeName: formatBillingStoreName(store.name),
-      product: 'Google 프로필 월간 운영',
-      amount: index % 3 === 0 ? 1_400_000 : index % 3 === 1 ? 1_200_000 : 950_000,
-      dueDate: formatDateKey(dueDate),
-      dueDay,
-      status: baseStatus,
-      owner: store.owner || '권순현',
-      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행대기',
-      memo: '정기 운영료와 광고비를 분리해서 확인합니다.',
-    } satisfies BillingRecord
+      return {
+        id: `billing-${contract.storeName}-${monthIndex + 1}`,
+        storeName: contract.storeName,
+        product: contract.productGroup,
+        amount,
+        dueDate,
+        dueDay,
+        status,
+        owner: '권순현',
+        taxInvoice: status === '입금완료' ? '발행완료' : '발행대기',
+        memo,
+      } satisfies BillingRecord
+    })
   })
 }
 
@@ -1415,6 +1429,10 @@ function startOfDay(date: Date) {
   const target = new Date(date)
   target.setHours(0, 0, 0, 0)
   return target
+}
+
+function startOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1)
 }
 
 function startOfWeek(date: Date) {
@@ -3500,6 +3518,7 @@ function StoreOperationsPanel({
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
   const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
+  const [websiteBlogMonthAnchor, setWebsiteBlogMonthAnchor] = useState(() => startOfMonth(getKstCalendarDate()))
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
   const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
@@ -3525,13 +3544,14 @@ function StoreOperationsPanel({
     date: Date
   } | null>(null)
   const websiteBlogDefaultReports = useMemo(
-    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForWeek(weeklyReportDates) : []),
-    [activeWorkspace?.key, weeklyReportDates]
+    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForMonth(websiteBlogMonthAnchor) : []),
+    [activeWorkspace?.key, websiteBlogMonthAnchor]
   )
   const workspaceDefaultReports = activeWorkspace?.weeklyReports?.length
     ? activeWorkspace.weeklyReports
     : websiteBlogDefaultReports
   const displayWeeklyReports = weeklyReports.length ? weeklyReports : workspaceDefaultReports
+  const isWebsiteBlogWorkspace = activeWorkspace?.key === 'websiteBlog'
   const historyWeekGroups = useMemo(() => groupReportHistoryByWeek(reportHistory), [reportHistory])
   const selectedHistoryWeek =
     historyWeekGroups.find((group) => group.key === selectedHistoryWeekKey) || historyWeekGroups[0]
@@ -3540,7 +3560,11 @@ function StoreOperationsPanel({
       displayWeeklyReports.map((report) => {
         const date = report.date
           ? parseLocalDate(report.date)
-          : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
+          : isWebsiteBlogWorkspace
+            ? websiteBlogDefaultReports[report.dayOffset]?.date
+              ? parseLocalDate(websiteBlogDefaultReports[report.dayOffset].date || '')
+              : weeklyReportDates[0]
+            : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
         const dateKey = report.date || toISODate(date)
 
         return {
@@ -3550,7 +3574,7 @@ function StoreOperationsPanel({
           draftMemo: reportDrafts[dateKey] ?? report.memo ?? '',
         }
       }),
-    [displayWeeklyReports, reportDrafts, weeklyReportDates]
+    [displayWeeklyReports, isWebsiteBlogWorkspace, reportDrafts, websiteBlogDefaultReports, weeklyReportDates]
   )
   const selectedWeeklyReport =
     weeklyReportItems.find((item) => item.dateKey === selectedWeeklyReportDate) || weeklyReportItems[0]
@@ -3570,7 +3594,6 @@ function StoreOperationsPanel({
           ? '자동저장됨'
           : '자동저장 대기'
     : ''
-  const isWebsiteBlogWorkspace = activeWorkspace?.key === 'websiteBlog'
   const showProcessRoadmap = activeWorkspace?.key === 'googleProfile'
   const showWeeklyReportPanel = activeWorkspace?.key === 'googleProfile'
   const showReportHistoryPanel = activeWorkspace?.key !== 'googleAds'
@@ -3656,9 +3679,12 @@ function StoreOperationsPanel({
       ])
       const data = (await weekResponse.json()) as WeeklyReportApiResponse
       const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
-      setWeeklyReports(data.reports || [])
+      const nextReports = activeWorkspace.key === 'websiteBlog'
+        ? mergeWebsiteBlogMonthReports(websiteBlogDefaultReports, [...(historyData.reports || []), ...(data.reports || [])])
+        : data.reports || []
+      setWeeklyReports(nextReports)
       setReportHistory(historyData.reports || [])
-      const nextReportDrafts = Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || '']))
+      const nextReportDrafts = Object.fromEntries(nextReports.map((report) => [report.date, report.memo || '']))
       lastSavedReportMemoRef.current = nextReportDrafts
       setReportDrafts(nextReportDrafts)
       setWeeklyReportMessage(
@@ -3671,7 +3697,7 @@ function StoreOperationsPanel({
       )
     } catch {
       const fallbackReports = activeWorkspace.key === 'websiteBlog'
-        ? websiteBlogReportsForWeek(weeklyReportDates)
+        ? websiteBlogDefaultReports
         : activeWorkspace.weeklyReports || []
       setWeeklyReports(fallbackReports)
       const nextReportDrafts = Object.fromEntries(
@@ -3691,7 +3717,7 @@ function StoreOperationsPanel({
         setReportHistoryLoading(false)
       }
     }
-  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart, weeklyReportDates])
+  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart, websiteBlogDefaultReports, weeklyReportDates])
 
   useEffect(() => {
     let cancelled = false
@@ -3762,6 +3788,8 @@ function StoreOperationsPanel({
     })
 
     try {
+      const reportWeekStart =
+        activeWorkspace.key === 'websiteBlog' ? toISODate(getMondayStart(parseLocalDate(reportDateKey))) : weekStart
       const response = await fetch('/api/erp/reports', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -3769,7 +3797,7 @@ function StoreOperationsPanel({
           store: selectedStore.title,
           product: activeWorkspace.key,
           date: reportDateKey,
-          weekStart,
+          weekStart: reportWeekStart,
           title: report.title,
           memo: reportMemo,
           status,
@@ -3777,8 +3805,27 @@ function StoreOperationsPanel({
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       if (data.connected) {
-        setWeeklyReports(data.reports || [])
-        const nextReportDrafts = Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || '']))
+        const savedReport = {
+          ...report,
+          date: reportDateKey,
+          memo: reportMemo,
+          status,
+          reporter: status === '보고완료' ? report.reporter || '블링크애드' : report.reporter,
+          completedAt: status === '보고완료' ? report.completedAt || new Date().toISOString() : report.completedAt,
+        }
+        const nextReports =
+          activeWorkspace.key === 'websiteBlog'
+            ? mergeWebsiteBlogMonthReports(websiteBlogDefaultReports, [
+                ...reportHistory,
+                ...(data.reports || []),
+                savedReport,
+              ])
+            : data.reports || []
+        setWeeklyReports(nextReports)
+        if (activeWorkspace.key === 'websiteBlog') {
+          setReportHistory((current) => upsertReportHistory(current, savedReport))
+        }
+        const nextReportDrafts = Object.fromEntries(nextReports.map((item) => [item.date, item.memo || '']))
         lastSavedReportMemoRef.current = {
           ...lastSavedReportMemoRef.current,
           ...nextReportDrafts,
@@ -3824,7 +3871,7 @@ function StoreOperationsPanel({
         setAutoSavingReportDate(null)
       }
     }
-  }, [activeWorkspace, displayWeeklyReports, selectedStore, weekStart, weeklyReportDates])
+  }, [activeWorkspace, displayWeeklyReports, reportHistory, selectedStore, websiteBlogDefaultReports, weekStart, weeklyReportDates])
 
   const updateWeeklyReportStatus = async (
     report: StoreWeeklyReport,
@@ -4216,7 +4263,14 @@ function StoreOperationsPanel({
                   updatingDate={updatingReportDate}
                   selectedUpdating={selectedWeeklyReportUpdating}
                   autoSaveStatus={selectedWeeklyReportAutoSaveStatus}
+                  monthAnchor={websiteBlogMonthAnchor}
                   onRefresh={() => loadWeeklyReports()}
+                  onPreviousMonth={() =>
+                    setWebsiteBlogMonthAnchor((current) => new Date(current.getFullYear(), current.getMonth() - 1, 1))
+                  }
+                  onNextMonth={() =>
+                    setWebsiteBlogMonthAnchor((current) => new Date(current.getFullYear(), current.getMonth() + 1, 1))
+                  }
                   onSelectDate={setSelectedWeeklyReportDate}
                   onChangeMemo={(dateKey, value) =>
                     setReportDrafts((current) => ({
@@ -4889,7 +4943,10 @@ function WebsiteBlogWorkLogPanel({
   updatingDate,
   selectedUpdating,
   autoSaveStatus,
+  monthAnchor,
   onRefresh,
+  onPreviousMonth,
+  onNextMonth,
   onSelectDate,
   onChangeMemo,
   onSave,
@@ -4902,18 +4959,29 @@ function WebsiteBlogWorkLogPanel({
   updatingDate: string | null
   selectedUpdating: boolean
   autoSaveStatus: string
+  monthAnchor: Date
   onRefresh: () => void
+  onPreviousMonth: () => void
+  onNextMonth: () => void
   onSelectDate: (dateKey: string) => void
   onChangeMemo: (dateKey: string, value: string) => void
   onSave: (item: WeeklyReportItem, status: StoreWeeklyReportStatus, memo: string) => void
 }) {
+  const monthGroups = websiteBlogMonthGroups(items, monthAnchor)
+
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
       <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <p className="text-sm font-bold text-brand-blue">Daily Work Log</p>
-          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 일별 작업내역</h4>
+          <p className="text-sm font-bold text-brand-blue">Monthly Blog Work Log</p>
+          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 월 8회 작업현황</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            주 2회 기준으로 월 8회 작업 슬롯을 주차별로 관리합니다.
+          </p>
           <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-gray-200">
+              총 {items.length}회
+            </span>
             <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
               완료 {summary.done}
             </span>
@@ -4926,8 +4994,27 @@ function WebsiteBlogWorkLogPanel({
           </div>
         </div>
         <div className="flex flex-col gap-3 xl:items-end">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onPreviousMonth}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
+              aria-label="이전 달"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <p className="min-w-36 text-center text-sm font-black text-white">{formatCalendarRange('month', monthAnchor)}</p>
+            <button
+              type="button"
+              onClick={onNextMonth}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
+              aria-label="다음 달"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
           <p className="text-sm font-semibold leading-6 text-gray-500 xl:text-right keep-all">
-            {loading ? '보고 DB 확인 중입니다.' : message || '날짜별 웹사이트·블로그 작업내역을 확인합니다.'}
+            {loading ? '보고 DB 확인 중입니다.' : message || '월별 웹사이트·블로그 작업내역을 확인합니다.'}
           </p>
           <button
             type="button"
@@ -4940,64 +5027,81 @@ function WebsiteBlogWorkLogPanel({
         </div>
       </div>
 
-      <div className="mt-5 grid gap-2 lg:grid-cols-5">
-        {items.map((item) => {
-          const active = item.dateKey === selectedItem.dateKey
-          const reportUpdating = updatingDate === item.dateKey
-          const reportDone = item.report.status === '보고완료'
-
-          return (
-            <article
-              key={`website-blog-log-${item.dateKey}`}
-              onClick={() => onSelectDate(item.dateKey)}
-              onKeyDown={(event) => {
-                if ((event.target as HTMLElement).closest('button')) return
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  onSelectDate(item.dateKey)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              className={`min-h-[170px] cursor-pointer rounded-lg border p-4 text-left outline-none transition ${
-                active
-                  ? 'border-brand-blue/60 bg-brand-blue/15'
-                  : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
-              }`}
-            >
-              <div className="flex min-h-14 items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
-                  <p className="mt-2 whitespace-nowrap text-3xl font-black leading-none tracking-tight text-white">
-                    {formatMonthDay(item.date)}
-                  </p>
-                </div>
-                <span className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
-                  {item.report.status}
-                </span>
+      <div className="mt-5 grid gap-3 xl:grid-cols-4">
+        {monthGroups.map((group) => (
+          <section key={`website-blog-month-group-${group.label}`} className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-black text-white">{group.label}</p>
+                <p className="mt-1 text-xs font-bold text-gray-600">{group.rangeLabel}</p>
               </div>
-              <p className="mt-4 min-h-6 font-black leading-6 text-white keep-all">{item.report.title}</p>
-              <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
-                {item.draftMemo || '작업내역 입력 전입니다.'}
-              </p>
-              <button
-                type="button"
-                disabled={reportUpdating || reportDone}
-                onClick={(event) => {
-                  event.stopPropagation()
-                  onSave(item, '보고완료', item.draftMemo)
-                }}
-                className={`mt-3 h-9 w-full rounded-md border px-3 text-xs font-black transition ${
-                  reportDone
-                    ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
-                    : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
-                } disabled:cursor-not-allowed disabled:opacity-80`}
-              >
-                {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
-              </button>
-            </article>
-          )
-        })}
+              <span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-[11px] font-black text-gray-300">
+                {group.items.filter((item) => item.report.status === '보고완료').length}/2
+              </span>
+            </div>
+            <div className="space-y-2">
+              {group.items.map((item) => {
+                const active = item.dateKey === selectedItem.dateKey
+                const reportUpdating = updatingDate === item.dateKey
+                const reportDone = item.report.status === '보고완료'
+
+                return (
+                  <article
+                    key={`website-blog-log-${item.dateKey}`}
+                    onClick={() => onSelectDate(item.dateKey)}
+                    onKeyDown={(event) => {
+                      if ((event.target as HTMLElement).closest('button')) return
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        onSelectDate(item.dateKey)
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    className={`min-h-[156px] cursor-pointer rounded-lg border p-3 text-left outline-none transition ${
+                      active
+                        ? 'border-brand-blue/60 bg-brand-blue/15'
+                        : 'border-white/10 bg-black hover:border-white/25 hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
+                        <p className="mt-1 whitespace-nowrap text-2xl font-black leading-none tracking-tight text-white">
+                          {formatMonthDay(item.date)}
+                        </p>
+                      </div>
+                      <span className={`shrink-0 whitespace-nowrap rounded-full border px-2 py-1 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
+                        {item.report.status}
+                      </span>
+                    </div>
+                    <p className="mt-3 font-black leading-6 text-white keep-all">
+                      {item.report.title}
+                    </p>
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                      {item.draftMemo || '작업내역 입력 전입니다.'}
+                    </p>
+                    <button
+                      type="button"
+                      disabled={reportUpdating || reportDone}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        onSave(item, '보고완료', item.draftMemo)
+                      }}
+                      className={`mt-3 h-8 w-full rounded-md border px-3 text-xs font-black transition ${
+                        reportDone
+                          ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                          : 'border-white/15 bg-white/[0.03] text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                      } disabled:cursor-not-allowed disabled:opacity-80`}
+                    >
+                      {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
+                    </button>
+                  </article>
+                )
+              })}
+            </div>
+          </section>
+        ))}
       </div>
 
       <div className="mt-5 grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 xl:grid-cols-[1fr_280px]">
@@ -5205,14 +5309,69 @@ function reportsForStoreWeek(store: OperationRow, apiReports: StoreWeeklyReport[
   })
 }
 
-function websiteBlogReportsForWeek(weekDates: Date[]): StoreWeeklyReport[] {
-  return weekDates.map((date, index) => ({
+function websiteBlogReportsForMonth(monthAnchor: Date): StoreWeeklyReport[] {
+  const monthStart = startOfMonth(monthAnchor)
+  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
+  const slotDays = Array.from({ length: 4 }, (_, weekIndex) => {
+    const startDay = weekIndex * 7 + 1
+    return [Math.min(startDay + 1, lastDate), Math.min(startDay + 4, lastDate)]
+  }).flat()
+
+  return slotDays.map((day, index) => ({
     dayOffset: index,
-    date: toISODate(date),
+    date: toISODate(new Date(monthStart.getFullYear(), monthStart.getMonth(), day)),
     status: index === 0 ? '작성중' : '보고대기',
-    title: '웹사이트·블로그 작업내역',
+    title: `${index + 1}회차 블로그 작업내역`,
     memo: '',
   }))
+}
+
+function mergeWebsiteBlogMonthReports(baseReports: StoreWeeklyReport[], savedReports: StoreWeeklyReport[]) {
+  const savedByDate = new Map<string, StoreWeeklyReport>()
+
+  savedReports.forEach((report) => {
+    if (report.date) savedByDate.set(report.date, report)
+  })
+
+  return baseReports.map((base) => {
+    const saved = base.date ? savedByDate.get(base.date) : undefined
+    if (!saved) return base
+
+    return {
+      ...base,
+      ...saved,
+      dayOffset: base.dayOffset,
+      date: base.date,
+      title: base.title,
+    }
+  })
+}
+
+function upsertReportHistory(current: StoreWeeklyReport[], report: StoreWeeklyReport) {
+  if (!report.date) return current
+
+  return [report, ...current.filter((item) => item.date !== report.date)].sort((a, b) =>
+    (b.date || '').localeCompare(a.date || '')
+  )
+}
+
+function websiteBlogMonthGroups(items: WeeklyReportItem[], monthAnchor: Date) {
+  return Array.from({ length: 4 }, (_, weekIndex) => ({
+    label: `${weekIndex + 1}주차`,
+    rangeLabel: websiteBlogMonthWeekRangeLabel(monthAnchor, weekIndex),
+    items: items.filter((item) => Math.floor(item.report.dayOffset / 2) === weekIndex),
+  }))
+}
+
+function websiteBlogMonthWeekRangeLabel(monthAnchor: Date, weekIndex: number) {
+  const monthStart = startOfMonth(monthAnchor)
+  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
+  const startDay = weekIndex * 7 + 1
+  const endDay = weekIndex === 3 ? lastDate : Math.min(startDay + 6, lastDate)
+  const start = new Date(monthStart.getFullYear(), monthStart.getMonth(), startDay)
+  const end = new Date(monthStart.getFullYear(), monthStart.getMonth(), endDay)
+
+  return `${formatMonthDay(start)}~${formatMonthDay(end)}`
 }
 
 function taskStatusBadge(status: string) {
