@@ -199,6 +199,13 @@ type ContractRevenueRecord = {
   memo: string
 }
 
+type WeeklyReportItem = {
+  report: StoreWeeklyReport
+  date: Date
+  dateKey: string
+  draftMemo: string
+}
+
 const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 
@@ -3517,7 +3524,14 @@ function StoreOperationsPanel({
     report: StoreWeeklyReport
     date: Date
   } | null>(null)
-  const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
+  const websiteBlogDefaultReports = useMemo(
+    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForWeek(weeklyReportDates) : []),
+    [activeWorkspace?.key, weeklyReportDates]
+  )
+  const workspaceDefaultReports = activeWorkspace?.weeklyReports?.length
+    ? activeWorkspace.weeklyReports
+    : websiteBlogDefaultReports
+  const displayWeeklyReports = weeklyReports.length ? weeklyReports : workspaceDefaultReports
   const historyWeekGroups = useMemo(() => groupReportHistoryByWeek(reportHistory), [reportHistory])
   const selectedHistoryWeek =
     historyWeekGroups.find((group) => group.key === selectedHistoryWeekKey) || historyWeekGroups[0]
@@ -3556,7 +3570,10 @@ function StoreOperationsPanel({
           ? '자동저장됨'
           : '자동저장 대기'
     : ''
-  const showOperationalReportPanels = activeWorkspace?.key !== 'googleAds'
+  const isWebsiteBlogWorkspace = activeWorkspace?.key === 'websiteBlog'
+  const showProcessRoadmap = activeWorkspace?.key === 'googleProfile'
+  const showWeeklyReportPanel = activeWorkspace?.key === 'googleProfile'
+  const showReportHistoryPanel = activeWorkspace?.key !== 'googleAds'
 
   useEffect(() => {
     reportDraftsRef.current = reportDrafts
@@ -3605,7 +3622,10 @@ function StoreOperationsPanel({
   }, [historyWeekGroups, selectedHistoryWeekKey])
 
   const loadWeeklyReports = useCallback(async (silent = false) => {
-    if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
+    const supportsReportRecords =
+      activeWorkspace?.key === 'websiteBlog' || Boolean(activeWorkspace?.weeklyReports?.length)
+
+    if (!selectedStore || !activeWorkspace || !supportsReportRecords) {
       setWeeklyReports([])
       setReportHistory([])
       setWeeklyReportMessage('')
@@ -3650,9 +3670,12 @@ function StoreOperationsPanel({
           (historyData.connected ? '기존 보고 현황을 불러왔습니다.' : '보고 DB 연결 전 샘플 기존 보고로 표시 중입니다.')
       )
     } catch {
-      setWeeklyReports(activeWorkspace.weeklyReports || [])
+      const fallbackReports = activeWorkspace.key === 'websiteBlog'
+        ? websiteBlogReportsForWeek(weeklyReportDates)
+        : activeWorkspace.weeklyReports || []
+      setWeeklyReports(fallbackReports)
       const nextReportDrafts = Object.fromEntries(
-        (activeWorkspace.weeklyReports || []).map((report) => {
+        fallbackReports.map((report) => {
           const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
           return [date, report.memo || '']
         })
@@ -3959,13 +3982,13 @@ function StoreOperationsPanel({
             </div>
           </div>
 
-          {showOperationalReportPanels && selectedStore.processSteps?.length ? (
+          {showProcessRoadmap && selectedStore.processSteps?.length ? (
             <StoreProcessRoadmap store={selectedStore} />
           ) : null}
 
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              {showOperationalReportPanels && weeklyReportItems.length && selectedWeeklyReport ? (
+              {showWeeklyReportPanel && weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
@@ -4183,14 +4206,41 @@ function StoreOperationsPanel({
                 <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
               {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
-              {showOperationalReportPanels ? (
+              {activeWorkspace.key === 'websiteBlog' && weeklyReportItems.length && selectedWeeklyReport ? (
+                <WebsiteBlogWorkLogPanel
+                  items={weeklyReportItems}
+                  selectedItem={selectedWeeklyReport}
+                  summary={weeklyReportSummary}
+                  loading={weeklyReportLoading}
+                  message={weeklyReportMessage}
+                  updatingDate={updatingReportDate}
+                  selectedUpdating={selectedWeeklyReportUpdating}
+                  autoSaveStatus={selectedWeeklyReportAutoSaveStatus}
+                  onRefresh={() => loadWeeklyReports()}
+                  onSelectDate={setSelectedWeeklyReportDate}
+                  onChangeMemo={(dateKey, value) =>
+                    setReportDrafts((current) => ({
+                      ...current,
+                      [dateKey]: value,
+                    }))
+                  }
+                  onSave={(item, status, memo) =>
+                    updateWeeklyReportStatus(item.report, item.dateKey, status, memo)
+                  }
+                />
+              ) : null}
+              {showReportHistoryPanel ? (
               <div className="border-b border-white/10 p-5 md:p-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                   <div>
                     <p className="text-sm font-bold text-brand-blue">Report History</p>
-                    <h4 className="mt-2 text-xl font-black text-white">기존 보고 현황</h4>
+                    <h4 className="mt-2 text-xl font-black text-white">
+                      {isWebsiteBlogWorkspace ? '날짜별 작업내역 보관' : '기존 보고 현황'}
+                    </h4>
                     <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
-                      완료된 보고와 이전 보고 내용을 주차별로 모아 확인합니다.
+                      {isWebsiteBlogWorkspace
+                        ? '웹사이트·블로그 실제 작업 기록을 날짜별로 모아 확인합니다.'
+                        : '완료된 보고와 이전 보고 내용을 주차별로 모아 확인합니다.'}
                     </p>
                   </div>
                   <p className="text-xs font-black text-gray-600">
@@ -4830,6 +4880,217 @@ function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWork
   )
 }
 
+function WebsiteBlogWorkLogPanel({
+  items,
+  selectedItem,
+  summary,
+  loading,
+  message,
+  updatingDate,
+  selectedUpdating,
+  autoSaveStatus,
+  onRefresh,
+  onSelectDate,
+  onChangeMemo,
+  onSave,
+}: {
+  items: WeeklyReportItem[]
+  selectedItem: WeeklyReportItem
+  summary: ReturnType<typeof summarizeReports>
+  loading: boolean
+  message: string
+  updatingDate: string | null
+  selectedUpdating: boolean
+  autoSaveStatus: string
+  onRefresh: () => void
+  onSelectDate: (dateKey: string) => void
+  onChangeMemo: (dateKey: string, value: string) => void
+  onSave: (item: WeeklyReportItem, status: StoreWeeklyReportStatus, memo: string) => void
+}) {
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Daily Work Log</p>
+          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 일별 작업내역</h4>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+            <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+              완료 {summary.done}
+            </span>
+            <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+              작성중 {summary.inProgress}
+            </span>
+            <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-amber-100">
+              대기 {summary.pending}
+            </span>
+          </div>
+        </div>
+        <div className="flex flex-col gap-3 xl:items-end">
+          <p className="text-sm font-semibold leading-6 text-gray-500 xl:text-right keep-all">
+            {loading ? '보고 DB 확인 중입니다.' : message || '날짜별 웹사이트·블로그 작업내역을 확인합니다.'}
+          </p>
+          <button
+            type="button"
+            disabled={loading}
+            onClick={onRefresh}
+            className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-white disabled:cursor-not-allowed disabled:text-gray-600"
+          >
+            {loading ? '동기화 중' : 'Notion 동기화'}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-2 lg:grid-cols-5">
+        {items.map((item) => {
+          const active = item.dateKey === selectedItem.dateKey
+          const reportUpdating = updatingDate === item.dateKey
+          const reportDone = item.report.status === '보고완료'
+
+          return (
+            <article
+              key={`website-blog-log-${item.dateKey}`}
+              onClick={() => onSelectDate(item.dateKey)}
+              onKeyDown={(event) => {
+                if ((event.target as HTMLElement).closest('button')) return
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault()
+                  onSelectDate(item.dateKey)
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              className={`min-h-[170px] cursor-pointer rounded-lg border p-4 text-left outline-none transition ${
+                active
+                  ? 'border-brand-blue/60 bg-brand-blue/15'
+                  : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
+              }`}
+            >
+              <div className="flex min-h-14 items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
+                  <p className="mt-2 whitespace-nowrap text-3xl font-black leading-none tracking-tight text-white">
+                    {formatMonthDay(item.date)}
+                  </p>
+                </div>
+                <span className={`shrink-0 whitespace-nowrap rounded-full border px-2.5 py-1.5 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
+                  {item.report.status}
+                </span>
+              </div>
+              <p className="mt-4 min-h-6 font-black leading-6 text-white keep-all">{item.report.title}</p>
+              <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                {item.draftMemo || '작업내역 입력 전입니다.'}
+              </p>
+              <button
+                type="button"
+                disabled={reportUpdating || reportDone}
+                onClick={(event) => {
+                  event.stopPropagation()
+                  onSave(item, '보고완료', item.draftMemo)
+                }}
+                className={`mt-3 h-9 w-full rounded-md border px-3 text-xs font-black transition ${
+                  reportDone
+                    ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                    : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                } disabled:cursor-not-allowed disabled:opacity-80`}
+              >
+                {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
+              </button>
+            </article>
+          )
+        })}
+      </div>
+
+      <div className="mt-5 grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 xl:grid-cols-[1fr_280px]">
+        <div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Selected Date</p>
+              <h5 className="mt-2 text-2xl font-black text-white keep-all">{selectedItem.report.title}</h5>
+              <p className="mt-2 text-sm font-bold text-gray-500">
+                {formatMonthDay(selectedItem.date)} · {formatWeekday(selectedItem.date)}
+              </p>
+            </div>
+            <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-xs font-black ${weeklyReportBadge(selectedItem.report.status)}`}>
+              {selectedItem.report.status}
+            </span>
+          </div>
+          <label className="mt-4 block">
+            <span className="mb-2 flex items-center justify-between gap-3 text-xs font-black text-gray-500">
+              <span>작업내역</span>
+              <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] leading-none ${autoSaveStatusBadge(autoSaveStatus)}`}>
+                {autoSaveStatus}
+              </span>
+            </span>
+            <textarea
+              value={selectedItem.draftMemo}
+              disabled={selectedUpdating}
+              onChange={(event) => onChangeMemo(selectedItem.dateKey, event.target.value)}
+              className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+              placeholder={`예시)
+- 지점 페이지 대표 메뉴 섹션 문구 수정
+- FAQ 3개 추가
+- 블로그 초안 제목/키워드 정리
+- Google 프로필 연결 URL 후보 확인`}
+            />
+          </label>
+        </div>
+
+        <aside className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-sm font-black text-white">기록 액션</p>
+          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+            선택한 날짜의 작업 상태와 내용을 저장합니다.
+          </p>
+          <label className="mt-4 block">
+            <span className="mb-2 block text-[11px] font-black text-gray-600">작업상태</span>
+            <select
+              value={selectedItem.report.status}
+              disabled={selectedUpdating}
+              onChange={(event) =>
+                onSave(selectedItem, event.target.value as StoreWeeklyReportStatus, selectedItem.draftMemo)
+              }
+              className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
+            >
+              {REPORT_STATUS_OPTIONS.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            disabled={selectedUpdating || selectedItem.report.status === '보고완료'}
+            onClick={() => onSave(selectedItem, '보고완료', selectedItem.draftMemo)}
+            className="mt-3 h-10 w-full rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+          >
+            {selectedUpdating
+              ? '처리 중'
+              : selectedItem.report.status === '보고완료'
+                ? '완료됨'
+                : '완료처리'}
+          </button>
+          <button
+            type="button"
+            disabled={selectedUpdating}
+            onClick={() => onSave(selectedItem, selectedItem.report.status, selectedItem.draftMemo)}
+            className="mt-3 h-10 w-full rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-500"
+          >
+            {selectedUpdating ? '저장 중' : '작업내역 저장'}
+          </button>
+          {selectedItem.report.status === '보고완료' ? (
+            <p className="mt-4 text-xs font-bold leading-5 text-emerald-100/80 keep-all">
+              {selectedItem.report.reporter ? `${selectedItem.report.reporter} · ` : ''}
+              {selectedItem.report.completedAt
+                ? formatDateTime(selectedItem.report.completedAt)
+                : '보고완료'}
+            </p>
+          ) : null}
+        </aside>
+      </div>
+    </div>
+  )
+}
+
 type ReportHistoryWeekGroup = {
   key: string
   label: string
@@ -4942,6 +5203,16 @@ function reportsForStoreWeek(store: OperationRow, apiReports: StoreWeeklyReport[
       memo: '',
     }
   })
+}
+
+function websiteBlogReportsForWeek(weekDates: Date[]): StoreWeeklyReport[] {
+  return weekDates.map((date, index) => ({
+    dayOffset: index,
+    date: toISODate(date),
+    status: index === 0 ? '작성중' : '보고대기',
+    title: '웹사이트·블로그 작업내역',
+    memo: '',
+  }))
 }
 
 function taskStatusBadge(status: string) {

@@ -191,16 +191,21 @@ function isReportSent(status: ReportStatus) {
   return status === '보고완료'
 }
 
-function fallbackReports(weekStart?: string): ReportItem[] {
+function fallbackReports(weekStart?: string, product?: string): ReportItem[] {
   const dates = weekDates(weekStart).slice(0, 5)
-  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
-  const memos = [
-    'Google 게시물과 소식지 업데이트를 진행합니다.',
-    '주요 키워드 노출 순위와 변동을 확인합니다.',
-    '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
-    '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
-    '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
-  ]
+  const isWebsiteBlog = product === 'websiteBlog'
+  const titles = isWebsiteBlog
+    ? Array.from({ length: 5 }, () => '웹사이트·블로그 작업내역')
+    : ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
+  const memos = isWebsiteBlog
+    ? Array.from({ length: 5 }, () => '')
+    : [
+        'Google 게시물과 소식지 업데이트를 진행합니다.',
+        '주요 키워드 노출 순위와 변동을 확인합니다.',
+        '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+        '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+        '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
+      ]
 
   return dates.map((date, index) => ({
     dayOffset: index,
@@ -211,8 +216,8 @@ function fallbackReports(weekStart?: string): ReportItem[] {
   }))
 }
 
-function fallbackReportsWithStatus(weekStart: string | undefined, date: string, status: ReportStatus) {
-  return fallbackReports(weekStart).map((report) =>
+function fallbackReportsWithStatus(weekStart: string | undefined, date: string, status: ReportStatus, product?: string) {
+  return fallbackReports(weekStart, product).map((report) =>
     report.date === date
       ? {
           ...report,
@@ -224,11 +229,14 @@ function fallbackReportsWithStatus(weekStart: string | undefined, date: string, 
   )
 }
 
-function fallbackReportHistory(weekStart?: string): ReportItem[] {
+function fallbackReportHistory(weekStart?: string, product?: string): ReportItem[] {
   const baseStart = parseDate(weekStart)
   baseStart.setDate(baseStart.getDate() - 14)
   const reports: ReportItem[] = []
-  const titles = ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
+  const isWebsiteBlog = product === 'websiteBlog'
+  const titles = isWebsiteBlog
+    ? Array.from({ length: 5 }, () => '웹사이트·블로그 작업내역')
+    : ['피드업데이트', '키워드순위보고', '종합 데이터 분석', '피드업데이트', '주간 마감 보고']
 
   for (let index = 0; reports.length < 10; index += 1) {
     const date = new Date(baseStart)
@@ -241,7 +249,9 @@ function fallbackReportHistory(weekStart?: string): ReportItem[] {
       date: isoDate(date),
       status: '보고완료' as ReportStatus,
       title: titles[reports.length % 5],
-      memo: '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
+      memo: isWebsiteBlog
+        ? '보고 DB 연결 전 표시되는 웹사이트·블로그 작업내역 샘플입니다.'
+        : '보고 DB 연결 전 표시되는 샘플 과거 보고입니다.',
       reporter: '블링크애드',
       completedAt: new Date(date.getFullYear(), date.getMonth(), date.getDate(), 18, 0, 0).toISOString(),
     })
@@ -295,6 +305,7 @@ function reportSchemaMap(schema: Record<string, any>) {
 }
 
 function reportTypeForTitle(title: string) {
+  if (title.includes('웹사이트') || title.includes('블로그')) return '웹사이트·블로그 작업 보고'
   if (title.includes('키워드')) return '화요일 키워드 순위 보고'
   if (title.includes('종합') || title.includes('데이터')) return '수요일 주간 성과 보고'
   if (title.includes('마감')) return '금요일 주간 마감 보고'
@@ -303,6 +314,7 @@ function reportTypeForTitle(title: string) {
 }
 
 function displayTitleFromReportType(reportType: string, fallback: string) {
+  if (reportType.includes('웹사이트') || reportType.includes('블로그')) return '웹사이트·블로그 작업내역'
   if (reportType.includes('키워드')) return '키워드순위보고'
   if (reportType.includes('성과') || reportType.includes('데이터')) return '종합 데이터 분석'
   if (reportType.includes('마감')) return '주간 마감 보고'
@@ -318,6 +330,7 @@ function displayReportTitle(properties: Record<string, any>, map: ReturnType<typ
   if (title.includes('종합 데이터 분석')) return '종합 데이터 분석'
   if (title.includes('주간 마감 보고')) return '주간 마감 보고'
   if (title.includes('피드업데이트')) return '피드업데이트'
+  if (title.includes('웹사이트') || title.includes('블로그')) return '웹사이트·블로그 작업내역'
   return fallback
 }
 
@@ -347,7 +360,7 @@ function mergeReports(
   product: string,
   weekStart?: string
 ) {
-  const base = fallbackReports(weekStart)
+  const base = fallbackReports(weekStart, product)
   const dateSet = new Set(base.map((report) => report.date))
   const byDate = new Map(base.map((report) => [report.date, report]))
 
@@ -644,7 +657,7 @@ export async function GET(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: 'NOTION_TOKEN 또는 NOTION_API_KEY가 없어 샘플 보고 데이터로 표시 중입니다.',
-      reports: mode === 'history' ? fallbackReportHistory(weekStart) : fallbackReports(weekStart),
+      reports: mode === 'history' ? fallbackReportHistory(weekStart, product) : fallbackReports(weekStart, product),
     })
   }
 
@@ -665,7 +678,7 @@ export async function GET(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: reportConnectionErrorMessage(error),
-      reports: mode === 'history' ? fallbackReportHistory(weekStart) : fallbackReports(weekStart),
+      reports: mode === 'history' ? fallbackReportHistory(weekStart, product) : fallbackReports(weekStart, product),
     })
   }
 }
@@ -679,7 +692,7 @@ export async function POST(request: NextRequest) {
   const targetTitle = String(body.title || '').trim()
   const token = resolveNotionToken()
   const databaseId = reportDatabaseId()
-  const baseReports = fallbackReports(weekStart)
+  const baseReports = fallbackReports(weekStart, product)
   const targetReportDates = targetDate ? new Set([targetDate]) : undefined
   const targetReports = baseReports.filter(
     (report) =>
@@ -785,7 +798,7 @@ export async function PATCH(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: 'Notion 토큰, 매장명, 보고일이 필요합니다.',
-      reports: fallbackReportsWithStatus(weekStart, date, status),
+      reports: fallbackReportsWithStatus(weekStart, date, status, product),
     })
   }
 
@@ -842,7 +855,7 @@ export async function PATCH(request: NextRequest) {
       source: 'fallback',
       connected: false,
       message: reportConnectionErrorMessage(error),
-      reports: fallbackReportsWithStatus(weekStart, date, status),
+      reports: fallbackReportsWithStatus(weekStart, date, status, product),
     })
   }
 }
