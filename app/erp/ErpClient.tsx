@@ -339,9 +339,9 @@ const billingScheduleByStore: Record<
   },
   '웰믹스 광화문점': {
     dueDay: 10,
-    firstPaidDate: '2026-06-10',
+    firstPaidDate: '2026-06-11',
     firstStatus: '입금완료',
-    memo: '2026년 6월 10일 입금완료',
+    memo: '2026년 6월 11일 입금완료',
   },
   '바다당 해운대점': {
     dueDay: 16,
