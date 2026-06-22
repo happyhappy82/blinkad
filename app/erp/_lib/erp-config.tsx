@@ -421,6 +421,26 @@ https://www.notion.so/366753ebc0138087aff3fbdd8ac6aa3f?source=copy_link
 
 감사합니다.`
 
+export const RESTAURANT_MATERIAL_REQUEST_MESSAGE = `관리 시작하기에 앞서, 매장 세팅 및 관리에 필요한 자료 요청 드립니다.
+
+음식점은 고객이 검색 후 메뉴, 분위기, 위치, 리뷰를 보고 방문을 결정하기 때문에 음식 사진과 매장 분위기 사진이 중요합니다. 매장의 대표 메뉴와 신뢰 요소가 잘 드러나는 자료로 공유 부탁드립니다.
+
+요청 자료
+일단 되는 것 먼저 보내주시고, 필요한 경우 추후 요청드리겠습니다.
+
+- 매장 외부, 입구, 간판 사진 등
+- 매장 내부, 좌석, 테이블, 단체석, 프라이빗룸 등 공간 사진 등
+- 대표 메뉴 사진 등
+- 인기 메뉴, 시그니처 메뉴, 세트 메뉴 사진 등
+- 메뉴판 사진 또는 메뉴 리스트 등
+- 조리 장면, 플레이팅 장면, 서빙 장면 등
+- 원재료, 주방, 위생 관리 등 신뢰를 줄 수 있는 사진 등
+- 사장님 또는 셰프 소개 사진 등
+- 방송 출연, 맛집 선정, 수상, 인증 자료 등
+- 외국인 고객이 이해하기 쉬운 메뉴 설명 자료 등
+- 매장 분위기와 포지셔닝을 보여줄 수 있는 사진 등
+- 회식, 모임, 데이트, 가족 외식 등 이용 상황 사진 등`
+
 export const MONDAY_FEED_UPDATE_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
 
 오늘은 Google 프로필 피드 업데이트 작업을 진행했습니다.
@@ -1484,11 +1504,11 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   assets: {
     kicker: 'Content Assets',
     title: '콘텐츠 자산',
-    description: '웰컴문구와 Google 프로필 요일별 보고 멘트를 한곳에서 열람하고 복사합니다.',
+    description: '웰컴문구, 자료요청 문구와 Google 프로필 요일별 보고 멘트를 한곳에서 열람하고 복사합니다.',
     stats: [
-      { label: '콘텐츠', value: '6' },
+      { label: '콘텐츠', value: '7' },
       { label: '보고 멘트', value: '5' },
-      { label: '웰컴문구', value: '1' },
+      { label: '자료요청', value: '1' },
     ],
     rows: [
       {
@@ -1499,6 +1519,15 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         due: '상시',
         memo: '신규 계약 후 단톡방에 고정해 Google 비즈니스 프로필 관리자 권한 추가를 요청할 때 사용합니다.',
         copyText: WELCOME_GOOGLE_PROFILE_ACCESS_MESSAGE,
+      },
+      {
+        title: '자료요청문구(요식업)',
+        meta: '요식업 · 사진/메뉴판/신뢰자료 요청',
+        status: '템플릿',
+        owner: '블링크애드',
+        due: '운영 시작 전',
+        memo: '요식업 매장 운영 시작 전 필요한 사진, 메뉴, 인증 자료를 요청할 때 사용합니다.',
+        copyText: RESTAURANT_MATERIAL_REQUEST_MESSAGE,
       },
       {
         title: '월요일 피드 업데이트 보고 멘트',
