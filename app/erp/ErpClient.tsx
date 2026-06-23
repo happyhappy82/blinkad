@@ -222,6 +222,7 @@ type SettlementRecord = {
   grossAmount: number
   netSalesAmount: number
   reserveAmount: number
+  expenseRevenueAmount: number
   workerCostAmount: number
   profitAmount: number
 }
@@ -236,6 +237,8 @@ type SettlementSummary = {
   netSalesAmount: number
   reserveRate: number
   reserveAmount: number
+  expenseRevenueRate: number
+  expenseRevenueAmount: number
   workerCostPerStore: number
   workerCostAmount: number
   profitAmount: number
@@ -258,6 +261,7 @@ const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 const SETTLEMENT_EXCLUDED_STORE_NAMES = ['언리미티드']
 const SETTLEMENT_RESERVE_RATE = 0.05
+const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
 const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
 const VAT_RATE = 0.1
 const SETTLEMENT_CHECK_STORAGE_KEY = 'blinkad-erp-settlement-checks'
@@ -404,6 +408,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
       const grossAmount = record.monthlyAmounts[monthIndex] || 0
       const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
       const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+      const expenseRevenueAmount = Math.round(netSalesAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
       const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
       const checkDate = settlementCheckDateForStore(record.storeName, monthIndex)
 
@@ -416,8 +421,9 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
         grossAmount,
         netSalesAmount,
         reserveAmount,
+        expenseRevenueAmount,
         workerCostAmount,
-        profitAmount: netSalesAmount - reserveAmount - workerCostAmount,
+        profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
       }
     })
     .sort((a, b) => a.checkDate.localeCompare(b.checkDate) || a.storeName.localeCompare(b.storeName))
@@ -426,6 +432,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
   const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
   const vatAmount = grossAmount - netSalesAmount
   const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+  const expenseRevenueAmount = Math.round(netSalesAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
   const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
 
   return {
@@ -438,9 +445,11 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     netSalesAmount,
     reserveRate: SETTLEMENT_RESERVE_RATE,
     reserveAmount,
+    expenseRevenueRate: SETTLEMENT_EXPENSE_REVENUE_RATE,
+    expenseRevenueAmount,
     workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
     workerCostAmount,
-    profitAmount: netSalesAmount - reserveAmount - workerCostAmount,
+    profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
   }
 }
 
@@ -1475,6 +1484,12 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
       highlight: false,
     },
     {
+      label: '비용매출',
+      value: formatRevenueManwon(settlement.expenseRevenueAmount),
+      detail: `매출의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
+      highlight: false,
+    },
+    {
       label: '예상 순수익',
       value: formatRevenueManwon(settlement.profitAmount),
       detail: `충당금 ${formatRevenueManwon(settlement.reserveAmount)} · 작업비 ${formatRevenueManwon(settlement.workerCostAmount)}`,
@@ -1517,7 +1532,7 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
         ))}
       </div>
 
-      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-4">
+      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-5">
         {summaryCards.map((card) => (
           <div
             key={`settlement-summary-${card.label}`}
@@ -1547,19 +1562,20 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
         </div>
 
         <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-          <div className="min-w-[720px]">
-            <div className="grid grid-cols-[72px_112px_1fr_140px_140px_110px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+          <div className="min-w-[860px]">
+            <div className="grid grid-cols-[72px_112px_1fr_140px_130px_140px_110px] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
               <span>체크</span>
               <span>날짜</span>
               <span>매장</span>
               <span className="text-right">입금액</span>
+              <span className="text-right">비용매출</span>
               <span className="text-right">예상 순수익</span>
               <span className="text-right">상태</span>
             </div>
             {settlement.records.map((record) => (
               <label
                 key={record.key}
-                className={`grid cursor-pointer grid-cols-[72px_112px_1fr_140px_140px_110px] items-center border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
+                className={`grid cursor-pointer grid-cols-[72px_112px_1fr_140px_130px_140px_110px] items-center border-b border-white/10 px-4 py-3 text-sm last:border-b-0 ${
                   checkedItems[record.key] ? 'bg-emerald-300/10' : ''
                 }`}
               >
@@ -1579,6 +1595,7 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
                 <span className="font-black text-white">{formatDateShort(parseLocalDate(record.checkDate))}</span>
                 <span className="font-black text-white keep-all">{record.storeName}</span>
                 <span className="text-right font-black text-gray-200">{formatCurrency(record.grossAmount)}원</span>
+                <span className="text-right font-black text-gray-200">{formatCurrency(record.expenseRevenueAmount)}원</span>
                 <span className="text-right font-black text-emerald-100">{formatCurrency(record.profitAmount)}원</span>
                 <span className="text-right">
                   <span className={`inline-flex rounded-full border px-2 py-1 text-[11px] font-black ${billingStatusBadge(record.status)}`}>
