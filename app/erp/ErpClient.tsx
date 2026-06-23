@@ -222,6 +222,7 @@ type SettlementRecord = {
   grossAmount: number
   netSalesAmount: number
   reserveAmount: number
+  profileManagementAmount: number
   expenseRevenueAmount: number
   workerCostAmount: number
   profitAmount: number
@@ -237,6 +238,7 @@ type SettlementSummary = {
   netSalesAmount: number
   reserveRate: number
   reserveAmount: number
+  profileManagementAmount: number
   expenseRevenueRate: number
   expenseRevenueAmount: number
   workerCostPerStore: number
@@ -262,6 +264,8 @@ const CONTRACT_REVENUE_START_MONTH = 6
 const SETTLEMENT_EXCLUDED_STORE_NAMES = ['언리미티드']
 const SETTLEMENT_RESERVE_RATE = 0.05
 const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
+const SETTLEMENT_GOOGLE_ADS_NET_AMOUNT = 200_000
+const SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT = 500_000
 const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
 const VAT_RATE = 0.1
 const SETTLEMENT_CHECK_STORAGE_KEY = 'blinkad-erp-settlement-checks'
@@ -390,6 +394,15 @@ function firstMonthRevenue(record: ContractRevenueRecord) {
   return record.monthlyAmounts[0] || 0
 }
 
+function settlementProfileManagementAmount(record: ContractRevenueRecord, netSalesAmount: number) {
+  const productText = `${record.productGroup} ${record.productDetail}`
+  const fixedProductAmount =
+    (productText.includes('구글애즈') ? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT : 0) +
+    (productText.includes('웹사이트') || productText.includes('블로그') ? SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT : 0)
+
+  return Math.max(netSalesAmount - fixedProductAmount, 0)
+}
+
 function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
   const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
 
@@ -408,7 +421,8 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
       const grossAmount = record.monthlyAmounts[monthIndex] || 0
       const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
       const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
-      const expenseRevenueAmount = Math.round(netSalesAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+      const profileManagementAmount = settlementProfileManagementAmount(record, netSalesAmount)
+      const expenseRevenueAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
       const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
       const checkDate = settlementCheckDateForStore(record.storeName, monthIndex)
 
@@ -421,6 +435,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
         grossAmount,
         netSalesAmount,
         reserveAmount,
+        profileManagementAmount,
         expenseRevenueAmount,
         workerCostAmount,
         profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
@@ -432,7 +447,8 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
   const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
   const vatAmount = grossAmount - netSalesAmount
   const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
-  const expenseRevenueAmount = Math.round(netSalesAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const profileManagementAmount = settlementRecords.reduce((sum, record) => sum + record.profileManagementAmount, 0)
+  const expenseRevenueAmount = settlementRecords.reduce((sum, record) => sum + record.expenseRevenueAmount, 0)
   const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
 
   return {
@@ -445,6 +461,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     netSalesAmount,
     reserveRate: SETTLEMENT_RESERVE_RATE,
     reserveAmount,
+    profileManagementAmount,
     expenseRevenueRate: SETTLEMENT_EXPENSE_REVENUE_RATE,
     expenseRevenueAmount,
     workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
@@ -1486,7 +1503,7 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
     {
       label: '비용매출',
       value: formatRevenueManwon(settlement.expenseRevenueAmount),
-      detail: `매출의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
+      detail: `프로필관리 ${formatRevenueManwon(settlement.profileManagementAmount)}의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
       highlight: false,
     },
     {
