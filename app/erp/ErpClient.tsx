@@ -282,6 +282,15 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
+    storeName: '도르도뉴',
+    contractMonths: 1,
+    contractStartDate: '2026-06-23',
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
+    monthlyAmounts: [990_000],
+    memo: '1개월 계약 · VAT 포함 99만원',
+  },
+  {
     storeName: '주도락 강남점',
     contractMonths: 1,
     contractStartDate: '2026-06-20',
@@ -342,6 +351,12 @@ const billingScheduleByStore: Record<
     firstPaidDate: '2026-06-11',
     firstStatus: '입금완료',
     memo: '2026년 6월 11일 입금완료',
+  },
+  도르도뉴: {
+    dueDay: 23,
+    firstPaidDate: '2026-06-23',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 23일 입금완료',
   },
   '바다당 해운대점': {
     dueDay: 16,

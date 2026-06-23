@@ -825,6 +825,157 @@ function createJoodorakOperationRow(branchName: string, areaName: string, areaKe
   }
 }
 
+function createProfileAdsOperationRow(storeName: string): OperationRow {
+  return {
+    title: storeName,
+    meta: '계약상품 · 구글프로필 + 구글애즈',
+    status: '계약완료 · 온보딩중',
+    owner: '권순현',
+    due: '이번 주',
+    memo: `${storeName}의 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.`,
+    products: {
+      googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+      googleAds: '지역 키워드와 매장 방문 전환 구조 준비',
+      material: '대표 사진·서비스 설명 자료 요청',
+      nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+    },
+    processSteps: [
+      {
+        title: '프로필 권한·기본정보 세팅',
+        product: '구글프로필',
+        status: '진행중',
+        memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+      },
+      {
+        title: '사진·리뷰·피드 운영 기준',
+        product: '구글프로필',
+        status: '대기',
+        memo: '대표 사진 정렬, 리뷰 응대, 주 2회 피드 업데이트 기준을 잡습니다.',
+      },
+      {
+        title: 'Ads 캠페인 구조 세팅',
+        product: '구글애즈',
+        status: '대기',
+        memo: '브랜드, 지역, 서비스 키워드를 분리해 클릭과 로컬 액션을 확인합니다.',
+      },
+      {
+        title: '주간 보고 루틴',
+        product: '공통',
+        status: '대기',
+        memo: '월-금 작업보고를 남기고 월 1회 광고·프로필 성과보고로 묶습니다.',
+      },
+      {
+        title: '월간 성과 점검·유지보수',
+        product: '공통',
+        status: '대기',
+        memo: '클릭, 길찾기, 전화, 리뷰 흐름을 기준으로 다음 달 운영 기준을 조정합니다.',
+      },
+    ],
+    productWorkspaces: [
+      {
+        key: 'googleProfile',
+        label: '구글프로필',
+        heading: '작업·보고 현황',
+        description: `${storeName}의 Google 프로필 세팅, 사진 자료, 월-금 보고 상태를 확인합니다.`,
+        metrics: [
+          { label: '이번 주 작업', value: '3건', note: '권한 추가, 기본정보, 사진 자료 요청' },
+          { label: '발송상태', value: '온보딩중', note: '운영 시작 전 기준 리포트 준비' },
+          { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+        ],
+        weeklyReports: [
+          {
+            dayOffset: 0,
+            status: '작성중',
+            title: '피드업데이트',
+            memo: 'Google 게시물과 소식지 업데이트를 준비합니다.',
+          },
+          {
+            dayOffset: 1,
+            status: '보고대기',
+            title: '키워드순위보고',
+            memo: '주요 키워드 노출 순위와 변동을 확인합니다.',
+          },
+          {
+            dayOffset: 2,
+            status: '보고대기',
+            title: '종합 데이터 분석',
+            memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+          },
+          {
+            dayOffset: 3,
+            status: '보고대기',
+            title: '피드업데이트',
+            memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+          },
+          {
+            dayOffset: 4,
+            status: '보고대기',
+            title: '주간 마감 보고',
+            memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
+          },
+        ],
+        tasks: [
+          {
+            title: '프로필 권한 및 기본정보 확인',
+            status: '진행중',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+          },
+          {
+            title: '대표 사진 자료 요청',
+            status: '대기',
+            owner: '블링크애드',
+            due: '자료 수신 후',
+            memo: '외국인 고객이 위치와 분위기를 빠르게 파악할 수 있는 외관, 내부, 대표 사진 순서로 정리합니다.',
+          },
+          {
+            title: '리뷰 응대 기준 정리',
+            status: '대기',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+          },
+        ],
+      },
+      {
+        key: 'googleAds',
+        label: '구글애즈',
+        heading: '성과 요약',
+        description: `${storeName}의 Google Ads 노출, 클릭, 길찾기 전환 흐름을 확인합니다.`,
+        metrics: [
+          { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+          { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+          { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+        ],
+        tasks: [
+          {
+            title: '캠페인 구조 확인',
+            status: '대기',
+            owner: '권순현',
+            due: '운영 시작 전',
+            memo: '브랜드 키워드, 지역 키워드, 서비스 키워드를 분리해 예산 낭비를 줄입니다.',
+          },
+          {
+            title: '검색/지도 키워드 그룹 초안',
+            status: '대기',
+            owner: '블링크애드',
+            due: '이번 주',
+            memo: '외국인 고객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+          },
+          {
+            title: '전화·길찾기 전환 점검',
+            status: '대기',
+            owner: '권순현',
+            due: '세팅 후',
+            memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+          },
+        ],
+      },
+    ],
+  }
+}
+
 export const operationViews: Partial<Record<MenuId, OperationView>> = {
   customer: {
     kicker: 'Account',
@@ -903,8 +1054,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '5' },
-      { label: '진행 상품', value: '13' },
+      { label: '운영 매장', value: '6' },
+      { label: '진행 상품', value: '15' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -1204,6 +1355,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
           },
         ],
       },
+      createProfileAdsOperationRow('도르도뉴'),
       {
         title: '바다당 해운대점',
         meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',

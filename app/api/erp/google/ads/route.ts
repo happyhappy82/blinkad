@@ -223,6 +223,16 @@ function liveAdsStoreConfig(store: string): LiveAdsStoreConfig | null {
     }
   }
 
+  if (normalized.includes('도르도뉴') || normalized.includes('dordogne')) {
+    return {
+      envPrefixes: ['DORDOGNE'],
+      aliases: ['도르도뉴', 'Dordogne', 'dordogne'],
+      defaultCampaignName: '도르도뉴',
+      campaignNameIncludes: ['도르도뉴', 'Dordogne', 'dordogne'],
+      notFoundLabel: '도르도뉴',
+    }
+  }
+
   return null
 }
 
