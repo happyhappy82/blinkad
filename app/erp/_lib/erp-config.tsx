@@ -250,6 +250,7 @@ export const menuGroups = [
     label: '인보이스/청구',
     items: [
       { id: 'billing', label: '청구관리', icon: CreditCard },
+      { id: 'settlement', label: '정산관리', icon: ReceiptText },
       { id: 'receivable', label: '미수금', icon: Clock3 },
     ],
   },

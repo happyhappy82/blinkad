@@ -929,6 +929,7 @@ export default function ErpClient() {
     activeMenu === 'customer' ||
     activeMenu === 'card' ||
     activeMenu === 'billing' ||
+    activeMenu === 'settlement' ||
     activeMenu === 'kpi'
       ? undefined
       : operationViews[activeMenu]
@@ -1286,6 +1287,10 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'settlement' && (
+              <SettlementManagementPanel settlementMonths={contractRevenue.settlementMonths} />
+            )}
+
             {activeMenu === 'kpi' && (
               <KpiPanel
                 currentContracts={contractRevenue.records.length}
@@ -1458,85 +1463,122 @@ function DashboardPanel({
 
   return (
     <section className="space-y-5">
+      <KpiPanel currentContracts={contractRevenue.records.length} goalContracts={50} />
+      <InquiryStatusPanel counts={counts} />
+      <ContractSummaryPanel cards={revenueCards} />
+      <ContractRevenueList records={contractRevenue.records} />
+    </section>
+  )
+}
+
+function InquiryStatusPanel({ counts }: { counts: { label: string; count: number }[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Inquiry Status</p>
+        <h3 className="mt-2 text-xl font-black text-white">문의현황 데이터</h3>
+      </div>
       <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
         {counts.map((item) => (
-          <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
+          <div key={item.label} className="rounded-lg border border-white/10 bg-black p-5">
             <p className="text-sm font-bold text-gray-400">{item.label}</p>
             <p className="mt-4 text-5xl font-black tracking-tight text-white">{item.count}</p>
             <p className="mt-3 text-sm leading-6 text-gray-500">문의관리 DB 기준</p>
           </div>
         ))}
       </div>
+    </section>
+  )
+}
 
-      <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
-        <div className="border-b border-white/10 p-5 md:p-6">
-          <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-bold text-brand-blue">Contract Summary</p>
-              <h3 className="mt-2 text-xl font-black text-white">계약 매장 요약</h3>
-            </div>
-            <p className="text-xs font-bold text-gray-600">청구·입금 상태는 청구관리 메뉴에서 확인</p>
-          </div>
-          <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
-            {revenueCards.map((card) => (
-              <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
-                <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
-                <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
-              </div>
-            ))}
-          </div>
+function ContractSummaryPanel({
+  cards,
+}: {
+  cards: { label: string; value: string; detail: string }[]
+}) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Contract Summary</p>
+          <h3 className="mt-2 text-xl font-black text-white">계약 매장 요약</h3>
         </div>
-
-        <MonthlyRevenueScheduleTable rows={contractRevenue.monthlyRows} />
-
-        <RevenueSettlementPanel settlementMonths={contractRevenue.settlementMonths} />
-
-        <div className="p-5 md:p-6">
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
-            <div className="border-b border-white/10 px-4 py-3">
-              <h3 className="text-sm font-black text-white">매장별 계약 리스트</h3>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-[920px] w-full border-collapse text-left text-sm">
-                <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
-                  <tr>
-                    <th className="px-4 py-3">매장명</th>
-                    <th className="px-4 py-3">상품구성</th>
-                    <th className="px-4 py-3">계약개월</th>
-                    <th className="px-4 py-3">1개월차 매출</th>
-                    <th className="px-4 py-3">계약기간 합계</th>
-                    <th className="px-4 py-3">메모</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {contractRevenue.records.map((record) => (
-                    <tr key={record.storeName} className="border-t border-white/10">
-                      <td className="px-4 py-4">
-                        <p className="font-black text-white keep-all">{record.storeName}</p>
-                      </td>
-                      <td className="max-w-[260px] px-4 py-4">
-                        <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
-                        <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{record.productDetail}</p>
-                      </td>
-                      <td className="px-4 py-4">
-                        <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">
-                          {record.contractMonths}개월
-                        </span>
-                      </td>
-                      <td className="px-4 py-4 font-black text-white">{formatCurrency(firstMonthRevenue(record))}원</td>
-                      <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(contractRevenueTotal(record))}원</td>
-                      <td className="max-w-[220px] px-4 py-4 text-xs font-semibold leading-5 text-gray-500 keep-all">
-                        {record.memo}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <p className="text-xs font-bold text-gray-600">청구·입금 상태는 청구관리 메뉴에서 확인</p>
+      </div>
+      <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
+        {cards.map((card) => (
+          <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
+            <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
           </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ContractRevenueList({ records }: { records: ContractRevenueRecord[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Contract List</p>
+        <h3 className="mt-2 text-xl font-black text-white">계약 매장 리스트</h3>
+      </div>
+      <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+        <div className="overflow-x-auto">
+          <table className="min-w-[920px] w-full border-collapse text-left text-sm">
+            <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+              <tr>
+                <th className="px-4 py-3">매장명</th>
+                <th className="px-4 py-3">상품구성</th>
+                <th className="px-4 py-3">계약개월</th>
+                <th className="px-4 py-3">1개월차 매출</th>
+                <th className="px-4 py-3">계약기간 합계</th>
+                <th className="px-4 py-3">메모</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record) => (
+                <tr key={record.storeName} className="border-t border-white/10">
+                  <td className="px-4 py-4">
+                    <p className="font-black text-white keep-all">{record.storeName}</p>
+                  </td>
+                  <td className="max-w-[260px] px-4 py-4">
+                    <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{record.productDetail}</p>
+                  </td>
+                  <td className="px-4 py-4">
+                    <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">
+                      {record.contractMonths}개월
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 font-black text-white">{formatCurrency(firstMonthRevenue(record))}원</td>
+                  <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(contractRevenueTotal(record))}원</td>
+                  <td className="max-w-[220px] px-4 py-4 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                    {record.memo}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </section>
+      </div>
+    </section>
+  )
+}
+
+function SettlementManagementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="border-b border-white/10 p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Settlement</p>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-white">정산관리</h2>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
+          월별 정산 예상표와 날짜별 체크 상태를 분리해서 관리합니다.
+        </p>
+      </div>
+      <RevenueSettlementPanel settlementMonths={settlementMonths} />
     </section>
   )
 }
