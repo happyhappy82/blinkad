@@ -229,6 +229,7 @@ type SettlementRecord = {
   productGroup: string
   productDetail: string
   grossAmount: number
+  vatAmount: number
   netSalesAmount: number
   reserveAmount: number
   profileManagementAmount: number
@@ -438,6 +439,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     .map((record) => {
       const grossAmount = record.monthlyAmounts[monthIndex] || 0
       const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+      const vatAmount = grossAmount - netSalesAmount
       const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
       const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
       const profileManagementAmount = productBreakdown.googleProfileAmount
@@ -454,6 +456,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
         productGroup: record.productGroup,
         productDetail: record.productDetail,
         grossAmount,
+        vatAmount,
         netSalesAmount,
         reserveAmount,
         profileManagementAmount,
@@ -1612,9 +1615,15 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
       highlight: false,
     },
     {
+      label: '매출부가세',
+      value: formatRevenueManwon(settlement.vatAmount),
+      detail: 'VAT 포함 입금액에서 분리',
+      highlight: false,
+    },
+    {
       label: 'VAT 제외 매출',
       value: formatRevenueManwon(settlement.netSalesAmount),
-      detail: `부가세 ${formatRevenueManwon(settlement.vatAmount)} 제외`,
+      detail: '순수익 계산 기준 매출',
       highlight: false,
     },
     {
@@ -1662,7 +1671,7 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
         ))}
       </div>
 
-      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-4">
+      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-5">
         {summaryCards.map((card) => (
           <div
             key={`settlement-summary-${card.label}`}
@@ -1695,7 +1704,7 @@ function SettlementDetailTable({
         <div>
           <h4 className="text-lg font-black text-white">정산 상세</h4>
           <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">
-            매장별 VAT 제외 매출을 상품별로 나누고, 비용매출·작업비·충당금 반영 후 순수익을 확인합니다.
+            매장별 매출부가세와 VAT 제외 매출을 분리하고, 비용매출·작업비·충당금 반영 후 순수익을 확인합니다.
           </p>
         </div>
         <p className="text-xs font-black text-gray-600">
@@ -1704,11 +1713,12 @@ function SettlementDetailTable({
       </div>
 
       <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-        <table className="min-w-[1280px] w-full border-collapse text-left text-sm">
+        <table className="min-w-[1400px] w-full border-collapse text-left text-sm">
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-4 py-3">매장</th>
               <th className="px-4 py-3">상품구성</th>
+              <th className="px-4 py-3 text-right">매출부가세</th>
               <th className="px-4 py-3 text-right">VAT 제외</th>
               <th className="px-4 py-3 text-right">웹사이트/블로그</th>
               <th className="px-4 py-3 text-right">구글애즈</th>
@@ -1735,6 +1745,7 @@ function SettlementDetailTable({
                     </p>
                   ) : null}
                 </td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.vatAmount)}원</td>
                 <td className="px-4 py-4 text-right font-black text-white">{formatCurrency(record.netSalesAmount)}원</td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">
                   {formatCurrency(record.productBreakdown.websiteBlogAmount)}원
