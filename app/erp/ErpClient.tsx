@@ -247,6 +247,7 @@ type SettlementSummary = {
   vatAmount: number
   netSalesAmount: number
   reserveRate: number
+  reserveAmountPerStore: number
   reserveAmount: number
   profileManagementAmount: number
   expenseRevenueRate: number
@@ -273,6 +274,7 @@ const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 const SETTLEMENT_EXCLUDED_STORE_NAMES: string[] = []
 const SETTLEMENT_RESERVE_RATE = 0
+const SETTLEMENT_RESERVE_AMOUNT_PER_STORE = 50_000
 const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
 const SETTLEMENT_GOOGLE_ADS_NET_AMOUNT = 200_000
 const SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT = 500_000
@@ -436,7 +438,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     .map((record) => {
       const grossAmount = record.monthlyAmounts[monthIndex] || 0
       const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
-      const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+      const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
       const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
       const profileManagementAmount = productBreakdown.googleProfileAmount
       const expenseRevenueAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
@@ -466,7 +468,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
   const grossAmount = settlementRecords.reduce((sum, record) => sum + record.grossAmount, 0)
   const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
   const vatAmount = grossAmount - netSalesAmount
-  const reserveAmount = Math.round(netSalesAmount * SETTLEMENT_RESERVE_RATE)
+  const reserveAmount = settlementRecords.reduce((sum, record) => sum + record.reserveAmount, 0)
   const profileManagementAmount = settlementRecords.reduce((sum, record) => sum + record.profileManagementAmount, 0)
   const expenseRevenueAmount = settlementRecords.reduce((sum, record) => sum + record.expenseRevenueAmount, 0)
   const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
@@ -480,6 +482,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     vatAmount,
     netSalesAmount,
     reserveRate: SETTLEMENT_RESERVE_RATE,
+    reserveAmountPerStore: SETTLEMENT_RESERVE_AMOUNT_PER_STORE,
     reserveAmount,
     profileManagementAmount,
     expenseRevenueRate: SETTLEMENT_EXPENSE_REVENUE_RATE,
@@ -1623,7 +1626,7 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
     {
       label: '예상 순수익',
       value: formatRevenueManwon(settlement.profitAmount),
-      detail: `충당금 ${formatRevenueManwon(settlement.reserveAmount)} 기준`,
+      detail: `매장당 ${formatRevenueManwon(settlement.reserveAmountPerStore)} 충당금`,
       highlight: true,
     },
   ]
@@ -1696,7 +1699,7 @@ function SettlementDetailTable({
           </p>
         </div>
         <p className="text-xs font-black text-gray-600">
-          순수익 기준: 충당금 {formatRevenueManwon(settlement.reserveAmount)}
+          순수익 기준: 매장당 충당금 {formatRevenueManwon(settlement.reserveAmountPerStore)}
         </p>
       </div>
 
@@ -1707,9 +1710,9 @@ function SettlementDetailTable({
               <th className="px-4 py-3">매장</th>
               <th className="px-4 py-3">상품구성</th>
               <th className="px-4 py-3 text-right">VAT 제외</th>
-              <th className="px-4 py-3 text-right">프로필관리</th>
-              <th className="px-4 py-3 text-right">구글애즈</th>
               <th className="px-4 py-3 text-right">웹사이트/블로그</th>
+              <th className="px-4 py-3 text-right">구글애즈</th>
+              <th className="px-4 py-3 text-right">프로필관리</th>
               <th className="px-4 py-3 text-right">비용매출</th>
               <th className="px-4 py-3 text-right">작업비</th>
               <th className="px-4 py-3 text-right">충당금</th>
@@ -1733,14 +1736,14 @@ function SettlementDetailTable({
                   ) : null}
                 </td>
                 <td className="px-4 py-4 text-right font-black text-white">{formatCurrency(record.netSalesAmount)}원</td>
-                <td className="px-4 py-4 text-right font-black text-blue-100">
-                  {formatCurrency(record.productBreakdown.googleProfileAmount)}원
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">
+                  {formatCurrency(record.productBreakdown.websiteBlogAmount)}원
                 </td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">
                   {formatCurrency(record.productBreakdown.googleAdsAmount)}원
                 </td>
-                <td className="px-4 py-4 text-right font-semibold text-gray-300">
-                  {formatCurrency(record.productBreakdown.websiteBlogAmount)}원
+                <td className="px-4 py-4 text-right font-black text-blue-100">
+                  {formatCurrency(record.productBreakdown.googleProfileAmount)}원
                 </td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.expenseRevenueAmount)}원</td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.workerCostAmount)}원</td>
