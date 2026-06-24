@@ -928,7 +928,8 @@ export default function ErpClient() {
     activeMenu === 'followup' ||
     activeMenu === 'customer' ||
     activeMenu === 'card' ||
-    activeMenu === 'billing'
+    activeMenu === 'billing' ||
+    activeMenu === 'kpi'
       ? undefined
       : operationViews[activeMenu]
   const projectStores = operationViews.project?.rows || []
@@ -1285,6 +1286,13 @@ export default function ErpClient() {
               />
             )}
 
+            {activeMenu === 'kpi' && (
+              <KpiPanel
+                currentContracts={contractRevenue.records.length}
+                goalContracts={50}
+              />
+            )}
+
             {activeMenu === 'schedule' && (
               <CalendarPanel
                 events={calendarEvents}
@@ -1336,6 +1344,79 @@ export default function ErpClient() {
         </section>
       </div>
     </main>
+  )
+}
+
+function KpiPanel({
+  currentContracts,
+  goalContracts,
+}: {
+  currentContracts: number
+  goalContracts: number
+}) {
+  const remainingContracts = Math.max(goalContracts - currentContracts, 0)
+  const progressRate = goalContracts > 0 ? Math.min(100, Math.round((currentContracts / goalContracts) * 100)) : 0
+  const chartBackground = `conic-gradient(#2563eb 0 ${progressRate}%, rgba(255,255,255,0.08) ${progressRate}% 100%)`
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="grid gap-6 p-5 md:grid-cols-[320px_1fr] md:p-6">
+          <div className="flex items-center justify-center">
+            <div
+              className="relative flex aspect-square w-full max-w-[260px] items-center justify-center rounded-full"
+              style={{ background: chartBackground }}
+              aria-label={`매장 계약체결 목표 달성률 ${progressRate}%`}
+            >
+              <div className="absolute inset-5 rounded-full border border-white/10 bg-black" />
+              <div className="relative text-center">
+                <p className="text-sm font-black text-brand-blue">달성률</p>
+                <p className="mt-2 text-6xl font-black text-white">{progressRate}%</p>
+                <p className="mt-2 text-sm font-bold text-gray-500">
+                  {currentContracts}/{goalContracts}개
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex min-w-0 flex-col justify-center">
+            <p className="text-sm font-bold text-brand-blue">KPI</p>
+            <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">매장 50개 계약체결</h2>
+            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">
+              대시보드 계약 매장 리스트 기준으로 현재 계약체결 수와 목표까지 남은 매장 수만 추적합니다.
+            </p>
+
+            <div className="mt-6 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
+              <div className="border-white/10 p-5 md:border-r">
+                <p className="text-xs font-black text-gray-500">현재 계약</p>
+                <p className="mt-2 text-4xl font-black text-white">{currentContracts}개</p>
+              </div>
+              <div className="border-white/10 p-5 md:border-r">
+                <p className="text-xs font-black text-gray-500">목표</p>
+                <p className="mt-2 text-4xl font-black text-white">{goalContracts}개</p>
+              </div>
+              <div className="p-5">
+                <p className="text-xs font-black text-gray-500">남은 계약</p>
+                <p className="mt-2 text-4xl font-black text-blue-100">{remainingContracts}개</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 p-5 md:p-6">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-sm font-black text-white">목표 진행 바</p>
+            <p className="text-sm font-black text-gray-400">{progressRate}%</p>
+          </div>
+          <div className="mt-3 h-4 overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-brand-blue transition-all"
+              style={{ width: `${progressRate}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   )
 }
 
