@@ -233,6 +233,16 @@ function liveAdsStoreConfig(store: string): LiveAdsStoreConfig | null {
     }
   }
 
+  if (normalized.includes('바다당') || normalized.includes('badadang')) {
+    return {
+      envPrefixes: ['BADADANG_HAEUNDAE', 'BADADANG'],
+      aliases: ['바다당 해운대점', '바다당', 'Badadang', 'Bada Dang', 'badadang'],
+      defaultCampaignName: '바다당',
+      campaignNameIncludes: ['바다당', 'Badadang', 'Bada Dang', 'BadaDang', 'badadang'],
+      notFoundLabel: '바다당 해운대점',
+    }
+  }
+
   return null
 }
 
