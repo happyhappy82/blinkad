@@ -54,7 +54,7 @@ const services = [
     id: 'gbp',
     title: '구글 비즈니스 프로필 관리',
     subtitle: '지역 검색 기반 구축',
-    description: '지역 검색 노출과 지도 신뢰도를 높이기 위해 구글 비즈니스 프로필을 체계적으로 운영합니다. 비즈니스 정보를 최신 상태로 유지하고, 지역 검색에서 발견될 가능성을 높입니다.',
+    description: '구글맵 마케팅의 기본은 프로필입니다. 지역 검색 노출과 지도 신뢰도를 높이기 위해 구글 비즈니스 프로필을 체계적으로 운영합니다. 비즈니스 정보를 최신 상태로 유지하고, 지역 검색에서 발견될 가능성을 높입니다.',
     features: [
       '구글 비즈니스 프로필 기본 정보 최적화',
       '카테고리 및 진료 관련 항목 정비',
@@ -63,8 +63,8 @@ const services = [
       '월간 인사이트 점검 및 리포트 제공'
     ],
     icon: MapPin,
-    href: '/foreign-marketing#contact',
-    cta: '무료 진단 신청'
+    href: '/google-map-marketing',
+    cta: '구글맵 마케팅 보기'
   },
   {
     id: 'blog',
@@ -79,8 +79,8 @@ const services = [
       '월간 운영 리포트 제공'
     ],
     icon: FileText,
-    href: '/blog',
-    cta: '콘텐츠 보기'
+    href: '/blog-marketing',
+    cta: '브랜드 블로그 운영 보기'
   },
   {
     id: 'ai-search',
@@ -95,8 +95,8 @@ const services = [
       'AI 검색 노출 및 인용 흐름 모니터링'
     ],
     icon: Bot,
-    href: '/foreign-marketing',
-    cta: '구조 보기'
+    href: '/aeo',
+    cta: 'AI 검색 최적화 보기'
   }
 ]
 
