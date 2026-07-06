@@ -344,6 +344,15 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
+    storeName: '오닉스',
+    contractMonths: 1,
+    contractStartDate: '2026-07-08',
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글프로필관리 70만원 + 구글애즈 20만원',
+    monthlyAmounts: [990_000],
+    memo: '1개월 계약 · VAT 포함 99만원 · 입금 예정일 2026년 7월 8일',
+  },
+  {
     storeName: '주도락 강남점',
     contractMonths: 1,
     contractStartDate: '2026-06-20',
@@ -411,6 +420,11 @@ const billingScheduleByStore: Record<
     firstStatus: '입금완료',
     memo: '2026년 6월 23일 입금완료',
   },
+  오닉스: {
+    dueDay: 8,
+    firstStatus: '청구예정',
+    memo: '입금 예정일 2026년 7월 8일(확정 전)',
+  },
   '바다당 해운대점': {
     dueDay: 16,
     firstPaidDate: '2026-06-16',
@@ -439,6 +453,34 @@ function firstMonthRevenue(record: ContractRevenueRecord) {
   return record.monthlyAmounts[0] || 0
 }
 
+function contractStartRevenueMonthIndex(record: ContractRevenueRecord) {
+  const [yearText, monthText] = (record.contractStartDate || '').split('-')
+  const year = Number(yearText)
+  const month = Number(monthText)
+
+  if (!year || !month) return 0
+  return (year - CONTRACT_REVENUE_START_YEAR) * 12 + (month - CONTRACT_REVENUE_START_MONTH)
+}
+
+function contractMonthIndexForRevenueMonth(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  return revenueMonthIndex - contractStartRevenueMonthIndex(record)
+}
+
+function contractRevenueAmountForMonth(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex < 0) return 0
+  return record.monthlyAmounts[contractMonthIndex] || 0
+}
+
+function contractRevenueLastMonthIndex(records: ContractRevenueRecord[]) {
+  if (!records.length) return 0
+
+  return Math.max(
+    ...records.map((record) => contractStartRevenueMonthIndex(record) + record.monthlyAmounts.length - 1),
+    0
+  )
+}
+
 function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmount: number): SettlementProductBreakdown {
   const productText = `${record.productGroup} ${record.productDetail}`
   const googleAdsAmount = productText.includes('구글애즈') ? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT : 0
@@ -456,9 +498,9 @@ function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmoun
 }
 
 function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
-  const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
+  const lastMonthIndex = contractRevenueLastMonthIndex(records)
 
-  return Array.from({ length: maxMonths }, (_, monthIndex) => buildSettlementSummary(records, monthIndex)).filter(
+  return Array.from({ length: lastMonthIndex + 1 }, (_, monthIndex) => buildSettlementSummary(records, monthIndex)).filter(
     (summary) => summary.records.length > 0
   )
 }
@@ -467,10 +509,10 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
   const settlementRecords = records
     .filter(
       (record) =>
-        !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && (record.monthlyAmounts[monthIndex] || 0) > 0
+        !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && contractRevenueAmountForMonth(record, monthIndex) > 0
     )
     .map((record) => {
-      const grossAmount = record.monthlyAmounts[monthIndex] || 0
+      const grossAmount = contractRevenueAmountForMonth(record, monthIndex)
       const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
       const vatAmount = grossAmount - netSalesAmount
       const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
@@ -478,13 +520,13 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
       const profileManagementAmount = productBreakdown.googleProfileAmount
       const expenseRevenueAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
       const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
-      const checkDate = settlementCheckDateForStore(record.storeName, monthIndex)
+      const checkDate = settlementCheckDateForStore(record, monthIndex)
 
       return {
         key: `${monthIndex}:${record.storeName}:${checkDate}`,
         storeName: record.storeName,
         checkDate,
-        status: settlementStatusForStore(record.storeName, monthIndex),
+        status: settlementStatusForStore(record, monthIndex),
         memo: record.memo,
         productGroup: record.productGroup,
         productDetail: record.productDetail,
@@ -606,20 +648,22 @@ function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
   )
 }
 
-function settlementCheckDateForStore(storeName: string, monthIndex: number) {
-  const schedule = billingScheduleByStore[storeName]
-  if (monthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
+function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  const schedule = billingScheduleByStore[record.storeName]
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
 
-  const date = contractRevenueMonthDate(monthIndex)
+  const date = contractRevenueMonthDate(revenueMonthIndex)
   const dueDay = schedule?.dueDay || 25
   const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
 
   return toISODate(new Date(date.getFullYear(), date.getMonth(), Math.min(dueDay, lastDay)))
 }
 
-function settlementStatusForStore(storeName: string, monthIndex: number): BillingStatus {
-  const schedule = billingScheduleByStore[storeName]
-  if (monthIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
+function settlementStatusForStore(record: ContractRevenueRecord, revenueMonthIndex: number): BillingStatus {
+  const schedule = billingScheduleByStore[record.storeName]
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
   return '청구예정'
 }
 
@@ -633,13 +677,13 @@ function contractRevenueMonthLabel(monthIndex: number) {
 }
 
 function monthlyRevenueSchedule(records: ContractRevenueRecord[]) {
-  const maxMonths = Math.max(...records.map((record) => record.monthlyAmounts.length), 0)
+  const lastMonthIndex = contractRevenueLastMonthIndex(records)
 
-  return Array.from({ length: maxMonths }, (_, index) => {
+  return Array.from({ length: lastMonthIndex + 1 }, (_, index) => {
     const stores = records
       .map((record) => ({
         storeName: record.storeName,
-        amount: record.monthlyAmounts[index] || 0,
+        amount: contractRevenueAmountForMonth(record, index),
       }))
       .filter((item) => item.amount > 0)
 
@@ -2216,11 +2260,7 @@ function buildBillingRecords(_stores: StoreRecord[]) {
     }
 
     return contract.monthlyAmounts.map((amount, monthIndex) => {
-      const billingMonth = new Date(
-        CONTRACT_REVENUE_START_YEAR,
-        CONTRACT_REVENUE_START_MONTH - 1 + monthIndex,
-        1
-      )
+      const billingMonth = contractRevenueMonthDate(contractStartRevenueMonthIndex(contract) + monthIndex)
       const monthLastDate = new Date(billingMonth.getFullYear(), billingMonth.getMonth() + 1, 0).getDate()
       const dueDay = Math.min(schedule.dueDay, monthLastDate)
       const scheduledDate = formatDateKey(new Date(billingMonth.getFullYear(), billingMonth.getMonth(), dueDay))
@@ -4270,6 +4310,18 @@ function StoreReportOverviewPanel({
                   <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
                     {store.meta}
                   </p>
+                  {store.googleMapUrl ? (
+                    <a
+                      href={store.googleMapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                      className="mt-2 inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1.5 text-xs font-black text-gray-300 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+                    >
+                      지도
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  ) : null}
                 </div>
 
                 <div className="grid grid-cols-5 gap-2">

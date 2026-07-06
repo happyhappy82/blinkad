@@ -354,6 +354,7 @@ export type OperationRow = {
   owner: string
   due: string
   memo: string
+  googleMapUrl?: string
   copyText?: string
   products?: {
     googleProfile: string
@@ -826,14 +827,18 @@ function createJoodorakOperationRow(branchName: string, areaName: string, areaKe
   }
 }
 
-function createProfileAdsOperationRow(storeName: string): OperationRow {
+function createProfileAdsOperationRow(
+  storeName: string,
+  options: { memo?: string; googleMapUrl?: string } = {}
+): OperationRow {
   return {
     title: storeName,
     meta: '계약상품 · 구글프로필 + 구글애즈',
     status: '계약완료 · 온보딩중',
     owner: '권순현',
     due: '이번 주',
-    memo: `${storeName}의 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.`,
+    memo: options.memo || `${storeName}의 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.`,
+    googleMapUrl: options.googleMapUrl,
     products: {
       googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
       googleAds: '지역 키워드와 매장 방문 전환 구조 준비',
@@ -1055,8 +1060,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '6' },
-      { label: '진행 상품', value: '15' },
+      { label: '운영 매장', value: '7' },
+      { label: '진행 상품', value: '17' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -1357,6 +1362,11 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         ],
       },
       createProfileAdsOperationRow('도르도뉴'),
+      createProfileAdsOperationRow('오닉스', {
+        memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
+        googleMapUrl:
+          'https://www.google.com/maps/place/ONYX+ITAEWON/data=!3m1!4b1!4m6!3m5!1s0x357ca3a50528086b:0xeb352ad543021266!8m2!3d37.53321!4d126.9956943!16s%2Fg%2F11z7p4zpgd?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D',
+      }),
       {
         title: '바다당 해운대점',
         meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',

@@ -233,6 +233,16 @@ function liveAdsStoreConfig(store: string): LiveAdsStoreConfig | null {
     }
   }
 
+  if (normalized.includes('오닉스') || normalized.includes('onyx')) {
+    return {
+      envPrefixes: ['ONYX_ITAEWON', 'ONYX'],
+      aliases: ['오닉스', 'ONYX ITAEWON', 'Onyx Itaewon', 'ONYX', 'onyx'],
+      defaultCampaignName: '오닉스',
+      campaignNameIncludes: ['오닉스', 'ONYX ITAEWON', 'Onyx Itaewon', 'ONYX', 'onyx'],
+      notFoundLabel: '오닉스',
+    }
+  }
+
   if (normalized.includes('바다당') || normalized.includes('badadang')) {
     return {
       envPrefixes: ['BADADANG_HAEUNDAE', 'BADADANG'],
