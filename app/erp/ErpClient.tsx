@@ -258,6 +258,37 @@ type SettlementSummary = {
   profitAmount: number
 }
 
+type SettlementStoreReadiness = '정산대상' | '인증대기'
+type SettlementProcessStatus = '정산대기' | '정산완료' | '이번 달 보류' | '정산 제외'
+type SettlementFilter = '정산대상' | '인증대기' | '정산완료' | '전체'
+
+type SettlementProcessEntry = {
+  status: SettlementProcessStatus
+  readiness?: SettlementStoreReadiness
+  updatedAt?: string
+}
+
+type SettlementProcessMap = Record<string, SettlementProcessEntry>
+
+type SettlementRowView = {
+  record: SettlementRecord
+  storageKey: string
+  readiness: SettlementStoreReadiness
+  processStatus: SettlementProcessStatus
+  updatedAt?: string
+}
+
+type SettlementTotals = {
+  grossAmount: number
+  vatAmount: number
+  netSalesAmount: number
+  reserveAmount: number
+  profileManagementAmount: number
+  expenseRevenueAmount: number
+  workerCostAmount: number
+  profitAmount: number
+}
+
 type WeeklyReportItem = {
   report: StoreWeeklyReport
   date: Date
@@ -274,6 +305,8 @@ type WebsiteBlogCycle = {
 const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 const SETTLEMENT_EXCLUDED_STORE_NAMES: string[] = []
+const SETTLEMENT_PROCESS_STORAGE_KEY = 'blinkad-erp-settlement-process-v1'
+const SETTLEMENT_AUTH_PENDING_STORE_NAMES = ['언리미티드', '주도락 강남점', '주도락 마곡발산점']
 const SETTLEMENT_RESERVE_RATE = 0
 const SETTLEMENT_RESERVE_AMOUNT_PER_STORE = 50_000
 const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
@@ -494,6 +527,83 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     workerCostAmount,
     profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
   }
+}
+
+function settlementProcessStorageKey(monthIndex: number, storeName: string) {
+  return `${monthIndex}:${storeName}`
+}
+
+function isSettlementProcessStatus(value: unknown): value is SettlementProcessStatus {
+  return value === '정산대기' || value === '정산완료' || value === '이번 달 보류' || value === '정산 제외'
+}
+
+function isSettlementStoreReadiness(value: unknown): value is SettlementStoreReadiness {
+  return value === '정산대상' || value === '인증대기'
+}
+
+function settlementStoreReadiness(storeName: string): SettlementStoreReadiness {
+  return SETTLEMENT_AUTH_PENDING_STORE_NAMES.includes(storeName) ? '인증대기' : '정산대상'
+}
+
+function defaultSettlementProcessStatus(readiness: SettlementStoreReadiness): SettlementProcessStatus {
+  return readiness === '인증대기' ? '이번 달 보류' : '정산대기'
+}
+
+function readSettlementProcessMap(): SettlementProcessMap {
+  if (typeof window === 'undefined') return {}
+
+  try {
+    const raw = window.localStorage.getItem(SETTLEMENT_PROCESS_STORAGE_KEY)
+    if (!raw) return {}
+
+    const parsed = JSON.parse(raw) as Record<string, unknown>
+    return Object.entries(parsed).reduce<SettlementProcessMap>((map, [key, value]) => {
+      if (isSettlementProcessStatus(value)) {
+        map[key] = { status: value }
+        return map
+      }
+
+      if (value && typeof value === 'object') {
+        const entry = value as { status?: unknown; readiness?: unknown; updatedAt?: unknown }
+        if (isSettlementProcessStatus(entry.status)) {
+          map[key] = {
+            status: entry.status,
+            readiness: isSettlementStoreReadiness(entry.readiness) ? entry.readiness : undefined,
+            updatedAt: typeof entry.updatedAt === 'string' ? entry.updatedAt : undefined,
+          }
+        }
+      }
+
+      return map
+    }, {})
+  } catch {
+    return {}
+  }
+}
+
+function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
+  return rows.reduce<SettlementTotals>(
+    (totals, row) => ({
+      grossAmount: totals.grossAmount + row.record.grossAmount,
+      vatAmount: totals.vatAmount + row.record.vatAmount,
+      netSalesAmount: totals.netSalesAmount + row.record.netSalesAmount,
+      reserveAmount: totals.reserveAmount + row.record.reserveAmount,
+      profileManagementAmount: totals.profileManagementAmount + row.record.profileManagementAmount,
+      expenseRevenueAmount: totals.expenseRevenueAmount + row.record.expenseRevenueAmount,
+      workerCostAmount: totals.workerCostAmount + row.record.workerCostAmount,
+      profitAmount: totals.profitAmount + row.record.profitAmount,
+    }),
+    {
+      grossAmount: 0,
+      vatAmount: 0,
+      netSalesAmount: 0,
+      reserveAmount: 0,
+      profileManagementAmount: 0,
+      expenseRevenueAmount: 0,
+      workerCostAmount: 0,
+      profitAmount: 0,
+    }
+  )
 }
 
 function settlementCheckDateForStore(storeName: string, monthIndex: number) {
@@ -1595,8 +1705,15 @@ function SettlementManagementPanel({ settlementMonths }: { settlementMonths: Set
 
 function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(() => settlementMonths[0]?.monthIndex || 0)
+  const [settlementFilter, setSettlementFilter] = useState<SettlementFilter>('정산대상')
+  const [settlementProcessMap, setSettlementProcessMap] = useState<SettlementProcessMap>(() => readSettlementProcessMap())
   const settlement =
     settlementMonths.find((summary) => summary.monthIndex === selectedMonthIndex) || settlementMonths[0]
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(SETTLEMENT_PROCESS_STORAGE_KEY, JSON.stringify(settlementProcessMap))
+  }, [settlementProcessMap])
 
   useEffect(() => {
     if (!settlementMonths.length) return
@@ -1607,37 +1724,104 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
 
   if (!settlement) return null
 
+  const settlementRows: SettlementRowView[] = settlement.records.map((record) => {
+    const storageKey = settlementProcessStorageKey(settlement.monthIndex, record.storeName)
+    const entry = settlementProcessMap[storageKey]
+    const readiness = entry?.readiness || settlementStoreReadiness(record.storeName)
+    const processStatus = entry?.status || defaultSettlementProcessStatus(readiness)
+
+    return {
+      record,
+      storageKey,
+      readiness,
+      processStatus,
+      updatedAt: entry?.updatedAt,
+    }
+  })
+  const settlementTargetRows = settlementRows.filter(
+    (row) => row.readiness === '정산대상' && row.processStatus !== '이번 달 보류' && row.processStatus !== '정산 제외'
+  )
+  const authPendingRows = settlementRows.filter((row) => row.readiness === '인증대기')
+  const completedRows = settlementRows.filter((row) => row.processStatus === '정산완료')
+  const heldRows = settlementRows.filter((row) => row.processStatus === '이번 달 보류' || row.processStatus === '정산 제외')
+  const settlementTargetTotals = settlementTotalsFromRows(settlementTargetRows)
+  const filteredSettlementRows = settlementRows.filter((row) => {
+    if (settlementFilter === '전체') return true
+    if (settlementFilter === '정산완료') return row.processStatus === '정산완료'
+    return row.readiness === settlementFilter
+  })
+
+  const updateSettlementProcessStatus = (row: SettlementRowView, status: SettlementProcessStatus) => {
+    setSettlementProcessMap((current) => ({
+      ...current,
+      [row.storageKey]: {
+        readiness: row.readiness,
+        status,
+        updatedAt: new Date().toISOString(),
+      },
+    }))
+  }
+
+  const bulkUpdateSettlementProcessStatus = (rows: SettlementRowView[], status: SettlementProcessStatus) => {
+    const updatedAt = new Date().toISOString()
+    setSettlementProcessMap((current) => {
+      const next = { ...current }
+      rows.forEach((row) => {
+        next[row.storageKey] = { readiness: row.readiness, status, updatedAt }
+      })
+      return next
+    })
+  }
+
+  const updateSettlementReadiness = (row: SettlementRowView, readiness: SettlementStoreReadiness) => {
+    setSettlementProcessMap((current) => ({
+      ...current,
+      [row.storageKey]: {
+        readiness,
+        status: defaultSettlementProcessStatus(readiness),
+        updatedAt: new Date().toISOString(),
+      },
+    }))
+  }
+
   const summaryCards = [
     {
-      label: '입금액',
-      value: formatRevenueManwon(settlement.grossAmount),
-      detail: `${settlement.records.length}개 매장 합산`,
+      label: '정산대상 입금액',
+      value: formatRevenueManwon(settlementTargetTotals.grossAmount),
+      detail: `${settlementTargetRows.length}개 매장 합산`,
       highlight: false,
     },
     {
       label: '매출부가세',
-      value: formatRevenueManwon(settlement.vatAmount),
+      value: formatRevenueManwon(settlementTargetTotals.vatAmount),
       detail: 'VAT 포함 입금액에서 분리',
       highlight: false,
     },
     {
       label: 'VAT 제외 매출',
-      value: formatRevenueManwon(settlement.netSalesAmount),
+      value: formatRevenueManwon(settlementTargetTotals.netSalesAmount),
       detail: '순수익 계산 기준 매출',
       highlight: false,
     },
     {
       label: '비용매출',
-      value: formatRevenueManwon(settlement.expenseRevenueAmount),
-      detail: `프로필관리 ${formatRevenueManwon(settlement.profileManagementAmount)}의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
+      value: formatRevenueManwon(settlementTargetTotals.expenseRevenueAmount),
+      detail: `프로필관리 ${formatRevenueManwon(settlementTargetTotals.profileManagementAmount)}의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
       highlight: false,
     },
     {
       label: '예상 순수익',
-      value: formatRevenueManwon(settlement.profitAmount),
+      value: formatRevenueManwon(settlementTargetTotals.profitAmount),
       detail: `매장당 ${formatRevenueManwon(settlement.reserveAmountPerStore)} 충당금`,
       highlight: true,
     },
+  ]
+
+  const processSummaryCards = [
+    { label: '정산대상', value: `${settlementTargetRows.length}개`, detail: '인증 완료·정상 운영' },
+    { label: '인증대기', value: `${authPendingRows.length}개`, detail: '이번 정산 합계 제외' },
+    { label: '정산완료', value: `${completedRows.length}개`, detail: '월별 체크 완료' },
+    { label: '보류/제외', value: `${heldRows.length}개`, detail: '수동 보류 또는 제외' },
   ]
 
   return (
@@ -1645,12 +1829,12 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <h3 className="mt-2 text-xl font-black text-white">월별 정산 예상표</h3>
-          <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">정산월 선택 후 핵심 금액과 매장별 상세를 확인합니다.</p>
+          <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">
+            정산 가능한 매장만 먼저 합산하고, 인증대기 매장은 보류 상태로 분리합니다.
+          </p>
         </div>
         <p className="text-xs font-bold leading-5 text-gray-600 md:text-right keep-all">
-          {settlement.excludedStoreNames.length
-            ? `제외 매장: ${settlement.excludedStoreNames.join(', ')}`
-            : '전체 계약 매장 정산 포함'}
+          인증대기·보류·제외 매장은 상단 정산대상 합계에서 제외
         </p>
       </div>
 
@@ -1688,16 +1872,53 @@ function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: Settle
         ))}
       </div>
 
-      <SettlementDetailTable settlement={settlement} />
+      <div className="mt-4 grid gap-3 md:grid-cols-4">
+        {processSummaryCards.map((card) => (
+          <div key={`settlement-process-summary-${card.label}`} className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">{card.label}</p>
+            <p className="mt-2 text-2xl font-black text-white">{card.value}</p>
+            <p className="mt-1 text-xs font-semibold text-gray-600">{card.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <SettlementDetailTable
+        settlement={settlement}
+        rows={filteredSettlementRows}
+        allRows={settlementRows}
+        filter={settlementFilter}
+        onFilterChange={setSettlementFilter}
+        onStatusChange={updateSettlementProcessStatus}
+        onReadinessChange={updateSettlementReadiness}
+        onBulkStatusChange={bulkUpdateSettlementProcessStatus}
+      />
     </div>
   )
 }
 
 function SettlementDetailTable({
   settlement,
+  rows,
+  allRows,
+  filter,
+  onFilterChange,
+  onStatusChange,
+  onReadinessChange,
+  onBulkStatusChange,
 }: {
   settlement: SettlementSummary
+  rows: SettlementRowView[]
+  allRows: SettlementRowView[]
+  filter: SettlementFilter
+  onFilterChange: (filter: SettlementFilter) => void
+  onStatusChange: (row: SettlementRowView, status: SettlementProcessStatus) => void
+  onReadinessChange: (row: SettlementRowView, readiness: SettlementStoreReadiness) => void
+  onBulkStatusChange: (rows: SettlementRowView[], status: SettlementProcessStatus) => void
 }) {
+  const settlementTargetRows = allRows.filter((row) => row.readiness === '정산대상')
+  const authPendingRows = allRows.filter((row) => row.readiness === '인증대기')
+  const filterOptions: SettlementFilter[] = ['정산대상', '인증대기', '정산완료', '전체']
+
   return (
     <div className="mt-4 rounded-lg border border-white/10 bg-black p-4">
       <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
@@ -1712,11 +1933,55 @@ function SettlementDetailTable({
         </p>
       </div>
 
+      <div className="mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-[#0b0d12] p-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.map((option) => (
+            <button
+              key={`settlement-filter-${option}`}
+              type="button"
+              onClick={() => onFilterChange(option)}
+              className={`rounded-full border px-3 py-2 text-xs font-black transition ${
+                filter === option
+                  ? 'border-white bg-white text-black'
+                  : 'border-white/10 bg-black text-gray-400 hover:border-white/30 hover:text-white'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(settlementTargetRows, '정산완료')}
+            className="rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-xs font-black text-emerald-100 transition hover:bg-emerald-300/15"
+          >
+            정산대상 전체 완료
+          </button>
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(settlementTargetRows, '정산대기')}
+            className="rounded-md border border-white/10 bg-black px-3 py-2 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+          >
+            정산대상 대기로
+          </button>
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(authPendingRows, '이번 달 보류')}
+            className="rounded-md border border-amber-300/25 bg-amber-300/10 px-3 py-2 text-xs font-black text-amber-100 transition hover:bg-amber-300/15"
+          >
+            인증대기 보류
+          </button>
+        </div>
+      </div>
+
       <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-        <table className="min-w-[1400px] w-full border-collapse text-left text-sm">
+        <table className="min-w-[1780px] w-full border-collapse text-left text-sm">
           <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
             <tr>
               <th className="px-4 py-3">매장</th>
+              <th className="px-4 py-3">운영상태</th>
+              <th className="px-4 py-3">정산상태</th>
               <th className="px-4 py-3">상품구성</th>
               <th className="px-4 py-3 text-right">매출부가세</th>
               <th className="px-4 py-3 text-right">VAT 제외</th>
@@ -1727,14 +1992,41 @@ function SettlementDetailTable({
               <th className="px-4 py-3 text-right">작업비</th>
               <th className="px-4 py-3 text-right">충당금</th>
               <th className="px-4 py-3 text-right">순수익</th>
+              <th className="px-4 py-3">액션</th>
             </tr>
           </thead>
           <tbody>
-            {settlement.records.map((record) => (
+            {rows.map((row) => {
+              const record = row.record
+
+              return (
               <tr key={`settlement-detail-${record.key}`} className="border-t border-white/10">
                 <td className="px-4 py-4">
                   <p className="font-black text-white keep-all">{record.storeName}</p>
                   <p className="mt-1 text-xs font-bold text-gray-600">{formatDateShort(parseLocalDate(record.checkDate))}</p>
+                </td>
+                <td className="px-4 py-4">
+                  <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${settlementReadinessBadge(row.readiness)}`}>
+                    {row.readiness}
+                  </span>
+                  <p className="mt-2 max-w-[150px] text-xs font-semibold leading-5 text-gray-600 keep-all">
+                    {row.readiness === '인증대기' ? '인증 완료 후 정산 포함' : '이번 정산 우선 처리'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => onReadinessChange(row, row.readiness === '인증대기' ? '정산대상' : '인증대기')}
+                    className="mt-2 rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+                  >
+                    {row.readiness === '인증대기' ? '정산대상 전환' : '인증대기 전환'}
+                  </button>
+                </td>
+                <td className="px-4 py-4">
+                  <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${settlementProcessBadge(row.processStatus)}`}>
+                    {row.processStatus}
+                  </span>
+                  <p className="mt-2 text-xs font-semibold text-gray-600">
+                    {row.updatedAt ? formatDateShort(new Date(row.updatedAt)) : '미처리'}
+                  </p>
                 </td>
                 <td className="max-w-[260px] px-4 py-4">
                   <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
@@ -1760,8 +2052,41 @@ function SettlementDetailTable({
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.workerCostAmount)}원</td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.reserveAmount)}원</td>
                 <td className="px-4 py-4 text-right font-black text-emerald-100">{formatCurrency(record.profitAmount)}원</td>
+                <td className="px-4 py-4">
+                  <div className="grid min-w-[170px] grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산완료')}
+                      className="rounded-md border border-emerald-300/30 bg-emerald-300/10 px-2 py-2 text-xs font-black text-emerald-100 transition hover:bg-emerald-300/15"
+                    >
+                      완료
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산대기')}
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-2 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+                    >
+                      대기
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '이번 달 보류')}
+                      className="rounded-md border border-amber-300/25 bg-amber-300/10 px-2 py-2 text-xs font-black text-amber-100 transition hover:bg-amber-300/15"
+                    >
+                      보류
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산 제외')}
+                      className="rounded-md border border-rose-300/25 bg-rose-300/10 px-2 py-2 text-xs font-black text-rose-100 transition hover:bg-rose-300/15"
+                    >
+                      제외
+                    </button>
+                  </div>
+                </td>
               </tr>
-            ))}
+              )
+            })}
           </tbody>
         </table>
       </div>
@@ -6044,6 +6369,18 @@ function billingStatusBadge(status: BillingStatus) {
   if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
   if (status === '연체') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
   if (status === '보류') return 'border-white/15 bg-white/5 text-gray-400'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function settlementReadinessBadge(status: SettlementStoreReadiness) {
+  if (status === '정산대상') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function settlementProcessBadge(status: SettlementProcessStatus) {
+  if (status === '정산완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '정산대기') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (status === '정산 제외') return 'border-rose-300/30 bg-rose-300/10 text-rose-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
 }
 
