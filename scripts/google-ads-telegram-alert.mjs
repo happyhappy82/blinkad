@@ -522,10 +522,10 @@ function groupedCampaignsByStore(campaigns) {
     )
 }
 
-function campaignSummaryLine(campaign) {
+function campaignSummaryLine(campaign, index) {
   const status = campaign.status === 'ENABLED' ? 'ON' : campaign.status || '-'
   return [
-    `   - ${campaign.name}`,
+    `   ${index}. ${campaign.name}`,
     `     ${status} · ${campaign.channel || '-'} · 예산 ${formatWon(campaign.budgetWon)}`,
     `     ${performanceLine(campaign.current, campaign.previous)}`,
   ].join('\n')
@@ -535,7 +535,7 @@ function storeSummaryLine(group, index) {
   return [
     `✅ ${index}. ${group.storeName} (${group.campaigns.length}개 캠페인)`,
     `   합계: ${performanceLine(group.current, group.previous)}`,
-    ...group.campaigns.map((campaign) => campaignSummaryLine(campaign)),
+    ...group.campaigns.map((campaign, campaignIndex) => campaignSummaryLine(campaign, campaignIndex + 1)),
   ].join('\n')
 }
 
