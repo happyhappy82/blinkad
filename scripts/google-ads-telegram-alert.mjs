@@ -166,6 +166,11 @@ function shiftDate(dateString, days) {
 
 function dateRanges(today = kstDateOnly()) {
   return {
+    today: {
+      start: today,
+      end: today,
+      label: today,
+    },
     current: {
       start: shiftDate(today, -6),
       end: today,
@@ -364,6 +369,7 @@ async function fetchCampaignReport() {
       channel: row.campaign?.advertisingChannelType || '',
       biddingStrategy: row.campaign?.biddingStrategyType || '',
       budgetWon: Math.round(Number(row.campaignBudget?.amountMicros || 0) / 1_000_000),
+      today: emptyMetrics(),
       current: emptyMetrics(),
       previous: emptyMetrics(),
     })
@@ -406,6 +412,7 @@ async function fetchCampaignReport() {
           channel: '',
           biddingStrategy: '',
           budgetWon: 0,
+          today: emptyMetrics(),
           current: emptyMetrics(),
           previous: emptyMetrics(),
         }
@@ -475,6 +482,20 @@ function performanceLine(current, previous) {
   ].join(' / ')
 }
 
+function dailyBudgetStatusLine(group) {
+  const budgetWon = group.dailyBudgetWon
+  const spentWon = costWon(group.today)
+  const remainingWon = Math.max(budgetWon - spentWon, 0)
+  const spendRate = budgetWon > 0 ? Math.round((spentWon / budgetWon) * 100) : 0
+  const remainingText = spentWon > budgetWon && budgetWon > 0 ? '잔여 0원(초과 소진)' : `잔여 ${formatWon(remainingWon)}`
+
+  if (!budgetWon) {
+    return `오늘 광고비: 소진 ${formatWon(spentWon)} / 일예산 정보 없음`
+  }
+
+  return `오늘 광고비: 소진 ${formatWon(spentWon)} / 일예산 ${formatWon(budgetWon)} / ${remainingText} / 소진율 ${spendRate}%`
+}
+
 function storeNameFromCampaign(campaign) {
   const name = campaign.name || ''
   const knownStores = ['바다당', '도르도뉴', '웰믹스', '오닉스', '블링크애드']
@@ -496,11 +517,15 @@ function groupedCampaignsByStore(campaigns) {
         storeName,
         current: emptyMetrics(),
         previous: emptyMetrics(),
+        today: emptyMetrics(),
+        dailyBudgetWon: 0,
         campaigns: [],
       }
 
     addMetrics(group.current, campaign.current)
     addMetrics(group.previous, campaign.previous)
+    addMetrics(group.today, campaign.today)
+    if (campaign.status === 'ENABLED') group.dailyBudgetWon += campaign.budgetWon
     group.campaigns.push(campaign)
     groups.set(storeName, group)
   }
@@ -537,7 +562,35 @@ function storeSummaryLine(group, index) {
   return [
     `✅ ${index}. ${group.storeName} (${group.campaigns.length}개 캠페인)`,
     `   합계: ${performanceLine(group.current, group.previous)}`,
+    `   ${dailyBudgetStatusLine(group)}`,
     ...group.campaigns.map((campaign, campaignIndex) => campaignSummaryLine(campaign, campaignIndex + 1)),
+  ].join('\n')
+}
+
+function changeValue(current, previous) {
+  const change = percentChange(current, previous)
+  return change === null ? 0 : change
+}
+
+function changeKeyword(label, current, previous, increaseText, decreaseText, threshold = 30) {
+  const change = changeValue(current, previous)
+  if (change >= threshold) return `${label} ${increaseText}`
+  if (change <= -threshold) return `${label} ${decreaseText}`
+  return ''
+}
+
+function storeInsightLine(group) {
+  const clickNote = changeKeyword('클릭', group.current.clicks, group.previous.clicks, '증가', '감소')
+  const costNote = changeKeyword('비용', costWon(group.current), costWon(group.previous), '증가', '감소')
+  const cpcNote = changeKeyword('CPC', cpcWon(group.current), cpcWon(group.previous), '상승', '하락')
+  const conversionNote = changeKeyword('전환', group.current.conversions, group.previous.conversions, '증가', '감소')
+  const notes = [clickNote, costNote, cpcNote, conversionNote].filter(Boolean)
+  const summary = notes.length ? notes.join(', ') : '큰 변동 없음'
+
+  return [
+    `✅ ${group.storeName}: ${summary}`,
+    `   클릭 ${formatChange(group.current.clicks, group.previous.clicks)} / 비용 ${formatChange(costWon(group.current), costWon(group.previous))} / CPC ${formatChange(cpcWon(group.current), cpcWon(group.previous))} / 전환 ${formatChange(group.current.conversions, group.previous.conversions)}`,
+    `   ${dailyBudgetStatusLine(group)}`,
   ].join('\n')
 }
 
@@ -571,6 +624,11 @@ function buildDailyMessage(report) {
   lines.push('', '[매장별 캠페인 성과]')
   storeGroups.forEach((group, index) => {
     lines.push(storeSummaryLine(group, index + 1))
+  })
+
+  lines.push('', '[매장별 변동사항 인사이트]')
+  storeGroups.forEach((group) => {
+    lines.push(storeInsightLine(group))
   })
 
   return lines.join('\n')

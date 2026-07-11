@@ -17,6 +17,8 @@ It supports two alert/report rules:
 
 The report includes impressions, clicks, cost, average CPC, conversions, and week-over-week changes.
 Campaign performance is grouped by store, with each store shown as a checked section and campaign rows nested below it.
+Each store section also includes today's spend, active daily budget, estimated remaining daily budget, and spend rate.
+The bottom of the report includes a store-level change insight summary.
 
 ## Secrets
 
