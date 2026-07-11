@@ -4125,6 +4125,7 @@ function StoreReportOverviewPanel({
   })
   const allReports = storeRows.flatMap((row) => row.reports)
   const allSummary = summarizeReports(allReports)
+  const weekRangeLabel = formatReportWeekRange(weekDates)
 
   const loadOverviewReports = useCallback(async () => {
     if (!stores.length) {
@@ -4264,13 +4265,30 @@ function StoreReportOverviewPanel({
       </div>
 
       <div className="mt-5 rounded-lg border border-white/10 bg-black">
-        <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
+        <div className="grid gap-4 border-b border-white/10 px-4 py-4 lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_minmax(220px,0.7fr)] lg:items-end">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store List</p>
             <h3 className="mt-2 text-lg font-black text-white">매장별 월-금 보고 체크</h3>
           </div>
-          <div className="flex items-center gap-2">
-            <p className="text-xs font-bold text-gray-500">
+          <div className="rounded-md border border-white/10 bg-[#05070b] p-3">
+            <div className="flex items-center justify-between gap-2">
+              <p className="inline-flex items-center gap-1.5 text-[11px] font-black text-gray-500">
+                <CalendarDays className="h-3.5 w-3.5 text-brand-blue" />
+                이번 주 보고일
+              </p>
+              <p className="text-[11px] font-black text-gray-300">{weekRangeLabel}</p>
+            </div>
+            <div className="mt-3 grid grid-cols-5 gap-2">
+              {weekDates.map((date) => (
+                <div key={toISODate(date)} className="min-w-0 rounded-md border border-white/10 bg-white/[0.03] px-2 py-2">
+                  <p className="text-[11px] font-black text-white">{formatWeekday(date)}</p>
+                  <p className="mt-0.5 text-[10px] font-bold text-gray-500">{formatReportMonthDay(date)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex min-w-0 flex-col gap-2 lg:items-end">
+            <p className="max-w-full truncate text-xs font-bold text-gray-500">
               {overviewLoading ? '보고 현황 동기화 중입니다.' : overviewMessage}
             </p>
             <button
@@ -4330,13 +4348,15 @@ function StoreReportOverviewPanel({
                     const quickKey = `${store.title}-${reportDate}`
                     const quickUpdating = quickUpdatingReportKey === quickKey
                     const reportDone = report.status === '보고완료'
+                    const displayDate = weekDates[index]
 
                     return (
                       <div
                         key={`${store.title}-${reportDate}`}
                         className={`min-h-[116px] rounded-md border px-2.5 py-2 ${weeklyReportClass(report.status)}`}
                       >
-                        <p className="text-[11px] font-black text-gray-500">{formatWeekday(weekDates[index])}</p>
+                        <p className="text-[11px] font-black text-gray-500">{formatWeekday(displayDate)}</p>
+                        <p className="mt-0.5 text-[10px] font-bold text-gray-600">{formatReportMonthDay(displayDate)}</p>
                         <p className="mt-2 text-xs font-black text-white">{reportStatusShort(report.status)}</p>
                         <p className="mt-1 line-clamp-1 text-[11px] font-semibold text-gray-500">{report.title}</p>
                         <button
@@ -6602,6 +6622,18 @@ function formatWeekday(date: Date) {
 
 function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
+}
+
+function formatReportMonthDay(date: Date) {
+  return `${date.getMonth() + 1}.${date.getDate()}`
+}
+
+function formatReportWeekRange(dates: Date[]) {
+  const start = dates[0]
+  const end = dates[dates.length - 1]
+  if (!start || !end) return ''
+
+  return `${start.getFullYear()}.${String(start.getMonth() + 1).padStart(2, '0')}.${String(start.getDate()).padStart(2, '0')} - ${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}`
 }
 
 function weeklyReportClass(status: StoreWeeklyReportStatus) {
