@@ -16,6 +16,7 @@ It supports two alert/report rules:
 - Comparison period: the 7 days immediately before the current period
 
 The report includes impressions, clicks, cost, average CPC, conversions, and week-over-week changes.
+Campaign performance is grouped by store, with each store shown as a checked section and campaign rows nested below it.
 
 ## Secrets
 

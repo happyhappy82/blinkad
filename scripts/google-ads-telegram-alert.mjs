@@ -474,17 +474,74 @@ function performanceLine(current, previous) {
   ].join(' / ')
 }
 
-function campaignSummaryLine(campaign, index) {
+function storeNameFromCampaign(campaign) {
+  const name = campaign.name || ''
+  const knownStores = ['바다당', '도르도뉴', '웰믹스', '오닉스', '블링크애드']
+  const knownStore = knownStores.find((store) => name.includes(store))
+  if (knownStore) return knownStore
+
+  const firstToken = name.split(/[_\s-]/).find(Boolean)
+  return firstToken || '기타'
+}
+
+function groupedCampaignsByStore(campaigns) {
+  const groups = new Map()
+
+  for (const campaign of campaigns) {
+    const storeName = storeNameFromCampaign(campaign)
+    const group =
+      groups.get(storeName) ||
+      {
+        storeName,
+        current: emptyMetrics(),
+        previous: emptyMetrics(),
+        campaigns: [],
+      }
+
+    addMetrics(group.current, campaign.current)
+    addMetrics(group.previous, campaign.previous)
+    group.campaigns.push(campaign)
+    groups.set(storeName, group)
+  }
+
+  return Array.from(groups.values())
+    .map((group) => ({
+      ...group,
+      campaigns: group.campaigns.sort(
+        (a, b) =>
+          b.current.costMicros - a.current.costMicros ||
+          b.current.clicks - a.current.clicks ||
+          a.name.localeCompare(b.name, 'ko')
+      ),
+    }))
+    .sort(
+      (a, b) =>
+        b.current.costMicros - a.current.costMicros ||
+        b.current.clicks - a.current.clicks ||
+        a.storeName.localeCompare(b.storeName, 'ko')
+    )
+}
+
+function campaignSummaryLine(campaign) {
   const status = campaign.status === 'ENABLED' ? 'ON' : campaign.status || '-'
   return [
-    `${index}. ${campaign.name}`,
-    `   ${status} · ${campaign.channel || '-'} · 예산 ${formatWon(campaign.budgetWon)}`,
-    `   ${performanceLine(campaign.current, campaign.previous)}`,
+    `   - ${campaign.name}`,
+    `     ${status} · ${campaign.channel || '-'} · 예산 ${formatWon(campaign.budgetWon)}`,
+    `     ${performanceLine(campaign.current, campaign.previous)}`,
+  ].join('\n')
+}
+
+function storeSummaryLine(group, index) {
+  return [
+    `✅ ${index}. ${group.storeName} (${group.campaigns.length}개 캠페인)`,
+    `   합계: ${performanceLine(group.current, group.previous)}`,
+    ...group.campaigns.map((campaign) => campaignSummaryLine(campaign)),
   ].join('\n')
 }
 
 function buildDailyMessage(report) {
   const alerts = cpcChangeAlerts(report.campaigns)
+  const storeGroups = groupedCampaignsByStore(report.campaigns)
   const title = isTest ? '[테스트] BlinkAd Google Ads 일일 보고' : 'BlinkAd Google Ads 일일 보고'
   const lines = [
     title,
@@ -509,9 +566,9 @@ function buildDailyMessage(report) {
     lines.push('- 없음')
   }
 
-  lines.push('', '[캠페인별]')
-  report.campaigns.forEach((campaign, index) => {
-    lines.push(campaignSummaryLine(campaign, index + 1))
+  lines.push('', '[매장별 캠페인 성과]')
+  storeGroups.forEach((group, index) => {
+    lines.push(storeSummaryLine(group, index + 1))
   })
 
   return lines.join('\n')
