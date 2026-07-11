@@ -480,10 +480,9 @@ function signedPercent(change) {
 function performanceSignal(metric, change) {
   if (change === 0) return '⚪ 유지'
 
-  if (metric === 'cost') return change > 0 ? '🔴 과다' : '🟢 절감'
-  if (metric === 'cpc') return change > 0 ? '🔴 상승' : '🟢 하락'
+  if (metric === 'cpc') return change > 0 ? '🔴 상승' : '🔵 하락'
 
-  return change > 0 ? '🟢 증가' : '🔵 감소'
+  return change > 0 ? '🔴 증가' : '🔵 감소'
 }
 
 function changeBadge(metric, current, previous) {
