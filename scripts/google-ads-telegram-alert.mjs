@@ -537,16 +537,16 @@ function buildAlertOnlyMessage(report) {
 function telegramToken() {
   return (
     process.env.GOOGLE_ADS_TELEGRAM_BOT_TOKEN ||
-    process.env.TELEGRAM_BOT_TOKEN ||
-    keychainValue(TELEGRAM_TOKEN_KEYCHAIN_SERVICE)
+    keychainValue(TELEGRAM_TOKEN_KEYCHAIN_SERVICE) ||
+    process.env.TELEGRAM_BOT_TOKEN
   )
 }
 
 function telegramChatId() {
   return (
     process.env.GOOGLE_ADS_TELEGRAM_CHAT_ID ||
-    process.env.TELEGRAM_CHAT_ID ||
-    keychainValue(TELEGRAM_CHAT_KEYCHAIN_SERVICE)
+    keychainValue(TELEGRAM_CHAT_KEYCHAIN_SERVICE) ||
+    process.env.TELEGRAM_CHAT_ID
   )
 }
 

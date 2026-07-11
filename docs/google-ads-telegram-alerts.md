@@ -30,6 +30,9 @@ The script reads Telegram values in this order:
    - token service: `blinkad-google-ads-telegram-bot-token`
    - chat service: `blinkad-google-ads-telegram-chat-id`
    - account: `BA_Ads_alert_bot`
+3. Generic fallback environment variables
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
 
 Google Ads credentials are loaded from the existing shared env files:
 
