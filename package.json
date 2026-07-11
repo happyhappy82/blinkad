@@ -11,7 +11,12 @@
     "erp:dev-local-skills": "ERP_ENABLE_LOCAL_SKILLS=true next dev",
     "erp:quote-worker": "node scripts/erp-quote-worker.mjs",
     "erp:action-worker": "node scripts/erp-quote-worker.mjs",
-    "erp:quote-bridge": "node scripts/erp-local-quote-bridge.mjs"
+    "erp:quote-bridge": "node scripts/erp-local-quote-bridge.mjs",
+    "ads:telegram:daily": "node scripts/google-ads-telegram-alert.mjs --daily",
+    "ads:telegram:test": "node scripts/google-ads-telegram-alert.mjs --daily --test",
+    "ads:telegram:dry-run": "node scripts/google-ads-telegram-alert.mjs --daily --test --dry-run",
+    "ads:telegram:alert": "node scripts/google-ads-telegram-alert.mjs --alert-only",
+    "ads:telegram:discover-chat": "node scripts/google-ads-telegram-alert.mjs --discover-chat-id"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^8.3.1",
