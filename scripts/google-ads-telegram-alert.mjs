@@ -483,7 +483,7 @@ function performanceSignal(metric, change) {
   if (metric === 'cost') return change > 0 ? '🔴 과다' : '🟢 절감'
   if (metric === 'cpc') return change > 0 ? '🔴 상승' : '🟢 하락'
 
-  return change > 0 ? '🟢 증가' : '🔴 감소'
+  return change > 0 ? '🟢 증가' : '🔵 감소'
 }
 
 function changeBadge(metric, current, previous) {
