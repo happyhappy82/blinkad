@@ -495,38 +495,50 @@ function changeBadge(metric, current, previous) {
   return `${performanceSignal(metric, change)} ${signedPercent(change)}`
 }
 
-function metricDisplayLine(label, value, badge) {
-  return `${label}: ${value} ${badge}`
+function metricTableRow(label, value, badge) {
+  return { label, value, badge }
+}
+
+function metricTableLines(rows) {
+  return [
+    '지표 │ 현재 │ 변동',
+    '--- │ --- │ ---',
+    ...rows.map(metricTableLine),
+  ]
+}
+
+function metricTableLine(row) {
+  return `${row.label} │ ${row.value} │ ${row.badge}`
 }
 
 function compactPerformanceLines(current, previous) {
-  return [
-    metricDisplayLine(
+  return metricTableLines([
+    metricTableRow(
       '노출',
       formatNumber(current.impressions),
       changeBadge('impressions', current.impressions, previous.impressions)
     ),
-    metricDisplayLine('클릭', formatNumber(current.clicks), changeBadge('clicks', current.clicks, previous.clicks)),
-    metricDisplayLine('비용', formatWon(costWon(current)), changeBadge('cost', costWon(current), costWon(previous))),
-    metricDisplayLine('CPC', formatWon(cpcWon(current)), changeBadge('cpc', cpcWon(current), cpcWon(previous))),
-    metricDisplayLine(
+    metricTableRow('클릭', formatNumber(current.clicks), changeBadge('clicks', current.clicks, previous.clicks)),
+    metricTableRow('비용', formatWon(costWon(current)), changeBadge('cost', costWon(current), costWon(previous))),
+    metricTableRow('CPC', formatWon(cpcWon(current)), changeBadge('cpc', cpcWon(current), cpcWon(previous))),
+    metricTableRow(
       '전환',
       formatNumber(current.conversions),
       changeBadge('conversions', current.conversions, previous.conversions)
     ),
-  ]
+  ])
 }
 
-function compactBudgetStatusLine(group) {
+function compactBudgetStatusRow(group) {
   const budgetWon = group.dailyBudgetWon
   const spentWon = costWon(group.today)
   const remainingWon = Math.max(budgetWon - spentWon, 0)
   const spendRate = budgetWon > 0 ? Math.round((spentWon / budgetWon) * 100) : 0
 
-  if (!budgetWon) return `소진 ${formatWon(spentWon)} | 일예산 정보 없음`
+  if (!budgetWon) return metricTableRow('광고비', `소진 ${formatWon(spentWon)}`, '일예산 정보 없음')
 
   const remainingText = spentWon > budgetWon ? '잔여 0원(초과)' : `잔여 ${formatWon(remainingWon)}`
-  return `${remainingText} | 소진율 ${spendRate}%`
+  return metricTableRow('광고비', remainingText, `소진율 ${spendRate}%`)
 }
 
 function storeNameFromCampaign(campaign) {
@@ -585,7 +597,7 @@ function storeCompactSummaryLine(group, index) {
   return [
     `✅ ${index}. ${group.storeName} (${group.campaigns.length}개)`,
     ...compactPerformanceLines(group.current, group.previous).map((line) => `   ${line}`),
-    `   ${compactBudgetStatusLine(group)}`,
+    `   ${metricTableLine(compactBudgetStatusRow(group))}`,
   ].join('\n')
 }
 
@@ -614,11 +626,11 @@ function overallAttentionLine(current, previous) {
 function metricIssue(label, metric, current, previous, formatter, threshold = 30) {
   const change = percentChange(current, previous)
   if (change === null) {
-    if (!previous && current) return `${label} ${formatter(current)} 신규`
+    if (!previous && current) return metricTableRow(label, formatter(current), '신규')
     return ''
   }
   if (Math.abs(change) < threshold) return ''
-  return metricDisplayLine(label, formatter(current), changeBadge(metric, current, previous))
+  return metricTableRow(label, formatter(current), changeBadge(metric, current, previous))
 }
 
 function campaignIssueItems(campaigns, threshold = 30) {
@@ -655,7 +667,9 @@ function campaignIssueItems(campaigns, threshold = 30) {
 
 function campaignIssueLine(item, index) {
   const campaignNumber = CAMPAIGN_NUMBER_EMOJIS[index - 1] || `${index}.`
-  return [`${campaignNumber} ${item.campaign.name}`, ...item.issues.map((issue) => `   ${issue}`)].join('\n')
+  return [`${campaignNumber} ${item.campaign.name}`, ...metricTableLines(item.issues).map((line) => `   ${line}`)].join(
+    '\n'
+  )
 }
 
 function storeInsightLine(group) {
