@@ -638,16 +638,6 @@ function changeKeyword(label, current, previous, increaseText, decreaseText, thr
   return ''
 }
 
-function overallAttentionLine(current, previous) {
-  const notes = [
-    changeKeyword('비용', costWon(current), costWon(previous), '증가', '감소'),
-    changeKeyword('CPC', cpcWon(current), cpcWon(previous), '상승', '하락'),
-    changeKeyword('전환', current.conversions, previous.conversions, '증가', '감소'),
-  ].filter(Boolean)
-
-  return `주의: ${notes.length ? notes.join(', ') : '큰 변동 없음'}`
-}
-
 function metricIssue(label, metric, current, previous, formatter, threshold = 30) {
   const change = percentChange(current, previous)
   if (change === null) {
@@ -719,10 +709,6 @@ function buildDailyMessage(report) {
     `기준: ${report.checkedAt} KST`,
     `기간: ${report.ranges.current.label} vs ${report.ranges.previous.label}`,
     '',
-    '[전체 요약]',
-    ...compactPerformanceLines(report.currentTotal, report.previousTotal),
-    overallAttentionLine(report.currentTotal, report.previousTotal),
-    '',
     '[매장별 핵심 현황]',
   ]
 
@@ -759,9 +745,6 @@ function buildDailyRichHtml(report) {
     `<h3>${htmlEscape(title)}</h3>`,
     `<p>기준: ${htmlEscape(report.checkedAt)} KST</p>`,
     `<p>기간: ${htmlEscape(report.ranges.current.label)} vs ${htmlEscape(report.ranges.previous.label)}</p>`,
-    '<h4>전체 요약</h4>',
-    metricTableHtml(performanceRows(report.currentTotal, report.previousTotal)),
-    `<p>${htmlEscape(overallAttentionLine(report.currentTotal, report.previousTotal))}</p>`,
     '<h4>매장별 핵심 현황</h4>',
   ]
 
