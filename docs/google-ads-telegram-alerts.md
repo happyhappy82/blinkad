@@ -37,6 +37,8 @@ The script reads Telegram values in this order:
    - `TELEGRAM_BOT_TOKEN`
    - `TELEGRAM_CHAT_ID`
 
+Multiple chat IDs can be configured by separating values with commas or whitespace.
+
 Google Ads credentials are loaded from the existing shared env files:
 
 - `.env.local`

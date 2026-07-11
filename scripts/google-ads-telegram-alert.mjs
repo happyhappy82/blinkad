@@ -659,12 +659,16 @@ function telegramToken() {
   )
 }
 
-function telegramChatId() {
-  return (
+function telegramChatIds() {
+  const rawValue =
     process.env.GOOGLE_ADS_TELEGRAM_CHAT_ID ||
     keychainValue(TELEGRAM_CHAT_KEYCHAIN_SERVICE) ||
     process.env.TELEGRAM_CHAT_ID
-  )
+
+  return String(rawValue || '')
+    .split(/[,\s]+/)
+    .map((value) => value.trim())
+    .filter(Boolean)
 }
 
 async function telegramApi(method, payload = {}) {
@@ -701,22 +705,24 @@ function chunkTelegramMessage(message) {
 }
 
 async function sendTelegramMessage(message) {
-  const chatId = telegramChatId()
-  if (!chatId) {
+  const chatIds = telegramChatIds()
+  if (!chatIds.length) {
     throw new Error(
       'Telegram chat_id가 없습니다. 먼저 봇에 /start를 보낸 뒤 npm run ads:telegram:discover-chat 을 실행하세요.'
     )
   }
 
   const chunks = chunkTelegramMessage(message)
-  for (const [index, chunk] of chunks.entries()) {
-    await telegramApi('sendMessage', {
-      chat_id: chatId,
-      text: chunks.length > 1 ? `${chunk}\n\n(${index + 1}/${chunks.length})` : chunk,
-      disable_web_page_preview: true,
-    })
+  for (const chatId of chatIds) {
+    for (const [index, chunk] of chunks.entries()) {
+      await telegramApi('sendMessage', {
+        chat_id: chatId,
+        text: chunks.length > 1 ? `${chunk}\n\n(${index + 1}/${chunks.length})` : chunk,
+        disable_web_page_preview: true,
+      })
+    }
   }
-  return chunks.length
+  return chunks.length * chatIds.length
 }
 
 async function discoverChatId() {
