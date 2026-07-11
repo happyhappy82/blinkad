@@ -65,17 +65,31 @@ npm run ads:telegram:alert
 
 ## Daily schedule
 
-Recommended local macOS LaunchAgent:
+Primary scheduler:
+
+- GitHub Actions workflow on the repository default branch:
+  `.github/workflows/google-ads-telegram-daily.yml`
+- The workflow runs at `0 6 * * *`, which is 15:00 KST.
+- The workflow checks out the `erp/ops` branch and runs:
 
 ```bash
 node scripts/google-ads-telegram-alert.mjs --daily
 ```
 
-Schedule time:
+Required GitHub Actions secrets:
 
-- Hour: `15`
-- Minute: `0`
-- Time zone: local machine time, expected KST on this Mac
+- `GOOGLE_ADS_DEVELOPER_TOKEN`
+- `GOOGLE_ADS_CLIENT_ID`
+- `GOOGLE_ADS_CLIENT_SECRET`
+- `GOOGLE_ADS_REFRESH_TOKEN`
+- `GOOGLE_ADS_LOGIN_CUSTOMER_ID`
+- `GOOGLE_ADS_TELEGRAM_BOT_TOKEN`
+- `GOOGLE_ADS_TELEGRAM_CHAT_ID`
+
+Local macOS fallback:
+
+- The old local LaunchAgent label is `com.blinkad.google-ads-telegram-daily`.
+- Keep it disabled unless GitHub Actions is intentionally stopped, otherwise duplicate reports can be sent.
 
 ## Notes
 
