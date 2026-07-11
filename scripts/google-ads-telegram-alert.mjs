@@ -472,22 +472,35 @@ function cpcChangeAlerts(campaigns) {
     .sort((a, b) => Math.abs(b.change) - Math.abs(a.change))
 }
 
-function changeBadge(current, previous) {
+function signedPercent(change) {
+  const sign = change > 0 ? '+' : ''
+  return `${sign}${change.toFixed(1)}%`
+}
+
+function performanceSignal(metric, change) {
+  if (change === 0) return '⚪ 유지'
+
+  if (metric === 'cost') return change > 0 ? '🔴 과다' : '🟢 절감'
+  if (metric === 'cpc') return change > 0 ? '🔴 상승' : '🟢 하락'
+
+  return change > 0 ? '🟢 증가' : '🔴 감소'
+}
+
+function changeBadge(metric, current, previous) {
   const change = percentChange(current, previous)
   if (change === null) {
     if (!previous && current) return '신규'
     return '0%'
   }
-  if (!change) return '0%'
-  const indicator = change > 0 ? '🔴▲' : '🔵▼'
-  return `${indicator}${Math.abs(change).toFixed(1)}%`
+
+  return `${performanceSignal(metric, change)} ${signedPercent(change)}`
 }
 
 function compactPerformanceLines(current, previous) {
   return [
-    `노출 ${formatNumber(current.impressions)} ${changeBadge(current.impressions, previous.impressions)} | 클릭 ${formatNumber(current.clicks)} ${changeBadge(current.clicks, previous.clicks)}`,
-    `비용 ${formatWon(costWon(current))} ${changeBadge(costWon(current), costWon(previous))} | CPC ${formatWon(cpcWon(current))} ${changeBadge(cpcWon(current), cpcWon(previous))}`,
-    `전환 ${formatNumber(current.conversions)} ${changeBadge(current.conversions, previous.conversions)}`,
+    `노출 ${formatNumber(current.impressions)} ${changeBadge('impressions', current.impressions, previous.impressions)} | 클릭 ${formatNumber(current.clicks)} ${changeBadge('clicks', current.clicks, previous.clicks)}`,
+    `비용 ${formatWon(costWon(current))} ${changeBadge('cost', costWon(current), costWon(previous))} | CPC ${formatWon(cpcWon(current))} ${changeBadge('cpc', cpcWon(current), cpcWon(previous))}`,
+    `전환 ${formatNumber(current.conversions)} ${changeBadge('conversions', current.conversions, previous.conversions)}`,
   ]
 }
 
@@ -585,24 +598,31 @@ function overallAttentionLine(current, previous) {
   return `주의: ${notes.length ? notes.join(', ') : '큰 변동 없음'}`
 }
 
-function metricIssue(label, current, previous, formatter, threshold = 30) {
+function metricIssue(label, metric, current, previous, formatter, threshold = 30) {
   const change = percentChange(current, previous)
   if (change === null) {
     if (!previous && current) return `${label} ${formatter(current)} 신규`
     return ''
   }
   if (Math.abs(change) < threshold) return ''
-  return `${label} ${formatter(current)} ${changeBadge(current, previous)}`
+  return `${label} ${formatter(current)} ${changeBadge(metric, current, previous)}`
 }
 
 function campaignIssueItems(campaigns, threshold = 30) {
   return campaigns
     .map((campaign) => {
       const issues = [
-        metricIssue('CPC', cpcWon(campaign.current), cpcWon(campaign.previous), formatWon, threshold),
-        metricIssue('비용', costWon(campaign.current), costWon(campaign.previous), formatWon, threshold),
-        metricIssue('전환', campaign.current.conversions, campaign.previous.conversions, formatNumber, threshold),
-        metricIssue('클릭', campaign.current.clicks, campaign.previous.clicks, formatNumber, threshold),
+        metricIssue('CPC', 'cpc', cpcWon(campaign.current), cpcWon(campaign.previous), formatWon, threshold),
+        metricIssue('비용', 'cost', costWon(campaign.current), costWon(campaign.previous), formatWon, threshold),
+        metricIssue(
+          '전환',
+          'conversions',
+          campaign.current.conversions,
+          campaign.previous.conversions,
+          formatNumber,
+          threshold
+        ),
+        metricIssue('클릭', 'clicks', campaign.current.clicks, campaign.previous.clicks, formatNumber, threshold),
       ].filter(Boolean)
 
       if (!issues.length) return null
