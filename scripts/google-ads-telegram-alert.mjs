@@ -496,11 +496,25 @@ function changeBadge(metric, current, previous) {
   return `${performanceSignal(metric, change)} ${signedPercent(change)}`
 }
 
+function metricDisplayLine(label, value, badge) {
+  return `${label}: ${value} ${badge}`
+}
+
 function compactPerformanceLines(current, previous) {
   return [
-    `노출 ${formatNumber(current.impressions)} ${changeBadge('impressions', current.impressions, previous.impressions)} | 클릭 ${formatNumber(current.clicks)} ${changeBadge('clicks', current.clicks, previous.clicks)}`,
-    `비용 ${formatWon(costWon(current))} ${changeBadge('cost', costWon(current), costWon(previous))} | CPC ${formatWon(cpcWon(current))} ${changeBadge('cpc', cpcWon(current), cpcWon(previous))}`,
-    `전환 ${formatNumber(current.conversions)} ${changeBadge('conversions', current.conversions, previous.conversions)}`,
+    metricDisplayLine(
+      '노출',
+      formatNumber(current.impressions),
+      changeBadge('impressions', current.impressions, previous.impressions)
+    ),
+    metricDisplayLine('클릭', formatNumber(current.clicks), changeBadge('clicks', current.clicks, previous.clicks)),
+    metricDisplayLine('비용', formatWon(costWon(current)), changeBadge('cost', costWon(current), costWon(previous))),
+    metricDisplayLine('CPC', formatWon(cpcWon(current)), changeBadge('cpc', cpcWon(current), cpcWon(previous))),
+    metricDisplayLine(
+      '전환',
+      formatNumber(current.conversions),
+      changeBadge('conversions', current.conversions, previous.conversions)
+    ),
   ]
 }
 
@@ -605,7 +619,7 @@ function metricIssue(label, metric, current, previous, formatter, threshold = 30
     return ''
   }
   if (Math.abs(change) < threshold) return ''
-  return `${label} ${formatter(current)} ${changeBadge(metric, current, previous)}`
+  return metricDisplayLine(label, formatter(current), changeBadge(metric, current, previous))
 }
 
 function campaignIssueItems(campaigns, threshold = 30) {
@@ -642,7 +656,7 @@ function campaignIssueItems(campaigns, threshold = 30) {
 
 function campaignIssueLine(item, index) {
   const campaignNumber = CAMPAIGN_NUMBER_EMOJIS[index - 1] || `${index}.`
-  return `${campaignNumber} ${item.campaign.name}: ${item.issues.join(', ')}`
+  return [`${campaignNumber} ${item.campaign.name}`, ...item.issues.map((issue) => `   ${issue}`)].join('\n')
 }
 
 function storeInsightLine(group) {
