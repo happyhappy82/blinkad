@@ -479,8 +479,8 @@ function changeBadge(current, previous) {
     return '0%'
   }
   if (!change) return '0%'
-  const arrow = change > 0 ? '▲' : '▼'
-  return `${arrow}${Math.abs(change).toFixed(1)}%`
+  const indicator = change > 0 ? '🔴▲' : '🔵▼'
+  return `${indicator}${Math.abs(change).toFixed(1)}%`
 }
 
 function compactPerformanceLines(current, previous) {
