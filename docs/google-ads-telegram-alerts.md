@@ -15,10 +15,9 @@ It supports two alert/report rules:
 - Current period: last 7 days including today
 - Comparison period: the 7 days immediately before the current period
 
-The report includes impressions, clicks, cost, average CPC, conversions, and week-over-week changes.
-Campaign performance is grouped by store, with each store shown as a checked section and campaign rows nested below it.
-Each store section also includes today's spend, active daily budget, estimated remaining daily budget, and spend rate.
-The bottom of the report includes a store-level change insight summary.
+The daily report is sent with Telegram `sendRichMessage` and HTML tables.
+It includes impressions, clicks, cost, average CPC, conversions, week-over-week changes, store budget status, selected high-variance campaigns, and store-level insights.
+CPC alert-only messages still use regular text messages.
 
 ## Secrets
 
@@ -59,7 +58,7 @@ npm run ads:telegram:alert
 
 `ads:telegram:test` sends the same daily report with a test prefix.
 
-`ads:telegram:dry-run` prints the test report locally without sending Telegram messages.
+`ads:telegram:dry-run` prints the test rich-message HTML locally without sending Telegram messages.
 
 `ads:telegram:alert` sends a message only when at least one campaign CPC changed by 30% or more.
 
@@ -94,5 +93,6 @@ Local macOS fallback:
 ## Notes
 
 - If `discover-chat` returns no chat, send `/start` to the Telegram bot first and retry.
-- Telegram messages are split into multiple chunks when the report exceeds Telegram's message length limit.
+- Daily reports use Telegram rich tables. If `sendRichMessage` fails for a chat, the script falls back to regular text for that chat only.
+- Regular text fallback messages are split into multiple chunks when the report exceeds Telegram's message length limit.
 - Campaigns included in the report are campaigns that are currently `ENABLED` or had impressions/clicks/cost in the current or previous 7-day period.

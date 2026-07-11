@@ -511,8 +511,8 @@ function metricTableLine(row) {
   return `${row.label} │ ${row.value} │ ${row.badge}`
 }
 
-function compactPerformanceLines(current, previous) {
-  return metricTableLines([
+function performanceRows(current, previous) {
+  return [
     metricTableRow(
       '노출',
       formatNumber(current.impressions),
@@ -526,7 +526,32 @@ function compactPerformanceLines(current, previous) {
       formatNumber(current.conversions),
       changeBadge('conversions', current.conversions, previous.conversions)
     ),
-  ])
+  ]
+}
+
+function compactPerformanceLines(current, previous) {
+  return metricTableLines(performanceRows(current, previous))
+}
+
+function htmlEscape(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+function metricTableHtml(rows) {
+  return [
+    '<table bordered striped>',
+    '<tr><th>지표</th><th>현재</th><th>변동</th></tr>',
+    ...rows.map(
+      (row) =>
+        `<tr><td>${htmlEscape(row.label)}</td><td>${htmlEscape(row.value)}</td><td>${htmlEscape(row.badge)}</td></tr>`
+    ),
+    '</table>',
+  ].join('\n')
 }
 
 function compactBudgetStatusRow(group) {
@@ -726,6 +751,52 @@ function buildDailyMessage(report) {
   return lines.join('\n')
 }
 
+function buildDailyRichHtml(report) {
+  const storeGroups = groupedCampaignsByStore(report.campaigns)
+  const campaignIssues = campaignIssueItems(report.campaigns)
+  const title = isTest ? '[테스트] BlinkAd Google Ads 일일 보고' : 'BlinkAd Google Ads 일일 보고'
+  const blocks = [
+    `<h3>${htmlEscape(title)}</h3>`,
+    `<p>기준: ${htmlEscape(report.checkedAt)} KST</p>`,
+    `<p>기간: ${htmlEscape(report.ranges.current.label)} vs ${htmlEscape(report.ranges.previous.label)}</p>`,
+    '<h4>전체 요약</h4>',
+    metricTableHtml(performanceRows(report.currentTotal, report.previousTotal)),
+    `<p>${htmlEscape(overallAttentionLine(report.currentTotal, report.previousTotal))}</p>`,
+    '<h4>매장별 핵심 현황</h4>',
+  ]
+
+  storeGroups.forEach((group, index) => {
+    blocks.push(
+      `<h5>✅ ${index + 1}. ${htmlEscape(group.storeName)} (${group.campaigns.length}개)</h5>`,
+      metricTableHtml([...performanceRows(group.current, group.previous), compactBudgetStatusRow(group)])
+    )
+  })
+
+  blocks.push('<h4>주의 캠페인</h4>')
+  if (campaignIssues.length) {
+    const visibleIssues = campaignIssues.slice(0, 8)
+    visibleIssues.forEach((item, index) => {
+      const campaignNumber = CAMPAIGN_NUMBER_EMOJIS[index] || `${index + 1}.`
+      blocks.push(
+        `<h5>${htmlEscape(campaignNumber)} ${htmlEscape(item.campaign.name)}</h5>`,
+        metricTableHtml(item.issues)
+      )
+    })
+    if (campaignIssues.length > visibleIssues.length) {
+      blocks.push(`<p>외 ${campaignIssues.length - visibleIssues.length}개 캠페인 생략</p>`)
+    }
+  } else {
+    blocks.push('<p>없음</p>')
+  }
+
+  blocks.push('<h4>매장별 인사이트</h4>')
+  for (const group of storeGroups) {
+    blocks.push(`<p>${htmlEscape(storeInsightLine(group))}</p>`)
+  }
+
+  return blocks.join('\n')
+}
+
 function buildAlertOnlyMessage(report) {
   const alerts = cpcChangeAlerts(report.campaigns)
   if (!alerts.length) return ''
@@ -796,7 +867,19 @@ function chunkTelegramMessage(message) {
   return chunks
 }
 
-async function sendTelegramMessage(message) {
+async function sendTelegramTextToChat(chatId, message) {
+  const chunks = chunkTelegramMessage(message)
+  for (const [index, chunk] of chunks.entries()) {
+    await telegramApi('sendMessage', {
+      chat_id: chatId,
+      text: chunks.length > 1 ? `${chunk}\n\n(${index + 1}/${chunks.length})` : chunk,
+      disable_web_page_preview: true,
+    })
+  }
+  return chunks.length
+}
+
+async function sendTelegramMessage(message, richHtml = '') {
   const chatIds = telegramChatIds()
   if (!chatIds.length) {
     throw new Error(
@@ -804,17 +887,27 @@ async function sendTelegramMessage(message) {
     )
   }
 
-  const chunks = chunkTelegramMessage(message)
+  let sentMessages = 0
   for (const chatId of chatIds) {
-    for (const [index, chunk] of chunks.entries()) {
-      await telegramApi('sendMessage', {
-        chat_id: chatId,
-        text: chunks.length > 1 ? `${chunk}\n\n(${index + 1}/${chunks.length})` : chunk,
-        disable_web_page_preview: true,
-      })
+    if (richHtml) {
+      try {
+        await telegramApi('sendRichMessage', {
+          chat_id: chatId,
+          rich_message: {
+            html: richHtml,
+            skip_entity_detection: true,
+          },
+        })
+        sentMessages += 1
+        continue
+      } catch (error) {
+        console.warn(`sendRichMessage failed for ${chatId}; falling back to sendMessage.`)
+      }
     }
+
+    sentMessages += await sendTelegramTextToChat(chatId, message)
   }
-  return chunks.length * chatIds.length
+  return sentMessages
 }
 
 async function discoverChatId() {
@@ -853,6 +946,7 @@ async function main() {
 
   const report = await fetchCampaignReport()
   const message = mode === 'alert' ? buildAlertOnlyMessage(report) : buildDailyMessage(report)
+  const richHtml = mode === 'daily' ? buildDailyRichHtml(report) : ''
 
   if (!message) {
     console.log('No CPC alerts to send.')
@@ -860,12 +954,12 @@ async function main() {
   }
 
   if (isDryRun) {
-    console.log(message)
+    console.log(richHtml || message)
     return
   }
 
-  const sentChunks = await sendTelegramMessage(message)
-  console.log(`Telegram message sent in ${sentChunks} chunk(s).`)
+  const sentMessages = await sendTelegramMessage(message, richHtml)
+  console.log(`Telegram message sent in ${sentMessages} message(s).`)
 }
 
 main().catch((error) => {
