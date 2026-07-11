@@ -1364,8 +1364,6 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       createProfileAdsOperationRow('도르도뉴'),
       createProfileAdsOperationRow('오닉스', {
         memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
-        googleMapUrl:
-          'https://www.google.com/maps/place/ONYX+ITAEWON/data=!3m1!4b1!4m6!3m5!1s0x357ca3a50528086b:0xeb352ad543021266!8m2!3d37.53321!4d126.9956943!16s%2Fg%2F11z7p4zpgd?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D',
       }),
       {
         title: '바다당 해운대점',
