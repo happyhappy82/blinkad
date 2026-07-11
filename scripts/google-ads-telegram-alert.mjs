@@ -472,28 +472,35 @@ function cpcChangeAlerts(campaigns) {
     .sort((a, b) => Math.abs(b.change) - Math.abs(a.change))
 }
 
-function performanceLine(current, previous) {
-  return [
-    `노출 ${formatNumber(current.impressions)} (${formatChange(current.impressions, previous.impressions)})`,
-    `클릭 ${formatNumber(current.clicks)} (${formatChange(current.clicks, previous.clicks)})`,
-    `비용 ${formatWon(costWon(current))} (${formatChange(costWon(current), costWon(previous))})`,
-    `CPC ${formatWon(cpcWon(current))} (${formatChange(cpcWon(current), cpcWon(previous))})`,
-    `전환 ${formatNumber(current.conversions)} (${formatChange(current.conversions, previous.conversions)})`,
-  ].join(' / ')
+function changeBadge(current, previous) {
+  const change = percentChange(current, previous)
+  if (change === null) {
+    if (!previous && current) return '신규'
+    return '0%'
+  }
+  if (!change) return '0%'
+  const arrow = change > 0 ? '▲' : '▼'
+  return `${arrow}${Math.abs(change).toFixed(1)}%`
 }
 
-function dailyBudgetStatusLine(group) {
+function compactPerformanceLines(current, previous) {
+  return [
+    `노출 ${formatNumber(current.impressions)} ${changeBadge(current.impressions, previous.impressions)} | 클릭 ${formatNumber(current.clicks)} ${changeBadge(current.clicks, previous.clicks)}`,
+    `비용 ${formatWon(costWon(current))} ${changeBadge(costWon(current), costWon(previous))} | CPC ${formatWon(cpcWon(current))} ${changeBadge(cpcWon(current), cpcWon(previous))}`,
+    `전환 ${formatNumber(current.conversions)} ${changeBadge(current.conversions, previous.conversions)}`,
+  ]
+}
+
+function compactBudgetStatusLine(group) {
   const budgetWon = group.dailyBudgetWon
   const spentWon = costWon(group.today)
   const remainingWon = Math.max(budgetWon - spentWon, 0)
   const spendRate = budgetWon > 0 ? Math.round((spentWon / budgetWon) * 100) : 0
-  const remainingText = spentWon > budgetWon && budgetWon > 0 ? '잔여 0원(초과 소진)' : `잔여 ${formatWon(remainingWon)}`
 
-  if (!budgetWon) {
-    return `오늘 광고비: 소진 ${formatWon(spentWon)} / 일예산 정보 없음`
-  }
+  if (!budgetWon) return `소진 ${formatWon(spentWon)} | 일예산 정보 없음`
 
-  return `오늘 광고비: 소진 ${formatWon(spentWon)} / 일예산 ${formatWon(budgetWon)} / ${remainingText} / 소진율 ${spendRate}%`
+  const remainingText = spentWon > budgetWon ? '잔여 0원(초과)' : `잔여 ${formatWon(remainingWon)}`
+  return `${remainingText} | 소진율 ${spendRate}%`
 }
 
 function storeNameFromCampaign(campaign) {
@@ -545,25 +552,14 @@ function groupedCampaignsByStore(campaigns) {
         b.current.costMicros - a.current.costMicros ||
         b.current.clicks - a.current.clicks ||
         a.storeName.localeCompare(b.storeName, 'ko')
-    )
+  )
 }
 
-function campaignSummaryLine(campaign, index) {
-  const status = campaign.status === 'ENABLED' ? 'ON' : campaign.status || '-'
-  const campaignNumber = CAMPAIGN_NUMBER_EMOJIS[index - 1] || `${index}.`
+function storeCompactSummaryLine(group, index) {
   return [
-    `   ${campaignNumber} ${campaign.name}`,
-    `     ${status} · ${campaign.channel || '-'} · 예산 ${formatWon(campaign.budgetWon)}`,
-    `     ${performanceLine(campaign.current, campaign.previous)}`,
-  ].join('\n')
-}
-
-function storeSummaryLine(group, index) {
-  return [
-    `✅ ${index}. ${group.storeName} (${group.campaigns.length}개 캠페인)`,
-    `   합계: ${performanceLine(group.current, group.previous)}`,
-    `   ${dailyBudgetStatusLine(group)}`,
-    ...group.campaigns.map((campaign, campaignIndex) => campaignSummaryLine(campaign, campaignIndex + 1)),
+    `✅ ${index}. ${group.storeName} (${group.campaigns.length}개)`,
+    ...compactPerformanceLines(group.current, group.previous).map((line) => `   ${line}`),
+    `   ${compactBudgetStatusLine(group)}`,
   ].join('\n')
 }
 
@@ -579,6 +575,56 @@ function changeKeyword(label, current, previous, increaseText, decreaseText, thr
   return ''
 }
 
+function overallAttentionLine(current, previous) {
+  const notes = [
+    changeKeyword('비용', costWon(current), costWon(previous), '증가', '감소'),
+    changeKeyword('CPC', cpcWon(current), cpcWon(previous), '상승', '하락'),
+    changeKeyword('전환', current.conversions, previous.conversions, '증가', '감소'),
+  ].filter(Boolean)
+
+  return `주의: ${notes.length ? notes.join(', ') : '큰 변동 없음'}`
+}
+
+function metricIssue(label, current, previous, formatter, threshold = 30) {
+  const change = percentChange(current, previous)
+  if (change === null) {
+    if (!previous && current) return `${label} ${formatter(current)} 신규`
+    return ''
+  }
+  if (Math.abs(change) < threshold) return ''
+  return `${label} ${formatter(current)} ${changeBadge(current, previous)}`
+}
+
+function campaignIssueItems(campaigns, threshold = 30) {
+  return campaigns
+    .map((campaign) => {
+      const issues = [
+        metricIssue('CPC', cpcWon(campaign.current), cpcWon(campaign.previous), formatWon, threshold),
+        metricIssue('비용', costWon(campaign.current), costWon(campaign.previous), formatWon, threshold),
+        metricIssue('전환', campaign.current.conversions, campaign.previous.conversions, formatNumber, threshold),
+        metricIssue('클릭', campaign.current.clicks, campaign.previous.clicks, formatNumber, threshold),
+      ].filter(Boolean)
+
+      if (!issues.length) return null
+
+      const score = Math.max(
+        Math.abs(changeValue(cpcWon(campaign.current), cpcWon(campaign.previous))),
+        Math.abs(changeValue(costWon(campaign.current), costWon(campaign.previous))),
+        Math.abs(changeValue(campaign.current.conversions, campaign.previous.conversions)),
+        Math.abs(changeValue(campaign.current.clicks, campaign.previous.clicks))
+      )
+
+      return { campaign, issues, score }
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.score - a.score || b.campaign.current.costMicros - a.campaign.current.costMicros)
+}
+
+function campaignIssueLine(item, index) {
+  const campaignNumber = CAMPAIGN_NUMBER_EMOJIS[index - 1] || `${index}.`
+  return `${campaignNumber} ${item.campaign.name}: ${item.issues.join(', ')}`
+}
+
 function storeInsightLine(group) {
   const clickNote = changeKeyword('클릭', group.current.clicks, group.previous.clicks, '증가', '감소')
   const costNote = changeKeyword('비용', costWon(group.current), costWon(group.previous), '증가', '감소')
@@ -586,47 +632,46 @@ function storeInsightLine(group) {
   const conversionNote = changeKeyword('전환', group.current.conversions, group.previous.conversions, '증가', '감소')
   const notes = [clickNote, costNote, cpcNote, conversionNote].filter(Boolean)
   const summary = notes.length ? notes.join(', ') : '큰 변동 없음'
+  const topIssue = campaignIssueItems(group.campaigns)[0]
+  const issueText = topIssue ? ` / 핵심: ${topIssue.campaign.name}` : ''
 
-  return [
-    `✅ ${group.storeName}: ${summary}`,
-    `   클릭 ${formatChange(group.current.clicks, group.previous.clicks)} / 비용 ${formatChange(costWon(group.current), costWon(group.previous))} / CPC ${formatChange(cpcWon(group.current), cpcWon(group.previous))} / 전환 ${formatChange(group.current.conversions, group.previous.conversions)}`,
-    `   ${dailyBudgetStatusLine(group)}`,
-  ].join('\n')
+  return `✅ ${group.storeName}: ${summary}${issueText}`
 }
 
 function buildDailyMessage(report) {
-  const alerts = cpcChangeAlerts(report.campaigns)
   const storeGroups = groupedCampaignsByStore(report.campaigns)
+  const campaignIssues = campaignIssueItems(report.campaigns)
   const title = isTest ? '[테스트] BlinkAd Google Ads 일일 보고' : 'BlinkAd Google Ads 일일 보고'
   const lines = [
     title,
     `기준: ${report.checkedAt} KST`,
-    `계정: ${report.account.name} ${maskGoogleAdsId(report.account.id)}`,
-    `최근 7일: ${report.ranges.current.label}`,
-    `지난주: ${report.ranges.previous.label}`,
+    `기간: ${report.ranges.current.label} vs ${report.ranges.previous.label}`,
     '',
-    '[전체]',
-    performanceLine(report.currentTotal, report.previousTotal),
+    '[전체 요약]',
+    ...compactPerformanceLines(report.currentTotal, report.previousTotal),
+    overallAttentionLine(report.currentTotal, report.previousTotal),
     '',
-    '[CPC 30% 이상 변화]',
+    '[매장별 핵심 현황]',
   ]
 
-  if (alerts.length) {
-    alerts.forEach((alert) => {
-      lines.push(
-        `- ${alert.campaign.name}: ${formatWon(alert.previousCpc)} -> ${formatWon(alert.currentCpc)} (${formatChange(alert.currentCpc, alert.previousCpc)})`
-      )
+  storeGroups.forEach((group, index) => {
+    lines.push(storeCompactSummaryLine(group, index + 1))
+  })
+
+  lines.push('', '[주의 캠페인]')
+  if (campaignIssues.length) {
+    const visibleIssues = campaignIssues.slice(0, 8)
+    visibleIssues.forEach((item, index) => {
+      lines.push(campaignIssueLine(item, index + 1))
     })
+    if (campaignIssues.length > visibleIssues.length) {
+      lines.push(`- 외 ${campaignIssues.length - visibleIssues.length}개 캠페인 생략`)
+    }
   } else {
     lines.push('- 없음')
   }
 
-  lines.push('', '[매장별 캠페인 성과]')
-  storeGroups.forEach((group, index) => {
-    lines.push(storeSummaryLine(group, index + 1))
-  })
-
-  lines.push('', '[매장별 변동사항 인사이트]')
+  lines.push('', '[매장별 인사이트]')
   storeGroups.forEach((group) => {
     lines.push(storeInsightLine(group))
   })
