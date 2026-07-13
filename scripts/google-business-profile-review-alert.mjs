@@ -471,6 +471,31 @@ function storeSummaryRows(report) {
   ])
 }
 
+function shortDateLabel(dateString) {
+  const [, month, day] = String(dateString || '').split('-')
+  if (!month || !day) return ''
+  return `${Number(month)}/${Number(day)}`
+}
+
+function storeSummaryHeaders(report) {
+  const previousDayLabel = shortDateLabel(report.previousDayDate)
+  const previousWeekLabel = shortDateLabel(report.previousWeekDate)
+  return [
+    '번호',
+    '매장',
+    '매칭 프로필',
+    '현재 리뷰',
+    previousDayLabel ? `전일 대비(${previousDayLabel})` : '전일 대비',
+    previousWeekLabel ? `7일 전 대비(${previousWeekLabel})` : '7일 전 대비',
+    '최근 리뷰일',
+  ]
+}
+
+function comparisonDescription(report) {
+  if (!report.previousDayDate || !report.previousWeekDate) return ''
+  return `비교 기준: 전일 ${report.previousDayDate} / 7일 전 ${report.previousWeekDate}`
+}
+
 function metricRowsForStore(row) {
   const rows = [
     ['리뷰 수', formatCount(row.current?.reviewCount), `전일 ${formatDelta(row.dayDelta)} / 7일 ${formatDelta(row.weekDelta)}`],
@@ -927,8 +952,8 @@ async function loadNotionReviewMetricRows() {
   throw new Error(errors.join(' / '))
 }
 
-function latestOnOrBefore(rows, date) {
-  return rows.find((row) => row.date <= date) || null
+function latestOnDate(rows, date) {
+  return rows.find((row) => row.date === date) || null
 }
 
 function inferLatestReviewDate(rows) {
@@ -1022,6 +1047,9 @@ function shouldSendReportToday() {
 async function buildReviewReport() {
   const currentRows = await loadReviewMetricRows()
   const rows = [...currentRows, ...loadHistoryRows()]
+  const reportDate = currentRows[0]?.date || kstNow().slice(0, 10)
+  const previousDayDate = shiftDate(reportDate, -1)
+  const previousWeekDate = shiftDate(reportDate, -7)
   const grouped = new Map()
   for (const row of rows) {
     const list = grouped.get(row.storeName) || []
@@ -1033,8 +1061,8 @@ async function buildReviewReport() {
   const reportRows = stores.map((storeName) => {
     const storeRows = (grouped.get(storeName) || []).sort((a, b) => b.date.localeCompare(a.date))
     const current = storeRows[0] || null
-    const previousDay = current ? latestOnOrBefore(storeRows.slice(1), shiftDate(current.date, -1)) : null
-    const previousWeek = current ? latestOnOrBefore(storeRows.slice(1), shiftDate(current.date, -7)) : null
+    const previousDay = current ? latestOnDate(storeRows.slice(1), previousDayDate) : null
+    const previousWeek = current ? latestOnDate(storeRows.slice(1), previousWeekDate) : null
     const latestReviewDate = current?.latestReviewDate || inferLatestReviewDate(storeRows)
 
     return {
@@ -1051,6 +1079,9 @@ async function buildReviewReport() {
 
   return {
     checkedAt: kstNow(),
+    reportDate,
+    previousDayDate,
+    previousWeekDate,
     source: rows.find((row) => row.source)?.source || REVIEW_DATA_SOURCE,
     currentRows,
     rows: reportRows.map((row) => ({ ...row, status: statusText(row) })),
@@ -1065,11 +1096,9 @@ function buildRichHtml(report) {
     report.source === 'dataforseo'
       ? '<p>원천: DataForSEO Google Maps + Google Reviews(newest)</p>'
       : '<p>비교: 전일 / 최근 7일</p>',
+    comparisonDescription(report) ? `<p>${htmlEscape(comparisonDescription(report))}</p>` : '',
     '<h4>매장 요약</h4>',
-    tableHtml(
-      ['번호', '매장', '매칭 프로필', '현재 리뷰', '전일 대비', '7일 전 대비', '최근 리뷰일'],
-      storeSummaryRows(report)
-    ),
+    tableHtml(storeSummaryHeaders(report), storeSummaryRows(report)),
   ]
 
   const warningRows = report.rows
@@ -1125,15 +1154,13 @@ function buildTextMessage(report) {
     title,
     `기준: ${report.checkedAt} KST`,
     report.source === 'dataforseo' ? '원천: DataForSEO Google Maps + Google Reviews(newest)' : '비교: 전일 / 최근 7일',
+    comparisonDescription(report),
     '',
     '[매장 요약]',
   ]
 
   lines.push(
-    textTable(
-      ['번호', '매장', '매칭 프로필', '현재 리뷰', '전일 대비', '7일 전 대비', '최근 리뷰일'],
-      storeSummaryRows(report)
-    )
+    textTable(storeSummaryHeaders(report), storeSummaryRows(report))
   )
 
   const warnings = report.rows.filter((row) => !row.current || row.dayDelta < 0 || row.weekDelta < 0)

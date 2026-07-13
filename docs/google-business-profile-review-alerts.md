@@ -82,4 +82,4 @@ Current DataForSEO matching note:
 
 - `도르도뉴` is matched through the Google Maps CID from `https://maps.app.goo.gl/HugLRevvrev83HYn8`.
 - DataForSEO returns current public profile values. Change columns are shown as `확인 불가` until a persistent history store is connected.
-- GitHub Actions stores each successful daily snapshot in cache. The first run has no prior comparison; later runs can compare against the latest prior snapshot on or before the previous day and previous week.
+- GitHub Actions stores each successful daily snapshot in cache. The first run has no prior comparison; later Friday reports compare against the exact previous day (`D-1`) and exact 7-days-before date (`D-7`) snapshots.
