@@ -496,6 +496,30 @@ function comparisonDescription(report) {
   return `비교 기준: 전일 ${report.previousDayDate} / 7일 전 ${report.previousWeekDate}`
 }
 
+function reviewPushStoreNames(report) {
+  return report.rows
+    .filter((row) => {
+      if (!row.current) return true
+      if (typeof row.weekDelta === 'number') return row.weekDelta <= 0
+      if (row.latestReviewDate && report.previousWeekDate) return row.latestReviewDate <= report.previousWeekDate
+      return false
+    })
+    .map((row) => row.storeName)
+}
+
+function reviewPushHtml(report) {
+  const stores = reviewPushStoreNames(report)
+  return [
+    '<p><b>*리뷰Push매장</b></p>',
+    stores.length ? `<p>${htmlEscape(stores.join(', '))}</p>` : '<p>없음</p>',
+  ].join('\n')
+}
+
+function reviewPushText(report) {
+  const stores = reviewPushStoreNames(report)
+  return ['*리뷰Push매장', stores.length ? stores.join(', ') : '없음'].join('\n')
+}
+
 function metricRowsForStore(row) {
   const rows = [
     ['리뷰 수', formatCount(row.current?.reviewCount), `전일 ${formatDelta(row.dayDelta)} / 7일 ${formatDelta(row.weekDelta)}`],
@@ -1099,6 +1123,7 @@ function buildRichHtml(report) {
     comparisonDescription(report) ? `<p>${htmlEscape(comparisonDescription(report))}</p>` : '',
     '<h4>매장 요약</h4>',
     tableHtml(storeSummaryHeaders(report), storeSummaryRows(report)),
+    reviewPushHtml(report),
   ]
 
   const warningRows = report.rows
@@ -1162,6 +1187,7 @@ function buildTextMessage(report) {
   lines.push(
     textTable(storeSummaryHeaders(report), storeSummaryRows(report))
   )
+  lines.push('', reviewPushText(report))
 
   const warnings = report.rows.filter((row) => !row.current || row.dayDelta < 0 || row.weekDelta < 0)
   lines.push('', '[주의 매장]')

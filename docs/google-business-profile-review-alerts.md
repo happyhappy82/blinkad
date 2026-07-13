@@ -26,6 +26,7 @@ Each ERP store is shown as a compact table:
 - Change versus previous available day
 - Change versus previous available week
 - Latest review date
+- Review push store list under the main status table
 - Warning section for missing data or review decreases
 
 ## Data Sources
