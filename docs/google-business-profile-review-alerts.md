@@ -8,6 +8,7 @@ Weekly Telegram report for Google Business Profile review movement by BlinkAd ER
 - Run time: every Friday 18:00 KST
 - UTC cron: `0 9 * * 5`
 - Script: `scripts/google-business-profile-review-alert.mjs`
+- History: GitHub Actions cache at `.cache/gbp-review-snapshots.json`
 - npm commands:
   - `npm run gbp:reviews:weekly`
   - `npm run gbp:reviews:test`
@@ -79,3 +80,4 @@ Current DataForSEO matching note:
 
 - `도르도뉴` is matched through the Google Maps CID from `https://maps.app.goo.gl/HugLRevvrev83HYn8`.
 - DataForSEO returns current public profile values. Change columns are shown as `확인 불가` until a persistent history store is connected.
+- GitHub Actions stores each successful weekly snapshot in cache. The first run has no prior comparison; later runs can compare against the latest prior snapshot on or before the previous day and previous week.

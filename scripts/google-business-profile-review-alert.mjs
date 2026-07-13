@@ -12,6 +12,7 @@ const REVIEW_DATA_SOURCE = (process.env.GBP_REVIEW_DATA_SOURCE || 'auto').toLowe
 const BIGQUERY_LOOKBACK_DAYS = Number(process.env.GBP_REVIEW_BIGQUERY_LOOKBACK_DAYS || 120)
 const DATAFORSEO_REVIEW_DEPTH = Number(process.env.GBP_REVIEW_DATAFORSEO_DEPTH || 10)
 const DATAFORSEO_REVIEW_TIMEOUT_MS = Number(process.env.GBP_REVIEW_DATAFORSEO_TIMEOUT_MS || 180000)
+const HISTORY_FILE = process.env.GBP_REVIEW_HISTORY_FILE || ''
 const TELEGRAM_TOKEN_KEYCHAIN_SERVICE =
   process.env.GBP_REVIEW_TELEGRAM_TOKEN_KEYCHAIN_SERVICE ||
   process.env.GOOGLE_ADS_TELEGRAM_TOKEN_KEYCHAIN_SERVICE ||
@@ -915,8 +916,66 @@ function inferLatestReviewDate(rows) {
   return ''
 }
 
+function loadHistoryRows() {
+  if (!HISTORY_FILE) return []
+  const historyPath = path.resolve(ROOT, HISTORY_FILE)
+  if (!fs.existsSync(historyPath)) return []
+
+  try {
+    const parsed = JSON.parse(fs.readFileSync(historyPath, 'utf-8'))
+    if (!Array.isArray(parsed)) return []
+    return parsed
+      .map((row) => ({
+        ...row,
+        storeName: canonicalStoreName(row.storeName),
+        date: String(row.date || ''),
+        reviewCount: Number(row.reviewCount),
+      }))
+      .filter((row) => row.storeName && row.date && Number.isFinite(row.reviewCount))
+  } catch {
+    return []
+  }
+}
+
+function serializableMetricRow(row) {
+  return {
+    storeName: row.storeName,
+    date: row.date,
+    reviewCount: row.reviewCount,
+    latestReviewDate: row.latestReviewDate || '',
+    source: row.source || '',
+    rating: Number.isFinite(row.rating) ? row.rating : null,
+    matchedTitle: row.matchedTitle || '',
+    category: row.category || '',
+    photoCount: Number.isFinite(row.photoCount) ? row.photoCount : null,
+    address: row.address || '',
+    latestReviewSnippet: row.latestReviewSnippet || '',
+  }
+}
+
+function persistHistoryRows(currentRows) {
+  if (!HISTORY_FILE || !currentRows?.length) return
+
+  const historyPath = path.resolve(ROOT, HISTORY_FILE)
+  fs.mkdirSync(path.dirname(historyPath), { recursive: true })
+
+  const byKey = new Map()
+  for (const row of loadHistoryRows()) {
+    byKey.set(`${row.storeName}|${row.date}`, serializableMetricRow(row))
+  }
+  for (const row of currentRows) {
+    byKey.set(`${row.storeName}|${row.date}`, serializableMetricRow(row))
+  }
+
+  const rows = Array.from(byKey.values())
+    .sort((a, b) => a.storeName.localeCompare(b.storeName, 'ko') || a.date.localeCompare(b.date))
+    .slice(-1000)
+  fs.writeFileSync(historyPath, `${JSON.stringify(rows, null, 2)}\n`, 'utf-8')
+}
+
 async function buildReviewReport() {
-  const rows = await loadReviewMetricRows()
+  const currentRows = await loadReviewMetricRows()
+  const rows = [...currentRows, ...loadHistoryRows()]
   const grouped = new Map()
   for (const row of rows) {
     const list = grouped.get(row.storeName) || []
@@ -947,6 +1006,7 @@ async function buildReviewReport() {
   return {
     checkedAt: kstNow(),
     source: rows.find((row) => row.source)?.source || REVIEW_DATA_SOURCE,
+    currentRows,
     rows: reportRows.map((row) => ({ ...row, status: statusText(row) })),
   }
 }
@@ -1117,6 +1177,7 @@ async function main() {
   }
 
   const sentMessages = await sendTelegramMessage(textMessage, richHtml)
+  persistHistoryRows(report.currentRows)
   console.log(`Telegram message sent in ${sentMessages} message(s).`)
 }
 
