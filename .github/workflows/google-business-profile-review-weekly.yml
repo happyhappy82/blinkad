@@ -34,10 +34,12 @@ jobs:
         run: npm ci --ignore-scripts
 
       - name: Authenticate to Google Cloud
-        if: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY != '' }}
+        if: env.GCP_SERVICE_ACCOUNT_KEY != ''
         uses: google-github-actions/auth@v3
+        env:
+          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         with:
-          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+          credentials_json: ${{ env.GCP_SERVICE_ACCOUNT_KEY }}
 
       - name: Send Google Business Profile review report
         env:
