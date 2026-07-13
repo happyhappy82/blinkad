@@ -413,6 +413,17 @@ function formatDelta(value) {
   return '⚪ 유지 0'
 }
 
+function formatReviewDelta(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return '기준 없음'
+  if (value > 0) return `🔴 +${Math.round(value).toLocaleString('ko-KR')}개`
+  if (value < 0) return `🔵 ${Math.round(value).toLocaleString('ko-KR')}개`
+  return '⚪ 0개'
+}
+
+function numberEmoji(index) {
+  return ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟'][index - 1] || `${index}.`
+}
+
 function statusText(row) {
   if (!row.current) return '데이터 없음'
   if (row.dayDelta < 0 || row.weekDelta < 0) return '리뷰 감소 확인'
@@ -446,6 +457,18 @@ function textTable(headers, rows) {
     headers.map(() => '---').join(' │ '),
     ...rows.map((row) => row.join(' │ ')),
   ].join('\n')
+}
+
+function storeSummaryRows(report) {
+  return report.rows.map((row, index) => [
+    numberEmoji(index + 1),
+    row.storeName,
+    row.current?.matchedTitle || '확인 불가',
+    formatCount(row.current?.reviewCount),
+    formatReviewDelta(row.dayDelta),
+    formatReviewDelta(row.weekDelta),
+    row.latestReviewDate || '확인 불가',
+  ])
 }
 
 function metricRowsForStore(row) {
@@ -973,6 +996,29 @@ function persistHistoryRows(currentRows) {
   fs.writeFileSync(historyPath, `${JSON.stringify(rows, null, 2)}\n`, 'utf-8')
 }
 
+function kstWeekday() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date())
+  const value = Object.fromEntries(parts.map((part) => [part.type, part.value]))
+  return new Date(Date.UTC(Number(value.year), Number(value.month) - 1, Number(value.day))).getUTCDay()
+}
+
+function shouldSendReportToday() {
+  const rawValue = process.env.GBP_REVIEW_SEND_WEEKDAYS || ''
+  if (!rawValue.trim()) return true
+  const allowedDays = new Set(
+    rawValue
+      .split(/[,\s]+/)
+      .map((value) => value.trim())
+      .filter(Boolean)
+  )
+  return allowedDays.has(String(kstWeekday()))
+}
+
 async function buildReviewReport() {
   const currentRows = await loadReviewMetricRows()
   const rows = [...currentRows, ...loadHistoryRows()]
@@ -1019,12 +1065,12 @@ function buildRichHtml(report) {
     report.source === 'dataforseo'
       ? '<p>원천: DataForSEO Google Maps + Google Reviews(newest)</p>'
       : '<p>비교: 전일 / 최근 7일</p>',
-    '<h4>매장별 리뷰 현황</h4>',
+    '<h4>매장 요약</h4>',
+    tableHtml(
+      ['번호', '매장', '매칭 프로필', '현재 리뷰', '전일 대비', '7일 전 대비', '최근 리뷰일'],
+      storeSummaryRows(report)
+    ),
   ]
-
-  report.rows.forEach((row, index) => {
-    blocks.push(`<h5>✅ ${index + 1}. ${htmlEscape(row.storeName)}</h5>`, tableHtml(['지표', '현재', '변동'], metricRowsForStore(row)))
-  })
 
   const warningRows = report.rows
     .filter((row) => !row.current || row.dayDelta < 0 || row.weekDelta < 0)
@@ -1080,12 +1126,15 @@ function buildTextMessage(report) {
     `기준: ${report.checkedAt} KST`,
     report.source === 'dataforseo' ? '원천: DataForSEO Google Maps + Google Reviews(newest)' : '비교: 전일 / 최근 7일',
     '',
-    '[매장별 리뷰 현황]',
+    '[매장 요약]',
   ]
 
-  report.rows.forEach((row, index) => {
-    lines.push(`✅ ${index + 1}. ${row.storeName}`, textTable(['지표', '현재', '변동'], metricRowsForStore(row)))
-  })
+  lines.push(
+    textTable(
+      ['번호', '매장', '매칭 프로필', '현재 리뷰', '전일 대비', '7일 전 대비', '최근 리뷰일'],
+      storeSummaryRows(report)
+    )
+  )
 
   const warnings = report.rows.filter((row) => !row.current || row.dayDelta < 0 || row.weekDelta < 0)
   lines.push('', '[주의 매장]')
@@ -1173,6 +1222,12 @@ async function main() {
 
   if (isDryRun) {
     console.log(richHtml)
+    return
+  }
+
+  if (!shouldSendReportToday()) {
+    persistHistoryRows(report.currentRows)
+    console.log(`Review snapshot saved; Telegram send skipped for KST weekday ${kstWeekday()}.`)
     return
   }
 
