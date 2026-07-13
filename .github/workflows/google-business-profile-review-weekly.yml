@@ -1,9 +1,9 @@
 name: Google Business Profile Review Weekly Report
 
 on:
-  # KST Friday 18:00 = UTC Friday 09:00
+  # KST 18:00 = UTC 09:00. Non-Friday runs save history only.
   schedule:
-    - cron: '0 9 * * 5'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 permissions:
@@ -55,6 +55,7 @@ jobs:
           DATAFORSEO_LOGIN: ${{ secrets.DATAFORSEO_LOGIN }}
           DATAFORSEO_PASSWORD: ${{ secrets.DATAFORSEO_PASSWORD }}
           GBP_REVIEW_HISTORY_FILE: .cache/gbp-review-snapshots.json
+          GBP_REVIEW_SEND_WEEKDAYS: '5'
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           BIGQUERY_DATASET: ${{ secrets.BIGQUERY_DATASET }}
           BIGQUERY_LOCATION: ${{ secrets.BIGQUERY_LOCATION }}
