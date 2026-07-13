@@ -10,6 +10,8 @@ const DEFAULT_BIGQUERY_DATASET = 'gbp_ops'
 const DEFAULT_BIGQUERY_LOCATION = 'asia-northeast3'
 const REVIEW_DATA_SOURCE = (process.env.GBP_REVIEW_DATA_SOURCE || 'auto').toLowerCase()
 const BIGQUERY_LOOKBACK_DAYS = Number(process.env.GBP_REVIEW_BIGQUERY_LOOKBACK_DAYS || 120)
+const DATAFORSEO_REVIEW_DEPTH = Number(process.env.GBP_REVIEW_DATAFORSEO_DEPTH || 10)
+const DATAFORSEO_REVIEW_TIMEOUT_MS = Number(process.env.GBP_REVIEW_DATAFORSEO_TIMEOUT_MS || 180000)
 const TELEGRAM_TOKEN_KEYCHAIN_SERVICE =
   process.env.GBP_REVIEW_TELEGRAM_TOKEN_KEYCHAIN_SERVICE ||
   process.env.GOOGLE_ADS_TELEGRAM_TOKEN_KEYCHAIN_SERVICE ||
@@ -32,6 +34,39 @@ const DEFAULT_STORE_NAMES = [
   '주도락 마곡발산점',
   '바다당 해운대점',
 ]
+
+const DATAFORSEO_STORE_CONFIG = {
+  언리미티드: {
+    query: '언리미티드 건대',
+    expected: ['언리미티드', 'unlimited'],
+  },
+  '웰믹스 광화문점': {
+    query: '웰믹스 광화문점',
+    expected: ['웰믹스', 'wellmix'],
+  },
+  도르도뉴: {
+    query: '도르도뉴(Dordogne)',
+    cid: '5895233767778032679',
+    expected: ['도르도뉴', 'dordogne'],
+    locationCoordinate: '37.5113232,127.0566288,1000',
+  },
+  오닉스: {
+    query: '오닉스 이태원 ONYX ITAEWON',
+    expected: ['오닉스', 'onyx'],
+  },
+  '주도락 강남점': {
+    query: '주도락 강남점',
+    expected: ['주도락', 'judorak'],
+  },
+  '주도락 마곡발산점': {
+    query: '주도락 마곡 발산',
+    expected: ['주도락', 'judorak'],
+  },
+  '바다당 해운대점': {
+    query: '바다당 해운대점',
+    expected: ['바다당', 'badadang'],
+  },
+}
 
 const args = new Set(process.argv.slice(2))
 const isDryRun = args.has('--dry-run')
@@ -96,6 +131,18 @@ function notionToken() {
   } catch {
     return ''
   }
+}
+
+function dataForSeoCredentials() {
+  const login = process.env.DATAFORSEO_LOGIN || process.env.DATA_FOR_SEO_LOGIN
+  const password = process.env.DATAFORSEO_PASSWORD || process.env.DATA_FOR_SEO_PASSWORD
+  if (!login || !password) throw new Error('DATAFORSEO_LOGIN 또는 DATAFORSEO_PASSWORD가 없습니다.')
+  return { login, password }
+}
+
+function dataForSeoAuthHeader() {
+  const { login, password } = dataForSeoCredentials()
+  return `Basic ${Buffer.from(`${login}:${password}`).toString('base64')}`
 }
 
 function telegramToken() {
@@ -354,6 +401,10 @@ function formatCount(value) {
   return typeof value === 'number' && Number.isFinite(value) ? `${Math.round(value).toLocaleString('ko-KR')}개` : '확인 불가'
 }
 
+function formatRating(value) {
+  return typeof value === 'number' && Number.isFinite(value) ? value.toFixed(1) : '확인 불가'
+}
+
 function formatDelta(value) {
   if (typeof value !== 'number' || !Number.isFinite(value)) return '확인 불가'
   if (value > 0) return `🔴 증가 +${Math.round(value).toLocaleString('ko-KR')}`
@@ -366,6 +417,7 @@ function statusText(row) {
   if (row.dayDelta < 0 || row.weekDelta < 0) return '리뷰 감소 확인'
   if (row.dayDelta > 0) return '신규 리뷰 발생'
   if (row.weekDelta > 0) return '주간 증가'
+  if (row.dayDelta === null || row.weekDelta === null) return '현재값 확인'
   return '변동 없음'
 }
 
@@ -396,10 +448,28 @@ function textTable(headers, rows) {
 }
 
 function metricRowsForStore(row) {
-  return [
+  const rows = [
     ['리뷰 수', formatCount(row.current?.reviewCount), `전일 ${formatDelta(row.dayDelta)} / 7일 ${formatDelta(row.weekDelta)}`],
     ['최근 리뷰일', row.latestReviewDate || '확인 불가', statusText(row)],
   ]
+
+  if (typeof row.current?.rating === 'number' || row.current?.matchedTitle) {
+    rows.push(['평점', formatRating(row.current?.rating), row.current?.matchedTitle ? `매칭: ${row.current.matchedTitle}` : ''])
+  }
+
+  if (row.current?.category || typeof row.current?.photoCount === 'number') {
+    rows.push([
+      '분류/사진',
+      row.current?.category || '확인 불가',
+      typeof row.current?.photoCount === 'number' ? `${row.current.photoCount.toLocaleString('ko-KR')}장` : '사진 수 확인 불가',
+    ])
+  }
+
+  if (row.current?.latestReviewSnippet) {
+    rows.push(['최근 리뷰', row.current.latestReviewSnippet, ''])
+  }
+
+  return rows
 }
 
 async function loadStoreNameMap() {
@@ -495,8 +565,225 @@ function parseMetricPage(page, schema, storeNameByPageId) {
   }
 }
 
+async function dataForSeoRequest(pathname, options = {}) {
+  const response = await fetch(`https://api.dataforseo.com${pathname}`, {
+    method: options.method || 'GET',
+    headers: {
+      authorization: dataForSeoAuthHeader(),
+      'content-type': 'application/json',
+    },
+    body: options.body ? JSON.stringify(options.body) : undefined,
+  })
+  const data = await response.json().catch(() => ({}))
+  if (!response.ok || Number(data.status_code || 0) >= 40000) {
+    throw new Error(`${pathname} ${response.status}: ${data.status_message || JSON.stringify(data).slice(0, 300)}`)
+  }
+  return data
+}
+
+function dataForSeoStoreConfig(storeName) {
+  return DATAFORSEO_STORE_CONFIG[storeName] || {
+    query: storeName,
+    expected: [storeName],
+  }
+}
+
+function pickBestMapItem(storeName, items = []) {
+  const config = dataForSeoStoreConfig(storeName)
+  const candidates = items.filter((item) => item.type === 'maps_search')
+  if (!candidates.length) return null
+
+  const scored = candidates.map((item) => {
+    const haystack = normalizeKey(`${item.title || ''} ${item.original_title || ''} ${item.address || ''} ${item.category || ''}`)
+    const score = (config.expected || [storeName]).reduce(
+      (sum, token) => sum + (haystack.includes(normalizeKey(token)) ? 10 : 0),
+      0
+    )
+    return { item, score }
+  })
+  scored.sort((a, b) => b.score - a.score)
+  return scored[0].score > 0 ? scored[0].item : null
+}
+
+async function fetchDataForSeoMapItem(storeName) {
+  const config = dataForSeoStoreConfig(storeName)
+  const task = {
+    keyword: config.query || storeName,
+    language_code: 'ko',
+    depth: 10,
+    ...(config.locationCoordinate ? { location_coordinate: config.locationCoordinate } : { location_name: 'South Korea' }),
+  }
+  const data = await dataForSeoRequest('/v3/serp/google/maps/live/advanced', {
+    method: 'POST',
+    body: [task],
+  })
+  const result = data.tasks?.[0]?.result?.[0]
+  return pickBestMapItem(storeName, result?.items || [])
+}
+
+async function postDataForSeoReviewTasks(mapRows) {
+  const payload = mapRows
+    .map((row) => {
+      const config = dataForSeoStoreConfig(row.storeName)
+      const cid = config.cid || row.mapItem?.cid
+      const placeId = row.mapItem?.place_id
+      if (!cid && !placeId) return null
+
+      return {
+        ...(cid ? { cid } : { place_id: placeId }),
+        location_name: 'South Korea',
+        language_code: 'ko',
+        depth: DATAFORSEO_REVIEW_DEPTH,
+        sort_by: 'newest',
+        priority: 2,
+        tag: row.storeName,
+      }
+    })
+    .filter(Boolean)
+
+  if (!payload.length) return new Map()
+
+  const data = await dataForSeoRequest('/v3/business_data/google/reviews/task_post', {
+    method: 'POST',
+    body: payload,
+  })
+
+  const idsByStoreName = new Map()
+  for (const task of data.tasks || []) {
+    const storeName = task.data?.tag
+    if (storeName && task.id) idsByStoreName.set(storeName, task.id)
+  }
+  return idsByStoreName
+}
+
+async function getDataForSeoReviewTask(id) {
+  return dataForSeoRequest(`/v3/business_data/google/reviews/task_get/${encodeURIComponent(id)}`)
+}
+
+async function pollDataForSeoReviewTasks(idsByStoreName) {
+  const pending = new Map(idsByStoreName)
+  const results = new Map()
+  const startedAt = Date.now()
+
+  while (pending.size && Date.now() - startedAt < DATAFORSEO_REVIEW_TIMEOUT_MS) {
+    for (const [storeName, taskId] of [...pending]) {
+      try {
+        const data = await getDataForSeoReviewTask(taskId)
+        const task = data.tasks?.[0]
+        if (task?.status_code === 20000 && task.result?.length) {
+          results.set(storeName, task.result[0])
+          pending.delete(storeName)
+        } else if (Number(task?.status_code || 0) >= 40000 && task?.status_code !== 40602) {
+          results.set(storeName, { error: task?.status_message || 'DataForSEO 리뷰 작업 실패' })
+          pending.delete(storeName)
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error)
+        if (!message.includes('not completed') && !message.includes('Not Found')) {
+          results.set(storeName, { error: message })
+          pending.delete(storeName)
+        }
+      }
+    }
+    if (pending.size) await sleep(5000)
+  }
+
+  for (const [storeName] of pending) {
+    results.set(storeName, { error: 'DataForSEO 리뷰 작업 대기 시간 초과' })
+  }
+
+  return results
+}
+
+function timestampToKstDate(timestamp) {
+  if (!timestamp) return ''
+  const isoValue = String(timestamp).replace(' +00:00', 'Z').replace(' ', 'T')
+  const date = new Date(isoValue)
+  if (Number.isNaN(date.getTime())) return String(timestamp).slice(0, 10)
+  return new Intl.DateTimeFormat('sv-SE', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date)
+}
+
+function latestReviewDateFromDataForSeo(reviewResult = {}) {
+  const dates = (reviewResult.items || [])
+    .map((item) => timestampToKstDate(item.timestamp))
+    .filter(Boolean)
+    .sort((a, b) => b.localeCompare(a))
+  return dates[0] || ''
+}
+
+function latestReviewSnippetFromDataForSeo(reviewResult = {}) {
+  const item = (reviewResult.items || [])
+    .filter((entry) => entry.timestamp)
+    .sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)))[0]
+  if (!item) return ''
+
+  const rating = item.rating?.value ? `${item.rating.value}점` : '평점 없음'
+  const text = String(item.review_text || item.original_review_text || '').replace(/\s+/g, ' ').trim()
+  return text ? `${rating} · ${text.slice(0, 46)}${text.length > 46 ? '...' : ''}` : rating
+}
+
+async function loadDataForSeoReviewMetricRows() {
+  dataForSeoCredentials()
+
+  const mapRows = []
+  for (const storeName of configuredStoreNames()) {
+    try {
+      const mapItem = await fetchDataForSeoMapItem(storeName)
+      mapRows.push({ storeName, mapItem })
+    } catch (error) {
+      mapRows.push({ storeName, mapError: error instanceof Error ? error.message : String(error) })
+    }
+  }
+
+  const idsByStoreName = await postDataForSeoReviewTasks(mapRows)
+  const reviewResults = await pollDataForSeoReviewTasks(idsByStoreName)
+  const today = kstNow().slice(0, 10)
+
+  return mapRows
+    .map((row) => {
+      const reviewResult = reviewResults.get(row.storeName) || {}
+      const rating = row.mapItem?.rating?.value ?? reviewResult.rating?.value
+      const reviewCount = row.mapItem?.rating?.votes_count ?? reviewResult.reviews_count
+      const latestReviewDate = latestReviewDateFromDataForSeo(reviewResult)
+
+      return {
+        storeName: row.storeName,
+        date: today,
+        reviewCount: typeof reviewCount === 'number' ? reviewCount : Number(reviewCount),
+        latestReviewDate,
+        source: 'dataforseo',
+        rating: typeof rating === 'number' ? rating : Number(rating),
+        matchedTitle: row.mapItem?.title || reviewResult.title || '',
+        category: row.mapItem?.category || '',
+        photoCount: typeof row.mapItem?.total_photos === 'number' ? row.mapItem.total_photos : null,
+        address: row.mapItem?.address || reviewResult.sub_title || '',
+        latestReviewSnippet: latestReviewSnippetFromDataForSeo(reviewResult),
+        error: row.mapError || reviewResult.error || '',
+      }
+    })
+    .filter((row) => Number.isFinite(row.reviewCount))
+}
+
 async function loadReviewMetricRows() {
   const errors = []
+
+  if (REVIEW_DATA_SOURCE === 'auto' || REVIEW_DATA_SOURCE === 'dataforseo') {
+    try {
+      const rows = await loadDataForSeoReviewMetricRows()
+      if (rows.length) return rows
+      errors.push('DataForSEO: 대상 매장 리뷰 데이터가 없습니다.')
+    } catch (error) {
+      errors.push(`DataForSEO: ${error.message}`)
+      if (REVIEW_DATA_SOURCE === 'dataforseo') {
+        throw new Error(`GBP 리뷰 지표 데이터를 찾지 못했습니다. ${errors.join(' / ')}`)
+      }
+    }
+  }
 
   if (REVIEW_DATA_SOURCE === 'auto' || REVIEW_DATA_SOURCE === 'bigquery') {
     try {
@@ -659,6 +946,7 @@ async function buildReviewReport() {
 
   return {
     checkedAt: kstNow(),
+    source: rows.find((row) => row.source)?.source || REVIEW_DATA_SOURCE,
     rows: reportRows.map((row) => ({ ...row, status: statusText(row) })),
   }
 }
@@ -668,7 +956,9 @@ function buildRichHtml(report) {
   const blocks = [
     `<h3>${htmlEscape(title)}</h3>`,
     `<p>기준: ${htmlEscape(report.checkedAt)} KST</p>`,
-    '<p>비교: 전일 / 최근 7일</p>',
+    report.source === 'dataforseo'
+      ? '<p>원천: DataForSEO Google Maps + Google Reviews(newest)</p>'
+      : '<p>비교: 전일 / 최근 7일</p>',
     '<h4>매장별 리뷰 현황</h4>',
   ]
 
@@ -687,30 +977,51 @@ function buildRichHtml(report) {
   blocks.push('<h4>주의 매장</h4>')
   blocks.push(warningRows.length ? tableHtml(['매장', '현재 리뷰', '상태'], warningRows) : '<p>없음</p>')
 
-  const increased = report.rows.filter((row) => row.dayDelta > 0 || row.weekDelta > 0).length
-  const decreased = report.rows.filter((row) => row.dayDelta < 0 || row.weekDelta < 0).length
-  const unchanged = report.rows.filter((row) => row.current && row.dayDelta === 0 && row.weekDelta === 0).length
   const todayReviews = report.rows.filter((row) => row.latestReviewDate === report.checkedAt.slice(0, 10)).length
+  const currentCount = report.rows.filter((row) => row.current).length
 
-  blocks.push(
-    '<h4>요약</h4>',
-    tableHtml(
-      ['구분', '매장 수'],
-      [
-        ['리뷰 증가', `${increased}곳`],
-        ['리뷰 감소', `${decreased}곳`],
-        ['변동 없음', `${unchanged}곳`],
-        ['오늘 신규 리뷰', `${todayReviews}곳`],
-      ]
+  if (report.source === 'dataforseo') {
+    blocks.push(
+      '<h4>요약</h4>',
+      tableHtml(
+        ['구분', '매장 수'],
+        [
+          ['현재 조회 완료', `${currentCount}곳`],
+          ['오늘 최신 리뷰', `${todayReviews}곳`],
+          ['확인 필요', `${warningRows.length}곳`],
+        ]
+      )
     )
-  )
+  } else {
+    const increased = report.rows.filter((row) => row.dayDelta > 0 || row.weekDelta > 0).length
+    const decreased = report.rows.filter((row) => row.dayDelta < 0 || row.weekDelta < 0).length
+    const unchanged = report.rows.filter((row) => row.current && row.dayDelta === 0 && row.weekDelta === 0).length
+    blocks.push(
+      '<h4>요약</h4>',
+      tableHtml(
+        ['구분', '매장 수'],
+        [
+          ['리뷰 증가', `${increased}곳`],
+          ['리뷰 감소', `${decreased}곳`],
+          ['변동 없음', `${unchanged}곳`],
+          ['오늘 신규 리뷰', `${todayReviews}곳`],
+        ]
+      )
+    )
+  }
 
   return blocks.join('\n')
 }
 
 function buildTextMessage(report) {
   const title = isTest ? '[테스트] BlinkAd GBP 리뷰 변동 보고' : 'BlinkAd GBP 리뷰 변동 보고'
-  const lines = [title, `기준: ${report.checkedAt} KST`, '비교: 전일 / 최근 7일', '', '[매장별 리뷰 현황]']
+  const lines = [
+    title,
+    `기준: ${report.checkedAt} KST`,
+    report.source === 'dataforseo' ? '원천: DataForSEO Google Maps + Google Reviews(newest)' : '비교: 전일 / 최근 7일',
+    '',
+    '[매장별 리뷰 현황]',
+  ]
 
   report.rows.forEach((row, index) => {
     lines.push(`✅ ${index + 1}. ${row.storeName}`, textTable(['지표', '현재', '변동'], metricRowsForStore(row)))

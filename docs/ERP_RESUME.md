@@ -65,7 +65,8 @@ BlinkAd ERP는 영업, 미팅, 견적, 계약, 매장 운영, 리포트, 청구 
   - 문서: `docs/google-business-profile-review-alerts.md`
   - npm 명령: `gbp:reviews:dry-run`, `gbp:reviews:test`, `gbp:reviews:weekly`
   - 규칙: 매주 금요일 18:00 KST에 ERP 7개 매장의 리뷰 수, 전일/7일 변동, 최근 리뷰일을 표 형태로 보고합니다.
-  - 현재 BigQuery에는 파일럿 매장만 있고 ERP 7개 매장 리뷰 지표 원천은 미연결 상태입니다. `gbp_daily_metrics.review_count` 또는 Notion 리뷰 지표 DB 연결 후 정상 발송됩니다.
+  - 현재 원천은 DataForSEO Google Maps + Google Reviews입니다. BigQuery/Notion은 향후 히스토리 비교용 fallback으로 유지합니다.
+  - 도르도뉴는 Google Maps CID `5895233767778032679`로 고정 매칭합니다.
 - ERP 접근 보호를 추가했습니다.
   - `/erp`, `/erp/**`, `/api/erp`, `/api/erp/**`는 Basic Auth 없이는 401을 반환합니다.
   - 운영 비밀번호는 코드에 평문 저장하지 않고, 임시 fallback은 해시로만 보관합니다.

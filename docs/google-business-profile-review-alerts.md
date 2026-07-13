@@ -29,13 +29,20 @@ Each ERP store is shown as a compact table:
 
 The script tries sources in this order when `GBP_REVIEW_DATA_SOURCE=auto`.
 
-1. BigQuery
+1. DataForSEO
+   - `DATAFORSEO_LOGIN`
+   - `DATAFORSEO_PASSWORD`
+   - `GBP_REVIEW_DATA_SOURCE=dataforseo`
+   - Uses Google Maps Live SERP to find the profile.
+   - Uses Google Reviews sorted by newest for latest review date.
+   - Store-specific matching queries are kept in `scripts/google-business-profile-review-alert.mjs`.
+2. BigQuery
    - `GOOGLE_CLOUD_PROJECT`
    - `BIGQUERY_DATASET`, default `gbp_ops`
    - `BIGQUERY_LOCATION`, default `asia-northeast3`
    - `gbp_daily_metrics.review_count` is used as the profile review count.
    - `gbp_reviews.review_date` is used for the latest review date.
-2. Notion
+3. Notion
    - `GBP_REVIEW_METRICS_DATABASE_ID`, or `NOTION_GBP_MINIMAL_DAILY_METRICS_DB_ID`, or `NOTION_GBP_DAILY_SUMMARY_DB_ID`
    - Required columns: store name, date, review count
    - Optional column: latest review date
@@ -59,17 +66,16 @@ For BigQuery in GitHub Actions:
 
 - `GCP_SERVICE_ACCOUNT_KEY`
 
+For DataForSEO in GitHub Actions:
+
+- `DATAFORSEO_LOGIN`
+- `DATAFORSEO_PASSWORD`
+
 ## Current Setup Note
 
-As of 2026-07-13, the script is ready but live ERP review reporting is blocked by data-source access:
+As of 2026-07-13, DataForSEO is the active source for the 7 ERP stores. BigQuery and Notion remain as fallback paths for future first-party historical reporting.
 
-- BigQuery `gbp_ops` currently contains only the pilot store `김밥천국 명동점`, not the 7 ERP stores.
-- The available Notion integration cannot access `NOTION_GBP_MINIMAL_DAILY_METRICS_DB_ID`.
-- The accessible Notion daily summary DB does not contain a review-count column.
-- The existing Google API key is blocked for Google Places API.
+Current DataForSEO matching note:
 
-To make the weekly report send real review data, connect one of these:
-
-1. Add the 7 ERP stores to the GBP BigQuery pipeline and populate `gbp_daily_metrics.review_count` plus `gbp_reviews.review_date`.
-2. Share the Notion review metrics DB with the `SEO블로그(에이정,테크 등)` integration and include review count/latest review date columns.
-3. Provide a Google Places API-enabled key and store place IDs, then add a Places source to the script.
+- `도르도뉴` is matched through the Google Maps CID from `https://maps.app.goo.gl/HugLRevvrev83HYn8`.
+- DataForSEO returns current public profile values. Change columns are shown as `확인 불가` until a persistent history store is connected.
