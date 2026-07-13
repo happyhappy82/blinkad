@@ -16,7 +16,10 @@
     "ads:telegram:test": "node scripts/google-ads-telegram-alert.mjs --daily --test",
     "ads:telegram:dry-run": "node scripts/google-ads-telegram-alert.mjs --daily --test --dry-run",
     "ads:telegram:alert": "node scripts/google-ads-telegram-alert.mjs --alert-only",
-    "ads:telegram:discover-chat": "node scripts/google-ads-telegram-alert.mjs --discover-chat-id"
+    "ads:telegram:discover-chat": "node scripts/google-ads-telegram-alert.mjs --discover-chat-id",
+    "gbp:reviews:weekly": "node scripts/google-business-profile-review-alert.mjs",
+    "gbp:reviews:test": "node scripts/google-business-profile-review-alert.mjs --test",
+    "gbp:reviews:dry-run": "node scripts/google-business-profile-review-alert.mjs --test --dry-run"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^8.3.1",
