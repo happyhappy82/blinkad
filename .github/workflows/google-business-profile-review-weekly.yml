@@ -43,7 +43,9 @@ jobs:
 
       - name: Send Google Business Profile review report
         env:
-          GBP_REVIEW_DATA_SOURCE: auto
+          GBP_REVIEW_DATA_SOURCE: dataforseo
+          DATAFORSEO_LOGIN: ${{ secrets.DATAFORSEO_LOGIN }}
+          DATAFORSEO_PASSWORD: ${{ secrets.DATAFORSEO_PASSWORD }}
           GOOGLE_CLOUD_PROJECT: ${{ secrets.GOOGLE_CLOUD_PROJECT }}
           BIGQUERY_DATASET: ${{ secrets.BIGQUERY_DATASET }}
           BIGQUERY_LOCATION: ${{ secrets.BIGQUERY_LOCATION }}
