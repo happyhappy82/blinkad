@@ -26,6 +26,7 @@ import {
   Settings,
   UserCog,
   Users,
+  X,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -730,6 +731,7 @@ type BillingRecord = {
   paymentStatus: PaymentStatus
   workStatus: WorkStatus
   workRecognition: WorkRecognition
+  defaultTeamSettlementAmount: number
   teamSettlementAmount: number
   settlementStatus: TeamSettlementStatus
   memo: string
@@ -2332,7 +2334,8 @@ function buildBillingRecords(_stores: StoreRecord[]) {
         paymentStatus,
         workStatus,
         workRecognition,
-        teamSettlementAmount: isActiveStore ? SETTLEMENT_WORKER_COST_PER_STORE : 0,
+        defaultTeamSettlementAmount: amount,
+        teamSettlementAmount: isActiveStore ? amount : 0,
         settlementStatus,
         memo,
       } satisfies BillingRecord
@@ -3413,7 +3416,7 @@ const workStatusOptions: WorkStatus[] = ['미시작', '진행중', '인증대기
 const workRecognitionOptions: WorkRecognition[] = ['전체', '일부', '없음', '선택필요']
 const teamSettlementStatusOptions: TeamSettlementStatus[] = ['정산대상', '정산보류', '다음 달 이월', '정산완료']
 const billingFilters: BillingFilter[] = ['전체', '정산대상', '인증대기', '입금지연', '정산완료']
-const BILLING_WORKFLOW_STORAGE_KEY = 'blinkad-erp-billing-workflow-v1'
+const BILLING_WORKFLOW_STORAGE_KEY = 'blinkad-erp-billing-workflow-v2'
 
 type BillingWorkflowOverride = Partial<
   Pick<
@@ -3462,6 +3465,16 @@ function teamSettlementStatusClass(status: TeamSettlementStatus) {
   return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
 }
 
+function calculateTeamDistribution(totalAmount: number) {
+  const total = Math.max(0, Math.round(totalAmount))
+  const workerAmount = Math.min(total, SETTLEMENT_WORKER_COST_PER_STORE)
+  const remainingAmount = Math.max(0, total - workerAmount)
+  const kwonAmount = Math.floor(remainingAmount / 2)
+  const kangAmount = remainingAmount - kwonAmount
+
+  return { total, workerAmount, remainingAmount, kwonAmount, kangAmount }
+}
+
 function BillingWorkflowPanel({
   records,
   loading,
@@ -3473,6 +3486,8 @@ function BillingWorkflowPanel({
 }) {
   const [anchorDate, setAnchorDate] = useState(() => new Date())
   const [activeFilter, setActiveFilter] = useState<BillingFilter>('전체')
+  const [distributionRecordId, setDistributionRecordId] = useState<string | null>(null)
+  const [distributionDraftAmount, setDistributionDraftAmount] = useState(0)
   const [workflowOverrides, setWorkflowOverrides] = useState<Record<string, BillingWorkflowOverride>>(
     readBillingWorkflowOverrides
   )
@@ -3506,6 +3521,19 @@ function BillingWorkflowPanel({
   const authPendingRecords = monthRecords.filter((record) => record.workStatus === '인증대기')
   const paymentDelayedRecords = monthRecords.filter((record) => record.paymentStatus === '입금지연')
   const settlementAmount = settlementTargets.reduce((sum, record) => sum + record.teamSettlementAmount, 0)
+  const settlementDistribution = settlementTargets.reduce(
+    (totals, record) => {
+      const distribution = calculateTeamDistribution(record.teamSettlementAmount)
+      return {
+        workerAmount: totals.workerAmount + distribution.workerAmount,
+        kwonAmount: totals.kwonAmount + distribution.kwonAmount,
+        kangAmount: totals.kangAmount + distribution.kangAmount,
+      }
+    },
+    { workerAmount: 0, kwonAmount: 0, kangAmount: 0 }
+  )
+  const distributionRecord = currentRecords.find((record) => record.id === distributionRecordId) || null
+  const distributionDraft = calculateTeamDistribution(distributionDraftAmount)
   const filteredRecords = monthRecords.filter((record) => {
     if (activeFilter === '정산대상') return record.settlementStatus === '정산대상'
     if (activeFilter === '인증대기') return record.workStatus === '인증대기'
@@ -3543,7 +3571,7 @@ function BillingWorkflowPanel({
       updateWorkflow(record.id, {
         workStatus,
         workRecognition: '전체',
-        teamSettlementAmount: SETTLEMENT_WORKER_COST_PER_STORE,
+        teamSettlementAmount: record.defaultTeamSettlementAmount,
         settlementStatus: '정산대상',
       })
       return
@@ -3563,12 +3591,27 @@ function BillingWorkflowPanel({
       workRecognition,
       teamSettlementAmount:
         workRecognition === '전체'
-          ? SETTLEMENT_WORKER_COST_PER_STORE
+          ? record.defaultTeamSettlementAmount
           : workRecognition === '일부'
-            ? Math.round(SETTLEMENT_WORKER_COST_PER_STORE / 2)
+            ? Math.round(record.defaultTeamSettlementAmount / 2)
             : 0,
       settlementStatus: isRecognized && record.paymentStatus === '입금완료' ? '정산대상' : '정산보류',
     })
+  }
+
+  const openDistributionSettings = (record: BillingRecord) => {
+    setDistributionRecordId(record.id)
+    setDistributionDraftAmount(record.teamSettlementAmount)
+  }
+
+  const closeDistributionSettings = () => {
+    setDistributionRecordId(null)
+  }
+
+  const saveDistributionSettings = () => {
+    if (!distributionRecord) return
+    updateWorkflow(distributionRecord.id, { teamSettlementAmount: distributionDraft.total })
+    closeDistributionSettings()
   }
 
   const confirmMonthlySettlement = () => {
@@ -3675,13 +3718,13 @@ function BillingWorkflowPanel({
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1380px] table-fixed border-collapse text-left text-sm">
+          <table className="w-full min-w-[1410px] table-fixed border-collapse text-left text-sm">
             <colgroup>
               <col className="w-[210px]" />
               <col className="w-[150px]" />
               <col className="w-[155px]" />
               <col className="w-[155px]" />
-              <col className="w-[165px]" />
+              <col className="w-[195px]" />
               <col className="w-[165px]" />
               <col className="w-auto" />
             </colgroup>
@@ -3691,7 +3734,7 @@ function BillingWorkflowPanel({
                 <th className="px-4 py-4">입금상태</th>
                 <th className="px-4 py-4">작업상태</th>
                 <th className="px-4 py-4">이번 달 작업인정</th>
-                <th className="px-4 py-4">팀 정산액</th>
+                <th className="px-4 py-4">정산 기준액</th>
                 <th className="px-4 py-4">정산상태</th>
                 <th className="px-4 py-4">메모</th>
               </tr>
@@ -3760,16 +3803,17 @@ function BillingWorkflowPanel({
                       </div>
                     </td>
                     <td className="px-4 py-4">
-                      <div className="relative">
-                        <input
-                          type="number"
-                          min="0"
-                          step="50000"
-                          value={record.teamSettlementAmount}
-                          onChange={(event) => updateWorkflow(record.id, { teamSettlementAmount: Number(event.target.value) || 0 })}
-                          className="h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 pr-7 text-right text-sm font-black tabular-nums text-white outline-none transition focus:border-brand-blue/50"
-                        />
-                        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-500">원</span>
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="whitespace-nowrap text-sm font-black tabular-nums text-white">
+                          {formatCurrency(record.teamSettlementAmount)}원
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => openDistributionSettings(record)}
+                          className="h-9 shrink-0 rounded-md border border-white/10 bg-white/[0.04] px-3 text-xs font-black text-gray-200 transition hover:border-brand-blue/40 hover:text-white"
+                        >
+                          배분설정
+                        </button>
                       </div>
                     </td>
                     <td className="px-4 py-4">
@@ -3801,11 +3845,25 @@ function BillingWorkflowPanel({
           </table>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-white/10 bg-black/30 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+        <div className="flex flex-col gap-5 border-t border-white/10 bg-black/30 p-5 xl:flex-row xl:items-center xl:justify-between md:p-6">
           <div>
             <p className="text-xs font-bold text-gray-500">{month + 1}월 {settlementDay}일 팀 정산</p>
             <p className="mt-1 text-xl font-black tabular-nums text-white">{formatCurrency(settlementAmount)}원</p>
             <p className="mt-1 text-xs font-semibold text-gray-500">정산대상 {settlementTargets.length}개 매장</p>
+          </div>
+          <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3 xl:max-w-2xl">
+            <div className="border-l-2 border-gray-500/40 pl-3">
+              <p className="text-xs font-bold text-gray-500">작업자</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.workerAmount)}원</p>
+            </div>
+            <div className="border-l-2 border-brand-blue/50 pl-3">
+              <p className="text-xs font-bold text-gray-500">권순현</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kwonAmount)}원</p>
+            </div>
+            <div className="border-l-2 border-emerald-400/50 pl-3">
+              <p className="text-xs font-bold text-gray-500">강기현</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kangAmount)}원</p>
+            </div>
           </div>
           <button
             type="button"
@@ -3818,6 +3876,82 @@ function BillingWorkflowPanel({
           </button>
         </div>
       </section>
+
+      {distributionRecord ? (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4" role="dialog" aria-modal="true" aria-labelledby="distribution-title">
+          <div className="w-full max-w-lg overflow-hidden rounded-lg border border-white/15 bg-[#0b0d12] shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 p-5">
+              <div>
+                <p className="text-xs font-bold text-brand-blue">Distribution</p>
+                <h3 id="distribution-title" className="mt-1 text-xl font-black text-white">{distributionRecord.storeName} 배분설정</h3>
+              </div>
+              <button
+                type="button"
+                onClick={closeDistributionSettings}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-400 transition hover:bg-white/5 hover:text-white"
+                aria-label="배분설정 닫기"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="space-y-5 p-5">
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">정산 기준액</span>
+                <div className="relative mt-2">
+                  <input
+                    type="number"
+                    min="0"
+                    step="10000"
+                    value={distributionDraftAmount}
+                    onChange={(event) => setDistributionDraftAmount(Number(event.target.value) || 0)}
+                    className="h-12 w-full rounded-md border border-white/10 bg-black px-4 pr-10 text-right text-lg font-black tabular-nums text-white outline-none transition focus:border-brand-blue/60"
+                  />
+                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-500">원</span>
+                </div>
+              </label>
+
+              <div className="divide-y divide-white/10 border-y border-white/10">
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">작업자</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">우선 지급 · 매장당 150,000원</p>
+                  </div>
+                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.workerAmount)}원</p>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">권순현</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 잔액의 50%</p>
+                  </div>
+                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kwonAmount)}원</p>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">강기현</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 나머지 50%</p>
+                  </div>
+                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kangAmount)}원</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold text-gray-500">배분 합계</p>
+                  <p className="mt-1 text-lg font-black tabular-nums text-white">{formatCurrency(distributionDraft.total)}원</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={saveDistributionSettings}
+                  className="h-11 rounded-md bg-brand-blue px-5 text-sm font-black text-white transition hover:brightness-110"
+                >
+                  배분 저장
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }
