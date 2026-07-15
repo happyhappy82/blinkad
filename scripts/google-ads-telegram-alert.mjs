@@ -171,6 +171,16 @@ function dateRanges(today = kstDateOnly()) {
       end: today,
       label: today,
     },
+    yesterday: {
+      start: shiftDate(today, -1),
+      end: shiftDate(today, -1),
+      label: shiftDate(today, -1),
+    },
+    dayBefore: {
+      start: shiftDate(today, -2),
+      end: shiftDate(today, -2),
+      label: shiftDate(today, -2),
+    },
     current: {
       start: shiftDate(today, -6),
       end: today,
@@ -370,6 +380,8 @@ async function fetchCampaignReport() {
       biddingStrategy: row.campaign?.biddingStrategyType || '',
       budgetWon: Math.round(Number(row.campaignBudget?.amountMicros || 0) / 1_000_000),
       today: emptyMetrics(),
+      yesterday: emptyMetrics(),
+      dayBefore: emptyMetrics(),
       current: emptyMetrics(),
       previous: emptyMetrics(),
     })
@@ -413,6 +425,8 @@ async function fetchCampaignReport() {
           biddingStrategy: '',
           budgetWon: 0,
           today: emptyMetrics(),
+          yesterday: emptyMetrics(),
+          dayBefore: emptyMetrics(),
           current: emptyMetrics(),
           previous: emptyMetrics(),
         }
@@ -439,9 +453,13 @@ async function fetchCampaignReport() {
 
   const currentTotal = emptyMetrics()
   const previousTotal = emptyMetrics()
+  const yesterdayTotal = emptyMetrics()
+  const dayBeforeTotal = emptyMetrics()
   for (const campaign of reportCampaigns) {
     addMetrics(currentTotal, campaign.current)
     addMetrics(previousTotal, campaign.previous)
+    addMetrics(yesterdayTotal, campaign.yesterday)
+    addMetrics(dayBeforeTotal, campaign.dayBefore)
   }
 
   return {
@@ -450,6 +468,8 @@ async function fetchCampaignReport() {
     ranges,
     currentTotal,
     previousTotal,
+    yesterdayTotal,
+    dayBeforeTotal,
     campaigns: reportCampaigns,
   }
 }
@@ -499,9 +519,9 @@ function metricTableRow(label, value, badge) {
   return { label, value, badge }
 }
 
-function metricTableLines(rows) {
+function metricTableLines(rows, currentLabel = '현재', changeLabel = '변동') {
   return [
-    '지표 │ 현재 │ 변동',
+    `지표 │ ${currentLabel} │ ${changeLabel}`,
     '--- │ --- │ ---',
     ...rows.map(metricTableLine),
   ]
@@ -529,6 +549,54 @@ function performanceRows(current, previous) {
   ]
 }
 
+function differenceBadge(current, previous, formatter) {
+  const difference = current - previous
+  if (difference === 0) return '변동 없음'
+
+  const direction = difference > 0 ? '▲' : '▼'
+  const sign = difference > 0 ? '+' : '-'
+  const differenceText = formatter(Math.abs(difference))
+
+  if (!previous) return `${direction} ${differenceText} (신규)`
+
+  const rate = Math.abs((difference / previous) * 100)
+  return `${direction} ${differenceText} (${sign}${rate.toFixed(1)}%)`
+}
+
+function dailyPerformanceRows(current, previous) {
+  return [
+    metricTableRow(
+      '노출',
+      formatNumber(current.impressions),
+      differenceBadge(current.impressions, previous.impressions, formatNumber)
+    ),
+    metricTableRow(
+      '클릭',
+      formatNumber(current.clicks),
+      differenceBadge(current.clicks, previous.clicks, formatNumber)
+    ),
+    metricTableRow(
+      '비용',
+      formatWon(costWon(current)),
+      differenceBadge(costWon(current), costWon(previous), formatWon)
+    ),
+    metricTableRow(
+      'CPC',
+      formatWon(cpcWon(current)),
+      differenceBadge(cpcWon(current), cpcWon(previous), formatWon)
+    ),
+    metricTableRow(
+      '전환',
+      formatNumber(current.conversions),
+      differenceBadge(current.conversions, previous.conversions, formatNumber)
+    ),
+  ]
+}
+
+function dailyPerformanceLines(current, previous) {
+  return metricTableLines(dailyPerformanceRows(current, previous), '어제', '전일 대비')
+}
+
 function compactPerformanceLines(current, previous) {
   return metricTableLines(performanceRows(current, previous))
 }
@@ -542,10 +610,10 @@ function htmlEscape(value) {
     .replace(/'/g, '&apos;')
 }
 
-function metricTableHtml(rows) {
+function metricTableHtml(rows, currentLabel = '현재', changeLabel = '변동') {
   return [
     '<table bordered striped>',
-    '<tr><th>지표</th><th>현재</th><th>변동</th></tr>',
+    `<tr><th>지표</th><th>${htmlEscape(currentLabel)}</th><th>${htmlEscape(changeLabel)}</th></tr>`,
     ...rows.map(
       (row) =>
         `<tr><td>${htmlEscape(row.label)}</td><td>${htmlEscape(row.value)}</td><td>${htmlEscape(row.badge)}</td></tr>`
@@ -588,6 +656,8 @@ function groupedCampaignsByStore(campaigns) {
         current: emptyMetrics(),
         previous: emptyMetrics(),
         today: emptyMetrics(),
+        yesterday: emptyMetrics(),
+        dayBefore: emptyMetrics(),
         dailyBudgetWon: 0,
         campaigns: [],
       }
@@ -595,6 +665,8 @@ function groupedCampaignsByStore(campaigns) {
     addMetrics(group.current, campaign.current)
     addMetrics(group.previous, campaign.previous)
     addMetrics(group.today, campaign.today)
+    addMetrics(group.yesterday, campaign.yesterday)
+    addMetrics(group.dayBefore, campaign.dayBefore)
     if (campaign.status === 'ENABLED') group.dailyBudgetWon += campaign.budgetWon
     group.campaigns.push(campaign)
     groups.set(storeName, group)
@@ -623,6 +695,13 @@ function storeCompactSummaryLine(group, index) {
     `✅ ${index}. ${group.storeName} (${group.campaigns.length}개)`,
     ...compactPerformanceLines(group.current, group.previous).map((line) => `   ${line}`),
     `   ${metricTableLine(compactBudgetStatusRow(group))}`,
+  ].join('\n')
+}
+
+function storeDailyComparisonLine(group, index) {
+  return [
+    `✅ ${index}. ${group.storeName}`,
+    ...dailyPerformanceLines(group.yesterday, group.dayBefore).map((line) => `   ${line}`),
   ].join('\n')
 }
 
@@ -707,10 +786,20 @@ function buildDailyMessage(report) {
   const lines = [
     title,
     `기준: ${report.checkedAt} KST`,
-    `기간: ${report.ranges.current.label} vs ${report.ranges.previous.label}`,
+    `일간: ${report.ranges.yesterday.label} vs ${report.ranges.dayBefore.label}`,
+    `주간: ${report.ranges.current.label} vs ${report.ranges.previous.label}`,
     '',
-    '[매장별 핵심 현황]',
+    '[전체 전일 대비]',
+    ...dailyPerformanceLines(report.yesterdayTotal, report.dayBeforeTotal),
+    '',
+    '[매장별 전일 대비]',
   ]
+
+  storeGroups.forEach((group, index) => {
+    lines.push(storeDailyComparisonLine(group, index + 1))
+  })
+
+  lines.push('', '[최근 7일 추세]')
 
   storeGroups.forEach((group, index) => {
     lines.push(storeCompactSummaryLine(group, index + 1))
@@ -744,9 +833,21 @@ function buildDailyRichHtml(report) {
   const blocks = [
     `<h3>${htmlEscape(title)}</h3>`,
     `<p>기준: ${htmlEscape(report.checkedAt)} KST</p>`,
-    `<p>기간: ${htmlEscape(report.ranges.current.label)} vs ${htmlEscape(report.ranges.previous.label)}</p>`,
-    '<h4>매장별 핵심 현황</h4>',
+    `<p>일간: ${htmlEscape(report.ranges.yesterday.label)} vs ${htmlEscape(report.ranges.dayBefore.label)}</p>`,
+    `<p>주간: ${htmlEscape(report.ranges.current.label)} vs ${htmlEscape(report.ranges.previous.label)}</p>`,
+    '<h4>전체 전일 대비</h4>',
+    metricTableHtml(dailyPerformanceRows(report.yesterdayTotal, report.dayBeforeTotal), '어제', '전일 대비'),
+    '<h4>매장별 전일 대비</h4>',
   ]
+
+  storeGroups.forEach((group, index) => {
+    blocks.push(
+      `<h5>✅ ${index + 1}. ${htmlEscape(group.storeName)}</h5>`,
+      metricTableHtml(dailyPerformanceRows(group.yesterday, group.dayBefore), '어제', '전일 대비')
+    )
+  })
+
+  blocks.push('<h4>최근 7일 추세</h4>')
 
   storeGroups.forEach((group, index) => {
     blocks.push(
