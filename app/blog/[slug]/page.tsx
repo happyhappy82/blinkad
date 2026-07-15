@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
+import Navbar from '@/components/Navbar'
 
 const SITE_URL = 'https://www.blinkad.kr'
 const BLOG_BASE_URL = `${SITE_URL}/blog`
@@ -168,32 +169,7 @@ export default async function BlogPost({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Navigation - 메인 사이트와 동일 */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
-          <a
-            href="/"
-            className="hover:opacity-80 transition-opacity"
-          >
-            <img src="/logo-white-nav.png" alt={SITE_NAME} className="h-8 w-auto" />
-          </a>
-
-          <div className="hidden md:flex space-x-8">
-            <a href="/foreign-marketing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">외국인마케팅</a>
-            <a href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</a>
-            <a href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</a>
-            <Link href="/blog" className="text-sm font-medium text-white transition-colors">블로그</Link>
-            <a href="/contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</a>
-          </div>
-
-          <a
-            href="/contact"
-            className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
-          >
-            무료 진단하기
-          </a>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Article */}
       <article className="pt-32 pb-20 px-6">

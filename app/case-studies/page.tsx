@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import CaseStudies from '@/components/CaseStudies'
 import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
   title: '성공사례 - BlinkAd',
@@ -12,25 +13,7 @@ export const metadata: Metadata = {
 export default function CaseStudiesPage() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-brand-blue selection:text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-5 md:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
-          </Link>
-          <div className="hidden sm:flex items-center gap-6 md:gap-8">
-            <Link href="/foreign-marketing" className="text-sm text-gray-400 hover:text-white transition-colors">외국인마케팅</Link>
-            <Link href="/#services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</Link>
-            <Link href="/case-studies" className="text-sm text-white">성공사례</Link>
-            <Link href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</Link>
-          </div>
-          <Link
-            href="/contact"
-            className="hidden sm:inline-flex bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-colors"
-          >
-            무료 진단하기
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       <main className="pt-8 md:pt-12">
         <CaseStudies />

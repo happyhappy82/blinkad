@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import Footer from '@/components/Footer';
-import NewsNavigation from '@/components/NewsNavigation';
+import Navbar from '@/components/Navbar';
 import { NEWS_POSTS } from '@/constants/news';
 
 const SITE_URL = 'https://www.blinkad.kr';
@@ -152,7 +152,7 @@ export default async function NewsPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <NewsNavigation />
+      <Navbar />
 
       <main className="px-5 pb-20 pt-28 md:px-6 md:pb-28 md:pt-32">
         <article className="mx-auto max-w-4xl">

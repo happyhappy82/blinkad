@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import Footer from '@/components/Footer';
-import NewsNavigation from '@/components/NewsNavigation';
+import Navbar from '@/components/Navbar';
 import { NEWS_POSTS } from '@/constants/news';
 
 const SITE_URL = 'https://www.blinkad.kr';
@@ -34,7 +34,7 @@ export default function NewsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <NewsNavigation />
+      <Navbar />
 
       <main className="pb-20 pt-28 md:pb-28 md:pt-32">
         <section className="mx-auto max-w-6xl px-5 md:px-6">
