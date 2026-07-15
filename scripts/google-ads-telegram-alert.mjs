@@ -453,13 +453,9 @@ async function fetchCampaignReport() {
 
   const currentTotal = emptyMetrics()
   const previousTotal = emptyMetrics()
-  const yesterdayTotal = emptyMetrics()
-  const dayBeforeTotal = emptyMetrics()
   for (const campaign of reportCampaigns) {
     addMetrics(currentTotal, campaign.current)
     addMetrics(previousTotal, campaign.previous)
-    addMetrics(yesterdayTotal, campaign.yesterday)
-    addMetrics(dayBeforeTotal, campaign.dayBefore)
   }
 
   return {
@@ -468,8 +464,6 @@ async function fetchCampaignReport() {
     ranges,
     currentTotal,
     previousTotal,
-    yesterdayTotal,
-    dayBeforeTotal,
     campaigns: reportCampaigns,
   }
 }
@@ -789,9 +783,6 @@ function buildDailyMessage(report) {
     `일간: ${report.ranges.yesterday.label} vs ${report.ranges.dayBefore.label}`,
     `주간: ${report.ranges.current.label} vs ${report.ranges.previous.label}`,
     '',
-    '[전체 전일 대비]',
-    ...dailyPerformanceLines(report.yesterdayTotal, report.dayBeforeTotal),
-    '',
     '[매장별 전일 대비]',
   ]
 
@@ -835,8 +826,6 @@ function buildDailyRichHtml(report) {
     `<p>기준: ${htmlEscape(report.checkedAt)} KST</p>`,
     `<p>일간: ${htmlEscape(report.ranges.yesterday.label)} vs ${htmlEscape(report.ranges.dayBefore.label)}</p>`,
     `<p>주간: ${htmlEscape(report.ranges.current.label)} vs ${htmlEscape(report.ranges.previous.label)}</p>`,
-    '<h4>전체 전일 대비</h4>',
-    metricTableHtml(dailyPerformanceRows(report.yesterdayTotal, report.dayBeforeTotal), '어제', '전일 대비'),
     '<h4>매장별 전일 대비</h4>',
   ]
 
