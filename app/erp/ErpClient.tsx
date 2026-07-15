@@ -733,6 +733,7 @@ type BillingRecord = {
   workRecognition: WorkRecognition
   defaultTeamSettlementAmount: number
   teamSettlementAmount: number
+  withholdingApplied: boolean
   settlementStatus: TeamSettlementStatus
   memo: string
 }
@@ -2336,6 +2337,7 @@ function buildBillingRecords(_stores: StoreRecord[]) {
         workRecognition,
         defaultTeamSettlementAmount: amount,
         teamSettlementAmount: isActiveStore ? amount : 0,
+        withholdingApplied: false,
         settlementStatus,
         memo,
       } satisfies BillingRecord
@@ -3416,12 +3418,18 @@ const workStatusOptions: WorkStatus[] = ['미시작', '진행중', '인증대기
 const workRecognitionOptions: WorkRecognition[] = ['전체', '일부', '없음', '선택필요']
 const teamSettlementStatusOptions: TeamSettlementStatus[] = ['정산대상', '정산보류', '다음 달 이월', '정산완료']
 const billingFilters: BillingFilter[] = ['전체', '정산대상', '인증대기', '입금지연', '정산완료']
-const BILLING_WORKFLOW_STORAGE_KEY = 'blinkad-erp-billing-workflow-v2'
+const BILLING_WORKFLOW_STORAGE_KEY = 'blinkad-erp-billing-workflow-v3'
 
 type BillingWorkflowOverride = Partial<
   Pick<
     BillingRecord,
-    'paymentStatus' | 'workStatus' | 'workRecognition' | 'teamSettlementAmount' | 'settlementStatus' | 'memo'
+    | 'paymentStatus'
+    | 'workStatus'
+    | 'workRecognition'
+    | 'teamSettlementAmount'
+    | 'withholdingApplied'
+    | 'settlementStatus'
+    | 'memo'
   >
 >
 
@@ -3465,14 +3473,43 @@ function teamSettlementStatusClass(status: TeamSettlementStatus) {
   return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
 }
 
-function calculateTeamDistribution(totalAmount: number) {
+function calculateWithholding(grossAmount: number, applied: boolean) {
+  if (!applied) return { incomeTax: 0, localIncomeTax: 0, withholdingTax: 0, netAmount: grossAmount }
+
+  const incomeTax = Math.floor(grossAmount * 0.03)
+  const localIncomeTax = Math.floor(incomeTax * 0.1)
+  const withholdingTax = incomeTax + localIncomeTax
+  return { incomeTax, localIncomeTax, withholdingTax, netAmount: grossAmount - withholdingTax }
+}
+
+function calculateTeamDistribution(totalAmount: number, withholdingApplied = false) {
   const total = Math.max(0, Math.round(totalAmount))
-  const workerAmount = Math.min(total, SETTLEMENT_WORKER_COST_PER_STORE)
-  const remainingAmount = Math.max(0, total - workerAmount)
+  const supplyAmount = Math.round(total / (1 + VAT_RATE))
+  const vatAmount = total - supplyAmount
+  const workerAmount = Math.min(supplyAmount, SETTLEMENT_WORKER_COST_PER_STORE)
+  const remainingAmount = Math.max(0, supplyAmount - workerAmount)
   const kwonAmount = Math.floor(remainingAmount / 2)
   const kangAmount = remainingAmount - kwonAmount
+  const workerTax = calculateWithholding(workerAmount, withholdingApplied)
+  const kwonTax = calculateWithholding(kwonAmount, withholdingApplied)
+  const kangTax = calculateWithholding(kangAmount, withholdingApplied)
 
-  return { total, workerAmount, remainingAmount, kwonAmount, kangAmount }
+  return {
+    total,
+    supplyAmount,
+    vatAmount,
+    workerAmount,
+    remainingAmount,
+    kwonAmount,
+    kangAmount,
+    workerTax,
+    kwonTax,
+    kangTax,
+    incomeTax: workerTax.incomeTax + kwonTax.incomeTax + kangTax.incomeTax,
+    localIncomeTax: workerTax.localIncomeTax + kwonTax.localIncomeTax + kangTax.localIncomeTax,
+    withholdingTax: workerTax.withholdingTax + kwonTax.withholdingTax + kangTax.withholdingTax,
+    netPaymentAmount: workerTax.netAmount + kwonTax.netAmount + kangTax.netAmount,
+  }
 }
 
 function BillingWorkflowPanel({
@@ -3488,6 +3525,7 @@ function BillingWorkflowPanel({
   const [activeFilter, setActiveFilter] = useState<BillingFilter>('전체')
   const [distributionRecordId, setDistributionRecordId] = useState<string | null>(null)
   const [distributionDraftAmount, setDistributionDraftAmount] = useState(0)
+  const [distributionWithholdingApplied, setDistributionWithholdingApplied] = useState(false)
   const [workflowOverrides, setWorkflowOverrides] = useState<Record<string, BillingWorkflowOverride>>(
     readBillingWorkflowOverrides
   )
@@ -3520,20 +3558,31 @@ function BillingWorkflowPanel({
   const settlementTargets = monthRecords.filter((record) => record.settlementStatus === '정산대상')
   const authPendingRecords = monthRecords.filter((record) => record.workStatus === '인증대기')
   const paymentDelayedRecords = monthRecords.filter((record) => record.paymentStatus === '입금지연')
-  const settlementAmount = settlementTargets.reduce((sum, record) => sum + record.teamSettlementAmount, 0)
   const settlementDistribution = settlementTargets.reduce(
     (totals, record) => {
-      const distribution = calculateTeamDistribution(record.teamSettlementAmount)
+      const distribution = calculateTeamDistribution(record.teamSettlementAmount, record.withholdingApplied)
       return {
-        workerAmount: totals.workerAmount + distribution.workerAmount,
-        kwonAmount: totals.kwonAmount + distribution.kwonAmount,
-        kangAmount: totals.kangAmount + distribution.kangAmount,
+        grossAmount: totals.grossAmount + distribution.total,
+        supplyAmount: totals.supplyAmount + distribution.supplyAmount,
+        vatAmount: totals.vatAmount + distribution.vatAmount,
+        withholdingTax: totals.withholdingTax + distribution.withholdingTax,
+        workerNetAmount: totals.workerNetAmount + distribution.workerTax.netAmount,
+        kwonNetAmount: totals.kwonNetAmount + distribution.kwonTax.netAmount,
+        kangNetAmount: totals.kangNetAmount + distribution.kangTax.netAmount,
       }
     },
-    { workerAmount: 0, kwonAmount: 0, kangAmount: 0 }
+    {
+      grossAmount: 0,
+      supplyAmount: 0,
+      vatAmount: 0,
+      withholdingTax: 0,
+      workerNetAmount: 0,
+      kwonNetAmount: 0,
+      kangNetAmount: 0,
+    }
   )
   const distributionRecord = currentRecords.find((record) => record.id === distributionRecordId) || null
-  const distributionDraft = calculateTeamDistribution(distributionDraftAmount)
+  const distributionDraft = calculateTeamDistribution(distributionDraftAmount, distributionWithholdingApplied)
   const filteredRecords = monthRecords.filter((record) => {
     if (activeFilter === '정산대상') return record.settlementStatus === '정산대상'
     if (activeFilter === '인증대기') return record.workStatus === '인증대기'
@@ -3602,6 +3651,7 @@ function BillingWorkflowPanel({
   const openDistributionSettings = (record: BillingRecord) => {
     setDistributionRecordId(record.id)
     setDistributionDraftAmount(record.teamSettlementAmount)
+    setDistributionWithholdingApplied(record.withholdingApplied)
   }
 
   const closeDistributionSettings = () => {
@@ -3610,7 +3660,10 @@ function BillingWorkflowPanel({
 
   const saveDistributionSettings = () => {
     if (!distributionRecord) return
-    updateWorkflow(distributionRecord.id, { teamSettlementAmount: distributionDraft.total })
+    updateWorkflow(distributionRecord.id, {
+      teamSettlementAmount: distributionDraft.total,
+      withholdingApplied: distributionWithholdingApplied,
+    })
     closeDistributionSettings()
   }
 
@@ -3625,7 +3678,7 @@ function BillingWorkflowPanel({
   }
 
   const summaryItems = [
-    { label: '30일 정산예정액', value: `${formatCurrency(settlementAmount)}원` },
+    { label: '30일 정산예정액', value: `${formatCurrency(settlementDistribution.supplyAmount)}원` },
     { label: '정산대상', value: `${settlementTargets.length}개 매장` },
     { label: '인증대기', value: `${authPendingRecords.length}개 매장` },
     { label: '입금지연', value: `${paymentDelayedRecords.length}개 매장` },
@@ -3696,6 +3749,7 @@ function BillingWorkflowPanel({
           </div>
           <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-4 text-xs font-bold text-gray-500">
             <span>입금 완료 후 작업 시작</span>
+            <span>VAT 제외 공급가액 기준 배분</span>
             <span>작업인정 매장만 정산대상</span>
             <span>30일 이후 입금은 다음 달 이월</span>
           </div>
@@ -3718,13 +3772,13 @@ function BillingWorkflowPanel({
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[1410px] table-fixed border-collapse text-left text-sm">
+          <table className="w-full min-w-[1450px] table-fixed border-collapse text-left text-sm">
             <colgroup>
               <col className="w-[210px]" />
               <col className="w-[150px]" />
               <col className="w-[155px]" />
               <col className="w-[155px]" />
-              <col className="w-[195px]" />
+              <col className="w-[235px]" />
               <col className="w-[165px]" />
               <col className="w-auto" />
             </colgroup>
@@ -3734,7 +3788,7 @@ function BillingWorkflowPanel({
                 <th className="px-4 py-4">입금상태</th>
                 <th className="px-4 py-4">작업상태</th>
                 <th className="px-4 py-4">이번 달 작업인정</th>
-                <th className="px-4 py-4">정산 기준액</th>
+                <th className="px-4 py-4">입금액 / 배분</th>
                 <th className="px-4 py-4">정산상태</th>
                 <th className="px-4 py-4">메모</th>
               </tr>
@@ -3804,9 +3858,14 @@ function BillingWorkflowPanel({
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex items-center justify-between gap-3">
-                        <p className="whitespace-nowrap text-sm font-black tabular-nums text-white">
-                          {formatCurrency(record.teamSettlementAmount)}원
-                        </p>
+                        <div className="min-w-0">
+                          <p className="whitespace-nowrap text-sm font-black tabular-nums text-white">
+                            {formatCurrency(record.teamSettlementAmount)}원
+                          </p>
+                          <p className="mt-1 whitespace-nowrap text-[11px] font-semibold text-gray-500">
+                            공급가 {formatCurrency(calculateTeamDistribution(record.teamSettlementAmount).supplyAmount)}원 · {record.withholdingApplied ? '원천세 계산' : '원천세 미적용'}
+                          </p>
+                        </div>
                         <button
                           type="button"
                           onClick={() => openDistributionSettings(record)}
@@ -3848,21 +3907,23 @@ function BillingWorkflowPanel({
         <div className="flex flex-col gap-5 border-t border-white/10 bg-black/30 p-5 xl:flex-row xl:items-center xl:justify-between md:p-6">
           <div>
             <p className="text-xs font-bold text-gray-500">{month + 1}월 {settlementDay}일 팀 정산</p>
-            <p className="mt-1 text-xl font-black tabular-nums text-white">{formatCurrency(settlementAmount)}원</p>
-            <p className="mt-1 text-xs font-semibold text-gray-500">정산대상 {settlementTargets.length}개 매장</p>
+            <p className="mt-1 text-xl font-black tabular-nums text-white">{formatCurrency(settlementDistribution.supplyAmount)}원</p>
+            <p className="mt-1 text-xs font-semibold text-gray-500">
+              VAT 포함 {formatCurrency(settlementDistribution.grossAmount)}원 · 부가세 {formatCurrency(settlementDistribution.vatAmount)}원 · 원천세 {formatCurrency(settlementDistribution.withholdingTax)}원
+            </p>
           </div>
           <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3 xl:max-w-2xl">
             <div className="border-l-2 border-gray-500/40 pl-3">
-              <p className="text-xs font-bold text-gray-500">작업자</p>
-              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.workerAmount)}원</p>
+              <p className="text-xs font-bold text-gray-500">작업자 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.workerNetAmount)}원</p>
             </div>
             <div className="border-l-2 border-brand-blue/50 pl-3">
-              <p className="text-xs font-bold text-gray-500">권순현</p>
-              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kwonAmount)}원</p>
+              <p className="text-xs font-bold text-gray-500">권순현 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kwonNetAmount)}원</p>
             </div>
             <div className="border-l-2 border-emerald-400/50 pl-3">
-              <p className="text-xs font-bold text-gray-500">강기현</p>
-              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kangAmount)}원</p>
+              <p className="text-xs font-bold text-gray-500">강기현 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kangNetAmount)}원</p>
             </div>
           </div>
           <button
@@ -3879,7 +3940,7 @@ function BillingWorkflowPanel({
 
       {distributionRecord ? (
         <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4" role="dialog" aria-modal="true" aria-labelledby="distribution-title">
-          <div className="w-full max-w-lg overflow-hidden rounded-lg border border-white/15 bg-[#0b0d12] shadow-2xl">
+          <div className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-lg border border-white/15 bg-[#0b0d12] shadow-2xl">
             <div className="flex items-start justify-between gap-4 border-b border-white/10 p-5">
               <div>
                 <p className="text-xs font-bold text-brand-blue">Distribution</p>
@@ -3897,7 +3958,7 @@ function BillingWorkflowPanel({
 
             <div className="space-y-5 p-5">
               <label className="block">
-                <span className="text-xs font-bold text-gray-500">정산 기준액</span>
+                <span className="text-xs font-bold text-gray-500">입금액(VAT 포함)</span>
                 <div className="relative mt-2">
                   <input
                     type="number"
@@ -3911,34 +3972,82 @@ function BillingWorkflowPanel({
                 </div>
               </label>
 
+              <div className="grid grid-cols-2 divide-x divide-white/10 rounded-md border border-white/10 bg-black">
+                <div className="p-4">
+                  <p className="text-xs font-bold text-gray-500">공급가액 · 배분 기준</p>
+                  <p className="mt-2 font-black tabular-nums text-white">{formatCurrency(distributionDraft.supplyAmount)}원</p>
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-bold text-gray-500">부가세 10%</p>
+                  <p className="mt-2 font-black tabular-nums text-white">{formatCurrency(distributionDraft.vatAmount)}원</p>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setDistributionWithholdingApplied((current) => !current)}
+                  className={`inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border text-sm font-black transition ${
+                    distributionWithholdingApplied
+                      ? 'border-brand-blue/50 bg-brand-blue/15 text-blue-100'
+                      : 'border-white/10 bg-white/[0.04] text-gray-300 hover:bg-white/[0.07]'
+                  }`}
+                >
+                  <ReceiptText className="h-4 w-4" />
+                  원천세 계산
+                  <span className="text-xs opacity-70">사업소득 3.3%</span>
+                </button>
+                <p className="mt-2 text-xs font-semibold text-gray-500">사업소득 원천징수 대상 지급 건에만 적용합니다.</p>
+              </div>
+
               <div className="divide-y divide-white/10 border-y border-white/10">
                 <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
                   <div>
                     <p className="font-black text-white">작업자</p>
                     <p className="mt-1 text-xs font-semibold text-gray-500">우선 지급 · 매장당 150,000원</p>
                   </div>
-                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.workerAmount)}원</p>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.workerTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.workerAmount)}원 · 원천세 {formatCurrency(distributionDraft.workerTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
                 </div>
                 <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
                   <div>
                     <p className="font-black text-white">권순현</p>
                     <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 잔액의 50%</p>
                   </div>
-                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kwonAmount)}원</p>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kwonTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.kwonAmount)}원 · 원천세 {formatCurrency(distributionDraft.kwonTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
                 </div>
                 <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
                   <div>
                     <p className="font-black text-white">강기현</p>
                     <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 나머지 50%</p>
                   </div>
-                  <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kangAmount)}원</p>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kangTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.kangAmount)}원 · 원천세 {formatCurrency(distributionDraft.kangTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
                 </div>
               </div>
 
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs font-bold text-gray-500">배분 합계</p>
-                  <p className="mt-1 text-lg font-black tabular-nums text-white">{formatCurrency(distributionDraft.total)}원</p>
+                  <p className="text-xs font-bold text-gray-500">{distributionWithholdingApplied ? '실지급 합계' : '배분 합계'}</p>
+                  <p className="mt-1 text-lg font-black tabular-nums text-white">{formatCurrency(distributionDraft.netPaymentAmount)}원</p>
+                  <p className="mt-1 text-xs font-semibold text-gray-500">
+                    {distributionWithholdingApplied
+                      ? `소득세 ${formatCurrency(distributionDraft.incomeTax)}원 + 지방소득세 ${formatCurrency(distributionDraft.localIncomeTax)}원`
+                      : `공급가액 ${formatCurrency(distributionDraft.supplyAmount)}원`}
+                  </p>
                 </div>
                 <button
                   type="button"
