@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import Footer from '@/components/Footer';
+import NewsNavigation from '@/components/NewsNavigation';
 import { NEWS_POSTS } from '@/constants/news';
 
 const SITE_URL = 'https://www.blinkad.kr';
@@ -151,78 +152,51 @@ export default async function NewsPostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt={SITE_NAME} className="h-8 w-auto" />
-          </Link>
+      <NewsNavigation />
 
-          <div className="hidden md:flex space-x-8">
-            <Link href="/foreign-marketing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">외국인마케팅</Link>
-            <Link href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</Link>
-            <Link href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</Link>
-            <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">블로그</Link>
-            <Link href="/news" className="text-sm font-medium text-white transition-colors">회사소식</Link>
-            <Link href="/contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</Link>
-          </div>
-
-          <Link
-            href="/contact"
-            className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
-          >
-            무료 진단하기
-          </Link>
-        </div>
-      </nav>
-
-      <main className="pt-32 pb-24 px-6">
-        <article className="mx-auto max-w-3xl">
+      <main className="px-5 pb-20 pt-28 md:px-6 md:pb-28 md:pt-32">
+        <article className="mx-auto max-w-4xl">
           <Link
             href="/news"
-            className="group mb-8 inline-flex items-center text-gray-400 transition-colors hover:text-white"
+            className="group mb-8 inline-flex items-center text-sm text-gray-400 transition-colors hover:text-white md:mb-10"
           >
-            <ArrowLeft className="mr-2 h-5 w-5 transition-transform group-hover:-translate-x-1" />
+            <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
             <span className="font-medium">회사소식으로 돌아가기</span>
           </Link>
 
-          <header className="mb-12">
-            <div className="mb-6 flex items-center gap-4">
-              <span className="rounded-full bg-brand-blue/20 px-3 py-1 text-sm font-medium text-brand-blue">
+          <header className="mb-9 md:mb-12">
+            <div className="mb-5 flex items-center gap-3 text-xs md:text-sm">
+              <span className="font-semibold text-brand-blue">
                 {post.category}
               </span>
+              <span className="h-1 w-1 rounded-full bg-gray-600" />
               <time dateTime={isoDate} className="text-sm text-gray-400">
                 {post.date}
               </time>
             </div>
 
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-white keep-all md:text-5xl">
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight text-white keep-all md:text-4xl lg:text-[2.75rem]">
               {post.title}
             </h1>
 
-            <div className="mt-8 flex items-center gap-3 border-b border-white/10 pb-8">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-blue">
-                <span className="text-sm font-bold text-white">BA</span>
-              </div>
-              <div>
-                <p className="font-medium text-white">{SITE_NAME} Team</p>
-                <p className="text-sm text-gray-400">Company News</p>
-              </div>
+            <div className="mt-7 border-b border-white/10 pb-7 md:mt-9 md:pb-9">
+              <p className="text-sm font-medium text-gray-300">{SITE_NAME} Team</p>
             </div>
           </header>
 
           {post.imageUrls && post.imageUrls.length > 0 && (
-            <div className="mb-12 grid gap-4 md:grid-cols-2">
+            <div className="mb-10 grid gap-3 sm:grid-cols-2 md:mb-14 md:gap-4">
               {post.imageUrls.map((imageUrl, index) => (
                 <div
                   key={imageUrl}
-                  className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gray-900"
+                  className="relative aspect-[16/10] overflow-hidden rounded-lg bg-gray-900"
                 >
                   <Image
                     src={imageUrl}
                     alt={`${post.imageAlt ?? post.title} ${index + 1}`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 640px) calc(100vw - 40px), 440px"
                     priority={index === 0}
                   />
                 </div>
@@ -231,10 +205,10 @@ export default async function NewsPostPage({ params }: Props) {
           )}
 
           <div
-            className="prose prose-invert prose-lg max-w-none
+            className="prose prose-invert max-w-3xl
               prose-headings:text-white prose-headings:font-bold
-              prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-              prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
+              prose-h2:mb-4 prose-h2:mt-10 prose-h2:text-2xl md:prose-h2:mt-12 md:prose-h2:text-3xl
+              prose-p:mb-5 prose-p:text-[1rem] prose-p:leading-8 prose-p:text-gray-300 md:prose-p:text-lg
               prose-li:text-gray-300
               prose-strong:text-white
               prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline"

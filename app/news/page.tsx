@@ -1,7 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import Footer from '@/components/Footer';
+import NewsNavigation from '@/components/NewsNavigation';
 import { NEWS_POSTS } from '@/constants/news';
 
 const SITE_URL = 'https://www.blinkad.kr';
@@ -32,126 +34,112 @@ export default function NewsPage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-4">
-          <Link href="/" className="hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
-          </Link>
+      <NewsNavigation />
 
-          <div className="hidden md:flex space-x-8">
-            <Link href="/foreign-marketing" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">외국인마케팅</Link>
-            <Link href="/services" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">서비스</Link>
-            <Link href="/case-studies" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">성공사례</Link>
-            <Link href="/blog" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">블로그</Link>
-            <Link href="/news" className="text-sm font-medium text-white transition-colors">회사소식</Link>
-            <Link href="/contact" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">문의하기</Link>
-          </div>
-
-          <Link
-            href="/contact"
-            className="bg-brand-blue text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
-          >
-            무료 진단하기
-          </Link>
-        </div>
-      </nav>
-
-      <main className="pt-28 pb-24">
-        <section className="max-w-7xl mx-auto px-6">
-          <div className="mb-16 md:mb-20">
-            <p className="mb-5 text-sm font-semibold uppercase tracking-wider text-brand-blue">Company News</p>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white">회사소식.</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300 keep-all md:text-xl">
+      <main className="pb-20 pt-28 md:pb-28 md:pt-32">
+        <section className="mx-auto max-w-6xl px-5 md:px-6">
+          <div className="mb-12 border-b border-white/10 pb-10 md:mb-14 md:flex md:items-end md:justify-between md:pb-12">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase text-brand-blue">Company News</p>
+              <h1 className="text-4xl font-bold text-white md:text-5xl">회사소식</h1>
+            </div>
+            <p className="mt-5 max-w-xl text-base leading-7 text-gray-400 keep-all md:mt-0 md:text-right">
               블링크애드의 서비스 업데이트, 운영 공지, 브랜드 활동을 모아 전합니다.
             </p>
           </div>
 
           {featuredPost ? (
-            <div className="space-y-8">
+            <div>
               <Link
                 href={`/news/${featuredPost.id}`}
-                className="group grid gap-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-brand-blue/50 md:grid-cols-[1.1fr_0.9fr] md:p-8"
+                className="group grid gap-7 border-b border-white/10 pb-12 md:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] md:items-center md:gap-10 md:pb-14"
               >
                 {featuredPost.imageUrls?.[0] && (
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-gray-900">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-gray-900">
                     <Image
                       src={featuredPost.imageUrls[0]}
                       alt={featuredPost.imageAlt ?? featuredPost.title}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 55vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes="(max-width: 768px) calc(100vw - 40px), 680px"
                       priority
                     />
-                    <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
                   </div>
                 )}
 
-                <div className="flex flex-col justify-between gap-8">
-                  <div>
-                    <span className="inline-flex rounded-full border border-brand-blue/20 bg-brand-blue/15 px-3 py-1 text-xs font-semibold text-brand-blue">
+                <div className="min-w-0">
+                  <div className="flex items-center gap-3 text-xs">
+                    <span className="font-semibold text-brand-blue">
                       {featuredPost.category}
                     </span>
-                    <time dateTime={formatDateToISO(featuredPost.date)} className="mt-5 block text-sm text-gray-400">
+                    <span className="h-1 w-1 rounded-full bg-gray-600" />
+                    <time dateTime={formatDateToISO(featuredPost.date)} className="text-gray-500">
                       {featuredPost.date}
                     </time>
                   </div>
-                  <span className="text-sm font-semibold text-brand-blue group-hover:underline underline-offset-4">
-                    자세히 보기
-                  </span>
-                </div>
-
-                <div>
-                  <h2 className="text-3xl font-bold leading-tight text-white keep-all group-hover:text-brand-blue transition-colors md:text-5xl">
+                  <h2 className="mt-5 text-2xl font-bold leading-snug text-white transition-colors keep-all group-hover:text-brand-blue md:text-3xl">
                     {featuredPost.title}
                   </h2>
-                  <p className="mt-5 max-w-3xl text-base leading-relaxed text-gray-400 keep-all md:text-lg">
+                  <p className="mt-4 text-sm leading-7 text-gray-400 keep-all md:text-base">
                     {featuredPost.excerpt}
                   </p>
+                  <span className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-white">
+                    자세히 보기
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+                  </span>
                 </div>
               </Link>
 
               {otherPosts.length > 0 && (
-                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <div className="divide-y divide-white/10">
                   {otherPosts.map((post) => (
                     <Link
                       key={post.id}
                       href={`/news/${post.id}`}
-                      className="group overflow-hidden rounded-xl border border-white/10 bg-gray-900/40 transition-colors hover:border-brand-blue/50"
+                      className="group grid gap-5 py-8 md:grid-cols-[150px_minmax(0,1fr)_auto] md:items-center md:gap-8"
                     >
-                      {post.imageUrls?.[0] && (
-                        <div className="relative aspect-video overflow-hidden bg-gray-950">
+                      <div className="hidden md:block">
+                        {post.imageUrls?.[0] ? (
+                          <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-gray-900">
                           <Image
                             src={post.imageUrls[0]}
                             alt={post.imageAlt ?? post.title}
                             fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                            sizes="(max-width: 768px) 100vw, 33vw"
+                              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                              sizes="150px"
                           />
-                        </div>
-                      )}
-                      <div className="p-6">
-                        <div className="mb-8 flex items-center justify-between gap-4">
-                          <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-gray-300">
+                          </div>
+                        ) : (
+                          <div className="flex aspect-[4/3] items-center justify-center rounded-md bg-white/[0.04] text-xs font-semibold text-gray-600">
+                            BlinkAd
+                          </div>
+                        )}
+                      </div>
+                      <div className="min-w-0">
+                        <div className="flex items-center gap-3 text-xs">
+                          <span className="font-semibold text-brand-blue">
                             {post.category}
                           </span>
+                          <span className="h-1 w-1 rounded-full bg-gray-600" />
                           <time dateTime={formatDateToISO(post.date)} className="text-xs text-gray-500">
                             {post.date}
                           </time>
                         </div>
-                        <h2 className="text-xl font-bold leading-snug text-white keep-all group-hover:text-brand-blue transition-colors">
+                        <h2 className="mt-3 text-xl font-bold leading-snug text-white transition-colors keep-all group-hover:text-brand-blue md:text-2xl">
                           {post.title}
                         </h2>
-                        <p className="mt-4 text-sm leading-relaxed text-gray-400 keep-all">
+                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-gray-400 keep-all">
                           {post.excerpt}
                         </p>
                       </div>
+                      <ArrowUpRight className="hidden h-5 w-5 text-gray-600 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white md:block" aria-hidden="true" />
                     </Link>
                   ))}
                 </div>
               )}
             </div>
           ) : (
-            <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-16 text-center">
+            <div className="border-y border-white/10 px-6 py-16 text-center">
               <h2 className="text-2xl font-bold text-white">등록된 회사소식이 없습니다.</h2>
               <p className="mt-3 text-gray-400">새로운 소식이 생기면 이곳에 안내드리겠습니다.</p>
             </div>
