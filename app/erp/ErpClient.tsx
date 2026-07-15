@@ -2239,40 +2239,52 @@ function BillingPanel({
   }
 
   return (
-    <section className="space-y-5">
+    <section className="mx-auto max-w-[1680px] space-y-5">
       <div className="rounded-lg border border-white/10 bg-[#0b0d12]">
-        <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_520px] md:p-6">
-          <div>
+        <div className="grid gap-6 border-b border-white/10 p-5 md:p-6 2xl:grid-cols-[minmax(260px,0.7fr)_minmax(680px,1.3fr)] 2xl:items-center">
+          <div className="min-w-0">
             <p className="text-sm font-bold text-brand-blue">Billing</p>
             <h2 className="mt-2 text-2xl font-black tracking-tight text-white">청구관리</h2>
-            <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
+            <p className="mt-2 max-w-xl text-sm leading-6 text-gray-400 keep-all">
               매장별 청구, 입금, 세금계산서, 원천세/외주비 확인 상태만 간단히 체크합니다.
             </p>
             {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
           </div>
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-            <div className="rounded-lg border border-white/10 bg-black p-4">
+          <div className="grid min-w-0 grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
               <p className="text-xs font-bold text-gray-500">이번 달 청구액</p>
-              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalBillingAmount)}</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(totalBillingAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
               <p className="text-xs font-bold text-gray-500">입금 완료액</p>
-              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(completedAmount)}</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(completedAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
               <p className="text-xs font-bold text-gray-500">미입금액</p>
-              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalPendingAmount)}</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(totalPendingAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">확인필요</p>
-              <p className="mt-3 text-3xl font-black text-white">{checkNeededRecords.length}</p>
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">확인 필요</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{checkNeededRecords.length}</span>
+                <span className="text-xs font-bold text-gray-500">건</span>
+              </p>
             </div>
           </div>
         </div>
 
         <div className="p-5 md:p-6">
           <div className="mb-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-black p-3 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-2 md:justify-start">
               <button
                 type="button"
                 onClick={() => setAnchorDate(new Date(year, month - 1, 1))}
@@ -2281,7 +2293,7 @@ function BillingPanel({
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <p className="min-w-44 text-center text-lg font-black text-white">{formatCalendarRange('month', anchorDate)}</p>
+              <p className="min-w-36 text-center text-base font-black text-white sm:min-w-44 sm:text-lg">{formatCalendarRange('month', anchorDate)}</p>
               <button
                 type="button"
                 onClick={() => setAnchorDate(new Date(year, month + 1, 1))}
@@ -2297,51 +2309,53 @@ function BillingPanel({
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
-            <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
-              {weekDayLabels.map((day) => (
-                <div key={day} className="py-3">
-                  {day}
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-7">
-              {cells.map((cell, index) => {
-                const dateKey = cell ? formatDateKey(cell) : ''
-                const dayRecords = cell ? monthRecords.filter((record) => record.dueDate === dateKey) : []
-
-                return (
-                  <div
-                    key={`billing-${year}-${month}-${index}`}
-                    className={`min-h-[138px] border-b border-r border-white/10 p-2.5 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
-                  >
-                    {cell ? (
-                      <>
-                        <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
-                          {cell.getDate()}
-                        </p>
-                        <div className="mt-2 space-y-1.5">
-                          {dayRecords.slice(0, 4).map((record) => (
-                            <button
-                              key={record.id}
-                              type="button"
-                              onClick={() => updateBillingStatus(record.id, record.status === '입금완료' ? '청구완료' : '입금완료')}
-                              className={`w-full rounded border px-2 py-1.5 text-left text-[11px] font-black transition hover:brightness-125 ${billingStatusClass(record.status)}`}
-                              title="클릭하면 입금완료 상태를 토글합니다."
-                            >
-                              <span className="block truncate">{record.storeName}</span>
-                              <span className="mt-0.5 block text-[10px] opacity-80">{formatCurrency(record.amount)}원</span>
-                            </button>
-                          ))}
-                          {dayRecords.length > 4 ? (
-                            <p className="text-[11px] font-bold text-gray-500">+{dayRecords.length - 4}건</p>
-                          ) : null}
-                        </div>
-                      </>
-                    ) : null}
+          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+            <div className="min-w-[840px]">
+              <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
+                {weekDayLabels.map((day) => (
+                  <div key={day} className="py-3">
+                    {day}
                   </div>
-                )
-              })}
+                ))}
+              </div>
+              <div className="grid grid-cols-7">
+                {cells.map((cell, index) => {
+                  const dateKey = cell ? formatDateKey(cell) : ''
+                  const dayRecords = cell ? monthRecords.filter((record) => record.dueDate === dateKey) : []
+
+                  return (
+                    <div
+                      key={`billing-${year}-${month}-${index}`}
+                      className={`min-h-[124px] border-b border-r border-white/10 p-2.5 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
+                    >
+                      {cell ? (
+                        <>
+                          <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
+                            {cell.getDate()}
+                          </p>
+                          <div className="mt-2 space-y-1.5">
+                            {dayRecords.slice(0, 4).map((record) => (
+                              <button
+                                key={record.id}
+                                type="button"
+                                onClick={() => updateBillingStatus(record.id, record.status === '입금완료' ? '청구완료' : '입금완료')}
+                                className={`w-full rounded border px-2 py-1.5 text-left text-[11px] font-black transition hover:brightness-125 ${billingStatusClass(record.status)}`}
+                                title="클릭하면 입금완료 상태를 토글합니다."
+                              >
+                                <span className="block truncate">{record.storeName}</span>
+                                <span className="mt-0.5 block text-[10px] tabular-nums opacity-80">{formatCurrency(record.amount)}원</span>
+                              </button>
+                            ))}
+                            {dayRecords.length > 4 ? (
+                              <p className="text-[11px] font-bold text-gray-500">+{dayRecords.length - 4}건</p>
+                            ) : null}
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -2359,42 +2373,53 @@ function BillingPanel({
           {loading ? <p className="text-xs font-bold text-gray-500">불러오는 중</p> : null}
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-[1040px] w-full border-collapse text-left text-sm">
-            <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+          <table className="w-full min-w-[1220px] table-fixed border-collapse text-left text-sm">
+            <colgroup>
+              <col className="w-[220px]" />
+              <col className="w-[145px]" />
+              <col className="w-[145px]" />
+              <col className="w-[155px]" />
+              <col className="w-[155px]" />
+              <col className="w-[170px]" />
+              <col className="w-auto" />
+            </colgroup>
+            <thead className="bg-white/[0.04] text-xs text-gray-500">
               <tr>
-                <th className="px-5 py-4">매장명</th>
-                <th className="px-5 py-4">월</th>
-                <th className="px-5 py-4">청구금액</th>
-                <th className="px-5 py-4">입금상태</th>
-                <th className="px-5 py-4">세금계산서</th>
-                <th className="px-5 py-4">원천세/외주비</th>
-                <th className="px-5 py-4">메모</th>
+                <th className="px-4 py-4">매장명</th>
+                <th className="px-4 py-4">정산월</th>
+                <th className="px-4 py-4">청구금액</th>
+                <th className="px-4 py-4">입금상태</th>
+                <th className="px-4 py-4">세금계산서</th>
+                <th className="px-4 py-4">원천세/외주비</th>
+                <th className="px-4 py-4">메모</th>
               </tr>
             </thead>
             <tbody>
               {monthRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-5 py-10 text-center font-bold text-gray-500">
+                  <td colSpan={7} className="px-4 py-10 text-center font-bold text-gray-500">
                     이 달에 표시할 정산 일정이 없습니다.
                   </td>
                 </tr>
               ) : (
                 monthRecords.map((record) => (
-                  <tr key={record.id} className="border-t border-white/10">
-                    <td className="px-5 py-4">
-                      <p className="font-black text-white keep-all">{record.storeName}</p>
+                  <tr key={record.id} className="border-t border-white/10 transition hover:bg-white/[0.02]">
+                    <td className="px-4 py-4">
+                      <p className="truncate font-black text-white" title={record.storeName}>
+                        {record.storeName}
+                      </p>
                       <p className="mt-1 text-xs font-semibold text-gray-500">매월 {record.dueDay}일 기준</p>
                     </td>
-                    <td className="px-5 py-4">
-                      <p className="font-black text-white">{year}년 {month + 1}월</p>
-                      <p className="mt-1 text-xs font-semibold text-gray-500">{formatBillingDate(record.dueDate)} 정산</p>
+                    <td className="px-4 py-4">
+                      <p className="whitespace-nowrap font-black tabular-nums text-white">{year}년 {month + 1}월</p>
+                      <p className="mt-1 whitespace-nowrap text-xs font-semibold tabular-nums text-gray-500">{formatBillingDate(record.dueDate)}</p>
                     </td>
-                    <td className="px-5 py-4 font-black text-white">{formatCurrency(record.amount)}원</td>
-                    <td className="px-5 py-4">
+                    <td className="whitespace-nowrap px-4 py-4 font-black tabular-nums text-white">{formatCurrency(record.amount)}원</td>
+                    <td className="px-4 py-4">
                       <select
                         value={record.status}
                         onChange={(event) => updateBillingStatus(record.id, event.target.value as BillingStatus)}
-                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${billingStatusClass(record.status)}`}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${billingStatusClass(record.status)}`}
                       >
                         {billingStatusOptions.map((status) => (
                           <option key={status} value={status} className="bg-[#11141b] text-white">
@@ -2403,11 +2428,11 @@ function BillingPanel({
                         ))}
                       </select>
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4">
                       <select
                         value={record.taxInvoice}
                         onChange={(event) => updateTaxInvoiceStatus(record.id, event.target.value as TaxInvoiceStatus)}
-                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${taxInvoiceStatusClass(record.taxInvoice)}`}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${taxInvoiceStatusClass(record.taxInvoice)}`}
                       >
                         {taxInvoiceStatusOptions.map((status) => (
                           <option key={status} value={status} className="bg-[#11141b] text-white">
@@ -2416,11 +2441,11 @@ function BillingPanel({
                         ))}
                       </select>
                     </td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4">
                       <select
                         value={record.withholding}
                         onChange={(event) => updateWithholdingStatus(record.id, event.target.value as WithholdingStatus)}
-                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${withholdingStatusClass(record.withholding)}`}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${withholdingStatusClass(record.withholding)}`}
                       >
                         {withholdingStatusOptions.map((status) => (
                           <option key={status} value={status} className="bg-[#11141b] text-white">
@@ -2429,7 +2454,7 @@ function BillingPanel({
                         ))}
                       </select>
                     </td>
-                    <td className="min-w-72 px-5 py-4">
+                    <td className="px-4 py-4">
                       <input
                         value={record.memo}
                         onChange={(event) => updateSettlementMemo(record.id, event.target.value)}
