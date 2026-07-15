@@ -177,6 +177,8 @@ type CalendarContextMenuInput =
   | { kind: 'calendar'; calendar: CalendarEvent }
 
 type BillingStatus = '청구예정' | '청구완료' | '입금완료' | '연체' | '보류'
+type TaxInvoiceStatus = '발행전' | '발행완료' | '해당없음'
+type WithholdingStatus = '없음' | '확인필요' | '완료'
 
 type BillingRecord = {
   id: string
@@ -187,7 +189,8 @@ type BillingRecord = {
   dueDay: number
   status: BillingStatus
   owner: string
-  taxInvoice: string
+  taxInvoice: TaxInvoiceStatus
+  withholding: WithholdingStatus
   memo: string
 }
 
@@ -1073,8 +1076,9 @@ function buildBillingRecords(stores: StoreRecord[]) {
       dueDay,
       status: baseStatus,
       owner: store.owner || '권순현',
-      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행대기',
-      memo: '정기 운영료와 광고비를 분리해서 확인합니다.',
+      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행전',
+      withholding: index % 4 === 0 ? '확인필요' : '없음',
+      memo: index % 4 === 0 ? '촬영 외주비 확인' : '정기 운영료 확인',
     } satisfies BillingRecord
   })
 }
@@ -2144,6 +2148,8 @@ function CalendarPanel({
 }
 
 const billingStatusOptions: BillingStatus[] = ['청구예정', '청구완료', '입금완료', '연체', '보류']
+const taxInvoiceStatusOptions: TaxInvoiceStatus[] = ['발행전', '발행완료', '해당없음']
+const withholdingStatusOptions: WithholdingStatus[] = ['없음', '확인필요', '완료']
 
 function billingStatusClass(status: BillingStatus) {
   if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
@@ -2151,6 +2157,18 @@ function billingStatusClass(status: BillingStatus) {
   if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
   if (status === '보류') return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
   return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function taxInvoiceStatusClass(status: TaxInvoiceStatus) {
+  if (status === '발행완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '해당없음') return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+  return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function withholdingStatusClass(status: WithholdingStatus) {
+  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '확인필요') return 'border-red-400/35 bg-red-400/10 text-red-100'
+  return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
 }
 
 function BillingPanel({
@@ -2164,10 +2182,20 @@ function BillingPanel({
 }) {
   const [anchorDate, setAnchorDate] = useState(() => new Date())
   const [statusOverrides, setStatusOverrides] = useState<Record<string, BillingStatus>>({})
+  const [taxInvoiceOverrides, setTaxInvoiceOverrides] = useState<Record<string, TaxInvoiceStatus>>({})
+  const [withholdingOverrides, setWithholdingOverrides] = useState<Record<string, WithholdingStatus>>({})
+  const [memoOverrides, setMemoOverrides] = useState<Record<string, string>>({})
 
   const currentRecords = useMemo(
-    () => records.map((record) => ({ ...record, status: statusOverrides[record.id] || record.status })),
-    [records, statusOverrides]
+    () =>
+      records.map((record) => ({
+        ...record,
+        status: statusOverrides[record.id] || record.status,
+        taxInvoice: taxInvoiceOverrides[record.id] || record.taxInvoice,
+        withholding: withholdingOverrides[record.id] || record.withholding,
+        memo: memoOverrides[record.id] ?? record.memo,
+      })),
+    [records, memoOverrides, statusOverrides, taxInvoiceOverrides, withholdingOverrides]
   )
   const year = anchorDate.getFullYear()
   const month = anchorDate.getMonth()
@@ -2186,11 +2214,28 @@ function BillingPanel({
   const completedRecords = monthRecords.filter((record) => record.status === '입금완료')
   const overdueRecords = monthRecords.filter((record) => record.status === '연체')
   const pendingRecords = monthRecords.filter((record) => record.status !== '입금완료')
+  const totalBillingAmount = monthRecords.reduce((sum, record) => sum + record.amount, 0)
+  const completedAmount = completedRecords.reduce((sum, record) => sum + record.amount, 0)
   const totalPendingAmount = pendingRecords.reduce((sum, record) => sum + record.amount, 0)
+  const checkNeededRecords = monthRecords.filter(
+    (record) => record.taxInvoice === '발행전' || record.withholding === '확인필요'
+  )
   const weekDayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   const updateBillingStatus = (recordId: string, status: BillingStatus) => {
     setStatusOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  const updateTaxInvoiceStatus = (recordId: string, status: TaxInvoiceStatus) => {
+    setTaxInvoiceOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  const updateWithholdingStatus = (recordId: string, status: WithholdingStatus) => {
+    setWithholdingOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  const updateSettlementMemo = (recordId: string, memo: string) => {
+    setMemoOverrides((current) => ({ ...current, [recordId]: memo }))
   }
 
   return (
@@ -2201,26 +2246,26 @@ function BillingPanel({
             <p className="text-sm font-bold text-brand-blue">Billing</p>
             <h2 className="mt-2 text-2xl font-black tracking-tight text-white">청구관리</h2>
             <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
-              매장별 정산일을 캘린더로 먼저 확인하고, 아래 리스트에서 청구·입금·연체 상태를 처리합니다.
+              매장별 청구, 입금, 세금계산서, 원천세/외주비 확인 상태만 간단히 체크합니다.
             </p>
             {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
           </div>
           <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
             <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">이번 달 청구</p>
-              <p className="mt-3 text-3xl font-black text-white">{monthRecords.length}</p>
+              <p className="text-xs font-bold text-gray-500">이번 달 청구액</p>
+              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalBillingAmount)}</p>
             </div>
             <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">입금 완료</p>
-              <p className="mt-3 text-3xl font-black text-white">{completedRecords.length}</p>
-            </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">미수/연체</p>
-              <p className="mt-3 text-3xl font-black text-white">{overdueRecords.length}</p>
+              <p className="text-xs font-bold text-gray-500">입금 완료액</p>
+              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(completedAmount)}</p>
             </div>
             <div className="rounded-lg border border-white/10 bg-black p-4">
               <p className="text-xs font-bold text-gray-500">미입금액</p>
               <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalPendingAmount)}</p>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">확인필요</p>
+              <p className="mt-3 text-3xl font-black text-white">{checkNeededRecords.length}</p>
             </div>
           </div>
         </div>
@@ -2247,11 +2292,8 @@ function BillingPanel({
               </button>
             </div>
             <div className="flex flex-wrap gap-2 text-xs font-black">
-              {billingStatusOptions.map((status) => (
-                <span key={status} className={`rounded-full border px-2.5 py-1 ${billingStatusClass(status)}`}>
-                  {status}
-                </span>
-              ))}
+              <span className="rounded-full border border-white/10 px-2.5 py-1 text-gray-400">미수/연체 {overdueRecords.length}건</span>
+              <span className="rounded-full border border-white/10 px-2.5 py-1 text-gray-400">확인필요 {checkNeededRecords.length}건</span>
             </div>
           </div>
 
@@ -2309,9 +2351,9 @@ function BillingPanel({
         <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
           <div>
             <p className="text-sm font-bold text-brand-blue">Settlement List</p>
-            <h3 className="mt-2 text-xl font-black text-white">정산 처리 리스트</h3>
+            <h3 className="mt-2 text-xl font-black text-white">정산현황</h3>
             <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">
-              캘린더에서 날짜를 보고, 리스트에서 상태와 세금계산서 발행 여부를 확인합니다.
+              계산 기능은 빼고, 매장별 입금·증빙·외주비 확인 여부만 처리합니다.
             </p>
           </div>
           {loading ? <p className="text-xs font-bold text-gray-500">불러오는 중</p> : null}
@@ -2321,19 +2363,18 @@ function BillingPanel({
             <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
               <tr>
                 <th className="px-5 py-4">매장명</th>
-                <th className="px-5 py-4">상품</th>
-                <th className="px-5 py-4">정산일</th>
-                <th className="px-5 py-4">금액</th>
-                <th className="px-5 py-4">상태</th>
+                <th className="px-5 py-4">월</th>
+                <th className="px-5 py-4">청구금액</th>
+                <th className="px-5 py-4">입금상태</th>
                 <th className="px-5 py-4">세금계산서</th>
-                <th className="px-5 py-4">담당</th>
+                <th className="px-5 py-4">원천세/외주비</th>
                 <th className="px-5 py-4">메모</th>
               </tr>
             </thead>
             <tbody>
               {monthRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-5 py-10 text-center font-bold text-gray-500">
+                  <td colSpan={7} className="px-5 py-10 text-center font-bold text-gray-500">
                     이 달에 표시할 정산 일정이 없습니다.
                   </td>
                 </tr>
@@ -2344,8 +2385,10 @@ function BillingPanel({
                       <p className="font-black text-white keep-all">{record.storeName}</p>
                       <p className="mt-1 text-xs font-semibold text-gray-500">매월 {record.dueDay}일 기준</p>
                     </td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.product}</td>
-                    <td className="px-5 py-4 font-black text-white">{formatBillingDate(record.dueDate)}</td>
+                    <td className="px-5 py-4">
+                      <p className="font-black text-white">{year}년 {month + 1}월</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">{formatBillingDate(record.dueDate)} 정산</p>
+                    </td>
                     <td className="px-5 py-4 font-black text-white">{formatCurrency(record.amount)}원</td>
                     <td className="px-5 py-4">
                       <select
@@ -2360,9 +2403,40 @@ function BillingPanel({
                         ))}
                       </select>
                     </td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.taxInvoice}</td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.owner}</td>
-                    <td className="max-w-sm px-5 py-4 font-semibold leading-6 text-gray-500 keep-all">{record.memo}</td>
+                    <td className="px-5 py-4">
+                      <select
+                        value={record.taxInvoice}
+                        onChange={(event) => updateTaxInvoiceStatus(record.id, event.target.value as TaxInvoiceStatus)}
+                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${taxInvoiceStatusClass(record.taxInvoice)}`}
+                      >
+                        {taxInvoiceStatusOptions.map((status) => (
+                          <option key={status} value={status} className="bg-[#11141b] text-white">
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-5 py-4">
+                      <select
+                        value={record.withholding}
+                        onChange={(event) => updateWithholdingStatus(record.id, event.target.value as WithholdingStatus)}
+                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${withholdingStatusClass(record.withholding)}`}
+                      >
+                        {withholdingStatusOptions.map((status) => (
+                          <option key={status} value={status} className="bg-[#11141b] text-white">
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="min-w-72 px-5 py-4">
+                      <input
+                        value={record.memo}
+                        onChange={(event) => updateSettlementMemo(record.id, event.target.value)}
+                        className="h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-gray-200 outline-none transition focus:border-brand-blue/50"
+                        placeholder="확인 메모"
+                      />
+                    </td>
                   </tr>
                 ))
               )}
