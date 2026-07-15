@@ -6,6 +6,7 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
@@ -3710,44 +3711,53 @@ function BillingWorkflowPanel({
                       <p className="mt-1 text-xs font-semibold text-gray-500">입금 기준 매월 {record.dueDay}일</p>
                     </td>
                     <td className="px-4 py-4">
-                      <select
-                        value={record.paymentStatus}
-                        onChange={(event) => updatePaymentStatus(record, event.target.value as PaymentStatus)}
-                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${paymentStatusClass(record.paymentStatus)}`}
-                      >
-                        {paymentStatusOptions.map((status) => (
-                          <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={record.paymentStatus}
+                          onChange={(event) => updatePaymentStatus(record, event.target.value as PaymentStatus)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${paymentStatusClass(record.paymentStatus)}`}
+                        >
+                          {paymentStatusOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
                     </td>
                     <td className="px-4 py-4">
-                      <select
-                        value={record.workStatus}
-                        onChange={(event) => updateWorkStatus(record, event.target.value as WorkStatus)}
-                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${workStatusClass(record.workStatus)}`}
-                      >
-                        {workStatusOptions.map((status) => (
-                          <option
-                            key={status}
-                            value={status}
-                            disabled={record.paymentStatus !== '입금완료' && (status === '진행중' || status === '작업완료')}
-                            className="bg-[#11141b] text-white"
-                          >
-                            {status}
-                          </option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={record.workStatus}
+                          onChange={(event) => updateWorkStatus(record, event.target.value as WorkStatus)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${workStatusClass(record.workStatus)}`}
+                        >
+                          {workStatusOptions.map((status) => (
+                            <option
+                              key={status}
+                              value={status}
+                              disabled={record.paymentStatus !== '입금완료' && (status === '진행중' || status === '작업완료')}
+                              className="bg-[#11141b] text-white"
+                            >
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
                     </td>
                     <td className="px-4 py-4">
-                      <select
-                        value={record.workRecognition}
-                        onChange={(event) => updateWorkRecognition(record, event.target.value as WorkRecognition)}
-                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${workRecognitionClass(record.workRecognition)}`}
-                      >
-                        {workRecognitionOptions.map((status) => (
-                          <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={record.workRecognition}
+                          onChange={(event) => updateWorkRecognition(record, event.target.value as WorkRecognition)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${workRecognitionClass(record.workRecognition)}`}
+                        >
+                          {workRecognitionOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
                     </td>
                     <td className="px-4 py-4">
                       <div className="relative">
@@ -3763,15 +3773,18 @@ function BillingWorkflowPanel({
                       </div>
                     </td>
                     <td className="px-4 py-4">
-                      <select
-                        value={record.settlementStatus}
-                        onChange={(event) => updateWorkflow(record.id, { settlementStatus: event.target.value as TeamSettlementStatus })}
-                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${teamSettlementStatusClass(record.settlementStatus)}`}
-                      >
-                        {teamSettlementStatusOptions.map((status) => (
-                          <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
-                        ))}
-                      </select>
+                      <div className="relative">
+                        <select
+                          value={record.settlementStatus}
+                          onChange={(event) => updateWorkflow(record.id, { settlementStatus: event.target.value as TeamSettlementStatus })}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${teamSettlementStatusClass(record.settlementStatus)}`}
+                        >
+                          {teamSettlementStatusOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
                     </td>
                     <td className="px-4 py-4">
                       <input
