@@ -19,6 +19,7 @@ const Footer: React.FC = () => {
             <a href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</a>
             <a href="/case-studies" className="text-sm text-gray-400 hover:text-white transition-colors">성공사례</a>
             <a href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</a>
+            <a href="/news" className="text-sm text-gray-400 hover:text-white transition-colors">회사소식</a>
             <a href="https://warm-hip-fe9.notion.site/2e9753ebc01380e8aa5dca28b76683eb" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
             <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">이용약관</a>
             <a href="https://www.youtube.com/@bizik_insight" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-500 transition-colors" aria-label="YouTube">
