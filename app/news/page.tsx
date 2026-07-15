@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import Footer from '@/components/Footer';
 import { NEWS_POSTS } from '@/constants/news';
 
@@ -69,8 +70,22 @@ export default function NewsPage() {
             <div className="space-y-8">
               <Link
                 href={`/news/${featuredPost.id}`}
-                className="group grid gap-8 rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-brand-blue/50 md:grid-cols-[0.7fr_1.3fr] md:p-8"
+                className="group grid gap-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-brand-blue/50 md:grid-cols-[1.1fr_0.9fr] md:p-8"
               >
+                {featuredPost.imageUrls?.[0] && (
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-white/10 bg-gray-900">
+                    <Image
+                      src={featuredPost.imageUrls[0]}
+                      alt={featuredPost.imageAlt ?? featuredPost.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 55vw"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
+                  </div>
+                )}
+
                 <div className="flex flex-col justify-between gap-8">
                   <div>
                     <span className="inline-flex rounded-full border border-brand-blue/20 bg-brand-blue/15 px-3 py-1 text-xs font-semibold text-brand-blue">
@@ -101,22 +116,35 @@ export default function NewsPage() {
                     <Link
                       key={post.id}
                       href={`/news/${post.id}`}
-                      className="group rounded-xl border border-white/10 bg-gray-900/40 p-6 transition-colors hover:border-brand-blue/50"
+                      className="group overflow-hidden rounded-xl border border-white/10 bg-gray-900/40 transition-colors hover:border-brand-blue/50"
                     >
-                      <div className="mb-8 flex items-center justify-between gap-4">
-                        <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-gray-300">
-                          {post.category}
-                        </span>
-                        <time dateTime={formatDateToISO(post.date)} className="text-xs text-gray-500">
-                          {post.date}
-                        </time>
+                      {post.imageUrls?.[0] && (
+                        <div className="relative aspect-video overflow-hidden bg-gray-950">
+                          <Image
+                            src={post.imageUrls[0]}
+                            alt={post.imageAlt ?? post.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      )}
+                      <div className="p-6">
+                        <div className="mb-8 flex items-center justify-between gap-4">
+                          <span className="rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-gray-300">
+                            {post.category}
+                          </span>
+                          <time dateTime={formatDateToISO(post.date)} className="text-xs text-gray-500">
+                            {post.date}
+                          </time>
+                        </div>
+                        <h2 className="text-xl font-bold leading-snug text-white keep-all group-hover:text-brand-blue transition-colors">
+                          {post.title}
+                        </h2>
+                        <p className="mt-4 text-sm leading-relaxed text-gray-400 keep-all">
+                          {post.excerpt}
+                        </p>
                       </div>
-                      <h2 className="text-xl font-bold leading-snug text-white keep-all group-hover:text-brand-blue transition-colors">
-                        {post.title}
-                      </h2>
-                      <p className="mt-4 text-sm leading-relaxed text-gray-400 keep-all">
-                        {post.excerpt}
-                      </p>
                     </Link>
                   ))}
                 </div>

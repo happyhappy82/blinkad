@@ -4,10 +4,33 @@ export interface NewsPost {
   excerpt: string;
   date: string;
   category: string;
+  imageUrls?: string[];
+  imageAlt?: string;
   content: string;
 }
 
 export const NEWS_POSTS: NewsPost[] = [
+  {
+    id: 'pnj-google-marketing-seminar',
+    title: '주식회사 피엔제이 주요 지점 대표 대상 구글마케팅 설명회 진행',
+    excerpt: '블링크애드는 주식회사 피엔제이의 박준뷰티랩, 에코쟈뎅 주요 지점 대표님들을 대상으로 구글마케팅 설명회를 진행했습니다.',
+    date: '2026.07.15',
+    category: '설명회',
+    imageUrls: [
+      '/news/pnj-google-marketing-seminar-1.jpg',
+      '/news/pnj-google-marketing-seminar-2.jpg',
+    ],
+    imageAlt: '주식회사 피엔제이 주요 지점 대표 대상 구글마케팅 설명회 현장',
+    content: `
+      <p>블링크애드는 주식회사 피엔제이의 박준뷰티랩, 에코쟈뎅 주요 지점 대표님들을 대상으로 구글마케팅 설명회를 진행했습니다.</p>
+      <p>이번 설명회는 매장과 브랜드가 구글 검색, 구글지도, Google Business Profile을 통해 고객에게 발견되는 구조를 이해하고, 실제 지점 운영에 적용할 수 있는 방향을 공유하기 위해 마련되었습니다.</p>
+      <h2>구글에서 발견되고 선택되는 매장 구조</h2>
+      <p>설명회에서는 고객이 매장을 검색하고 비교한 뒤 방문을 결정하는 과정에서 구글 채널이 어떤 역할을 하는지 다뤘습니다. 특히 외국인 고객 유입, 지역 검색 노출, 리뷰와 사진 관리, 지점별 프로필 최적화, AI 검색 환경에서의 브랜드 신뢰도 구축을 중심으로 설명했습니다.</p>
+      <p>블링크애드는 각 지점의 업종과 상권 특성을 고려해 구글마케팅을 어떻게 적용할 수 있는지 함께 논의했습니다. 현장에서는 구글지도 노출, 리뷰 관리, 검색 키워드, 외국인 고객 유입 방식에 대한 질의응답도 이어졌습니다.</p>
+      <h2>현장 중심의 구글마케팅 지원</h2>
+      <p>블링크애드는 앞으로도 매장과 브랜드가 검색 결과와 지도에서 더 잘 발견되고 선택될 수 있도록, 현장 중심의 구글마케팅 전략과 운영 지원을 이어가겠습니다.</p>
+    `,
+  },
   {
     id: 'blinkad-news-board-open',
     title: '블링크애드 회사소식 게시판을 오픈했습니다',

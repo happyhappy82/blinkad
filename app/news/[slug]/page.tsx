@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import Footer from '@/components/Footer';
 import { NEWS_POSTS } from '@/constants/news';
@@ -15,6 +16,14 @@ interface Props {
 
 function formatDateToISO(dateStr: string): string {
   return dateStr.replace(/\./g, '-');
+}
+
+function toAbsoluteUrl(url: string): string {
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  return `${SITE_URL}${url.startsWith('/') ? url : `/${url}`}`;
 }
 
 export async function generateStaticParams() {
@@ -34,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const canonicalUrl = `${NEWS_BASE_URL}/${post.id}`;
+  const leadImageUrl = post.imageUrls?.[0] ? toAbsoluteUrl(post.imageUrls[0]) : `${SITE_URL}/og-image.png`;
 
   return {
     title: `${post.title} | ${SITE_NAME} 회사소식`,
@@ -48,9 +58,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: SITE_NAME,
       images: [
         {
-          url: `${SITE_URL}/og-image.png`,
+          url: leadImageUrl,
           width: 1200,
-          height: 734,
+          height: 630,
         },
       ],
       locale: 'ko_KR',
@@ -60,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: `${post.title} | ${SITE_NAME} 회사소식`,
       description: post.excerpt,
-      images: [`${SITE_URL}/og-image.png`],
+      images: [leadImageUrl],
     },
   };
 }
@@ -75,12 +85,14 @@ export default async function NewsPostPage({ params }: Props) {
 
   const isoDate = formatDateToISO(post.date);
   const canonicalUrl = `${NEWS_BASE_URL}/${post.id}`;
+  const leadImageUrl = post.imageUrls?.[0] ? toAbsoluteUrl(post.imageUrls[0]) : '';
 
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: post.title,
     description: post.excerpt,
+    ...(leadImageUrl && { image: leadImageUrl }),
     datePublished: isoDate,
     dateModified: isoDate,
     author: {
@@ -197,6 +209,26 @@ export default async function NewsPostPage({ params }: Props) {
               </div>
             </div>
           </header>
+
+          {post.imageUrls && post.imageUrls.length > 0 && (
+            <div className="mb-12 grid gap-4 md:grid-cols-2">
+              {post.imageUrls.map((imageUrl, index) => (
+                <div
+                  key={imageUrl}
+                  className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-gray-900"
+                >
+                  <Image
+                    src={imageUrl}
+                    alt={`${post.imageAlt ?? post.title} ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
 
           <div
             className="prose prose-invert prose-lg max-w-none
