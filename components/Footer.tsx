@@ -41,6 +41,12 @@ const Footer: React.FC = () => {
           <div className="text-xs text-gray-500 space-y-1 mb-6">
             <p>블링크애드 | 대표: 권순현 | 사업자등록번호: 871-01-02770</p>
             <p>주소: 경기 의왕시 포일로 39</p>
+            <p>
+              이메일:{' '}
+              <a href="mailto:blinkad@blinkad.kr" className="hover:text-white transition-colors">
+                blinkad@blinkad.kr
+              </a>
+            </p>
           </div>
 
           {/* 저작권 */}
