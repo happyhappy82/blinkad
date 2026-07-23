@@ -19,6 +19,11 @@ The daily report is sent with Telegram `sendRichMessage` and HTML tables.
 It includes impressions, clicks, cost, average CPC, conversions, week-over-week changes, store budget status, selected high-variance campaigns, and store-level insights.
 CPC alert-only messages still use regular text messages.
 
+## Excluded stores
+
+- `웰믹스`: excluded from daily summaries, totals, high-variance campaign sections, store insights, and CPC alert-only messages.
+- The exclusion affects Telegram report output only. It does not pause, edit, or delete Google Ads campaigns.
+
 ## Secrets
 
 Do not commit Telegram credentials.
@@ -96,3 +101,4 @@ Local macOS fallback:
 - Daily reports use Telegram rich tables. If `sendRichMessage` fails for a chat, the script falls back to regular text for that chat only.
 - Regular text fallback messages are split into multiple chunks when the report exceeds Telegram's message length limit.
 - Campaigns included in the report are campaigns that are currently `ENABLED` or had impressions/clicks/cost in the current or previous 7-day period.
+- Campaigns belonging to an excluded store are removed before report totals and alert sections are calculated.

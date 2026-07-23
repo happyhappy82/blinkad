@@ -15,6 +15,7 @@ const TELEGRAM_CHAT_KEYCHAIN_SERVICE =
   process.env.GOOGLE_ADS_TELEGRAM_CHAT_KEYCHAIN_SERVICE || 'blinkad-google-ads-telegram-chat-id'
 const TELEGRAM_KEYCHAIN_ACCOUNT = process.env.GOOGLE_ADS_TELEGRAM_KEYCHAIN_ACCOUNT || 'BA_Ads_alert_bot'
 const CAMPAIGN_NUMBER_EMOJIS = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']
+const EXCLUDED_REPORT_STORES = new Set(['웰믹스'])
 
 const args = new Set(process.argv.slice(2))
 const mode = args.has('--discover-chat-id')
@@ -437,6 +438,7 @@ async function fetchCampaignReport() {
   }
 
   const reportCampaigns = Array.from(campaigns.values())
+    .filter((campaign) => !EXCLUDED_REPORT_STORES.has(storeNameFromCampaign(campaign)))
     .filter((campaign) => {
       const hasCurrentData =
         campaign.current.impressions || campaign.current.clicks || campaign.current.costMicros

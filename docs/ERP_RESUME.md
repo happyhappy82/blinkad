@@ -1,6 +1,6 @@
 # BlinkAd ERP Resume
 
-Updated: 2026-06-16 11:28 KST
+Updated: 2026-07-23 KST
 
 ## 작업공간
 
@@ -55,6 +55,9 @@ BlinkAd ERP는 영업, 미팅, 견적, 계약, 매장 운영, 리포트, 청구 
 
 ## 최근 완료
 
+- Google Ads Telegram 알림에서 `웰믹스` 매장 성과를 제외했습니다.
+  - 일일 매장 요약, 전체 합계, 주의 캠페인, 매장별 인사이트, CPC 변화 단독 알림에서 모두 제외합니다.
+  - Google Ads 캠페인 자체의 상태·예산·데이터는 변경하지 않습니다.
 - Google Ads Telegram 알림 스크립트를 추가했습니다.
   - 스크립트: `scripts/google-ads-telegram-alert.mjs`
   - 문서: `docs/google-ads-telegram-alerts.md`
