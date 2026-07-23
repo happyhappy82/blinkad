@@ -19,18 +19,18 @@ const SITE_URL = 'https://www.blinkad.kr'
 const PAGE_URL = `${SITE_URL}/blog-marketing`
 
 export const metadata: Metadata = {
-  title: '브랜드 블로그 운영 대행 | 블로그 마케팅·콘텐츠 자산 구축 - BlinkAd',
+  title: '브랜드 블로그 운영 대행 | 블로그 마케팅·콘텐츠 자산 구축 - BlinkAds',
   description:
     '블로그 마케팅 전문 대행사 블링크애드. 검색 의도 기반 주제 기획, 통계·출처를 갖춘 콘텐츠 발행, 내부링크 구조 관리로 검색과 AI가 인용하는 브랜드 블로그를 운영합니다. 식당·병원·로컬 브랜드 무료 진단.',
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: '브랜드 블로그 운영 대행 | BlinkAd',
+    title: '브랜드 블로그 운영 대행 | BlinkAds',
     description:
       '검색 의도 기반 기획과 통계·출처를 갖춘 콘텐츠로, 검색과 AI가 인용하는 브랜드 블로그를 운영합니다.',
     url: PAGE_URL,
-    siteName: 'BlinkAd',
+    siteName: 'BlinkAds',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '브랜드 블로그 운영 대행 | BlinkAd',
+    title: '브랜드 블로그 운영 대행 | BlinkAds',
     description: '검색과 AI가 인용하는 브랜드 블로그를 운영합니다.',
     images: [`${SITE_URL}/og-image.png`],
   },
@@ -181,7 +181,7 @@ export default function BlogMarketingPage() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'BlinkAd',
+      name: 'BlinkAds',
       alternateName: ['블링크애드', 'Blink Ad'],
       url: SITE_URL,
       logo: `${SITE_URL}/logo-white-nav.png`,

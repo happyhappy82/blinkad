@@ -53,7 +53,7 @@ const Hero: React.FC = () => {
           frameBorder='0'
           width='100%'
           height='100%'
-          title="BlinkAd 3D Lightbulb"
+          title="BlinkAds 3D Lightbulb"
           className="w-full h-full scale-[1.08] sm:scale-100"
         />
         <div className="absolute inset-0 z-[5] bg-black/55 pointer-events-none" />

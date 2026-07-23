@@ -5,16 +5,16 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO 운영 - BlinkAd',
+  title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO 운영 - BlinkAds',
   description: '블링크애드는 외국인 고객 유입을 위해 Google 비즈니스 프로필, 구글맵 리뷰, 브랜드 블로그, 웹사이트 콘텐츠, AI 검색 최적화를 연결해 운영합니다.',
   alternates: {
     canonical: 'https://www.blinkad.kr/services',
   },
   openGraph: {
-    title: '외국인마케팅 서비스 | BlinkAd',
+    title: '외국인마케팅 서비스 | BlinkAds',
     description: 'Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해 외국인 고객 유입 구조를 만듭니다.',
     url: 'https://www.blinkad.kr/services',
-    siteName: 'BlinkAd',
+    siteName: 'BlinkAds',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '외국인마케팅 서비스 | BlinkAd',
+    title: '외국인마케팅 서비스 | BlinkAds',
     description: 'Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해 외국인 고객 유입 구조를 만듭니다.',
     images: ['https://www.blinkad.kr/og-image.png'],
   },

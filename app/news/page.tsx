@@ -10,16 +10,16 @@ const SITE_URL = 'https://www.blinkad.kr';
 const NEWS_URL = `${SITE_URL}/news`;
 
 export const metadata: Metadata = {
-  title: '회사소식 | BlinkAd',
+  title: '회사소식 | BlinkAds',
   description: '블링크애드의 서비스 업데이트, 운영 공지, 브랜드 소식을 전하는 회사소식 게시판입니다.',
   alternates: {
     canonical: NEWS_URL,
   },
   openGraph: {
-    title: '회사소식 | BlinkAd',
+    title: '회사소식 | BlinkAds',
     description: '블링크애드의 서비스 업데이트, 운영 공지, 브랜드 소식을 전하는 회사소식 게시판입니다.',
     url: NEWS_URL,
-    siteName: 'BlinkAd',
+    siteName: 'BlinkAds',
     locale: 'ko_KR',
     type: 'website',
   },
@@ -111,7 +111,7 @@ export default function NewsPage() {
                           </div>
                         ) : (
                           <div className="flex aspect-[4/3] items-center justify-center rounded-md bg-white/[0.04] text-xs font-semibold text-gray-600">
-                            BlinkAd
+                            BlinkAds
                           </div>
                         )}
                       </div>

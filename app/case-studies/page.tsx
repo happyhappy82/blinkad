@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
-  title: '성공사례 - BlinkAd',
+  title: '성공사례 - BlinkAds',
   description: '블링크애드의 실제 Google 비즈니스 프로필 운영 성과와 검색 노출, 조회수, 상호작용 데이터를 확인하세요.',
 }
 

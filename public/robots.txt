@@ -1,4 +1,4 @@
-# Robots.txt for BlinkAd
+# Robots.txt for BlinkAds
 # https://www.blinkad.kr
 
 User-agent: *

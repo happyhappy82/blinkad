@@ -61,7 +61,7 @@ const Blog: React.FC<BlogProps> = ({ onPostClick, onViewAllClick }) => {
                   <div className="text-sm text-gray-400 flex items-center gap-2">
                     <span>{post.date}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
-                    <span>BlinkAd Team</span>
+                    <span>BlinkAds Team</span>
                   </div>
                   <h3 className="text-xl font-bold text-white group-hover:text-brand-blue transition-colors keep-all leading-tight">
                     {post.title}

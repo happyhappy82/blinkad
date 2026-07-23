@@ -21,18 +21,18 @@ const SITE_URL = 'https://www.blinkad.kr'
 const PAGE_URL = `${SITE_URL}/google-map-marketing`
 
 export const metadata: Metadata = {
-  title: '구글맵 마케팅 대행 | 구글 지도 상위노출·리뷰·프로필 관리 - BlinkAd',
+  title: '구글맵 마케팅 대행 | 구글 지도 상위노출·리뷰·프로필 관리 - BlinkAds',
   description:
     '구글맵 마케팅 전문 대행사 블링크애드. Google 비즈니스 프로필 정비, 구글 지도 상위노출, 리뷰 운영, 사진·게시물 관리로 지도에서 발견되고 방문으로 이어지는 구조를 만듭니다. 식당, 카페, 병원, 뷰티, 로컬 매장 무료 진단.',
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: '구글맵 마케팅 대행 | BlinkAd',
+    title: '구글맵 마케팅 대행 | BlinkAds',
     description:
       'Google 비즈니스 프로필, 구글 지도 상위노출, 리뷰 운영을 연결해 지도에서 발견되고 방문으로 이어지는 구조를 만듭니다.',
     url: PAGE_URL,
-    siteName: 'BlinkAd',
+    siteName: 'BlinkAds',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '구글맵 마케팅 대행 | BlinkAd',
+    title: '구글맵 마케팅 대행 | BlinkAds',
     description:
       '구글 지도 상위노출, 리뷰, 프로필 관리로 지도에서 발견되고 방문으로 이어지는 구조를 만듭니다.',
     images: [`${SITE_URL}/og-image.png`],
@@ -208,7 +208,7 @@ export default function GoogleMapMarketingPage() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'BlinkAd',
+      name: 'BlinkAds',
       alternateName: ['블링크애드', 'Blink Ad'],
       url: SITE_URL,
       logo: `${SITE_URL}/logo-white-nav.png`,
