@@ -22,18 +22,18 @@ const SITE_URL = 'https://www.blinkad.kr'
 const PAGE_URL = `${SITE_URL}/foreign-marketing`
 
 export const metadata: Metadata = {
-  title: '외국인마케팅 대행사 | 구글맵·리뷰·다국어 콘텐츠 외국인 고객 유입 - BlinkAds',
+  title: '외국인마케팅 대행사 | 구글맵·리뷰·다국어 콘텐츠 외국인 고객 유입 - BlinkAd',
   description:
     '블링크애드는 Google 비즈니스 프로필, 구글맵 리뷰, 다국어 콘텐츠, 웹사이트·블로그를 연결해 외국인 고객 유입을 설계하는 외국인마케팅 대행사입니다. 식당, 카페, 병원, 뷰티, 로컬 브랜드의 검색 노출과 문의 전환을 진단합니다.',
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: '외국인마케팅 대행사 | BlinkAds',
+    title: '외국인마케팅 대행사 | BlinkAd',
     description:
       '구글맵, 리뷰, 다국어 콘텐츠, 웹사이트·블로그를 연결해 외국인 고객이 검색하고 비교하고 문의하는 흐름을 설계합니다.',
     url: PAGE_URL,
-    siteName: 'BlinkAds',
+    siteName: 'BlinkAd',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '외국인마케팅 대행사 | BlinkAds',
+    title: '외국인마케팅 대행사 | BlinkAd',
     description:
       '구글맵, 리뷰, 다국어 콘텐츠, 웹사이트·블로그를 연결해 외국인 고객 유입과 문의 전환을 설계합니다.',
     images: [`${SITE_URL}/og-image.png`],
@@ -177,7 +177,7 @@ export default function ForeignMarketingPage() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'BlinkAds',
+      name: 'BlinkAd',
       alternateName: ['블링크애드', 'Blink Ad'],
       url: SITE_URL,
       logo: `${SITE_URL}/logo-white-nav.png`,
@@ -371,7 +371,7 @@ export default function ForeignMarketingPage() {
           <div className="mx-auto max-w-7xl">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
-                <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand-blue">BlinkAds Method</p>
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-brand-blue">BlinkAd Method</p>
                 <h2 className="mt-4 text-3xl font-black tracking-tight text-white md:text-5xl keep-all">
                   구글맵, 리뷰, 콘텐츠, AI 검색까지 하나의 흐름으로 연결합니다.
                 </h2>

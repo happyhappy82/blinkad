@@ -20,18 +20,18 @@ const SITE_URL = 'https://www.blinkad.kr'
 const PAGE_URL = `${SITE_URL}/aeo`
 
 export const metadata: Metadata = {
-  title: 'AI 검색 최적화(AEO·GEO) 대행 | ChatGPT·Gemini에 인용되는 브랜드 - BlinkAds',
+  title: 'AI 검색 최적화(AEO·GEO) 대행 | ChatGPT·Gemini에 인용되는 브랜드 - BlinkAd',
   description:
     'AEO(답변 엔진 최적화)·GEO 전문 대행사 블링크애드. ChatGPT, Gemini, Perplexity에 질문을 직접 던져 실측하고, 웹사이트·스키마·콘텐츠·리뷰를 정비해 AI가 추천하는 브랜드를 만듭니다. AI 가시성 무료 진단 제공.',
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: 'AI 검색 최적화(AEO·GEO) 대행 | BlinkAds',
+    title: 'AI 검색 최적화(AEO·GEO) 대행 | BlinkAd',
     description:
       'ChatGPT, Gemini, Perplexity에 질문을 직접 던져 실측하고, AI가 추천하는 브랜드 구조를 만듭니다.',
     url: PAGE_URL,
-    siteName: 'BlinkAds',
+    siteName: 'BlinkAd',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI 검색 최적화(AEO·GEO) 대행 | BlinkAds',
+    title: 'AI 검색 최적화(AEO·GEO) 대행 | BlinkAd',
     description: 'AI에게 질문을 직접 던져 실측하고, AI가 추천하는 브랜드 구조를 만듭니다.',
     images: [`${SITE_URL}/og-image.png`],
   },
@@ -206,7 +206,7 @@ export default function AeoPage() {
     },
     provider: {
       '@type': 'Organization',
-      name: 'BlinkAds',
+      name: 'BlinkAd',
       alternateName: ['블링크애드', 'Blink Ad'],
       url: SITE_URL,
       logo: `${SITE_URL}/logo-white-nav.png`,

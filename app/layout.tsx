@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Tracker from '@/components/Tracker'
 
-const SITE_NAME = 'BlinkAds'
+const SITE_NAME = 'BlinkAd'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.blinkad.kr'),

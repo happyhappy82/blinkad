@@ -23,7 +23,7 @@ export default function DiagnosisContactPage() {
 
       <section className="relative min-h-screen flex items-center justify-center px-5 py-20">
         <div className="w-full max-w-4xl rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-950/90 via-gray-950/85 to-purple-950/40 px-6 py-14 md:px-14 md:py-20 text-center shadow-2xl shadow-brand-blue/10">
-          <p className="text-brand-blue text-sm font-semibold tracking-[0.28em] uppercase mb-5">BlinkAds Diagnosis</p>
+          <p className="text-brand-blue text-sm font-semibold tracking-[0.28em] uppercase mb-5">BlinkAd Diagnosis</p>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight keep-all">
             우리 업장도<br className="md:hidden" /> 상위노출 가능할까?
           </h1>

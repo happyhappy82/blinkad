@@ -59,7 +59,7 @@ const BlogPage: React.FC = () => {
                   <div className="text-sm text-gray-400 flex items-center gap-2">
                     <span>{post.date}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
-                    <span>BlinkAds Team</span>
+                    <span>BlinkAd Team</span>
                   </div>
                   <h2 className="text-2xl font-bold text-white group-hover:text-brand-blue transition-colors keep-all leading-snug">
                     {post.title}
@@ -107,10 +107,10 @@ const BlogPage: React.FC = () => {
       <footer className="border-t border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <a href="/" className="inline-block mb-4 hover:opacity-80 transition-opacity">
-            <img src="/logo-white-nav.png" alt="BlinkAds" className="h-8 w-auto" />
+            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto" />
           </a>
           <p className="text-gray-400 text-sm">AEO·GEO Marketing Agency</p>
-          <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} BlinkAds. All rights reserved.</p>
+          <p className="text-gray-500 text-xs mt-4">© {new Date().getFullYear()} BlinkAd. All rights reserved.</p>
         </div>
       </footer>
     </div>

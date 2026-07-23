@@ -9,7 +9,7 @@ import { NEWS_POSTS } from '@/constants/news';
 
 const SITE_URL = 'https://www.blinkad.kr';
 const NEWS_BASE_URL = `${SITE_URL}/news`;
-const SITE_NAME = 'BlinkAds';
+const SITE_NAME = 'BlinkAd';
 
 interface Props {
   params: Promise<{ slug: string }>;

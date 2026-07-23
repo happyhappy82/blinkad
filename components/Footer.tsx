@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         {/* 상단 영역 */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
           <div className="mb-6 md:mb-0 md:max-w-xl">
-            <img src="/logo-white-nav.png" alt="BlinkAds" className="h-8 w-auto mb-4" />
+            <img src="/logo-white-nav.png" alt="BlinkAd" className="h-8 w-auto mb-4" />
             <p className="text-gray-400 text-sm leading-relaxed keep-all">
               구글 마케팅 전문 블링크애드입니다. 외국인마케팅, SEO, AEO를 중심으로 브랜드가 검색 결과와 AI 답변에서 더 잘 발견되고 선택되도록 돕습니다. 검색 구조, 마케팅 인사이트, 브랜딩을 함께 설계해 노출이 아닌 전환 중심의 성장을 만듭니다.
             </p>
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
 
           {/* 저작권 */}
           <p className="text-xs text-gray-600">
-            &copy; {new Date().getFullYear()} BlinkAds. All rights reserved.
+            &copy; {new Date().getFullYear()} BlinkAd. All rights reserved.
           </p>
         </div>
       </div>

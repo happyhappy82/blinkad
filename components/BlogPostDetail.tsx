@@ -49,7 +49,7 @@ const BlogPostDetail: React.FC<BlogPostDetailProps> = ({ post, onBack, onNavigat
               </div>
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
-                <span>BlinkAds Editorial Team</span>
+                <span>BlinkAd Editorial Team</span>
               </div>
             </div>
           </div>

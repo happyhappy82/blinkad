@@ -23,7 +23,7 @@ const BlogArticlePreview = () => (
           BA
         </div>
         <div>
-          <p className="text-base font-bold text-white md:text-lg">BlinkAds Team</p>
+          <p className="text-base font-bold text-white md:text-lg">BlinkAd Team</p>
           <p className="text-sm font-medium text-gray-500 md:text-base">AEO·GEO Marketing Agency</p>
         </div>
       </div>

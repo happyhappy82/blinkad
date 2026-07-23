@@ -9,7 +9,7 @@ import Navbar from '@/components/Navbar'
 
 const SITE_URL = 'https://www.blinkad.kr'
 const BLOG_BASE_URL = `${SITE_URL}/blog`
-const SITE_NAME = 'BlinkAds'
+const SITE_NAME = 'BlinkAd'
 
 interface Props {
   params: Promise<{ slug: string }>
