@@ -984,6 +984,38 @@ function createProfileAdsOperationRow(
   }
 }
 
+function createProfileOnlyOperationRow(
+  storeName: string,
+  options: { memo?: string; googleMapUrl?: string } = {}
+): OperationRow {
+  const baseRow = createProfileAdsOperationRow(storeName, options)
+
+  return {
+    ...baseRow,
+    meta: '계약상품 · 구글프로필관리',
+    memo: options.memo || `${storeName}의 Google 프로필 기본 세팅과 운영 보고를 관리합니다.`,
+    products: {
+      googleProfile: baseRow.products?.googleProfile || '기본 세팅 · 리뷰 응대 · 소식지 운영',
+      googleAds: '계약 제외',
+      material: baseRow.products?.material || '대표 사진·서비스 설명 자료 요청',
+      nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+    },
+    processSteps: (baseRow.processSteps || [])
+      .filter((step) => step.product !== '구글애즈')
+      .map((step) =>
+        step.title === '주간 보고 루틴'
+          ? {
+              ...step,
+              memo: '월-금 Google 프로필 작업보고를 남기고 월 1회 성과보고로 정리합니다.',
+            }
+          : step
+      ),
+    productWorkspaces: (baseRow.productWorkspaces || []).filter(
+      (workspace) => workspace.key === 'googleProfile'
+    ),
+  }
+}
+
 export const operationViews: Partial<Record<MenuId, OperationView>> = {
   customer: {
     kicker: 'Account',
@@ -1062,8 +1094,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '7' },
-      { label: '진행 상품', value: '17' },
+      { label: '운영 매장', value: '8' },
+      { label: '진행 상품', value: '18' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -1367,6 +1399,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       createProfileAdsOperationRow('오닉스', {
         memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
       }),
+      createProfileOnlyOperationRow('렛츠바레'),
       {
         title: '바다당 해운대점',
         meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
