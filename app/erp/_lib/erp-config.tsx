@@ -199,6 +199,7 @@ export const menuGroups = [
     label: '프로젝트/작업관리',
     items: [
       { id: 'project', label: '매장 운영관리', icon: Folder },
+      { id: 'pausedStores', label: '작업보류매장', icon: Clock3 },
       { id: 'terminatedStores', label: '계약 해제 매장', icon: Archive },
     ],
   },
@@ -1096,8 +1097,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '7' },
-      { label: '진행 상품', value: '16' },
+      { label: '운영 매장', value: '3' },
+      { label: '진행 상품', value: '6' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -1401,7 +1402,12 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       createProfileAdsOperationRow('오닉스', {
         memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
       }),
-      createProfileOnlyOperationRow('렛츠바레'),
+      {
+        ...createProfileOnlyOperationRow('렛츠바레', {
+          memo: '월 70만원 구글프로필관리 계약 기준으로 기본 세팅과 운영 보고를 관리합니다.',
+        }),
+        meta: '계약상품 · 구글프로필관리 70만원',
+      },
       {
         title: '바다당 해운대점',
         meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
@@ -2105,4 +2111,39 @@ if (operationViews.project && wellmixTerminatedStore) {
       },
     ],
   }
+}
+
+const pausedStoreTitles = new Set([
+  '언리미티드',
+  '주도락 강남점',
+  '주도락 마곡발산점',
+])
+const pausedStoreRows = operationViews.project?.rows.filter((row) =>
+  pausedStoreTitles.has(row.title)
+) || []
+
+if (operationViews.project) {
+  operationViews.project = {
+    ...operationViews.project,
+    rows: operationViews.project.rows.filter(
+      (row) => !pausedStoreTitles.has(row.title) && row.title !== '오닉스'
+    ),
+  }
+}
+
+operationViews.pausedStores = {
+  kicker: 'Paused Operations',
+  title: '작업보류매장',
+  description: '작업이 일시 중단된 매장의 기존 상품 구성과 작업·보고 이력을 보관합니다.',
+  stats: [
+    { label: '작업 보류 매장', value: String(pausedStoreRows.length) },
+    { label: '보관 상품', value: '8' },
+    { label: '진행 작업', value: '0' },
+  ],
+  rows: pausedStoreRows.map((row) => ({
+    ...row,
+    status: '작업 보류',
+    due: '재개 일정 미정',
+    memo: `${row.memo} 작업 재개 전까지 기존 운영 이력을 보관합니다.`,
+  })),
 }

@@ -346,13 +346,13 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     memo: '1개월 계약 · VAT 포함 99만원',
   },
   {
-    storeName: '오닉스',
+    storeName: '렛츠바레',
     contractMonths: 1,
-    contractStartDate: '2026-07-08',
-    productGroup: '구글애즈 + 구글프로필관리',
-    productDetail: '구글프로필관리 70만원 + 구글애즈 20만원',
-    monthlyAmounts: [990_000],
-    memo: '1개월 계약 · VAT 포함 99만원 · 입금 예정일 2026년 7월 8일',
+    contractStartDate: '2026-07-24',
+    productGroup: '구글프로필관리',
+    productDetail: '구글프로필관리 70만원',
+    monthlyAmounts: [770_000],
+    memo: '1개월 계약 · 공급가 70만원 · VAT 포함 77만원',
   },
   {
     storeName: '주도락 강남점',
@@ -422,10 +422,10 @@ const billingScheduleByStore: Record<
     firstStatus: '입금완료',
     memo: '2026년 6월 23일 입금완료',
   },
-  오닉스: {
-    dueDay: 8,
+  렛츠바레: {
+    dueDay: 24,
     firstStatus: '청구예정',
-    memo: '입금 예정일 2026년 7월 8일(확정 전)',
+    memo: '2026년 7월 24일 계약 등록 · 입금일 확인 필요',
   },
   '바다당 해운대점': {
     dueDay: 16,
