@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
+import { NEWS_POSTS } from '@/constants/news'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.blinkad.kr'
@@ -25,6 +26,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
+      url: `${baseUrl}/google-map-marketing`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/aeo`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog-marketing`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/case-studies`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -42,6 +61,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/news`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
   ]
 
   // 동적 블로그 포스트들
@@ -52,5 +77,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogPosts]
+  // 동적 회사소식 포스트들
+  const newsPosts: MetadataRoute.Sitemap = NEWS_POSTS.map((post) => ({
+    url: `${baseUrl}/news/${post.id}`,
+    lastModified: new Date(post.date.replace(/\./g, '-')),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  return [...staticPages, ...blogPosts, ...newsPosts]
 }

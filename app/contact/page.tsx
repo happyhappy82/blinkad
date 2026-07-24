@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import DiagnosisContactPage from '@/components/DiagnosisContactPage';
+import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
   title: '무료 업장 진단 | BlinkAd',
@@ -10,5 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <DiagnosisContactPage />;
+  return (
+    <>
+      <Navbar />
+      <DiagnosisContactPage />
+    </>
+  );
 }
