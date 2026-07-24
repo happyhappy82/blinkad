@@ -77,7 +77,7 @@ For DataForSEO in GitHub Actions:
 
 ## Current Setup Note
 
-As of 2026-07-13, DataForSEO is the active source for the 7 ERP stores. BigQuery and Notion remain as fallback paths for future first-party historical reporting.
+As of 2026-07-24, DataForSEO is the active source for the 6 monitored ERP stores. Wellmix Gwanghwamun has been removed from the default alert targets after contract termination. BigQuery and Notion remain as fallback paths for future first-party historical reporting.
 
 Current DataForSEO matching note:
 

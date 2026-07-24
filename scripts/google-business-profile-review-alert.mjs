@@ -28,7 +28,6 @@ const TELEGRAM_KEYCHAIN_ACCOUNT =
 
 const DEFAULT_STORE_NAMES = [
   '언리미티드',
-  '웰믹스 광화문점',
   '도르도뉴',
   '오닉스',
   '주도락 강남점',

@@ -1,4 +1,5 @@
 import {
+  Archive,
   Badge,
   BarChart3,
   Building2,
@@ -198,6 +199,7 @@ export const menuGroups = [
     label: '프로젝트/작업관리',
     items: [
       { id: 'project', label: '매장 운영관리', icon: Folder },
+      { id: 'terminatedStores', label: '계약 해제 매장', icon: Archive },
     ],
   },
   {
@@ -1094,8 +1096,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '8' },
-      { label: '진행 상품', value: '18' },
+      { label: '운영 매장', value: '7' },
+      { label: '진행 상품', value: '16' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -2073,4 +2075,34 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       },
     ],
   },
+}
+
+const wellmixTerminatedStore = operationViews.project?.rows.find(
+  (row) => row.title === '웰믹스 광화문점'
+)
+
+if (operationViews.project && wellmixTerminatedStore) {
+  operationViews.project = {
+    ...operationViews.project,
+    rows: operationViews.project.rows.filter((row) => row.title !== '웰믹스 광화문점'),
+  }
+
+  operationViews.terminatedStores = {
+    kicker: 'Contract Archive',
+    title: '계약 해제 매장',
+    description: '계약이 종료된 매장의 상품 구성, 작업 과정, 보고 이력을 보관합니다.',
+    stats: [
+      { label: '계약 해제 매장', value: '1' },
+      { label: '보관 상품', value: '2' },
+      { label: '진행 작업', value: '0' },
+    ],
+    rows: [
+      {
+        ...wellmixTerminatedStore,
+        status: '계약 해제',
+        due: '이력 보관',
+        memo: `${wellmixTerminatedStore.memo} 계약 종료 후 기존 운영 이력을 보관합니다.`,
+      },
+    ],
+  }
 }
