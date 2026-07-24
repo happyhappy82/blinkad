@@ -1034,6 +1034,17 @@ export default function ErpClient() {
       settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
     }
   }, [])
+  const activeContractStores = operationViews.project?.rows || []
+  const pausedContractStores = operationViews.pausedStores?.rows || []
+  const terminatedContractStores = operationViews.terminatedStores?.rows || []
+  const contractStoreCounts = {
+    active: activeContractStores.length,
+    paused: pausedContractStores.length,
+    terminated: terminatedContractStores.length,
+    total: new Set(
+      [...activeContractStores, ...pausedContractStores, ...terminatedContractStores].map((store) => store.title)
+    ).size,
+  }
 
   const inquiryStores = stores.filter((store) => statusIncludesAny(store.status, ['신규 문의', '신규문의']))
   const followupStores = stores.filter((store) =>
@@ -1336,7 +1347,11 @@ export default function ErpClient() {
             ) : null}
 
             {activeMenu === 'dashboard' && (
-              <DashboardPanel counts={dashboard.counts} contractRevenue={contractRevenue} />
+              <DashboardPanel
+                counts={dashboard.counts}
+                contractRevenue={contractRevenue}
+                contractStoreCounts={contractStoreCounts}
+              />
             )}
 
             {activeMenu === 'crm' && (
@@ -1613,6 +1628,7 @@ function KpiPanel({
 function DashboardPanel({
   counts,
   contractRevenue,
+  contractStoreCounts,
 }: {
   counts: { label: string; count: number }[]
   contractRevenue: {
@@ -1627,12 +1643,18 @@ function DashboardPanel({
       stores: { storeName: string; amount: number }[]
     }[]
   }
+  contractStoreCounts: {
+    active: number
+    paused: number
+    terminated: number
+    total: number
+  }
 }) {
   const revenueCards = [
     {
-      label: '계약매장 개수',
+      label: '계약 이력 매장',
       value: `${contractRevenue.records.length}개`,
-      detail: '운영 계약 기준',
+      detail: '청구·매출 기록 기준',
     },
     {
       label: '이번달 매출',
@@ -1648,10 +1670,50 @@ function DashboardPanel({
 
   return (
     <section className="space-y-5">
-      <KpiPanel currentContracts={contractRevenue.records.length} goalContracts={50} />
+      <KpiPanel currentContracts={contractStoreCounts.active} goalContracts={50} />
+      <ContractStoreStatusPanel counts={contractStoreCounts} />
       <InquiryStatusPanel counts={counts} />
       <ContractSummaryPanel cards={revenueCards} />
       <ContractRevenueList records={contractRevenue.records} />
+    </section>
+  )
+}
+
+function ContractStoreStatusPanel({
+  counts,
+}: {
+  counts: {
+    active: number
+    paused: number
+    terminated: number
+    total: number
+  }
+}) {
+  const cards = [
+    { label: '활성 계약', value: counts.active, detail: '매장 운영관리' },
+    { label: '작업 보류', value: counts.paused, detail: '작업보류매장' },
+    { label: '계약 해제', value: counts.terminated, detail: '계약 해제 매장' },
+    { label: '전체 관리 이력', value: counts.total, detail: '중복 제외 합계' },
+  ]
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Contract Store Status</p>
+        <h3 className="mt-2 text-xl font-black text-white">계약 매장 현황</h3>
+        <p className="mt-2 text-xs font-bold text-gray-600">
+          매장 운영 분류가 바뀌면 대시보드 카운트도 자동으로 갱신됩니다.
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card) => (
+          <div key={card.label} className="rounded-lg border border-white/10 bg-black px-5 py-4">
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">{card.label}</p>
+            <p className="mt-2 text-4xl font-black tracking-tight text-white">{card.value}개</p>
+            <p className="mt-1 text-xs font-bold text-gray-600">{card.detail}</p>
+          </div>
+        ))}
+      </div>
     </section>
   )
 }
