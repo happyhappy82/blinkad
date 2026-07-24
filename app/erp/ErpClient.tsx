@@ -1114,7 +1114,6 @@ export default function ErpClient() {
     activeMenu === 'kpi'
       ? undefined
       : operationViews[activeMenu]
-  const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
   const headerConnectionMessage = activeMenu === 'card' ? '' : connectionMessage
   const headerLoading =
@@ -1139,7 +1138,7 @@ export default function ErpClient() {
   const selectMenu = (menuId: MenuId) => {
     persistMenu(menuId)
     setActiveMenu(menuId)
-    if (menuId === 'project') {
+    if (menuId === 'project' || menuId === 'pausedStores' || menuId === 'terminatedStores') {
       setActiveStoreTitle('')
     }
   }
@@ -1224,6 +1223,10 @@ export default function ErpClient() {
                   {group.items.map((menu) => {
                     const Icon = menu.icon
                     const active = activeMenu === menu.id
+                    const sidebarStores =
+                      menu.id === 'project' || menu.id === 'pausedStores' || menu.id === 'terminatedStores'
+                        ? operationViews[menu.id]?.rows || []
+                        : []
 
                     return (
                       <div key={menu.id}>
@@ -1239,9 +1242,9 @@ export default function ErpClient() {
                           {menu.label}
                         </span>
                       </button>
-                      {sidebarExpanded && menu.id === 'project' && activeMenu === 'project' ? (
+                      {sidebarExpanded && active && sidebarStores.length ? (
                         <div className="ml-7 mt-1 space-y-1 border-l border-white/10 pl-3">
-                          {projectStores.map((store) => {
+                          {sidebarStores.map((store) => {
                             const storeActive = activeStoreTitle === store.title
 
                             return (
@@ -1249,7 +1252,8 @@ export default function ErpClient() {
                                 key={store.title}
                                 type="button"
                                 onClick={() => {
-                                  setActiveMenu('project')
+                                  persistMenu(menu.id)
+                                  setActiveMenu(menu.id)
                                   setActiveStoreTitle(store.title)
                                 }}
                                 className={`flex w-full items-center rounded-md px-3 py-2 text-left text-xs font-black transition ${
