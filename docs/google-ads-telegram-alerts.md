@@ -21,7 +21,7 @@ CPC alert-only messages still use regular text messages.
 
 ## Excluded stores
 
-- `웰믹스`: excluded from daily summaries, totals, high-variance campaign sections, store insights, and CPC alert-only messages.
+- `웰믹스`, `도르도뉴`: excluded from daily summaries, totals, high-variance campaign sections, store insights, and CPC alert-only messages.
 - The exclusion affects Telegram report output only. It does not pause, edit, or delete Google Ads campaigns.
 
 ## Secrets
