@@ -5,6 +5,7 @@
  * - 사이트 내 경로(session_path) 누적 (최대 10개)
  * - CTA 클릭 추적 (.aj-cta 자동 감지 + recordCtaClick 명시 호출)
  * - Clarity custom tag 박기 (GTM 로드 후 4초 재시도)
+ * - 문의 제출 시 해당 세션의 Clarity 직접 재생 URL 생성
  * - GA4 client_id 비동기 추출
  * - 폼 제출 시 getTrackingDataAsync()로 트래킹 데이터 일괄 반환
  *
@@ -171,6 +172,33 @@ function getOrCreateClarityTag(): string {
   return tag;
 }
 
+// Clarity가 생성한 쿠키에서 플레이어 URL에 필요한 ID를 추출한다.
+// _clck 첫 값 = visitor ID, _clsk 첫 값 = session ID
+function getClarityCookieId(name: '_clck' | '_clsk'): string {
+  const id = ssGet(name).split('|')[0]?.trim() || '';
+  return /^[a-zA-Z0-9_-]+$/.test(id) ? id : '';
+}
+
+export function getClarityPlaybackUrl(): string {
+  const visitorId = getClarityCookieId('_clck');
+  const sessionId = getClarityCookieId('_clsk');
+
+  if (!visitorId || !sessionId) return '';
+
+  return `https://clarity.microsoft.com/player/${CLARITY_PROJECT_ID}/${visitorId}/${sessionId}`;
+}
+
+function markClarityInquiry(): void {
+  if (typeof window === 'undefined' || typeof window.clarity !== 'function') return;
+
+  try {
+    window.clarity('event', 'inquiry_submitted');
+    window.clarity('upgrade', 'inquiry_submitted');
+  } catch {
+    // 문의 전송은 Clarity 호출 실패와 무관하게 계속 진행
+  }
+}
+
 // ── 5) Clarity tag를 GTM lazy load 대응으로 한 번 + 4초 후 재시도
 export function tagClarity(): void {
   getOrCreateClarityTag();
@@ -316,11 +344,18 @@ export function getTrackingData(): TrackingData {
 
   // Clarity tag 보장
   const clarityTag = getOrCreateClarityTag();
-  const clarityUrl = clarityTag
-    ? `https://clarity.microsoft.com/projects/view/${CLARITY_PROJECT_ID}/dashboard?date=Last%2030%20days&CustomTag=aj_session=${encodeURIComponent(
-        clarityTag
-      )}`
-    : '';
+  markClarityInquiry();
+
+  // 정상적인 Clarity 쿠키가 있으면 해당 문의 세션의 플레이어를 바로 연다.
+  // 추적 차단 등으로 쿠키가 없을 때만 기존 custom tag 필터 링크를 남긴다.
+  const directPlaybackUrl = getClarityPlaybackUrl();
+  const clarityUrl =
+    directPlaybackUrl ||
+    (clarityTag
+      ? `https://clarity.microsoft.com/projects/view/${CLARITY_PROJECT_ID}/dashboard?date=Last%2030%20days&CustomTag=aj_session=${encodeURIComponent(
+          clarityTag
+        )}`
+      : '');
 
   return {
     site: meta.site,
