@@ -1958,20 +1958,11 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '청구관리',
     description: 'GBP 계약 클라이언트의 매월 청구일, 청구 금액, 입금 상태, 다음 결제 예정일을 관리합니다.',
     stats: [
-      { label: 'GBP 계약 고객', value: '1' },
-      { label: '이번 달 청구', value: '1' },
+      { label: 'GBP 계약 고객', value: '0' },
+      { label: '이번 달 청구', value: '0' },
       { label: '미수 건', value: '0' },
     ],
-    rows: [
-      {
-        title: '언리미티드 월간 GBP 운영료',
-        meta: '정기 운영 · 매월 계약일 기준 청구',
-        status: '발행 대기',
-        owner: '권순현',
-        due: '매월 계약일',
-        memo: '계약 시작일, 월 청구 금액, 세금계산서 발행 여부, 입금 확인 상태를 한 줄에서 확인합니다.',
-      },
-    ],
+    rows: [],
   },
   receivable: {
     kicker: 'Receivables',
@@ -2114,10 +2105,10 @@ if (operationViews.project && wellmixTerminatedStore) {
 }
 
 const pausedStoreTitles = new Set([
-  '언리미티드',
   '주도락 강남점',
   '주도락 마곡발산점',
 ])
+const removedStoreTitles = new Set(['오닉스', '언리미티드'])
 const pausedStoreRows = operationViews.project?.rows.filter((row) =>
   pausedStoreTitles.has(row.title)
 ) || []
@@ -2126,7 +2117,7 @@ if (operationViews.project) {
   operationViews.project = {
     ...operationViews.project,
     rows: operationViews.project.rows.filter(
-      (row) => !pausedStoreTitles.has(row.title) && row.title !== '오닉스'
+      (row) => !pausedStoreTitles.has(row.title) && !removedStoreTitles.has(row.title)
     ),
   }
 }
@@ -2137,7 +2128,7 @@ operationViews.pausedStores = {
   description: '작업이 일시 중단된 매장의 기존 상품 구성과 작업·보고 이력을 보관합니다.',
   stats: [
     { label: '작업 보류 매장', value: String(pausedStoreRows.length) },
-    { label: '보관 상품', value: '8' },
+    { label: '보관 상품', value: '6' },
     { label: '진행 작업', value: '0' },
   ],
   rows: pausedStoreRows.map((row) => ({

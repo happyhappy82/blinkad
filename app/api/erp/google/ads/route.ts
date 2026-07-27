@@ -808,7 +808,7 @@ export async function GET(request: NextRequest) {
   loadSharedEnv()
 
   const { searchParams } = new URL(request.url)
-  const store = (searchParams.get('store') || '언리미티드').trim()
+  const store = (searchParams.get('store') || '도르도뉴').trim()
   const days = Math.min(Math.max(Number(searchParams.get('days') || 30), 7), 90)
 
   const liveConfig = liveAdsStoreConfig(store)

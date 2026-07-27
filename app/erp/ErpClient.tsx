@@ -308,7 +308,7 @@ const CONTRACT_REVENUE_START_YEAR = 2026
 const CONTRACT_REVENUE_START_MONTH = 6
 const SETTLEMENT_EXCLUDED_STORE_NAMES: string[] = []
 const SETTLEMENT_PROCESS_STORAGE_KEY = 'blinkad-erp-settlement-process-v1'
-const SETTLEMENT_AUTH_PENDING_STORE_NAMES = ['언리미티드', '주도락 강남점', '주도락 마곡발산점']
+const SETTLEMENT_AUTH_PENDING_STORE_NAMES = ['주도락 강남점', '주도락 마곡발산점']
 const SETTLEMENT_RESERVE_RATE = 0
 const SETTLEMENT_RESERVE_AMOUNT_PER_STORE = 50_000
 const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
@@ -318,15 +318,6 @@ const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
 const VAT_RATE = 0.1
 
 const contractRevenueRecords: ContractRevenueRecord[] = [
-  {
-    storeName: '언리미티드',
-    contractMonths: 1,
-    contractStartDate: '2026-06-01',
-    productGroup: '구글애즈 + 구글프로필관리',
-    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
-    monthlyAmounts: [990_000],
-    memo: '1개월 계약 · VAT 포함 99만원',
-  },
   {
     storeName: '웰믹스 광화문점',
     contractMonths: 1,
@@ -405,11 +396,6 @@ const billingScheduleByStore: Record<
     memo: string
   }
 > = {
-  언리미티드: {
-    dueDay: 30,
-    firstStatus: '청구예정',
-    memo: '입금일 추후 확인',
-  },
   '웰믹스 광화문점': {
     dueDay: 10,
     firstPaidDate: '2026-06-11',
