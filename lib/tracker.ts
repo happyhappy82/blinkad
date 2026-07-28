@@ -188,6 +188,68 @@ export function getClarityPlaybackUrl(): string {
   return `https://clarity.microsoft.com/player/${CLARITY_PROJECT_ID}/${visitorId}/${sessionId}`;
 }
 
+interface ClarityMetadata {
+  projectId?: unknown;
+  userId?: unknown;
+  sessionId?: unknown;
+}
+
+function safeClarityId(value: unknown): string {
+  if (typeof value !== 'string') return '';
+  const id = value.trim();
+  return /^[a-zA-Z0-9_-]+$/.test(id) ? id : '';
+}
+
+// 쿠키가 생성되지 않는 환경에서도 Clarity가 현재 추적 중인 라이브 세션의
+// 메타데이터를 받아 직접 플레이어 URL을 만든다.
+export function getClarityPlaybackUrlAsync(timeoutMs = 2000): Promise<string> {
+  const cookieUrl = getClarityPlaybackUrl();
+  if (cookieUrl) return Promise.resolve(cookieUrl);
+
+  return new Promise((resolve) => {
+    if (typeof window === 'undefined') {
+      resolve('');
+      return;
+    }
+
+    let settled = false;
+    const deadline = Date.now() + timeoutMs;
+
+    const finish = (url: string) => {
+      if (settled) return;
+      settled = true;
+      resolve(url);
+    };
+
+    const requestMetadata = () => {
+      if (settled) return;
+
+      if (typeof window.clarity === 'function') {
+        try {
+          window.clarity('metadata', (metadata: ClarityMetadata) => {
+            const projectId = safeClarityId(metadata?.projectId) || CLARITY_PROJECT_ID;
+            const visitorId = safeClarityId(metadata?.userId);
+            const sessionId = safeClarityId(metadata?.sessionId);
+
+            if (visitorId && sessionId) {
+              finish(`https://clarity.microsoft.com/player/${projectId}/${visitorId}/${sessionId}`);
+            }
+          });
+        } catch {
+          // GTM이 아직 Clarity를 초기화하지 않았다면 제한 시간 안에 재시도
+        }
+      }
+
+      if (!settled && Date.now() < deadline) {
+        setTimeout(requestMetadata, 200);
+      }
+    };
+
+    requestMetadata();
+    setTimeout(() => finish(''), timeoutMs);
+  });
+}
+
 function markClarityInquiry(): void {
   if (typeof window === 'undefined' || typeof window.clarity !== 'function') return;
 
@@ -388,6 +450,14 @@ export interface TrackingDataWithGa extends TrackingData {
 
 export async function getTrackingDataAsync(): Promise<TrackingDataWithGa> {
   const base = getTrackingData();
-  const cid = await getGaClientId();
-  return { ...base, ga_client_id: cid };
+  const [cid, directPlaybackUrl] = await Promise.all([
+    getGaClientId(),
+    getClarityPlaybackUrlAsync(),
+  ]);
+
+  return {
+    ...base,
+    clarity_session_url: directPlaybackUrl || base.clarity_session_url,
+    ga_client_id: cid,
+  };
 }
