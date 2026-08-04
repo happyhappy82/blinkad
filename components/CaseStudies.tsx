@@ -76,27 +76,15 @@ const PROJECT_SUMMARIES = [
     href: '#google-maps-project',
   },
   {
-    id: 'ai-hair',
+    id: 'ai-busan-cafe',
     category: 'ai-search' as const,
     categoryLabel: 'AI 검색 AEO·GEO',
-    status: '익명 진단 프로젝트',
-    client: '서울 헤어·두피 브랜드군',
-    title: 'AI 추천 언급 점유율과 질문별 강점 진단',
-    metric: '60개',
-    metricLabel: 'AI 응답 교차 분석',
-    description: 'ChatGPT·Gemini·Claude 계열 응답에서 브랜드 언급률과 헤드스파 질문별 재현성을 측정했습니다.',
-    href: '#ai-search-projects',
-  },
-  {
-    id: 'ai-medical',
-    category: 'ai-search' as const,
-    categoryLabel: 'AI 검색 AEO·GEO',
-    status: '익명 진단 프로젝트',
-    client: '국내 척추·관절 의료기관',
-    title: '외국인 환자 검색 질문의 AI 노출 진단',
-    metric: '75%',
-    metricLabel: '전체 응답 언급률',
-    description: '24개 반복 응답에서 플랫폼별 언급률과 AI가 참고한 인용 도메인을 함께 분석했습니다.',
+    status: '진행형 익명 진단',
+    client: '부산 관광상권 카페',
+    title: '외국인 고객을 위한 AI 검색 대응 구조 점검',
+    metric: '정성 진단',
+    metricLabel: '정량 성과 측정 전',
+    description: 'AI 추천 성과를 단정하지 않고, 외국인이 카페를 탐색할 때 참고되는 공개 정보의 일관성과 설명 구조를 점검합니다.',
     href: '#ai-search-projects',
   },
 ];
@@ -150,7 +138,7 @@ const CaseStudies: React.FC = () => {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {visibleProjects.map((project) => (
               <a
                 key={project.id}
@@ -185,8 +173,8 @@ const CaseStudies: React.FC = () => {
           <div className="mt-5 flex items-start gap-3 rounded-[10px] border border-white/5 bg-white/[0.02] p-4 text-sm text-gray-400">
             <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-blue" />
             <p className="leading-relaxed keep-all">
-              익명 사례는 상호·지점·계정 식별정보를 공개하지 않습니다. 대신 측정 시점, 질문 수,
-              반복 횟수와 측정 도구를 표시해 결과의 범위와 한계를 함께 설명합니다.
+              익명 사례는 상호·지점·계정 식별정보를 공개하지 않습니다. 정량 측정이 완료된 프로젝트는
+              측정 조건과 표본을 함께 밝히고, 아직 측정 전인 프로젝트는 수치 없이 현재 단계를 명시합니다.
             </p>
           </div>
         </FadeIn>
@@ -393,74 +381,42 @@ const CaseStudies: React.FC = () => {
             <p className="text-brand-blue text-xs font-semibold tracking-wider uppercase mb-2">AI Search · AEO · GEO</p>
             <h2 className="text-2xl md:text-4xl font-bold keep-all">AI 검색 프로젝트 상세</h2>
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400 keep-all">
-              고객사 요청에 따라 상호는 익명 처리했습니다. 아래 수치는 각 측정일의 AI 검색 노출 상태를 진단한 결과이며,
-              블링크애드 작업 전후 개선률로 표현하지 않습니다.
+              고객사 보호를 위해 상호는 익명 처리했습니다. 현재는 공개 정보 구조를 점검하는 진단 단계이며,
+              AI 추천 성과나 작업 전후 개선률로 표현하지 않습니다.
             </p>
           </FadeIn>
 
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="mt-8">
             <FadeIn delay={100}>
-              <article className="h-full rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-8">
+              <article className="rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-8">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/10">
                     <Bot className="h-5 w-5 text-brand-blue" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-brand-blue">익명 진단 프로젝트</p>
-                    <h3 className="mt-1 font-bold text-white">서울 헤어·두피 브랜드군</h3>
+                    <p className="text-xs font-semibold text-brand-blue">진행형 익명 진단</p>
+                    <h3 className="mt-1 font-bold text-white">부산 관광상권 카페</h3>
                   </div>
                 </div>
-                <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">AI 추천 언급 점유율과 질문별 강점 진단</h4>
+                <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">외국인 고객을 위한 AI 검색 대응 구조 점검</h4>
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-2xl font-bold text-white">60개</p>
-                    <p className="mt-1 text-xs text-gray-500">유효 AI 응답</p>
+                    <p className="text-xl md:text-2xl font-bold text-white">정성 진단</p>
+                    <p className="mt-1 text-xs text-gray-500">현재 프로젝트 단계</p>
                   </div>
                   <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-2xl font-bold text-white">30.0%</p>
-                    <p className="mt-1 text-xs text-gray-500">상위 브랜드 언급률</p>
+                    <p className="text-xl md:text-2xl font-bold text-white">측정 전</p>
+                    <p className="mt-1 text-xs text-gray-500">정량 성과</p>
                   </div>
                 </div>
                 <ul className="mt-6 space-y-3 text-sm leading-relaxed text-gray-400">
-                  <li>ChatGPT 검색형·학습형, Gemini, Claude 응답을 같은 질문으로 3회씩 반복했습니다.</li>
-                  <li>일반 미용실 질문보다 헤드스파 질문에서 언급 재현성이 높다는 점을 확인했습니다.</li>
-                  <li>플랫폼별 편차와 인용 출처의 브랜드 직접 근거 여부를 함께 점검했습니다.</li>
+                  <li>Google 프로필과 공식 웹페이지의 상호, 위치, 영업시간, 메뉴 정보가 일관되게 설명되는지 점검합니다.</li>
+                  <li>영문 메뉴와 대표 서비스, 예약·문의 정보가 외국인 방문객에게 충분히 공개되어 있는지 확인합니다.</li>
+                  <li>부산 여행 중 카페를 찾는 질문에 답할 수 있는 FAQ와 지역·메뉴 설명 구조를 정리합니다.</li>
+                  <li>정비 전후 동일한 질문군을 반복 측정해 언급 여부와 인용 출처 변화를 비교할 예정입니다.</li>
                 </ul>
                 <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
-                  측정일 2026.07.15 · DataForSEO AI Optimization LLM Responses Live · 웹 검색 활성화 · 5개 질문 × 4개 모드 × 3회
-                </p>
-              </article>
-            </FadeIn>
-
-            <FadeIn delay={200}>
-              <article className="h-full rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/10">
-                    <Bot className="h-5 w-5 text-brand-blue" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-brand-blue">익명 진단 프로젝트</p>
-                    <h3 className="mt-1 font-bold text-white">국내 척추·관절 의료기관</h3>
-                  </div>
-                </div>
-                <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">외국인 환자 검색 질문의 AI 노출 진단</h4>
-                <div className="mt-6 grid grid-cols-2 gap-3">
-                  <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-2xl font-bold text-white">24개</p>
-                    <p className="mt-1 text-xs text-gray-500">유효 AI 응답</p>
-                  </div>
-                  <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-2xl font-bold text-white">75%</p>
-                    <p className="mt-1 text-xs text-gray-500">전체 응답 언급률</p>
-                  </div>
-                </div>
-                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-gray-400">
-                  <li>한국 의료기관 탐색과 지역 병원 추천 질문을 플랫폼별로 반복 측정했습니다.</li>
-                  <li>플랫폼별 언급률은 50%에서 100%까지 차이가 있어 채널 편중을 확인했습니다.</li>
-                  <li>공식 사이트뿐 아니라 관광·의료·연구 도메인 등 AI가 참고한 출처군을 분류했습니다.</li>
-                </ul>
-                <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
-                  측정일 2026.07.28 · DataForSEO AI Optimization LLM Responses Live · 웹 검색 활성화 · 2개 질문 × 4개 모드 × 3회
+                  공개 범위: 업종·지역·진단 항목 · 상호와 지점 식별정보 비공개 · 정량 성과는 재측정 완료 후 공개 예정
                 </p>
               </article>
             </FadeIn>
