@@ -84,7 +84,7 @@ const PROJECT_SUMMARIES = [
     title: '외국인 고객을 위한 AI 검색 대응 구조 점검',
     metric: '정성 진단',
     metricLabel: '정량 성과 측정 전',
-    description: 'AI 추천 성과를 단정하지 않고, 외국인이 카페를 탐색할 때 참고되는 공개 정보의 일관성과 설명 구조를 점검합니다.',
+    description: '외국인 검색 질문을 기준으로 AI 노출 상태를 진단하고, 정보 정비 후 같은 조건으로 다시 측정합니다.',
     href: '#ai-search-projects',
   },
 ];
@@ -409,14 +409,20 @@ const CaseStudies: React.FC = () => {
                     <p className="mt-1 text-xs text-gray-500">정량 성과</p>
                   </div>
                 </div>
-                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-gray-400">
-                  <li>Google 프로필과 공식 웹페이지의 상호, 위치, 영업시간, 메뉴 정보가 일관되게 설명되는지 점검합니다.</li>
-                  <li>영문 메뉴와 대표 서비스, 예약·문의 정보가 외국인 방문객에게 충분히 공개되어 있는지 확인합니다.</li>
-                  <li>부산 여행 중 카페를 찾는 질문에 답할 수 있는 FAQ와 지역·메뉴 설명 구조를 정리합니다.</li>
-                  <li>정비 전후 동일한 질문군을 반복 측정해 언급 여부와 인용 출처 변화를 비교할 예정입니다.</li>
-                </ul>
+                <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
+                  {[
+                    ['01', 'AI 검색 진단'],
+                    ['02', '공개 정보 정비'],
+                    ['03', '동일 조건 재측정'],
+                  ].map(([step, label]) => (
+                    <div key={step} className="rounded-lg border border-white/5 bg-black/20 p-4">
+                      <p className="text-xs font-semibold text-brand-blue">{step}</p>
+                      <p className="mt-2 text-sm font-semibold text-white">{label}</p>
+                    </div>
+                  ))}
+                </div>
                 <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
-                  공개 범위: 업종·지역·진단 항목 · 상호와 지점 식별정보 비공개 · 정량 성과는 재측정 완료 후 공개 예정
+                  상호 비공개 · 성과 수치는 재측정 완료 후 공개
                 </p>
               </article>
             </FadeIn>
