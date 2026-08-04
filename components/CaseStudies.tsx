@@ -59,7 +59,7 @@ type ProjectCategory = 'all' | 'maps' | 'ai-search';
 const PROJECT_FILTERS: { id: ProjectCategory; label: string }[] = [
   { id: 'all', label: '전체 프로젝트' },
   { id: 'maps', label: 'Google 검색·지도' },
-  { id: 'ai-search', label: 'AI 검색 AEO·GEO' },
+  { id: 'ai-search', label: 'AI 검색(AEO,GEO)' },
 ];
 
 const PROJECT_SUMMARIES = [
@@ -78,7 +78,7 @@ const PROJECT_SUMMARIES = [
   {
     id: 'ai-busan-cafe',
     category: 'ai-search' as const,
-    categoryLabel: 'AI 검색 AEO·GEO',
+    categoryLabel: 'AI 검색(AEO,GEO)',
     status: '진행형 익명 진단',
     client: '부산 관광상권 카페',
     title: '외국인 고객을 위한 AI 검색 대응 구조 점검',
