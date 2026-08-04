@@ -22,7 +22,9 @@ export default function CaseStudiesPage() {
           <div className="max-w-4xl mx-auto px-5 md:px-6 text-center">
             <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-5">Next Project</p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 keep-all">
-              다음 프로젝트는 우리 브랜드에서 시작할 수 있습니다.
+              다음 프로젝트는 우리 브랜드에서 시작할 수 있습니다. 이것도 AEO,GEO 진단
+              <br />
+              무료로 해드립니다.
             </h2>
             <p className="text-base md:text-lg text-gray-400 mb-8 keep-all leading-relaxed">
               현재 검색, 지도, AI 답변 노출 상태를 먼저 확인하고 가장 빠르게 개선할 지점을 제안드립니다.
