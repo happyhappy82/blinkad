@@ -147,9 +147,9 @@ const clusterLinks = [
     description: '지도, 리뷰, 사진, 게시물, 웹사이트 콘텐츠를 연결하는 서비스 구조입니다.',
   },
   {
-    title: '성공사례',
+    title: '프로젝트 사례',
     href: '/case-studies',
-    description: 'Google 프로필 운영 성과와 검색 노출, 조회수, 상호작용 데이터를 확인합니다.',
+    description: 'Google 검색·지도 운영 성과와 익명화된 AI 검색 AEO·GEO 진단 프로젝트를 확인합니다.',
   },
 ]
 

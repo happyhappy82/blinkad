@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CASE_STUDIES } from '@/constants';
 import { FadeIn } from './ui/FadeIn';
-import { Eye, Search, MousePointerClick, TrendingUp, Globe, Smartphone, MapPin, BarChart3, X } from 'lucide-react';
+import { Eye, Search, MousePointerClick, TrendingUp, Globe, Smartphone, MapPin, BarChart3, X, Bot, ShieldCheck, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 // 숫자 카운팅 애니메이션 훅
@@ -54,9 +54,57 @@ const STAT_ICONS = [Eye, Search, MousePointerClick];
 const INSIGHT_ICONS = [Globe, Smartphone, MapPin, BarChart3];
 const KEYWORD_WIDTHS = ['100%', '38%', '32%', '31%', '28%'];
 
+type ProjectCategory = 'all' | 'maps' | 'ai-search';
+
+const PROJECT_FILTERS: { id: ProjectCategory; label: string }[] = [
+  { id: 'all', label: '전체 프로젝트' },
+  { id: 'maps', label: 'Google 검색·지도' },
+  { id: 'ai-search', label: 'AI 검색 AEO·GEO' },
+];
+
+const PROJECT_SUMMARIES = [
+  {
+    id: 'maps-bukchon',
+    category: 'maps' as const,
+    categoryLabel: 'Google 검색·지도',
+    status: '검증된 성과',
+    client: '북촌 한식당',
+    title: '외국인 관광 상권의 Google Maps 노출 확대',
+    metric: '56,719회',
+    metricLabel: '프로필 조회수',
+    description: '검색 노출 41,930회와 비즈니스 상호작용 3,562회를 Google 비즈니스 프로필 인사이트로 확인했습니다.',
+    href: '#google-maps-project',
+  },
+  {
+    id: 'ai-hair',
+    category: 'ai-search' as const,
+    categoryLabel: 'AI 검색 AEO·GEO',
+    status: '익명 진단 프로젝트',
+    client: '서울 헤어·두피 브랜드군',
+    title: 'AI 추천 언급 점유율과 질문별 강점 진단',
+    metric: '60개',
+    metricLabel: 'AI 응답 교차 분석',
+    description: 'ChatGPT·Gemini·Claude 계열 응답에서 브랜드 언급률과 헤드스파 질문별 재현성을 측정했습니다.',
+    href: '#ai-search-projects',
+  },
+  {
+    id: 'ai-medical',
+    category: 'ai-search' as const,
+    categoryLabel: 'AI 검색 AEO·GEO',
+    status: '익명 진단 프로젝트',
+    client: '국내 척추·관절 의료기관',
+    title: '외국인 환자 검색 질문의 AI 노출 진단',
+    metric: '75%',
+    metricLabel: '전체 응답 언급률',
+    description: '24개 반복 응답에서 플랫폼별 언급률과 AI가 참고한 인용 도메인을 함께 분석했습니다.',
+    href: '#ai-search-projects',
+  },
+];
+
 const CaseStudies: React.FC = () => {
   const mainCase = CASE_STUDIES[0];
   const screenshots = mainCase.screenshots || [];
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
   const { count: viewCount, ref: viewRef } = useCountUp(56719, 2500);
   const { count: searchCount, ref: searchRef } = useCountUp(41930, 2500);
   const { count: interactionCount, ref: interactionRef } = useCountUp(3562, 2500);
@@ -65,19 +113,88 @@ const CaseStudies: React.FC = () => {
 
   // 스크린샷 확대 모달
   const [modalImg, setModalImg] = useState<string | null>(null);
+  const visibleProjects = activeCategory === 'all'
+    ? PROJECT_SUMMARIES
+    : PROJECT_SUMMARIES.filter((project) => project.category === activeCategory);
 
   return (
     <section id="casestudies" className="py-20 md:py-32 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 md:px-6">
         {/* 섹션 헤더 */}
         <FadeIn className="mb-10 md:mb-16">
-          <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-4">Success Stories</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 keep-all">실제 성과로 증명합니다.</h2>
+          <p className="text-brand-blue text-sm font-semibold tracking-wider uppercase mb-4">Project Cases</p>
+          <h1 className="text-3xl md:text-5xl font-bold mb-4 keep-all">데이터로 확인한 프로젝트 사례입니다.</h1>
           <p className="text-base md:text-xl text-gray-400 max-w-2xl keep-all break-words leading-relaxed">
-            <span className="block">스톡 이미지도, 꾸며낸 숫자도 아닙니다.</span>
-            <span className="block">Google 비즈니스 프로필에서 가져온 실제 데이터입니다.</span>
+            Google 검색·지도 성과와 AI 검색 진단 프로젝트를 함께 공개합니다.
+            고객사 보호가 필요한 AEO·GEO 사례는 상호를 익명화하고 측정 조건과 표본은 그대로 밝힙니다.
           </p>
         </FadeIn>
+
+        {/* 프로젝트 분류 및 요약 카드 */}
+        <FadeIn delay={80} className="mb-12 md:mb-16">
+          <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label="프로젝트 유형 선택">
+            {PROJECT_FILTERS.map((filter) => (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveCategory(filter.id)}
+                aria-pressed={activeCategory === filter.id}
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                  activeCategory === filter.id
+                    ? 'border-brand-blue bg-brand-blue text-white'
+                    : 'border-white/10 bg-white/[0.03] text-gray-400 hover:border-white/20 hover:text-white'
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {visibleProjects.map((project) => (
+              <a
+                key={project.id}
+                href={project.href}
+                className="group rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/30"
+              >
+                <div className="flex flex-wrap items-center gap-2 mb-5">
+                  <span className="rounded-full bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-brand-blue">
+                    {project.categoryLabel}
+                  </span>
+                  <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-gray-400">
+                    {project.status}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-500 mb-2">{project.client}</p>
+                <h2 className="min-h-0 md:min-h-[56px] text-lg font-bold leading-snug text-white keep-all">
+                  {project.title}
+                </h2>
+                <div className="my-6 border-y border-white/5 py-5">
+                  <p className="text-3xl font-bold text-white">{project.metric}</p>
+                  <p className="mt-1 text-xs text-gray-500">{project.metricLabel}</p>
+                </div>
+                <p className="text-sm leading-relaxed text-gray-400 keep-all">{project.description}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue">
+                  상세 보기
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-5 flex items-start gap-3 rounded-[10px] border border-white/5 bg-white/[0.02] p-4 text-sm text-gray-400">
+            <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-blue" />
+            <p className="leading-relaxed keep-all">
+              익명 사례는 상호·지점·계정 식별정보를 공개하지 않습니다. 대신 측정 시점, 질문 수,
+              반복 횟수와 측정 도구를 표시해 결과의 범위와 한계를 함께 설명합니다.
+            </p>
+          </div>
+        </FadeIn>
+
+        <div id="google-maps-project" className="scroll-mt-24 mb-8 md:mb-10">
+          <p className="text-brand-blue text-xs font-semibold tracking-wider uppercase mb-2">Google Search & Maps</p>
+          <h2 className="text-2xl md:text-3xl font-bold keep-all">Google 검색·지도 프로젝트 상세</h2>
+        </div>
 
         {/* 고객사 배지 */}
         <FadeIn delay={100} className="mb-8 md:mb-10">
@@ -269,6 +386,96 @@ const CaseStudies: React.FC = () => {
             </p>
           </FadeIn>
         )}
+
+        {/* AI 검색 익명 프로젝트 */}
+        <div id="ai-search-projects" className="scroll-mt-24 mt-20 md:mt-28">
+          <FadeIn>
+            <p className="text-brand-blue text-xs font-semibold tracking-wider uppercase mb-2">AI Search · AEO · GEO</p>
+            <h2 className="text-2xl md:text-4xl font-bold keep-all">AI 검색 프로젝트 상세</h2>
+            <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400 keep-all">
+              고객사 요청에 따라 상호는 익명 처리했습니다. 아래 수치는 각 측정일의 AI 검색 노출 상태를 진단한 결과이며,
+              블링크애드 작업 전후 개선률로 표현하지 않습니다.
+            </p>
+          </FadeIn>
+
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <FadeIn delay={100}>
+              <article className="h-full rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/10">
+                    <Bot className="h-5 w-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-brand-blue">익명 진단 프로젝트</p>
+                    <h3 className="mt-1 font-bold text-white">서울 헤어·두피 브랜드군</h3>
+                  </div>
+                </div>
+                <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">AI 추천 언급 점유율과 질문별 강점 진단</h4>
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-black/30 p-4">
+                    <p className="text-2xl font-bold text-white">60개</p>
+                    <p className="mt-1 text-xs text-gray-500">유효 AI 응답</p>
+                  </div>
+                  <div className="rounded-lg bg-black/30 p-4">
+                    <p className="text-2xl font-bold text-white">30.0%</p>
+                    <p className="mt-1 text-xs text-gray-500">상위 브랜드 언급률</p>
+                  </div>
+                </div>
+                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-gray-400">
+                  <li>ChatGPT 검색형·학습형, Gemini, Claude 응답을 같은 질문으로 3회씩 반복했습니다.</li>
+                  <li>일반 미용실 질문보다 헤드스파 질문에서 언급 재현성이 높다는 점을 확인했습니다.</li>
+                  <li>플랫폼별 편차와 인용 출처의 브랜드 직접 근거 여부를 함께 점검했습니다.</li>
+                </ul>
+                <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
+                  측정일 2026.07.15 · DataForSEO AI Optimization LLM Responses Live · 웹 검색 활성화 · 5개 질문 × 4개 모드 × 3회
+                </p>
+              </article>
+            </FadeIn>
+
+            <FadeIn delay={200}>
+              <article className="h-full rounded-[10px] border border-white/5 bg-brand-dark p-5 md:p-8">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/10">
+                    <Bot className="h-5 w-5 text-brand-blue" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-brand-blue">익명 진단 프로젝트</p>
+                    <h3 className="mt-1 font-bold text-white">국내 척추·관절 의료기관</h3>
+                  </div>
+                </div>
+                <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">외국인 환자 검색 질문의 AI 노출 진단</h4>
+                <div className="mt-6 grid grid-cols-2 gap-3">
+                  <div className="rounded-lg bg-black/30 p-4">
+                    <p className="text-2xl font-bold text-white">24개</p>
+                    <p className="mt-1 text-xs text-gray-500">유효 AI 응답</p>
+                  </div>
+                  <div className="rounded-lg bg-black/30 p-4">
+                    <p className="text-2xl font-bold text-white">75%</p>
+                    <p className="mt-1 text-xs text-gray-500">전체 응답 언급률</p>
+                  </div>
+                </div>
+                <ul className="mt-6 space-y-3 text-sm leading-relaxed text-gray-400">
+                  <li>한국 의료기관 탐색과 지역 병원 추천 질문을 플랫폼별로 반복 측정했습니다.</li>
+                  <li>플랫폼별 언급률은 50%에서 100%까지 차이가 있어 채널 편중을 확인했습니다.</li>
+                  <li>공식 사이트뿐 아니라 관광·의료·연구 도메인 등 AI가 참고한 출처군을 분류했습니다.</li>
+                </ul>
+                <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
+                  측정일 2026.07.28 · DataForSEO AI Optimization LLM Responses Live · 웹 검색 활성화 · 2개 질문 × 4개 모드 × 3회
+                </p>
+              </article>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={300}>
+            <div className="mt-6 rounded-[10px] border border-brand-blue/20 bg-brand-blue/[0.06] p-5 md:p-6">
+              <p className="font-semibold text-white">익명 공개 원칙</p>
+              <p className="mt-2 text-sm leading-relaxed text-gray-400 keep-all">
+                상호, 지점명, 계정 화면, 고유 URL은 제거합니다. 업종과 지역도 필요한 범위까지만 넓게 표현하고,
+                전후 성과가 확보되기 전에는 ‘성공’이 아닌 ‘진단 프로젝트’로 구분합니다.
+              </p>
+            </div>
+          </FadeIn>
+        </div>
       </div>
 
       {/* 스크린샷 확대 모달 */}

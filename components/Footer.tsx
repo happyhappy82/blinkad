@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
             <a href="/foreign-marketing" className="text-sm text-gray-400 hover:text-white transition-colors">외국인마케팅</a>
             <a href="/services" className="text-sm text-gray-400 hover:text-white transition-colors">서비스</a>
-            <a href="/case-studies" className="text-sm text-gray-400 hover:text-white transition-colors">성공사례</a>
+            <a href="/case-studies" className="text-sm text-gray-400 hover:text-white transition-colors">프로젝트 사례</a>
             <a href="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">블로그</a>
             <a href="/news" className="text-sm text-gray-400 hover:text-white transition-colors">회사소식</a>
             <a href="https://warm-hip-fe9.notion.site/2e9753ebc01380e8aa5dca28b76683eb" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">개인정보처리방침</a>
