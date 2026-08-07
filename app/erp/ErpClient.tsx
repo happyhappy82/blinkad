@@ -273,6 +273,9 @@ type SettlementRecord = {
   storeName: string
   checkDate: string
   status: BillingStatus
+  sheetPaymentStatus?: string
+  actualReceiptAmount?: number
+  actualReceiptDate?: string
   memo: string
   productGroup: string
   productDetail: string
@@ -325,6 +328,15 @@ type SettlementSummary = {
   workerCostPerStore: number
   workerCostAmount: number
   profitAmount: number
+}
+
+type SettlementSheetApiResponse = {
+  connected: boolean
+  source: 'google_sheets' | 'fallback'
+  message: string
+  spreadsheetUrl: string
+  syncedAt: string
+  settlementMonths: SettlementSummary[]
 }
 
 type SettlementStoreReadiness = '정산대상' | '인증대기'
@@ -980,6 +992,15 @@ export default function ErpClient() {
     databases: [],
   })
   const [storeDashboardLoading, setStoreDashboardLoading] = useState(false)
+  const [settlementSheet, setSettlementSheet] = useState<SettlementSheetApiResponse>({
+    connected: false,
+    source: 'fallback',
+    message: 'Google Sheets 정산 원본을 불러오는 중입니다.',
+    spreadsheetUrl: '',
+    syncedAt: '',
+    settlementMonths: [],
+  })
+  const [settlementSheetLoading, setSettlementSheetLoading] = useState(false)
 
   const loadStores = async () => {
     setLoading(true)
@@ -1024,6 +1045,33 @@ export default function ErpClient() {
   useEffect(() => {
     loadStoreDashboard()
   }, [loadStoreDashboard])
+
+  const loadSettlementSheet = useCallback(async () => {
+    setSettlementSheetLoading(true)
+    try {
+      const response = await fetch('/api/erp/settlements', { cache: 'no-store' })
+      const data = (await response.json()) as SettlementSheetApiResponse
+      if (!response.ok) throw new Error(data.message || '정산 원본을 불러오지 못했습니다.')
+      setSettlementSheet(data)
+    } catch (error) {
+      setSettlementSheet((current) => ({
+        ...current,
+        connected: false,
+        source: 'fallback',
+        message:
+          error instanceof Error
+            ? `Google Sheets를 읽지 못해 ERP 내장 데이터를 표시합니다: ${error.message}`
+            : 'Google Sheets를 읽지 못해 ERP 내장 데이터를 표시합니다.',
+        settlementMonths: [],
+      }))
+    } finally {
+      setSettlementSheetLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadSettlementSheet()
+  }, [loadSettlementSheet])
 
   const updateStoreStatus = async (store: StoreRecord, status: string) => {
     if (!status || status === store.status) return
@@ -1280,6 +1328,10 @@ export default function ErpClient() {
       settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
     }
   }, [])
+  const displayedSettlementMonths =
+    settlementSheet.connected && settlementSheet.settlementMonths.length
+      ? settlementSheet.settlementMonths
+      : contractRevenue.settlementMonths
   const activeContractStores = operationViews.project?.rows || []
   const pausedContractStores = operationViews.pausedStores?.rows || []
   const terminatedContractStores = operationViews.terminatedStores?.rows || []
@@ -1375,10 +1427,19 @@ export default function ErpClient() {
       ? undefined
       : operationViews[activeMenu]
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
-  const headerConnectionMessage = activeMenu === 'project' ? storeDashboard.message : activeMenu === 'card' ? '' : connectionMessage
+  const headerConnectionMessage =
+    activeMenu === 'project'
+      ? storeDashboard.message
+      : activeMenu === 'settlement'
+        ? settlementSheet.message
+        : activeMenu === 'card'
+          ? ''
+          : connectionMessage
   const headerLoading =
     activeMenu === 'project'
       ? storeDashboardLoading
+      : activeMenu === 'settlement'
+        ? settlementSheetLoading
       : activeMenu === 'card'
       ? businessCardsLoading
       : ['schedule', 'weekly'].includes(activeMenu)
@@ -1391,6 +1452,7 @@ export default function ErpClient() {
   const refreshActiveMenu = () => {
     persistMenu(activeMenu)
     if (activeMenu === 'project') return loadStoreDashboard()
+    if (activeMenu === 'settlement') return loadSettlementSheet()
     if (activeMenu === 'card') return loadBusinessCards()
     if (activeMenu === 'schedule' || activeMenu === 'weekly') return loadCalendarEvents()
     if (activeMenu === 'meeting') return calendarEvents.length ? syncMeetingRecords(calendarEvents) : loadMeetingRecords()
@@ -1749,7 +1811,11 @@ export default function ErpClient() {
             )}
 
             {activeMenu === 'settlement' && (
-              <PeriodSettlementPanel settlementMonths={contractRevenue.settlementMonths} />
+              <PeriodSettlementPanel
+                settlementMonths={displayedSettlementMonths}
+                integration={settlementSheet}
+                loading={settlementSheetLoading}
+              />
             )}
 
             {activeMenu === 'kpi' && (
@@ -4251,7 +4317,15 @@ function currentSettlementPeriodKey(period: SettlementPeriod) {
   return settlementPeriodKey(formatDateKey(new Date()), period)
 }
 
-function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+function PeriodSettlementPanel({
+  settlementMonths,
+  integration,
+  loading,
+}: {
+  settlementMonths: SettlementSummary[]
+  integration: SettlementSheetApiResponse
+  loading: boolean
+}) {
   const [period, setPeriod] = useState<SettlementPeriod>('month')
   const [selectedKey, setSelectedKey] = useState(() => currentSettlementPeriodKey('month'))
   const records = useMemo(() => settlementMonths.flatMap((summary) => summary.records), [settlementMonths])
@@ -4292,6 +4366,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
         adsServicePaymentAmount: 0,
         netVatPayableAmount: 0,
         profitAmount: 0,
+        actualReceiptAmount: 0,
         usesEcoJardinSettlementRule: false,
         usesSeparateAdExecutionBudget: false,
         count: 0,
@@ -4321,6 +4396,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       current.adsServicePaymentAmount += record.adsServicePaymentAmount
       current.netVatPayableAmount += record.netVatPayableAmount
       current.profitAmount += record.profitAmount
+      current.actualReceiptAmount += record.actualReceiptAmount || 0
       current.usesEcoJardinSettlementRule ||= record.usesEcoJardinSettlementRule
       current.usesSeparateAdExecutionBudget ||= record.usesSeparateAdExecutionBudget
       current.count += 1
@@ -4353,6 +4429,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       adsServicePaymentAmount: number
       netVatPayableAmount: number
       profitAmount: number
+      actualReceiptAmount: number
       usesEcoJardinSettlementRule: boolean
       usesSeparateAdExecutionBudget: boolean
       count: number
@@ -4366,8 +4443,9 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       settlementCost:
         sum.settlementCost + row.bizHighSupplyAmount + row.workerCostAmount + row.adsServiceCostAmount + row.headOfficeSupplyAmount + row.reserveAmount,
       profit: sum.profit + row.profitAmount,
+      actualReceipt: sum.actualReceipt + row.actualReceiptAmount,
     }),
-    { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0 }
+    { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0, actualReceipt: 0 }
   )
 
   return (
@@ -4376,19 +4454,47 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
         <p className="text-sm font-bold text-brand-blue">Settlement</p>
         <h2 className="mt-2 text-2xl font-black text-white">정산관리</h2>
         <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 매출, 광고 집행비, 외부 정산금과 순수익을 주별·월별·연도별로 확인합니다.</p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span
+            className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-black ${
+              integration.connected
+                ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                : 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+            }`}
+          >
+            {loading
+              ? 'Google Sheets 동기화 중'
+              : integration.connected
+                ? 'Google Sheets 실시간 원본'
+                : 'ERP 내장 데이터 대체'}
+          </span>
+          {integration.spreadsheetUrl ? (
+            <a
+              href={integration.spreadsheetUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+            >
+              원본 시트 열기
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+          <span className="text-xs font-bold text-gray-600">{integration.message}</span>
+        </div>
         <div className="mt-5 flex flex-wrap gap-2">{([['week', '주별'], ['month', '월별'], ['year', '연도별']] as const).map(([value, label]) => <button key={value} type="button" onClick={() => setPeriod(value)} className={`h-10 rounded-md border px-4 text-sm font-black ${period === value ? 'border-brand-blue bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-400'}`}>{label}</button>)}</div>
       </div>
       <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"><h3 className="text-xl font-black text-white">정산 기간</h3><select value={selectedKey} onChange={(event) => setSelectedKey(event.target.value)} className="h-11 min-w-60 rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white">{periodKeys.map((key) => <option key={key} value={key}>{settlementPeriodLabel(key, period)}</option>)}</select></div>
-        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black sm:grid-cols-2 xl:grid-cols-5">
+        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black sm:grid-cols-2 xl:grid-cols-6">
           {[
             ['입금액(VAT 포함)', totals.gross, 'text-white'],
+            ['실제 현금 입금액', totals.actualReceipt, 'text-blue-100'],
             ['용역 매출(VAT 별도)', totals.service, 'text-white'],
             ['광고 집행비(순수익 제외)', totals.adBudget, 'text-amber-100'],
             ['외부 정산·비용(VAT 별도)', totals.settlementCost, 'text-rose-100'],
             ['예상 순수익', totals.profit, 'text-emerald-100'],
           ].map(([label, amount, colorClass], index) => (
-            <div key={String(label)} className={`p-5 ${index < 4 ? 'xl:border-r xl:border-white/10' : ''}`}>
+            <div key={String(label)} className={`p-5 ${index < 5 ? 'xl:border-r xl:border-white/10' : ''}`}>
               <p className="text-xs font-black text-gray-500">{label}</p>
               <p className={`mt-2 text-2xl font-black ${colorClass}`}>{formatCurrency(Number(amount))}원</p>
             </div>
@@ -4412,6 +4518,9 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
                 <p className="mt-2 text-xs font-bold text-gray-500">
                   {row.usesSeparateAdExecutionBudget ? '용역비 입금' : '고객 입금'} {formatCurrency(row.grossAmount)}원(VAT 포함)
                   {row.usesSeparateAdExecutionBudget ? ` · 광고 집행비 ${formatCurrency(row.adExecutionBudgetPaymentAmount)}원 별도` : ''}
+                </p>
+                <p className="mt-1 text-xs font-bold text-blue-200/70">
+                  실제 현금 입금 {formatCurrency(row.actualReceiptAmount)}원
                 </p>
               </div>
               <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-right">

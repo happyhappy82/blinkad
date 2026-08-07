@@ -157,6 +157,7 @@ BlinkAd ERP는 영업, 미팅, 견적, 계약, 매장 운영, 리포트, 청구 
   - `app/api/erp/reports/route.ts`
   - `app/api/erp/google/calendar/**`
   - `app/api/erp/google/ads/route.ts`
+  - `app/api/erp/settlements/route.ts` (Google Sheets 월별 정산 원본, 읽기 전용)
 
 ## 연동 원칙
 
@@ -233,4 +234,13 @@ npm run build
 - 에코쟈댕 롯데월드몰점 3개월 선입금은 실제 현금 입금과 월별 배분을 중복 없이 구분했습니다.
 - 2026년 8월 기준값은 용역 매출 400만원, 광고비 190만원, 외부비용 176만원, 예상 순수익 224만원, 월 배분 총결제액 649만원, 실제 현금 입금액 198만원입니다.
 - `검증` 탭의 계약 총액, 월별 합계, 행별 수식, 누락값, 수식 오류 점검은 모두 `PASS`입니다.
-- ERP가 이 Google Sheet를 단방향으로 읽는 연동은 아직 구현하지 않았으며, 사용자 확인 후 별도 작업합니다.
+- ERP 정산관리의 단방향 읽기 연동을 구현했습니다.
+  - 서버 모듈: `lib/erp-settlement-sheets.ts`
+  - API: `GET /api/erp/settlements`
+  - 인증: Google Cloud 서비스 계정 `blinkad-erp-sheets-reader@blinkad-searchconsole.iam.gserviceaccount.com`에 시트 `reader` 권한만 부여했습니다.
+  - 운영 환경변수: `ERP_SETTLEMENT_SHEET_ID`, `ERP_SETTLEMENT_SHEET_URL`, `ERP_GOOGLE_SHEETS_CREDENTIALS_BASE64`
+  - 시트의 `매장별 정산`, `계약·정산 기준`, `검증` 탭을 읽고, `검증!B2`가 `PASS`일 때만 ERP에 반영합니다.
+  - 시트 또는 인증에 오류가 생기면 정산관리 화면은 기존 ERP 내장 데이터로 자동 복귀하고 오류 메시지를 표시합니다.
+  - 정산관리 화면의 새로고침 버튼 또는 페이지 재접속 시 최신 시트 값을 다시 읽습니다. ERP에서 시트로 쓰는 양방향 수정은 지원하지 않습니다.
+- 2026-08-07 실제 API 검증 결과: 13개월, 21개 정산 행, 월 배분 총결제액 합계 26,290,000원, 예상 순수익 합계 14,190,000원을 정상 파싱했습니다.
+- 검증 완료: `npx tsc --noEmit`, `npm run build` 통과. 블로그 SEO와 `libheif-js` 경고는 기존 이슈입니다.
