@@ -58,11 +58,11 @@ function markdownToHtml(markdown) {
   // 취소선
   html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
 
+  // 이미지 (링크보다 먼저 처리해야 ![..](..)가 링크로 잡히지 않음)
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg my-4"/>');
+
   // 링크
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-  // 이미지
-  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg my-4"/>');
 
   // 인용구
   html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
