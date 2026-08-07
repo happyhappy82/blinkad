@@ -281,6 +281,19 @@ type SettlementRecord = {
   productBreakdown: SettlementProductBreakdown
   expenseRevenueAmount: number
   workerCostAmount: number
+  serviceRevenueAmount: number
+  adExecutionBudgetAmount: number
+  adExecutionBudgetVatAmount: number
+  adExecutionBudgetPaymentAmount: number
+  adsManagementRevenueAmount: number
+  bizHighSettlementAmount: number
+  workerWithholdingAmount: number
+  workerNetPaymentAmount: number
+  adsServiceCostAmount: number
+  adsServiceVatAmount: number
+  adsServicePaymentAmount: number
+  netVatPayableAmount: number
+  usesEcoJardinSettlementRule: boolean
   profitAmount: number
 }
 
@@ -358,6 +371,11 @@ const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
 const SETTLEMENT_GOOGLE_ADS_NET_AMOUNT = 200_000
 const SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT = 500_000
 const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
+const ECO_JARDIN_SERVICE_REVENUE_AMOUNT = 1_000_000
+const ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT = 800_000
+const ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT = 500_000
+const ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT = 500_000
+const ECO_JARDIN_ADS_SERVICE_COST_AMOUNT = 310_000
 const VAT_RATE = 0.1
 
 const contractRevenueRecords: ContractRevenueRecord[] = [
@@ -568,6 +586,87 @@ function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmoun
   }
 }
 
+function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: number) {
+  const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+  const vatAmount = grossAmount - netSalesAmount
+  const usesEcoJardinSettlementRule = record.storeName.includes('에코쟈')
+
+  if (usesEcoJardinSettlementRule) {
+    const serviceRevenueAmount = ECO_JARDIN_SERVICE_REVENUE_AMOUNT
+    const adExecutionBudgetAmount = ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT
+    const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
+    const profileManagementAmount = ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT
+    const adsManagementRevenueAmount = ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT
+    const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+    const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+    const workerTax = calculateWithholding(workerCostAmount, true)
+    const adsServiceCostAmount = ECO_JARDIN_ADS_SERVICE_COST_AMOUNT
+    const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
+    const netVatPayableAmount = vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount
+
+    return {
+      netSalesAmount,
+      vatAmount,
+      reserveAmount: 0,
+      profileManagementAmount,
+      productBreakdown: {
+        googleProfileAmount: profileManagementAmount,
+        googleAdsAmount: adsManagementRevenueAmount,
+        websiteBlogAmount: 0,
+        adjustmentAmount: 0,
+      },
+      expenseRevenueAmount: bizHighSettlementAmount,
+      workerCostAmount,
+      serviceRevenueAmount,
+      adExecutionBudgetAmount,
+      adExecutionBudgetVatAmount,
+      adExecutionBudgetPaymentAmount: adExecutionBudgetAmount + adExecutionBudgetVatAmount,
+      adsManagementRevenueAmount,
+      bizHighSettlementAmount,
+      workerWithholdingAmount: workerTax.withholdingTax,
+      workerNetPaymentAmount: workerTax.netAmount,
+      adsServiceCostAmount,
+      adsServiceVatAmount,
+      adsServicePaymentAmount: adsServiceCostAmount + adsServiceVatAmount,
+      netVatPayableAmount,
+      usesEcoJardinSettlementRule,
+      profitAmount:
+        serviceRevenueAmount - bizHighSettlementAmount - workerCostAmount - adsServiceCostAmount,
+    }
+  }
+
+  const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
+  const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
+  const profileManagementAmount = productBreakdown.googleProfileAmount
+  const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+  const workerTax = calculateWithholding(workerCostAmount, true)
+
+  return {
+    netSalesAmount,
+    vatAmount,
+    reserveAmount,
+    profileManagementAmount,
+    productBreakdown,
+    expenseRevenueAmount: bizHighSettlementAmount,
+    workerCostAmount,
+    serviceRevenueAmount: netSalesAmount,
+    adExecutionBudgetAmount: 0,
+    adExecutionBudgetVatAmount: 0,
+    adExecutionBudgetPaymentAmount: 0,
+    adsManagementRevenueAmount: productBreakdown.googleAdsAmount,
+    bizHighSettlementAmount,
+    workerWithholdingAmount: workerTax.withholdingTax,
+    workerNetPaymentAmount: workerTax.netAmount,
+    adsServiceCostAmount: 0,
+    adsServiceVatAmount: 0,
+    adsServicePaymentAmount: 0,
+    netVatPayableAmount: vatAmount,
+    usesEcoJardinSettlementRule,
+    profitAmount: netSalesAmount - reserveAmount - bizHighSettlementAmount - workerCostAmount,
+  }
+}
+
 function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
   const lastMonthIndex = contractRevenueLastMonthIndex(records)
 
@@ -584,13 +683,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     )
     .map((record) => {
       const grossAmount = contractRevenueAmountForMonth(record, monthIndex)
-      const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
-      const vatAmount = grossAmount - netSalesAmount
-      const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
-      const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
-      const profileManagementAmount = productBreakdown.googleProfileAmount
-      const expenseRevenueAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
-      const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+      const detail = settlementDetailForRecord(record, grossAmount)
       const checkDate = settlementCheckDateForStore(record, monthIndex)
 
       return {
@@ -602,14 +695,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
         productGroup: record.productGroup,
         productDetail: record.productDetail,
         grossAmount,
-        vatAmount,
-        netSalesAmount,
-        reserveAmount,
-        profileManagementAmount,
-        productBreakdown,
-        expenseRevenueAmount,
-        workerCostAmount,
-        profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
+        ...detail,
       }
     })
     .sort((a, b) => a.checkDate.localeCompare(b.checkDate) || a.storeName.localeCompare(b.storeName))
@@ -620,7 +706,8 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
   const reserveAmount = settlementRecords.reduce((sum, record) => sum + record.reserveAmount, 0)
   const profileManagementAmount = settlementRecords.reduce((sum, record) => sum + record.profileManagementAmount, 0)
   const expenseRevenueAmount = settlementRecords.reduce((sum, record) => sum + record.expenseRevenueAmount, 0)
-  const workerCostAmount = settlementRecords.length * SETTLEMENT_WORKER_COST_PER_STORE
+  const workerCostAmount = settlementRecords.reduce((sum, record) => sum + record.workerCostAmount, 0)
+  const profitAmount = settlementRecords.reduce((sum, record) => sum + record.profitAmount, 0)
 
   return {
     monthIndex,
@@ -638,7 +725,7 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
     expenseRevenueAmount,
     workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
     workerCostAmount,
-    profitAmount: netSalesAmount - reserveAmount - expenseRevenueAmount - workerCostAmount,
+    profitAmount,
   }
 }
 
@@ -4126,30 +4213,166 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
   const selectedRecords = records.filter((record) => settlementPeriodKey(record.checkDate, period) === selectedKey)
   const rows = Array.from(
     selectedRecords.reduce((map, record) => {
-      const current = map.get(record.storeName) || { storeName: record.storeName, grossAmount: 0, netSalesAmount: 0, profitAmount: 0, count: 0 }
+      const current = map.get(record.storeName) || {
+        storeName: record.storeName,
+        grossAmount: 0,
+        netSalesAmount: 0,
+        vatAmount: 0,
+        serviceRevenueAmount: 0,
+        adExecutionBudgetAmount: 0,
+        adExecutionBudgetPaymentAmount: 0,
+        adsManagementRevenueAmount: 0,
+        profileManagementAmount: 0,
+        bizHighSettlementAmount: 0,
+        workerCostAmount: 0,
+        workerWithholdingAmount: 0,
+        workerNetPaymentAmount: 0,
+        adsServiceCostAmount: 0,
+        adsServiceVatAmount: 0,
+        adsServicePaymentAmount: 0,
+        netVatPayableAmount: 0,
+        profitAmount: 0,
+        usesEcoJardinSettlementRule: false,
+        count: 0,
+      }
       current.grossAmount += record.grossAmount
       current.netSalesAmount += record.netSalesAmount
+      current.vatAmount += record.vatAmount
+      current.serviceRevenueAmount += record.serviceRevenueAmount
+      current.adExecutionBudgetAmount += record.adExecutionBudgetAmount
+      current.adExecutionBudgetPaymentAmount += record.adExecutionBudgetPaymentAmount
+      current.adsManagementRevenueAmount += record.adsManagementRevenueAmount
+      current.profileManagementAmount += record.profileManagementAmount
+      current.bizHighSettlementAmount += record.bizHighSettlementAmount
+      current.workerCostAmount += record.workerCostAmount
+      current.workerWithholdingAmount += record.workerWithholdingAmount
+      current.workerNetPaymentAmount += record.workerNetPaymentAmount
+      current.adsServiceCostAmount += record.adsServiceCostAmount
+      current.adsServiceVatAmount += record.adsServiceVatAmount
+      current.adsServicePaymentAmount += record.adsServicePaymentAmount
+      current.netVatPayableAmount += record.netVatPayableAmount
       current.profitAmount += record.profitAmount
+      current.usesEcoJardinSettlementRule ||= record.usesEcoJardinSettlementRule
       current.count += 1
       map.set(record.storeName, current)
       return map
-    }, new Map<string, { storeName: string; grossAmount: number; netSalesAmount: number; profitAmount: number; count: number }>()).values()
+    }, new Map<string, {
+      storeName: string
+      grossAmount: number
+      netSalesAmount: number
+      vatAmount: number
+      serviceRevenueAmount: number
+      adExecutionBudgetAmount: number
+      adExecutionBudgetPaymentAmount: number
+      adsManagementRevenueAmount: number
+      profileManagementAmount: number
+      bizHighSettlementAmount: number
+      workerCostAmount: number
+      workerWithholdingAmount: number
+      workerNetPaymentAmount: number
+      adsServiceCostAmount: number
+      adsServiceVatAmount: number
+      adsServicePaymentAmount: number
+      netVatPayableAmount: number
+      profitAmount: number
+      usesEcoJardinSettlementRule: boolean
+      count: number
+    }>()).values()
   ).sort((a, b) => b.grossAmount - a.grossAmount)
-  const totals = rows.reduce((sum, row) => ({ gross: sum.gross + row.grossAmount, net: sum.net + row.netSalesAmount, profit: sum.profit + row.profitAmount }), { gross: 0, net: 0, profit: 0 })
+  const totals = rows.reduce(
+    (sum, row) => ({
+      gross: sum.gross + row.grossAmount,
+      service: sum.service + row.serviceRevenueAmount,
+      adBudget: sum.adBudget + row.adExecutionBudgetAmount,
+      settlementCost:
+        sum.settlementCost + row.bizHighSettlementAmount + row.workerCostAmount + row.adsServiceCostAmount,
+      profit: sum.profit + row.profitAmount,
+    }),
+    { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0 }
+  )
 
   return (
     <section className="space-y-5">
       <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
         <p className="text-sm font-bold text-brand-blue">Settlement</p>
         <h2 className="mt-2 text-2xl font-black text-white">정산관리</h2>
-        <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 정산금을 주별, 월별, 연도별로 묶어 확인합니다.</p>
+        <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 매출, 광고 집행비, 외부 정산금과 순수익을 주별·월별·연도별로 확인합니다.</p>
         <div className="mt-5 flex flex-wrap gap-2">{([['week', '주별'], ['month', '월별'], ['year', '연도별']] as const).map(([value, label]) => <button key={value} type="button" onClick={() => setPeriod(value)} className={`h-10 rounded-md border px-4 text-sm font-black ${period === value ? 'border-brand-blue bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-400'}`}>{label}</button>)}</div>
       </div>
       <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"><h3 className="text-xl font-black text-white">정산 기간</h3><select value={selectedKey} onChange={(event) => setSelectedKey(event.target.value)} className="h-11 min-w-60 rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white">{periodKeys.map((key) => <option key={key} value={key}>{settlementPeriodLabel(key, period)}</option>)}</select></div>
-        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3"><div className="p-5 md:border-r md:border-white/10"><p className="text-xs font-black text-gray-500">입금액(VAT 포함)</p><p className="mt-2 text-2xl font-black text-white">{formatCurrency(totals.gross)}원</p></div><div className="p-5 md:border-r md:border-white/10"><p className="text-xs font-black text-gray-500">VAT 제외 매출</p><p className="mt-2 text-2xl font-black text-white">{formatCurrency(totals.net)}원</p></div><div className="p-5"><p className="text-xs font-black text-gray-500">예상 순수익</p><p className="mt-2 text-2xl font-black text-emerald-100">{formatCurrency(totals.profit)}원</p></div></div>
+        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black sm:grid-cols-2 xl:grid-cols-5">
+          {[
+            ['입금액(VAT 포함)', totals.gross, 'text-white'],
+            ['용역 매출(VAT 별도)', totals.service, 'text-white'],
+            ['광고 집행비(순수익 제외)', totals.adBudget, 'text-amber-100'],
+            ['외부 정산·비용(VAT 별도)', totals.settlementCost, 'text-rose-100'],
+            ['예상 순수익', totals.profit, 'text-emerald-100'],
+          ].map(([label, amount, colorClass], index) => (
+            <div key={String(label)} className={`p-5 ${index < 4 ? 'xl:border-r xl:border-white/10' : ''}`}>
+              <p className="text-xs font-black text-gray-500">{label}</p>
+              <p className={`mt-2 text-2xl font-black ${colorClass}`}>{formatCurrency(Number(amount))}원</p>
+            </div>
+          ))}
+        </div>
       </div>
-      <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]"><div className="border-b border-white/10 p-5"><h3 className="text-xl font-black text-white">매장별 정산 상세</h3></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] border-collapse text-left text-sm"><thead className="bg-white/[0.04] text-xs text-gray-500"><tr><th className="px-5 py-3">매장명</th><th className="px-5 py-3">정산 건수</th><th className="px-5 py-3">입금액</th><th className="px-5 py-3">VAT 제외 매출</th><th className="px-5 py-3">예상 순수익</th></tr></thead><tbody>{rows.map((row) => <tr key={row.storeName} className="border-t border-white/10"><td className="px-5 py-4 font-black text-white">{row.storeName}</td><td className="px-5 py-4 font-bold text-gray-400">{row.count}건</td><td className="px-5 py-4 font-black tabular-nums text-white">{formatCurrency(row.grossAmount)}원</td><td className="px-5 py-4 font-bold tabular-nums text-gray-300">{formatCurrency(row.netSalesAmount)}원</td><td className="px-5 py-4 font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</td></tr>)}{!rows.length ? <tr><td colSpan={5} className="px-5 py-10 text-center font-bold text-gray-500">이 기간에 정산 데이터가 없습니다.</td></tr> : null}</tbody></table></div></section>
+      <section className="space-y-4">
+        <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
+          <h3 className="text-xl font-black text-white">매장별 정산 상세</h3>
+          <p className="mt-2 text-xs font-bold text-gray-500">금액 기준은 VAT 별도이며, 실제 송금액과 고객 입금액만 VAT 포함으로 표시합니다.</p>
+        </div>
+        {rows.map((row) => (
+          <article key={row.storeName} className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h4 className="text-lg font-black text-white">{row.storeName}</h4>
+                  <span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-xs font-black text-gray-400">{row.count}건</span>
+                  {row.usesEcoJardinSettlementRule ? <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">에코쟈댕 정산 기준</span> : null}
+                </div>
+                <p className="mt-2 text-xs font-bold text-gray-500">고객 입금 {formatCurrency(row.grossAmount)}원(VAT 포함)</p>
+              </div>
+              <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-right">
+                <p className="text-xs font-black text-emerald-200/70">예상 순수익</p>
+                <p className="mt-1 text-2xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
+              </div>
+            </div>
+            <div className="grid gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-gray-500">용역 매출</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-white">{formatCurrency(row.serviceRevenueAmount)}원</p>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 운영</dt><dd className="font-black text-gray-200">{formatCurrency(row.adsManagementRevenueAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">프로필 관리</dt><dd className="font-black text-gray-200">{formatCurrency(row.profileManagementAmount)}원</dd></div>
+                </dl>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-amber-200/70">광고 집행비 · 순수익 제외</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-amber-100">{formatCurrency(row.adExecutionBudgetAmount)}원</p>
+                <p className="mt-4 text-sm font-bold text-gray-500">실제 결제액</p>
+                <p className="mt-1 font-black tabular-nums text-gray-200">{formatCurrency(row.adExecutionBudgetPaymentAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></p>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-gray-500">외부 정산·비용</p>
+                <dl className="mt-4 space-y-3 text-sm">
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이</dt><dd className="font-black text-gray-200">{formatCurrency(row.bizHighSettlementAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">작업자 정산비</dt><dd className="font-black text-gray-200">{formatCurrency(row.workerCostAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">원천세 / 실제 송금</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerWithholdingAmount)}원 / {formatCurrency(row.workerNetPaymentAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비</dt><dd className="font-black text-gray-200">{formatCurrency(row.adsServiceCostAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 실제 지급</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-gray-500">(VAT {formatCurrency(row.adsServiceVatAmount)}원)</span></dd></div>
+                </dl>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-emerald-200/70">순수익 계산</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
+                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 − 작업자 정산비 − 애즈 용역비</p>
+                <p className="mt-3 text-xs font-bold text-gray-600">VAT 예상 납부액 {formatCurrency(row.netVatPayableAmount)}원</p>
+              </div>
+            </div>
+          </article>
+        ))}
+        {!rows.length ? <div className="rounded-lg border border-white/10 bg-[#0b0d12] px-5 py-10 text-center text-sm font-bold text-gray-500">이 기간에 정산 데이터가 없습니다.</div> : null}
+      </section>
     </section>
   )
 }
