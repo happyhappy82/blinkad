@@ -4401,7 +4401,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
                 <p className="mt-1 text-2xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
               </div>
             </div>
-            <div className="grid gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-[1.05fr_0.72fr_1.55fr_0.88fr]">
               <div className="bg-[#0b0d12] p-5">
                 <p className="text-xs font-black text-gray-500">용역 매출</p>
                 <p className="mt-2 text-xl font-black tabular-nums text-white">{formatCurrency(row.serviceRevenueAmount)}원</p>
@@ -4418,15 +4418,18 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
                 <p className="mt-1 font-black tabular-nums text-gray-200">{formatCurrency(row.adExecutionBudgetPaymentAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></p>
               </div>
               <div className="bg-[#0b0d12] p-5">
-                <p className="text-xs font-black text-gray-500">외부 정산·비용</p>
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-black text-gray-500">외부 정산·비용</p>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-300/20 bg-rose-300/10 px-2 py-1 text-[10px] font-black text-rose-100"><span className="h-1.5 w-1.5 rounded-full bg-rose-300" />실제 지출</span>
+                </div>
                 <dl className="mt-4 space-y-3 text-sm">
-                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSettlementAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">비즈하이 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.bizHighSettlementAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSupplyAmount)}원 / {formatCurrency(row.bizHighVatAmount)}원</dd></div>
-                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">본사 수수료 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.headOfficeSettlementAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div> : null}
+                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">본사 수수료 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.headOfficeSettlementAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div> : null}
                   {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">본사 수수료 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.headOfficeSupplyAmount)}원 / {formatCurrency(row.headOfficeVatAmount)}원</dd></div> : null}
-                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">작업자 정산비</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerCostAmount)}원 <span className="text-xs text-gray-500">(원천세 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">작업자 정산비</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.workerCostAmount)}원 <span className="text-xs text-rose-100/50">(원천세 포함)</span></dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">원천세 / 실제 송금</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerWithholdingAmount)}원 / {formatCurrency(row.workerNetPaymentAmount)}원</dd></div>
-                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">애즈 용역비 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServiceCostAmount)}원 / {formatCurrency(row.adsServiceVatAmount)}원</dd></div>
                   {row.reserveAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">충당금</dt><dd className="font-black text-gray-200">{formatCurrency(row.reserveAmount)}원</dd></div> : null}
                 </dl>
