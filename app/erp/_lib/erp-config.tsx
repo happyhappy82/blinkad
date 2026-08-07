@@ -1097,8 +1097,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '3' },
-      { label: '진행 상품', value: '6' },
+      { label: '운영 매장', value: '4' },
+      { label: '진행 상품', value: '8' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
@@ -1399,6 +1399,18 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         ],
       },
       createProfileAdsOperationRow('도르도뉴'),
+      {
+        ...createProfileAdsOperationRow('에코쟈댕 잠실롯데타워점', {
+          memo: '외국인 고객 유입을 위한 Google 프로필과 Google Ads 운영을 3개월간 관리합니다.',
+        }),
+        meta: '3개월 계약 · 운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+      },
+      {
+        ...createProfileAdsOperationRow('에코쟈댕 홍대점', {
+          memo: '외국인 고객 유입을 위한 Google 프로필과 Google Ads 운영을 1개월간 관리합니다.',
+        }),
+        meta: '1개월 계약 · 운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+      },
       createProfileAdsOperationRow('오닉스', {
         memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
       }),
@@ -2074,14 +2086,13 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   },
 }
 
-const wellmixTerminatedStore = operationViews.project?.rows.find(
-  (row) => row.title === '웰믹스 광화문점'
-)
+const terminatedStoreTitles = new Set(['웰믹스 광화문점', '도르도뉴'])
+const terminatedStoreRows = operationViews.project?.rows.filter((row) => terminatedStoreTitles.has(row.title)) || []
 
-if (operationViews.project && wellmixTerminatedStore) {
+if (operationViews.project && terminatedStoreRows.length) {
   operationViews.project = {
     ...operationViews.project,
-    rows: operationViews.project.rows.filter((row) => row.title !== '웰믹스 광화문점'),
+    rows: operationViews.project.rows.filter((row) => !terminatedStoreTitles.has(row.title)),
   }
 
   operationViews.terminatedStores = {
@@ -2089,18 +2100,19 @@ if (operationViews.project && wellmixTerminatedStore) {
     title: '계약 해제 매장',
     description: '계약이 종료된 매장의 상품 구성, 작업 과정, 보고 이력을 보관합니다.',
     stats: [
-      { label: '계약 해제 매장', value: '1' },
-      { label: '보관 상품', value: '2' },
+      { label: '계약 해제 매장', value: String(terminatedStoreRows.length) },
+      { label: '보관 상품', value: String(terminatedStoreRows.length * 2) },
       { label: '진행 작업', value: '0' },
     ],
-    rows: [
-      {
-        ...wellmixTerminatedStore,
-        status: '계약 해제',
-        due: '이력 보관',
-        memo: `${wellmixTerminatedStore.memo} 계약 종료 후 기존 운영 이력을 보관합니다.`,
-      },
-    ],
+    rows: terminatedStoreRows.map((row) => ({
+      ...row,
+      status: '계약 해제',
+      due: '이력 보관',
+      memo:
+        row.title === '도르도뉴'
+          ? `${row.memo} 1개월 계약 종료 후 기존 운영 이력을 보관합니다.`
+          : `${row.memo} 계약 종료 후 기존 운영 이력을 보관합니다.`,
+    })),
   }
 }
 

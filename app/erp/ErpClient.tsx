@@ -209,9 +209,11 @@ type ContractRevenueRecord = {
   storeName: string
   contractMonths: number
   contractStartDate?: string
+  contractStatus?: '운영중' | '계약 종료'
   productGroup: string
   productDetail: string
   monthlyAmounts: number[]
+  googleAdsNetAmount?: number
   memo: string
 }
 
@@ -331,10 +333,11 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     storeName: '도르도뉴',
     contractMonths: 1,
     contractStartDate: '2026-06-23',
+    contractStatus: '계약 종료',
     productGroup: '구글애즈 + 구글프로필관리',
     productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
     monthlyAmounts: [990_000],
-    memo: '1개월 계약 · VAT 포함 99만원',
+    memo: '1개월 계약 종료 · 2026년 6월 23일 입금완료 · VAT 포함 99만원',
   },
   {
     storeName: '렛츠바레',
@@ -385,6 +388,28 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     ],
     memo: '12개월 계약 · 1개월차 VAT 포함 154만원 · 총 1,154만원 기준',
   },
+  {
+    storeName: '에코쟈댕 잠실롯데타워점',
+    contractMonths: 3,
+    contractStartDate: '2026-07-31',
+    contractStatus: '운영중',
+    productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
+    productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+    monthlyAmounts: [1_980_000, 1_980_000, 1_980_000],
+    googleAdsNetAmount: 800_000,
+    memo: '3개월 계약 · 3개월분 2026년 7월 31일 입금완료 · 총 594만원(VAT 포함)',
+  },
+  {
+    storeName: '에코쟈댕 홍대점',
+    contractMonths: 1,
+    contractStartDate: '2026-08-06',
+    contractStatus: '운영중',
+    productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
+    productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+    monthlyAmounts: [1_980_000],
+    googleAdsNetAmount: 800_000,
+    memo: '1개월 계약 · 2026년 8월 6일 입금완료 · 198만원(VAT 포함)',
+  },
 ]
 
 const billingScheduleByStore: Record<
@@ -393,6 +418,7 @@ const billingScheduleByStore: Record<
     dueDay: number
     firstPaidDate?: string
     firstStatus?: BillingStatus
+    paidMonthCount?: number
     memo: string
   }
 > = {
@@ -430,6 +456,20 @@ const billingScheduleByStore: Record<
     firstPaidDate: '2026-06-20',
     firstStatus: '입금완료',
     memo: '2026년 6월 20일 입금완료',
+  },
+  '에코쟈댕 잠실롯데타워점': {
+    dueDay: 31,
+    firstPaidDate: '2026-07-31',
+    firstStatus: '입금완료',
+    paidMonthCount: 3,
+    memo: '2026년 7월 31일 3개월분 선입금 완료',
+  },
+  '에코쟈댕 홍대점': {
+    dueDay: 6,
+    firstPaidDate: '2026-08-06',
+    firstStatus: '입금완료',
+    paidMonthCount: 1,
+    memo: '2026년 8월 6일 입금완료',
   },
 }
 
@@ -471,7 +511,9 @@ function contractRevenueLastMonthIndex(records: ContractRevenueRecord[]) {
 
 function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmount: number): SettlementProductBreakdown {
   const productText = `${record.productGroup} ${record.productDetail}`
-  const googleAdsAmount = productText.includes('구글애즈') ? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT : 0
+  const googleAdsAmount = productText.toLowerCase().includes('google ads') || productText.includes('구글애즈')
+    ? record.googleAdsNetAmount ?? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT
+    : 0
   const websiteBlogAmount =
     productText.includes('웹사이트') || productText.includes('블로그') ? SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT : 0
   const fixedProductAmount = googleAdsAmount + websiteBlogAmount
@@ -639,7 +681,7 @@ function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
 function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonthIndex: number) {
   const schedule = billingScheduleByStore[record.storeName]
   const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
-  if (contractMonthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
+  if (contractMonthIndex < (schedule?.paidMonthCount || 1) && schedule?.firstPaidDate) return schedule.firstPaidDate
 
   const date = contractRevenueMonthDate(revenueMonthIndex)
   const dueDay = schedule?.dueDay || 25
@@ -651,6 +693,7 @@ function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonth
 function settlementStatusForStore(record: ContractRevenueRecord, revenueMonthIndex: number): BillingStatus {
   const schedule = billingScheduleByStore[record.storeName]
   const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex < (schedule?.paidMonthCount || 0) && schedule?.firstPaidDate) return '입금완료'
   if (contractMonthIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
   return '청구예정'
 }
@@ -1011,10 +1054,19 @@ export default function ErpClient() {
   }, [stores])
   const contractRevenue = useMemo(() => {
     const monthlyRows = monthlyRevenueSchedule(contractRevenueRecords)
+    const today = new Date()
+    const currentMonthIndex = Math.max(
+      0,
+      (today.getFullYear() - CONTRACT_REVENUE_START_YEAR) * 12 +
+        today.getMonth() -
+        (CONTRACT_REVENUE_START_MONTH - 1)
+    )
+    const currentMonthRow = monthlyRows[currentMonthIndex]
 
     return {
       records: contractRevenueRecords,
-      firstMonthAmount: monthlyRows[0]?.amount || 0,
+      currentMonthAmount: currentMonthRow?.amount || 0,
+      currentMonthLabel: currentMonthRow?.monthLabel || contractRevenueMonthLabel(currentMonthIndex),
       contractTotalAmount: contractRevenueRecords.reduce((sum, record) => sum + contractRevenueTotal(record), 0),
       monthlyRows,
       settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
@@ -1619,7 +1671,8 @@ function DashboardPanel({
   counts: { label: string; count: number }[]
   contractRevenue: {
     records: ContractRevenueRecord[]
-    firstMonthAmount: number
+    currentMonthAmount: number
+    currentMonthLabel: string
     contractTotalAmount: number
     settlementMonths: SettlementSummary[]
     monthlyRows: {
@@ -1644,8 +1697,8 @@ function DashboardPanel({
     },
     {
       label: '이번달 매출',
-      value: formatRevenueManwon(contractRevenue.firstMonthAmount),
-      detail: `${contractRevenue.monthlyRows[0]?.monthLabel || '2026년 6월'} 기준`,
+      value: formatRevenueManwon(contractRevenue.currentMonthAmount),
+      detail: `${contractRevenue.currentMonthLabel} 기준`,
     },
     {
       label: '총 계약매출',
@@ -1776,6 +1829,17 @@ function ContractRevenueList({ records }: { records: ContractRevenueRecord[] }) 
                 <tr key={record.storeName} className="border-t border-white/10">
                   <td className="px-4 py-4">
                     <p className="font-black text-white keep-all">{record.storeName}</p>
+                    {record.contractStatus ? (
+                      <span
+                        className={`mt-2 inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${
+                          record.contractStatus === '계약 종료'
+                            ? 'border-gray-500/25 bg-gray-500/10 text-gray-300'
+                            : 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                        }`}
+                      >
+                        {record.contractStatus}
+                      </span>
+                    ) : null}
                   </td>
                   <td className="max-w-[260px] px-4 py-4">
                     <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
@@ -2323,10 +2387,6 @@ function formatRevenueManwon(value: number) {
 function buildBillingRecords(_stores: StoreRecord[]) {
   const today = new Date()
   const todayKey = formatDateKey(today)
-  const currentRevenueMonthIndex = Math.max(
-    0,
-    (today.getFullYear() - CONTRACT_REVENUE_START_YEAR) * 12 + today.getMonth() - (CONTRACT_REVENUE_START_MONTH - 1)
-  )
 
   return contractRevenueRecords.flatMap((contract) => {
     const schedule = billingScheduleByStore[contract.storeName] || {
@@ -2335,21 +2395,34 @@ function buildBillingRecords(_stores: StoreRecord[]) {
       memo: '정산 일정 확인 필요',
     }
     const contractStartMonthIndex = contractStartRevenueMonthIndex(contract)
-    const monthCount = Math.max(contract.monthlyAmounts.length, currentRevenueMonthIndex - contractStartMonthIndex + 1)
+    const paidMonthCount = Math.min(
+      schedule.paidMonthCount || (schedule.firstPaidDate && schedule.firstStatus === '입금완료' ? 1 : 0),
+      contract.monthlyAmounts.length
+    )
+    const billingMonthIndexes = contract.monthlyAmounts
+      .map((_, monthIndex) => monthIndex)
+      .filter((monthIndex) => paidMonthCount <= 1 || monthIndex === 0 || monthIndex >= paidMonthCount)
 
-    return Array.from({ length: monthCount }, (_, monthIndex) => {
-      const amount = contract.monthlyAmounts[monthIndex] ?? contract.monthlyAmounts.at(-1) ?? 0
+    return billingMonthIndexes.map((monthIndex) => {
+      const amount =
+        monthIndex === 0 && paidMonthCount > 1
+          ? contract.monthlyAmounts.slice(0, paidMonthCount).reduce((sum, monthlyAmount) => sum + monthlyAmount, 0)
+          : contract.monthlyAmounts[monthIndex] || 0
       const billingMonth = contractRevenueMonthDate(contractStartMonthIndex + monthIndex)
       const monthLastDate = new Date(billingMonth.getFullYear(), billingMonth.getMonth() + 1, 0).getDate()
       const dueDay = Math.min(schedule.dueDay, monthLastDate)
       const scheduledDate = formatDateKey(new Date(billingMonth.getFullYear(), billingMonth.getMonth(), dueDay))
-      const dueDate = monthIndex === 0 && schedule.firstPaidDate ? schedule.firstPaidDate : scheduledDate
-      const billingStatus: BillingStatus =
-        monthIndex === 0 && schedule.firstStatus ? schedule.firstStatus : '청구예정'
-      const isActiveStore = ['바다당', '도르도뉴', '웰믹스'].some((name) => contract.storeName.includes(name))
+      const isPaidMonth = monthIndex === 0 && paidMonthCount > 0 && Boolean(schedule.firstPaidDate)
+      const dueDate = isPaidMonth && schedule.firstPaidDate ? schedule.firstPaidDate : scheduledDate
+      const billingStatus: BillingStatus = isPaidMonth
+        ? '입금완료'
+        : monthIndex === 0 && schedule.firstStatus
+          ? schedule.firstStatus
+          : '청구예정'
+      const isActiveStore = ['바다당', '에코쟈댕'].some((name) => contract.storeName.includes(name))
       const isAuthPending = SETTLEMENT_AUTH_PENDING_STORE_NAMES.includes(contract.storeName)
       const paymentStatus: PaymentStatus =
-        isActiveStore || isAuthPending || billingStatus === '입금완료'
+        isAuthPending || billingStatus === '입금완료'
           ? '입금완료'
           : dueDate < todayKey
             ? '입금지연'
