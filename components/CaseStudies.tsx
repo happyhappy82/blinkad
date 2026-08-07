@@ -79,12 +79,12 @@ const PROJECT_SUMMARIES = [
     id: 'ai-busan-cafe',
     category: 'ai-search' as const,
     categoryLabel: 'AI 검색(AEO,GEO)',
-    status: '진행형 익명 진단',
-    client: '부산 관광상권 카페',
+    status: '성과 표시 예시',
+    client: '부산 관광상권 카페(예시)',
     title: '외국인 고객을 위한 AI 검색 대응 구조 점검',
-    metric: '정성 진단',
-    metricLabel: '정량 성과 측정 전',
-    description: '외국인 검색 질문을 기준으로 AI 노출 상태를 진단하고, 정보 정비 후 같은 조건으로 다시 측정합니다.',
+    metric: '+10%p',
+    metricLabel: 'AI 언급률 예시 변화',
+    description: '실제 고객 성과가 아닌 표시 예시입니다. 동일 질문군 재측정 시 언급률이 20%에서 30%로 오른 경우를 가정했습니다.',
     href: '#ai-search-projects',
   },
 ];
@@ -381,8 +381,8 @@ const CaseStudies: React.FC = () => {
             <p className="text-brand-blue text-xs font-semibold tracking-wider uppercase mb-2">AI Search · AEO · GEO</p>
             <h2 className="text-2xl md:text-4xl font-bold keep-all">AI 검색 프로젝트 상세</h2>
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400 keep-all">
-              고객사 보호를 위해 상호는 익명 처리했습니다. 현재는 공개 정보 구조를 점검하는 진단 단계이며,
-              AI 추천 성과나 작업 전후 개선률로 표현하지 않습니다.
+              고객사 보호를 위해 상호는 익명 처리합니다. 부산 관광상권 카페의 수치는 화면 구성용 예시이며,
+              실제 고객 성과로 표현하지 않습니다.
             </p>
           </FadeIn>
 
@@ -394,19 +394,19 @@ const CaseStudies: React.FC = () => {
                     <Bot className="h-5 w-5 text-brand-blue" />
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-brand-blue">진행형 익명 진단</p>
-                    <h3 className="mt-1 font-bold text-white">부산 관광상권 카페</h3>
+                    <p className="text-xs font-semibold text-brand-blue">성과 표시 예시</p>
+                    <h3 className="mt-1 font-bold text-white">부산 관광상권 카페(예시)</h3>
                   </div>
                 </div>
                 <h4 className="text-xl md:text-2xl font-bold leading-snug keep-all">외국인 고객을 위한 AI 검색 대응 구조 점검</h4>
                 <div className="mt-6 grid grid-cols-2 gap-3">
                   <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-xl md:text-2xl font-bold text-white">정성 진단</p>
-                    <p className="mt-1 text-xs text-gray-500">현재 프로젝트 단계</p>
+                    <p className="text-xl md:text-2xl font-bold text-white">20%</p>
+                    <p className="mt-1 text-xs text-gray-500">작업 전 AI 언급률</p>
                   </div>
                   <div className="rounded-lg bg-black/30 p-4">
-                    <p className="text-xl md:text-2xl font-bold text-white">측정 전</p>
-                    <p className="mt-1 text-xs text-gray-500">정량 성과</p>
+                    <p className="text-xl md:text-2xl font-bold text-white">30%</p>
+                    <p className="mt-1 text-xs text-gray-500">작업 후 AI 언급률</p>
                   </div>
                 </div>
                 <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -422,7 +422,7 @@ const CaseStudies: React.FC = () => {
                   ))}
                 </div>
                 <p className="mt-6 border-t border-white/5 pt-5 text-[11px] leading-relaxed text-gray-600">
-                  상호 비공개 · 성과 수치는 재측정 완료 후 공개
+                  예시 수치 · 실제 고객 측정값 아님
                 </p>
               </article>
             </FadeIn>
