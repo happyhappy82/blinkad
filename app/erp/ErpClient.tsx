@@ -250,6 +250,7 @@ type ContractRevenueRecord = {
   storeName: string
   contractMonths: number
   contractStartDate?: string
+  settlementStartDate?: string
   contractStatus?: '운영중' | '계약 종료'
   productGroup: string
   productDetail: string
@@ -282,10 +283,14 @@ type SettlementRecord = {
   expenseRevenueAmount: number
   workerCostAmount: number
   serviceRevenueAmount: number
+  serviceRevenueVatAmount: number
+  serviceRevenuePaymentAmount: number
   adExecutionBudgetAmount: number
   adExecutionBudgetVatAmount: number
   adExecutionBudgetPaymentAmount: number
   adsManagementRevenueAmount: number
+  bizHighSupplyAmount: number
+  bizHighVatAmount: number
   bizHighSettlementAmount: number
   workerWithholdingAmount: number
   workerNetPaymentAmount: number
@@ -402,6 +407,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     storeName: '렛츠바레',
     contractMonths: 1,
     contractStartDate: '2026-07-24',
+    settlementStartDate: '2026-08-24',
     productGroup: '구글프로필관리',
     productDetail: '구글프로필관리 70만원',
     monthlyAmounts: [770_000],
@@ -448,7 +454,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     memo: '12개월 계약 · 1개월차 VAT 포함 154만원 · 총 1,154만원 기준',
   },
   {
-    storeName: '에코쟈댕 잠실롯데타워점',
+    storeName: '에코쟈댕 롯데월드몰점',
     contractMonths: 3,
     contractStartDate: '2026-07-31',
     contractStatus: '운영중',
@@ -516,7 +522,7 @@ const billingScheduleByStore: Record<
     firstStatus: '입금완료',
     memo: '2026년 6월 20일 입금완료',
   },
-  '에코쟈댕 잠실롯데타워점': {
+  '에코쟈댕 롯데월드몰점': {
     dueDay: 31,
     firstPaidDate: '2026-07-31',
     firstStatus: '입금완료',
@@ -541,7 +547,7 @@ function firstMonthRevenue(record: ContractRevenueRecord) {
 }
 
 function contractStartRevenueMonthIndex(record: ContractRevenueRecord) {
-  const [yearText, monthText] = (record.contractStartDate || '').split('-')
+  const [yearText, monthText] = (record.settlementStartDate || record.contractStartDate || '').split('-')
   const year = Number(yearText)
   const month = Number(monthText)
 
@@ -593,16 +599,20 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
 
   if (usesEcoJardinSettlementRule) {
     const serviceRevenueAmount = ECO_JARDIN_SERVICE_REVENUE_AMOUNT
+    const serviceRevenueVatAmount = Math.round(serviceRevenueAmount * VAT_RATE)
     const adExecutionBudgetAmount = ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT
     const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
     const profileManagementAmount = ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT
     const adsManagementRevenueAmount = ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT
     const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+    const bizHighSupplyAmount = Math.round(bizHighSettlementAmount / (1 + VAT_RATE))
+    const bizHighVatAmount = bizHighSettlementAmount - bizHighSupplyAmount
     const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
     const workerTax = calculateWithholding(workerCostAmount, true)
     const adsServiceCostAmount = ECO_JARDIN_ADS_SERVICE_COST_AMOUNT
     const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
-    const netVatPayableAmount = vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount
+    const netVatPayableAmount =
+      vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount - bizHighVatAmount
 
     return {
       netSalesAmount,
@@ -615,13 +625,17 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
         websiteBlogAmount: 0,
         adjustmentAmount: 0,
       },
-      expenseRevenueAmount: bizHighSettlementAmount,
+      expenseRevenueAmount: bizHighSupplyAmount,
       workerCostAmount,
       serviceRevenueAmount,
+      serviceRevenueVatAmount,
+      serviceRevenuePaymentAmount: serviceRevenueAmount + serviceRevenueVatAmount,
       adExecutionBudgetAmount,
       adExecutionBudgetVatAmount,
       adExecutionBudgetPaymentAmount: adExecutionBudgetAmount + adExecutionBudgetVatAmount,
       adsManagementRevenueAmount,
+      bizHighSupplyAmount,
+      bizHighVatAmount,
       bizHighSettlementAmount,
       workerWithholdingAmount: workerTax.withholdingTax,
       workerNetPaymentAmount: workerTax.netAmount,
@@ -631,7 +645,7 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
       netVatPayableAmount,
       usesEcoJardinSettlementRule,
       profitAmount:
-        serviceRevenueAmount - bizHighSettlementAmount - workerCostAmount - adsServiceCostAmount,
+        serviceRevenueAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount,
     }
   }
 
@@ -639,6 +653,8 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
   const profileManagementAmount = productBreakdown.googleProfileAmount
   const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const bizHighSupplyAmount = Math.round(bizHighSettlementAmount / (1 + VAT_RATE))
+  const bizHighVatAmount = bizHighSettlementAmount - bizHighSupplyAmount
   const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
   const workerTax = calculateWithholding(workerCostAmount, true)
 
@@ -648,22 +664,26 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     reserveAmount,
     profileManagementAmount,
     productBreakdown,
-    expenseRevenueAmount: bizHighSettlementAmount,
+    expenseRevenueAmount: bizHighSupplyAmount,
     workerCostAmount,
     serviceRevenueAmount: netSalesAmount,
+    serviceRevenueVatAmount: vatAmount,
+    serviceRevenuePaymentAmount: grossAmount,
     adExecutionBudgetAmount: 0,
     adExecutionBudgetVatAmount: 0,
     adExecutionBudgetPaymentAmount: 0,
     adsManagementRevenueAmount: productBreakdown.googleAdsAmount,
+    bizHighSupplyAmount,
+    bizHighVatAmount,
     bizHighSettlementAmount,
     workerWithholdingAmount: workerTax.withholdingTax,
     workerNetPaymentAmount: workerTax.netAmount,
     adsServiceCostAmount: 0,
     adsServiceVatAmount: 0,
     adsServicePaymentAmount: 0,
-    netVatPayableAmount: vatAmount,
+    netVatPayableAmount: vatAmount - bizHighVatAmount,
     usesEcoJardinSettlementRule,
-    profitAmount: netSalesAmount - reserveAmount - bizHighSettlementAmount - workerCostAmount,
+    profitAmount: netSalesAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount,
   }
 }
 
@@ -809,7 +829,7 @@ function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
 function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonthIndex: number) {
   const schedule = billingScheduleByStore[record.storeName]
   const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
-  if (contractMonthIndex < (schedule?.paidMonthCount || 1) && schedule?.firstPaidDate) return schedule.firstPaidDate
+  if (contractMonthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
 
   const date = contractRevenueMonthDate(revenueMonthIndex)
   const dueDay = schedule?.dueDay || 25
@@ -4218,11 +4238,16 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
         grossAmount: 0,
         netSalesAmount: 0,
         vatAmount: 0,
+        reserveAmount: 0,
         serviceRevenueAmount: 0,
+        serviceRevenueVatAmount: 0,
+        serviceRevenuePaymentAmount: 0,
         adExecutionBudgetAmount: 0,
         adExecutionBudgetPaymentAmount: 0,
         adsManagementRevenueAmount: 0,
         profileManagementAmount: 0,
+        bizHighSupplyAmount: 0,
+        bizHighVatAmount: 0,
         bizHighSettlementAmount: 0,
         workerCostAmount: 0,
         workerWithholdingAmount: 0,
@@ -4238,11 +4263,16 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       current.grossAmount += record.grossAmount
       current.netSalesAmount += record.netSalesAmount
       current.vatAmount += record.vatAmount
+      current.reserveAmount += record.reserveAmount
       current.serviceRevenueAmount += record.serviceRevenueAmount
+      current.serviceRevenueVatAmount += record.serviceRevenueVatAmount
+      current.serviceRevenuePaymentAmount += record.serviceRevenuePaymentAmount
       current.adExecutionBudgetAmount += record.adExecutionBudgetAmount
       current.adExecutionBudgetPaymentAmount += record.adExecutionBudgetPaymentAmount
       current.adsManagementRevenueAmount += record.adsManagementRevenueAmount
       current.profileManagementAmount += record.profileManagementAmount
+      current.bizHighSupplyAmount += record.bizHighSupplyAmount
+      current.bizHighVatAmount += record.bizHighVatAmount
       current.bizHighSettlementAmount += record.bizHighSettlementAmount
       current.workerCostAmount += record.workerCostAmount
       current.workerWithholdingAmount += record.workerWithholdingAmount
@@ -4261,11 +4291,16 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       grossAmount: number
       netSalesAmount: number
       vatAmount: number
+      reserveAmount: number
       serviceRevenueAmount: number
+      serviceRevenueVatAmount: number
+      serviceRevenuePaymentAmount: number
       adExecutionBudgetAmount: number
       adExecutionBudgetPaymentAmount: number
       adsManagementRevenueAmount: number
       profileManagementAmount: number
+      bizHighSupplyAmount: number
+      bizHighVatAmount: number
       bizHighSettlementAmount: number
       workerCostAmount: number
       workerWithholdingAmount: number
@@ -4285,7 +4320,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       service: sum.service + row.serviceRevenueAmount,
       adBudget: sum.adBudget + row.adExecutionBudgetAmount,
       settlementCost:
-        sum.settlementCost + row.bizHighSettlementAmount + row.workerCostAmount + row.adsServiceCostAmount,
+        sum.settlementCost + row.bizHighSupplyAmount + row.workerCostAmount + row.adsServiceCostAmount + row.reserveAmount,
       profit: sum.profit + row.profitAmount,
     }),
     { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0 }
@@ -4341,6 +4376,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
               <div className="bg-[#0b0d12] p-5">
                 <p className="text-xs font-black text-gray-500">용역 매출</p>
                 <p className="mt-2 text-xl font-black tabular-nums text-white">{formatCurrency(row.serviceRevenueAmount)}원</p>
+                <p className="mt-2 text-xs font-bold text-gray-500">실제 입금 {formatCurrency(row.serviceRevenuePaymentAmount)}원 · VAT {formatCurrency(row.serviceRevenueVatAmount)}원</p>
                 <dl className="mt-4 space-y-2 text-sm">
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 운영</dt><dd className="font-black text-gray-200">{formatCurrency(row.adsManagementRevenueAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">프로필 관리</dt><dd className="font-black text-gray-200">{formatCurrency(row.profileManagementAmount)}원</dd></div>
@@ -4355,17 +4391,19 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
               <div className="bg-[#0b0d12] p-5">
                 <p className="text-xs font-black text-gray-500">외부 정산·비용</p>
                 <dl className="mt-4 space-y-3 text-sm">
-                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이</dt><dd className="font-black text-gray-200">{formatCurrency(row.bizHighSettlementAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSettlementAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSupplyAmount)}원 / {formatCurrency(row.bizHighVatAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">작업자 정산비</dt><dd className="font-black text-gray-200">{formatCurrency(row.workerCostAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">원천세 / 실제 송금</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerWithholdingAmount)}원 / {formatCurrency(row.workerNetPaymentAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비</dt><dd className="font-black text-gray-200">{formatCurrency(row.adsServiceCostAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 실제 지급</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-gray-500">(VAT {formatCurrency(row.adsServiceVatAmount)}원)</span></dd></div>
+                  {row.reserveAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">충당금</dt><dd className="font-black text-gray-200">{formatCurrency(row.reserveAmount)}원</dd></div> : null}
                 </dl>
               </div>
               <div className="bg-[#0b0d12] p-5">
                 <p className="text-xs font-black text-emerald-200/70">순수익 계산</p>
                 <p className="mt-2 text-xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
-                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 − 작업자 정산비 − 애즈 용역비</p>
+                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 공급가 − 작업자 정산비 − 애즈 용역비 − 충당금</p>
                 <p className="mt-3 text-xs font-bold text-gray-600">VAT 예상 납부액 {formatCurrency(row.netVatPayableAmount)}원</p>
               </div>
             </div>
