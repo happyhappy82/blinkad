@@ -18,6 +18,10 @@ type NotionProperty = {
   url?: string | null
   email?: string | null
   phone_number?: string | null
+  relation?: { id?: string }[]
+  people?: { name?: string; person?: { email?: string } }[]
+  created_time?: string
+  last_edited_time?: string
   formula?: { type?: string; string?: string | null; number?: number | null; boolean?: boolean | null; date?: { start?: string } | null }
   rollup?: { type?: string; number?: number | null }
 }
@@ -35,6 +39,9 @@ function textFromProperty(property: NotionProperty | undefined) {
   if (property.type === 'url') return property.url || ''
   if (property.type === 'email') return property.email || ''
   if (property.type === 'phone_number') return property.phone_number || ''
+  if (property.type === 'people') return (property.people || []).map((person) => person.name || person.person?.email || '').filter(Boolean).join(', ')
+  if (property.type === 'created_time') return property.created_time || ''
+  if (property.type === 'last_edited_time') return property.last_edited_time || ''
   if (property.type === 'formula') {
     const formula = property.formula
     if (!formula) return ''
@@ -43,6 +50,45 @@ function textFromProperty(property: NotionProperty | undefined) {
   }
   if (property.type === 'rollup') return property.rollup?.number == null ? '' : String(property.rollup.number)
   return ''
+}
+
+async function resolvedPropertyText(
+  notion: Client,
+  property: NotionProperty,
+  relationTitleCache: Map<string, string>
+) {
+  if (property.type !== 'relation') return textFromProperty(property)
+  const titles = await Promise.all(
+    (property.relation || []).map(async (relation) => {
+      const id = relation.id || ''
+      if (!id) return ''
+      if (relationTitleCache.has(id)) return relationTitleCache.get(id) || ''
+      try {
+        const page = (await notion.pages.retrieve({ page_id: id })) as any
+        const title = pageTitle((page.properties || {}) as Record<string, NotionProperty>)
+        relationTitleCache.set(id, title)
+        return title
+      } catch {
+        return ''
+      }
+    })
+  )
+  return titles.filter(Boolean).join(', ')
+}
+
+function pickResolvedValue(properties: Record<string, string>, candidates: string[]) {
+  const compactCandidates = candidates.map((candidate) => candidate.replace(/\s+/g, '').toLowerCase())
+  const entry = Object.entries(properties).find(([name]) =>
+    compactCandidates.some((candidate) => name.replace(/\s+/g, '').toLowerCase().includes(candidate))
+  )
+  return entry?.[1] || ''
+}
+
+function databaseKind(title: string) {
+  const compactTitle = title.replace(/[\s·/_-]+/g, '').toLowerCase()
+  if (compactTitle.includes('매장마스터')) return 'storeMaster' as const
+  if (compactTitle.includes('발행') && compactTitle.includes('보고') && compactTitle.includes('로그')) return 'reportLog' as const
+  return 'other' as const
 }
 
 function pickValue(properties: Record<string, NotionProperty>, candidates: string[]) {
@@ -123,43 +169,59 @@ export async function GET() {
         .filter((block) => block.type === 'link_to_page' && block.link_to_page?.type === 'database_id')
         .map((block) => ({ id: block.link_to_page.database_id, title: '' })),
     ].filter((reference, index, references) => references.findIndex((item) => item.id === reference.id) === index)
-    const databases = await Promise.all(
+    const relationTitleCache = new Map<string, string>()
+    const discoveredDatabases = await Promise.all(
       databaseReferences.map(async (reference) => {
         const database = (await notion.databases.retrieve({ database_id: reference.id })) as any
+        const databaseTitle =
+          (database.title || []).map((item: { plain_text?: string }) => item.plain_text || '').join('') ||
+          reference.title ||
+          '매장 현황'
         const pages = await queryAllPages(notion, reference.id)
-        const rows = pages.map((page) => {
+        const rows = await Promise.all(pages.map(async (page) => {
           const properties = (page.properties || {}) as Record<string, NotionProperty>
+          const resolvedProperties = Object.fromEntries(
+            (await Promise.all(
+              Object.entries(properties).map(async ([name, property]) => [
+                name,
+                await resolvedPropertyText(notion, property, relationTitleCache),
+              ] as const)
+            )).filter(([, value]) => Boolean(value))
+          )
           return {
             id: page.id,
             title: pageTitle(properties),
-            status: pickValue(properties, ['상태', '진행', 'status']),
-            date: pickValue(properties, ['날짜', '기준일', '작성일', 'date']),
-            period: pickValue(properties, ['기간', '주차', '월', 'period']),
-            owner: pickValue(properties, ['담당', '작성자', 'owner']),
+            storeName: pickResolvedValue(resolvedProperties, ['매장명', '매장', '지점']),
+            status: pickResolvedValue(resolvedProperties, ['보고상태', '발행상태', '운영상태', '상태', '진행', 'status']),
+            date: pickResolvedValue(resolvedProperties, ['보고일', '발행일', '작업일', '날짜', '기준일', '작성일', 'date']),
+            period: pickResolvedValue(resolvedProperties, ['계약기간', '작업기간', '기간', '주차', '월', 'period']),
+            owner: pickResolvedValue(resolvedProperties, ['담당자', '담당', '작성자', 'owner']),
+            category: pickResolvedValue(resolvedProperties, ['업무구분', '보고구분', '구분', '유형', '종류']),
+            channel: pickResolvedValue(resolvedProperties, ['발행채널', '채널', '매체', '플랫폼']),
+            memo: pickResolvedValue(resolvedProperties, ['보고내용', '작업내용', '내용', '메모', '비고']),
             url: page.url || '',
-            properties: Object.fromEntries(
-              Object.entries(properties)
-                .map(([name, property]) => [name, textFromProperty(property)])
-                .filter(([, value]) => Boolean(value))
-            ),
+            properties: resolvedProperties,
           }
-        })
+        }))
 
         return {
           id: reference.id,
-          title: (database.title || []).map((item: { plain_text?: string }) => item.plain_text || '').join('') || reference.title || '매장 현황',
+          title: databaseTitle,
+          kind: databaseKind(databaseTitle),
           rows,
         }
       })
     )
+    const databases = discoveredDatabases.filter((database) => database.kind !== 'other')
 
     return NextResponse.json({
       connected: true,
       pageUrl,
       databases,
-      message: databases.length
-        ? `Notion 데이터베이스 ${databases.length}개를 불러왔습니다.`
-        : '페이지는 연결됐지만 내부 데이터베이스를 찾지 못했습니다.',
+      message:
+        databases.length === 2
+          ? '매장 마스터와 발행·보고 로그를 불러왔습니다.'
+          : `대상 데이터베이스 ${databases.length}/2개를 찾았습니다. 표 이름을 확인해주세요.`,
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Notion 페이지를 불러오지 못했습니다.'

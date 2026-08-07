@@ -208,10 +208,14 @@ type StoreMetric = {
 type NotionStoreDashboardRow = {
   id: string
   title: string
+  storeName: string
   status: string
   date: string
   period: string
   owner: string
+  category: string
+  channel: string
+  memo: string
   url: string
   properties: Record<string, string>
 }
@@ -223,6 +227,7 @@ type NotionStoreDashboardResponse = {
   databases: {
     id: string
     title: string
+    kind: 'storeMaster' | 'reportLog'
     rows: NotionStoreDashboardRow[]
   }[]
 }
@@ -1675,7 +1680,30 @@ function NotionStoreDashboardPanel({
   fallbackStores: OperationRow[]
   onRefresh: () => void
 }) {
-  const totalRows = data.databases.reduce((sum, database) => sum + database.rows.length, 0)
+  const storeDatabase = data.databases.find((database) => database.kind === 'storeMaster')
+  const reportDatabase = data.databases.find((database) => database.kind === 'reportLog')
+  const [selectedStore, setSelectedStore] = useState('')
+  const storeRows = storeDatabase?.rows || []
+  const reportRows = useMemo(
+    () => [...(reportDatabase?.rows || [])].sort((a, b) => (b.date || '').localeCompare(a.date || '')),
+    [reportDatabase?.rows]
+  )
+
+  useEffect(() => {
+    if (!storeRows.length) {
+      setSelectedStore('')
+      return
+    }
+    if (!storeRows.some((row) => row.title === selectedStore)) setSelectedStore(storeRows[0].title)
+  }, [selectedStore, storeRows])
+
+  const selectedStoreRow = storeRows.find((row) => row.title === selectedStore)
+  const selectedStoreReports = selectedStore
+    ? reportRows.filter((row) => {
+        const source = `${row.storeName} ${row.title}`.replace(/\s+/g, '').toLowerCase()
+        return source.includes(selectedStore.replace(/\s+/g, '').toLowerCase())
+      })
+    : reportRows
 
   return (
     <section className="space-y-5">
@@ -1685,7 +1713,7 @@ function NotionStoreDashboardPanel({
             <p className="text-sm font-bold text-brand-blue">Notion Store Dashboard</p>
             <h2 className="mt-2 text-2xl font-black text-white">매장 운영관리</h2>
             <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">
-              매장별 현황은 Notion 데이터베이스를 원본으로 사용합니다. ERP에서는 확인과 이동만 합니다.
+              Notion의 매장 마스터에서 매장을 선택하고, 연결된 발행·보고 로그를 바로 확인합니다.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -1714,52 +1742,85 @@ function NotionStoreDashboardPanel({
         </div>
       </div>
 
-      {data.connected && data.databases.length ? (
-        data.databases.map((database) => (
-          <section key={database.id} className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
-            <div className="flex items-center justify-between border-b border-white/10 p-5 md:p-6">
+      {data.connected && (storeDatabase || reportDatabase) ? (
+        <div className="grid gap-5 xl:grid-cols-[minmax(360px,0.8fr)_minmax(620px,1.2fr)]">
+          <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex items-center justify-between border-b border-white/10 p-5">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Notion Database</p>
-                <h3 className="mt-2 text-xl font-black text-white">{database.title}</h3>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store Master</p>
+                <h3 className="mt-2 text-xl font-black text-white">매장 마스터</h3>
               </div>
-              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{database.rows.length}건</span>
+              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{storeRows.length}개</span>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[760px] border-collapse text-left text-sm">
-                <thead className="bg-white/[0.04] text-xs text-gray-500">
-                  <tr>
-                    <th className="px-5 py-3">매장 / 항목</th>
-                    <th className="px-5 py-3">상태</th>
-                    <th className="px-5 py-3">기간·기준일</th>
-                    <th className="px-5 py-3">담당</th>
-                    <th className="px-5 py-3 text-right">원본</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {database.rows.map((row) => (
-                    <tr key={row.id} className="border-t border-white/10 hover:bg-white/[0.02]">
-                      <td className="px-5 py-4 font-black text-white">{row.title}</td>
-                      <td className="px-5 py-4 text-sm font-bold text-gray-300">{row.status || '-'}</td>
-                      <td className="px-5 py-4 text-sm font-bold text-gray-400">{row.period || row.date || '-'}</td>
-                      <td className="px-5 py-4 text-sm font-bold text-gray-400">{row.owner || '-'}</td>
-                      <td className="px-5 py-4 text-right">
-                        <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-black text-blue-200 hover:text-white">
-                          열기 <ExternalLink className="h-3.5 w-3.5" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {storeDatabase ? (
+              <div className="divide-y divide-white/10">
+                {storeRows.map((row) => {
+                  const active = selectedStore === row.title
+                  return (
+                    <button
+                      key={row.id}
+                      type="button"
+                      onClick={() => setSelectedStore(row.title)}
+                      className={`flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition ${active ? 'bg-brand-blue/15' : 'hover:bg-white/[0.03]'}`}
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate font-black text-white">{row.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-500">{row.period || row.date || '기간 정보 없음'}{row.owner ? ` · ${row.owner}` : ''}</p>
+                      </div>
+                      <span className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-black ${active ? 'border-brand-blue/40 bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-300'}`}>{row.status || '운영 현황'}</span>
+                    </button>
+                  )
+                })}
+                {!storeRows.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">매장 마스터에 등록된 매장이 없습니다.</p> : null}
+              </div>
+            ) : (
+              <p className="px-5 py-10 text-center text-sm font-bold text-amber-100">매장 마스터 표를 찾지 못했습니다.</p>
+            )}
           </section>
-        ))
+
+          <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Publish & Report Log</p>
+                <h3 className="mt-2 text-xl font-black text-white">{selectedStore || '전체 매장'} 발행·보고 로그</h3>
+                {selectedStoreRow ? <p className="mt-1 text-xs font-semibold text-gray-500">{selectedStoreRow.status || '운영 현황'} · {selectedStoreRow.period || selectedStoreRow.date || '기간 정보 없음'}</p> : null}
+              </div>
+              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{selectedStoreReports.length}건</span>
+            </div>
+            {reportDatabase ? (
+              <div className="max-h-[680px] divide-y divide-white/10 overflow-y-auto">
+                {selectedStoreReports.map((row) => (
+                  <article key={row.id} className="px-5 py-4">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-black tabular-nums text-gray-500">{row.date || '날짜 없음'}</span>
+                          {row.category ? <span className="rounded-full border border-white/10 bg-black px-2 py-0.5 text-[11px] font-black text-gray-300">{row.category}</span> : null}
+                          {row.channel ? <span className="rounded-full border border-blue-300/20 bg-blue-300/10 px-2 py-0.5 text-[11px] font-black text-blue-100">{row.channel}</span> : null}
+                        </div>
+                        <h4 className="mt-2 font-black text-white">{row.title}</h4>
+                        {row.memo ? <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">{row.memo}</p> : null}
+                      </div>
+                      <div className="flex shrink-0 items-center gap-3">
+                        <span className="text-xs font-black text-emerald-100">{row.status || '기록'}</span>
+                        <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-black text-blue-200 hover:text-white">원본 <ExternalLink className="h-3.5 w-3.5" /></a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+                {!selectedStoreReports.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">선택한 매장에 연결된 발행·보고 로그가 없습니다.</p> : null}
+              </div>
+            ) : (
+              <p className="px-5 py-10 text-center text-sm font-bold text-amber-100">발행·보고 로그 표를 찾지 못했습니다.</p>
+            )}
+          </section>
+        </div>
       ) : (
         <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
           <div className="border-b border-white/10 p-5 md:p-6">
             <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">연동 전 임시 목록</p>
             <h3 className="mt-2 text-xl font-black text-white">현재 운영 매장 {fallbackStores.length}개</h3>
-            <p className="mt-2 text-sm font-semibold text-gray-500">Notion 페이지를 연동에 공유하면 이 목록이 실제 데이터베이스 화면으로 교체됩니다.</p>
+            <p className="mt-2 text-sm font-semibold text-gray-500">Notion 페이지를 연동에 공유하면 매장 마스터와 발행·보고 로그 화면으로 교체됩니다.</p>
           </div>
           <div className="divide-y divide-white/10">
             {fallbackStores.map((store) => (
@@ -1775,7 +1836,6 @@ function NotionStoreDashboardPanel({
         </section>
       )}
 
-      {data.connected && !totalRows ? <p className="text-sm font-bold text-gray-500">연결된 데이터베이스에 아직 표시할 행이 없습니다.</p> : null}
     </section>
   )
 }
