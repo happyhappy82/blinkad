@@ -398,7 +398,25 @@ async function fetchNotionPosts() {
       const mdBlocks = await n2m.pageToMarkdown(page.id);
       const mdString = n2m.toMarkdownString(mdBlocks);
       const rawContent = typeof mdString === 'string' ? mdString : (mdString.parent || '');
-      const content = markdownToHtml(rawContent);
+
+      // 본문 이미지 로컬라이즈 (Notion 서명 URL은 약 1시간 뒤 만료되므로 다운로드 후 자체 경로로 교체)
+      let processedContent = rawContent;
+      const bodyImgMatches = [...rawContent.matchAll(/!\[([^\]]*)\]\((https?:\/\/[^)]+)\)/g)];
+      let bodyImgIdx = 0;
+      for (const m of bodyImgMatches) {
+        const imgUrl = m[2];
+        if (!/prod-files-secure|secure\.notion-static|amazonaws\.com/.test(imgUrl)) continue;
+        bodyImgIdx += 1;
+        const imgExt = getExtensionFromUrl(imgUrl) || '.png';
+        const imgFileName = `${slug}-body-${bodyImgIdx}${imgExt}`;
+        const imgLocalPath = path.join(__dirname, '..', 'public', 'blog', 'images', imgFileName);
+        const imgOk = await downloadImage(imgUrl, imgLocalPath);
+        if (imgOk) {
+          processedContent = processedContent.replace(imgUrl, `/blog/images/${imgFileName}`);
+          console.log(`  Body image saved: ${imgFileName}`);
+        }
+      }
+      const content = markdownToHtml(processedContent);
 
       posts.push({
         id: slug,
