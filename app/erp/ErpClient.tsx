@@ -205,6 +205,37 @@ type StoreMetric = {
   detail?: string
 }
 
+type NotionStoreDashboardRow = {
+  id: string
+  title: string
+  status: string
+  date: string
+  period: string
+  owner: string
+  url: string
+  properties: Record<string, string>
+}
+
+type NotionStoreDashboardResponse = {
+  connected: boolean
+  pageUrl: string
+  message: string
+  databases: {
+    id: string
+    title: string
+    rows: NotionStoreDashboardRow[]
+  }[]
+}
+
+type BillingScheduleEvent = {
+  id: string
+  storeName: string
+  date: string
+  type: '계약일' | '입금일' | '입금 안내' | '기타'
+  memo: string
+  automatic?: boolean
+}
+
 type ContractRevenueRecord = {
   storeName: string
   contractMonths: number
@@ -793,6 +824,13 @@ export default function ErpClient() {
   const [mailItems, setMailItems] = useState<MailItem[]>([])
   const [mailLoading, setMailLoading] = useState(false)
   const [mailMessage, setMailMessage] = useState('')
+  const [storeDashboard, setStoreDashboard] = useState<NotionStoreDashboardResponse>({
+    connected: false,
+    pageUrl: 'https://www.notion.so/Blink-Ad-3b4753ebc0138021afecfbdc3115d1b3?source=copy_link',
+    message: '',
+    databases: [],
+  })
+  const [storeDashboardLoading, setStoreDashboardLoading] = useState(false)
 
   const loadStores = async () => {
     setLoading(true)
@@ -816,6 +854,27 @@ export default function ErpClient() {
   useEffect(() => {
     loadStores()
   }, [])
+
+  const loadStoreDashboard = useCallback(async () => {
+    setStoreDashboardLoading(true)
+    try {
+      const response = await fetch('/api/erp/store-dashboard', { cache: 'no-store' })
+      const data = (await response.json()) as NotionStoreDashboardResponse
+      setStoreDashboard(data)
+    } catch {
+      setStoreDashboard((current) => ({
+        ...current,
+        connected: false,
+        message: 'Notion 매장 현황을 불러오지 못했습니다.',
+      }))
+    } finally {
+      setStoreDashboardLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadStoreDashboard()
+  }, [loadStoreDashboard])
 
   const updateStoreStatus = async (store: StoreRecord, status: string) => {
     if (!status || status === store.status) return
@@ -1155,6 +1214,9 @@ export default function ErpClient() {
   )
   const operationView =
     realtimeMenuIds.includes(activeMenu) ||
+    activeMenu === 'project' ||
+    activeMenu === 'pausedStores' ||
+    activeMenu === 'terminatedStores' ||
     activeMenu === 'followup' ||
     activeMenu === 'customer' ||
     activeMenu === 'card' ||
@@ -1164,9 +1226,11 @@ export default function ErpClient() {
       ? undefined
       : operationViews[activeMenu]
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
-  const headerConnectionMessage = activeMenu === 'card' ? '' : connectionMessage
+  const headerConnectionMessage = activeMenu === 'project' ? storeDashboard.message : activeMenu === 'card' ? '' : connectionMessage
   const headerLoading =
-    activeMenu === 'card'
+    activeMenu === 'project'
+      ? storeDashboardLoading
+      : activeMenu === 'card'
       ? businessCardsLoading
       : ['schedule', 'weekly'].includes(activeMenu)
         ? calendarLoading
@@ -1177,6 +1241,7 @@ export default function ErpClient() {
             : loading
   const refreshActiveMenu = () => {
     persistMenu(activeMenu)
+    if (activeMenu === 'project') return loadStoreDashboard()
     if (activeMenu === 'card') return loadBusinessCards()
     if (activeMenu === 'schedule' || activeMenu === 'weekly') return loadCalendarEvents()
     if (activeMenu === 'meeting') return calendarEvents.length ? syncMeetingRecords(calendarEvents) : loadMeetingRecords()
@@ -1272,10 +1337,7 @@ export default function ErpClient() {
                   {group.items.map((menu) => {
                     const Icon = menu.icon
                     const active = activeMenu === menu.id
-                    const sidebarStores =
-                      menu.id === 'project' || menu.id === 'pausedStores' || menu.id === 'terminatedStores'
-                        ? operationViews[menu.id]?.rows || []
-                        : []
+                    const sidebarStores: OperationRow[] = []
 
                     return (
                       <div key={menu.id}>
@@ -1335,7 +1397,7 @@ export default function ErpClient() {
                     BlinkAd ERP
                   </p>
                   <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
-                    영업·미팅·견적·계약·운영·정산 관리
+                    매장 운영·청구·정산 관리
                   </h1>
                 </div>
               </div>
@@ -1386,10 +1448,26 @@ export default function ErpClient() {
 
             {activeMenu === 'dashboard' && (
               <DashboardPanel
-                counts={dashboard.counts}
                 contractRevenue={contractRevenue}
                 contractStoreCounts={contractStoreCounts}
               />
+            )}
+
+            {activeMenu === 'project' && (
+              <NotionStoreDashboardPanel
+                data={storeDashboard}
+                loading={storeDashboardLoading}
+                fallbackStores={activeContractStores}
+                onRefresh={loadStoreDashboard}
+              />
+            )}
+
+            {activeMenu === 'pausedStores' && (
+              <ArchivedStoreListPanel title="작업보류매장" description="현재 작업을 멈춘 매장과 기존 작업 기간만 확인합니다." rows={pausedContractStores} />
+            )}
+
+            {activeMenu === 'terminatedStores' && (
+              <ArchivedStoreListPanel title="계약 해제 매장" description="계약이 끝난 매장과 실제 작업 기간만 보관합니다." rows={terminatedContractStores} />
             )}
 
             {activeMenu === 'crm' && (
@@ -1518,15 +1596,11 @@ export default function ErpClient() {
             {activeMenu === 'blinkadMarketing' && <BlinkAdMarketingPanel />}
 
             {activeMenu === 'billing' && (
-              <BillingWorkflowPanel
-                records={billingRecords}
-                loading={loading}
-                message={connectionMessage}
-              />
+              <BillingCalendarPanel records={billingRecords} />
             )}
 
             {activeMenu === 'settlement' && (
-              <SettlementManagementPanel settlementMonths={contractRevenue.settlementMonths} />
+              <PeriodSettlementPanel settlementMonths={contractRevenue.settlementMonths} />
             )}
 
             {activeMenu === 'kpi' && (
@@ -1587,6 +1661,169 @@ export default function ErpClient() {
         </section>
       </div>
     </main>
+  )
+}
+
+function NotionStoreDashboardPanel({
+  data,
+  loading,
+  fallbackStores,
+  onRefresh,
+}: {
+  data: NotionStoreDashboardResponse
+  loading: boolean
+  fallbackStores: OperationRow[]
+  onRefresh: () => void
+}) {
+  const totalRows = data.databases.reduce((sum, database) => sum + database.rows.length, 0)
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Notion Store Dashboard</p>
+            <h2 className="mt-2 text-2xl font-black text-white">매장 운영관리</h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">
+              매장별 현황은 Notion 데이터베이스를 원본으로 사용합니다. ERP에서는 확인과 이동만 합니다.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={loading}
+              className="inline-flex h-10 items-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 hover:bg-white/5 disabled:opacity-50"
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              동기화
+            </button>
+            <a
+              href={data.pageUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 items-center gap-2 rounded-md bg-brand-blue px-4 text-sm font-black text-white hover:brightness-110"
+            >
+              Notion 원본
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+        <div className={`mt-4 rounded-md border px-4 py-3 text-sm font-bold ${data.connected ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100' : 'border-amber-300/25 bg-amber-300/10 text-amber-100'}`}>
+          {loading ? 'Notion 매장 현황을 불러오는 중입니다.' : data.message || '연동 상태를 확인하고 있습니다.'}
+        </div>
+      </div>
+
+      {data.connected && data.databases.length ? (
+        data.databases.map((database) => (
+          <section key={database.id} className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex items-center justify-between border-b border-white/10 p-5 md:p-6">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Notion Database</p>
+                <h3 className="mt-2 text-xl font-black text-white">{database.title}</h3>
+              </div>
+              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{database.rows.length}건</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+                <thead className="bg-white/[0.04] text-xs text-gray-500">
+                  <tr>
+                    <th className="px-5 py-3">매장 / 항목</th>
+                    <th className="px-5 py-3">상태</th>
+                    <th className="px-5 py-3">기간·기준일</th>
+                    <th className="px-5 py-3">담당</th>
+                    <th className="px-5 py-3 text-right">원본</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {database.rows.map((row) => (
+                    <tr key={row.id} className="border-t border-white/10 hover:bg-white/[0.02]">
+                      <td className="px-5 py-4 font-black text-white">{row.title}</td>
+                      <td className="px-5 py-4 text-sm font-bold text-gray-300">{row.status || '-'}</td>
+                      <td className="px-5 py-4 text-sm font-bold text-gray-400">{row.period || row.date || '-'}</td>
+                      <td className="px-5 py-4 text-sm font-bold text-gray-400">{row.owner || '-'}</td>
+                      <td className="px-5 py-4 text-right">
+                        <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-xs font-black text-blue-200 hover:text-white">
+                          열기 <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        ))
+      ) : (
+        <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="border-b border-white/10 p-5 md:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">연동 전 임시 목록</p>
+            <h3 className="mt-2 text-xl font-black text-white">현재 운영 매장 {fallbackStores.length}개</h3>
+            <p className="mt-2 text-sm font-semibold text-gray-500">Notion 페이지를 연동에 공유하면 이 목록이 실제 데이터베이스 화면으로 교체됩니다.</p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {fallbackStores.map((store) => (
+              <div key={store.title} className="flex flex-col gap-2 px-5 py-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="font-black text-white">{store.title}</p>
+                  <p className="mt-1 text-xs font-semibold text-gray-500">{store.meta}</p>
+                </div>
+                <span className="text-xs font-black text-emerald-100">{store.status}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data.connected && !totalRows ? <p className="text-sm font-bold text-gray-500">연결된 데이터베이스에 아직 표시할 행이 없습니다.</p> : null}
+    </section>
+  )
+}
+
+function contractWorkPeriod(storeName: string) {
+  const contract = contractRevenueRecords.find((record) => record.storeName === storeName)
+  if (!contract?.contractStartDate) return { start: '-', end: '-' }
+  const start = new Date(`${contract.contractStartDate}T00:00:00`)
+  const end = new Date(start)
+  end.setMonth(end.getMonth() + contract.contractMonths)
+  end.setDate(end.getDate() - 1)
+  return { start: contract.contractStartDate, end: formatDateKey(end) }
+}
+
+function ArchivedStoreListPanel({ title, description, rows }: { title: string; description: string; rows: OperationRow[] }) {
+  return (
+    <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="border-b border-white/10 p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Store Archive</p>
+        <h2 className="mt-2 text-2xl font-black text-white">{title}</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">{description}</p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[660px] border-collapse text-left text-sm">
+          <thead className="bg-white/[0.04] text-xs text-gray-500">
+            <tr>
+              <th className="px-5 py-3">매장명</th>
+              <th className="px-5 py-3">상태</th>
+              <th className="px-5 py-3">작업 시작일</th>
+              <th className="px-5 py-3">작업 종료일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              const period = contractWorkPeriod(row.title)
+              return (
+                <tr key={row.title} className="border-t border-white/10">
+                  <td className="px-5 py-4 font-black text-white">{row.title}</td>
+                  <td className="px-5 py-4"><span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-xs font-black text-gray-300">{row.status}</span></td>
+                  <td className="px-5 py-4 font-bold tabular-nums text-gray-300">{period.start}</td>
+                  <td className="px-5 py-4 font-bold tabular-nums text-gray-300">{period.end}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
   )
 }
 
@@ -1664,11 +1901,9 @@ function KpiPanel({
 }
 
 function DashboardPanel({
-  counts,
   contractRevenue,
   contractStoreCounts,
 }: {
-  counts: { label: string; count: number }[]
   contractRevenue: {
     records: ContractRevenueRecord[]
     currentMonthAmount: number
@@ -1709,11 +1944,13 @@ function DashboardPanel({
 
   return (
     <section className="space-y-5">
-      <KpiPanel currentContracts={contractStoreCounts.active} goalContracts={50} />
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Operations Dashboard</p>
+        <h2 className="mt-2 text-2xl font-black text-white">핵심 운영 대시보드</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">매장 운영, 이번 달 청구 규모, 전체 계약 매출만 빠르게 확인합니다.</p>
+      </div>
       <ContractStoreStatusPanel counts={contractStoreCounts} />
-      <InquiryStatusPanel counts={counts} />
       <ContractSummaryPanel cards={revenueCards} />
-      <ContractRevenueList records={contractRevenue.records} />
     </section>
   )
 }
@@ -3635,6 +3872,217 @@ function calculateTeamDistribution(totalAmount: number, withholdingApplied = fal
     withholdingTax: workerTax.withholdingTax + kwonTax.withholdingTax + kangTax.withholdingTax,
     netPaymentAmount: workerTax.netAmount + kwonTax.netAmount + kangTax.netAmount,
   }
+}
+
+const BILLING_SCHEDULE_STORAGE_KEY = 'blinkad-erp-billing-schedules-v1'
+
+function readManualBillingSchedules(): BillingScheduleEvent[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(BILLING_SCHEDULE_STORAGE_KEY) || '[]')
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+function shiftISODate(dateText: string, days: number) {
+  const date = new Date(`${dateText}T00:00:00`)
+  date.setDate(date.getDate() + days)
+  return formatDateKey(date)
+}
+
+function automaticBillingScheduleEvents(records: BillingRecord[]): BillingScheduleEvent[] {
+  const contractEvents = contractRevenueRecords
+    .filter((contract) => contract.contractStartDate)
+    .map((contract) => ({
+      id: `contract-${contract.storeName}`,
+      storeName: contract.storeName,
+      date: contract.contractStartDate || '',
+      type: '계약일' as const,
+      memo: `${contract.contractMonths}개월 계약 시작`,
+      automatic: true,
+    }))
+  const paymentEvents = records.flatMap<BillingScheduleEvent>((record) => [
+    {
+      id: `payment-${record.id}`,
+      storeName: record.storeName,
+      date: record.dueDate,
+      type: '입금일',
+      memo: `${formatCurrency(record.amount)}원 · ${record.status}`,
+      automatic: true,
+    },
+    {
+      id: `reminder-${record.id}`,
+      storeName: record.storeName,
+      date: shiftISODate(record.dueDate, -5),
+      type: '입금 안내',
+      memo: '광고가 멈추지 않도록 입금 예정 안내',
+      automatic: true,
+    },
+  ])
+  return [...contractEvents, ...paymentEvents]
+}
+
+function billingEventClass(type: BillingScheduleEvent['type']) {
+  if (type === '계약일') return 'border-violet-300/30 bg-violet-300/10 text-violet-100'
+  if (type === '입금일') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (type === '입금 안내') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-200'
+}
+
+function BillingCalendarPanel({ records }: { records: BillingRecord[] }) {
+  const [anchorDate, setAnchorDate] = useState(() => new Date())
+  const [manualEvents, setManualEvents] = useState<BillingScheduleEvent[]>(readManualBillingSchedules)
+  const [draft, setDraft] = useState({ storeName: '', date: formatDateKey(new Date()), type: '기타' as BillingScheduleEvent['type'], memo: '' })
+  const automaticEvents = useMemo(() => automaticBillingScheduleEvents(records), [records])
+  const events = useMemo(() => [...automaticEvents, ...manualEvents].sort((a, b) => a.date.localeCompare(b.date)), [automaticEvents, manualEvents])
+  const year = anchorDate.getFullYear()
+  const month = anchorDate.getMonth()
+  const firstDay = new Date(year, month, 1).getDay()
+  const lastDate = new Date(year, month + 1, 0).getDate()
+  const cells = Array.from({ length: 42 }, (_, index) => {
+    const dateNumber = index - firstDay + 1
+    return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
+  })
+  const monthEvents = events.filter((event) => {
+    const date = new Date(`${event.date}T00:00:00`)
+    return date.getFullYear() === year && date.getMonth() === month
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem(BILLING_SCHEDULE_STORAGE_KEY, JSON.stringify(manualEvents))
+  }, [manualEvents])
+
+  const addSchedule = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!draft.storeName.trim() || !draft.date) return
+    setManualEvents((current) => [
+      ...current,
+      { id: `manual-${Date.now()}`, storeName: draft.storeName.trim(), date: draft.date, type: draft.type, memo: draft.memo.trim() },
+    ])
+    setDraft((current) => ({ ...current, storeName: '', memo: '' }))
+  }
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Billing Calendar</p>
+        <h2 className="mt-2 text-2xl font-black text-white">청구관리</h2>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">계약일, 입금일, 입금 5일 전 안내 일정을 한 달 캘린더에서 확인하고 필요한 일정을 직접 기록합니다.</p>
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-black">
+          {(['계약일', '입금일', '입금 안내'] as const).map((type) => <span key={type} className={`rounded-full border px-2.5 py-1 ${billingEventClass(type)}`}>{type}</span>)}
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="mb-4 flex items-center justify-between rounded-lg border border-white/10 bg-black p-3">
+          <button type="button" onClick={() => setAnchorDate(new Date(year, month - 1, 1))} className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5" aria-label="이전 달"><ChevronLeft className="h-4 w-4" /></button>
+          <p className="text-lg font-black text-white">{year}년 {month + 1}월</p>
+          <button type="button" onClick={() => setAnchorDate(new Date(year, month + 1, 1))} className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5" aria-label="다음 달"><ChevronRight className="h-4 w-4" /></button>
+        </div>
+        <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+          <div className="min-w-[920px]">
+            <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black text-gray-600">{['일', '월', '화', '수', '목', '금', '토'].map((day) => <div key={day} className="py-3">{day}</div>)}</div>
+            <div className="grid grid-cols-7">
+              {cells.map((cell, index) => {
+                const dateKey = cell ? formatDateKey(cell) : ''
+                const dayEvents = cell ? monthEvents.filter((event) => event.date === dateKey) : []
+                return (
+                  <div key={`${year}-${month}-${index}`} className={`min-h-[150px] border-b border-r border-white/10 p-2 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}>
+                    {cell ? <><p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>{cell.getDate()}</p><div className="mt-2 space-y-1.5">{dayEvents.slice(0, 5).map((item) => <div key={item.id} className={`rounded border px-2 py-1.5 text-[10px] font-black ${billingEventClass(item.type)}`} title={item.memo}><span className="block opacity-75">{item.type}</span><span className="mt-0.5 block truncate">{item.storeName}</span></div>)}{dayEvents.length > 5 ? <p className="text-[10px] font-bold text-gray-500">+{dayEvents.length - 5}건</p> : null}</div></> : null}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-5 xl:grid-cols-[0.75fr_1.25fr]">
+        <form onSubmit={addSchedule} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+          <p className="text-sm font-bold text-brand-blue">Add Schedule</p>
+          <h3 className="mt-2 text-xl font-black text-white">일정 기록</h3>
+          <div className="mt-5 space-y-3">
+            <input value={draft.storeName} onChange={(event) => setDraft((current) => ({ ...current, storeName: event.target.value }))} placeholder="매장명" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
+            <div className="grid grid-cols-2 gap-3"><input type="date" value={draft.date} onChange={(event) => setDraft((current) => ({ ...current, date: event.target.value }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none" /><select value={draft.type} onChange={(event) => setDraft((current) => ({ ...current, type: event.target.value as BillingScheduleEvent['type'] }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none"><option>계약일</option><option>입금일</option><option>입금 안내</option><option>기타</option></select></div>
+            <input value={draft.memo} onChange={(event) => setDraft((current) => ({ ...current, memo: event.target.value }))} placeholder="메모" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
+            <button type="submit" className="h-11 w-full rounded-md bg-brand-blue text-sm font-black text-white hover:brightness-110">일정 추가</button>
+          </div>
+        </form>
+        <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="border-b border-white/10 p-5"><h3 className="text-xl font-black text-white">{month + 1}월 일정 {monthEvents.length}건</h3></div>
+          <div className="max-h-[360px] divide-y divide-white/10 overflow-y-auto">
+            {monthEvents.map((event) => <div key={event.id} className="grid gap-2 px-5 py-4 md:grid-cols-[100px_1fr_auto] md:items-center"><p className="text-xs font-black tabular-nums text-gray-400">{event.date}</p><div><p className="font-black text-white">{event.storeName}</p><p className="mt-1 text-xs font-semibold text-gray-500">{event.memo}</p></div><div className="flex items-center gap-2"><span className={`rounded-full border px-2.5 py-1 text-xs font-black ${billingEventClass(event.type)}`}>{event.type}</span>{!event.automatic ? <button type="button" onClick={() => setManualEvents((current) => current.filter((item) => item.id !== event.id))} className="text-xs font-black text-red-200">삭제</button> : null}</div></div>)}
+            {!monthEvents.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">이 달에 등록된 일정이 없습니다.</p> : null}
+          </div>
+        </section>
+      </div>
+    </section>
+  )
+}
+
+type SettlementPeriod = 'week' | 'month' | 'year'
+
+function settlementPeriodKey(dateText: string, period: SettlementPeriod) {
+  if (period === 'month') return dateText.slice(0, 7)
+  if (period === 'year') return dateText.slice(0, 4)
+  const date = new Date(`${dateText}T00:00:00`)
+  const day = date.getDay()
+  date.setDate(date.getDate() - (day === 0 ? 6 : day - 1))
+  return formatDateKey(date)
+}
+
+function settlementPeriodLabel(key: string, period: SettlementPeriod) {
+  if (period === 'year') return `${key}년`
+  if (period === 'month') { const [year, month] = key.split('-'); return `${year}년 ${Number(month)}월` }
+  return `${key} ~ ${shiftISODate(key, 6)}`
+}
+
+function currentSettlementPeriodKey(period: SettlementPeriod) {
+  return settlementPeriodKey(formatDateKey(new Date()), period)
+}
+
+function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+  const [period, setPeriod] = useState<SettlementPeriod>('month')
+  const [selectedKey, setSelectedKey] = useState(() => currentSettlementPeriodKey('month'))
+  const records = useMemo(() => settlementMonths.flatMap((summary) => summary.records), [settlementMonths])
+  const periodKeys = useMemo(() => Array.from(new Set(records.map((record) => settlementPeriodKey(record.checkDate, period)))).sort(), [period, records])
+
+  useEffect(() => {
+    const currentKey = currentSettlementPeriodKey(period)
+    setSelectedKey(periodKeys.includes(currentKey) ? currentKey : periodKeys[0] || '')
+  }, [period, periodKeys])
+
+  const selectedRecords = records.filter((record) => settlementPeriodKey(record.checkDate, period) === selectedKey)
+  const rows = Array.from(
+    selectedRecords.reduce((map, record) => {
+      const current = map.get(record.storeName) || { storeName: record.storeName, grossAmount: 0, netSalesAmount: 0, profitAmount: 0, count: 0 }
+      current.grossAmount += record.grossAmount
+      current.netSalesAmount += record.netSalesAmount
+      current.profitAmount += record.profitAmount
+      current.count += 1
+      map.set(record.storeName, current)
+      return map
+    }, new Map<string, { storeName: string; grossAmount: number; netSalesAmount: number; profitAmount: number; count: number }>()).values()
+  ).sort((a, b) => b.grossAmount - a.grossAmount)
+  const totals = rows.reduce((sum, row) => ({ gross: sum.gross + row.grossAmount, net: sum.net + row.netSalesAmount, profit: sum.profit + row.profitAmount }), { gross: 0, net: 0, profit: 0 })
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Settlement</p>
+        <h2 className="mt-2 text-2xl font-black text-white">정산관리</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 정산금을 주별, 월별, 연도별로 묶어 확인합니다.</p>
+        <div className="mt-5 flex flex-wrap gap-2">{([['week', '주별'], ['month', '월별'], ['year', '연도별']] as const).map(([value, label]) => <button key={value} type="button" onClick={() => setPeriod(value)} className={`h-10 rounded-md border px-4 text-sm font-black ${period === value ? 'border-brand-blue bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-400'}`}>{label}</button>)}</div>
+      </div>
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"><h3 className="text-xl font-black text-white">정산 기간</h3><select value={selectedKey} onChange={(event) => setSelectedKey(event.target.value)} className="h-11 min-w-60 rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white">{periodKeys.map((key) => <option key={key} value={key}>{settlementPeriodLabel(key, period)}</option>)}</select></div>
+        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3"><div className="p-5 md:border-r md:border-white/10"><p className="text-xs font-black text-gray-500">입금액(VAT 포함)</p><p className="mt-2 text-2xl font-black text-white">{formatCurrency(totals.gross)}원</p></div><div className="p-5 md:border-r md:border-white/10"><p className="text-xs font-black text-gray-500">VAT 제외 매출</p><p className="mt-2 text-2xl font-black text-white">{formatCurrency(totals.net)}원</p></div><div className="p-5"><p className="text-xs font-black text-gray-500">예상 순수익</p><p className="mt-2 text-2xl font-black text-emerald-100">{formatCurrency(totals.profit)}원</p></div></div>
+      </div>
+      <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]"><div className="border-b border-white/10 p-5"><h3 className="text-xl font-black text-white">매장별 정산 상세</h3></div><div className="overflow-x-auto"><table className="w-full min-w-[720px] border-collapse text-left text-sm"><thead className="bg-white/[0.04] text-xs text-gray-500"><tr><th className="px-5 py-3">매장명</th><th className="px-5 py-3">정산 건수</th><th className="px-5 py-3">입금액</th><th className="px-5 py-3">VAT 제외 매출</th><th className="px-5 py-3">예상 순수익</th></tr></thead><tbody>{rows.map((row) => <tr key={row.storeName} className="border-t border-white/10"><td className="px-5 py-4 font-black text-white">{row.storeName}</td><td className="px-5 py-4 font-bold text-gray-400">{row.count}건</td><td className="px-5 py-4 font-black tabular-nums text-white">{formatCurrency(row.grossAmount)}원</td><td className="px-5 py-4 font-bold tabular-nums text-gray-300">{formatCurrency(row.netSalesAmount)}원</td><td className="px-5 py-4 font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</td></tr>)}{!rows.length ? <tr><td colSpan={5} className="px-5 py-10 text-center font-bold text-gray-500">이 기간에 정산 데이터가 없습니다.</td></tr> : null}</tbody></table></div></section>
+    </section>
+  )
 }
 
 function BillingWorkflowPanel({

@@ -190,13 +190,41 @@ export type MailApiResponse = {
   mails: MailItem[]
 }
 
+export type MenuId =
+  | 'dashboard'
+  | 'project'
+  | 'pausedStores'
+  | 'terminatedStores'
+  | 'billing'
+  | 'settlement'
+  | 'crm'
+  | 'followup'
+  | 'customer'
+  | 'contractPending'
+  | 'card'
+  | 'diagnosis'
+  | 'quote'
+  | 'contract'
+  | 'blinkadMarketing'
+  | 'assets'
+  | 'schedule'
+  | 'meeting'
+  | 'weekly'
+  | 'mail'
+  | 'report'
+  | 'kpi'
+  | 'receivable'
+  | 'staff'
+  | 'outsourcing'
+  | 'settings'
+
 export const menuGroups = [
   {
-    label: '일반 ERP',
+    label: 'ERP',
     items: [{ id: 'dashboard', label: '대시보드', icon: LayoutDashboard }],
   },
   {
-    label: '프로젝트/작업관리',
+    label: '매장 운영',
     items: [
       { id: 'project', label: '매장 운영관리', icon: Folder },
       { id: 'pausedStores', label: '작업보류매장', icon: Clock3 },
@@ -204,73 +232,13 @@ export const menuGroups = [
     ],
   },
   {
-    label: 'CRM/영업',
-    items: [
-      { id: 'crm', label: '문의관리', icon: Building2 },
-      { id: 'followup', label: '팔로업 관리', icon: RefreshCw },
-      { id: 'customer', label: '고객관리', icon: Users },
-      { id: 'contractPending', label: '계약대기', icon: ClipboardList },
-      { id: 'card', label: '명함관리', icon: Badge },
-    ],
-  },
-  {
-    label: '견적/수주',
-    items: [
-      { id: 'diagnosis', label: '분석자료', icon: FileSearch },
-      { id: 'quote', label: '견적서', icon: ReceiptText },
-      { id: 'contract', label: '계약서', icon: FileSignature },
-    ],
-  },
-  {
-    label: '자사 마케팅',
-    items: [
-      { id: 'blinkadMarketing', label: '블링크애드 마케팅', icon: BarChart3 },
-    ],
-  },
-  {
-    label: '자산/콘텐츠',
-    items: [
-      { id: 'assets', label: '콘텐츠 자산', icon: ClipboardList },
-    ],
-  },
-  {
-    label: '일정/미팅',
-    items: [
-      { id: 'schedule', label: '일정관리', icon: Calendar },
-      { id: 'meeting', label: '미팅관리', icon: Mic },
-      { id: 'weekly', label: '주간미팅', icon: CalendarDays },
-      { id: 'mail', label: '메일관리', icon: Mail },
-    ],
-  },
-  {
-    label: '성과분석/리포팅',
-    items: [
-      { id: 'report', label: '리포트', icon: CheckCircle2 },
-      { id: 'kpi', label: 'KPI 분석', icon: CircleDot },
-    ],
-  },
-  {
-    label: '인보이스/청구',
+    label: '재무 관리',
     items: [
       { id: 'billing', label: '청구관리', icon: CreditCard },
       { id: 'settlement', label: '정산관리', icon: ReceiptText },
-      { id: 'receivable', label: '미수금', icon: Clock3 },
     ],
   },
-  {
-    label: '인사/근태',
-    items: [
-      { id: 'staff', label: '담당자 관리', icon: UserCog },
-      { id: 'outsourcing', label: '외주 PM 관리', icon: Handshake },
-    ],
-  },
-  {
-    label: '설정',
-    items: [{ id: 'settings', label: '설정', icon: Settings }],
-  },
-] as const
-
-export type MenuId = (typeof menuGroups)[number]['items'][number]['id']
+] satisfies { label: string; items: { id: MenuId; label: string; icon: typeof LayoutDashboard }[] }[]
 
 export type StoreProductKey = 'googleProfile' | 'googleAds' | 'websiteBlog'
 
