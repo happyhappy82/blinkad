@@ -42,7 +42,7 @@ jobs:
       - name: Check for changes
         id: git-check
         run: |
-          git add constants/index.ts public/blog/thumbnails/ 2>/dev/null || true
+          git add constants/index.ts public/blog/thumbnails/ public/blog/images/ 2>/dev/null || true
           git diff --cached --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
