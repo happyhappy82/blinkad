@@ -216,6 +216,11 @@ type NotionStoreDashboardRow = {
   category: string
   channel: string
   memo: string
+  region: string
+  languages: string
+  keyword: string
+  cadence: string
+  publishedUrl: string
   url: string
   properties: Record<string, string>
 }
@@ -1765,7 +1770,8 @@ function NotionStoreDashboardPanel({
                     >
                       <div className="min-w-0">
                         <p className="truncate font-black text-white">{row.title}</p>
-                        <p className="mt-1 text-xs font-semibold text-gray-500">{row.period || row.date || '기간 정보 없음'}{row.owner ? ` · ${row.owner}` : ''}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-400">{[row.category, row.region].filter(Boolean).join(' · ') || '매장 정보 확인 필요'}</p>
+                        <p className="mt-1 text-[11px] font-semibold text-gray-600">온보딩 {row.date || '미정'}{row.cadence ? ` · ${row.cadence}` : ''}</p>
                       </div>
                       <span className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-black ${active ? 'border-brand-blue/40 bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-300'}`}>{row.status || '운영 현황'}</span>
                     </button>
@@ -1783,7 +1789,8 @@ function NotionStoreDashboardPanel({
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Publish & Report Log</p>
                 <h3 className="mt-2 text-xl font-black text-white">{selectedStore || '전체 매장'} 발행·보고 로그</h3>
-                {selectedStoreRow ? <p className="mt-1 text-xs font-semibold text-gray-500">{selectedStoreRow.status || '운영 현황'} · {selectedStoreRow.period || selectedStoreRow.date || '기간 정보 없음'}</p> : null}
+                {selectedStoreRow ? <p className="mt-1 text-xs font-semibold text-gray-500">{selectedStoreRow.status || '운영 현황'} · {selectedStoreRow.category || '업종 미정'} · {selectedStoreRow.region || '지역 미정'}</p> : null}
+                {selectedStoreRow?.keyword ? <p className="mt-1 text-[11px] font-semibold text-gray-600">공략 키워드: {selectedStoreRow.keyword}</p> : null}
               </div>
               <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{selectedStoreReports.length}건</span>
             </div>
@@ -1797,12 +1804,14 @@ function NotionStoreDashboardPanel({
                           <span className="text-xs font-black tabular-nums text-gray-500">{row.date || '날짜 없음'}</span>
                           {row.category ? <span className="rounded-full border border-white/10 bg-black px-2 py-0.5 text-[11px] font-black text-gray-300">{row.category}</span> : null}
                           {row.channel ? <span className="rounded-full border border-blue-300/20 bg-blue-300/10 px-2 py-0.5 text-[11px] font-black text-blue-100">{row.channel}</span> : null}
+                          {row.languages ? <span className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] font-black text-gray-400">{row.languages}</span> : null}
                         </div>
                         <h4 className="mt-2 font-black text-white">{row.title}</h4>
                         {row.memo ? <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">{row.memo}</p> : null}
                       </div>
                       <div className="flex shrink-0 items-center gap-3">
                         <span className="text-xs font-black text-emerald-100">{row.status || '기록'}</span>
+                        {row.publishedUrl ? <a href={row.publishedUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-black text-emerald-100 hover:text-white">발행물 <ExternalLink className="h-3.5 w-3.5" /></a> : null}
                         <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-black text-blue-200 hover:text-white">원본 <ExternalLink className="h-3.5 w-3.5" /></a>
                       </div>
                     </div>
