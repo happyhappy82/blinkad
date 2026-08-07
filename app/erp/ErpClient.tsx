@@ -257,6 +257,7 @@ type ContractRevenueRecord = {
   monthlyAmounts: number[]
   googleAdsNetAmount?: number
   adExecutionBudgetNetAmount?: number
+  adExecutionBudgetSeparate?: boolean
   memo: string
 }
 
@@ -303,6 +304,7 @@ type SettlementRecord = {
   adsServicePaymentAmount: number
   netVatPayableAmount: number
   usesEcoJardinSettlementRule: boolean
+  usesSeparateAdExecutionBudget: boolean
   profitAmount: number
 }
 
@@ -458,7 +460,8 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
       825_000,
     ],
     adExecutionBudgetNetAmount: 300_000,
-    memo: '12개월 계약 · 총 공급가 1,140만원 · VAT 포함 1,254만원 · 8월 정산 2개월차 적용',
+    adExecutionBudgetSeparate: true,
+    memo: '12개월 용역 계약 · 총 공급가 1,140만원 · VAT 포함 1,254만원 · 광고 집행비 월 30만원(VAT 별도)',
   },
   {
     storeName: '에코쟈댕 롯데월드몰점',
@@ -658,6 +661,7 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
       adsServicePaymentAmount: adsServiceCostAmount + adsServiceVatAmount,
       netVatPayableAmount,
       usesEcoJardinSettlementRule,
+      usesSeparateAdExecutionBudget: false,
       profitAmount:
         serviceRevenueAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount - headOfficeSupplyAmount,
     }
@@ -666,8 +670,13 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
   const adExecutionBudgetAmount = record.adExecutionBudgetNetAmount || 0
   const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
-  const serviceRevenueAmount = Math.max(netSalesAmount - adExecutionBudgetAmount, 0)
-  const serviceRevenueVatAmount = Math.max(vatAmount - adExecutionBudgetVatAmount, 0)
+  const usesSeparateAdExecutionBudget = Boolean(record.adExecutionBudgetSeparate && adExecutionBudgetAmount)
+  const serviceRevenueAmount = usesSeparateAdExecutionBudget
+    ? netSalesAmount
+    : Math.max(netSalesAmount - adExecutionBudgetAmount, 0)
+  const serviceRevenueVatAmount = usesSeparateAdExecutionBudget
+    ? vatAmount
+    : Math.max(vatAmount - adExecutionBudgetVatAmount, 0)
   const productBreakdown = settlementProductBreakdown(record, serviceRevenueAmount)
   const profileManagementAmount = productBreakdown.googleProfileAmount
   const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
@@ -702,8 +711,10 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     adsServiceCostAmount: 0,
     adsServiceVatAmount: 0,
     adsServicePaymentAmount: 0,
-    netVatPayableAmount: vatAmount - adExecutionBudgetVatAmount - bizHighVatAmount,
+    netVatPayableAmount:
+      vatAmount - (usesSeparateAdExecutionBudget ? 0 : adExecutionBudgetVatAmount) - bizHighVatAmount,
     usesEcoJardinSettlementRule,
+    usesSeparateAdExecutionBudget,
     profitAmount: serviceRevenueAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount,
   }
 }
@@ -4282,6 +4293,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
         netVatPayableAmount: 0,
         profitAmount: 0,
         usesEcoJardinSettlementRule: false,
+        usesSeparateAdExecutionBudget: false,
         count: 0,
       }
       current.grossAmount += record.grossAmount
@@ -4310,6 +4322,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       current.netVatPayableAmount += record.netVatPayableAmount
       current.profitAmount += record.profitAmount
       current.usesEcoJardinSettlementRule ||= record.usesEcoJardinSettlementRule
+      current.usesSeparateAdExecutionBudget ||= record.usesSeparateAdExecutionBudget
       current.count += 1
       map.set(record.storeName, current)
       return map
@@ -4341,6 +4354,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       netVatPayableAmount: number
       profitAmount: number
       usesEcoJardinSettlementRule: boolean
+      usesSeparateAdExecutionBudget: boolean
       count: number
     }>()).values()
   ).sort((a, b) => b.grossAmount - a.grossAmount)
@@ -4395,7 +4409,10 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
                   <span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-xs font-black text-gray-400">{row.count}건</span>
                   {row.usesEcoJardinSettlementRule ? <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">에코쟈댕 정산 기준</span> : null}
                 </div>
-                <p className="mt-2 text-xs font-bold text-gray-500">고객 입금 {formatCurrency(row.grossAmount)}원(VAT 포함)</p>
+                <p className="mt-2 text-xs font-bold text-gray-500">
+                  {row.usesSeparateAdExecutionBudget ? '용역비 입금' : '고객 입금'} {formatCurrency(row.grossAmount)}원(VAT 포함)
+                  {row.usesSeparateAdExecutionBudget ? ` · 광고 집행비 ${formatCurrency(row.adExecutionBudgetPaymentAmount)}원 별도` : ''}
+                </p>
               </div>
               <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-right">
                 <p className="text-xs font-black text-emerald-200/70">예상 순수익</p>
