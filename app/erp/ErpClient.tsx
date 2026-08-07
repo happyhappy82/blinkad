@@ -256,6 +256,7 @@ type ContractRevenueRecord = {
   productDetail: string
   monthlyAmounts: number[]
   googleAdsNetAmount?: number
+  adExecutionBudgetNetAmount?: number
   memo: string
 }
 
@@ -451,6 +452,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
       750_000,
       750_000,
     ],
+    adExecutionBudgetNetAmount: 300_000,
     memo: '12개월 계약 · 1개월차 VAT 포함 154만원 · 총 1,154만원 기준',
   },
   {
@@ -461,7 +463,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
     productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
     monthlyAmounts: [1_980_000, 1_980_000, 1_980_000],
-    googleAdsNetAmount: 800_000,
+    adExecutionBudgetNetAmount: 800_000,
     memo: '3개월 계약 · 3개월분 2026년 7월 31일 입금완료 · 총 594만원(VAT 포함)',
   },
   {
@@ -472,7 +474,7 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
     productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
     monthlyAmounts: [1_980_000],
-    googleAdsNetAmount: 800_000,
+    adExecutionBudgetNetAmount: 800_000,
     memo: '1개월 계약 · 2026년 8월 6일 입금완료 · 198만원(VAT 포함)',
   },
 ]
@@ -600,13 +602,14 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   if (usesEcoJardinSettlementRule) {
     const serviceRevenueAmount = ECO_JARDIN_SERVICE_REVENUE_AMOUNT
     const serviceRevenueVatAmount = Math.round(serviceRevenueAmount * VAT_RATE)
-    const adExecutionBudgetAmount = ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT
+    const adExecutionBudgetAmount =
+      record.adExecutionBudgetNetAmount ?? ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT
     const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
     const profileManagementAmount = ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT
     const adsManagementRevenueAmount = ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT
-    const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
-    const bizHighSupplyAmount = Math.round(bizHighSettlementAmount / (1 + VAT_RATE))
-    const bizHighVatAmount = bizHighSettlementAmount - bizHighSupplyAmount
+    const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+    const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
+    const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
     const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
     const workerTax = calculateWithholding(workerCostAmount, true)
     const adsServiceCostAmount = ECO_JARDIN_ADS_SERVICE_COST_AMOUNT
@@ -650,11 +653,15 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   }
 
   const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
-  const productBreakdown = settlementProductBreakdown(record, netSalesAmount)
+  const adExecutionBudgetAmount = record.adExecutionBudgetNetAmount || 0
+  const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
+  const serviceRevenueAmount = Math.max(netSalesAmount - adExecutionBudgetAmount, 0)
+  const serviceRevenueVatAmount = Math.max(vatAmount - adExecutionBudgetVatAmount, 0)
+  const productBreakdown = settlementProductBreakdown(record, serviceRevenueAmount)
   const profileManagementAmount = productBreakdown.googleProfileAmount
-  const bizHighSettlementAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
-  const bizHighSupplyAmount = Math.round(bizHighSettlementAmount / (1 + VAT_RATE))
-  const bizHighVatAmount = bizHighSettlementAmount - bizHighSupplyAmount
+  const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
+  const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
   const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
   const workerTax = calculateWithholding(workerCostAmount, true)
 
@@ -666,12 +673,12 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     productBreakdown,
     expenseRevenueAmount: bizHighSupplyAmount,
     workerCostAmount,
-    serviceRevenueAmount: netSalesAmount,
-    serviceRevenueVatAmount: vatAmount,
-    serviceRevenuePaymentAmount: grossAmount,
-    adExecutionBudgetAmount: 0,
-    adExecutionBudgetVatAmount: 0,
-    adExecutionBudgetPaymentAmount: 0,
+    serviceRevenueAmount,
+    serviceRevenueVatAmount,
+    serviceRevenuePaymentAmount: serviceRevenueAmount + serviceRevenueVatAmount,
+    adExecutionBudgetAmount,
+    adExecutionBudgetVatAmount,
+    adExecutionBudgetPaymentAmount: adExecutionBudgetAmount + adExecutionBudgetVatAmount,
     adsManagementRevenueAmount: productBreakdown.googleAdsAmount,
     bizHighSupplyAmount,
     bizHighVatAmount,
@@ -681,9 +688,9 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     adsServiceCostAmount: 0,
     adsServiceVatAmount: 0,
     adsServicePaymentAmount: 0,
-    netVatPayableAmount: vatAmount - bizHighVatAmount,
+    netVatPayableAmount: vatAmount - adExecutionBudgetVatAmount - bizHighVatAmount,
     usesEcoJardinSettlementRule,
-    profitAmount: netSalesAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount,
+    profitAmount: serviceRevenueAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount,
   }
 }
 
