@@ -293,6 +293,9 @@ type SettlementRecord = {
   bizHighSupplyAmount: number
   bizHighVatAmount: number
   bizHighSettlementAmount: number
+  headOfficeSupplyAmount: number
+  headOfficeVatAmount: number
+  headOfficeSettlementAmount: number
   workerWithholdingAmount: number
   workerNetPaymentAmount: number
   adsServiceCostAmount: number
@@ -382,6 +385,7 @@ const ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT = 800_000
 const ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT = 500_000
 const ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT = 500_000
 const ECO_JARDIN_ADS_SERVICE_COST_AMOUNT = 315_000
+const ECO_JARDIN_HEAD_OFFICE_FEE_AMOUNT = 100_000
 const VAT_RATE = 0.1
 
 const contractRevenueRecords: ContractRevenueRecord[] = [
@@ -610,12 +614,15 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
     const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
     const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
+    const headOfficeSupplyAmount = ECO_JARDIN_HEAD_OFFICE_FEE_AMOUNT
+    const headOfficeVatAmount = Math.round(headOfficeSupplyAmount * VAT_RATE)
+    const headOfficeSettlementAmount = headOfficeSupplyAmount + headOfficeVatAmount
     const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
     const workerTax = calculateWithholding(workerCostAmount, true)
     const adsServiceCostAmount = ECO_JARDIN_ADS_SERVICE_COST_AMOUNT
     const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
     const netVatPayableAmount =
-      vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount - bizHighVatAmount
+      vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount - bizHighVatAmount - headOfficeVatAmount
 
     return {
       netSalesAmount,
@@ -640,6 +647,9 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
       bizHighSupplyAmount,
       bizHighVatAmount,
       bizHighSettlementAmount,
+      headOfficeSupplyAmount,
+      headOfficeVatAmount,
+      headOfficeSettlementAmount,
       workerWithholdingAmount: workerTax.withholdingTax,
       workerNetPaymentAmount: workerTax.netAmount,
       adsServiceCostAmount,
@@ -648,7 +658,7 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
       netVatPayableAmount,
       usesEcoJardinSettlementRule,
       profitAmount:
-        serviceRevenueAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount,
+        serviceRevenueAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount - headOfficeSupplyAmount,
     }
   }
 
@@ -683,6 +693,9 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     bizHighSupplyAmount,
     bizHighVatAmount,
     bizHighSettlementAmount,
+    headOfficeSupplyAmount: 0,
+    headOfficeVatAmount: 0,
+    headOfficeSettlementAmount: 0,
     workerWithholdingAmount: workerTax.withholdingTax,
     workerNetPaymentAmount: workerTax.netAmount,
     adsServiceCostAmount: 0,
@@ -4256,6 +4269,9 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
         bizHighSupplyAmount: 0,
         bizHighVatAmount: 0,
         bizHighSettlementAmount: 0,
+        headOfficeSupplyAmount: 0,
+        headOfficeVatAmount: 0,
+        headOfficeSettlementAmount: 0,
         workerCostAmount: 0,
         workerWithholdingAmount: 0,
         workerNetPaymentAmount: 0,
@@ -4281,6 +4297,9 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       current.bizHighSupplyAmount += record.bizHighSupplyAmount
       current.bizHighVatAmount += record.bizHighVatAmount
       current.bizHighSettlementAmount += record.bizHighSettlementAmount
+      current.headOfficeSupplyAmount += record.headOfficeSupplyAmount
+      current.headOfficeVatAmount += record.headOfficeVatAmount
+      current.headOfficeSettlementAmount += record.headOfficeSettlementAmount
       current.workerCostAmount += record.workerCostAmount
       current.workerWithholdingAmount += record.workerWithholdingAmount
       current.workerNetPaymentAmount += record.workerNetPaymentAmount
@@ -4309,6 +4328,9 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       bizHighSupplyAmount: number
       bizHighVatAmount: number
       bizHighSettlementAmount: number
+      headOfficeSupplyAmount: number
+      headOfficeVatAmount: number
+      headOfficeSettlementAmount: number
       workerCostAmount: number
       workerWithholdingAmount: number
       workerNetPaymentAmount: number
@@ -4327,7 +4349,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
       service: sum.service + row.serviceRevenueAmount,
       adBudget: sum.adBudget + row.adExecutionBudgetAmount,
       settlementCost:
-        sum.settlementCost + row.bizHighSupplyAmount + row.workerCostAmount + row.adsServiceCostAmount + row.reserveAmount,
+        sum.settlementCost + row.bizHighSupplyAmount + row.workerCostAmount + row.adsServiceCostAmount + row.headOfficeSupplyAmount + row.reserveAmount,
       profit: sum.profit + row.profitAmount,
     }),
     { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0 }
@@ -4400,6 +4422,8 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
                 <dl className="mt-4 space-y-3 text-sm">
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSettlementAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSupplyAmount)}원 / {formatCurrency(row.bizHighVatAmount)}원</dd></div>
+                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">본사 수수료 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.headOfficeSettlementAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div> : null}
+                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">본사 수수료 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.headOfficeSupplyAmount)}원 / {formatCurrency(row.headOfficeVatAmount)}원</dd></div> : null}
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">작업자 정산비</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerCostAmount)}원 <span className="text-xs text-gray-500">(원천세 포함)</span></dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">원천세 / 실제 송금</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerWithholdingAmount)}원 / {formatCurrency(row.workerNetPaymentAmount)}원</dd></div>
                   <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비 실제 정산</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></dd></div>
@@ -4410,7 +4434,7 @@ function PeriodSettlementPanel({ settlementMonths }: { settlementMonths: Settlem
               <div className="bg-[#0b0d12] p-5">
                 <p className="text-xs font-black text-emerald-200/70">순수익 계산</p>
                 <p className="mt-2 text-xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
-                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 공급가 − 작업자 정산비 − 애즈 용역비 − 충당금</p>
+                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 공급가 − 본사 수수료 공급가 − 작업자 정산비 − 애즈 용역비 − 충당금</p>
                 <p className="mt-3 text-xs font-bold text-gray-600">VAT 예상 납부액 {formatCurrency(row.netVatPayableAmount)}원</p>
               </div>
             </div>
