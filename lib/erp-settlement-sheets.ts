@@ -344,7 +344,7 @@ function settlementRecords(
           adsServiceVatAmount -
           bizHighVatAmount -
           headOfficeVatAmount
-        : serviceRevenueVatAmount - bizHighVatAmount
+        : serviceRevenueVatAmount - bizHighVatAmount - adsServiceVatAmount
 
       return {
         key: `${index}:${storeName}:${checkDate}`,

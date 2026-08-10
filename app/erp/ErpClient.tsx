@@ -256,6 +256,7 @@ type ContractRevenueRecord = {
   productDetail: string
   monthlyAmounts: number[]
   googleAdsNetAmount?: number
+  adsServiceCostNetAmount?: number
   adExecutionBudgetNetAmount?: number
   adExecutionBudgetSeparate?: boolean
   memo: string
@@ -398,7 +399,7 @@ const ECO_JARDIN_SERVICE_REVENUE_AMOUNT = 1_000_000
 const ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT = 800_000
 const ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT = 500_000
 const ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT = 500_000
-const ECO_JARDIN_ADS_SERVICE_COST_AMOUNT = 315_000
+const ADS_SERVICE_COST_AMOUNT = 315_000
 const ECO_JARDIN_HEAD_OFFICE_FEE_AMOUNT = 100_000
 const VAT_RATE = 0.1
 
@@ -440,7 +441,8 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
-    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · 기존 주도락 강남점 정산 이력 승계',
+    adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
+    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · Ads 용역비 공급가 31.5만원 반영 · 기존 주도락 강남점 정산 이력 승계',
   },
   {
     storeName: '주도락 을지로점',
@@ -450,7 +452,8 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
-    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · 기존 주도락 마곡발산점 정산 이력 승계',
+    adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
+    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · Ads 용역비 공급가 31.5만원 반영 · 기존 주도락 마곡발산점 정산 이력 승계',
   },
   {
     storeName: '바다당 해운대점',
@@ -637,7 +640,7 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     const headOfficeSettlementAmount = headOfficeSupplyAmount + headOfficeVatAmount
     const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
     const workerTax = calculateWithholding(workerCostAmount, true)
-    const adsServiceCostAmount = ECO_JARDIN_ADS_SERVICE_COST_AMOUNT
+    const adsServiceCostAmount = ADS_SERVICE_COST_AMOUNT
     const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
     const netVatPayableAmount =
       vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount - bizHighVatAmount - headOfficeVatAmount
@@ -698,6 +701,8 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
   const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
   const workerTax = calculateWithholding(workerCostAmount, true)
+  const adsServiceCostAmount = record.adsServiceCostNetAmount || 0
+  const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
 
   return {
     netSalesAmount,
@@ -722,14 +727,18 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     headOfficeSettlementAmount: 0,
     workerWithholdingAmount: workerTax.withholdingTax,
     workerNetPaymentAmount: workerTax.netAmount,
-    adsServiceCostAmount: 0,
-    adsServiceVatAmount: 0,
-    adsServicePaymentAmount: 0,
+    adsServiceCostAmount,
+    adsServiceVatAmount,
+    adsServicePaymentAmount: adsServiceCostAmount + adsServiceVatAmount,
     netVatPayableAmount:
-      vatAmount - (usesSeparateAdExecutionBudget ? 0 : adExecutionBudgetVatAmount) - bizHighVatAmount,
+      vatAmount -
+      (usesSeparateAdExecutionBudget ? 0 : adExecutionBudgetVatAmount) -
+      bizHighVatAmount -
+      adsServiceVatAmount,
     usesEcoJardinSettlementRule,
     usesSeparateAdExecutionBudget,
-    profitAmount: serviceRevenueAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount,
+    profitAmount:
+      serviceRevenueAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount,
   }
 }
 
