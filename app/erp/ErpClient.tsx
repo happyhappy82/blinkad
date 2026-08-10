@@ -436,19 +436,21 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     storeName: '자루야키용산로 신용산본점',
     contractMonths: 1,
     contractStartDate: '2026-06-20',
+    settlementStartDate: '2026-08-20',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
-    memo: '1개월 계약 · VAT 포함 154만원 · 기존 주도락 강남점 정산 이력 승계',
+    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · 기존 주도락 강남점 정산 이력 승계',
   },
   {
     storeName: '주도락 을지로점',
     contractMonths: 1,
     contractStartDate: '2026-06-20',
+    settlementStartDate: '2026-08-20',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
-    memo: '1개월 계약 · VAT 포함 154만원 · 기존 주도락 마곡발산점 정산 이력 승계',
+    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · 기존 주도락 마곡발산점 정산 이력 승계',
   },
   {
     storeName: '바다당 해운대점',
@@ -536,13 +538,13 @@ const billingScheduleByStore: Record<
     dueDay: 20,
     firstPaidDate: '2026-06-20',
     firstStatus: '입금완료',
-    memo: '2026년 6월 20일 입금완료 · 기존 주도락 강남점 정산 이력 승계',
+    memo: '2026년 6월 20일 입금완료 · 2026년 8월 정산 · 기존 주도락 강남점 정산 이력 승계',
   },
   '주도락 을지로점': {
     dueDay: 20,
     firstPaidDate: '2026-06-20',
     firstStatus: '입금완료',
-    memo: '2026년 6월 20일 입금완료 · 기존 주도락 마곡발산점 정산 이력 승계',
+    memo: '2026년 6월 20일 입금완료 · 2026년 8월 정산 · 기존 주도락 마곡발산점 정산 이력 승계',
   },
   '에코쟈댕 롯데월드몰점': {
     dueDay: 31,
@@ -873,6 +875,7 @@ function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
 function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonthIndex: number) {
   const schedule = billingScheduleByStore[record.storeName]
   const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex === 0 && record.settlementStartDate) return record.settlementStartDate
   if (contractMonthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
 
   const date = contractRevenueMonthDate(revenueMonthIndex)
