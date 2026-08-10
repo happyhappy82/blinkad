@@ -1681,8 +1681,12 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
           },
         ],
       },
-      createJoodorakOperationRow('강남점', '강남', '강남'),
-      createJoodorakOperationRow('마곡발산점', '마곡·발산', '마곡 발산'),
+      createProfileAdsOperationRow('자루야키용산로 신용산본점', {
+        memo: '신용산 상권과 외국인 고객 유입 기준으로 Google 프로필과 광고 운영 현황을 관리합니다.',
+      }),
+      createProfileAdsOperationRow('주도락 을지로점', {
+        memo: '을지로 상권과 외국인 고객 유입 기준으로 Google 프로필과 광고 운영 현황을 관리합니다.',
+      }),
     ],
   },
   assets: {
@@ -2084,14 +2088,19 @@ if (operationViews.project && terminatedStoreRows.length) {
   }
 }
 
-const pausedStoreTitles = new Set([
-  '주도락 강남점',
-  '주도락 마곡발산점',
-])
+const pausedStoreTitles = new Set<string>()
 const removedStoreTitles = new Set(['오닉스', '언리미티드'])
 const pausedStoreRows = operationViews.project?.rows.filter((row) =>
   pausedStoreTitles.has(row.title)
 ) || []
+const pausedProductCount = pausedStoreRows.reduce(
+  (count, row) =>
+    count +
+    [row.products?.googleProfile, row.products?.googleAds, row.products?.website].filter(
+      (product) => product && product !== '계약 제외'
+    ).length,
+  0
+)
 
 if (operationViews.project) {
   operationViews.project = {
@@ -2108,7 +2117,7 @@ operationViews.pausedStores = {
   description: '작업이 일시 중단된 매장의 기존 상품 구성과 작업·보고 이력을 보관합니다.',
   stats: [
     { label: '작업 보류 매장', value: String(pausedStoreRows.length) },
-    { label: '보관 상품', value: '6' },
+    { label: '보관 상품', value: String(pausedProductCount) },
     { label: '진행 작업', value: '0' },
   ],
   rows: pausedStoreRows.map((row) => ({
