@@ -223,6 +223,27 @@ async function fetchGoogleAdsAccessToken() {
   return data.access_token
 }
 
+// Permanent read-only boundary: GAQL searchStream is POST but does not mutate
+// account state. All unlisted Google Ads API paths, including mutate endpoints,
+// are blocked before an HTTP request can be sent.
+function googleAdsReadOnlyFetch(url, init = {}) {
+  const parsed = new URL(url)
+  const method = (init.method || 'GET').toUpperCase()
+  const isGoogleAdsHost = parsed.hostname === 'googleads.googleapis.com'
+  const isSearchStream =
+    method === 'POST' && /^\/v\d+\/customers\/\d+\/googleAds:searchStream$/.test(parsed.pathname)
+  const isAccessibleCustomers =
+    method === 'GET' && /^\/v\d+\/customers:listAccessibleCustomers$/.test(parsed.pathname)
+
+  if (!isGoogleAdsHost || (!isSearchStream && !isAccessibleCustomers)) {
+    throw new Error(
+      `Google Ads read-only policy blocked an unapproved API request: ${method} ${parsed.pathname}`
+    )
+  }
+
+  return fetch(url, init)
+}
+
 async function googleAdsSearch(accessToken, customerId, query, loginCustomerId = '') {
   const headers = {
     authorization: `Bearer ${accessToken}`,
@@ -231,7 +252,7 @@ async function googleAdsSearch(accessToken, customerId, query, loginCustomerId =
   }
   if (loginCustomerId) headers['login-customer-id'] = loginCustomerId
 
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${GOOGLE_ADS_API_VERSION}/customers/${customerId}/googleAds:searchStream`,
     {
       method: 'POST',
@@ -255,7 +276,7 @@ async function googleAdsSearch(accessToken, customerId, query, loginCustomerId =
 }
 
 async function listAccessibleCustomers(accessToken) {
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${GOOGLE_ADS_API_VERSION}/customers:listAccessibleCustomers`,
     {
       headers: {

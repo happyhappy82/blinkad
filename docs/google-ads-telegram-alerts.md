@@ -15,6 +15,13 @@ It supports two alert/report rules:
 - Current period: last 7 days including today
 - Comparison period: the 7 days immediately before the current period
 
+## Permanent read-only policy
+
+- Google Ads API access in this project is for reporting and creative inspection only.
+- Never create, edit, pause, enable, or delete campaigns, ad groups, keywords, ads, copy, images, videos, URLs, budgets, bids, or statuses while querying data.
+- The ERP API and Telegram reporting script enforce an allowlist: only GAQL `searchStream` and accessible-customer lookup requests can reach the Google Ads API host. Mutation and every unlisted endpoint are blocked before the request is sent.
+- A request to change ads must not be combined with or inferred from a reporting request.
+
 The daily report is sent with Telegram `sendRichMessage` and HTML tables.
 It includes impressions, clicks, cost, average CPC, conversions, week-over-week changes, store budget status, selected high-variance campaigns, and store-level insights.
 CPC alert-only messages still use regular text messages.
@@ -97,6 +104,7 @@ Local macOS fallback:
 
 ## Notes
 
+- Google Ads campaign and creative state must remain unchanged by every command documented here.
 - If `discover-chat` returns no chat, send `/start` to the Telegram bot first and retry.
 - Daily reports use Telegram rich tables. If `sendRichMessage` fails for a chat, the script falls back to regular text for that chat only.
 - Regular text fallback messages are split into multiple chunks when the report exceeds Telegram's message length limit.

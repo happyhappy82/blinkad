@@ -306,6 +306,32 @@ function googleAdsApiVersion() {
   return /^v\d+$/.test(version) ? version : 'v22'
 }
 
+/**
+ * Permanent safety boundary for ERP Google Ads reporting.
+ *
+ * This route is strictly read-only. Even though Google Ads searchStream uses
+ * POST for GAQL queries, it does not mutate account state. Any future Google
+ * Ads endpoint must be explicitly added to this allowlist before it can run;
+ * mutate/create/update/remove/enable/pause operations are intentionally denied.
+ */
+function googleAdsReadOnlyFetch(url: string, init: RequestInit = {}) {
+  const parsed = new URL(url)
+  const method = (init.method || 'GET').toUpperCase()
+  const isGoogleAdsHost = parsed.hostname === 'googleads.googleapis.com'
+  const isSearchStream =
+    method === 'POST' && /^\/v\d+\/customers\/\d+\/googleAds:searchStream$/.test(parsed.pathname)
+  const isAccessibleCustomers =
+    method === 'GET' && /^\/v\d+\/customers:listAccessibleCustomers$/.test(parsed.pathname)
+
+  if (!isGoogleAdsHost || (!isSearchStream && !isAccessibleCustomers)) {
+    throw new GoogleAdsLiveError(
+      `Google Ads 조회 전용 정책으로 허용되지 않은 API 요청을 차단했습니다: ${method} ${parsed.pathname}`
+    )
+  }
+
+  return fetch(url, init)
+}
+
 function utcDateOnly(value: Date) {
   return value.toISOString().slice(0, 10)
 }
@@ -372,7 +398,7 @@ async function googleAdsSearch(
   }
   if (loginCustomerId) headers['login-customer-id'] = loginCustomerId
 
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers/${customerId}/googleAds:searchStream`,
     {
       method: 'POST',
@@ -413,7 +439,7 @@ async function googleAdsSearch(
 }
 
 async function listAccessibleGoogleAdsCustomers(accessToken: string) {
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers:listAccessibleCustomers`,
     {
       headers: {
