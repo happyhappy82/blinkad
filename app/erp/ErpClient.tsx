@@ -436,24 +436,24 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
   {
     storeName: '자루야키용산로 신용산본점',
     contractMonths: 1,
-    contractStartDate: '2026-06-20',
-    settlementStartDate: '2026-08-20',
+    contractStartDate: '2026-08-12',
+    settlementStartDate: '2026-08-12',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
     adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
-    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · Ads 용역비 공급가 31.5만원 반영 · 기존 주도락 강남점 정산 이력 승계',
+    memo: '관리 시작 2026년 8월 12일 · 월 입금 기준 매월 12일 · VAT 포함 154만원 · Ads 용역비 공급가 31.5만원 반영',
   },
   {
     storeName: '주도락 을지로점',
     contractMonths: 1,
-    contractStartDate: '2026-06-20',
-    settlementStartDate: '2026-08-20',
+    contractStartDate: '2026-08-12',
+    settlementStartDate: '2026-08-12',
     productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
     productDetail: '블링크애드 1개월 상품 · 통합 운영',
     monthlyAmounts: [1_540_000],
     adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
-    memo: '1개월 계약 · VAT 포함 154만원 · 2026년 8월 정산 · Ads 용역비 공급가 31.5만원 반영 · 기존 주도락 마곡발산점 정산 이력 승계',
+    memo: '관리 시작 2026년 8월 12일 · 월 입금 기준 매월 12일 · VAT 포함 154만원 · Ads 용역비 공급가 31.5만원 반영',
   },
   {
     storeName: '바다당 해운대점',
@@ -511,6 +511,7 @@ const billingScheduleByStore: Record<
     firstPaidDate?: string
     firstStatus?: BillingStatus
     paidMonthCount?: number
+    nextRenewalDate?: string
     memo: string
   }
 > = {
@@ -538,16 +539,18 @@ const billingScheduleByStore: Record<
     memo: '2026년 6월 16일 입금완료',
   },
   '자루야키용산로 신용산본점': {
-    dueDay: 20,
+    dueDay: 12,
     firstPaidDate: '2026-06-20',
     firstStatus: '입금완료',
-    memo: '2026년 6월 20일 입금완료 · 2026년 8월 정산 · 기존 주도락 강남점 정산 이력 승계',
+    nextRenewalDate: '2026-09-12',
+    memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
   },
   '주도락 을지로점': {
-    dueDay: 20,
+    dueDay: 12,
     firstPaidDate: '2026-06-20',
     firstStatus: '입금완료',
-    memo: '2026년 6월 20일 입금완료 · 2026년 8월 정산 · 기존 주도락 마곡발산점 정산 이력 승계',
+    nextRenewalDate: '2026-09-12',
+    memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
   },
   '에코쟈댕 롯데월드몰점': {
     dueDay: 31,
@@ -2926,7 +2929,7 @@ function buildBillingRecords(_stores: StoreRecord[]) {
       .map((_, monthIndex) => monthIndex)
       .filter((monthIndex) => paidMonthCount <= 1 || monthIndex === 0 || monthIndex >= paidMonthCount)
 
-    return billingMonthIndexes.map((monthIndex) => {
+    const billingRecords: BillingRecord[] = billingMonthIndexes.map((monthIndex) => {
       const amount =
         monthIndex === 0 && paidMonthCount > 1
           ? contract.monthlyAmounts.slice(0, paidMonthCount).reduce((sum, monthlyAmount) => sum + monthlyAmount, 0)
@@ -2990,6 +2993,32 @@ function buildBillingRecords(_stores: StoreRecord[]) {
         memo,
       } satisfies BillingRecord
     })
+
+    if (schedule.nextRenewalDate) {
+      const renewalAmount = contract.monthlyAmounts.at(-1) || 0
+      billingRecords.push({
+        id: `billing-renewal-${contract.storeName}-${schedule.nextRenewalDate}`,
+        storeName: contract.storeName,
+        product: contract.productGroup,
+        amount: renewalAmount,
+        dueDate: schedule.nextRenewalDate,
+        dueDay: schedule.dueDay,
+        status: '청구예정',
+        owner: '권순현',
+        taxInvoice: '발행전',
+        withholding: '없음',
+        paymentStatus: schedule.nextRenewalDate < todayKey ? '입금지연' : '입금대기',
+        workStatus: '진행중',
+        workRecognition: '전체',
+        defaultTeamSettlementAmount: renewalAmount,
+        teamSettlementAmount: 0,
+        withholdingApplied: false,
+        settlementStatus: '정산보류',
+        memo: '1개월 단위 갱신 예정 · 입금 확인 후 다음 운영기간 확정',
+      })
+    }
+
+    return billingRecords
   })
 }
 
