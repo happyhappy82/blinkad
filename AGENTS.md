@@ -25,6 +25,7 @@
 - `erp/ops`를 BlinkAd ERP 운영 기준 브랜치로 사용합니다.
 - 운영 배포는 이 작업공간에서 `vercel --prod --scope aijeonginsight-1976s-projects`로 실행합니다.
 - 배포 후 `https://blinkad-erp-ops.vercel.app/erp`의 응답과 최신 배포 상태를 확인합니다.
+- `vercel.json`에서 `erp/*` 브랜치의 Git 자동 Preview를 차단합니다. ERP는 공식 프로젝트에 CLI로 운영 배포합니다.
 - `blinkad` Vercel 프로젝트는 `blinkad.kr` 본사이트용이므로 ERP 정리 과정에서 삭제하거나 운영 설정을 변경하지 않습니다.
 - 다른 작업 브랜치 결과를 합칠 때는 기능을 유지하면서 충돌을 해결합니다.
 - 기존 사용자/다른 에이전트 변경을 되돌리지 않습니다.

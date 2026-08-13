@@ -9,6 +9,7 @@ Updated: 2026-08-13 KST
 - 공식 ERP URL: `https://blinkad-erp-ops.vercel.app/erp`
 - 공식 Vercel 프로젝트: `blinkad-erp-ops` (`prj_h5yo2eseE5SF7RPS6iezkvVLom97`)
 - 운영 배포 명령: `vercel --prod --scope aijeonginsight-1976s-projects`
+- `vercel.json`의 `git.deploymentEnabled`에서 `erp/*` 자동 Preview를 차단해 본사이트 프로젝트에 ERP Preview가 다시 쌓이지 않게 한다.
 - 구형 `erp/integration` Preview 주소는 운영 주소로 사용하지 않는다.
 - `blinkad` Vercel 프로젝트는 `blinkad.kr` 본사이트용이므로 삭제하거나 ERP 운영 프로젝트로 전환하지 않는다.
 - 최근 커밋 기준:
