@@ -76,6 +76,18 @@ const PROJECT_SUMMARIES = [
     href: '#google-maps-project',
   },
   {
+    id: 'maps-gwanghwamun',
+    category: 'maps' as const,
+    categoryLabel: 'Google 검색·지도',
+    status: '검증된 성과',
+    client: '광화문 음식점',
+    title: '외국인 near me 검색에서 지도 점유율 확보',
+    metric: '0% → 48%',
+    metricLabel: 'poke near me 지도 점유율',
+    description: 'healthy food near me도 28%에서 48%로, 외국인 near me 키워드에서 운영 기간 중 구글 지도 로컬 점유율을 끌어올렸습니다. (구글 지도 스캔 실측, 2026.6~7)',
+    href: '#google-maps-project',
+  },
+  {
     id: 'ai-busan-cafe',
     category: 'ai-search' as const,
     categoryLabel: 'AI 검색(AEO,GEO)',
