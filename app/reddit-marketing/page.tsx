@@ -98,10 +98,12 @@ export default function RedditMarketingPage() {
             </div>
             <p className="mt-7 text-sm font-bold uppercase tracking-[0.24em] text-brand-blue">Reddit Marketing</p>
             <h1 className="mx-auto mt-5 max-w-4xl text-[2.7rem] font-black leading-[1.04] tracking-tight md:text-6xl lg:text-7xl keep-all">
-              해외 고객이 질문하고 비교하는 곳에서
-              <br className="hidden md:block" /> 브랜드가 발견되도록 만듭니다.
+              레딧 마케팅
             </h1>
             <p className="mx-auto mt-7 max-w-3xl text-base leading-8 text-gray-300 md:text-xl md:leading-9 keep-all">
+              해외 고객이 질문하고 비교하는 곳에서 브랜드가 발견되도록 만듭니다.
+            </p>
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-gray-400 md:text-lg md:leading-9 keep-all">
               Reddit에는 여행지, 병원, 숙박, 음식점과 로컬 서비스를 직접 경험한 사람들의 질문과 후기가 쌓입니다.
             </p>
             <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-gray-400 md:text-lg md:leading-9 keep-all">
