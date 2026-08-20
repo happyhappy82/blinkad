@@ -1,12 +1,12 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { MapPin, FileText, Bot, ArrowLeft, Check, Globe2 } from 'lucide-react'
+import { MapPin, FileText, Bot, ArrowLeft, Check, Globe2, MessagesSquare } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO 운영 - BlinkAd',
-  description: '블링크애드는 외국인 고객 유입을 위해 Google 비즈니스 프로필, 구글맵 리뷰, 브랜드 블로그, 웹사이트 콘텐츠, AI 검색 최적화를 연결해 운영합니다.',
+  title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO·레딧 - BlinkAd',
+  description: '블링크애드는 외국인 고객 유입을 위해 Google 비즈니스 프로필, 구글맵 리뷰, 브랜드 블로그, 웹사이트 콘텐츠, AI 검색 최적화, 레딧 마케팅을 연결해 운영합니다.',
   alternates: {
     canonical: 'https://www.blinkad.kr/services',
   },
@@ -97,6 +97,20 @@ const services = [
     icon: Bot,
     href: '/aeo',
     cta: 'AI 검색 최적화 보기'
+  },
+  {
+    id: 'reddit-marketing',
+    title: '레딧 마케팅',
+    subtitle: '해외 커뮤니티 접점 구축',
+    description: '해외 고객이 질문하고 비교하는 Reddit 대화를 조사하고, 커뮤니티의 맥락과 규칙에 맞는 콘텐츠로 브랜드가 발견될 수 있는 접점을 만듭니다.',
+    features: [
+      '외국인 고객을 유치하려는 병원·여행·로컬 비즈니스',
+      '구글 검색과 AI 검색에서 브랜드 근거를 늘리고 싶은 기업'
+    ],
+    detailTitle: '이런 기업에 적합합니다',
+    icon: MessagesSquare,
+    href: '/reddit-marketing',
+    cta: '레딧 마케팅 상담하기'
   }
 ]
 
@@ -143,7 +157,7 @@ export default function ServicesPage() {
                   </Link>
                 </div>
                 <div className={`bg-white/5 rounded-3xl p-8 border border-white/10 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
-                  <h3 className="text-lg font-semibold mb-6">포함 서비스</h3>
+                  <h3 className="text-lg font-semibold mb-6">{'detailTitle' in service ? service.detailTitle : '포함 서비스'}</h3>
                   <ul className="space-y-4">
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">

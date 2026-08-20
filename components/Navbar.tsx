@@ -12,6 +12,7 @@ const serviceLinks = [
   { href: '/google-map-marketing', label: '구글 비즈니스 프로필 관리' },
   { href: '/blog-marketing', label: '브랜드 블로그 운영' },
   { href: '/aeo', label: 'AI 검색 최적화' },
+  { href: '/reddit-marketing', label: '레딧 마케팅' },
 ];
 
 const primaryLinks = [
