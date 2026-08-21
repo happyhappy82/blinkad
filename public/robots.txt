@@ -12,4 +12,3 @@ Crawl-delay: 1
 
 # Block unnecessary paths
 Disallow: /api/
-Disallow: /_next/

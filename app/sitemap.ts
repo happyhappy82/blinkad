@@ -45,7 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/reddit-marketing`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-08-21T00:00:00+09:00'),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
