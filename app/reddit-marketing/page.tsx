@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, Building2, MessagesSquare, Search } from 'lucide-react'
+import { ArrowRight, Building2, Search } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
@@ -192,8 +193,15 @@ export default function RedditMarketingPage() {
               <span aria-hidden="true">/</span>
               <span aria-current="page" className="text-gray-300">레딧 마케팅</span>
             </nav>
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-brand-blue/20 bg-brand-blue/10">
-              <MessagesSquare className="h-8 w-8 text-brand-blue" />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl border border-[#FF4500]/30 bg-[#FF4500]/10 shadow-[0_0_32px_rgba(255,69,0,0.14)]">
+              <Image
+                src="/reddit-logo.png"
+                alt="Reddit"
+                width={44}
+                height={44}
+                priority
+                className="h-11 w-11"
+              />
             </div>
             <p className="mt-7 text-sm font-bold uppercase tracking-[0.24em] text-brand-blue">Reddit Marketing</p>
             <h1 className="mx-auto mt-5 max-w-4xl text-[2.7rem] font-black leading-[1.04] tracking-tight md:text-6xl lg:text-7xl keep-all">
@@ -212,6 +220,9 @@ export default function RedditMarketingPage() {
               레딧 마케팅 상담받기
               <ArrowRight className="h-4 w-4" />
             </Link>
+            <p className="mx-auto mt-5 max-w-2xl text-xs leading-5 text-gray-600 keep-all">
+              Reddit은 Reddit, Inc.의 상표입니다. 블링크애드는 Reddit과 제휴·후원 관계가 없는 독립 마케팅 대행사입니다.
+            </p>
           </div>
         </section>
 
