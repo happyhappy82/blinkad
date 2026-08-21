@@ -242,7 +242,7 @@ export default function ForeignMarketingPage() {
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.24em] text-brand-blue">Foreign Customer Marketing</p>
               <h1 className="mt-5 max-w-4xl text-[2.7rem] font-black leading-[1.04] tracking-tight text-white md:text-6xl lg:text-7xl keep-all">
-                외국인마케팅 대행사,
+                외국인마케팅,
                 <br />
                 구글에서 발견되고
                 <br />
