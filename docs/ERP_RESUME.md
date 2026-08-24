@@ -75,6 +75,9 @@ BlinkAd ERP는 영업, 미팅, 견적, 계약, 매장 운영, 리포트, 청구 
 
 ## 최근 완료
 
+- Google Ads 일일 보고와 Google Business Profile 리뷰 변동 보고의 GitHub Actions 예약 실행을 2026-08-24부로 중지했습니다.
+  - 두 워크플로는 자동 예약 없이 필요할 때만 `workflow_dispatch`로 수동 실행할 수 있습니다.
+  - Mac에 남아 있던 Google Ads 일일 보고 LaunchAgent도 비활성화·제거했습니다.
 - Google Ads 성과·소재 조회에 영구 읽기 전용 안전 규칙을 적용했습니다.
   - 조회 중 기존 캠페인, 광고그룹, 키워드, 광고 소재, URL, 예산, 입찰, 상태를 생성·수정·일시중지·활성화·삭제하지 않습니다.
   - ERP Google Ads API와 Telegram 보고 스크립트는 `searchStream`과 접근 가능 고객 조회만 허용하며, `mutate`를 포함한 미등록 경로는 외부 요청 전에 차단합니다.
