@@ -255,7 +255,9 @@ type ContractRevenueRecord = {
   productGroup: string
   productDetail: string
   monthlyAmounts: number[]
+  googleProfileNetAmount?: number
   googleAdsNetAmount?: number
+  aeoWorkNetAmount?: number
   adsServiceCostNetAmount?: number
   adsServicePaymentAmount?: number
   bizHighSettlementPaymentAmount?: number
@@ -268,6 +270,7 @@ type SettlementProductBreakdown = {
   googleProfileAmount: number
   googleAdsAmount: number
   websiteBlogAmount: number
+  aeoWorkAmount: number
   adjustmentAmount: number
 }
 
@@ -442,8 +445,11 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     settlementStartDate: '2026-08-26',
     contractStatus: '운영중',
     productGroup: '블링크애드 월간 운영',
-    productDetail: '피부과 마케팅 통합 운영',
+    productDetail: '프로필 관리 50만원 · 애즈 운영 50만원 · AEO 작업 818,182원',
     monthlyAmounts: [2_000_000],
+    googleProfileNetAmount: 500_000,
+    googleAdsNetAmount: 500_000,
+    aeoWorkNetAmount: 818_182,
     bizHighSettlementPaymentAmount: 55_000,
     adsServicePaymentAmount: 346_500,
     memo: '1개월 계약 · VAT 포함 200만원 · 비즈하이 정산비 VAT 포함 5.5만원 · Ads 용역비 VAT 포함 34.65만원',
@@ -455,8 +461,10 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     settlementStartDate: '2026-08-26',
     contractStatus: '운영중',
     productGroup: '블링크애드 월간 운영',
-    productDetail: 'F&B 마케팅 통합 운영',
+    productDetail: '프로필 관리 50만원 · 애즈 운영 50만원',
     monthlyAmounts: [1_100_000],
+    googleProfileNetAmount: 500_000,
+    googleAdsNetAmount: 500_000,
     bizHighSettlementPaymentAmount: 55_000,
     adsServicePaymentAmount: 346_500,
     memo: '1개월 계약 · VAT 포함 110만원 · 비즈하이 정산비 VAT 포함 5.5만원 · Ads 용역비 VAT 포함 34.65만원',
@@ -649,19 +657,24 @@ function contractRevenueLastMonthIndex(records: ContractRevenueRecord[]) {
 
 function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmount: number): SettlementProductBreakdown {
   const productText = `${record.productGroup} ${record.productDetail}`
-  const googleAdsAmount = productText.toLowerCase().includes('google ads') || productText.includes('구글애즈')
-    ? record.googleAdsNetAmount ?? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT
-    : 0
+  const googleAdsAmount =
+    record.googleAdsNetAmount ??
+    (productText.toLowerCase().includes('google ads') || productText.includes('구글애즈')
+      ? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT
+      : 0)
   const websiteBlogAmount =
     productText.includes('웹사이트') || productText.includes('블로그') ? SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT : 0
-  const fixedProductAmount = googleAdsAmount + websiteBlogAmount
-  const googleProfileAmount = Math.max(netSalesAmount - fixedProductAmount, 0)
+  const aeoWorkAmount = record.aeoWorkNetAmount ?? 0
+  const fixedProductAmount = googleAdsAmount + websiteBlogAmount + aeoWorkAmount
+  const googleProfileAmount = record.googleProfileNetAmount ?? Math.max(netSalesAmount - fixedProductAmount, 0)
+  const allocatedProductAmount = googleProfileAmount + fixedProductAmount
 
   return {
     googleProfileAmount,
     googleAdsAmount,
     websiteBlogAmount,
-    adjustmentAmount: Math.min(netSalesAmount - fixedProductAmount, 0),
+    aeoWorkAmount,
+    adjustmentAmount: Math.min(netSalesAmount - allocatedProductAmount, 0),
   }
 }
 
@@ -700,6 +713,7 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
         googleProfileAmount: profileManagementAmount,
         googleAdsAmount: adsManagementRevenueAmount,
         websiteBlogAmount: 0,
+        aeoWorkAmount: 0,
         adjustmentAmount: 0,
       },
       expenseRevenueAmount: bizHighSupplyAmount,
@@ -2743,6 +2757,7 @@ function SettlementDetailTable({
               <th className="px-4 py-3 text-right">매출부가세</th>
               <th className="px-4 py-3 text-right">VAT 제외</th>
               <th className="px-4 py-3 text-right">웹사이트/블로그</th>
+              <th className="px-4 py-3 text-right">AEO 작업</th>
               <th className="px-4 py-3 text-right">구글애즈</th>
               <th className="px-4 py-3 text-right">프로필관리</th>
               <th className="px-4 py-3 text-right">비용매출</th>
@@ -2798,6 +2813,9 @@ function SettlementDetailTable({
                 <td className="px-4 py-4 text-right font-black text-white">{formatCurrency(record.netSalesAmount)}원</td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">
                   {formatCurrency(record.productBreakdown.websiteBlogAmount)}원
+                </td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">
+                  {formatCurrency(record.productBreakdown.aeoWorkAmount)}원
                 </td>
                 <td className="px-4 py-4 text-right font-semibold text-gray-300">
                   {formatCurrency(record.productBreakdown.googleAdsAmount)}원
