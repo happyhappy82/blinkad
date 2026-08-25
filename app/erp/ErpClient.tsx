@@ -506,7 +506,8 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     ],
     adExecutionBudgetNetAmount: 300_000,
     adExecutionBudgetSeparate: true,
-    memo: '12개월 용역 계약 · 총 공급가 1,140만원 · VAT 포함 1,254만원 · 광고 집행비 월 30만원(VAT 별도)',
+    adsServicePaymentAmount: 346_500,
+    memo: '12개월 용역 계약 · 총 공급가 1,140만원 · VAT 포함 1,254만원 · 광고 집행비 월 30만원(VAT 별도) · Ads 용역비 월 VAT 포함 34.65만원',
   },
   {
     storeName: '에코쟈댕 롯데월드몰점',
