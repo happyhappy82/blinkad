@@ -42,6 +42,17 @@ export type StoreRecord = {
   contractUrl: string
   reportStatus: string
   profileStatus: string
+  billingAmount: number
+  supplyAmount: number
+  vatAmount: number
+  settlementAmount: number
+  billingDay: number
+  billingStatus: string
+  taxInvoiceStatus: string
+  withholdingStatus: string
+  billingMemo: string
+  contractProduct: string
+  contractDate: string
   lastEdited: string
   notionUrl: string
 }

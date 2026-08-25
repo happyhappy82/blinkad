@@ -7,6 +7,7 @@ export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 const DEFAULT_DATABASE_ID = '18f451110c9945d997de4ce4fd86d074'
+const STORE_MASTER_DATABASE_ID = '3b4753ebc01381f498c8da5de4332e7a'
 const TITLE_PROPERTY = '고객명'
 const CLIENT_DATABASE_SEARCH_QUERY = '통합 문의 관리 DB'
 const STATUS_PROPERTY_CANDIDATES = ['처리상태', '상태', '계약완료', 'Status']
@@ -135,6 +136,15 @@ function fileCount(prop: any): number {
   return prop.files?.length || 0
 }
 
+function propNumber(prop: any): number {
+  if (!prop || prop.type !== 'number') return 0
+  return Number(prop.number || 0)
+}
+
+function normalizedStoreName(value: string) {
+  return value.replace(/\s+/g, '').toLowerCase()
+}
+
 function findProperty(properties: Record<string, any>, candidates: string[]) {
   for (const name of candidates) {
     if (properties[name]) return properties[name]
@@ -242,7 +252,53 @@ function pickContractUrl(properties: Record<string, any>) {
   return ''
 }
 
-function normalizePage(page: any) {
+type BillingFields = {
+  billingAmount: number
+  supplyAmount: number
+  vatAmount: number
+  settlementAmount: number
+  billingDay: number
+  billingStatus: string
+  taxInvoiceStatus: string
+  withholdingStatus: string
+  billingMemo: string
+  contractProduct: string
+  contractDate: string
+}
+
+const emptyBillingFields: BillingFields = {
+  billingAmount: 0,
+  supplyAmount: 0,
+  vatAmount: 0,
+  settlementAmount: 0,
+  billingDay: 0,
+  billingStatus: '',
+  taxInvoiceStatus: '',
+  withholdingStatus: '',
+  billingMemo: '',
+  contractProduct: '',
+  contractDate: '',
+}
+
+function normalizeMasterBilling(page: any): BillingFields & { name: string } {
+  const properties = page.properties || {}
+  return {
+    name: propText(findProperty(properties, ['매장명', '고객명', 'Store'])),
+    billingAmount: propNumber(properties['월 계약금(VAT 포함)']),
+    supplyAmount: propNumber(properties['공급가액']),
+    vatAmount: propNumber(properties['부가세']),
+    settlementAmount: propNumber(properties['정산금']),
+    billingDay: propNumber(properties['월 정산일']),
+    billingStatus: propText(properties['청구 상태']),
+    taxInvoiceStatus: propText(properties['세금계산서']),
+    withholdingStatus: propText(properties['원천징수']),
+    billingMemo: propText(properties['정산 메모']),
+    contractProduct: propText(properties['계약 상품']),
+    contractDate: propText(properties['계약일']),
+  }
+}
+
+function normalizePage(page: any, billing: BillingFields = emptyBillingFields) {
   const properties = page.properties || {}
   const status =
     propText(findProperty(properties, ['처리상태', '상태', '계약완료', 'Status'])) ||
@@ -267,6 +323,7 @@ function normalizePage(page: any) {
     contractUrl: pickContractUrl(properties),
     reportStatus: propText(findProperty(properties, ['리포트', '보고현황', '보고 상태'])) || '리포트 대기',
     profileStatus: propText(findProperty(properties, ['프로필 현황', '프로필상태', '운영상태'])) || '프로필 확인 필요',
+    ...billing,
     lastEdited: propText(properties['last_edited_time']) || page.last_edited_time || '',
     notionUrl: page.url || '',
   }
@@ -366,16 +423,25 @@ export async function GET() {
     const resolvedDatabaseId = await resolveClientDatabaseId(notion, databaseId)
     const database = await notion.databases.retrieve({ database_id: resolvedDatabaseId })
     const schema = (database as any).properties || {}
-    const response = await notion.databases.query({
-      database_id: resolvedDatabaseId,
-      page_size: 100,
-    })
+    const [response, masterResponse] = await Promise.all([
+      notion.databases.query({ database_id: resolvedDatabaseId, page_size: 100 }),
+      notion.databases.query({ database_id: STORE_MASTER_DATABASE_ID, page_size: 100 }),
+    ])
+    const billingByStore = new Map(
+      masterResponse.results
+        .map(normalizeMasterBilling)
+        .filter((store) => store.name)
+        .map((store) => [normalizedStoreName(store.name), store] as const)
+    )
 
     return NextResponse.json({
       source: 'notion',
       connected: true,
       statusOptions: statusOptionsFromSchema(schema),
-      stores: response.results.map(normalizePage),
+      stores: response.results.map((page: any) => {
+        const name = propText(page.properties?.[TITLE_PROPERTY])
+        return normalizePage(page, billingByStore.get(normalizedStoreName(name)) || emptyBillingFields)
+      }),
     })
   } catch (error) {
     return NextResponse.json(

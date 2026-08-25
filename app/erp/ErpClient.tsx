@@ -1036,49 +1036,41 @@ function buildBillingRecords(stores: StoreRecord[]) {
   const year = today.getFullYear()
   const month = today.getMonth()
   const monthLastDate = new Date(year, month + 1, 0).getDate()
-  const dueDays = [5, 10, 15, 20, 25]
-  const billableStores = stores.filter((store) =>
-    statusIncludesAny(store.status, ['운영시작', '운영 시작', '계약완료', '계약 완료', '계약대기', '계약 대기'])
+  const sourceStores = stores.filter(
+    (store) =>
+      store.billingAmount > 0 &&
+      statusIncludesAny(store.status, ['운영시작', '운영 시작', '계약완료', '계약 완료', '계약대기', '계약 대기'])
   )
-  const sourceStores =
-    billableStores.length > 0
-      ? billableStores
-      : stores.length > 0
-        ? stores.slice(0, 6)
-        : [
-            {
-              id: 'sample-unlimited',
-              name: '언리미티드',
-              status: '계약 완료',
-              owner: '권순현',
-            } as StoreRecord,
-          ]
 
-  return sourceStores.map((store, index) => {
-    const dueDay = Math.min(dueDays[index % dueDays.length], monthLastDate)
+  return sourceStores.map((store) => {
+    const contractDay = store.contractDate ? Number(store.contractDate.slice(8, 10)) : 0
+    const dueDay = Math.min(store.billingDay || contractDay || 25, monthLastDate)
     const dueDate = new Date(year, month, dueDay)
     const isPastDue = dueDate < startOfDay(today)
-    const baseStatus: BillingStatus =
-      index % 5 === 0
-        ? '입금완료'
-        : isPastDue
-          ? '연체'
-          : index % 3 === 0
-            ? '청구완료'
-            : '청구예정'
+    const requestedStatus = store.billingStatus as BillingStatus
+    const baseStatus: BillingStatus = billingStatusOptions.includes(requestedStatus)
+      ? requestedStatus === '청구예정' && isPastDue
+        ? '연체'
+        : requestedStatus
+      : isPastDue
+        ? '연체'
+        : '청구예정'
+    const taxInvoice = store.taxInvoiceStatus as TaxInvoiceStatus
+    const withholding = store.withholdingStatus as WithholdingStatus
+    const breakdown = `공급가 ${formatCurrency(store.supplyAmount)}원 · VAT ${formatCurrency(store.vatAmount)}원 · 정산 ${formatCurrency(store.settlementAmount)}원`
 
     return {
       id: `billing-${store.id}`,
       storeName: formatBillingStoreName(store.name),
-      product: 'Google 프로필 월간 운영',
-      amount: index % 3 === 0 ? 1_400_000 : index % 3 === 1 ? 1_200_000 : 950_000,
+      product: store.contractProduct || '블링크애드 월간 운영',
+      amount: store.billingAmount,
       dueDate: formatDateKey(dueDate),
       dueDay,
       status: baseStatus,
       owner: store.owner || '권순현',
-      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행전',
-      withholding: index % 4 === 0 ? '확인필요' : '없음',
-      memo: index % 4 === 0 ? '촬영 외주비 확인' : '정기 운영료 확인',
+      taxInvoice: taxInvoiceStatusOptions.includes(taxInvoice) ? taxInvoice : '발행전',
+      withholding: withholdingStatusOptions.includes(withholding) ? withholding : '없음',
+      memo: store.billingMemo ? `${store.billingMemo} ${breakdown}` : breakdown,
     } satisfies BillingRecord
   })
 }
