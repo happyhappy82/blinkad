@@ -257,6 +257,8 @@ type ContractRevenueRecord = {
   monthlyAmounts: number[]
   googleAdsNetAmount?: number
   adsServiceCostNetAmount?: number
+  adsServicePaymentAmount?: number
+  bizHighSettlementPaymentAmount?: number
   adExecutionBudgetNetAmount?: number
   adExecutionBudgetSeparate?: boolean
   memo: string
@@ -442,7 +444,9 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '블링크애드 월간 운영',
     productDetail: '피부과 마케팅 통합 운영',
     monthlyAmounts: [2_000_000],
-    memo: '1개월 계약 · 공급가 1,818,182원 · VAT 181,818원 · VAT 포함 200만원',
+    bizHighSettlementPaymentAmount: 55_000,
+    adsServicePaymentAmount: 346_500,
+    memo: '1개월 계약 · VAT 포함 200만원 · 비즈하이 정산비 VAT 포함 5.5만원 · Ads 용역비 VAT 포함 34.65만원',
   },
   {
     storeName: '원스타올드패션드 햄버거 어린이대공원점',
@@ -453,7 +457,9 @@ const contractRevenueRecords: ContractRevenueRecord[] = [
     productGroup: '블링크애드 월간 운영',
     productDetail: 'F&B 마케팅 통합 운영',
     monthlyAmounts: [1_100_000],
-    memo: '1개월 계약 · 공급가 100만원 · VAT 10만원 · VAT 포함 110만원',
+    bizHighSettlementPaymentAmount: 55_000,
+    adsServicePaymentAmount: 346_500,
+    memo: '1개월 계약 · VAT 포함 110만원 · 비즈하이 정산비 VAT 포함 5.5만원 · Ads 용역비 VAT 포함 34.65만원',
   },
   {
     storeName: '자루야키용산로 신용산본점',
@@ -735,13 +741,24 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
     : Math.max(vatAmount - adExecutionBudgetVatAmount, 0)
   const productBreakdown = settlementProductBreakdown(record, serviceRevenueAmount)
   const profileManagementAmount = productBreakdown.googleProfileAmount
-  const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
-  const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
+  const defaultBizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const configuredBizHighSettlementAmount = record.bizHighSettlementPaymentAmount
+  const bizHighSupplyAmount = configuredBizHighSettlementAmount
+    ? Math.round(configuredBizHighSettlementAmount / (1 + VAT_RATE))
+    : defaultBizHighSupplyAmount
+  const bizHighVatAmount = configuredBizHighSettlementAmount
+    ? configuredBizHighSettlementAmount - bizHighSupplyAmount
+    : Math.round(bizHighSupplyAmount * VAT_RATE)
   const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
   const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
   const workerTax = calculateWithholding(workerCostAmount, true)
-  const adsServiceCostAmount = record.adsServiceCostNetAmount || 0
-  const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
+  const configuredAdsServicePaymentAmount = record.adsServicePaymentAmount
+  const adsServiceCostAmount = configuredAdsServicePaymentAmount
+    ? Math.round(configuredAdsServicePaymentAmount / (1 + VAT_RATE))
+    : record.adsServiceCostNetAmount || 0
+  const adsServiceVatAmount = configuredAdsServicePaymentAmount
+    ? configuredAdsServicePaymentAmount - adsServiceCostAmount
+    : Math.round(adsServiceCostAmount * VAT_RATE)
 
   return {
     netSalesAmount,
