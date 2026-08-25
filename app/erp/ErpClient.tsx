@@ -830,26 +830,37 @@ function shiftISODateByMonths(dateText: string, months: number) {
   return formatDateKey(date)
 }
 
+function contractCycleCount(record: ContractRevenueRecord) {
+  return record.monthlyAmounts.length
+}
+
 function paidCycleCount(record: ContractRevenueRecord) {
   const schedule = billingScheduleByStore[record.storeName]
   if (!schedule?.firstPaidDate) return 0
-  return Math.min(schedule.paidMonthCount || 1, record.monthlyAmounts.length)
+  return Math.min(schedule.paidMonthCount || 1, contractCycleCount(record))
 }
 
 function serviceCycleStartDate(record: ContractRevenueRecord, cycleIndex: number) {
   const schedule = billingScheduleByStore[record.storeName]
-  const firstStartDate = schedule?.serviceStartDate || schedule?.firstPaidDate
+  const firstStartDate = schedule?.serviceStartDate || schedule?.firstPaidDate || record.contractStartDate
   return firstStartDate ? shiftISODateByMonths(firstStartDate, cycleIndex) : ''
+}
+
+function paymentStatusForCycle(record: ContractRevenueRecord, cycleIndex: number): BillingStatus {
+  const schedule = billingScheduleByStore[record.storeName]
+  if (cycleIndex < paidCycleCount(record)) return '입금완료'
+  if (cycleIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
+  return '청구예정'
 }
 
 function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
   const cycleRecords = records.flatMap((record) => {
-    return Array.from({ length: paidCycleCount(record) }, (_, cycleIndex) => {
+    return Array.from({ length: contractCycleCount(record) }, (_, cycleIndex) => {
       const cycleStartDate = serviceCycleStartDate(record, cycleIndex)
-      const endDate = shiftISODate(shiftISODateByMonths(cycleStartDate, 1), -1)
+      const endDate = shiftISODateByMonths(cycleStartDate, 1)
       const grossAmount = record.monthlyAmounts[cycleIndex] || 0
       const detail = settlementDetailForRecord(record, grossAmount)
-      const hasNextPaidCycle = cycleIndex + 1 < paidCycleCount(record)
+      const hasNextCycle = cycleIndex + 1 < contractCycleCount(record) || record.contractStatus !== '계약 종료'
 
       return {
         key: `cycle:${record.storeName}:${cycleIndex + 1}:${endDate}`,
@@ -858,8 +869,8 @@ function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): Sett
         cycleNumber: cycleIndex + 1,
         cycleStartDate,
         cycleEndDate: endDate,
-        nextPaymentRequestDate: hasNextPaidCycle ? undefined : shiftISODate(endDate, -5),
-        status: '입금완료' as BillingStatus,
+        nextPaymentRequestDate: hasNextCycle ? shiftISODate(endDate, -5) : undefined,
+        status: paymentStatusForCycle(record, cycleIndex),
         memo: record.memo,
         productGroup: record.productGroup,
         productDetail: record.productDetail,
@@ -4381,24 +4392,23 @@ function automaticBillingScheduleEvents(_records: BillingRecord[]): BillingSched
     }))
   const cycleEvents = contractRevenueRecords.flatMap<BillingScheduleEvent>((contract) => {
     const schedule = billingScheduleByStore[contract.storeName]
-    if (!schedule?.firstPaidDate) return []
+    if (!schedule) return []
 
     const paidCount = paidCycleCount(contract)
-    const lastCycleIndex = paidCount - 1
-    const events: BillingScheduleEvent[] = [
-      {
-        id: `payment-${contract.storeName}-1`,
-        storeName: contract.storeName,
-        date: schedule.firstPaidDate,
-        type: '입금일',
-        memo: paidCount > 1 ? `${paidCount}개월 선입금 · 1회차 시작` : '1회차 입금완료 · 작업 시작',
-        automatic: true,
-      },
-    ]
+    const events: BillingScheduleEvent[] = schedule.firstPaidDate
+      ? [{
+          id: `payment-${contract.storeName}-1`,
+          storeName: contract.storeName,
+          date: schedule.firstPaidDate,
+          type: '입금일',
+          memo: paidCount > 1 ? `${paidCount}개월 선입금 · 1회차 시작` : '1회차 입금완료 · 작업 시작',
+          automatic: true,
+        }]
+      : []
 
-    for (let cycleIndex = 0; cycleIndex < paidCount; cycleIndex += 1) {
+    for (let cycleIndex = 0; cycleIndex < contractCycleCount(contract); cycleIndex += 1) {
       const cycleStartDate = serviceCycleStartDate(contract, cycleIndex)
-      const cycleEndDate = shiftISODate(shiftISODateByMonths(cycleStartDate, 1), -1)
+      const cycleEndDate = shiftISODateByMonths(cycleStartDate, 1)
       events.push({
         id: `end-${contract.storeName}-${cycleIndex + 1}`,
         storeName: contract.storeName,
@@ -4408,7 +4418,7 @@ function automaticBillingScheduleEvents(_records: BillingRecord[]): BillingSched
         automatic: true,
       })
 
-      if (cycleIndex === lastCycleIndex) {
+      if (cycleIndex + 1 < contractCycleCount(contract) || contract.contractStatus !== '계약 종료') {
         events.push({
           id: `request-${contract.storeName}-${cycleIndex + 2}`,
           storeName: contract.storeName,
