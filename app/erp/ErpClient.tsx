@@ -241,7 +241,7 @@ type BillingScheduleEvent = {
   id: string
   storeName: string
   date: string
-  type: '계약일' | '입금일' | '입금 안내' | '기타'
+  type: '계약일' | '입금일' | '입금요청' | '종료일' | '기타'
   memo: string
   automatic?: boolean
 }
@@ -278,6 +278,10 @@ type SettlementRecord = {
   key: string
   storeName: string
   checkDate: string
+  cycleNumber: number
+  cycleStartDate: string
+  cycleEndDate: string
+  nextPaymentRequestDate?: string
   status: BillingStatus
   sheetPaymentStatus?: string
   actualReceiptAmount?: number
@@ -546,6 +550,7 @@ const billingScheduleByStore: Record<
   {
     dueDay: number
     firstPaidDate?: string
+    serviceStartDate?: string
     firstStatus?: BillingStatus
     paidMonthCount?: number
     nextRenewalDate?: string
@@ -592,6 +597,7 @@ const billingScheduleByStore: Record<
   '자루야키용산로 신용산본점': {
     dueDay: 12,
     firstPaidDate: '2026-06-20',
+    serviceStartDate: '2026-08-12',
     firstStatus: '입금완료',
     nextRenewalDate: '2026-09-12',
     memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
@@ -599,6 +605,7 @@ const billingScheduleByStore: Record<
   '주도락 을지로점': {
     dueDay: 12,
     firstPaidDate: '2026-06-20',
+    serviceStartDate: '2026-08-12',
     firstStatus: '입금완료',
     nextRenewalDate: '2026-09-12',
     memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
@@ -813,12 +820,94 @@ function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: n
   }
 }
 
-function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
-  const lastMonthIndex = contractRevenueLastMonthIndex(records)
+function shiftISODateByMonths(dateText: string, months: number) {
+  const date = new Date(`${dateText}T00:00:00`)
+  const originalDay = date.getDate()
+  date.setDate(1)
+  date.setMonth(date.getMonth() + months)
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+  date.setDate(Math.min(originalDay, lastDay))
+  return formatDateKey(date)
+}
 
-  return Array.from({ length: lastMonthIndex + 1 }, (_, monthIndex) => buildSettlementSummary(records, monthIndex)).filter(
-    (summary) => summary.records.length > 0
-  )
+function paidCycleCount(record: ContractRevenueRecord) {
+  const schedule = billingScheduleByStore[record.storeName]
+  if (!schedule?.firstPaidDate) return 0
+  return Math.min(schedule.paidMonthCount || 1, record.monthlyAmounts.length)
+}
+
+function serviceCycleStartDate(record: ContractRevenueRecord, cycleIndex: number) {
+  const schedule = billingScheduleByStore[record.storeName]
+  const firstStartDate = schedule?.serviceStartDate || schedule?.firstPaidDate
+  return firstStartDate ? shiftISODateByMonths(firstStartDate, cycleIndex) : ''
+}
+
+function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
+  const cycleRecords = records.flatMap((record) => {
+    return Array.from({ length: paidCycleCount(record) }, (_, cycleIndex) => {
+      const cycleStartDate = serviceCycleStartDate(record, cycleIndex)
+      const endDate = shiftISODate(shiftISODateByMonths(cycleStartDate, 1), -1)
+      const grossAmount = record.monthlyAmounts[cycleIndex] || 0
+      const detail = settlementDetailForRecord(record, grossAmount)
+      const hasNextPaidCycle = cycleIndex + 1 < paidCycleCount(record)
+
+      return {
+        key: `cycle:${record.storeName}:${cycleIndex + 1}:${endDate}`,
+        storeName: record.storeName,
+        checkDate: endDate,
+        cycleNumber: cycleIndex + 1,
+        cycleStartDate,
+        cycleEndDate: endDate,
+        nextPaymentRequestDate: hasNextPaidCycle ? undefined : shiftISODate(endDate, -5),
+        status: '입금완료' as BillingStatus,
+        memo: record.memo,
+        productGroup: record.productGroup,
+        productDetail: record.productDetail,
+        grossAmount,
+        ...detail,
+      } satisfies SettlementRecord
+    })
+  })
+
+  const recordsByMonth = cycleRecords.reduce((groups, record) => {
+    const monthKey = record.cycleEndDate.slice(0, 7)
+    const group = groups.get(monthKey) || []
+    group.push(record)
+    groups.set(monthKey, group)
+    return groups
+  }, new Map<string, SettlementRecord[]>())
+
+  return Array.from(recordsByMonth.entries())
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([monthKey, monthRecords], index) => {
+      const grossAmount = monthRecords.reduce((sum, record) => sum + record.grossAmount, 0)
+      const netSalesAmount = monthRecords.reduce((sum, record) => sum + record.netSalesAmount, 0)
+      const vatAmount = monthRecords.reduce((sum, record) => sum + record.vatAmount, 0)
+      const reserveAmount = monthRecords.reduce((sum, record) => sum + record.reserveAmount, 0)
+      const profileManagementAmount = monthRecords.reduce((sum, record) => sum + record.profileManagementAmount, 0)
+      const expenseRevenueAmount = monthRecords.reduce((sum, record) => sum + record.expenseRevenueAmount, 0)
+      const workerCostAmount = monthRecords.reduce((sum, record) => sum + record.workerCostAmount, 0)
+      const profitAmount = monthRecords.reduce((sum, record) => sum + record.profitAmount, 0)
+
+      return {
+        monthIndex: index,
+        monthLabel: `${monthKey.slice(0, 4)}년 ${Number(monthKey.slice(5, 7))}월`,
+        records: monthRecords.sort((a, b) => a.cycleEndDate.localeCompare(b.cycleEndDate) || a.storeName.localeCompare(b.storeName)),
+        excludedStoreNames: SETTLEMENT_EXCLUDED_STORE_NAMES,
+        grossAmount,
+        vatAmount,
+        netSalesAmount,
+        reserveRate: SETTLEMENT_RESERVE_RATE,
+        reserveAmountPerStore: SETTLEMENT_RESERVE_AMOUNT_PER_STORE,
+        reserveAmount,
+        profileManagementAmount,
+        expenseRevenueRate: SETTLEMENT_EXPENSE_REVENUE_RATE,
+        expenseRevenueAmount,
+        workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
+        workerCostAmount,
+        profitAmount,
+      } satisfies SettlementSummary
+    })
 }
 
 function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: number): SettlementSummary {
@@ -836,6 +925,9 @@ function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: nu
         key: `${monthIndex}:${record.storeName}:${checkDate}`,
         storeName: record.storeName,
         checkDate,
+        cycleNumber: contractMonthIndexForRevenueMonth(record, monthIndex) + 1,
+        cycleStartDate: checkDate,
+        cycleEndDate: checkDate,
         status: settlementStatusForStore(record, monthIndex),
         memo: record.memo,
         productGroup: record.productGroup,
@@ -1411,10 +1503,7 @@ export default function ErpClient() {
       settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
     }
   }, [])
-  const displayedSettlementMonths =
-    settlementSheet.connected && settlementSheet.settlementMonths.length
-      ? settlementSheet.settlementMonths
-      : contractRevenue.settlementMonths
+  const displayedSettlementMonths = contractRevenue.settlementMonths
   const activeContractStores = operationViews.project?.rows || []
   const pausedContractStores = operationViews.pausedStores?.rows || []
   const terminatedContractStores = operationViews.terminatedStores?.rows || []
@@ -4279,7 +4368,7 @@ function shiftISODate(dateText: string, days: number) {
   return formatDateKey(date)
 }
 
-function automaticBillingScheduleEvents(records: BillingRecord[]): BillingScheduleEvent[] {
+function automaticBillingScheduleEvents(_records: BillingRecord[]): BillingScheduleEvent[] {
   const contractEvents = contractRevenueRecords
     .filter((contract) => contract.contractStartDate)
     .map((contract) => ({
@@ -4290,31 +4379,57 @@ function automaticBillingScheduleEvents(records: BillingRecord[]): BillingSchedu
       memo: `${contract.contractMonths}개월 계약 시작`,
       automatic: true,
     }))
-  const paymentEvents = records.flatMap<BillingScheduleEvent>((record) => [
-    {
-      id: `payment-${record.id}`,
-      storeName: record.storeName,
-      date: record.dueDate,
-      type: '입금일',
-      memo: `${formatCurrency(record.amount)}원 · ${record.status}`,
-      automatic: true,
-    },
-    {
-      id: `reminder-${record.id}`,
-      storeName: record.storeName,
-      date: shiftISODate(record.dueDate, -5),
-      type: '입금 안내',
-      memo: '광고가 멈추지 않도록 입금 예정 안내',
-      automatic: true,
-    },
-  ])
-  return [...contractEvents, ...paymentEvents]
+  const cycleEvents = contractRevenueRecords.flatMap<BillingScheduleEvent>((contract) => {
+    const schedule = billingScheduleByStore[contract.storeName]
+    if (!schedule?.firstPaidDate) return []
+
+    const paidCount = paidCycleCount(contract)
+    const lastCycleIndex = paidCount - 1
+    const events: BillingScheduleEvent[] = [
+      {
+        id: `payment-${contract.storeName}-1`,
+        storeName: contract.storeName,
+        date: schedule.firstPaidDate,
+        type: '입금일',
+        memo: paidCount > 1 ? `${paidCount}개월 선입금 · 1회차 시작` : '1회차 입금완료 · 작업 시작',
+        automatic: true,
+      },
+    ]
+
+    for (let cycleIndex = 0; cycleIndex < paidCount; cycleIndex += 1) {
+      const cycleStartDate = serviceCycleStartDate(contract, cycleIndex)
+      const cycleEndDate = shiftISODate(shiftISODateByMonths(cycleStartDate, 1), -1)
+      events.push({
+        id: `end-${contract.storeName}-${cycleIndex + 1}`,
+        storeName: contract.storeName,
+        date: cycleEndDate,
+        type: '종료일',
+        memo: `${cycleIndex + 1}회차 작업 종료 · ${cycleEndDate.slice(0, 7)} 정산 대상`,
+        automatic: true,
+      })
+
+      if (cycleIndex === lastCycleIndex) {
+        events.push({
+          id: `request-${contract.storeName}-${cycleIndex + 2}`,
+          storeName: contract.storeName,
+          date: shiftISODate(cycleEndDate, -5),
+          type: '입금요청',
+          memo: `${cycleIndex + 2}회차 작업 지속을 위한 입금 요청`,
+          automatic: true,
+        })
+      }
+    }
+
+    return events
+  })
+  return [...contractEvents, ...cycleEvents]
 }
 
 function billingEventClass(type: BillingScheduleEvent['type']) {
   if (type === '계약일') return 'border-violet-300/30 bg-violet-300/10 text-violet-100'
   if (type === '입금일') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
-  if (type === '입금 안내') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  if (type === '입금요청') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  if (type === '종료일') return 'border-purple-300/30 bg-purple-300/10 text-purple-100'
   return 'border-white/15 bg-white/5 text-gray-200'
 }
 
@@ -4356,9 +4471,9 @@ function BillingCalendarPanel({ records }: { records: BillingRecord[] }) {
       <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
         <p className="text-sm font-bold text-brand-blue">Billing Calendar</p>
         <h2 className="mt-2 text-2xl font-black text-white">청구관리</h2>
-        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">계약일, 입금일, 입금 5일 전 안내 일정을 한 달 캘린더에서 확인하고 필요한 일정을 직접 기록합니다.</p>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">입금일을 1회차 시작으로 잡고, 종료일이 속한 달에 해당 회차를 정산합니다. 다음 회차 입금요청은 종료 5일 전에 표시됩니다.</p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs font-black">
-          {(['계약일', '입금일', '입금 안내'] as const).map((type) => <span key={type} className={`rounded-full border px-2.5 py-1 ${billingEventClass(type)}`}>{type}</span>)}
+          {(['계약일', '입금일', '입금요청', '종료일'] as const).map((type) => <span key={type} className={`rounded-full border px-2.5 py-1 ${billingEventClass(type)}`}>{type}</span>)}
         </div>
       </div>
 
@@ -4392,7 +4507,7 @@ function BillingCalendarPanel({ records }: { records: BillingRecord[] }) {
           <h3 className="mt-2 text-xl font-black text-white">일정 기록</h3>
           <div className="mt-5 space-y-3">
             <input value={draft.storeName} onChange={(event) => setDraft((current) => ({ ...current, storeName: event.target.value }))} placeholder="매장명" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
-            <div className="grid grid-cols-2 gap-3"><input type="date" value={draft.date} onChange={(event) => setDraft((current) => ({ ...current, date: event.target.value }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none" /><select value={draft.type} onChange={(event) => setDraft((current) => ({ ...current, type: event.target.value as BillingScheduleEvent['type'] }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none"><option>계약일</option><option>입금일</option><option>입금 안내</option><option>기타</option></select></div>
+            <div className="grid grid-cols-2 gap-3"><input type="date" value={draft.date} onChange={(event) => setDraft((current) => ({ ...current, date: event.target.value }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none" /><select value={draft.type} onChange={(event) => setDraft((current) => ({ ...current, type: event.target.value as BillingScheduleEvent['type'] }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none"><option>계약일</option><option>입금일</option><option>입금요청</option><option>종료일</option><option>기타</option></select></div>
             <input value={draft.memo} onChange={(event) => setDraft((current) => ({ ...current, memo: event.target.value }))} placeholder="메모" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
             <button type="submit" className="h-11 w-full rounded-md bg-brand-blue text-sm font-black text-white hover:brightness-110">일정 추가</button>
           </div>
@@ -4480,6 +4595,7 @@ function PeriodSettlementPanel({
         netVatPayableAmount: 0,
         profitAmount: 0,
         actualReceiptAmount: 0,
+        cycleEndDates: [] as string[],
         usesEcoJardinSettlementRule: false,
         usesSeparateAdExecutionBudget: false,
         count: 0,
@@ -4510,6 +4626,7 @@ function PeriodSettlementPanel({
       current.netVatPayableAmount += record.netVatPayableAmount
       current.profitAmount += record.profitAmount
       current.actualReceiptAmount += record.actualReceiptAmount || 0
+      current.cycleEndDates.push(`${record.cycleNumber}회차 · ${record.cycleEndDate}`)
       current.usesEcoJardinSettlementRule ||= record.usesEcoJardinSettlementRule
       current.usesSeparateAdExecutionBudget ||= record.usesSeparateAdExecutionBudget
       current.count += 1
@@ -4543,6 +4660,7 @@ function PeriodSettlementPanel({
       netVatPayableAmount: number
       profitAmount: number
       actualReceiptAmount: number
+      cycleEndDates: string[]
       usesEcoJardinSettlementRule: boolean
       usesSeparateAdExecutionBudget: boolean
       count: number
@@ -4566,7 +4684,7 @@ function PeriodSettlementPanel({
       <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
         <p className="text-sm font-bold text-brand-blue">Settlement</p>
         <h2 className="mt-2 text-2xl font-black text-white">정산관리</h2>
-        <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 매출, 광고 집행비, 외부 정산금과 순수익을 주별·월별·연도별로 확인합니다.</p>
+        <p className="mt-2 text-sm font-semibold text-gray-500">실제 입금일을 회차 시작일로 잡고, 작업 종료일이 속한 달에만 해당 회차를 정산 대상으로 표시합니다.</p>
         <div className="mt-4 flex flex-wrap items-center gap-2">
           <span
             className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-black ${
@@ -4634,6 +4752,9 @@ function PeriodSettlementPanel({
                 </p>
                 <p className="mt-1 text-xs font-bold text-blue-200/70">
                   실제 현금 입금 {formatCurrency(row.actualReceiptAmount)}원
+                </p>
+                <p className="mt-1 text-xs font-bold text-violet-200/70">
+                  종료 회차 {row.cycleEndDates.join(' · ')}
                 </p>
               </div>
               <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-right">
