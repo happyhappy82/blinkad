@@ -556,13 +556,17 @@ const billingScheduleByStore: Record<
   },
   영종센트럴피부과: {
     dueDay: 26,
-    firstStatus: '청구예정',
-    memo: '2026년 8월 26일 계약 등록 · 입금 확인 필요',
+    firstPaidDate: '2026-08-26',
+    firstStatus: '입금완료',
+    paidMonthCount: 1,
+    memo: '2026년 8월 26일 입금완료',
   },
   '원스타올드패션드 햄버거 어린이대공원점': {
     dueDay: 26,
-    firstStatus: '청구예정',
-    memo: '2026년 8월 26일 계약 등록 · 입금 확인 필요',
+    firstPaidDate: '2026-08-26',
+    firstStatus: '입금완료',
+    paidMonthCount: 1,
+    memo: '2026년 8월 26일 입금완료',
   },
   '바다당 해운대점': {
     dueDay: 16,
