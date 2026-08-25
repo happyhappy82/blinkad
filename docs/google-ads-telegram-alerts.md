@@ -1,0 +1,112 @@
+# Google Ads Telegram alerts
+
+## Purpose
+
+`scripts/google-ads-telegram-alert.mjs` sends BlinkAd Google Ads campaign reports to Telegram.
+
+It supports two alert/report rules:
+
+- CPC alert: campaign CPC changed by at least 30% versus the previous 7-day period.
+- Daily report: send all active/recent campaign performance every day at 15:00 KST.
+
+## Data source
+
+- Google Ads API live query
+- Current period: last 7 days including today
+- Comparison period: the 7 days immediately before the current period
+
+## Permanent read-only policy
+
+- Google Ads API access in this project is for reporting and creative inspection only.
+- Never create, edit, pause, enable, or delete campaigns, ad groups, keywords, ads, copy, images, videos, URLs, budgets, bids, or statuses while querying data.
+- The ERP API and Telegram reporting script enforce an allowlist: only GAQL `searchStream` and accessible-customer lookup requests can reach the Google Ads API host. Mutation and every unlisted endpoint are blocked before the request is sent.
+- A request to change ads must not be combined with or inferred from a reporting request.
+
+The daily report is sent with Telegram `sendRichMessage` and HTML tables.
+It includes impressions, clicks, cost, average CPC, conversions, week-over-week changes, store budget status, selected high-variance campaigns, and store-level insights.
+CPC alert-only messages still use regular text messages.
+
+## Excluded stores
+
+- `웰믹스`, `도르도뉴`: excluded from daily summaries, totals, high-variance campaign sections, store insights, and CPC alert-only messages.
+- The exclusion affects Telegram report output only. It does not pause, edit, or delete Google Ads campaigns.
+
+## Secrets
+
+Do not commit Telegram credentials.
+
+The script reads Telegram values in this order:
+
+1. Environment variables
+   - `GOOGLE_ADS_TELEGRAM_BOT_TOKEN`
+   - `GOOGLE_ADS_TELEGRAM_CHAT_ID`
+2. macOS Keychain
+   - token service: `blinkad-google-ads-telegram-bot-token`
+   - chat service: `blinkad-google-ads-telegram-chat-id`
+   - account: `BA_Ads_alert_bot`
+3. Generic fallback environment variables
+   - `TELEGRAM_BOT_TOKEN`
+   - `TELEGRAM_CHAT_ID`
+
+Multiple chat IDs can be configured by separating values with commas or whitespace.
+
+Google Ads credentials are loaded from the existing shared env files:
+
+- `.env.local`
+- `.env`
+- `../blinkad/.env.local`
+- `../blinkad/.env`
+- `../../.env`
+
+## Commands
+
+```bash
+npm run ads:telegram:discover-chat
+npm run ads:telegram:dry-run
+npm run ads:telegram:test
+npm run ads:telegram:daily
+npm run ads:telegram:alert
+```
+
+`ads:telegram:test` sends the same daily report with a test prefix.
+
+`ads:telegram:dry-run` prints the test rich-message HTML locally without sending Telegram messages.
+
+`ads:telegram:alert` sends a message only when at least one campaign CPC changed by 30% or more.
+
+## Daily schedule
+
+Primary scheduler:
+
+- GitHub Actions workflow on the repository default branch:
+  `.github/workflows/google-ads-telegram-daily.yml`
+- The workflow runs at `0 6 * * *`, which is 15:00 KST.
+- The workflow checks out the `erp/ops` branch and runs:
+
+```bash
+node scripts/google-ads-telegram-alert.mjs --daily
+```
+
+Required GitHub Actions secrets:
+
+- `GOOGLE_ADS_DEVELOPER_TOKEN`
+- `GOOGLE_ADS_CLIENT_ID`
+- `GOOGLE_ADS_CLIENT_SECRET`
+- `GOOGLE_ADS_REFRESH_TOKEN`
+- `GOOGLE_ADS_LOGIN_CUSTOMER_ID`
+- `GOOGLE_ADS_TELEGRAM_BOT_TOKEN`
+- `GOOGLE_ADS_TELEGRAM_CHAT_ID`
+
+Local macOS fallback:
+
+- The old local LaunchAgent label is `com.blinkad.google-ads-telegram-daily`.
+- Keep it disabled unless GitHub Actions is intentionally stopped, otherwise duplicate reports can be sent.
+
+## Notes
+
+- Google Ads campaign and creative state must remain unchanged by every command documented here.
+- If `discover-chat` returns no chat, send `/start` to the Telegram bot first and retry.
+- Daily reports use Telegram rich tables. If `sendRichMessage` fails for a chat, the script falls back to regular text for that chat only.
+- Regular text fallback messages are split into multiple chunks when the report exceeds Telegram's message length limit.
+- Campaigns included in the report are campaigns that are currently `ENABLED` or had impressions/clicks/cost in the current or previous 7-day period.
+- Campaigns belonging to an excluded store are removed before report totals and alert sections are calculated.

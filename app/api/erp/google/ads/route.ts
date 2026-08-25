@@ -26,6 +26,20 @@ type GoogleAdsCampaign = {
   endDate: string
 }
 
+type GoogleAdsCampaignSummary = GoogleAdsCampaign &
+  AdsSummary & {
+    previousSummary: AdsSummary
+  }
+
+type GoogleAdsSearchTermSummary = {
+  searchTerm: string
+  campaignName: string
+  adGroupName: string
+  impressions: number
+  clicks: number
+  costMicros: number
+}
+
 type GoogleAdsSearchRow = {
   campaign?: {
     id?: string | number
@@ -47,6 +61,13 @@ type GoogleAdsSearchRow = {
     level?: string | number
     status?: string
   }
+  adGroup?: {
+    id?: string | number
+    name?: string
+  }
+  searchTermView?: {
+    searchTerm?: string
+  }
   metrics?: {
     impressions?: string | number
     clicks?: string | number
@@ -60,6 +81,14 @@ type GoogleAdsSearchRow = {
 type ResolvedAdsAccount = {
   customerId: string
   loginCustomerId: string
+}
+
+type LiveAdsStoreConfig = {
+  envPrefixes: string[]
+  aliases: string[]
+  defaultCampaignName: string
+  campaignNameIncludes?: string[]
+  notFoundLabel: string
 }
 
 class GoogleAdsLiveError extends Error {
@@ -76,6 +105,8 @@ function loadSharedEnv() {
   const envPaths = [
     path.resolve(process.cwd(), '.env.local'),
     path.resolve(process.cwd(), '.env'),
+    path.resolve(process.cwd(), '..', 'blinkad', '.env.local'),
+    path.resolve(process.cwd(), '..', 'blinkad', '.env'),
     path.resolve(process.cwd(), '../..', '.env'),
   ]
 
@@ -165,9 +196,64 @@ function connectionErrorMessage(error: unknown) {
   return message || 'Google Ads 데이터를 불러오지 못했습니다.'
 }
 
-function isBlinkAdStore(store: string) {
-  const normalized = store.replace(/\s+/g, '').toLowerCase()
-  return normalized.includes('블링크애드') || normalized.includes('blinkad')
+function normalizedStoreName(value: string) {
+  return value.replace(/\s+/g, '').toLowerCase()
+}
+
+function liveAdsStoreConfig(store: string): LiveAdsStoreConfig | null {
+  const normalized = normalizedStoreName(store)
+
+  if (normalized.includes('블링크애드') || normalized.includes('blinkad')) {
+    return {
+      envPrefixes: ['BLINKAD'],
+      aliases: ['블링크애드', 'BlinkAd', 'blinkad'],
+      defaultCampaignName: '블링크애드 클라이언트유치',
+      campaignNameIncludes: ['블링크애드 클라이언트유치'],
+      notFoundLabel: '블링크애드',
+    }
+  }
+
+  if (normalized.includes('웰믹스') || normalized.includes('wellmix')) {
+    return {
+      envPrefixes: ['WELLMIX_GWANGHWAMUN', 'WELLMIX'],
+      aliases: ['웰믹스 광화문점', '웰믹스', 'Wellmix', 'wellmix'],
+      defaultCampaignName: '웰믹스',
+      campaignNameIncludes: ['웰믹스'],
+      notFoundLabel: '웰믹스 광화문점',
+    }
+  }
+
+  if (normalized.includes('도르도뉴') || normalized.includes('dordogne')) {
+    return {
+      envPrefixes: ['DORDOGNE'],
+      aliases: ['도르도뉴', 'Dordogne', 'dordogne'],
+      defaultCampaignName: '도르도뉴',
+      campaignNameIncludes: ['도르도뉴', 'Dordogne', 'dordogne'],
+      notFoundLabel: '도르도뉴',
+    }
+  }
+
+  if (normalized.includes('오닉스') || normalized.includes('onyx')) {
+    return {
+      envPrefixes: ['ONYX_ITAEWON', 'ONYX'],
+      aliases: ['오닉스', 'ONYX ITAEWON', 'Onyx Itaewon', 'ONYX', 'onyx'],
+      defaultCampaignName: '오닉스',
+      campaignNameIncludes: ['오닉스', 'ONYX ITAEWON', 'Onyx Itaewon', 'ONYX', 'onyx'],
+      notFoundLabel: '오닉스',
+    }
+  }
+
+  if (normalized.includes('바다당') || normalized.includes('badadang')) {
+    return {
+      envPrefixes: ['BADADANG_HAEUNDAE', 'BADADANG'],
+      aliases: ['바다당 해운대점', '바다당', 'Badadang', 'Bada Dang', 'badadang'],
+      defaultCampaignName: '바다당',
+      campaignNameIncludes: ['바다당', 'Badadang', 'Bada Dang', 'BadaDang', 'badadang'],
+      notFoundLabel: '바다당 해운대점',
+    }
+  }
+
+  return null
 }
 
 function googleAdsConfigMissing() {
@@ -183,6 +269,33 @@ function googleAdsId(value: string | undefined) {
   return (value || '').replace(/\D/g, '')
 }
 
+function envValueFromPrefixes(prefixes: string[], suffix: string) {
+  for (const prefix of prefixes) {
+    const value = process.env[`${prefix}_${suffix}`]
+    if (value) return value
+  }
+  return ''
+}
+
+function uniqueStrings(values: string[]) {
+  return Array.from(new Set(values.map((value) => value.trim()).filter(Boolean)))
+}
+
+function campaignMatchTokens(config: LiveAdsStoreConfig, campaignName: string) {
+  return uniqueStrings([campaignName, config.defaultCampaignName, ...(config.campaignNameIncludes || [])])
+}
+
+function liveCampaignNameMatches(name: string, config: LiveAdsStoreConfig, campaignName: string) {
+  const normalizedName = normalizedStoreName(name)
+  return campaignMatchTokens(config, campaignName).some((token) =>
+    normalizedName.includes(normalizedStoreName(token))
+  )
+}
+
+function googleAdsCampaignId(row: GoogleAdsSearchRow) {
+  return googleAdsId(String(row.campaign?.id || ''))
+}
+
 function publicGoogleAdsId(value: string | number | undefined) {
   const id = String(value || '').replace(/\D/g, '')
   return id ? `***${id.slice(-4)}` : ''
@@ -193,8 +306,30 @@ function googleAdsApiVersion() {
   return /^v\d+$/.test(version) ? version : 'v22'
 }
 
-function escapeGaqlString(value: string) {
-  return value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+/**
+ * Permanent safety boundary for ERP Google Ads reporting.
+ *
+ * This route is strictly read-only. Even though Google Ads searchStream uses
+ * POST for GAQL queries, it does not mutate account state. Any future Google
+ * Ads endpoint must be explicitly added to this allowlist before it can run;
+ * mutate/create/update/remove/enable/pause operations are intentionally denied.
+ */
+function googleAdsReadOnlyFetch(url: string, init: RequestInit = {}) {
+  const parsed = new URL(url)
+  const method = (init.method || 'GET').toUpperCase()
+  const isGoogleAdsHost = parsed.hostname === 'googleads.googleapis.com'
+  const isSearchStream =
+    method === 'POST' && /^\/v\d+\/customers\/\d+\/googleAds:searchStream$/.test(parsed.pathname)
+  const isAccessibleCustomers =
+    method === 'GET' && /^\/v\d+\/customers:listAccessibleCustomers$/.test(parsed.pathname)
+
+  if (!isGoogleAdsHost || (!isSearchStream && !isAccessibleCustomers)) {
+    throw new GoogleAdsLiveError(
+      `Google Ads 조회 전용 정책으로 허용되지 않은 API 요청을 차단했습니다: ${method} ${parsed.pathname}`
+    )
+  }
+
+  return fetch(url, init)
 }
 
 function utcDateOnly(value: Date) {
@@ -263,7 +398,7 @@ async function googleAdsSearch(
   }
   if (loginCustomerId) headers['login-customer-id'] = loginCustomerId
 
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers/${customerId}/googleAds:searchStream`,
     {
       method: 'POST',
@@ -276,12 +411,23 @@ async function googleAdsSearch(
   if (!response.ok) {
     let detail = ''
     try {
-      const parsed = JSON.parse(text) as {
-        error?: { details?: Array<{ errors?: Array<{ message?: string; errorCode?: Record<string, string> }> }> }
-      }
+      const parsedBody = JSON.parse(text) as
+        | {
+            error?: {
+              message?: string
+              details?: Array<{ errors?: Array<{ message?: string; errorCode?: Record<string, string> }> }>
+            }
+          }
+        | Array<{
+            error?: {
+              message?: string
+              details?: Array<{ errors?: Array<{ message?: string; errorCode?: Record<string, string> }> }>
+            }
+          }>
+      const parsed = Array.isArray(parsedBody) ? parsedBody[0] : parsedBody
       const apiError = parsed.error?.details?.[0]?.errors?.[0]
       const code = apiError?.errorCode ? Object.values(apiError.errorCode)[0] : ''
-      detail = apiError?.message || code
+      detail = apiError?.message || parsed.error?.message || code
     } catch {
       detail = ''
     }
@@ -293,7 +439,7 @@ async function googleAdsSearch(
 }
 
 async function listAccessibleGoogleAdsCustomers(accessToken: string) {
-  const response = await fetch(
+  const response = await googleAdsReadOnlyFetch(
     `https://googleads.googleapis.com/${googleAdsApiVersion()}/customers:listAccessibleCustomers`,
     {
       headers: {
@@ -309,10 +455,43 @@ async function listAccessibleGoogleAdsCustomers(accessToken: string) {
   return (data.resourceNames || []).map((name) => name.replace('customers/', ''))
 }
 
-async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAdsAccount> {
-  const explicitCustomerId = googleAdsId(process.env.BLINKAD_GOOGLE_ADS_CUSTOMER_ID)
+async function fetchMatchingLiveCampaignRows(
+  accessToken: string,
+  customerId: string,
+  loginCustomerId: string,
+  config: LiveAdsStoreConfig,
+  campaignName: string
+) {
+  const rows = await googleAdsSearch(
+    accessToken,
+    customerId,
+    `
+      SELECT
+        campaign.id,
+        campaign.name,
+        campaign.status,
+        campaign.advertising_channel_type,
+        campaign.start_date,
+        campaign.end_date
+      FROM campaign
+      WHERE campaign.status != REMOVED
+      ORDER BY campaign.id DESC
+      LIMIT 200
+    `,
+    loginCustomerId || undefined
+  )
+
+  return rows.filter((row) => liveCampaignNameMatches(row.campaign?.name || '', config, campaignName))
+}
+
+async function resolveLiveAdsAccount(
+  accessToken: string,
+  config: LiveAdsStoreConfig,
+  campaignName: string
+): Promise<ResolvedAdsAccount> {
+  const explicitCustomerId = googleAdsId(envValueFromPrefixes(config.envPrefixes, 'GOOGLE_ADS_CUSTOMER_ID'))
   const explicitLoginCustomerId = googleAdsId(
-    process.env.BLINKAD_GOOGLE_ADS_LOGIN_CUSTOMER_ID || process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID
+    envValueFromPrefixes(config.envPrefixes, 'GOOGLE_ADS_LOGIN_CUSTOMER_ID') || process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID
   )
 
   if (explicitCustomerId) {
@@ -321,6 +500,7 @@ async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAd
 
   const accessibleCustomerIds = await listAccessibleGoogleAdsCustomers(accessToken)
   const managerIds = new Set<string>()
+  const candidateAccounts = new Map<string, string>()
   if (explicitLoginCustomerId) managerIds.add(explicitLoginCustomerId)
 
   for (const customerId of accessibleCustomerIds) {
@@ -331,8 +511,17 @@ async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAd
         'SELECT customer.id, customer.descriptive_name, customer.manager FROM customer LIMIT 1'
       )
       const customer = rows[0]?.customer
-      if (customer?.manager && String(customer.descriptiveName || '').includes('블링크애드')) {
+      if (
+        customer?.manager &&
+        config.aliases.some((alias) => String(customer.descriptiveName || '').includes(alias))
+      ) {
         managerIds.add(customerId)
+      }
+      if (customer && !customer.manager) {
+        candidateAccounts.set(customerId, '')
+        if (config.aliases.some((alias) => String(customer.descriptiveName || '').includes(alias))) {
+          return { customerId, loginCustomerId: explicitLoginCustomerId }
+        }
       }
     } catch {
       // Some accessible accounts require manager scoping; those are handled by the child lookup below.
@@ -359,14 +548,45 @@ async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAd
       )
       const child = rows.find((row) => {
         const client = row.customerClient
-        return client && !client.manager && String(client.descriptiveName || '').includes('블링크애드')
+        return (
+          client &&
+          !client.manager &&
+          config.aliases.some((alias) => String(client.descriptiveName || '').includes(alias))
+        )
       })
       const childId = googleAdsId(String(child?.customerClient?.id || ''))
       if (childId) {
         return { customerId: childId, loginCustomerId: managerId }
       }
+
+      rows.forEach((row) => {
+        const client = row.customerClient
+        const childCandidateId = googleAdsId(String(client?.id || ''))
+        if (client && !client.manager && childCandidateId) {
+          candidateAccounts.set(childCandidateId, managerId)
+        }
+      })
     } catch {
       // Keep searching other manager candidates when a stale login-customer-id is configured.
+    }
+  }
+
+  if (campaignName && candidateAccounts.size) {
+    for (const [customerId, loginCustomerId] of candidateAccounts) {
+      try {
+        const campaignRows = await fetchMatchingLiveCampaignRows(
+          accessToken,
+          customerId,
+          loginCustomerId,
+          config,
+          campaignName
+        )
+        if (campaignRows.length) {
+          return { customerId, loginCustomerId }
+        }
+      } catch {
+        // Continue checking other accessible child accounts.
+      }
     }
   }
 
@@ -375,7 +595,7 @@ async function resolveBlinkAdAdsAccount(accessToken: string): Promise<ResolvedAd
     return { customerId: fallbackCustomerId, loginCustomerId: explicitLoginCustomerId }
   }
 
-  throw new GoogleAdsLiveError('블링크애드 하위 Google Ads 고객 계정을 찾지 못했습니다.')
+  throw new GoogleAdsLiveError(`${config.notFoundLabel} 하위 Google Ads 고객 계정을 찾지 못했습니다.`)
 }
 
 function mapGoogleAdsCampaign(row: GoogleAdsSearchRow): GoogleAdsCampaign {
@@ -401,51 +621,95 @@ function aggregateGoogleAdsRows(rows: GoogleAdsSearchRow[]): AdsSummary {
   )
 }
 
-async function loadBlinkAdLiveAds(store: string, days: number) {
-  const accessToken = await fetchGoogleAdsAccessToken()
-  const { customerId, loginCustomerId } = await resolveBlinkAdAdsAccount(accessToken)
-  const campaignName = process.env.BLINKAD_GOOGLE_ADS_CAMPAIGN_NAME || '블링크애드 클라이언트유치'
-  const campaignNameFilter = escapeGaqlString(campaignName)
-  const { startDate, endDate, previousStartDate, previousEndDate } = dateRange(days)
-  const campaignWhere = `campaign.name = '${campaignNameFilter}' AND campaign.status != REMOVED`
+function buildGoogleAdsCampaignSummaries(
+  campaignRows: GoogleAdsSearchRow[],
+  summaryRows: GoogleAdsSearchRow[],
+  previousRows: GoogleAdsSearchRow[]
+): GoogleAdsCampaignSummary[] {
+  return campaignRows.map((campaignRow) => {
+    const campaignId = googleAdsCampaignId(campaignRow)
+    const currentSummary = aggregateGoogleAdsRows(
+      summaryRows.filter((row) => googleAdsCampaignId(row) === campaignId)
+    )
+    const previousSummary = aggregateGoogleAdsRows(
+      previousRows.filter((row) => googleAdsCampaignId(row) === campaignId)
+    )
 
-  const campaignRows = await googleAdsSearch(
+    return {
+      ...mapGoogleAdsCampaign(campaignRow),
+      ...currentSummary,
+      previousSummary,
+    }
+  })
+}
+
+function buildGoogleAdsSearchTermSummaries(rows: GoogleAdsSearchRow[]): GoogleAdsSearchTermSummary[] {
+  const grouped = new Map<string, GoogleAdsSearchTermSummary>()
+
+  rows.forEach((row) => {
+    const searchTerm = (row.searchTermView?.searchTerm || '').trim()
+    if (!searchTerm) return
+
+    const campaignName = row.campaign?.name || ''
+    const adGroupName = row.adGroup?.name || ''
+    const key = `${searchTerm}\u0000${campaignName}\u0000${adGroupName}`
+    const current =
+      grouped.get(key) || {
+        searchTerm,
+        campaignName,
+        adGroupName,
+        impressions: 0,
+        clicks: 0,
+        costMicros: 0,
+      }
+
+    current.impressions += numberValue(row.metrics?.impressions)
+    current.clicks += numberValue(row.metrics?.clicks)
+    current.costMicros += numberValue(row.metrics?.costMicros)
+    grouped.set(key, current)
+  })
+
+  return Array.from(grouped.values()).sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )
+}
+
+async function loadStoreLiveAds(store: string, days: number, config: LiveAdsStoreConfig) {
+  const accessToken = await fetchGoogleAdsAccessToken()
+  const campaignName =
+    envValueFromPrefixes(config.envPrefixes, 'GOOGLE_ADS_CAMPAIGN_NAME') || config.defaultCampaignName
+  const { customerId, loginCustomerId } = await resolveLiveAdsAccount(accessToken, config, campaignName)
+  const { startDate, endDate, previousStartDate, previousEndDate } = dateRange(days)
+  const campaignRows = await fetchMatchingLiveCampaignRows(
     accessToken,
     customerId,
-    `
-      SELECT
-        campaign.id,
-        campaign.name,
-        campaign.status,
-        campaign.advertising_channel_type,
-        campaign.start_date,
-        campaign.end_date
-      FROM campaign
-      WHERE ${campaignWhere}
-      ORDER BY campaign.id DESC
-      LIMIT 20
-    `,
-    loginCustomerId
+    loginCustomerId,
+    config,
+    campaignName
   )
   const campaigns = campaignRows.map(mapGoogleAdsCampaign)
+  const campaignIds = uniqueStrings(campaignRows.map(googleAdsCampaignId))
 
-  if (!campaigns.length) {
+  if (!campaigns.length || !campaignIds.length) {
     return {
       source: 'google_ads_api',
       connected: true,
       status: 'campaign_not_found',
       store,
-      message: `${campaignName} 캠페인을 Google Ads API에서 찾지 못했습니다.`,
+      message: `${config.notFoundLabel} 기준 캠페인을 Google Ads API에서 찾지 못했습니다.`,
       period: { days, firstDate: startDate, lastDate: endDate },
       summary: emptySummary(),
       previousSummary: emptySummary(),
       daily: [],
       adsCustomerIds: [publicGoogleAdsId(customerId)],
       campaigns,
+      campaignSummaries: [],
+      searchTerms: [],
       sourceSyncedAt: new Date().toISOString(),
     }
   }
 
+  const campaignWhere = `campaign.id IN (${campaignIds.join(', ')}) AND campaign.status != REMOVED`
   const summaryRows = await googleAdsSearch(
     accessToken,
     customerId,
@@ -498,14 +762,46 @@ async function loadBlinkAdLiveAds(store: string, days: number) {
     `,
     loginCustomerId
   )
+  let searchTerms: GoogleAdsSearchTermSummary[] = []
+  let searchTermMessage = ''
+  try {
+    const searchTermRows = await googleAdsSearch(
+      accessToken,
+      customerId,
+      `
+        SELECT
+          campaign.name,
+          ad_group.name,
+          search_term_view.search_term,
+          metrics.impressions,
+          metrics.clicks,
+          metrics.cost_micros
+        FROM search_term_view
+        WHERE ${campaignWhere}
+          AND segments.date BETWEEN '${startDate}' AND '${endDate}'
+          AND metrics.clicks > 0
+        ORDER BY metrics.clicks DESC
+        LIMIT 50
+      `,
+      loginCustomerId
+    )
+    searchTerms = buildGoogleAdsSearchTermSummaries(searchTermRows).slice(0, 50)
+  } catch (error) {
+    searchTermMessage =
+      error instanceof Error
+        ? `검색어 세부 데이터를 불러오지 못했습니다: ${error.message}`
+        : '검색어 세부 데이터를 불러오지 못했습니다.'
+  }
+
   const statuses = Array.from(new Set(campaigns.map((campaign) => campaign.status).filter(Boolean)))
+  const campaignSummaries = buildGoogleAdsCampaignSummaries(campaignRows, summaryRows, previousRows)
 
   return {
     source: 'google_ads_api',
     connected: true,
     status: 'connected',
     store,
-    message: `${campaignName} 캠페인을 Google Ads API에서 불러왔습니다.${
+    message: `${config.notFoundLabel} Google Ads 캠페인 ${campaigns.length}개를 불러왔습니다.${
       statuses.length ? ` 현재 상태: ${statuses.join(', ')}` : ''
     }`,
     period: { days, firstDate: startDate, lastDate: endDate },
@@ -527,6 +823,9 @@ async function loadBlinkAdLiveAds(store: string, days: number) {
     })),
     adsCustomerIds: [publicGoogleAdsId(customerId)],
     campaigns,
+    campaignSummaries,
+    searchTerms,
+    searchTermMessage,
     sourceSyncedAt: new Date().toISOString(),
   }
 }
@@ -535,12 +834,13 @@ export async function GET(request: NextRequest) {
   loadSharedEnv()
 
   const { searchParams } = new URL(request.url)
-  const store = (searchParams.get('store') || '언리미티드').trim()
+  const store = (searchParams.get('store') || '도르도뉴').trim()
   const days = Math.min(Math.max(Number(searchParams.get('days') || 30), 7), 90)
 
-  if (isBlinkAdStore(store)) {
+  const liveConfig = liveAdsStoreConfig(store)
+  if (liveConfig) {
     try {
-      return NextResponse.json(await loadBlinkAdLiveAds(store, days))
+      return NextResponse.json(await loadStoreLiveAds(store, days, liveConfig))
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Google Ads API 데이터를 불러오지 못했습니다.'
       return NextResponse.json({
@@ -555,6 +855,8 @@ export async function GET(request: NextRequest) {
         daily: [],
         adsCustomerIds: [],
         campaigns: [],
+        campaignSummaries: [],
+        searchTerms: [],
       })
     }
   }

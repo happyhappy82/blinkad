@@ -6,6 +6,7 @@ import {
   Calendar,
   CalendarDays,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
@@ -25,6 +26,7 @@ import {
   Settings,
   UserCog,
   Users,
+  X,
 } from 'lucide-react'
 import type { Dispatch, DragEvent, FormEvent, MouseEvent, SetStateAction } from 'react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -60,6 +62,7 @@ import type {
   OperationView,
   SaveMeetingRecordNoteHandler,
   SaveMeetingNoteHandler,
+  StoreBlogContentPost,
   StoreRecord,
   StoreProductKey,
   StoreProductWorkspace,
@@ -88,6 +91,18 @@ function readPersistedMenu(): MenuId {
 
   const sessionMenu = window.sessionStorage.getItem('blinkad-erp-active-menu')
   return menuFromQuery(sessionMenu)
+}
+
+function readQueryStoreTitle() {
+  if (typeof window === 'undefined') return ''
+  return new URLSearchParams(window.location.search).get('store') || ''
+}
+
+function readQueryProduct(): StoreProductKey {
+  if (typeof window === 'undefined') return 'googleProfile'
+  const product = new URLSearchParams(window.location.search).get('product')
+
+  return product === 'googleAds' || product === 'websiteBlog' ? product : 'googleProfile'
 }
 
 function persistMenu(menu: MenuId) {
@@ -140,6 +155,20 @@ type AdsCampaign = {
   endDate: string
 }
 
+type AdsCampaignSummary = AdsCampaign &
+  AdsSummary & {
+    previousSummary?: AdsSummary
+  }
+
+type AdsSearchTermSummary = {
+  searchTerm: string
+  campaignName: string
+  adGroupName: string
+  impressions: number
+  clicks: number
+  costMicros: number
+}
+
 type GoogleAdsApiResponse = {
   source: 'bigquery' | 'google_ads_api' | 'fallback'
   connected: boolean
@@ -156,14 +185,785 @@ type GoogleAdsApiResponse = {
   daily: AdsDailyRow[]
   adsCustomerIds: string[]
   campaigns?: AdsCampaign[]
+  campaignSummaries?: AdsCampaignSummary[]
+  searchTerms?: AdsSearchTermSummary[]
+  searchTermMessage?: string
   tableRowCount?: number
   sourceSyncedAt?: string
+}
+
+type AdsMonthlyReportPreview = {
+  periodLabel: string
+  summaryLines: string[]
+  actionItems: string[]
+  campaignLines: string[]
 }
 
 type StoreMetric = {
   label: string
   value: string
   detail?: string
+}
+
+type NotionStoreDashboardRow = {
+  id: string
+  title: string
+  storeName: string
+  status: string
+  date: string
+  period: string
+  owner: string
+  category: string
+  channel: string
+  memo: string
+  region: string
+  languages: string
+  keyword: string
+  cadence: string
+  publishedUrl: string
+  url: string
+  properties: Record<string, string>
+}
+
+type NotionStoreDashboardResponse = {
+  connected: boolean
+  pageUrl: string
+  message: string
+  databases: {
+    id: string
+    title: string
+    kind: 'storeMaster' | 'reportLog'
+    rows: NotionStoreDashboardRow[]
+  }[]
+}
+
+type BillingScheduleEvent = {
+  id: string
+  storeName: string
+  date: string
+  type: '계약일' | '입금일' | '입금 안내' | '기타'
+  memo: string
+  automatic?: boolean
+}
+
+type ContractRevenueRecord = {
+  storeName: string
+  contractMonths: number
+  contractStartDate?: string
+  settlementStartDate?: string
+  contractStatus?: '운영중' | '계약 종료'
+  productGroup: string
+  productDetail: string
+  monthlyAmounts: number[]
+  googleAdsNetAmount?: number
+  adsServiceCostNetAmount?: number
+  adExecutionBudgetNetAmount?: number
+  adExecutionBudgetSeparate?: boolean
+  memo: string
+}
+
+type SettlementProductBreakdown = {
+  googleProfileAmount: number
+  googleAdsAmount: number
+  websiteBlogAmount: number
+  adjustmentAmount: number
+}
+
+type SettlementRecord = {
+  key: string
+  storeName: string
+  checkDate: string
+  status: BillingStatus
+  sheetPaymentStatus?: string
+  actualReceiptAmount?: number
+  actualReceiptDate?: string
+  memo: string
+  productGroup: string
+  productDetail: string
+  grossAmount: number
+  vatAmount: number
+  netSalesAmount: number
+  reserveAmount: number
+  profileManagementAmount: number
+  productBreakdown: SettlementProductBreakdown
+  expenseRevenueAmount: number
+  workerCostAmount: number
+  serviceRevenueAmount: number
+  serviceRevenueVatAmount: number
+  serviceRevenuePaymentAmount: number
+  adExecutionBudgetAmount: number
+  adExecutionBudgetVatAmount: number
+  adExecutionBudgetPaymentAmount: number
+  adsManagementRevenueAmount: number
+  bizHighSupplyAmount: number
+  bizHighVatAmount: number
+  bizHighSettlementAmount: number
+  headOfficeSupplyAmount: number
+  headOfficeVatAmount: number
+  headOfficeSettlementAmount: number
+  workerWithholdingAmount: number
+  workerNetPaymentAmount: number
+  adsServiceCostAmount: number
+  adsServiceVatAmount: number
+  adsServicePaymentAmount: number
+  netVatPayableAmount: number
+  usesEcoJardinSettlementRule: boolean
+  usesSeparateAdExecutionBudget: boolean
+  profitAmount: number
+}
+
+type SettlementSummary = {
+  monthIndex: number
+  monthLabel: string
+  records: SettlementRecord[]
+  excludedStoreNames: string[]
+  grossAmount: number
+  vatAmount: number
+  netSalesAmount: number
+  reserveRate: number
+  reserveAmountPerStore: number
+  reserveAmount: number
+  profileManagementAmount: number
+  expenseRevenueRate: number
+  expenseRevenueAmount: number
+  workerCostPerStore: number
+  workerCostAmount: number
+  profitAmount: number
+}
+
+type SettlementSheetApiResponse = {
+  connected: boolean
+  source: 'google_sheets' | 'fallback'
+  message: string
+  spreadsheetUrl: string
+  syncedAt: string
+  settlementMonths: SettlementSummary[]
+}
+
+type SettlementStoreReadiness = '정산대상' | '인증대기'
+type SettlementProcessStatus = '정산대기' | '정산완료' | '이번 달 보류' | '정산 제외'
+type SettlementFilter = '정산대상' | '인증대기' | '정산완료' | '전체'
+
+type SettlementProcessEntry = {
+  status: SettlementProcessStatus
+  readiness?: SettlementStoreReadiness
+  updatedAt?: string
+}
+
+type SettlementProcessMap = Record<string, SettlementProcessEntry>
+
+type SettlementRowView = {
+  record: SettlementRecord
+  storageKey: string
+  readiness: SettlementStoreReadiness
+  processStatus: SettlementProcessStatus
+  updatedAt?: string
+}
+
+type SettlementTotals = {
+  grossAmount: number
+  vatAmount: number
+  netSalesAmount: number
+  reserveAmount: number
+  profileManagementAmount: number
+  expenseRevenueAmount: number
+  workerCostAmount: number
+  profitAmount: number
+}
+
+type WeeklyReportItem = {
+  report: StoreWeeklyReport
+  date: Date
+  dateKey: string
+  draftMemo: string
+}
+
+type WebsiteBlogCycle = {
+  index: number
+  start: Date
+  end: Date
+}
+
+const CONTRACT_REVENUE_START_YEAR = 2026
+const CONTRACT_REVENUE_START_MONTH = 6
+const SETTLEMENT_EXCLUDED_STORE_NAMES: string[] = []
+const SETTLEMENT_PROCESS_STORAGE_KEY = 'blinkad-erp-settlement-process-v1'
+const SETTLEMENT_AUTH_PENDING_STORE_NAMES: string[] = []
+const SETTLEMENT_RESERVE_RATE = 0
+const SETTLEMENT_RESERVE_AMOUNT_PER_STORE = 50_000
+const SETTLEMENT_EXPENSE_REVENUE_RATE = 0.1
+const SETTLEMENT_GOOGLE_ADS_NET_AMOUNT = 200_000
+const SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT = 500_000
+const SETTLEMENT_WORKER_COST_PER_STORE = 150_000
+const ECO_JARDIN_SERVICE_REVENUE_AMOUNT = 1_000_000
+const ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT = 800_000
+const ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT = 500_000
+const ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT = 500_000
+const ADS_SERVICE_COST_AMOUNT = 315_000
+const ECO_JARDIN_HEAD_OFFICE_FEE_AMOUNT = 100_000
+const VAT_RATE = 0.1
+
+const contractRevenueRecords: ContractRevenueRecord[] = [
+  {
+    storeName: '웰믹스 광화문점',
+    contractMonths: 1,
+    contractStartDate: '2026-06-10',
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
+    monthlyAmounts: [990_000],
+    memo: '1개월 계약 · VAT 포함 99만원',
+  },
+  {
+    storeName: '도르도뉴',
+    contractMonths: 1,
+    contractStartDate: '2026-06-23',
+    contractStatus: '계약 종료',
+    productGroup: '구글애즈 + 구글프로필관리',
+    productDetail: '구글애즈 20만원 + 구글프로필관리 70만원',
+    monthlyAmounts: [990_000],
+    memo: '1개월 계약 종료 · 2026년 6월 23일 입금완료 · VAT 포함 99만원',
+  },
+  {
+    storeName: '렛츠바레',
+    contractMonths: 1,
+    contractStartDate: '2026-07-24',
+    settlementStartDate: '2026-08-24',
+    productGroup: '구글프로필관리',
+    productDetail: '구글프로필관리 70만원',
+    monthlyAmounts: [770_000],
+    memo: '1개월 계약 · 공급가 70만원 · VAT 포함 77만원',
+  },
+  {
+    storeName: '영종센트럴피부과',
+    contractMonths: 1,
+    contractStartDate: '2026-08-26',
+    settlementStartDate: '2026-08-26',
+    contractStatus: '운영중',
+    productGroup: '블링크애드 월간 운영',
+    productDetail: '피부과 마케팅 통합 운영',
+    monthlyAmounts: [2_000_000],
+    memo: '1개월 계약 · 공급가 1,818,182원 · VAT 181,818원 · VAT 포함 200만원',
+  },
+  {
+    storeName: '원스타올드패션드 햄버거 어린이대공원점',
+    contractMonths: 1,
+    contractStartDate: '2026-08-26',
+    settlementStartDate: '2026-08-26',
+    contractStatus: '운영중',
+    productGroup: '블링크애드 월간 운영',
+    productDetail: 'F&B 마케팅 통합 운영',
+    monthlyAmounts: [1_100_000],
+    memo: '1개월 계약 · 공급가 100만원 · VAT 10만원 · VAT 포함 110만원',
+  },
+  {
+    storeName: '자루야키용산로 신용산본점',
+    contractMonths: 1,
+    contractStartDate: '2026-08-12',
+    settlementStartDate: '2026-08-12',
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '블링크애드 1개월 상품 · 통합 운영',
+    monthlyAmounts: [1_540_000],
+    adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
+    memo: '관리 시작 2026년 8월 12일 · 월 입금 기준 매월 12일 · VAT 포함 154만원 · Ads 용역비 공급가 31.5만원 반영',
+  },
+  {
+    storeName: '주도락 을지로점',
+    contractMonths: 1,
+    contractStartDate: '2026-08-12',
+    settlementStartDate: '2026-08-12',
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '블링크애드 1개월 상품 · 통합 운영',
+    monthlyAmounts: [1_540_000],
+    adsServiceCostNetAmount: ADS_SERVICE_COST_AMOUNT,
+    memo: '관리 시작 2026년 8월 12일 · 월 입금 기준 매월 12일 · VAT 포함 154만원 · Ads 용역비 공급가 31.5만원 반영',
+  },
+  {
+    storeName: '바다당 해운대점',
+    contractMonths: 12,
+    contractStartDate: '2026-06-16',
+    settlementStartDate: '2026-07-16',
+    productGroup: '구글애즈 + 구글프로필 + 웹사이트/블로그',
+    productDetail: '프로필·애즈·웹사이트/블로그 통합 운영',
+    monthlyAmounts: [
+      1_540_000,
+      1_430_000,
+      1_320_000,
+      1_100_000,
+      1_100_000,
+      1_100_000,
+      825_000,
+      825_000,
+      825_000,
+      825_000,
+      825_000,
+      825_000,
+    ],
+    adExecutionBudgetNetAmount: 300_000,
+    adExecutionBudgetSeparate: true,
+    memo: '12개월 용역 계약 · 총 공급가 1,140만원 · VAT 포함 1,254만원 · 광고 집행비 월 30만원(VAT 별도)',
+  },
+  {
+    storeName: '에코쟈댕 롯데월드몰점',
+    contractMonths: 3,
+    contractStartDate: '2026-07-31',
+    contractStatus: '운영중',
+    productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
+    productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+    monthlyAmounts: [1_980_000, 1_980_000, 1_980_000],
+    adExecutionBudgetNetAmount: 800_000,
+    memo: '3개월 계약 · 3개월분 2026년 7월 31일 입금완료 · 총 594만원(VAT 포함)',
+  },
+  {
+    storeName: '에코쟈댕 홍대점',
+    contractMonths: 1,
+    contractStartDate: '2026-08-06',
+    contractStatus: '운영중',
+    productGroup: '외국인 마케팅 운영 + Google Ads 광고비',
+    productDetail: '운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+    monthlyAmounts: [1_980_000],
+    adExecutionBudgetNetAmount: 800_000,
+    memo: '1개월 계약 · 2026년 8월 6일 입금완료 · 198만원(VAT 포함)',
+  },
+]
+
+const billingScheduleByStore: Record<
+  string,
+  {
+    dueDay: number
+    firstPaidDate?: string
+    firstStatus?: BillingStatus
+    paidMonthCount?: number
+    nextRenewalDate?: string
+    memo: string
+  }
+> = {
+  '웰믹스 광화문점': {
+    dueDay: 10,
+    firstPaidDate: '2026-06-11',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 11일 입금완료',
+  },
+  도르도뉴: {
+    dueDay: 23,
+    firstPaidDate: '2026-06-23',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 23일 입금완료',
+  },
+  렛츠바레: {
+    dueDay: 24,
+    firstStatus: '청구예정',
+    memo: '2026년 7월 24일 계약 등록 · 입금일 확인 필요',
+  },
+  영종센트럴피부과: {
+    dueDay: 26,
+    firstStatus: '청구예정',
+    memo: '2026년 8월 26일 계약 등록 · 입금 확인 필요',
+  },
+  '원스타올드패션드 햄버거 어린이대공원점': {
+    dueDay: 26,
+    firstStatus: '청구예정',
+    memo: '2026년 8월 26일 계약 등록 · 입금 확인 필요',
+  },
+  '바다당 해운대점': {
+    dueDay: 16,
+    firstPaidDate: '2026-06-16',
+    firstStatus: '입금완료',
+    memo: '2026년 6월 16일 입금완료',
+  },
+  '자루야키용산로 신용산본점': {
+    dueDay: 12,
+    firstPaidDate: '2026-06-20',
+    firstStatus: '입금완료',
+    nextRenewalDate: '2026-09-12',
+    memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
+  },
+  '주도락 을지로점': {
+    dueDay: 12,
+    firstPaidDate: '2026-06-20',
+    firstStatus: '입금완료',
+    nextRenewalDate: '2026-09-12',
+    memo: '2026년 6월 20일 선입금완료 · 2026년 8월 12일 관리 시작 · 다음 갱신 입금일 2026년 9월 12일',
+  },
+  '에코쟈댕 롯데월드몰점': {
+    dueDay: 31,
+    firstPaidDate: '2026-07-31',
+    firstStatus: '입금완료',
+    paidMonthCount: 3,
+    memo: '2026년 7월 31일 3개월분 선입금 완료',
+  },
+  '에코쟈댕 홍대점': {
+    dueDay: 6,
+    firstPaidDate: '2026-08-06',
+    firstStatus: '입금완료',
+    paidMonthCount: 1,
+    memo: '2026년 8월 6일 입금완료',
+  },
+}
+
+function contractRevenueTotal(record: ContractRevenueRecord) {
+  return record.monthlyAmounts.reduce((sum, amount) => sum + amount, 0)
+}
+
+function firstMonthRevenue(record: ContractRevenueRecord) {
+  return record.monthlyAmounts[0] || 0
+}
+
+function contractStartRevenueMonthIndex(record: ContractRevenueRecord) {
+  const [yearText, monthText] = (record.settlementStartDate || record.contractStartDate || '').split('-')
+  const year = Number(yearText)
+  const month = Number(monthText)
+
+  if (!year || !month) return 0
+  return (year - CONTRACT_REVENUE_START_YEAR) * 12 + (month - CONTRACT_REVENUE_START_MONTH)
+}
+
+function contractMonthIndexForRevenueMonth(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  return revenueMonthIndex - contractStartRevenueMonthIndex(record)
+}
+
+function contractRevenueAmountForMonth(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex < 0) return 0
+  return record.monthlyAmounts[contractMonthIndex] || 0
+}
+
+function contractRevenueLastMonthIndex(records: ContractRevenueRecord[]) {
+  if (!records.length) return 0
+
+  return Math.max(
+    ...records.map((record) => contractStartRevenueMonthIndex(record) + record.monthlyAmounts.length - 1),
+    0
+  )
+}
+
+function settlementProductBreakdown(record: ContractRevenueRecord, netSalesAmount: number): SettlementProductBreakdown {
+  const productText = `${record.productGroup} ${record.productDetail}`
+  const googleAdsAmount = productText.toLowerCase().includes('google ads') || productText.includes('구글애즈')
+    ? record.googleAdsNetAmount ?? SETTLEMENT_GOOGLE_ADS_NET_AMOUNT
+    : 0
+  const websiteBlogAmount =
+    productText.includes('웹사이트') || productText.includes('블로그') ? SETTLEMENT_WEBSITE_BLOG_NET_AMOUNT : 0
+  const fixedProductAmount = googleAdsAmount + websiteBlogAmount
+  const googleProfileAmount = Math.max(netSalesAmount - fixedProductAmount, 0)
+
+  return {
+    googleProfileAmount,
+    googleAdsAmount,
+    websiteBlogAmount,
+    adjustmentAmount: Math.min(netSalesAmount - fixedProductAmount, 0),
+  }
+}
+
+function settlementDetailForRecord(record: ContractRevenueRecord, grossAmount: number) {
+  const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+  const vatAmount = grossAmount - netSalesAmount
+  const usesEcoJardinSettlementRule = record.storeName.includes('에코쟈')
+
+  if (usesEcoJardinSettlementRule) {
+    const serviceRevenueAmount = ECO_JARDIN_SERVICE_REVENUE_AMOUNT
+    const serviceRevenueVatAmount = Math.round(serviceRevenueAmount * VAT_RATE)
+    const adExecutionBudgetAmount =
+      record.adExecutionBudgetNetAmount ?? ECO_JARDIN_AD_EXECUTION_BUDGET_AMOUNT
+    const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
+    const profileManagementAmount = ECO_JARDIN_PROFILE_MANAGEMENT_REVENUE_AMOUNT
+    const adsManagementRevenueAmount = ECO_JARDIN_ADS_MANAGEMENT_REVENUE_AMOUNT
+    const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+    const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
+    const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
+    const headOfficeSupplyAmount = ECO_JARDIN_HEAD_OFFICE_FEE_AMOUNT
+    const headOfficeVatAmount = Math.round(headOfficeSupplyAmount * VAT_RATE)
+    const headOfficeSettlementAmount = headOfficeSupplyAmount + headOfficeVatAmount
+    const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+    const workerTax = calculateWithholding(workerCostAmount, true)
+    const adsServiceCostAmount = ADS_SERVICE_COST_AMOUNT
+    const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
+    const netVatPayableAmount =
+      vatAmount - adExecutionBudgetVatAmount - adsServiceVatAmount - bizHighVatAmount - headOfficeVatAmount
+
+    return {
+      netSalesAmount,
+      vatAmount,
+      reserveAmount: 0,
+      profileManagementAmount,
+      productBreakdown: {
+        googleProfileAmount: profileManagementAmount,
+        googleAdsAmount: adsManagementRevenueAmount,
+        websiteBlogAmount: 0,
+        adjustmentAmount: 0,
+      },
+      expenseRevenueAmount: bizHighSupplyAmount,
+      workerCostAmount,
+      serviceRevenueAmount,
+      serviceRevenueVatAmount,
+      serviceRevenuePaymentAmount: serviceRevenueAmount + serviceRevenueVatAmount,
+      adExecutionBudgetAmount,
+      adExecutionBudgetVatAmount,
+      adExecutionBudgetPaymentAmount: adExecutionBudgetAmount + adExecutionBudgetVatAmount,
+      adsManagementRevenueAmount,
+      bizHighSupplyAmount,
+      bizHighVatAmount,
+      bizHighSettlementAmount,
+      headOfficeSupplyAmount,
+      headOfficeVatAmount,
+      headOfficeSettlementAmount,
+      workerWithholdingAmount: workerTax.withholdingTax,
+      workerNetPaymentAmount: workerTax.netAmount,
+      adsServiceCostAmount,
+      adsServiceVatAmount,
+      adsServicePaymentAmount: adsServiceCostAmount + adsServiceVatAmount,
+      netVatPayableAmount,
+      usesEcoJardinSettlementRule,
+      usesSeparateAdExecutionBudget: false,
+      profitAmount:
+        serviceRevenueAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount - headOfficeSupplyAmount,
+    }
+  }
+
+  const reserveAmount = SETTLEMENT_RESERVE_AMOUNT_PER_STORE
+  const adExecutionBudgetAmount = record.adExecutionBudgetNetAmount || 0
+  const adExecutionBudgetVatAmount = Math.round(adExecutionBudgetAmount * VAT_RATE)
+  const usesSeparateAdExecutionBudget = Boolean(record.adExecutionBudgetSeparate && adExecutionBudgetAmount)
+  const serviceRevenueAmount = usesSeparateAdExecutionBudget
+    ? netSalesAmount
+    : Math.max(netSalesAmount - adExecutionBudgetAmount, 0)
+  const serviceRevenueVatAmount = usesSeparateAdExecutionBudget
+    ? vatAmount
+    : Math.max(vatAmount - adExecutionBudgetVatAmount, 0)
+  const productBreakdown = settlementProductBreakdown(record, serviceRevenueAmount)
+  const profileManagementAmount = productBreakdown.googleProfileAmount
+  const bizHighSupplyAmount = Math.round(profileManagementAmount * SETTLEMENT_EXPENSE_REVENUE_RATE)
+  const bizHighVatAmount = Math.round(bizHighSupplyAmount * VAT_RATE)
+  const bizHighSettlementAmount = bizHighSupplyAmount + bizHighVatAmount
+  const workerCostAmount = SETTLEMENT_WORKER_COST_PER_STORE
+  const workerTax = calculateWithholding(workerCostAmount, true)
+  const adsServiceCostAmount = record.adsServiceCostNetAmount || 0
+  const adsServiceVatAmount = Math.round(adsServiceCostAmount * VAT_RATE)
+
+  return {
+    netSalesAmount,
+    vatAmount,
+    reserveAmount,
+    profileManagementAmount,
+    productBreakdown,
+    expenseRevenueAmount: bizHighSupplyAmount,
+    workerCostAmount,
+    serviceRevenueAmount,
+    serviceRevenueVatAmount,
+    serviceRevenuePaymentAmount: serviceRevenueAmount + serviceRevenueVatAmount,
+    adExecutionBudgetAmount,
+    adExecutionBudgetVatAmount,
+    adExecutionBudgetPaymentAmount: adExecutionBudgetAmount + adExecutionBudgetVatAmount,
+    adsManagementRevenueAmount: productBreakdown.googleAdsAmount,
+    bizHighSupplyAmount,
+    bizHighVatAmount,
+    bizHighSettlementAmount,
+    headOfficeSupplyAmount: 0,
+    headOfficeVatAmount: 0,
+    headOfficeSettlementAmount: 0,
+    workerWithholdingAmount: workerTax.withholdingTax,
+    workerNetPaymentAmount: workerTax.netAmount,
+    adsServiceCostAmount,
+    adsServiceVatAmount,
+    adsServicePaymentAmount: adsServiceCostAmount + adsServiceVatAmount,
+    netVatPayableAmount:
+      vatAmount -
+      (usesSeparateAdExecutionBudget ? 0 : adExecutionBudgetVatAmount) -
+      bizHighVatAmount -
+      adsServiceVatAmount,
+    usesEcoJardinSettlementRule,
+    usesSeparateAdExecutionBudget,
+    profitAmount:
+      serviceRevenueAmount - reserveAmount - bizHighSupplyAmount - workerCostAmount - adsServiceCostAmount,
+  }
+}
+
+function buildMonthlySettlementSummaries(records: ContractRevenueRecord[]): SettlementSummary[] {
+  const lastMonthIndex = contractRevenueLastMonthIndex(records)
+
+  return Array.from({ length: lastMonthIndex + 1 }, (_, monthIndex) => buildSettlementSummary(records, monthIndex)).filter(
+    (summary) => summary.records.length > 0
+  )
+}
+
+function buildSettlementSummary(records: ContractRevenueRecord[], monthIndex: number): SettlementSummary {
+  const settlementRecords = records
+    .filter(
+      (record) =>
+        !SETTLEMENT_EXCLUDED_STORE_NAMES.includes(record.storeName) && contractRevenueAmountForMonth(record, monthIndex) > 0
+    )
+    .map((record) => {
+      const grossAmount = contractRevenueAmountForMonth(record, monthIndex)
+      const detail = settlementDetailForRecord(record, grossAmount)
+      const checkDate = settlementCheckDateForStore(record, monthIndex)
+
+      return {
+        key: `${monthIndex}:${record.storeName}:${checkDate}`,
+        storeName: record.storeName,
+        checkDate,
+        status: settlementStatusForStore(record, monthIndex),
+        memo: record.memo,
+        productGroup: record.productGroup,
+        productDetail: record.productDetail,
+        grossAmount,
+        ...detail,
+      }
+    })
+    .sort((a, b) => a.checkDate.localeCompare(b.checkDate) || a.storeName.localeCompare(b.storeName))
+
+  const grossAmount = settlementRecords.reduce((sum, record) => sum + record.grossAmount, 0)
+  const netSalesAmount = Math.round(grossAmount / (1 + VAT_RATE))
+  const vatAmount = grossAmount - netSalesAmount
+  const reserveAmount = settlementRecords.reduce((sum, record) => sum + record.reserveAmount, 0)
+  const profileManagementAmount = settlementRecords.reduce((sum, record) => sum + record.profileManagementAmount, 0)
+  const expenseRevenueAmount = settlementRecords.reduce((sum, record) => sum + record.expenseRevenueAmount, 0)
+  const workerCostAmount = settlementRecords.reduce((sum, record) => sum + record.workerCostAmount, 0)
+  const profitAmount = settlementRecords.reduce((sum, record) => sum + record.profitAmount, 0)
+
+  return {
+    monthIndex,
+    monthLabel: contractRevenueMonthLabel(monthIndex),
+    records: settlementRecords,
+    excludedStoreNames: SETTLEMENT_EXCLUDED_STORE_NAMES,
+    grossAmount,
+    vatAmount,
+    netSalesAmount,
+    reserveRate: SETTLEMENT_RESERVE_RATE,
+    reserveAmountPerStore: SETTLEMENT_RESERVE_AMOUNT_PER_STORE,
+    reserveAmount,
+    profileManagementAmount,
+    expenseRevenueRate: SETTLEMENT_EXPENSE_REVENUE_RATE,
+    expenseRevenueAmount,
+    workerCostPerStore: SETTLEMENT_WORKER_COST_PER_STORE,
+    workerCostAmount,
+    profitAmount,
+  }
+}
+
+function settlementProcessStorageKey(monthIndex: number, storeName: string) {
+  return `${monthIndex}:${storeName}`
+}
+
+function isSettlementProcessStatus(value: unknown): value is SettlementProcessStatus {
+  return value === '정산대기' || value === '정산완료' || value === '이번 달 보류' || value === '정산 제외'
+}
+
+function isSettlementStoreReadiness(value: unknown): value is SettlementStoreReadiness {
+  return value === '정산대상' || value === '인증대기'
+}
+
+function settlementStoreReadiness(storeName: string): SettlementStoreReadiness {
+  return SETTLEMENT_AUTH_PENDING_STORE_NAMES.includes(storeName) ? '인증대기' : '정산대상'
+}
+
+function defaultSettlementProcessStatus(readiness: SettlementStoreReadiness): SettlementProcessStatus {
+  return readiness === '인증대기' ? '이번 달 보류' : '정산대기'
+}
+
+function readSettlementProcessMap(): SettlementProcessMap {
+  if (typeof window === 'undefined') return {}
+
+  try {
+    const raw = window.localStorage.getItem(SETTLEMENT_PROCESS_STORAGE_KEY)
+    if (!raw) return {}
+
+    const parsed = JSON.parse(raw) as Record<string, unknown>
+    return Object.entries(parsed).reduce<SettlementProcessMap>((map, [key, value]) => {
+      if (isSettlementProcessStatus(value)) {
+        map[key] = { status: value }
+        return map
+      }
+
+      if (value && typeof value === 'object') {
+        const entry = value as { status?: unknown; readiness?: unknown; updatedAt?: unknown }
+        if (isSettlementProcessStatus(entry.status)) {
+          map[key] = {
+            status: entry.status,
+            readiness: isSettlementStoreReadiness(entry.readiness) ? entry.readiness : undefined,
+            updatedAt: typeof entry.updatedAt === 'string' ? entry.updatedAt : undefined,
+          }
+        }
+      }
+
+      return map
+    }, {})
+  } catch {
+    return {}
+  }
+}
+
+function settlementTotalsFromRows(rows: SettlementRowView[]): SettlementTotals {
+  return rows.reduce<SettlementTotals>(
+    (totals, row) => ({
+      grossAmount: totals.grossAmount + row.record.grossAmount,
+      vatAmount: totals.vatAmount + row.record.vatAmount,
+      netSalesAmount: totals.netSalesAmount + row.record.netSalesAmount,
+      reserveAmount: totals.reserveAmount + row.record.reserveAmount,
+      profileManagementAmount: totals.profileManagementAmount + row.record.profileManagementAmount,
+      expenseRevenueAmount: totals.expenseRevenueAmount + row.record.expenseRevenueAmount,
+      workerCostAmount: totals.workerCostAmount + row.record.workerCostAmount,
+      profitAmount: totals.profitAmount + row.record.profitAmount,
+    }),
+    {
+      grossAmount: 0,
+      vatAmount: 0,
+      netSalesAmount: 0,
+      reserveAmount: 0,
+      profileManagementAmount: 0,
+      expenseRevenueAmount: 0,
+      workerCostAmount: 0,
+      profitAmount: 0,
+    }
+  )
+}
+
+function settlementCheckDateForStore(record: ContractRevenueRecord, revenueMonthIndex: number) {
+  const schedule = billingScheduleByStore[record.storeName]
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex === 0 && record.settlementStartDate) return record.settlementStartDate
+  if (contractMonthIndex === 0 && schedule?.firstPaidDate) return schedule.firstPaidDate
+
+  const date = contractRevenueMonthDate(revenueMonthIndex)
+  const dueDay = schedule?.dueDay || 25
+  const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+
+  return toISODate(new Date(date.getFullYear(), date.getMonth(), Math.min(dueDay, lastDay)))
+}
+
+function settlementStatusForStore(record: ContractRevenueRecord, revenueMonthIndex: number): BillingStatus {
+  const schedule = billingScheduleByStore[record.storeName]
+  const contractMonthIndex = contractMonthIndexForRevenueMonth(record, revenueMonthIndex)
+  if (contractMonthIndex < (schedule?.paidMonthCount || 0) && schedule?.firstPaidDate) return '입금완료'
+  if (contractMonthIndex === 0 && schedule?.firstStatus) return schedule.firstStatus
+  return '청구예정'
+}
+
+function contractRevenueMonthDate(monthIndex: number) {
+  return new Date(CONTRACT_REVENUE_START_YEAR, CONTRACT_REVENUE_START_MONTH - 1 + monthIndex, 1)
+}
+
+function contractRevenueMonthLabel(monthIndex: number) {
+  const date = contractRevenueMonthDate(monthIndex)
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월`
+}
+
+function monthlyRevenueSchedule(records: ContractRevenueRecord[]) {
+  const lastMonthIndex = contractRevenueLastMonthIndex(records)
+
+  return Array.from({ length: lastMonthIndex + 1 }, (_, index) => {
+    const stores = records
+      .map((record) => ({
+        storeName: record.storeName,
+        amount: contractRevenueAmountForMonth(record, index),
+      }))
+      .filter((item) => item.amount > 0)
+
+    return {
+      month: index + 1,
+      monthLabel: contractRevenueMonthLabel(index),
+      amount: stores.reduce((sum, item) => sum + item.amount, 0),
+      stores,
+    }
+  })
 }
 
 type CalendarContextMenu =
@@ -177,6 +977,13 @@ type CalendarContextMenuInput =
   | { kind: 'calendar'; calendar: CalendarEvent }
 
 type BillingStatus = '청구예정' | '청구완료' | '입금완료' | '연체' | '보류'
+type TaxInvoiceStatus = '발행전' | '발행완료' | '해당없음'
+type WithholdingStatus = '없음' | '확인필요' | '완료'
+type PaymentStatus = '입금대기' | '입금완료' | '입금지연'
+type WorkStatus = '미시작' | '진행중' | '인증대기' | '작업완료' | '종료'
+type WorkRecognition = '전체' | '일부' | '없음' | '선택필요'
+type TeamSettlementStatus = '정산대상' | '정산보류' | '다음 달 이월' | '정산완료'
+type BillingFilter = '전체' | '정산대상' | '인증대기' | '입금지연' | '정산완료'
 
 type BillingRecord = {
   id: string
@@ -187,7 +994,15 @@ type BillingRecord = {
   dueDay: number
   status: BillingStatus
   owner: string
-  taxInvoice: string
+  taxInvoice: TaxInvoiceStatus
+  withholding: WithholdingStatus
+  paymentStatus: PaymentStatus
+  workStatus: WorkStatus
+  workRecognition: WorkRecognition
+  defaultTeamSettlementAmount: number
+  teamSettlementAmount: number
+  withholdingApplied: boolean
+  settlementStatus: TeamSettlementStatus
   memo: string
 }
 
@@ -196,7 +1011,7 @@ export default function ErpClient() {
   const [menuSynced, setMenuSynced] = useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [sidebarPreview, setSidebarPreview] = useState(false)
-  const [activeStoreTitle, setActiveStoreTitle] = useState(operationViews.project?.rows[0]?.title || '')
+  const [activeStoreTitle, setActiveStoreTitle] = useState('')
   const [stores, setStores] = useState<StoreRecord[]>([])
   const [statusOptions, setStatusOptions] = useState<string[]>(DEFAULT_CLIENT_STATUS_OPTIONS)
   const [loading, setLoading] = useState(true)
@@ -217,6 +1032,22 @@ export default function ErpClient() {
   const [mailItems, setMailItems] = useState<MailItem[]>([])
   const [mailLoading, setMailLoading] = useState(false)
   const [mailMessage, setMailMessage] = useState('')
+  const [storeDashboard, setStoreDashboard] = useState<NotionStoreDashboardResponse>({
+    connected: false,
+    pageUrl: 'https://www.notion.so/Blink-Ad-3b4753ebc0138021afecfbdc3115d1b3?source=copy_link',
+    message: '',
+    databases: [],
+  })
+  const [storeDashboardLoading, setStoreDashboardLoading] = useState(false)
+  const [settlementSheet, setSettlementSheet] = useState<SettlementSheetApiResponse>({
+    connected: false,
+    source: 'fallback',
+    message: 'Google Sheets 정산 원본을 불러오는 중입니다.',
+    spreadsheetUrl: '',
+    syncedAt: '',
+    settlementMonths: [],
+  })
+  const [settlementSheetLoading, setSettlementSheetLoading] = useState(false)
 
   const loadStores = async () => {
     setLoading(true)
@@ -240,6 +1071,54 @@ export default function ErpClient() {
   useEffect(() => {
     loadStores()
   }, [])
+
+  const loadStoreDashboard = useCallback(async () => {
+    setStoreDashboardLoading(true)
+    try {
+      const response = await fetch('/api/erp/store-dashboard', { cache: 'no-store' })
+      const data = (await response.json()) as NotionStoreDashboardResponse
+      setStoreDashboard(data)
+    } catch {
+      setStoreDashboard((current) => ({
+        ...current,
+        connected: false,
+        message: 'Notion 매장 현황을 불러오지 못했습니다.',
+      }))
+    } finally {
+      setStoreDashboardLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadStoreDashboard()
+  }, [loadStoreDashboard])
+
+  const loadSettlementSheet = useCallback(async () => {
+    setSettlementSheetLoading(true)
+    try {
+      const response = await fetch('/api/erp/settlements', { cache: 'no-store' })
+      const data = (await response.json()) as SettlementSheetApiResponse
+      if (!response.ok) throw new Error(data.message || '정산 원본을 불러오지 못했습니다.')
+      setSettlementSheet(data)
+    } catch (error) {
+      setSettlementSheet((current) => ({
+        ...current,
+        connected: false,
+        source: 'fallback',
+        message:
+          error instanceof Error
+            ? `Google Sheets를 읽지 못해 ERP 내장 데이터를 표시합니다: ${error.message}`
+            : 'Google Sheets를 읽지 못해 ERP 내장 데이터를 표시합니다.',
+        settlementMonths: [],
+      }))
+    } finally {
+      setSettlementSheetLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    loadSettlementSheet()
+  }, [loadSettlementSheet])
 
   const updateStoreStatus = async (store: StoreRecord, status: string) => {
     if (!status || status === store.status) return
@@ -274,6 +1153,7 @@ export default function ErpClient() {
 
   useEffect(() => {
     setActiveMenu(readPersistedMenu())
+    setActiveStoreTitle(readQueryStoreTitle())
     setMenuSynced(true)
   }, [])
 
@@ -475,6 +1355,41 @@ export default function ErpClient() {
 
     return { counts }
   }, [stores])
+  const contractRevenue = useMemo(() => {
+    const monthlyRows = monthlyRevenueSchedule(contractRevenueRecords)
+    const today = new Date()
+    const currentMonthIndex = Math.max(
+      0,
+      (today.getFullYear() - CONTRACT_REVENUE_START_YEAR) * 12 +
+        today.getMonth() -
+        (CONTRACT_REVENUE_START_MONTH - 1)
+    )
+    const currentMonthRow = monthlyRows[currentMonthIndex]
+
+    return {
+      records: contractRevenueRecords,
+      currentMonthAmount: currentMonthRow?.amount || 0,
+      currentMonthLabel: currentMonthRow?.monthLabel || contractRevenueMonthLabel(currentMonthIndex),
+      contractTotalAmount: contractRevenueRecords.reduce((sum, record) => sum + contractRevenueTotal(record), 0),
+      monthlyRows,
+      settlementMonths: buildMonthlySettlementSummaries(contractRevenueRecords),
+    }
+  }, [])
+  const displayedSettlementMonths =
+    settlementSheet.connected && settlementSheet.settlementMonths.length
+      ? settlementSheet.settlementMonths
+      : contractRevenue.settlementMonths
+  const activeContractStores = operationViews.project?.rows || []
+  const pausedContractStores = operationViews.pausedStores?.rows || []
+  const terminatedContractStores = operationViews.terminatedStores?.rows || []
+  const contractStoreCounts = {
+    active: activeContractStores.length,
+    paused: pausedContractStores.length,
+    terminated: terminatedContractStores.length,
+    total: new Set(
+      [...activeContractStores, ...pausedContractStores, ...terminatedContractStores].map((store) => store.title)
+    ).size,
+  }
 
   const inquiryStores = stores.filter((store) => statusIncludesAny(store.status, ['신규 문의', '신규문의']))
   const followupStores = stores.filter((store) =>
@@ -547,17 +1462,32 @@ export default function ErpClient() {
   )
   const operationView =
     realtimeMenuIds.includes(activeMenu) ||
+    activeMenu === 'project' ||
+    activeMenu === 'pausedStores' ||
+    activeMenu === 'terminatedStores' ||
     activeMenu === 'followup' ||
     activeMenu === 'customer' ||
     activeMenu === 'card' ||
-    activeMenu === 'billing'
+    activeMenu === 'billing' ||
+    activeMenu === 'settlement' ||
+    activeMenu === 'kpi'
       ? undefined
       : operationViews[activeMenu]
-  const projectStores = operationViews.project?.rows || []
   const sidebarExpanded = !sidebarCollapsed || sidebarPreview
-  const headerConnectionMessage = activeMenu === 'card' ? '' : connectionMessage
+  const headerConnectionMessage =
+    activeMenu === 'project'
+      ? storeDashboard.message
+      : activeMenu === 'settlement'
+        ? settlementSheet.message
+        : activeMenu === 'card'
+          ? ''
+          : connectionMessage
   const headerLoading =
-    activeMenu === 'card'
+    activeMenu === 'project'
+      ? storeDashboardLoading
+      : activeMenu === 'settlement'
+        ? settlementSheetLoading
+      : activeMenu === 'card'
       ? businessCardsLoading
       : ['schedule', 'weekly'].includes(activeMenu)
         ? calendarLoading
@@ -568,6 +1498,8 @@ export default function ErpClient() {
             : loading
   const refreshActiveMenu = () => {
     persistMenu(activeMenu)
+    if (activeMenu === 'project') return loadStoreDashboard()
+    if (activeMenu === 'settlement') return loadSettlementSheet()
     if (activeMenu === 'card') return loadBusinessCards()
     if (activeMenu === 'schedule' || activeMenu === 'weekly') return loadCalendarEvents()
     if (activeMenu === 'meeting') return calendarEvents.length ? syncMeetingRecords(calendarEvents) : loadMeetingRecords()
@@ -578,8 +1510,8 @@ export default function ErpClient() {
   const selectMenu = (menuId: MenuId) => {
     persistMenu(menuId)
     setActiveMenu(menuId)
-    if (menuId === 'project' && !activeStoreTitle) {
-      setActiveStoreTitle(projectStores[0]?.title || '')
+    if (menuId === 'project' || menuId === 'pausedStores' || menuId === 'terminatedStores') {
+      setActiveStoreTitle('')
     }
   }
 
@@ -663,6 +1595,7 @@ export default function ErpClient() {
                   {group.items.map((menu) => {
                     const Icon = menu.icon
                     const active = activeMenu === menu.id
+                    const sidebarStores: OperationRow[] = []
 
                     return (
                       <div key={menu.id}>
@@ -678,9 +1611,9 @@ export default function ErpClient() {
                           {menu.label}
                         </span>
                       </button>
-                      {sidebarExpanded && menu.id === 'project' && activeMenu === 'project' ? (
+                      {sidebarExpanded && active && sidebarStores.length ? (
                         <div className="ml-7 mt-1 space-y-1 border-l border-white/10 pl-3">
-                          {projectStores.map((store) => {
+                          {sidebarStores.map((store) => {
                             const storeActive = activeStoreTitle === store.title
 
                             return (
@@ -688,17 +1621,17 @@ export default function ErpClient() {
                                 key={store.title}
                                 type="button"
                                 onClick={() => {
-                                  setActiveMenu('project')
+                                  persistMenu(menu.id)
+                                  setActiveMenu(menu.id)
                                   setActiveStoreTitle(store.title)
                                 }}
-                                className={`flex w-full items-center justify-between gap-2 rounded-md px-3 py-2 text-left text-xs font-black transition ${
+                                className={`flex w-full items-center rounded-md px-3 py-2 text-left text-xs font-black transition ${
                                   storeActive
                                     ? 'bg-white text-black'
                                     : 'text-gray-500 hover:bg-white/5 hover:text-white'
                                 }`}
                               >
                                 <span>{store.title}</span>
-                                <span className={storeActive ? 'text-black/55' : 'text-gray-600'}>{store.status}</span>
                               </button>
                             )
                           })}
@@ -722,7 +1655,7 @@ export default function ErpClient() {
                     BlinkAd ERP
                   </p>
                   <h1 className="mt-1 text-xl font-black tracking-tight text-white md:text-2xl">
-                    영업·미팅·견적·계약·운영·정산 관리
+                    매장 운영·청구·정산 관리
                   </h1>
                 </div>
               </div>
@@ -772,17 +1705,27 @@ export default function ErpClient() {
             ) : null}
 
             {activeMenu === 'dashboard' && (
-              <section>
-                <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
-                  {dashboard.counts.map((item) => (
-                    <div key={item.label} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
-                      <p className="text-sm font-bold text-gray-400">{item.label}</p>
-                      <p className="mt-4 text-5xl font-black tracking-tight text-white">{item.count}</p>
-                      <p className="mt-3 text-sm leading-6 text-gray-500">문의관리 DB 기준</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
+              <DashboardPanel
+                contractRevenue={contractRevenue}
+                contractStoreCounts={contractStoreCounts}
+              />
+            )}
+
+            {activeMenu === 'project' && (
+              <NotionStoreDashboardPanel
+                data={storeDashboard}
+                loading={storeDashboardLoading}
+                fallbackStores={activeContractStores}
+                onRefresh={loadStoreDashboard}
+              />
+            )}
+
+            {activeMenu === 'pausedStores' && (
+              <ArchivedStoreListPanel title="작업보류매장" description="현재 작업을 멈춘 매장과 기존 작업 기간만 확인합니다." rows={pausedContractStores} />
+            )}
+
+            {activeMenu === 'terminatedStores' && (
+              <ArchivedStoreListPanel title="계약 해제 매장" description="계약이 끝난 매장과 실제 작업 기간만 보관합니다." rows={terminatedContractStores} />
             )}
 
             {activeMenu === 'crm' && (
@@ -858,8 +1801,8 @@ export default function ErpClient() {
 
             {activeMenu === 'diagnosis' && (
               <StoreTable
-                title="진단자료 생성"
-                description="각 매장별 Google 맵 링크를 기준으로 진단자료 PDF를 생성하고 분석자료 열에 저장합니다."
+                title="분석자료 생성"
+                description="각 매장별 Google 맵 링크를 기준으로 분석자료 PDF를 생성하고 Notion 분석자료 열에 저장합니다."
                 stores={stores}
                 loading={loading}
                 columns="diagnosis"
@@ -873,9 +1816,9 @@ export default function ErpClient() {
 
             {activeMenu === 'quote' && (
               <StoreTable
-                title="견적서 생성"
-                description="계약대기, 답변완료, 계약완료, 취소/팔로업 중지 상태를 제외한 매장을 견적서 생성 대상으로 표시합니다."
-                stores={quoteCandidateStores}
+                title="견적서 조회/생성"
+                description="Notion 문의관리 DB의 견적서 열에 저장된 PDF를 바로 조회하고, 필요한 매장은 견적서를 생성합니다."
+                stores={stores}
                 loading={loading}
                 columns="quote"
                 runningAction={runningAction}
@@ -911,10 +1854,21 @@ export default function ErpClient() {
             {activeMenu === 'blinkadMarketing' && <BlinkAdMarketingPanel />}
 
             {activeMenu === 'billing' && (
-              <BillingPanel
-                records={billingRecords}
-                loading={loading}
-                message={connectionMessage}
+              <BillingCalendarPanel records={billingRecords} />
+            )}
+
+            {activeMenu === 'settlement' && (
+              <PeriodSettlementPanel
+                settlementMonths={displayedSettlementMonths}
+                integration={settlementSheet}
+                loading={settlementSheetLoading}
+              />
+            )}
+
+            {activeMenu === 'kpi' && (
+              <KpiPanel
+                currentContracts={contractRevenue.records.length}
+                goalContracts={50}
               />
             )}
 
@@ -972,6 +1926,961 @@ export default function ErpClient() {
   )
 }
 
+function NotionStoreDashboardPanel({
+  data,
+  loading,
+  fallbackStores,
+  onRefresh,
+}: {
+  data: NotionStoreDashboardResponse
+  loading: boolean
+  fallbackStores: OperationRow[]
+  onRefresh: () => void
+}) {
+  const storeDatabase = data.databases.find((database) => database.kind === 'storeMaster')
+  const reportDatabase = data.databases.find((database) => database.kind === 'reportLog')
+  const [selectedStore, setSelectedStore] = useState('')
+  const storeRows = storeDatabase?.rows || []
+  const reportRows = useMemo(
+    () => [...(reportDatabase?.rows || [])].sort((a, b) => (b.date || '').localeCompare(a.date || '')),
+    [reportDatabase?.rows]
+  )
+
+  useEffect(() => {
+    if (!storeRows.length) {
+      setSelectedStore('')
+      return
+    }
+    if (!storeRows.some((row) => row.title === selectedStore)) setSelectedStore(storeRows[0].title)
+  }, [selectedStore, storeRows])
+
+  const selectedStoreRow = storeRows.find((row) => row.title === selectedStore)
+  const selectedStoreReports = selectedStore
+    ? reportRows.filter((row) => {
+        const source = `${row.storeName} ${row.title}`.replace(/\s+/g, '').toLowerCase()
+        return source.includes(selectedStore.replace(/\s+/g, '').toLowerCase())
+      })
+    : reportRows
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Notion Store Dashboard</p>
+            <h2 className="mt-2 text-2xl font-black text-white">매장 운영관리</h2>
+            <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">
+              Notion의 매장 마스터에서 매장을 선택하고, 연결된 발행·보고 로그를 바로 확인합니다.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={loading}
+              className="inline-flex h-10 items-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 hover:bg-white/5 disabled:opacity-50"
+            >
+              <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
+              동기화
+            </button>
+            <a
+              href={data.pageUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-10 items-center gap-2 rounded-md bg-brand-blue px-4 text-sm font-black text-white hover:brightness-110"
+            >
+              Notion 원본
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+        <div className={`mt-4 rounded-md border px-4 py-3 text-sm font-bold ${data.connected ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100' : 'border-amber-300/25 bg-amber-300/10 text-amber-100'}`}>
+          {loading ? 'Notion 매장 현황을 불러오는 중입니다.' : data.message || '연동 상태를 확인하고 있습니다.'}
+        </div>
+      </div>
+
+      {data.connected && (storeDatabase || reportDatabase) ? (
+        <div className="grid gap-5 xl:grid-cols-[minmax(360px,0.8fr)_minmax(620px,1.2fr)]">
+          <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex items-center justify-between border-b border-white/10 p-5">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store Master</p>
+                <h3 className="mt-2 text-xl font-black text-white">매장 마스터</h3>
+              </div>
+              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{storeRows.length}개</span>
+            </div>
+            {storeDatabase ? (
+              <div className="divide-y divide-white/10">
+                {storeRows.map((row) => {
+                  const active = selectedStore === row.title
+                  return (
+                    <button
+                      key={row.id}
+                      type="button"
+                      onClick={() => setSelectedStore(row.title)}
+                      className={`flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition ${active ? 'bg-brand-blue/15' : 'hover:bg-white/[0.03]'}`}
+                    >
+                      <div className="min-w-0">
+                        <p className="truncate font-black text-white">{row.title}</p>
+                        <p className="mt-1 text-xs font-semibold text-gray-400">{[row.category, row.region].filter(Boolean).join(' · ') || '매장 정보 확인 필요'}</p>
+                        <p className="mt-1 text-[11px] font-semibold text-gray-600">온보딩 {row.date || '미정'}{row.cadence ? ` · ${row.cadence}` : ''}</p>
+                      </div>
+                      <span className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-black ${active ? 'border-brand-blue/40 bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-300'}`}>{row.status || '운영 현황'}</span>
+                    </button>
+                  )
+                })}
+                {!storeRows.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">매장 마스터에 등록된 매장이 없습니다.</p> : null}
+              </div>
+            ) : (
+              <p className="px-5 py-10 text-center text-sm font-bold text-amber-100">매장 마스터 표를 찾지 못했습니다.</p>
+            )}
+          </section>
+
+          <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Publish & Report Log</p>
+                <h3 className="mt-2 text-xl font-black text-white">{selectedStore || '전체 매장'} 발행·보고 로그</h3>
+                {selectedStoreRow ? <p className="mt-1 text-xs font-semibold text-gray-500">{selectedStoreRow.status || '운영 현황'} · {selectedStoreRow.category || '업종 미정'} · {selectedStoreRow.region || '지역 미정'}</p> : null}
+                {selectedStoreRow?.keyword ? <p className="mt-1 text-[11px] font-semibold text-gray-600">공략 키워드: {selectedStoreRow.keyword}</p> : null}
+              </div>
+              <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300">{selectedStoreReports.length}건</span>
+            </div>
+            {reportDatabase ? (
+              <div className="max-h-[680px] divide-y divide-white/10 overflow-y-auto">
+                {selectedStoreReports.map((row) => (
+                  <article key={row.id} className="px-5 py-4">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-xs font-black tabular-nums text-gray-500">{row.date || '날짜 없음'}</span>
+                          {row.category ? <span className="rounded-full border border-white/10 bg-black px-2 py-0.5 text-[11px] font-black text-gray-300">{row.category}</span> : null}
+                          {row.channel ? <span className="rounded-full border border-blue-300/20 bg-blue-300/10 px-2 py-0.5 text-[11px] font-black text-blue-100">{row.channel}</span> : null}
+                          {row.languages ? <span className="rounded-full border border-white/10 bg-white/[0.03] px-2 py-0.5 text-[11px] font-black text-gray-400">{row.languages}</span> : null}
+                        </div>
+                        <h4 className="mt-2 font-black text-white">{row.title}</h4>
+                        {row.memo ? <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">{row.memo}</p> : null}
+                      </div>
+                      <div className="flex shrink-0 items-center gap-3">
+                        <span className="text-xs font-black text-emerald-100">{row.status || '기록'}</span>
+                        {row.publishedUrl ? <a href={row.publishedUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-black text-emerald-100 hover:text-white">발행물 <ExternalLink className="h-3.5 w-3.5" /></a> : null}
+                        <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-black text-blue-200 hover:text-white">원본 <ExternalLink className="h-3.5 w-3.5" /></a>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+                {!selectedStoreReports.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">선택한 매장에 연결된 발행·보고 로그가 없습니다.</p> : null}
+              </div>
+            ) : (
+              <p className="px-5 py-10 text-center text-sm font-bold text-amber-100">발행·보고 로그 표를 찾지 못했습니다.</p>
+            )}
+          </section>
+        </div>
+      ) : (
+        <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="border-b border-white/10 p-5 md:p-6">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">연동 전 임시 목록</p>
+            <h3 className="mt-2 text-xl font-black text-white">현재 운영 매장 {fallbackStores.length}개</h3>
+            <p className="mt-2 text-sm font-semibold text-gray-500">Notion 페이지를 연동에 공유하면 매장 마스터와 발행·보고 로그 화면으로 교체됩니다.</p>
+          </div>
+          <div className="divide-y divide-white/10">
+            {fallbackStores.map((store) => (
+              <div key={store.title} className="flex flex-col gap-2 px-5 py-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="font-black text-white">{store.title}</p>
+                  <p className="mt-1 text-xs font-semibold text-gray-500">{store.meta}</p>
+                </div>
+                <span className="text-xs font-black text-emerald-100">{store.status}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </section>
+  )
+}
+
+function contractWorkPeriod(storeName: string) {
+  const contract = contractRevenueRecords.find((record) => record.storeName === storeName)
+  if (!contract?.contractStartDate) return { start: '-', end: '-' }
+  const start = new Date(`${contract.contractStartDate}T00:00:00`)
+  const end = new Date(start)
+  end.setMonth(end.getMonth() + contract.contractMonths)
+  end.setDate(end.getDate() - 1)
+  return { start: contract.contractStartDate, end: formatDateKey(end) }
+}
+
+function ArchivedStoreListPanel({ title, description, rows }: { title: string; description: string; rows: OperationRow[] }) {
+  return (
+    <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="border-b border-white/10 p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Store Archive</p>
+        <h2 className="mt-2 text-2xl font-black text-white">{title}</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">{description}</p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[660px] border-collapse text-left text-sm">
+          <thead className="bg-white/[0.04] text-xs text-gray-500">
+            <tr>
+              <th className="px-5 py-3">매장명</th>
+              <th className="px-5 py-3">상태</th>
+              <th className="px-5 py-3">작업 시작일</th>
+              <th className="px-5 py-3">작업 종료일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              const period = contractWorkPeriod(row.title)
+              return (
+                <tr key={row.title} className="border-t border-white/10">
+                  <td className="px-5 py-4 font-black text-white">{row.title}</td>
+                  <td className="px-5 py-4"><span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-xs font-black text-gray-300">{row.status}</span></td>
+                  <td className="px-5 py-4 font-bold tabular-nums text-gray-300">{period.start}</td>
+                  <td className="px-5 py-4 font-bold tabular-nums text-gray-300">{period.end}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
+function KpiPanel({
+  currentContracts,
+  goalContracts,
+}: {
+  currentContracts: number
+  goalContracts: number
+}) {
+  const remainingContracts = Math.max(goalContracts - currentContracts, 0)
+  const progressRate = goalContracts > 0 ? Math.min(100, Math.round((currentContracts / goalContracts) * 100)) : 0
+  const chartBackground = `conic-gradient(#2563eb 0 ${progressRate}%, rgba(255,255,255,0.08) ${progressRate}% 100%)`
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="grid gap-6 p-5 md:grid-cols-[320px_1fr] md:p-6">
+          <div className="flex items-center justify-center">
+            <div
+              className="relative flex aspect-square w-full max-w-[260px] items-center justify-center rounded-full"
+              style={{ background: chartBackground }}
+              aria-label={`매장 계약체결 목표 달성률 ${progressRate}%`}
+            >
+              <div className="absolute inset-5 rounded-full border border-white/10 bg-black" />
+              <div className="relative text-center">
+                <p className="text-sm font-black text-brand-blue">달성률</p>
+                <p className="mt-2 text-6xl font-black text-white">{progressRate}%</p>
+                <p className="mt-2 text-sm font-bold text-gray-500">
+                  {currentContracts}/{goalContracts}개
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex min-w-0 flex-col justify-center">
+            <p className="text-sm font-bold text-brand-blue">KPI</p>
+            <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">매장 50개 계약체결</h2>
+            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">
+              대시보드 계약 매장 리스트 기준으로 현재 계약체결 수와 목표까지 남은 매장 수만 추적합니다.
+            </p>
+
+            <div className="mt-6 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
+              <div className="border-white/10 p-5 md:border-r">
+                <p className="text-xs font-black text-gray-500">현재 계약</p>
+                <p className="mt-2 text-4xl font-black text-white">{currentContracts}개</p>
+              </div>
+              <div className="border-white/10 p-5 md:border-r">
+                <p className="text-xs font-black text-gray-500">목표</p>
+                <p className="mt-2 text-4xl font-black text-white">{goalContracts}개</p>
+              </div>
+              <div className="p-5">
+                <p className="text-xs font-black text-gray-500">남은 계약</p>
+                <p className="mt-2 text-4xl font-black text-blue-100">{remainingContracts}개</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 p-5 md:p-6">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-sm font-black text-white">목표 진행 바</p>
+            <p className="text-sm font-black text-gray-400">{progressRate}%</p>
+          </div>
+          <div className="mt-3 h-4 overflow-hidden rounded-full bg-white/10">
+            <div
+              className="h-full rounded-full bg-brand-blue transition-all"
+              style={{ width: `${progressRate}%` }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function DashboardPanel({
+  contractRevenue,
+  contractStoreCounts,
+}: {
+  contractRevenue: {
+    records: ContractRevenueRecord[]
+    currentMonthAmount: number
+    currentMonthLabel: string
+    contractTotalAmount: number
+    settlementMonths: SettlementSummary[]
+    monthlyRows: {
+      month: number
+      monthLabel: string
+      amount: number
+      stores: { storeName: string; amount: number }[]
+    }[]
+  }
+  contractStoreCounts: {
+    active: number
+    paused: number
+    terminated: number
+    total: number
+  }
+}) {
+  const revenueCards = [
+    {
+      label: '계약 이력 매장',
+      value: `${contractRevenue.records.length}개`,
+      detail: '청구·매출 기록 기준',
+    },
+    {
+      label: '이번달 매출',
+      value: formatRevenueManwon(contractRevenue.currentMonthAmount),
+      detail: `${contractRevenue.currentMonthLabel} 기준`,
+    },
+    {
+      label: '총 계약매출',
+      value: formatRevenueManwon(contractRevenue.contractTotalAmount),
+      detail: '월별 스케줄 합산',
+    },
+  ]
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Operations Dashboard</p>
+        <h2 className="mt-2 text-2xl font-black text-white">핵심 운영 대시보드</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">매장 운영, 이번 달 청구 규모, 전체 계약 매출만 빠르게 확인합니다.</p>
+      </div>
+      <ContractStoreStatusPanel counts={contractStoreCounts} />
+      <ContractSummaryPanel cards={revenueCards} />
+    </section>
+  )
+}
+
+function ContractStoreStatusPanel({
+  counts,
+}: {
+  counts: {
+    active: number
+    paused: number
+    terminated: number
+    total: number
+  }
+}) {
+  const cards = [
+    { label: '활성 계약', value: counts.active, detail: '매장 운영관리' },
+    { label: '작업 보류', value: counts.paused, detail: '작업보류매장' },
+    { label: '계약 해제', value: counts.terminated, detail: '계약 해제 매장' },
+    { label: '전체 관리 이력', value: counts.total, detail: '중복 제외 합계' },
+  ]
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Contract Store Status</p>
+        <h3 className="mt-2 text-xl font-black text-white">계약 매장 현황</h3>
+        <p className="mt-2 text-xs font-bold text-gray-600">
+          매장 운영 분류가 바뀌면 대시보드 카운트도 자동으로 갱신됩니다.
+        </p>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {cards.map((card) => (
+          <div key={card.label} className="rounded-lg border border-white/10 bg-black px-5 py-4">
+            <p className="text-xs font-black uppercase tracking-[0.12em] text-gray-500">{card.label}</p>
+            <p className="mt-2 text-4xl font-black tracking-tight text-white">{card.value}개</p>
+            <p className="mt-1 text-xs font-bold text-gray-600">{card.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function InquiryStatusPanel({ counts }: { counts: { label: string; count: number }[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Inquiry Status</p>
+        <h3 className="mt-2 text-xl font-black text-white">문의현황 데이터</h3>
+      </div>
+      <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-7">
+        {counts.map((item) => (
+          <div key={item.label} className="rounded-lg border border-white/10 bg-black p-5">
+            <p className="text-sm font-bold text-gray-400">{item.label}</p>
+            <p className="mt-4 text-5xl font-black tracking-tight text-white">{item.count}</p>
+            <p className="mt-3 text-sm leading-6 text-gray-500">문의관리 DB 기준</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ContractSummaryPanel({
+  cards,
+}: {
+  cards: { label: string; value: string; detail: string }[]
+}) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Contract Summary</p>
+          <h3 className="mt-2 text-xl font-black text-white">계약 매장 요약</h3>
+        </div>
+        <p className="text-xs font-bold text-gray-600">청구·입금 상태는 청구관리 메뉴에서 확인</p>
+      </div>
+      <div className="grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-3">
+        {cards.map((card) => (
+          <div key={card.label} className="border-white/10 px-5 py-4 md:border-r last:border-r-0">
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-gray-500">{card.label}</p>
+            <p className="mt-2 text-3xl font-black tracking-tight text-white">{card.value}</p>
+            <p className="mt-1 text-xs font-bold text-gray-500">{card.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function ContractRevenueList({ records }: { records: ContractRevenueRecord[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="mb-4">
+        <p className="text-sm font-bold text-brand-blue">Contract List</p>
+        <h3 className="mt-2 text-xl font-black text-white">계약 매장 리스트</h3>
+      </div>
+      <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+        <div className="overflow-x-auto">
+          <table className="min-w-[920px] w-full border-collapse text-left text-sm">
+            <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+              <tr>
+                <th className="px-4 py-3">매장명</th>
+                <th className="px-4 py-3">상품구성</th>
+                <th className="px-4 py-3">계약개월</th>
+                <th className="px-4 py-3">1개월차 매출</th>
+                <th className="px-4 py-3">계약기간 합계</th>
+                <th className="px-4 py-3">메모</th>
+              </tr>
+            </thead>
+            <tbody>
+              {records.map((record) => (
+                <tr key={record.storeName} className="border-t border-white/10">
+                  <td className="px-4 py-4">
+                    <p className="font-black text-white keep-all">{record.storeName}</p>
+                    {record.contractStatus ? (
+                      <span
+                        className={`mt-2 inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${
+                          record.contractStatus === '계약 종료'
+                            ? 'border-gray-500/25 bg-gray-500/10 text-gray-300'
+                            : 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                        }`}
+                      >
+                        {record.contractStatus}
+                      </span>
+                    ) : null}
+                  </td>
+                  <td className="max-w-[260px] px-4 py-4">
+                    <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{record.productDetail}</p>
+                  </td>
+                  <td className="px-4 py-4">
+                    <span className="inline-flex rounded-full border border-brand-blue/25 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">
+                      {record.contractMonths}개월
+                    </span>
+                  </td>
+                  <td className="px-4 py-4 font-black text-white">{formatCurrency(firstMonthRevenue(record))}원</td>
+                  <td className="px-4 py-4 font-black text-emerald-100">{formatCurrency(contractRevenueTotal(record))}원</td>
+                  <td className="max-w-[220px] px-4 py-4 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                    {record.memo}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function SettlementManagementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12]">
+      <div className="border-b border-white/10 p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Settlement</p>
+        <h2 className="mt-2 text-2xl font-black tracking-tight text-white">정산관리</h2>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
+          월별 정산 예상표와 매장별 정산 상세를 확인합니다.
+        </p>
+      </div>
+      <RevenueSettlementPanel settlementMonths={settlementMonths} />
+    </section>
+  )
+}
+
+function RevenueSettlementPanel({ settlementMonths }: { settlementMonths: SettlementSummary[] }) {
+  const [selectedMonthIndex, setSelectedMonthIndex] = useState(() => settlementMonths[0]?.monthIndex || 0)
+  const [settlementFilter, setSettlementFilter] = useState<SettlementFilter>('정산대상')
+  const [settlementProcessMap, setSettlementProcessMap] = useState<SettlementProcessMap>(() => readSettlementProcessMap())
+  const settlement =
+    settlementMonths.find((summary) => summary.monthIndex === selectedMonthIndex) || settlementMonths[0]
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(SETTLEMENT_PROCESS_STORAGE_KEY, JSON.stringify(settlementProcessMap))
+  }, [settlementProcessMap])
+
+  useEffect(() => {
+    if (!settlementMonths.length) return
+    if (!settlementMonths.some((summary) => summary.monthIndex === selectedMonthIndex)) {
+      setSelectedMonthIndex(settlementMonths[0].monthIndex)
+    }
+  }, [selectedMonthIndex, settlementMonths])
+
+  if (!settlement) return null
+
+  const settlementRows: SettlementRowView[] = settlement.records.map((record) => {
+    const storageKey = settlementProcessStorageKey(settlement.monthIndex, record.storeName)
+    const entry = settlementProcessMap[storageKey]
+    const readiness = entry?.readiness || settlementStoreReadiness(record.storeName)
+    const processStatus = entry?.status || defaultSettlementProcessStatus(readiness)
+
+    return {
+      record,
+      storageKey,
+      readiness,
+      processStatus,
+      updatedAt: entry?.updatedAt,
+    }
+  })
+  const settlementTargetRows = settlementRows.filter(
+    (row) => row.readiness === '정산대상' && row.processStatus !== '이번 달 보류' && row.processStatus !== '정산 제외'
+  )
+  const authPendingRows = settlementRows.filter((row) => row.readiness === '인증대기')
+  const completedRows = settlementRows.filter((row) => row.processStatus === '정산완료')
+  const heldRows = settlementRows.filter((row) => row.processStatus === '이번 달 보류' || row.processStatus === '정산 제외')
+  const settlementTargetTotals = settlementTotalsFromRows(settlementTargetRows)
+  const filteredSettlementRows = settlementRows.filter((row) => {
+    if (settlementFilter === '전체') return true
+    if (settlementFilter === '정산완료') return row.processStatus === '정산완료'
+    return row.readiness === settlementFilter
+  })
+
+  const updateSettlementProcessStatus = (row: SettlementRowView, status: SettlementProcessStatus) => {
+    setSettlementProcessMap((current) => ({
+      ...current,
+      [row.storageKey]: {
+        readiness: row.readiness,
+        status,
+        updatedAt: new Date().toISOString(),
+      },
+    }))
+  }
+
+  const bulkUpdateSettlementProcessStatus = (rows: SettlementRowView[], status: SettlementProcessStatus) => {
+    const updatedAt = new Date().toISOString()
+    setSettlementProcessMap((current) => {
+      const next = { ...current }
+      rows.forEach((row) => {
+        next[row.storageKey] = { readiness: row.readiness, status, updatedAt }
+      })
+      return next
+    })
+  }
+
+  const updateSettlementReadiness = (row: SettlementRowView, readiness: SettlementStoreReadiness) => {
+    setSettlementProcessMap((current) => ({
+      ...current,
+      [row.storageKey]: {
+        readiness,
+        status: defaultSettlementProcessStatus(readiness),
+        updatedAt: new Date().toISOString(),
+      },
+    }))
+  }
+
+  const summaryCards = [
+    {
+      label: '정산대상 입금액',
+      value: formatRevenueManwon(settlementTargetTotals.grossAmount),
+      detail: `${settlementTargetRows.length}개 매장 합산`,
+      highlight: false,
+    },
+    {
+      label: '매출부가세',
+      value: formatRevenueManwon(settlementTargetTotals.vatAmount),
+      detail: 'VAT 포함 입금액에서 분리',
+      highlight: false,
+    },
+    {
+      label: 'VAT 제외 매출',
+      value: formatRevenueManwon(settlementTargetTotals.netSalesAmount),
+      detail: '순수익 계산 기준 매출',
+      highlight: false,
+    },
+    {
+      label: '비용매출',
+      value: formatRevenueManwon(settlementTargetTotals.expenseRevenueAmount),
+      detail: `프로필관리 ${formatRevenueManwon(settlementTargetTotals.profileManagementAmount)}의 ${Math.round(settlement.expenseRevenueRate * 100)}%`,
+      highlight: false,
+    },
+    {
+      label: '예상 순수익',
+      value: formatRevenueManwon(settlementTargetTotals.profitAmount),
+      detail: `매장당 ${formatRevenueManwon(settlement.reserveAmountPerStore)} 충당금`,
+      highlight: true,
+    },
+  ]
+
+  const processSummaryCards = [
+    { label: '정산대상', value: `${settlementTargetRows.length}개`, detail: '인증 완료·정상 운영' },
+    { label: '인증대기', value: `${authPendingRows.length}개`, detail: '이번 정산 합계 제외' },
+    { label: '정산완료', value: `${completedRows.length}개`, detail: '월별 체크 완료' },
+    { label: '보류/제외', value: `${heldRows.length}개`, detail: '수동 보류 또는 제외' },
+  ]
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h3 className="mt-2 text-xl font-black text-white">월별 정산 예상표</h3>
+          <p className="mt-2 text-sm font-semibold text-gray-500 keep-all">
+            정산 가능한 매장만 먼저 합산하고, 인증대기 매장은 보류 상태로 분리합니다.
+          </p>
+        </div>
+        <p className="text-xs font-bold leading-5 text-gray-600 md:text-right keep-all">
+          인증대기·보류·제외 매장은 상단 정산대상 합계에서 제외
+        </p>
+      </div>
+
+      <div className="mt-4 flex gap-2 overflow-x-auto pb-1">
+        {settlementMonths.map((summary) => (
+          <button
+            key={`settlement-month-${summary.monthIndex}`}
+            type="button"
+            onClick={() => setSelectedMonthIndex(summary.monthIndex)}
+            className={`shrink-0 rounded-full border px-3 py-2 text-xs font-black transition ${
+              summary.monthIndex === settlement.monthIndex
+                ? 'border-brand-blue bg-brand-blue text-white'
+                : 'border-white/10 bg-black text-gray-400 hover:border-white/25 hover:text-white'
+            }`}
+          >
+            {summary.monthLabel}
+          </button>
+        ))}
+      </div>
+
+      <div className="mt-4 grid overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-5">
+        {summaryCards.map((card) => (
+          <div
+            key={`settlement-summary-${card.label}`}
+            className={`border-white/10 px-4 py-4 md:border-r last:border-r-0 ${card.highlight ? 'bg-emerald-300/10' : ''}`}
+          >
+            <p className={card.highlight ? 'text-xs font-black text-emerald-100/70' : 'text-xs font-black text-gray-500'}>{card.label}</p>
+            <p className={card.highlight ? 'mt-2 text-2xl font-black text-emerald-50' : 'mt-2 text-2xl font-black text-white'}>
+              {card.value}
+            </p>
+            <p className={card.highlight ? 'mt-1 text-xs font-semibold text-emerald-100/70' : 'mt-1 text-xs font-semibold text-gray-500'}>
+              {card.detail}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-4">
+        {processSummaryCards.map((card) => (
+          <div key={`settlement-process-summary-${card.label}`} className="rounded-lg border border-white/10 bg-[#0b0d12] p-4">
+            <p className="text-xs font-black text-gray-500">{card.label}</p>
+            <p className="mt-2 text-2xl font-black text-white">{card.value}</p>
+            <p className="mt-1 text-xs font-semibold text-gray-600">{card.detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <SettlementDetailTable
+        settlement={settlement}
+        rows={filteredSettlementRows}
+        allRows={settlementRows}
+        filter={settlementFilter}
+        onFilterChange={setSettlementFilter}
+        onStatusChange={updateSettlementProcessStatus}
+        onReadinessChange={updateSettlementReadiness}
+        onBulkStatusChange={bulkUpdateSettlementProcessStatus}
+      />
+    </div>
+  )
+}
+
+function SettlementDetailTable({
+  settlement,
+  rows,
+  allRows,
+  filter,
+  onFilterChange,
+  onStatusChange,
+  onReadinessChange,
+  onBulkStatusChange,
+}: {
+  settlement: SettlementSummary
+  rows: SettlementRowView[]
+  allRows: SettlementRowView[]
+  filter: SettlementFilter
+  onFilterChange: (filter: SettlementFilter) => void
+  onStatusChange: (row: SettlementRowView, status: SettlementProcessStatus) => void
+  onReadinessChange: (row: SettlementRowView, readiness: SettlementStoreReadiness) => void
+  onBulkStatusChange: (rows: SettlementRowView[], status: SettlementProcessStatus) => void
+}) {
+  const settlementTargetRows = allRows.filter((row) => row.readiness === '정산대상')
+  const authPendingRows = allRows.filter((row) => row.readiness === '인증대기')
+  const filterOptions: SettlementFilter[] = ['정산대상', '인증대기', '정산완료', '전체']
+
+  return (
+    <div className="mt-4 rounded-lg border border-white/10 bg-black p-4">
+      <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+        <div>
+          <h4 className="text-lg font-black text-white">정산 상세</h4>
+          <p className="mt-1 text-xs font-semibold text-gray-500 keep-all">
+            매장별 매출부가세와 VAT 제외 매출을 분리하고, 비용매출·작업비·충당금 반영 후 순수익을 확인합니다.
+          </p>
+        </div>
+        <p className="text-xs font-black text-gray-600">
+          순수익 기준: 매장당 충당금 {formatRevenueManwon(settlement.reserveAmountPerStore)}
+        </p>
+      </div>
+
+      <div className="mt-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-[#0b0d12] p-3 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.map((option) => (
+            <button
+              key={`settlement-filter-${option}`}
+              type="button"
+              onClick={() => onFilterChange(option)}
+              className={`rounded-full border px-3 py-2 text-xs font-black transition ${
+                filter === option
+                  ? 'border-white bg-white text-black'
+                  : 'border-white/10 bg-black text-gray-400 hover:border-white/30 hover:text-white'
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(settlementTargetRows, '정산완료')}
+            className="rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-xs font-black text-emerald-100 transition hover:bg-emerald-300/15"
+          >
+            정산대상 전체 완료
+          </button>
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(settlementTargetRows, '정산대기')}
+            className="rounded-md border border-white/10 bg-black px-3 py-2 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+          >
+            정산대상 대기로
+          </button>
+          <button
+            type="button"
+            onClick={() => onBulkStatusChange(authPendingRows, '이번 달 보류')}
+            className="rounded-md border border-amber-300/25 bg-amber-300/10 px-3 py-2 text-xs font-black text-amber-100 transition hover:bg-amber-300/15"
+          >
+            인증대기 보류
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
+        <table className="min-w-[1780px] w-full border-collapse text-left text-sm">
+          <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+            <tr>
+              <th className="px-4 py-3">매장</th>
+              <th className="px-4 py-3">운영상태</th>
+              <th className="px-4 py-3">정산상태</th>
+              <th className="px-4 py-3">상품구성</th>
+              <th className="px-4 py-3 text-right">매출부가세</th>
+              <th className="px-4 py-3 text-right">VAT 제외</th>
+              <th className="px-4 py-3 text-right">웹사이트/블로그</th>
+              <th className="px-4 py-3 text-right">구글애즈</th>
+              <th className="px-4 py-3 text-right">프로필관리</th>
+              <th className="px-4 py-3 text-right">비용매출</th>
+              <th className="px-4 py-3 text-right">작업비</th>
+              <th className="px-4 py-3 text-right">충당금</th>
+              <th className="px-4 py-3 text-right">순수익</th>
+              <th className="px-4 py-3">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => {
+              const record = row.record
+
+              return (
+              <tr key={`settlement-detail-${record.key}`} className="border-t border-white/10">
+                <td className="px-4 py-4">
+                  <p className="font-black text-white keep-all">{record.storeName}</p>
+                  <p className="mt-1 text-xs font-bold text-gray-600">{formatDateShort(parseLocalDate(record.checkDate))}</p>
+                </td>
+                <td className="px-4 py-4">
+                  <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${settlementReadinessBadge(row.readiness)}`}>
+                    {row.readiness}
+                  </span>
+                  <p className="mt-2 max-w-[150px] text-xs font-semibold leading-5 text-gray-600 keep-all">
+                    {row.readiness === '인증대기' ? '인증 완료 후 정산 포함' : '이번 정산 우선 처리'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => onReadinessChange(row, row.readiness === '인증대기' ? '정산대상' : '인증대기')}
+                    className="mt-2 rounded-md border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+                  >
+                    {row.readiness === '인증대기' ? '정산대상 전환' : '인증대기 전환'}
+                  </button>
+                </td>
+                <td className="px-4 py-4">
+                  <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${settlementProcessBadge(row.processStatus)}`}>
+                    {row.processStatus}
+                  </span>
+                  <p className="mt-2 text-xs font-semibold text-gray-600">
+                    {row.updatedAt ? formatDateShort(new Date(row.updatedAt)) : '미처리'}
+                  </p>
+                </td>
+                <td className="max-w-[260px] px-4 py-4">
+                  <p className="font-black text-gray-200 keep-all">{record.productGroup}</p>
+                  <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">{record.productDetail}</p>
+                  {record.productBreakdown.adjustmentAmount < 0 ? (
+                    <p className="mt-1 text-xs font-bold text-amber-200">
+                      할인/조정 {formatCurrency(record.productBreakdown.adjustmentAmount)}원
+                    </p>
+                  ) : null}
+                </td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.vatAmount)}원</td>
+                <td className="px-4 py-4 text-right font-black text-white">{formatCurrency(record.netSalesAmount)}원</td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">
+                  {formatCurrency(record.productBreakdown.websiteBlogAmount)}원
+                </td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">
+                  {formatCurrency(record.productBreakdown.googleAdsAmount)}원
+                </td>
+                <td className="px-4 py-4 text-right font-black text-blue-100">
+                  {formatCurrency(record.productBreakdown.googleProfileAmount)}원
+                </td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.expenseRevenueAmount)}원</td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.workerCostAmount)}원</td>
+                <td className="px-4 py-4 text-right font-semibold text-gray-300">{formatCurrency(record.reserveAmount)}원</td>
+                <td className="px-4 py-4 text-right font-black text-emerald-100">{formatCurrency(record.profitAmount)}원</td>
+                <td className="px-4 py-4">
+                  <div className="grid min-w-[170px] grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산완료')}
+                      className="rounded-md border border-emerald-300/30 bg-emerald-300/10 px-2 py-2 text-xs font-black text-emerald-100 transition hover:bg-emerald-300/15"
+                    >
+                      완료
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산대기')}
+                      className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-2 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+                    >
+                      대기
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '이번 달 보류')}
+                      className="rounded-md border border-amber-300/25 bg-amber-300/10 px-2 py-2 text-xs font-black text-amber-100 transition hover:bg-amber-300/15"
+                    >
+                      보류
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => onStatusChange(row, '정산 제외')}
+                      className="rounded-md border border-rose-300/25 bg-rose-300/10 px-2 py-2 text-xs font-black text-rose-100 transition hover:bg-rose-300/15"
+                    >
+                      제외
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+function MonthlyRevenueScheduleTable({
+  rows,
+}: {
+  rows: {
+    month: number
+    monthLabel: string
+    amount: number
+    stores: { storeName: string; amount: number }[]
+  }[]
+}) {
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Monthly Revenue</p>
+          <h3 className="mt-2 text-xl font-black text-white">월별 매출 스케줄</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            2026년 6월을 시작월로 두고, 1개월 계약은 6월에만 반영하며 12개월 계약은 월차별 계약금액으로 나눠 집계합니다.
+          </p>
+        </div>
+        <p className="text-xs font-black text-gray-600">{rows.length}개월 기준</p>
+      </div>
+
+      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10 bg-black">
+        <div className="min-w-[820px]">
+          <div className="grid grid-cols-[132px_160px_1fr] border-b border-white/10 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
+            <span>정산월</span>
+            <span>매출</span>
+            <span>포함 매장</span>
+          </div>
+
+          {rows.map((row) => (
+            <div
+              key={`monthly-revenue-${row.month}`}
+              className="grid grid-cols-[132px_160px_1fr] items-center border-b border-white/10 px-4 py-3 last:border-b-0"
+            >
+              <span>
+                <span className="block font-black text-white">{row.monthLabel}</span>
+                <span className="mt-1 block text-xs font-bold text-gray-600">{row.month}개월차</span>
+              </span>
+              <span className="font-black text-emerald-100">{formatCurrency(row.amount)}원</span>
+              <span className="text-xs font-semibold leading-5 text-gray-500 keep-all">
+                {row.stores.map((store) => store.storeName).join(' · ')}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function formatDateTime(value: string) {
   if (!value) return '-'
   return new Intl.DateTimeFormat('ko-KR', {
@@ -1017,65 +2926,131 @@ function formatBillingDate(value: string) {
   }).format(date)
 }
 
+function formatDateShort(date: Date) {
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date)
+}
+
 function formatCurrency(value: number) {
   return new Intl.NumberFormat('ko-KR').format(value)
 }
 
-function formatBillingStoreName(name: string) {
-  const trimmedName = name.replace(/\s+/g, ' ').trim()
-
-  if (trimmedName.includes('언리미티드')) return '언리미티드'
-  return trimmedName
+function formatRevenueManwon(value: number) {
+  return `${formatCurrency(Math.round(value / 10000))}만원`
 }
 
-function buildBillingRecords(stores: StoreRecord[]) {
+function buildBillingRecords(_stores: StoreRecord[]) {
   const today = new Date()
-  const year = today.getFullYear()
-  const month = today.getMonth()
-  const monthLastDate = new Date(year, month + 1, 0).getDate()
-  const dueDays = [5, 10, 15, 20, 25]
-  const billableStores = stores.filter((store) =>
-    statusIncludesAny(store.status, ['운영시작', '운영 시작', '계약완료', '계약 완료', '계약대기', '계약 대기'])
-  )
-  const sourceStores =
-    billableStores.length > 0
-      ? billableStores
-      : stores.length > 0
-        ? stores.slice(0, 6)
-        : [
-            {
-              id: 'sample-unlimited',
-              name: '언리미티드',
-              status: '계약 완료',
-              owner: '권순현',
-            } as StoreRecord,
-          ]
+  const todayKey = formatDateKey(today)
 
-  return sourceStores.map((store, index) => {
-    const dueDay = Math.min(dueDays[index % dueDays.length], monthLastDate)
-    const dueDate = new Date(year, month, dueDay)
-    const isPastDue = dueDate < startOfDay(today)
-    const baseStatus: BillingStatus =
-      index % 5 === 0
+  return contractRevenueRecords.flatMap((contract) => {
+    const schedule = billingScheduleByStore[contract.storeName] || {
+      dueDay: 25,
+      firstStatus: '청구예정' as BillingStatus,
+      memo: '정산 일정 확인 필요',
+    }
+    const contractStartMonthIndex = contractStartRevenueMonthIndex(contract)
+    const paidMonthCount = Math.min(
+      schedule.paidMonthCount || (schedule.firstPaidDate && schedule.firstStatus === '입금완료' ? 1 : 0),
+      contract.monthlyAmounts.length
+    )
+    const billingMonthIndexes = contract.monthlyAmounts
+      .map((_, monthIndex) => monthIndex)
+      .filter((monthIndex) => paidMonthCount <= 1 || monthIndex === 0 || monthIndex >= paidMonthCount)
+
+    const billingRecords: BillingRecord[] = billingMonthIndexes.map((monthIndex) => {
+      const amount =
+        monthIndex === 0 && paidMonthCount > 1
+          ? contract.monthlyAmounts.slice(0, paidMonthCount).reduce((sum, monthlyAmount) => sum + monthlyAmount, 0)
+          : contract.monthlyAmounts[monthIndex] || 0
+      const billingMonth = contractRevenueMonthDate(contractStartMonthIndex + monthIndex)
+      const monthLastDate = new Date(billingMonth.getFullYear(), billingMonth.getMonth() + 1, 0).getDate()
+      const dueDay = Math.min(schedule.dueDay, monthLastDate)
+      const scheduledDate = formatDateKey(new Date(billingMonth.getFullYear(), billingMonth.getMonth(), dueDay))
+      const isPaidMonth = monthIndex === 0 && paidMonthCount > 0 && Boolean(schedule.firstPaidDate)
+      const dueDate = isPaidMonth && schedule.firstPaidDate ? schedule.firstPaidDate : scheduledDate
+      const billingStatus: BillingStatus = isPaidMonth
         ? '입금완료'
-        : isPastDue
-          ? '연체'
-          : index % 3 === 0
-            ? '청구완료'
-            : '청구예정'
+        : monthIndex === 0 && schedule.firstStatus
+          ? schedule.firstStatus
+          : '청구예정'
+      const isActiveStore = ['바다당', '에코쟈댕'].some((name) => contract.storeName.includes(name))
+      const isAuthPending = SETTLEMENT_AUTH_PENDING_STORE_NAMES.includes(contract.storeName)
+      const paymentStatus: PaymentStatus =
+        isAuthPending || billingStatus === '입금완료'
+          ? '입금완료'
+          : dueDate < todayKey
+            ? '입금지연'
+            : '입금대기'
+      const workStatus: WorkStatus = isActiveStore ? '진행중' : isAuthPending ? '인증대기' : '미시작'
+      const workRecognition: WorkRecognition = isActiveStore ? '전체' : isAuthPending ? '선택필요' : '없음'
+      const settlementStatus: TeamSettlementStatus = isActiveStore
+        ? '정산대상'
+        : isAuthPending
+          ? '정산보류'
+          : paymentStatus === '입금지연'
+            ? '다음 달 이월'
+            : '정산보류'
+      const memo = isActiveStore
+        ? '작업 진행 중'
+        : isAuthPending
+          ? '인증 완료 후 작업 재개'
+          : paymentStatus === '입금지연'
+            ? '입금 확인 전 작업 미시작'
+            : monthIndex === 0
+              ? schedule.memo
+              : '입금 확인 후 작업 시작'
 
-    return {
-      id: `billing-${store.id}`,
-      storeName: formatBillingStoreName(store.name),
-      product: 'Google 프로필 월간 운영',
-      amount: index % 3 === 0 ? 1_400_000 : index % 3 === 1 ? 1_200_000 : 950_000,
-      dueDate: formatDateKey(dueDate),
-      dueDay,
-      status: baseStatus,
-      owner: store.owner || '권순현',
-      taxInvoice: baseStatus === '입금완료' ? '발행완료' : '발행대기',
-      memo: '정기 운영료와 광고비를 분리해서 확인합니다.',
-    } satisfies BillingRecord
+      return {
+        id: `billing-${contract.storeName}-${monthIndex + 1}`,
+        storeName: contract.storeName,
+        product: contract.productGroup,
+        amount,
+        dueDate,
+        dueDay,
+        status: billingStatus,
+        owner: '권순현',
+        taxInvoice: billingStatus === '입금완료' ? '발행완료' : '발행전',
+        withholding: '없음',
+        paymentStatus,
+        workStatus,
+        workRecognition,
+        defaultTeamSettlementAmount: amount,
+        teamSettlementAmount: isActiveStore ? amount : 0,
+        withholdingApplied: false,
+        settlementStatus,
+        memo,
+      } satisfies BillingRecord
+    })
+
+    if (schedule.nextRenewalDate) {
+      const renewalAmount = contract.monthlyAmounts.at(-1) || 0
+      billingRecords.push({
+        id: `billing-renewal-${contract.storeName}-${schedule.nextRenewalDate}`,
+        storeName: contract.storeName,
+        product: contract.productGroup,
+        amount: renewalAmount,
+        dueDate: schedule.nextRenewalDate,
+        dueDay: schedule.dueDay,
+        status: '청구예정',
+        owner: '권순현',
+        taxInvoice: '발행전',
+        withholding: '없음',
+        paymentStatus: schedule.nextRenewalDate < todayKey ? '입금지연' : '입금대기',
+        workStatus: '진행중',
+        workRecognition: '전체',
+        defaultTeamSettlementAmount: renewalAmount,
+        teamSettlementAmount: 0,
+        withholdingApplied: false,
+        settlementStatus: '정산보류',
+        memo: '1개월 단위 갱신 예정 · 입금 확인 후 다음 운영기간 확정',
+      })
+    }
+
+    return billingRecords
   })
 }
 
@@ -1088,6 +3063,10 @@ function startOfDay(date: Date) {
   const target = new Date(date)
   target.setHours(0, 0, 0, 0)
   return target
+}
+
+function startOfMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1)
 }
 
 function startOfWeek(date: Date) {
@@ -2143,7 +4122,1089 @@ function CalendarPanel({
   )
 }
 
+const paymentStatusOptions: PaymentStatus[] = ['입금대기', '입금완료', '입금지연']
+const workStatusOptions: WorkStatus[] = ['미시작', '진행중', '인증대기', '작업완료', '종료']
+const workRecognitionOptions: WorkRecognition[] = ['전체', '일부', '없음', '선택필요']
+const teamSettlementStatusOptions: TeamSettlementStatus[] = ['정산대상', '정산보류', '다음 달 이월', '정산완료']
+const billingFilters: BillingFilter[] = ['전체', '정산대상', '인증대기', '입금지연', '정산완료']
+const BILLING_WORKFLOW_STORAGE_KEY = 'blinkad-erp-billing-workflow-v3'
+
+type BillingWorkflowOverride = Partial<
+  Pick<
+    BillingRecord,
+    | 'paymentStatus'
+    | 'workStatus'
+    | 'workRecognition'
+    | 'teamSettlementAmount'
+    | 'withholdingApplied'
+    | 'settlementStatus'
+    | 'memo'
+  >
+>
+
+function readBillingWorkflowOverrides() {
+  if (typeof window === 'undefined') return {} as Record<string, BillingWorkflowOverride>
+
+  try {
+    return JSON.parse(window.localStorage.getItem(BILLING_WORKFLOW_STORAGE_KEY) || '{}') as Record<
+      string,
+      BillingWorkflowOverride
+    >
+  } catch {
+    return {} as Record<string, BillingWorkflowOverride>
+  }
+}
+
+function paymentStatusClass(status: PaymentStatus) {
+  if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '입금지연') return 'border-red-400/35 bg-red-400/10 text-red-100'
+  return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function workStatusClass(status: WorkStatus) {
+  if (status === '진행중') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
+  if (status === '작업완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '인증대기') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+}
+
+function workRecognitionClass(status: WorkRecognition) {
+  if (status === '전체') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '일부') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
+  if (status === '선택필요') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+}
+
+function teamSettlementStatusClass(status: TeamSettlementStatus) {
+  if (status === '정산대상') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '정산완료') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
+  if (status === '다음 달 이월') return 'border-red-400/35 bg-red-400/10 text-red-100'
+  return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+}
+
+function calculateWithholding(grossAmount: number, applied: boolean) {
+  if (!applied) return { incomeTax: 0, localIncomeTax: 0, withholdingTax: 0, netAmount: grossAmount }
+
+  const incomeTax = Math.floor(grossAmount * 0.03)
+  const localIncomeTax = Math.floor(incomeTax * 0.1)
+  const withholdingTax = incomeTax + localIncomeTax
+  return { incomeTax, localIncomeTax, withholdingTax, netAmount: grossAmount - withholdingTax }
+}
+
+function calculateTeamDistribution(totalAmount: number, withholdingApplied = false) {
+  const total = Math.max(0, Math.round(totalAmount))
+  const supplyAmount = Math.round(total / (1 + VAT_RATE))
+  const vatAmount = total - supplyAmount
+  const workerAmount = Math.min(supplyAmount, SETTLEMENT_WORKER_COST_PER_STORE)
+  const remainingAmount = Math.max(0, supplyAmount - workerAmount)
+  const kwonAmount = Math.floor(remainingAmount / 2)
+  const kangAmount = remainingAmount - kwonAmount
+  const workerTax = calculateWithholding(workerAmount, withholdingApplied)
+  const kwonTax = calculateWithholding(kwonAmount, withholdingApplied)
+  const kangTax = calculateWithholding(kangAmount, withholdingApplied)
+
+  return {
+    total,
+    supplyAmount,
+    vatAmount,
+    workerAmount,
+    remainingAmount,
+    kwonAmount,
+    kangAmount,
+    workerTax,
+    kwonTax,
+    kangTax,
+    incomeTax: workerTax.incomeTax + kwonTax.incomeTax + kangTax.incomeTax,
+    localIncomeTax: workerTax.localIncomeTax + kwonTax.localIncomeTax + kangTax.localIncomeTax,
+    withholdingTax: workerTax.withholdingTax + kwonTax.withholdingTax + kangTax.withholdingTax,
+    netPaymentAmount: workerTax.netAmount + kwonTax.netAmount + kangTax.netAmount,
+  }
+}
+
+const BILLING_SCHEDULE_STORAGE_KEY = 'blinkad-erp-billing-schedules-v1'
+
+function readManualBillingSchedules(): BillingScheduleEvent[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(BILLING_SCHEDULE_STORAGE_KEY) || '[]')
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
+
+function shiftISODate(dateText: string, days: number) {
+  const date = new Date(`${dateText}T00:00:00`)
+  date.setDate(date.getDate() + days)
+  return formatDateKey(date)
+}
+
+function automaticBillingScheduleEvents(records: BillingRecord[]): BillingScheduleEvent[] {
+  const contractEvents = contractRevenueRecords
+    .filter((contract) => contract.contractStartDate)
+    .map((contract) => ({
+      id: `contract-${contract.storeName}`,
+      storeName: contract.storeName,
+      date: contract.contractStartDate || '',
+      type: '계약일' as const,
+      memo: `${contract.contractMonths}개월 계약 시작`,
+      automatic: true,
+    }))
+  const paymentEvents = records.flatMap<BillingScheduleEvent>((record) => [
+    {
+      id: `payment-${record.id}`,
+      storeName: record.storeName,
+      date: record.dueDate,
+      type: '입금일',
+      memo: `${formatCurrency(record.amount)}원 · ${record.status}`,
+      automatic: true,
+    },
+    {
+      id: `reminder-${record.id}`,
+      storeName: record.storeName,
+      date: shiftISODate(record.dueDate, -5),
+      type: '입금 안내',
+      memo: '광고가 멈추지 않도록 입금 예정 안내',
+      automatic: true,
+    },
+  ])
+  return [...contractEvents, ...paymentEvents]
+}
+
+function billingEventClass(type: BillingScheduleEvent['type']) {
+  if (type === '계약일') return 'border-violet-300/30 bg-violet-300/10 text-violet-100'
+  if (type === '입금일') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (type === '입금 안내') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-200'
+}
+
+function BillingCalendarPanel({ records }: { records: BillingRecord[] }) {
+  const [anchorDate, setAnchorDate] = useState(() => new Date())
+  const [manualEvents, setManualEvents] = useState<BillingScheduleEvent[]>(readManualBillingSchedules)
+  const [draft, setDraft] = useState({ storeName: '', date: formatDateKey(new Date()), type: '기타' as BillingScheduleEvent['type'], memo: '' })
+  const automaticEvents = useMemo(() => automaticBillingScheduleEvents(records), [records])
+  const events = useMemo(() => [...automaticEvents, ...manualEvents].sort((a, b) => a.date.localeCompare(b.date)), [automaticEvents, manualEvents])
+  const year = anchorDate.getFullYear()
+  const month = anchorDate.getMonth()
+  const firstDay = new Date(year, month, 1).getDay()
+  const lastDate = new Date(year, month + 1, 0).getDate()
+  const cells = Array.from({ length: 42 }, (_, index) => {
+    const dateNumber = index - firstDay + 1
+    return dateNumber > 0 && dateNumber <= lastDate ? new Date(year, month, dateNumber) : null
+  })
+  const monthEvents = events.filter((event) => {
+    const date = new Date(`${event.date}T00:00:00`)
+    return date.getFullYear() === year && date.getMonth() === month
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem(BILLING_SCHEDULE_STORAGE_KEY, JSON.stringify(manualEvents))
+  }, [manualEvents])
+
+  const addSchedule = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (!draft.storeName.trim() || !draft.date) return
+    setManualEvents((current) => [
+      ...current,
+      { id: `manual-${Date.now()}`, storeName: draft.storeName.trim(), date: draft.date, type: draft.type, memo: draft.memo.trim() },
+    ])
+    setDraft((current) => ({ ...current, storeName: '', memo: '' }))
+  }
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Billing Calendar</p>
+        <h2 className="mt-2 text-2xl font-black text-white">청구관리</h2>
+        <p className="mt-2 text-sm font-semibold leading-6 text-gray-500">계약일, 입금일, 입금 5일 전 안내 일정을 한 달 캘린더에서 확인하고 필요한 일정을 직접 기록합니다.</p>
+        <div className="mt-4 flex flex-wrap gap-2 text-xs font-black">
+          {(['계약일', '입금일', '입금 안내'] as const).map((type) => <span key={type} className={`rounded-full border px-2.5 py-1 ${billingEventClass(type)}`}>{type}</span>)}
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="mb-4 flex items-center justify-between rounded-lg border border-white/10 bg-black p-3">
+          <button type="button" onClick={() => setAnchorDate(new Date(year, month - 1, 1))} className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5" aria-label="이전 달"><ChevronLeft className="h-4 w-4" /></button>
+          <p className="text-lg font-black text-white">{year}년 {month + 1}월</p>
+          <button type="button" onClick={() => setAnchorDate(new Date(year, month + 1, 1))} className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 hover:bg-white/5" aria-label="다음 달"><ChevronRight className="h-4 w-4" /></button>
+        </div>
+        <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+          <div className="min-w-[920px]">
+            <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black text-gray-600">{['일', '월', '화', '수', '목', '금', '토'].map((day) => <div key={day} className="py-3">{day}</div>)}</div>
+            <div className="grid grid-cols-7">
+              {cells.map((cell, index) => {
+                const dateKey = cell ? formatDateKey(cell) : ''
+                const dayEvents = cell ? monthEvents.filter((event) => event.date === dateKey) : []
+                return (
+                  <div key={`${year}-${month}-${index}`} className={`min-h-[150px] border-b border-r border-white/10 p-2 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}>
+                    {cell ? <><p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>{cell.getDate()}</p><div className="mt-2 space-y-1.5">{dayEvents.slice(0, 5).map((item) => <div key={item.id} className={`rounded border px-2 py-1.5 text-[10px] font-black ${billingEventClass(item.type)}`} title={item.memo}><span className="block opacity-75">{item.type}</span><span className="mt-0.5 block truncate">{item.storeName}</span></div>)}{dayEvents.length > 5 ? <p className="text-[10px] font-bold text-gray-500">+{dayEvents.length - 5}건</p> : null}</div></> : null}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-5 xl:grid-cols-[0.75fr_1.25fr]">
+        <form onSubmit={addSchedule} className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+          <p className="text-sm font-bold text-brand-blue">Add Schedule</p>
+          <h3 className="mt-2 text-xl font-black text-white">일정 기록</h3>
+          <div className="mt-5 space-y-3">
+            <input value={draft.storeName} onChange={(event) => setDraft((current) => ({ ...current, storeName: event.target.value }))} placeholder="매장명" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
+            <div className="grid grid-cols-2 gap-3"><input type="date" value={draft.date} onChange={(event) => setDraft((current) => ({ ...current, date: event.target.value }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none" /><select value={draft.type} onChange={(event) => setDraft((current) => ({ ...current, type: event.target.value as BillingScheduleEvent['type'] }))} className="h-11 rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none"><option>계약일</option><option>입금일</option><option>입금 안내</option><option>기타</option></select></div>
+            <input value={draft.memo} onChange={(event) => setDraft((current) => ({ ...current, memo: event.target.value }))} placeholder="메모" className="h-11 w-full rounded-md border border-white/10 bg-black px-3 text-sm font-bold text-white outline-none focus:border-brand-blue/50" />
+            <button type="submit" className="h-11 w-full rounded-md bg-brand-blue text-sm font-black text-white hover:brightness-110">일정 추가</button>
+          </div>
+        </form>
+        <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="border-b border-white/10 p-5"><h3 className="text-xl font-black text-white">{month + 1}월 일정 {monthEvents.length}건</h3></div>
+          <div className="max-h-[360px] divide-y divide-white/10 overflow-y-auto">
+            {monthEvents.map((event) => <div key={event.id} className="grid gap-2 px-5 py-4 md:grid-cols-[100px_1fr_auto] md:items-center"><p className="text-xs font-black tabular-nums text-gray-400">{event.date}</p><div><p className="font-black text-white">{event.storeName}</p><p className="mt-1 text-xs font-semibold text-gray-500">{event.memo}</p></div><div className="flex items-center gap-2"><span className={`rounded-full border px-2.5 py-1 text-xs font-black ${billingEventClass(event.type)}`}>{event.type}</span>{!event.automatic ? <button type="button" onClick={() => setManualEvents((current) => current.filter((item) => item.id !== event.id))} className="text-xs font-black text-red-200">삭제</button> : null}</div></div>)}
+            {!monthEvents.length ? <p className="px-5 py-10 text-center text-sm font-bold text-gray-500">이 달에 등록된 일정이 없습니다.</p> : null}
+          </div>
+        </section>
+      </div>
+    </section>
+  )
+}
+
+type SettlementPeriod = 'week' | 'month' | 'year'
+
+function settlementPeriodKey(dateText: string, period: SettlementPeriod) {
+  if (period === 'month') return dateText.slice(0, 7)
+  if (period === 'year') return dateText.slice(0, 4)
+  const date = new Date(`${dateText}T00:00:00`)
+  const day = date.getDay()
+  date.setDate(date.getDate() - (day === 0 ? 6 : day - 1))
+  return formatDateKey(date)
+}
+
+function settlementPeriodLabel(key: string, period: SettlementPeriod) {
+  if (period === 'year') return `${key}년`
+  if (period === 'month') { const [year, month] = key.split('-'); return `${year}년 ${Number(month)}월` }
+  return `${key} ~ ${shiftISODate(key, 6)}`
+}
+
+function currentSettlementPeriodKey(period: SettlementPeriod) {
+  return settlementPeriodKey(formatDateKey(new Date()), period)
+}
+
+function PeriodSettlementPanel({
+  settlementMonths,
+  integration,
+  loading,
+}: {
+  settlementMonths: SettlementSummary[]
+  integration: SettlementSheetApiResponse
+  loading: boolean
+}) {
+  const [period, setPeriod] = useState<SettlementPeriod>('month')
+  const [selectedKey, setSelectedKey] = useState(() => currentSettlementPeriodKey('month'))
+  const records = useMemo(() => settlementMonths.flatMap((summary) => summary.records), [settlementMonths])
+  const periodKeys = useMemo(() => Array.from(new Set(records.map((record) => settlementPeriodKey(record.checkDate, period)))).sort(), [period, records])
+
+  useEffect(() => {
+    const currentKey = currentSettlementPeriodKey(period)
+    setSelectedKey(periodKeys.includes(currentKey) ? currentKey : periodKeys[0] || '')
+  }, [period, periodKeys])
+
+  const selectedRecords = records.filter((record) => settlementPeriodKey(record.checkDate, period) === selectedKey)
+  const rows = Array.from(
+    selectedRecords.reduce((map, record) => {
+      const current = map.get(record.storeName) || {
+        storeName: record.storeName,
+        grossAmount: 0,
+        netSalesAmount: 0,
+        vatAmount: 0,
+        reserveAmount: 0,
+        serviceRevenueAmount: 0,
+        serviceRevenueVatAmount: 0,
+        serviceRevenuePaymentAmount: 0,
+        adExecutionBudgetAmount: 0,
+        adExecutionBudgetPaymentAmount: 0,
+        adsManagementRevenueAmount: 0,
+        profileManagementAmount: 0,
+        bizHighSupplyAmount: 0,
+        bizHighVatAmount: 0,
+        bizHighSettlementAmount: 0,
+        headOfficeSupplyAmount: 0,
+        headOfficeVatAmount: 0,
+        headOfficeSettlementAmount: 0,
+        workerCostAmount: 0,
+        workerWithholdingAmount: 0,
+        workerNetPaymentAmount: 0,
+        adsServiceCostAmount: 0,
+        adsServiceVatAmount: 0,
+        adsServicePaymentAmount: 0,
+        netVatPayableAmount: 0,
+        profitAmount: 0,
+        actualReceiptAmount: 0,
+        usesEcoJardinSettlementRule: false,
+        usesSeparateAdExecutionBudget: false,
+        count: 0,
+      }
+      current.grossAmount += record.grossAmount
+      current.netSalesAmount += record.netSalesAmount
+      current.vatAmount += record.vatAmount
+      current.reserveAmount += record.reserveAmount
+      current.serviceRevenueAmount += record.serviceRevenueAmount
+      current.serviceRevenueVatAmount += record.serviceRevenueVatAmount
+      current.serviceRevenuePaymentAmount += record.serviceRevenuePaymentAmount
+      current.adExecutionBudgetAmount += record.adExecutionBudgetAmount
+      current.adExecutionBudgetPaymentAmount += record.adExecutionBudgetPaymentAmount
+      current.adsManagementRevenueAmount += record.adsManagementRevenueAmount
+      current.profileManagementAmount += record.profileManagementAmount
+      current.bizHighSupplyAmount += record.bizHighSupplyAmount
+      current.bizHighVatAmount += record.bizHighVatAmount
+      current.bizHighSettlementAmount += record.bizHighSettlementAmount
+      current.headOfficeSupplyAmount += record.headOfficeSupplyAmount
+      current.headOfficeVatAmount += record.headOfficeVatAmount
+      current.headOfficeSettlementAmount += record.headOfficeSettlementAmount
+      current.workerCostAmount += record.workerCostAmount
+      current.workerWithholdingAmount += record.workerWithholdingAmount
+      current.workerNetPaymentAmount += record.workerNetPaymentAmount
+      current.adsServiceCostAmount += record.adsServiceCostAmount
+      current.adsServiceVatAmount += record.adsServiceVatAmount
+      current.adsServicePaymentAmount += record.adsServicePaymentAmount
+      current.netVatPayableAmount += record.netVatPayableAmount
+      current.profitAmount += record.profitAmount
+      current.actualReceiptAmount += record.actualReceiptAmount || 0
+      current.usesEcoJardinSettlementRule ||= record.usesEcoJardinSettlementRule
+      current.usesSeparateAdExecutionBudget ||= record.usesSeparateAdExecutionBudget
+      current.count += 1
+      map.set(record.storeName, current)
+      return map
+    }, new Map<string, {
+      storeName: string
+      grossAmount: number
+      netSalesAmount: number
+      vatAmount: number
+      reserveAmount: number
+      serviceRevenueAmount: number
+      serviceRevenueVatAmount: number
+      serviceRevenuePaymentAmount: number
+      adExecutionBudgetAmount: number
+      adExecutionBudgetPaymentAmount: number
+      adsManagementRevenueAmount: number
+      profileManagementAmount: number
+      bizHighSupplyAmount: number
+      bizHighVatAmount: number
+      bizHighSettlementAmount: number
+      headOfficeSupplyAmount: number
+      headOfficeVatAmount: number
+      headOfficeSettlementAmount: number
+      workerCostAmount: number
+      workerWithholdingAmount: number
+      workerNetPaymentAmount: number
+      adsServiceCostAmount: number
+      adsServiceVatAmount: number
+      adsServicePaymentAmount: number
+      netVatPayableAmount: number
+      profitAmount: number
+      actualReceiptAmount: number
+      usesEcoJardinSettlementRule: boolean
+      usesSeparateAdExecutionBudget: boolean
+      count: number
+    }>()).values()
+  ).sort((a, b) => b.grossAmount - a.grossAmount)
+  const totals = rows.reduce(
+    (sum, row) => ({
+      gross: sum.gross + row.grossAmount,
+      service: sum.service + row.serviceRevenueAmount,
+      adBudget: sum.adBudget + row.adExecutionBudgetAmount,
+      settlementCost:
+        sum.settlementCost + row.bizHighSupplyAmount + row.workerCostAmount + row.adsServiceCostAmount + row.headOfficeSupplyAmount + row.reserveAmount,
+      profit: sum.profit + row.profitAmount,
+      actualReceipt: sum.actualReceipt + row.actualReceiptAmount,
+    }),
+    { gross: 0, service: 0, adBudget: 0, settlementCost: 0, profit: 0, actualReceipt: 0 }
+  )
+
+  return (
+    <section className="space-y-5">
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <p className="text-sm font-bold text-brand-blue">Settlement</p>
+        <h2 className="mt-2 text-2xl font-black text-white">정산관리</h2>
+        <p className="mt-2 text-sm font-semibold text-gray-500">계약 매장의 매출, 광고 집행비, 외부 정산금과 순수익을 주별·월별·연도별로 확인합니다.</p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span
+            className={`inline-flex items-center rounded-full border px-3 py-1.5 text-xs font-black ${
+              integration.connected
+                ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                : 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+            }`}
+          >
+            {loading
+              ? 'Google Sheets 동기화 중'
+              : integration.connected
+                ? 'Google Sheets 실시간 원본'
+                : 'ERP 내장 데이터 대체'}
+          </span>
+          {integration.spreadsheetUrl ? (
+            <a
+              href={integration.spreadsheetUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black px-3 py-1.5 text-xs font-black text-gray-300 transition hover:border-white/30 hover:text-white"
+            >
+              원본 시트 열기
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          ) : null}
+          <span className="text-xs font-bold text-gray-600">{integration.message}</span>
+        </div>
+        <div className="mt-5 flex flex-wrap gap-2">{([['week', '주별'], ['month', '월별'], ['year', '연도별']] as const).map(([value, label]) => <button key={value} type="button" onClick={() => setPeriod(value)} className={`h-10 rounded-md border px-4 text-sm font-black ${period === value ? 'border-brand-blue bg-brand-blue text-white' : 'border-white/10 bg-black text-gray-400'}`}>{label}</button>)}</div>
+      </div>
+      <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between"><h3 className="text-xl font-black text-white">정산 기간</h3><select value={selectedKey} onChange={(event) => setSelectedKey(event.target.value)} className="h-11 min-w-60 rounded-md border border-white/10 bg-black px-3 text-sm font-black text-white">{periodKeys.map((key) => <option key={key} value={key}>{settlementPeriodLabel(key, period)}</option>)}</select></div>
+        <div className="mt-5 grid overflow-hidden rounded-lg border border-white/10 bg-black sm:grid-cols-2 xl:grid-cols-6">
+          {[
+            ['입금액(VAT 포함)', totals.gross, 'text-white'],
+            ['실제 현금 입금액', totals.actualReceipt, 'text-blue-100'],
+            ['용역 매출(VAT 별도)', totals.service, 'text-white'],
+            ['광고 집행비(순수익 제외)', totals.adBudget, 'text-amber-100'],
+            ['외부 정산·비용(VAT 별도)', totals.settlementCost, 'text-rose-100'],
+            ['예상 순수익', totals.profit, 'text-emerald-100'],
+          ].map(([label, amount, colorClass], index) => (
+            <div key={String(label)} className={`p-5 ${index < 5 ? 'xl:border-r xl:border-white/10' : ''}`}>
+              <p className="text-xs font-black text-gray-500">{label}</p>
+              <p className={`mt-2 text-2xl font-black ${colorClass}`}>{formatCurrency(Number(amount))}원</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <section className="space-y-4">
+        <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5">
+          <h3 className="text-xl font-black text-white">매장별 정산 상세</h3>
+          <p className="mt-2 text-xs font-bold text-gray-500">금액 기준은 VAT 별도이며, 실제 송금액과 고객 입금액만 VAT 포함으로 표시합니다.</p>
+        </div>
+        {rows.map((row) => (
+          <article key={row.storeName} className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+            <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between">
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h4 className="text-lg font-black text-white">{row.storeName}</h4>
+                  <span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-xs font-black text-gray-400">{row.count}건</span>
+                  {row.usesEcoJardinSettlementRule ? <span className="rounded-full border border-brand-blue/30 bg-brand-blue/10 px-2.5 py-1 text-xs font-black text-blue-100">에코쟈댕 정산 기준</span> : null}
+                </div>
+                <p className="mt-2 text-xs font-bold text-gray-500">
+                  {row.usesSeparateAdExecutionBudget ? '용역비 입금' : '고객 입금'} {formatCurrency(row.grossAmount)}원(VAT 포함)
+                  {row.usesSeparateAdExecutionBudget ? ` · 광고 집행비 ${formatCurrency(row.adExecutionBudgetPaymentAmount)}원 별도` : ''}
+                </p>
+                <p className="mt-1 text-xs font-bold text-blue-200/70">
+                  실제 현금 입금 {formatCurrency(row.actualReceiptAmount)}원
+                </p>
+              </div>
+              <div className="rounded-md border border-emerald-300/20 bg-emerald-300/10 px-4 py-3 text-right">
+                <p className="text-xs font-black text-emerald-200/70">예상 순수익</p>
+                <p className="mt-1 text-2xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
+              </div>
+            </div>
+            <div className="grid gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-[1.05fr_0.72fr_1.55fr_0.88fr]">
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-gray-500">용역 매출</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-white">{formatCurrency(row.serviceRevenueAmount)}원</p>
+                <p className="mt-2 text-xs font-bold text-gray-500">실제 입금 {formatCurrency(row.serviceRevenuePaymentAmount)}원 · VAT {formatCurrency(row.serviceRevenueVatAmount)}원</p>
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 운영</dt><dd className="font-black text-gray-200">{formatCurrency(row.adsManagementRevenueAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">프로필 관리</dt><dd className="font-black text-gray-200">{formatCurrency(row.profileManagementAmount)}원</dd></div>
+                </dl>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-amber-200/70">광고 집행비 · 순수익 제외</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-amber-100">{formatCurrency(row.adExecutionBudgetAmount)}원</p>
+                <p className="mt-4 text-sm font-bold text-gray-500">실제 결제액</p>
+                <p className="mt-1 font-black tabular-nums text-gray-200">{formatCurrency(row.adExecutionBudgetPaymentAmount)}원 <span className="text-xs text-gray-500">(VAT 포함)</span></p>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-xs font-black text-gray-500">외부 정산·비용</p>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-rose-300/20 bg-rose-300/10 px-2 py-1 text-[10px] font-black text-rose-100"><span className="h-1.5 w-1.5 rounded-full bg-rose-300" />실제 지출</span>
+                </div>
+                <dl className="mt-4 space-y-3 text-sm">
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">비즈하이 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.bizHighSettlementAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">비즈하이 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.bizHighSupplyAmount)}원 / {formatCurrency(row.bizHighVatAmount)}원</dd></div>
+                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">본사 수수료 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.headOfficeSettlementAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div> : null}
+                  {row.headOfficeSettlementAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">본사 수수료 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.headOfficeSupplyAmount)}원 / {formatCurrency(row.headOfficeVatAmount)}원</dd></div> : null}
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">작업자 정산비</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.workerCostAmount)}원 <span className="text-xs text-rose-100/50">(원천세 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">원천세 / 실제 송금</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.workerWithholdingAmount)}원 / {formatCurrency(row.workerNetPaymentAmount)}원</dd></div>
+                  <div className="flex justify-between gap-4 rounded-md border border-rose-300/20 bg-rose-300/[0.07] px-3 py-2.5"><dt className="font-black text-rose-100/75">애즈 용역비 실제 정산</dt><dd className="text-right font-black text-rose-100">{formatCurrency(row.adsServicePaymentAmount)}원 <span className="text-xs text-rose-100/50">(VAT 포함)</span></dd></div>
+                  <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">애즈 용역비 공급가 / VAT</dt><dd className="text-right font-black text-gray-200">{formatCurrency(row.adsServiceCostAmount)}원 / {formatCurrency(row.adsServiceVatAmount)}원</dd></div>
+                  {row.reserveAmount > 0 ? <div className="flex justify-between gap-4"><dt className="font-bold text-gray-500">충당금</dt><dd className="font-black text-gray-200">{formatCurrency(row.reserveAmount)}원</dd></div> : null}
+                </dl>
+              </div>
+              <div className="bg-[#0b0d12] p-5">
+                <p className="text-xs font-black text-emerald-200/70">순수익 계산</p>
+                <p className="mt-2 text-xl font-black tabular-nums text-emerald-100">{formatCurrency(row.profitAmount)}원</p>
+                <p className="mt-4 text-sm font-bold leading-6 text-gray-500">용역 매출 − 비즈하이 공급가 − 본사 수수료 공급가 − 작업자 정산비 − 애즈 용역비 − 충당금</p>
+                <p className="mt-3 text-xs font-bold text-gray-600">VAT 예상 납부액 {formatCurrency(row.netVatPayableAmount)}원</p>
+              </div>
+            </div>
+          </article>
+        ))}
+        {!rows.length ? <div className="rounded-lg border border-white/10 bg-[#0b0d12] px-5 py-10 text-center text-sm font-bold text-gray-500">이 기간에 정산 데이터가 없습니다.</div> : null}
+      </section>
+    </section>
+  )
+}
+
+function BillingWorkflowPanel({
+  records,
+  loading,
+  message,
+}: {
+  records: BillingRecord[]
+  loading: boolean
+  message: string
+}) {
+  const [anchorDate, setAnchorDate] = useState(() => new Date())
+  const [activeFilter, setActiveFilter] = useState<BillingFilter>('전체')
+  const [distributionRecordId, setDistributionRecordId] = useState<string | null>(null)
+  const [distributionDraftAmount, setDistributionDraftAmount] = useState(0)
+  const [distributionWithholdingApplied, setDistributionWithholdingApplied] = useState(false)
+  const [workflowOverrides, setWorkflowOverrides] = useState<Record<string, BillingWorkflowOverride>>(
+    readBillingWorkflowOverrides
+  )
+
+  useEffect(() => {
+    window.localStorage.setItem(BILLING_WORKFLOW_STORAGE_KEY, JSON.stringify(workflowOverrides))
+  }, [workflowOverrides])
+
+  const currentRecords = useMemo(
+    () => records.map((record) => ({ ...record, ...workflowOverrides[record.id] })),
+    [records, workflowOverrides]
+  )
+  const year = anchorDate.getFullYear()
+  const month = anchorDate.getMonth()
+  const settlementDay = Math.min(30, new Date(year, month + 1, 0).getDate())
+  const monthRecords = currentRecords
+    .filter((record) => {
+      const date = new Date(`${record.dueDate}T00:00:00`)
+      return date.getFullYear() === year && date.getMonth() === month
+    })
+    .sort((a, b) => {
+      const order: Record<TeamSettlementStatus, number> = {
+        정산대상: 0,
+        정산보류: 1,
+        '다음 달 이월': 2,
+        정산완료: 3,
+      }
+      return order[a.settlementStatus] - order[b.settlementStatus] || a.storeName.localeCompare(b.storeName)
+    })
+  const settlementTargets = monthRecords.filter((record) => record.settlementStatus === '정산대상')
+  const authPendingRecords = monthRecords.filter((record) => record.workStatus === '인증대기')
+  const paymentDelayedRecords = monthRecords.filter((record) => record.paymentStatus === '입금지연')
+  const settlementDistribution = settlementTargets.reduce(
+    (totals, record) => {
+      const distribution = calculateTeamDistribution(record.teamSettlementAmount, record.withholdingApplied)
+      return {
+        grossAmount: totals.grossAmount + distribution.total,
+        supplyAmount: totals.supplyAmount + distribution.supplyAmount,
+        vatAmount: totals.vatAmount + distribution.vatAmount,
+        withholdingTax: totals.withholdingTax + distribution.withholdingTax,
+        workerNetAmount: totals.workerNetAmount + distribution.workerTax.netAmount,
+        kwonNetAmount: totals.kwonNetAmount + distribution.kwonTax.netAmount,
+        kangNetAmount: totals.kangNetAmount + distribution.kangTax.netAmount,
+      }
+    },
+    {
+      grossAmount: 0,
+      supplyAmount: 0,
+      vatAmount: 0,
+      withholdingTax: 0,
+      workerNetAmount: 0,
+      kwonNetAmount: 0,
+      kangNetAmount: 0,
+    }
+  )
+  const distributionRecord = currentRecords.find((record) => record.id === distributionRecordId) || null
+  const distributionDraft = calculateTeamDistribution(distributionDraftAmount, distributionWithholdingApplied)
+  const filteredRecords = monthRecords.filter((record) => {
+    if (activeFilter === '정산대상') return record.settlementStatus === '정산대상'
+    if (activeFilter === '인증대기') return record.workStatus === '인증대기'
+    if (activeFilter === '입금지연') return record.paymentStatus === '입금지연'
+    if (activeFilter === '정산완료') return record.settlementStatus === '정산완료'
+    return true
+  })
+
+  const updateWorkflow = (recordId: string, patch: BillingWorkflowOverride) => {
+    setWorkflowOverrides((current) => ({
+      ...current,
+      [recordId]: { ...current[recordId], ...patch },
+    }))
+  }
+
+  const updatePaymentStatus = (record: BillingRecord, paymentStatus: PaymentStatus) => {
+    if (paymentStatus === '입금완료') {
+      updateWorkflow(record.id, { paymentStatus })
+      return
+    }
+
+    updateWorkflow(record.id, {
+      paymentStatus,
+      workStatus: '미시작',
+      workRecognition: '없음',
+      teamSettlementAmount: 0,
+      settlementStatus: paymentStatus === '입금지연' ? '다음 달 이월' : '정산보류',
+    })
+  }
+
+  const updateWorkStatus = (record: BillingRecord, workStatus: WorkStatus) => {
+    if (record.paymentStatus !== '입금완료' && (workStatus === '진행중' || workStatus === '작업완료')) return
+
+    if (workStatus === '진행중' || workStatus === '작업완료') {
+      updateWorkflow(record.id, {
+        workStatus,
+        workRecognition: '전체',
+        teamSettlementAmount: record.defaultTeamSettlementAmount,
+        settlementStatus: '정산대상',
+      })
+      return
+    }
+
+    updateWorkflow(record.id, {
+      workStatus,
+      workRecognition: workStatus === '인증대기' ? '선택필요' : '없음',
+      teamSettlementAmount: 0,
+      settlementStatus: '정산보류',
+    })
+  }
+
+  const updateWorkRecognition = (record: BillingRecord, workRecognition: WorkRecognition) => {
+    const isRecognized = workRecognition === '전체' || workRecognition === '일부'
+    updateWorkflow(record.id, {
+      workRecognition,
+      teamSettlementAmount:
+        workRecognition === '전체'
+          ? record.defaultTeamSettlementAmount
+          : workRecognition === '일부'
+            ? Math.round(record.defaultTeamSettlementAmount / 2)
+            : 0,
+      settlementStatus: isRecognized && record.paymentStatus === '입금완료' ? '정산대상' : '정산보류',
+    })
+  }
+
+  const openDistributionSettings = (record: BillingRecord) => {
+    setDistributionRecordId(record.id)
+    setDistributionDraftAmount(record.teamSettlementAmount)
+    setDistributionWithholdingApplied(record.withholdingApplied)
+  }
+
+  const closeDistributionSettings = () => {
+    setDistributionRecordId(null)
+  }
+
+  const saveDistributionSettings = () => {
+    if (!distributionRecord) return
+    updateWorkflow(distributionRecord.id, {
+      teamSettlementAmount: distributionDraft.total,
+      withholdingApplied: distributionWithholdingApplied,
+    })
+    closeDistributionSettings()
+  }
+
+  const confirmMonthlySettlement = () => {
+    setWorkflowOverrides((current) => {
+      const next = { ...current }
+      settlementTargets.forEach((record) => {
+        next[record.id] = { ...next[record.id], settlementStatus: '정산완료' }
+      })
+      return next
+    })
+  }
+
+  const summaryItems = [
+    { label: '30일 정산예정액', value: `${formatCurrency(settlementDistribution.supplyAmount)}원` },
+    { label: '정산대상', value: `${settlementTargets.length}개 매장` },
+    { label: '인증대기', value: `${authPendingRecords.length}개 매장` },
+    { label: '입금지연', value: `${paymentDelayedRecords.length}개 매장` },
+  ]
+
+  return (
+    <section className="mx-auto max-w-[1680px] space-y-5">
+      <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="grid gap-5 p-5 md:p-6 xl:grid-cols-[minmax(320px,0.8fr)_minmax(680px,1.2fr)] xl:items-center">
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-brand-blue">Billing</p>
+            <h2 className="mt-2 text-2xl font-black text-white">팀 정산관리</h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-gray-400 keep-all">
+              입금이 완료된 매장만 작업을 시작하고, 인정된 작업비는 매월 30일에 한 번 정산합니다.
+            </p>
+            {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
+          </div>
+          <div className="grid min-w-0 grid-cols-2 overflow-hidden rounded-lg border border-white/10 bg-black md:grid-cols-4 md:divide-x md:divide-white/10">
+            {summaryItems.map((item) => (
+              <div key={item.label} className="min-w-0 border-b border-white/10 p-4 last:border-b-0 md:border-b-0">
+                <p className="text-xs font-bold text-gray-500">{item.label}</p>
+                <p className="mt-3 truncate text-xl font-black tabular-nums text-white" title={item.value}>{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-t border-white/10 p-5 md:p-6">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex items-center justify-between gap-2 sm:justify-start">
+              <button
+                type="button"
+                onClick={() => setAnchorDate(new Date(year, month - 1, 1))}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
+                aria-label="이전 달"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <div className="min-w-40 text-center sm:min-w-48">
+                <p className="text-base font-black text-white sm:text-lg">{year}년 {month + 1}월</p>
+                <p className="mt-0.5 text-xs font-bold text-gray-500">{month + 1}월 {settlementDay}일 일괄 정산</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAnchorDate(new Date(year, month + 1, 1))}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
+                aria-label="다음 달"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {billingFilters.map((filter) => (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setActiveFilter(filter)}
+                  className={`h-9 rounded-md border px-3 text-xs font-black transition ${
+                    activeFilter === filter
+                      ? 'border-brand-blue/50 bg-brand-blue/15 text-blue-100'
+                      : 'border-white/10 bg-black text-gray-400 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  {filter}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-4 text-xs font-bold text-gray-500">
+            <span>입금 완료 후 작업 시작</span>
+            <span>VAT 제외 공급가액 기준 배분</span>
+            <span>작업인정 매장만 정산대상</span>
+            <span>30일 이후 입금은 다음 달 이월</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-lg border border-white/10 bg-[#0b0d12]">
+        <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
+          <div>
+            <p className="text-sm font-bold text-brand-blue">Settlement List</p>
+            <h3 className="mt-2 text-xl font-black text-white">매장별 정산현황</h3>
+            <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">
+              입금, 작업, 이번 달 작업인정 상태를 확인한 뒤 팀 정산액을 확정합니다.
+            </p>
+          </div>
+          <div className="text-left md:text-right">
+            <p className="text-xs font-bold text-gray-500">정산 기준일</p>
+            <p className="mt-1 text-sm font-black text-white">{year}년 {month + 1}월 {settlementDay}일</p>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[1450px] table-fixed border-collapse text-left text-sm">
+            <colgroup>
+              <col className="w-[210px]" />
+              <col className="w-[150px]" />
+              <col className="w-[155px]" />
+              <col className="w-[155px]" />
+              <col className="w-[235px]" />
+              <col className="w-[165px]" />
+              <col className="w-auto" />
+            </colgroup>
+            <thead className="bg-white/[0.04] text-xs text-gray-500">
+              <tr>
+                <th className="px-4 py-4">매장명</th>
+                <th className="px-4 py-4">입금상태</th>
+                <th className="px-4 py-4">작업상태</th>
+                <th className="px-4 py-4">이번 달 작업인정</th>
+                <th className="px-4 py-4">입금액 / 배분</th>
+                <th className="px-4 py-4">정산상태</th>
+                <th className="px-4 py-4">메모</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredRecords.length === 0 ? (
+                <tr>
+                  <td colSpan={7} className="px-4 py-10 text-center font-bold text-gray-500">
+                    {loading ? '정산 데이터를 불러오는 중입니다.' : '이 조건에 해당하는 매장이 없습니다.'}
+                  </td>
+                </tr>
+              ) : (
+                filteredRecords.map((record) => (
+                  <tr key={record.id} className="border-t border-white/10 transition hover:bg-white/[0.02]">
+                    <td className="px-4 py-4">
+                      <p className="truncate font-black text-white" title={record.storeName}>{record.storeName}</p>
+                      <p className="mt-1 text-xs font-semibold text-gray-500">입금 기준 매월 {record.dueDay}일</p>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="relative">
+                        <select
+                          value={record.paymentStatus}
+                          onChange={(event) => updatePaymentStatus(record, event.target.value as PaymentStatus)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${paymentStatusClass(record.paymentStatus)}`}
+                        >
+                          {paymentStatusOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="relative">
+                        <select
+                          value={record.workStatus}
+                          onChange={(event) => updateWorkStatus(record, event.target.value as WorkStatus)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${workStatusClass(record.workStatus)}`}
+                        >
+                          {workStatusOptions.map((status) => (
+                            <option
+                              key={status}
+                              value={status}
+                              disabled={record.paymentStatus !== '입금완료' && (status === '진행중' || status === '작업완료')}
+                              className="bg-[#11141b] text-white"
+                            >
+                              {status}
+                            </option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="relative">
+                        <select
+                          value={record.workRecognition}
+                          onChange={(event) => updateWorkRecognition(record, event.target.value as WorkRecognition)}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${workRecognitionClass(record.workRecognition)}`}
+                        >
+                          {workRecognitionOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="whitespace-nowrap text-sm font-black tabular-nums text-white">
+                            {formatCurrency(record.teamSettlementAmount)}원
+                          </p>
+                          <p className="mt-1 whitespace-nowrap text-[11px] font-semibold text-gray-500">
+                            공급가 {formatCurrency(calculateTeamDistribution(record.teamSettlementAmount).supplyAmount)}원 · {record.withholdingApplied ? '원천세 계산' : '원천세 미적용'}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => openDistributionSettings(record)}
+                          className="h-9 shrink-0 rounded-md border border-white/10 bg-white/[0.04] px-3 text-xs font-black text-gray-200 transition hover:border-brand-blue/40 hover:text-white"
+                        >
+                          배분설정
+                        </button>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="relative">
+                        <select
+                          value={record.settlementStatus}
+                          onChange={(event) => updateWorkflow(record.id, { settlementStatus: event.target.value as TeamSettlementStatus })}
+                          className={`h-10 w-full appearance-none rounded-md border px-3 pr-12 text-xs font-black outline-none ${teamSettlementStatusClass(record.settlementStatus)}`}
+                        >
+                          {teamSettlementStatusOptions.map((status) => (
+                            <option key={status} value={status} className="bg-[#11141b] text-white">{status}</option>
+                          ))}
+                        </select>
+                        <ChevronDown className="pointer-events-none absolute right-5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-300" />
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <input
+                        value={record.memo}
+                        onChange={(event) => updateWorkflow(record.id, { memo: event.target.value })}
+                        className="h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-gray-200 outline-none transition focus:border-brand-blue/50"
+                        placeholder="정산 메모"
+                      />
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="flex flex-col gap-5 border-t border-white/10 bg-black/30 p-5 xl:flex-row xl:items-center xl:justify-between md:p-6">
+          <div>
+            <p className="text-xs font-bold text-gray-500">{month + 1}월 {settlementDay}일 팀 정산</p>
+            <p className="mt-1 text-xl font-black tabular-nums text-white">{formatCurrency(settlementDistribution.supplyAmount)}원</p>
+            <p className="mt-1 text-xs font-semibold text-gray-500">
+              VAT 포함 {formatCurrency(settlementDistribution.grossAmount)}원 · 부가세 {formatCurrency(settlementDistribution.vatAmount)}원 · 원천세 {formatCurrency(settlementDistribution.withholdingTax)}원
+            </p>
+          </div>
+          <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-3 xl:max-w-2xl">
+            <div className="border-l-2 border-gray-500/40 pl-3">
+              <p className="text-xs font-bold text-gray-500">작업자 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.workerNetAmount)}원</p>
+            </div>
+            <div className="border-l-2 border-brand-blue/50 pl-3">
+              <p className="text-xs font-bold text-gray-500">권순현 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kwonNetAmount)}원</p>
+            </div>
+            <div className="border-l-2 border-emerald-400/50 pl-3">
+              <p className="text-xs font-bold text-gray-500">강기현 실지급</p>
+              <p className="mt-1 font-black tabular-nums text-white">{formatCurrency(settlementDistribution.kangNetAmount)}원</p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={confirmMonthlySettlement}
+            disabled={settlementTargets.length === 0}
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-md bg-brand-blue px-5 text-sm font-black text-white transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <CheckCircle2 className="h-4 w-4" />
+            {month + 1}월 정산 확정
+          </button>
+        </div>
+      </section>
+
+      {distributionRecord ? (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/75 p-4" role="dialog" aria-modal="true" aria-labelledby="distribution-title">
+          <div className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-lg border border-white/15 bg-[#0b0d12] shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-white/10 p-5">
+              <div>
+                <p className="text-xs font-bold text-brand-blue">Distribution</p>
+                <h3 id="distribution-title" className="mt-1 text-xl font-black text-white">{distributionRecord.storeName} 배분설정</h3>
+              </div>
+              <button
+                type="button"
+                onClick={closeDistributionSettings}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-400 transition hover:bg-white/5 hover:text-white"
+                aria-label="배분설정 닫기"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="space-y-5 p-5">
+              <label className="block">
+                <span className="text-xs font-bold text-gray-500">입금액(VAT 포함)</span>
+                <div className="relative mt-2">
+                  <input
+                    type="number"
+                    min="0"
+                    step="10000"
+                    value={distributionDraftAmount}
+                    onChange={(event) => setDistributionDraftAmount(Number(event.target.value) || 0)}
+                    className="h-12 w-full rounded-md border border-white/10 bg-black px-4 pr-10 text-right text-lg font-black tabular-nums text-white outline-none transition focus:border-brand-blue/60"
+                  />
+                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sm font-bold text-gray-500">원</span>
+                </div>
+              </label>
+
+              <div className="grid grid-cols-2 divide-x divide-white/10 rounded-md border border-white/10 bg-black">
+                <div className="p-4">
+                  <p className="text-xs font-bold text-gray-500">공급가액 · 배분 기준</p>
+                  <p className="mt-2 font-black tabular-nums text-white">{formatCurrency(distributionDraft.supplyAmount)}원</p>
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-bold text-gray-500">부가세 10%</p>
+                  <p className="mt-2 font-black tabular-nums text-white">{formatCurrency(distributionDraft.vatAmount)}원</p>
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  onClick={() => setDistributionWithholdingApplied((current) => !current)}
+                  className={`inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border text-sm font-black transition ${
+                    distributionWithholdingApplied
+                      ? 'border-brand-blue/50 bg-brand-blue/15 text-blue-100'
+                      : 'border-white/10 bg-white/[0.04] text-gray-300 hover:bg-white/[0.07]'
+                  }`}
+                >
+                  <ReceiptText className="h-4 w-4" />
+                  원천세 계산
+                  <span className="text-xs opacity-70">사업소득 3.3%</span>
+                </button>
+                <p className="mt-2 text-xs font-semibold text-gray-500">사업소득 원천징수 대상 지급 건에만 적용합니다.</p>
+              </div>
+
+              <div className="divide-y divide-white/10 border-y border-white/10">
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">작업자</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">우선 지급 · 매장당 150,000원</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.workerTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.workerAmount)}원 · 원천세 {formatCurrency(distributionDraft.workerTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">권순현</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 잔액의 50%</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kwonTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.kwonAmount)}원 · 원천세 {formatCurrency(distributionDraft.kwonTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="grid grid-cols-[1fr_auto] items-center gap-4 py-4">
+                  <div>
+                    <p className="font-black text-white">강기현</p>
+                    <p className="mt-1 text-xs font-semibold text-gray-500">작업자 지급 후 나머지 50%</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-black tabular-nums text-white">{formatCurrency(distributionDraft.kangTax.netAmount)}원</p>
+                    {distributionWithholdingApplied ? (
+                      <p className="mt-1 text-[11px] font-semibold text-gray-500">세전 {formatCurrency(distributionDraft.kangAmount)}원 · 원천세 {formatCurrency(distributionDraft.kangTax.withholdingTax)}원</p>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-bold text-gray-500">{distributionWithholdingApplied ? '실지급 합계' : '배분 합계'}</p>
+                  <p className="mt-1 text-lg font-black tabular-nums text-white">{formatCurrency(distributionDraft.netPaymentAmount)}원</p>
+                  <p className="mt-1 text-xs font-semibold text-gray-500">
+                    {distributionWithholdingApplied
+                      ? `소득세 ${formatCurrency(distributionDraft.incomeTax)}원 + 지방소득세 ${formatCurrency(distributionDraft.localIncomeTax)}원`
+                      : `공급가액 ${formatCurrency(distributionDraft.supplyAmount)}원`}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={saveDistributionSettings}
+                  className="h-11 rounded-md bg-brand-blue px-5 text-sm font-black text-white transition hover:brightness-110"
+                >
+                  배분 저장
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
 const billingStatusOptions: BillingStatus[] = ['청구예정', '청구완료', '입금완료', '연체', '보류']
+const taxInvoiceStatusOptions: TaxInvoiceStatus[] = ['발행전', '발행완료', '해당없음']
+const withholdingStatusOptions: WithholdingStatus[] = ['없음', '확인필요', '완료']
 
 function billingStatusClass(status: BillingStatus) {
   if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
@@ -2151,6 +5212,18 @@ function billingStatusClass(status: BillingStatus) {
   if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/10 text-blue-100'
   if (status === '보류') return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
   return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function taxInvoiceStatusClass(status: TaxInvoiceStatus) {
+  if (status === '발행완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '해당없음') return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
+  return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+}
+
+function withholdingStatusClass(status: WithholdingStatus) {
+  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '확인필요') return 'border-red-400/35 bg-red-400/10 text-red-100'
+  return 'border-gray-400/25 bg-gray-400/10 text-gray-200'
 }
 
 function BillingPanel({
@@ -2164,10 +5237,20 @@ function BillingPanel({
 }) {
   const [anchorDate, setAnchorDate] = useState(() => new Date())
   const [statusOverrides, setStatusOverrides] = useState<Record<string, BillingStatus>>({})
+  const [taxInvoiceOverrides, setTaxInvoiceOverrides] = useState<Record<string, TaxInvoiceStatus>>({})
+  const [withholdingOverrides, setWithholdingOverrides] = useState<Record<string, WithholdingStatus>>({})
+  const [memoOverrides, setMemoOverrides] = useState<Record<string, string>>({})
 
   const currentRecords = useMemo(
-    () => records.map((record) => ({ ...record, status: statusOverrides[record.id] || record.status })),
-    [records, statusOverrides]
+    () =>
+      records.map((record) => ({
+        ...record,
+        status: statusOverrides[record.id] || record.status,
+        taxInvoice: taxInvoiceOverrides[record.id] || record.taxInvoice,
+        withholding: withholdingOverrides[record.id] || record.withholding,
+        memo: memoOverrides[record.id] ?? record.memo,
+      })),
+    [records, memoOverrides, statusOverrides, taxInvoiceOverrides, withholdingOverrides]
   )
   const year = anchorDate.getFullYear()
   const month = anchorDate.getMonth()
@@ -2186,48 +5269,77 @@ function BillingPanel({
   const completedRecords = monthRecords.filter((record) => record.status === '입금완료')
   const overdueRecords = monthRecords.filter((record) => record.status === '연체')
   const pendingRecords = monthRecords.filter((record) => record.status !== '입금완료')
+  const totalBillingAmount = monthRecords.reduce((sum, record) => sum + record.amount, 0)
+  const completedAmount = completedRecords.reduce((sum, record) => sum + record.amount, 0)
   const totalPendingAmount = pendingRecords.reduce((sum, record) => sum + record.amount, 0)
+  const checkNeededRecords = monthRecords.filter(
+    (record) => record.taxInvoice === '발행전' || record.withholding === '확인필요'
+  )
   const weekDayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
   const updateBillingStatus = (recordId: string, status: BillingStatus) => {
     setStatusOverrides((current) => ({ ...current, [recordId]: status }))
   }
 
+  const updateTaxInvoiceStatus = (recordId: string, status: TaxInvoiceStatus) => {
+    setTaxInvoiceOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  const updateWithholdingStatus = (recordId: string, status: WithholdingStatus) => {
+    setWithholdingOverrides((current) => ({ ...current, [recordId]: status }))
+  }
+
+  const updateSettlementMemo = (recordId: string, memo: string) => {
+    setMemoOverrides((current) => ({ ...current, [recordId]: memo }))
+  }
+
   return (
-    <section className="space-y-5">
+    <section className="mx-auto max-w-[1680px] space-y-5">
       <div className="rounded-lg border border-white/10 bg-[#0b0d12]">
-        <div className="grid gap-5 border-b border-white/10 p-5 md:grid-cols-[1fr_520px] md:p-6">
-          <div>
+        <div className="grid gap-6 border-b border-white/10 p-5 md:p-6 2xl:grid-cols-[minmax(260px,0.7fr)_minmax(680px,1.3fr)] 2xl:items-center">
+          <div className="min-w-0">
             <p className="text-sm font-bold text-brand-blue">Billing</p>
             <h2 className="mt-2 text-2xl font-black tracking-tight text-white">청구관리</h2>
-            <p className="mt-2 text-sm leading-6 text-gray-400 keep-all">
-              매장별 정산일을 캘린더로 먼저 확인하고, 아래 리스트에서 청구·입금·연체 상태를 처리합니다.
+            <p className="mt-2 max-w-xl text-sm leading-6 text-gray-400 keep-all">
+              매장별 청구, 입금, 세금계산서, 원천세/외주비 확인 상태만 간단히 체크합니다.
             </p>
             {message ? <p className="mt-2 text-xs font-bold text-gray-500">{message}</p> : null}
           </div>
-          <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-            <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">이번 달 청구</p>
-              <p className="mt-3 text-3xl font-black text-white">{monthRecords.length}</p>
+          <div className="grid min-w-0 grid-cols-2 gap-3 md:grid-cols-4">
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">이번 달 청구액</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(totalBillingAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">입금 완료</p>
-              <p className="mt-3 text-3xl font-black text-white">{completedRecords.length}</p>
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">입금 완료액</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(completedAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
             </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
-              <p className="text-xs font-bold text-gray-500">미수/연체</p>
-              <p className="mt-3 text-3xl font-black text-white">{overdueRecords.length}</p>
-            </div>
-            <div className="rounded-lg border border-white/10 bg-black p-4">
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
               <p className="text-xs font-bold text-gray-500">미입금액</p>
-              <p className="mt-3 text-2xl font-black text-white">{formatCurrency(totalPendingAmount)}</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{formatCurrency(totalPendingAmount)}</span>
+                <span className="text-xs font-bold text-gray-500">원</span>
+              </p>
+            </div>
+            <div className="min-w-0 rounded-lg border border-white/10 bg-black p-4">
+              <p className="text-xs font-bold text-gray-500">확인 필요</p>
+              <p className="mt-3 flex items-baseline gap-1 whitespace-nowrap text-white">
+                <span className="text-xl font-black tabular-nums 2xl:text-2xl">{checkNeededRecords.length}</span>
+                <span className="text-xs font-bold text-gray-500">건</span>
+              </p>
             </div>
           </div>
         </div>
 
         <div className="p-5 md:p-6">
           <div className="mb-4 flex flex-col gap-3 rounded-lg border border-white/10 bg-black p-3 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-2 md:justify-start">
               <button
                 type="button"
                 onClick={() => setAnchorDate(new Date(year, month - 1, 1))}
@@ -2236,7 +5348,7 @@ function BillingPanel({
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <p className="min-w-44 text-center text-lg font-black text-white">{formatCalendarRange('month', anchorDate)}</p>
+              <p className="min-w-36 text-center text-base font-black text-white sm:min-w-44 sm:text-lg">{formatCalendarRange('month', anchorDate)}</p>
               <button
                 type="button"
                 onClick={() => setAnchorDate(new Date(year, month + 1, 1))}
@@ -2247,59 +5359,58 @@ function BillingPanel({
               </button>
             </div>
             <div className="flex flex-wrap gap-2 text-xs font-black">
-              {billingStatusOptions.map((status) => (
-                <span key={status} className={`rounded-full border px-2.5 py-1 ${billingStatusClass(status)}`}>
-                  {status}
-                </span>
-              ))}
+              <span className="rounded-full border border-white/10 px-2.5 py-1 text-gray-400">미수/연체 {overdueRecords.length}건</span>
+              <span className="rounded-full border border-white/10 px-2.5 py-1 text-gray-400">확인필요 {checkNeededRecords.length}건</span>
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
-            <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
-              {weekDayLabels.map((day) => (
-                <div key={day} className="py-3">
-                  {day}
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-7">
-              {cells.map((cell, index) => {
-                const dateKey = cell ? formatDateKey(cell) : ''
-                const dayRecords = cell ? monthRecords.filter((record) => record.dueDate === dateKey) : []
-
-                return (
-                  <div
-                    key={`billing-${year}-${month}-${index}`}
-                    className={`min-h-[138px] border-b border-r border-white/10 p-2.5 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
-                  >
-                    {cell ? (
-                      <>
-                        <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
-                          {cell.getDate()}
-                        </p>
-                        <div className="mt-2 space-y-1.5">
-                          {dayRecords.slice(0, 4).map((record) => (
-                            <button
-                              key={record.id}
-                              type="button"
-                              onClick={() => updateBillingStatus(record.id, record.status === '입금완료' ? '청구완료' : '입금완료')}
-                              className={`w-full rounded border px-2 py-1.5 text-left text-[11px] font-black transition hover:brightness-125 ${billingStatusClass(record.status)}`}
-                              title="클릭하면 입금완료 상태를 토글합니다."
-                            >
-                              <span className="block truncate">{record.storeName}</span>
-                              <span className="mt-0.5 block text-[10px] opacity-80">{formatCurrency(record.amount)}원</span>
-                            </button>
-                          ))}
-                          {dayRecords.length > 4 ? (
-                            <p className="text-[11px] font-bold text-gray-500">+{dayRecords.length - 4}건</p>
-                          ) : null}
-                        </div>
-                      </>
-                    ) : null}
+          <div className="overflow-x-auto rounded-lg border border-white/10 bg-black">
+            <div className="min-w-[840px]">
+              <div className="grid grid-cols-7 border-b border-white/10 text-center text-xs font-black uppercase tracking-[0.12em] text-gray-600">
+                {weekDayLabels.map((day) => (
+                  <div key={day} className="py-3">
+                    {day}
                   </div>
-                )
-              })}
+                ))}
+              </div>
+              <div className="grid grid-cols-7">
+                {cells.map((cell, index) => {
+                  const dateKey = cell ? formatDateKey(cell) : ''
+                  const dayRecords = cell ? monthRecords.filter((record) => record.dueDate === dateKey) : []
+
+                  return (
+                    <div
+                      key={`billing-${year}-${month}-${index}`}
+                      className={`min-h-[124px] border-b border-r border-white/10 p-2.5 ${cell ? 'bg-[#07080b]' : 'bg-white/[0.02]'}`}
+                    >
+                      {cell ? (
+                        <>
+                          <p className={`text-xs font-black ${isSameDate(cell, new Date()) ? 'text-brand-blue' : 'text-gray-500'}`}>
+                            {cell.getDate()}
+                          </p>
+                          <div className="mt-2 space-y-1.5">
+                            {dayRecords.slice(0, 4).map((record) => (
+                              <button
+                                key={record.id}
+                                type="button"
+                                onClick={() => updateBillingStatus(record.id, record.status === '입금완료' ? '청구완료' : '입금완료')}
+                                className={`w-full rounded border px-2 py-1.5 text-left text-[11px] font-black transition hover:brightness-125 ${billingStatusClass(record.status)}`}
+                                title="클릭하면 입금완료 상태를 토글합니다."
+                              >
+                                <span className="block truncate">{record.storeName}</span>
+                                <span className="mt-0.5 block text-[10px] tabular-nums opacity-80">{formatCurrency(record.amount)}원</span>
+                              </button>
+                            ))}
+                            {dayRecords.length > 4 ? (
+                              <p className="text-[11px] font-bold text-gray-500">+{dayRecords.length - 4}건</p>
+                            ) : null}
+                          </div>
+                        </>
+                      ) : null}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -2309,49 +5420,61 @@ function BillingPanel({
         <div className="flex flex-col gap-3 border-b border-white/10 p-5 md:flex-row md:items-center md:justify-between md:p-6">
           <div>
             <p className="text-sm font-bold text-brand-blue">Settlement List</p>
-            <h3 className="mt-2 text-xl font-black text-white">정산 처리 리스트</h3>
+            <h3 className="mt-2 text-xl font-black text-white">정산현황</h3>
             <p className="mt-2 text-sm leading-6 text-gray-500 keep-all">
-              캘린더에서 날짜를 보고, 리스트에서 상태와 세금계산서 발행 여부를 확인합니다.
+              계산 기능은 빼고, 매장별 입금·증빙·외주비 확인 여부만 처리합니다.
             </p>
           </div>
           {loading ? <p className="text-xs font-bold text-gray-500">불러오는 중</p> : null}
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-[1040px] w-full border-collapse text-left text-sm">
-            <thead className="bg-white/[0.04] text-xs uppercase tracking-[0.12em] text-gray-500">
+          <table className="w-full min-w-[1220px] table-fixed border-collapse text-left text-sm">
+            <colgroup>
+              <col className="w-[220px]" />
+              <col className="w-[145px]" />
+              <col className="w-[145px]" />
+              <col className="w-[155px]" />
+              <col className="w-[155px]" />
+              <col className="w-[170px]" />
+              <col className="w-auto" />
+            </colgroup>
+            <thead className="bg-white/[0.04] text-xs text-gray-500">
               <tr>
-                <th className="px-5 py-4">매장명</th>
-                <th className="px-5 py-4">상품</th>
-                <th className="px-5 py-4">정산일</th>
-                <th className="px-5 py-4">금액</th>
-                <th className="px-5 py-4">상태</th>
-                <th className="px-5 py-4">세금계산서</th>
-                <th className="px-5 py-4">담당</th>
-                <th className="px-5 py-4">메모</th>
+                <th className="px-4 py-4">매장명</th>
+                <th className="px-4 py-4">정산월</th>
+                <th className="px-4 py-4">청구금액</th>
+                <th className="px-4 py-4">입금상태</th>
+                <th className="px-4 py-4">세금계산서</th>
+                <th className="px-4 py-4">원천세/외주비</th>
+                <th className="px-4 py-4">메모</th>
               </tr>
             </thead>
             <tbody>
               {monthRecords.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="px-5 py-10 text-center font-bold text-gray-500">
+                  <td colSpan={7} className="px-4 py-10 text-center font-bold text-gray-500">
                     이 달에 표시할 정산 일정이 없습니다.
                   </td>
                 </tr>
               ) : (
                 monthRecords.map((record) => (
-                  <tr key={record.id} className="border-t border-white/10">
-                    <td className="px-5 py-4">
-                      <p className="font-black text-white keep-all">{record.storeName}</p>
+                  <tr key={record.id} className="border-t border-white/10 transition hover:bg-white/[0.02]">
+                    <td className="px-4 py-4">
+                      <p className="truncate font-black text-white" title={record.storeName}>
+                        {record.storeName}
+                      </p>
                       <p className="mt-1 text-xs font-semibold text-gray-500">매월 {record.dueDay}일 기준</p>
                     </td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.product}</td>
-                    <td className="px-5 py-4 font-black text-white">{formatBillingDate(record.dueDate)}</td>
-                    <td className="px-5 py-4 font-black text-white">{formatCurrency(record.amount)}원</td>
-                    <td className="px-5 py-4">
+                    <td className="px-4 py-4">
+                      <p className="whitespace-nowrap font-black tabular-nums text-white">{year}년 {month + 1}월</p>
+                      <p className="mt-1 whitespace-nowrap text-xs font-semibold tabular-nums text-gray-500">{formatBillingDate(record.dueDate)}</p>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-4 font-black tabular-nums text-white">{formatCurrency(record.amount)}원</td>
+                    <td className="px-4 py-4">
                       <select
                         value={record.status}
                         onChange={(event) => updateBillingStatus(record.id, event.target.value as BillingStatus)}
-                        className={`h-10 rounded-full border px-3 text-xs font-black outline-none ${billingStatusClass(record.status)}`}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${billingStatusClass(record.status)}`}
                       >
                         {billingStatusOptions.map((status) => (
                           <option key={status} value={status} className="bg-[#11141b] text-white">
@@ -2360,9 +5483,40 @@ function BillingPanel({
                         ))}
                       </select>
                     </td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.taxInvoice}</td>
-                    <td className="px-5 py-4 font-semibold text-gray-300">{record.owner}</td>
-                    <td className="max-w-sm px-5 py-4 font-semibold leading-6 text-gray-500 keep-all">{record.memo}</td>
+                    <td className="px-4 py-4">
+                      <select
+                        value={record.taxInvoice}
+                        onChange={(event) => updateTaxInvoiceStatus(record.id, event.target.value as TaxInvoiceStatus)}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${taxInvoiceStatusClass(record.taxInvoice)}`}
+                      >
+                        {taxInvoiceStatusOptions.map((status) => (
+                          <option key={status} value={status} className="bg-[#11141b] text-white">
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-4 py-4">
+                      <select
+                        value={record.withholding}
+                        onChange={(event) => updateWithholdingStatus(record.id, event.target.value as WithholdingStatus)}
+                        className={`h-10 w-full rounded-md border px-3 pr-8 text-xs font-black outline-none ${withholdingStatusClass(record.withholding)}`}
+                      >
+                        {withholdingStatusOptions.map((status) => (
+                          <option key={status} value={status} className="bg-[#11141b] text-white">
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td className="px-4 py-4">
+                      <input
+                        value={record.memo}
+                        onChange={(event) => updateSettlementMemo(record.id, event.target.value)}
+                        className="h-10 w-full rounded-md border border-white/10 bg-[#07080b] px-3 text-sm font-semibold text-gray-200 outline-none transition focus:border-brand-blue/50"
+                        placeholder="확인 메모"
+                      />
+                    </td>
                   </tr>
                 ))
               )}
@@ -2769,7 +5923,7 @@ function OperationsPanel({
                         {row.products.googleAds}
                       </td>
                       <td className="max-w-[190px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
-                        {row.products.website}
+                        {row.products.website || '계약 제외'}
                       </td>
                       <td className="max-w-[170px] px-5 py-4 font-semibold leading-6 text-gray-300 keep-all">
                         {row.products.material}
@@ -2884,6 +6038,313 @@ function ReportOperationsPanel({
   )
 }
 
+function StoreReportOverviewPanel({
+  stores,
+  selectedStoreTitle,
+  weekDates,
+  weekStart,
+  onSelectStore,
+}: {
+  stores: OperationRow[]
+  selectedStoreTitle?: string
+  weekDates: Date[]
+  weekStart: string
+  onSelectStore?: (storeTitle: string) => void
+}) {
+  const [reportsByStore, setReportsByStore] = useState<Record<string, StoreWeeklyReport[]>>({})
+  const [overviewLoading, setOverviewLoading] = useState(false)
+  const [overviewMessage, setOverviewMessage] = useState('')
+  const [quickUpdatingReportKey, setQuickUpdatingReportKey] = useState('')
+
+  const storeRows = stores.map((store) => {
+    const reports = reportsForStoreWeek(store, reportsByStore[store.title], weekDates)
+    return {
+      store,
+      reports,
+      summary: summarizeReports(reports),
+    }
+  })
+  const allReports = storeRows.flatMap((row) => row.reports)
+  const allSummary = summarizeReports(allReports)
+  const weekRangeLabel = formatReportWeekRange(weekDates)
+
+  const loadOverviewReports = useCallback(async () => {
+    if (!stores.length) {
+      setReportsByStore({})
+      setOverviewMessage('')
+      return
+    }
+
+    setOverviewLoading(true)
+    try {
+      const entries = await Promise.all(
+        stores.map(async (store) => {
+          const params = new URLSearchParams({
+            store: store.title,
+            product: 'googleProfile',
+            weekStart,
+          })
+          const response = await fetch(`/api/erp/reports?${params.toString()}`, { cache: 'no-store' })
+          const data = (await response.json()) as WeeklyReportApiResponse
+          return [store.title, data.reports || []] as const
+        })
+      )
+      setReportsByStore(Object.fromEntries(entries))
+      setOverviewMessage('매장별 이번 주 보고 현황을 불러왔습니다.')
+    } catch {
+      setReportsByStore({})
+      setOverviewMessage('보고 DB를 불러오지 못해 기본 보고표로 표시 중입니다.')
+    } finally {
+      setOverviewLoading(false)
+    }
+  }, [stores, weekStart])
+
+  useEffect(() => {
+    loadOverviewReports()
+  }, [loadOverviewReports])
+
+  const completeOverviewReport = async (
+    store: OperationRow,
+    report: StoreWeeklyReport,
+    reportIndex: number,
+    sourceReports: StoreWeeklyReport[]
+  ) => {
+    const doneStatus: StoreWeeklyReportStatus = '보고완료'
+    const reportDate = report.date || toISODate(weekDates[report.dayOffset] || weekDates[reportIndex] || weekDates[0])
+    const quickKey = `${store.title}-${reportDate}`
+    const reportMemo = report.memo || ''
+
+    setQuickUpdatingReportKey(quickKey)
+    setReportsByStore((current) => {
+      const source = current[store.title]?.length
+        ? reportsForStoreWeek(store, current[store.title], weekDates)
+        : sourceReports
+      const nextReports = source.map((item, index) => {
+        const itemDate = item.date || toISODate(weekDates[item.dayOffset] || weekDates[index] || weekDates[0])
+
+        return itemDate === reportDate
+          ? {
+              ...item,
+              date: itemDate,
+              status: doneStatus,
+              memo: reportMemo,
+              reporter: item.reporter || '블링크애드',
+              completedAt: item.completedAt || new Date().toISOString(),
+            }
+          : {
+              ...item,
+              date: itemDate,
+            }
+      })
+
+      return {
+        ...current,
+        [store.title]: nextReports,
+      }
+    })
+
+    try {
+      const response = await fetch('/api/erp/reports', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          store: store.title,
+          product: 'googleProfile',
+          date: reportDate,
+          weekStart,
+          title: report.title,
+          memo: reportMemo,
+          status: doneStatus,
+        }),
+      })
+      const data = (await response.json()) as WeeklyReportApiResponse
+      if (data.reports?.length) {
+        setReportsByStore((current) => ({
+          ...current,
+          [store.title]: data.reports,
+        }))
+      }
+      setOverviewMessage(data.message || `${store.title} ${reportDate} 보고를 완료 처리했습니다.`)
+    } catch {
+      setOverviewMessage(`${store.title} ${reportDate} 보고완료 처리 중 오류가 발생했습니다.`)
+    } finally {
+      setQuickUpdatingReportKey('')
+    }
+  }
+
+  return (
+    <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Store Report Board</p>
+          <h2 className="mt-2 text-2xl font-black tracking-tight text-white md:text-3xl">
+            전체 매장 보고 현황
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-400 keep-all">
+            매장운영관리에 등록된 전체 매장의 월-금 보고 상태를 구글프로필 기준으로 먼저 확인합니다.
+            아래 매장 리스트를 누르면 해당 매장의 상세 보고 화면으로 이동합니다.
+          </p>
+        </div>
+        <div className="grid gap-2 sm:grid-cols-3 xl:min-w-[430px]">
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">총 매장</p>
+            <p className="mt-2 text-2xl font-black text-white">{stores.length}개</p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">이번 주 완료</p>
+            <p className="mt-2 text-2xl font-black text-emerald-100">
+              {allSummary.done}/{allSummary.total}
+            </p>
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-gray-500">대기/작성</p>
+            <p className="mt-2 text-2xl font-black text-amber-100">
+              {allSummary.pending + allSummary.inProgress}건
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 rounded-lg border border-white/10 bg-black">
+        <div className="grid gap-4 border-b border-white/10 px-4 py-4 lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_minmax(220px,0.7fr)] lg:items-end">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Store List</p>
+            <h3 className="mt-2 text-lg font-black text-white">매장별 월-금 보고 체크</h3>
+          </div>
+          <div className="rounded-md border border-white/10 bg-[#05070b] p-3">
+            <div className="flex items-center justify-between gap-2">
+              <p className="inline-flex items-center gap-1.5 text-[11px] font-black text-gray-500">
+                <CalendarDays className="h-3.5 w-3.5 text-brand-blue" />
+                이번 주 보고일
+              </p>
+              <p className="text-[11px] font-black text-gray-300">{weekRangeLabel}</p>
+            </div>
+            <div className="mt-3 grid grid-cols-5 gap-2">
+              {weekDates.map((date) => (
+                <div key={toISODate(date)} className="min-w-0 rounded-md border border-white/10 bg-white/[0.03] px-2 py-2">
+                  <p className="text-[11px] font-black text-white">{formatWeekday(date)}</p>
+                  <p className="mt-0.5 text-[10px] font-bold text-gray-500">{formatReportMonthDay(date)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex min-w-0 flex-col gap-2 lg:items-end">
+            <p className="max-w-full truncate text-xs font-bold text-gray-500">
+              {overviewLoading ? '보고 현황 동기화 중입니다.' : overviewMessage}
+            </p>
+            <button
+              type="button"
+              onClick={loadOverviewReports}
+              disabled={overviewLoading}
+              className="h-9 rounded-md border border-white/10 px-3 text-xs font-black text-gray-300 transition hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-white disabled:cursor-not-allowed disabled:text-gray-600"
+            >
+              {overviewLoading ? '확인 중' : '새로고침'}
+            </button>
+          </div>
+        </div>
+
+        <div className="divide-y divide-white/10">
+          {storeRows.map(({ store, reports, summary }) => {
+            const selected = store.title === selectedStoreTitle
+
+            return (
+              <article
+                key={store.title}
+                onClick={() => onSelectStore?.(store.title)}
+                onKeyDown={(event) => {
+                  if ((event.target as HTMLElement).closest('button')) return
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault()
+                    onSelectStore?.(store.title)
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                className={`grid w-full cursor-pointer gap-4 px-4 py-4 text-left outline-none transition lg:grid-cols-[minmax(180px,0.8fr)_minmax(360px,1.4fr)_120px_150px] ${
+                  selected ? 'bg-brand-blue/10' : 'hover:bg-white/[0.04]'
+                }`}
+              >
+                <div className="min-w-0">
+                  <h4 className="font-black text-white keep-all">{store.title}</h4>
+                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                    {store.meta}
+                  </p>
+                  {store.googleMapUrl ? (
+                    <a
+                      href={store.googleMapUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(event) => event.stopPropagation()}
+                      className="mt-2 inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1.5 text-xs font-black text-gray-300 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+                    >
+                      지도
+                      <ExternalLink className="h-3 w-3" />
+                    </a>
+                  ) : null}
+                </div>
+
+                <div className="grid grid-cols-5 gap-2">
+                  {reports.map((report, index) => {
+                    const reportDate = report.date || toISODate(weekDates[report.dayOffset] || weekDates[index] || weekDates[0])
+                    const quickKey = `${store.title}-${reportDate}`
+                    const quickUpdating = quickUpdatingReportKey === quickKey
+                    const reportDone = report.status === '보고완료'
+                    const displayDate = weekDates[index]
+
+                    return (
+                      <div
+                        key={`${store.title}-${reportDate}`}
+                        className={`min-h-[116px] rounded-md border px-2.5 py-2 ${weeklyReportClass(report.status)}`}
+                      >
+                        <p className="text-[11px] font-black text-gray-500">{formatWeekday(displayDate)}</p>
+                        <p className="mt-0.5 text-[10px] font-bold text-gray-600">{formatReportMonthDay(displayDate)}</p>
+                        <p className="mt-2 text-xs font-black text-white">{reportStatusShort(report.status)}</p>
+                        <p className="mt-1 line-clamp-1 text-[11px] font-semibold text-gray-500">{report.title}</p>
+                        <button
+                          type="button"
+                          disabled={quickUpdating || reportDone}
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            completeOverviewReport(store, report, index, reports)
+                          }}
+                          className={`mt-2 h-7 w-full rounded-md border px-2 text-[11px] font-black transition ${
+                            reportDone
+                              ? 'border-emerald-300/20 bg-emerald-300/10 text-emerald-100'
+                              : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                          } disabled:cursor-not-allowed disabled:opacity-80`}
+                        >
+                          {quickUpdating ? '처리중' : reportDone ? '완료됨' : '완료'}
+                        </button>
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <div>
+                  <p className="text-[11px] font-black text-gray-600">완료율</p>
+                  <p className="mt-2 text-lg font-black text-white">
+                    {summary.total ? Math.round((summary.done / summary.total) * 100) : 0}%
+                  </p>
+                  <p className="mt-1 text-xs font-bold text-gray-500">
+                    완료 {summary.done} · 대기 {summary.pending}
+                  </p>
+                </div>
+
+                <div className="lg:text-right">
+                  <p className="text-[11px] font-black text-gray-600">다음 액션</p>
+                  <p className="mt-2 text-sm font-bold leading-6 text-gray-300 keep-all">
+                    {store.products?.nextAction || store.due}
+                  </p>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function StoreOperationsPanel({
   view,
   selectedStoreTitle,
@@ -2893,11 +6354,12 @@ function StoreOperationsPanel({
   selectedStoreTitle?: string
   onSelectStore?: (storeTitle: string) => void
 }) {
-  const [activeProduct, setActiveProduct] = useState<StoreProductKey>('googleProfile')
-  const selectedStore = view.rows.find((row) => row.title === selectedStoreTitle) || view.rows[0]
+  const [activeProduct, setActiveProduct] = useState<StoreProductKey>(() => readQueryProduct())
+  const selectedStore = selectedStoreTitle ? view.rows.find((row) => row.title === selectedStoreTitle) : undefined
   const workspaces = selectedStore?.productWorkspaces || []
   const activeWorkspace = workspaces.find((workspace) => workspace.key === activeProduct) || workspaces[0]
   const [weeklyReportDates, setWeeklyReportDates] = useState(() => getCurrentWeekDates())
+  const [websiteBlogCycleIndex, setWebsiteBlogCycleIndex] = useState(0)
   const weekStart = useMemo(() => toISODate(weeklyReportDates[0]), [weeklyReportDates])
   const [weeklyReports, setWeeklyReports] = useState<StoreWeeklyReport[]>([])
   const [reportHistory, setReportHistory] = useState<StoreWeeklyReport[]>([])
@@ -2922,7 +6384,23 @@ function StoreOperationsPanel({
     report: StoreWeeklyReport
     date: Date
   } | null>(null)
-  const displayWeeklyReports = weeklyReports.length ? weeklyReports : activeWorkspace?.weeklyReports || []
+  const websiteBlogContractStart = useMemo(
+    () => websiteBlogContractStartForStore(selectedStore?.title),
+    [selectedStore?.title]
+  )
+  const websiteBlogCycle = useMemo(
+    () => websiteBlogCycleRange(websiteBlogContractStart, websiteBlogCycleIndex),
+    [websiteBlogContractStart, websiteBlogCycleIndex]
+  )
+  const websiteBlogDefaultReports = useMemo(
+    () => (activeWorkspace?.key === 'websiteBlog' ? websiteBlogReportsForCycle(websiteBlogCycle) : []),
+    [activeWorkspace?.key, websiteBlogCycle]
+  )
+  const workspaceDefaultReports = activeWorkspace?.weeklyReports?.length
+    ? activeWorkspace.weeklyReports
+    : websiteBlogDefaultReports
+  const displayWeeklyReports = weeklyReports.length ? weeklyReports : workspaceDefaultReports
+  const isWebsiteBlogWorkspace = activeWorkspace?.key === 'websiteBlog'
   const historyWeekGroups = useMemo(() => groupReportHistoryByWeek(reportHistory), [reportHistory])
   const selectedHistoryWeek =
     historyWeekGroups.find((group) => group.key === selectedHistoryWeekKey) || historyWeekGroups[0]
@@ -2931,7 +6409,11 @@ function StoreOperationsPanel({
       displayWeeklyReports.map((report) => {
         const date = report.date
           ? parseLocalDate(report.date)
-          : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
+          : isWebsiteBlogWorkspace
+            ? websiteBlogDefaultReports[report.dayOffset]?.date
+              ? parseLocalDate(websiteBlogDefaultReports[report.dayOffset].date || '')
+              : weeklyReportDates[0]
+            : weeklyReportDates[report.dayOffset] || weeklyReportDates[0]
         const dateKey = report.date || toISODate(date)
 
         return {
@@ -2941,7 +6423,7 @@ function StoreOperationsPanel({
           draftMemo: reportDrafts[dateKey] ?? report.memo ?? '',
         }
       }),
-    [displayWeeklyReports, reportDrafts, weeklyReportDates]
+    [displayWeeklyReports, isWebsiteBlogWorkspace, reportDrafts, websiteBlogDefaultReports, weeklyReportDates]
   )
   const selectedWeeklyReport =
     weeklyReportItems.find((item) => item.dateKey === selectedWeeklyReportDate) || weeklyReportItems[0]
@@ -2961,6 +6443,9 @@ function StoreOperationsPanel({
           ? '자동저장됨'
           : '자동저장 대기'
     : ''
+  const showProcessRoadmap = activeWorkspace?.key === 'googleProfile'
+  const showWeeklyReportPanel = activeWorkspace?.key === 'googleProfile'
+  const showReportHistoryPanel = activeWorkspace?.key !== 'googleAds'
 
   useEffect(() => {
     reportDraftsRef.current = reportDrafts
@@ -2979,6 +6464,20 @@ function StoreOperationsPanel({
 
     return () => window.clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    if (activeWorkspace?.key !== 'websiteBlog') return
+
+    setWebsiteBlogCycleIndex(websiteBlogCurrentCycleIndex(websiteBlogContractStart, getKstCalendarDate()))
+  }, [activeWorkspace?.key, selectedStore?.title, websiteBlogContractStart])
+
+  useEffect(() => {
+    if (activeWorkspace?.key !== 'websiteBlog') return
+
+    setWeeklyReports(websiteBlogDefaultReports)
+    setReportDrafts(Object.fromEntries(websiteBlogDefaultReports.map((report) => [report.date, report.memo || ''])))
+    setSelectedWeeklyReportDate(websiteBlogDefaultReports[0]?.date || '')
+  }, [activeWorkspace?.key, selectedStore?.title, websiteBlogCycleIndex, websiteBlogDefaultReports])
 
   useEffect(() => {
     if (workspaces.length && !workspaces.some((workspace) => workspace.key === activeProduct)) {
@@ -3009,7 +6508,10 @@ function StoreOperationsPanel({
   }, [historyWeekGroups, selectedHistoryWeekKey])
 
   const loadWeeklyReports = useCallback(async (silent = false) => {
-    if (!selectedStore || !activeWorkspace?.weeklyReports?.length) {
+    const supportsReportRecords =
+      activeWorkspace?.key === 'websiteBlog' || Boolean(activeWorkspace?.weeklyReports?.length)
+
+    if (!selectedStore || !activeWorkspace || !supportsReportRecords) {
       setWeeklyReports([])
       setReportHistory([])
       setWeeklyReportMessage('')
@@ -3040,9 +6542,12 @@ function StoreOperationsPanel({
       ])
       const data = (await weekResponse.json()) as WeeklyReportApiResponse
       const historyData = (await historyResponse.json()) as WeeklyReportApiResponse
-      setWeeklyReports(data.reports || [])
+      const nextReports = activeWorkspace.key === 'websiteBlog'
+        ? mergeWebsiteBlogMonthReports(websiteBlogDefaultReports, [...(historyData.reports || []), ...(data.reports || [])])
+        : data.reports || []
+      setWeeklyReports(nextReports)
       setReportHistory(historyData.reports || [])
-      const nextReportDrafts = Object.fromEntries((data.reports || []).map((report) => [report.date, report.memo || '']))
+      const nextReportDrafts = Object.fromEntries(nextReports.map((report) => [report.date, report.memo || '']))
       lastSavedReportMemoRef.current = nextReportDrafts
       setReportDrafts(nextReportDrafts)
       setWeeklyReportMessage(
@@ -3054,9 +6559,12 @@ function StoreOperationsPanel({
           (historyData.connected ? '기존 보고 현황을 불러왔습니다.' : '보고 DB 연결 전 샘플 기존 보고로 표시 중입니다.')
       )
     } catch {
-      setWeeklyReports(activeWorkspace.weeklyReports || [])
+      const fallbackReports = activeWorkspace.key === 'websiteBlog'
+        ? websiteBlogDefaultReports
+        : activeWorkspace.weeklyReports || []
+      setWeeklyReports(fallbackReports)
       const nextReportDrafts = Object.fromEntries(
-        (activeWorkspace.weeklyReports || []).map((report) => {
+        fallbackReports.map((report) => {
           const date = report.date || toISODate(weeklyReportDates[report.dayOffset] || weeklyReportDates[0])
           return [date, report.memo || '']
         })
@@ -3072,7 +6580,7 @@ function StoreOperationsPanel({
         setReportHistoryLoading(false)
       }
     }
-  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart, weeklyReportDates])
+  }, [activeWorkspace?.key, activeWorkspace?.weeklyReports, selectedStore, weekStart, websiteBlogDefaultReports, weeklyReportDates])
 
   useEffect(() => {
     let cancelled = false
@@ -3143,6 +6651,8 @@ function StoreOperationsPanel({
     })
 
     try {
+      const reportWeekStart =
+        activeWorkspace.key === 'websiteBlog' ? toISODate(getMondayStart(parseLocalDate(reportDateKey))) : weekStart
       const response = await fetch('/api/erp/reports', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -3150,7 +6660,7 @@ function StoreOperationsPanel({
           store: selectedStore.title,
           product: activeWorkspace.key,
           date: reportDateKey,
-          weekStart,
+          weekStart: reportWeekStart,
           title: report.title,
           memo: reportMemo,
           status,
@@ -3158,8 +6668,27 @@ function StoreOperationsPanel({
       })
       const data = (await response.json()) as WeeklyReportApiResponse
       if (data.connected) {
-        setWeeklyReports(data.reports || [])
-        const nextReportDrafts = Object.fromEntries((data.reports || []).map((item) => [item.date, item.memo || '']))
+        const savedReport = {
+          ...report,
+          date: reportDateKey,
+          memo: reportMemo,
+          status,
+          reporter: status === '보고완료' ? report.reporter || '블링크애드' : report.reporter,
+          completedAt: status === '보고완료' ? report.completedAt || new Date().toISOString() : report.completedAt,
+        }
+        const nextReports =
+          activeWorkspace.key === 'websiteBlog'
+            ? mergeWebsiteBlogMonthReports(websiteBlogDefaultReports, [
+                ...reportHistory,
+                ...(data.reports || []),
+                savedReport,
+              ])
+            : data.reports || []
+        setWeeklyReports(nextReports)
+        if (activeWorkspace.key === 'websiteBlog') {
+          setReportHistory((current) => upsertReportHistory(current, savedReport))
+        }
+        const nextReportDrafts = Object.fromEntries(nextReports.map((item) => [item.date, item.memo || '']))
         lastSavedReportMemoRef.current = {
           ...lastSavedReportMemoRef.current,
           ...nextReportDrafts,
@@ -3205,7 +6734,7 @@ function StoreOperationsPanel({
         setAutoSavingReportDate(null)
       }
     }
-  }, [activeWorkspace, displayWeeklyReports, selectedStore, weekStart, weeklyReportDates])
+  }, [activeWorkspace, displayWeeklyReports, reportHistory, selectedStore, websiteBlogDefaultReports, weekStart, weeklyReportDates])
 
   const updateWeeklyReportStatus = async (
     report: StoreWeeklyReport,
@@ -3314,6 +6843,18 @@ function StoreOperationsPanel({
 
   return (
     <section className="space-y-5">
+      {!selectedStore && view.rows.length ? (
+        <StoreReportOverviewPanel
+          stores={view.rows}
+          selectedStoreTitle={selectedStoreTitle}
+          weekDates={weeklyReportDates}
+          weekStart={weekStart}
+          onSelectStore={(storeTitle) => {
+            onSelectStore?.(storeTitle)
+            setActiveProduct('googleProfile')
+          }}
+        />
+      ) : null}
       {selectedStore ? (
         <>
           <div className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
@@ -3351,9 +6892,13 @@ function StoreOperationsPanel({
             </div>
           </div>
 
+          {showProcessRoadmap && selectedStore.processSteps?.length ? (
+            <StoreProcessRoadmap store={selectedStore} />
+          ) : null}
+
           {activeWorkspace ? (
             <div className="rounded-lg border border-white/10 bg-black">
-              {weeklyReportItems.length && selectedWeeklyReport ? (
+              {showWeeklyReportPanel && weeklyReportItems.length && selectedWeeklyReport ? (
                 <div className="border-b border-white/10 p-5 md:p-6">
                   <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
                     <div>
@@ -3391,13 +6936,23 @@ function StoreOperationsPanel({
                   <div className="mt-5 grid gap-2 lg:grid-cols-5">
                     {weeklyReportItems.map((item) => {
                       const active = item.dateKey === selectedWeeklyReport.dateKey
+                      const reportUpdating = updatingReportDate === item.dateKey
+                      const reportDone = item.report.status === '보고완료'
 
                       return (
-                        <button
+                        <article
                           key={`${activeWorkspace.key}-report-tab-${item.dateKey}`}
-                          type="button"
                           onClick={() => setSelectedWeeklyReportDate(item.dateKey)}
-                          className={`min-h-[156px] rounded-lg border p-4 text-left transition ${
+                          onKeyDown={(event) => {
+                            if ((event.target as HTMLElement).closest('button')) return
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault()
+                              setSelectedWeeklyReportDate(item.dateKey)
+                            }
+                          }}
+                          role="button"
+                          tabIndex={0}
+                          className={`min-h-[188px] cursor-pointer rounded-lg border p-4 text-left outline-none transition ${
                             active
                               ? 'border-brand-blue/60 bg-brand-blue/15'
                               : 'border-white/10 bg-white/[0.035] hover:border-white/25 hover:bg-white/[0.06]'
@@ -3418,7 +6973,22 @@ function StoreOperationsPanel({
                           <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
                             {item.draftMemo || '보고 내용 입력 전입니다.'}
                           </p>
-                        </button>
+                          <button
+                            type="button"
+                            disabled={reportUpdating || reportDone}
+                            onClick={(event) => {
+                              event.stopPropagation()
+                              updateWeeklyReportStatus(item.report, item.dateKey, '보고완료', item.draftMemo)
+                            }}
+                            className={`mt-3 h-9 w-full rounded-md border px-3 text-xs font-black transition ${
+                              reportDone
+                                ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                                : 'border-white/15 bg-black/30 text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                            } disabled:cursor-not-allowed disabled:opacity-80`}
+                          >
+                            {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
+                          </button>
+                        </article>
                       )
                     })}
                   </div>
@@ -3488,6 +7058,25 @@ function StoreOperationsPanel({
                       </label>
                       <button
                         type="button"
+                        disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating || selectedWeeklyReport.report.status === '보고완료'}
+                        onClick={() =>
+                          updateWeeklyReportStatus(
+                            selectedWeeklyReport.report,
+                            selectedWeeklyReport.dateKey,
+                            '보고완료',
+                            selectedWeeklyReport.draftMemo
+                          )
+                        }
+                        className="mt-3 h-10 w-full rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+                      >
+                        {selectedWeeklyReportUpdating
+                          ? '처리 중'
+                          : selectedWeeklyReport.report.status === '보고완료'
+                            ? '보고완료됨'
+                            : '보고완료 처리'}
+                      </button>
+                      <button
+                        type="button"
                         disabled={selectedWeeklyReportUpdating || selectedWeeklyReportGenerating}
                         onClick={() =>
                           updateWeeklyReportStatus(
@@ -3524,16 +7113,54 @@ function StoreOperationsPanel({
                 </div>
               ) : null}
               {activeWorkspace.key === 'googleAds' ? (
-                <GoogleAdsPerformancePanel workspace={activeWorkspace} storeTitle={selectedStore.title} />
+                <GoogleAdsPerformancePanel storeTitle={selectedStore.title} />
               ) : null}
-              {activeWorkspace.key === 'websiteBlog' ? <WebsiteBlogProductionPanel workspace={activeWorkspace} /> : null}
+              {activeWorkspace.key === 'websiteBlog' ? (
+                <WebsiteBlogContentQueuePanel
+                  storeTitle={selectedStore.title}
+                  workspace={activeWorkspace}
+                  cycle={websiteBlogCycle}
+                  items={weeklyReportItems}
+                />
+              ) : null}
+              {activeWorkspace.key === 'websiteBlog' && weeklyReportItems.length && selectedWeeklyReport ? (
+                <WebsiteBlogWorkLogPanel
+                  items={weeklyReportItems}
+                  selectedItem={selectedWeeklyReport}
+                  summary={weeklyReportSummary}
+                  loading={weeklyReportLoading}
+                  message={weeklyReportMessage}
+                  updatingDate={updatingReportDate}
+                  selectedUpdating={selectedWeeklyReportUpdating}
+                  autoSaveStatus={selectedWeeklyReportAutoSaveStatus}
+                  cycle={websiteBlogCycle}
+                  onRefresh={() => loadWeeklyReports()}
+                  onPreviousCycle={() => setWebsiteBlogCycleIndex((current) => Math.max(0, current - 1))}
+                  onNextCycle={() => setWebsiteBlogCycleIndex((current) => current + 1)}
+                  onSelectDate={setSelectedWeeklyReportDate}
+                  onChangeMemo={(dateKey, value) =>
+                    setReportDrafts((current) => ({
+                      ...current,
+                      [dateKey]: value,
+                    }))
+                  }
+                  onSave={(item, status, memo) =>
+                    updateWeeklyReportStatus(item.report, item.dateKey, status, memo)
+                  }
+                />
+              ) : null}
+              {showReportHistoryPanel ? (
               <div className="border-b border-white/10 p-5 md:p-6">
                 <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                   <div>
                     <p className="text-sm font-bold text-brand-blue">Report History</p>
-                    <h4 className="mt-2 text-xl font-black text-white">기존 보고 현황</h4>
+                    <h4 className="mt-2 text-xl font-black text-white">
+                      {isWebsiteBlogWorkspace ? '날짜별 작업내역 보관' : '기존 보고 현황'}
+                    </h4>
                     <p className="mt-2 text-sm font-semibold leading-6 text-gray-500 keep-all">
-                      완료된 보고와 이전 보고 내용을 주차별로 모아 확인합니다.
+                      {isWebsiteBlogWorkspace
+                        ? '웹사이트·블로그 실제 작업 기록을 날짜별로 모아 확인합니다.'
+                        : '완료된 보고와 이전 보고 내용을 주차별로 모아 확인합니다.'}
                     </p>
                   </div>
                   <p className="text-xs font-black text-gray-600">
@@ -3635,6 +7262,7 @@ function StoreOperationsPanel({
                   )}
                 </div>
               </div>
+              ) : null}
             </div>
           ) : (
             <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
@@ -3677,10 +7305,77 @@ function StoreOperationsPanel({
           ) : null}
         </>
       ) : (
-        <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
-          등록된 운영 매장이 없습니다.
-        </p>
+        !view.rows.length ? (
+          <p className="rounded-lg border border-white/10 bg-black p-5 text-sm font-bold text-gray-500">
+            등록된 운영 매장이 없습니다.
+          </p>
+        ) : null
       )}
+    </section>
+  )
+}
+
+function StoreProcessRoadmap({ store }: { store: OperationRow }) {
+  const steps = store.processSteps || []
+  const doneCount = steps.filter((step) => step.status === '완료').length
+  const inProgressCount = steps.filter((step) => step.status === '진행중').length
+  const packageLabel = store.meta.replace('계약상품 · ', '')
+
+  return (
+    <section className="rounded-lg border border-white/10 bg-[#0b0d12] p-5 md:p-6">
+      <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Process Roadmap</p>
+          <h3 className="mt-2 text-xl font-black text-white">작업 진행 프로세스</h3>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            계약 상품 구성에 맞춰 온보딩부터 유지/관리 단계까지 현재 위치를 표시합니다.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2 text-xs font-black">
+          <span className="rounded-full border border-white/10 bg-black px-3 py-1.5 text-gray-300">{packageLabel}</span>
+          <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+            완료 {doneCount}
+          </span>
+          <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+            진행 {inProgressCount}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 xl:grid-cols-6">
+        {steps.map((step, index) => {
+          const last = index === steps.length - 1
+
+          return (
+            <article
+              key={`${store.title}-process-${step.title}`}
+              className="rounded-lg border border-white/10 bg-black p-4"
+            >
+              <div className="flex items-center gap-2">
+                <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border ${processNodeClass(step.status)}`}>
+                  {step.status === '완료' ? (
+                    <CheckCircle2 className="h-5 w-5" />
+                  ) : step.status === '진행중' ? (
+                    <RefreshCw className="h-4 w-4" />
+                  ) : (
+                    <CircleDot className="h-4 w-4" />
+                  )}
+                </span>
+                {!last ? <span className="hidden h-px min-w-8 flex-1 bg-white/10 xl:block" /> : null}
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <p className="text-[11px] font-black text-gray-600">STEP {index + 1}</p>
+                <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${processStatusBadge(step.status)}`}>
+                  {step.status}
+                </span>
+              </div>
+              <p className="mt-3 min-h-10 text-sm font-black leading-5 text-white keep-all">{step.title}</p>
+              <p className="mt-2 text-[11px] font-black text-brand-blue">{step.product}</p>
+              <p className="mt-2 line-clamp-3 text-xs font-semibold leading-5 text-gray-500 keep-all">{step.memo}</p>
+            </article>
+          )
+        })}
+      </div>
     </section>
   )
 }
@@ -3694,8 +7389,10 @@ function StoreWorkspaceTabs({
   activeProduct: StoreProductKey
   onSelectProduct: (product: StoreProductKey) => void
 }) {
+  const gridClass = workspaces.length >= 3 ? 'grid-cols-3' : workspaces.length === 2 ? 'grid-cols-2' : 'grid-cols-1'
+
   return (
-    <div className="mt-4 grid w-full max-w-xl grid-cols-3 gap-1 rounded-lg border border-white/10 bg-black p-1">
+    <div className={`mt-4 grid w-full max-w-xl ${gridClass} gap-1 rounded-lg border border-white/10 bg-black p-1`}>
       {workspaces.map((workspace) => {
         const active = workspace.key === activeProduct
 
@@ -3739,7 +7436,6 @@ function BlinkAdMarketingPanel() {
           storeTitle="블링크애드"
           heading="블링크애드 Google Ads 성과"
           description="Google Ads API에서 블링크애드 클라이언트유치 캠페인의 노출, 클릭, 광고비를 직접 불러옵니다."
-          emptyValue="연동 전"
         />
       </div>
     </section>
@@ -3747,17 +7443,13 @@ function BlinkAdMarketingPanel() {
 }
 
 function GoogleAdsPerformancePanel({
-  workspace,
   storeTitle,
   heading,
   description,
-  emptyValue = '-',
 }: {
-  workspace?: StoreProductWorkspace
   storeTitle: string
   heading?: string
   description?: string
-  emptyValue?: string
 }) {
   const [adsData, setAdsData] = useState<GoogleAdsApiResponse | null>(null)
   const [adsLoading, setAdsLoading] = useState(false)
@@ -3784,62 +7476,11 @@ function GoogleAdsPerformancePanel({
   }, [loadAdsData])
 
   const summary = adsData?.summary
-  const previousSummary = adsData?.previousSummary
-  const ctr = summary ? percent(summary.clicks, summary.impressions) : ''
-  const previousCtr = previousSummary ? percent(previousSummary.clicks, previousSummary.impressions) : ''
-  const cpc = summary && summary.clicks > 0 ? summary.costMicros / 1000000 / summary.clicks : 0
-  const previousCpc = previousSummary && previousSummary.clicks > 0 ? previousSummary.costMicros / 1000000 / previousSummary.clicks : 0
-  const rows = [
-    {
-      label: '노출',
-      value: summary ? formatCount(summary.impressions) : metricValue(workspace, '노출') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.impressions, previousSummary.impressions, '회') : '-',
-      basis: '캠페인/광고그룹별 impressions',
-      action: '지역·브랜드·서비스 키워드 분리 후 낭비 노출을 확인합니다.',
-    },
-    {
-      label: '클릭',
-      value: summary ? formatCount(summary.clicks) : metricValue(workspace, '클릭') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.clicks, previousSummary.clicks, '건') : '-',
-      basis: '광고 클릭수',
-      action: '실제 매장 행동으로 이어지는 클릭인지 로컬 액션과 함께 봅니다.',
-    },
-    {
-      label: 'CTR',
-      value: ctr || '-',
-      delta: ctr && previousCtr ? `${previousCtr} → ${ctr}` : '-',
-      basis: '클릭 / 노출',
-      action: '노출 대비 클릭 효율이 낮으면 키워드와 광고문안을 조정합니다.',
-    },
-    {
-      label: '광고비',
-      value: summary ? formatCostMicros(summary.costMicros) : metricValue(workspace, '광고비') || emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.costMicros / 1000000, previousSummary.costMicros / 1000000, '원') : '-',
-      basis: '월 예산 대비 소진액',
-      action: '운영 수수료와 광고비를 분리해 추적합니다.',
-    },
-    {
-      label: 'CPC',
-      value: cpc ? `${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
-      delta: cpc && previousCpc ? `${Math.round(previousCpc).toLocaleString('ko-KR')}원 → ${Math.round(cpc).toLocaleString('ko-KR')}원` : '-',
-      basis: '광고비 / 클릭',
-      action: '클릭 단가가 오르면 지역·서비스 키워드 예산을 다시 나눕니다.',
-    },
-    {
-      label: '로컬 액션',
-      value: summary ? formatCount(summary.localActions) : emptyValue,
-      delta: summary && previousSummary ? deltaText(summary.localActions, previousSummary.localActions, '건') : '-',
-      basis: '길찾기, 전화, 웹사이트 클릭',
-      action: 'GBP 행동과 중복 집계하지 않고 광고 기여 행동으로 따로 봅니다.',
-    },
-  ]
-  const localActionCards = summary
-    ? [
-        { label: '길찾기', value: summary.localActionDirectionRequests },
-        { label: '전화', value: summary.localActionCalls },
-        { label: '웹사이트', value: summary.localActionWebsiteClicks },
-      ]
-    : []
+  const campaignSummaries = adsData?.campaignSummaries || []
+  const searchTerms = adsData?.searchTerms || []
+  const monthlyReportPreview = adsData
+    ? buildAdsMonthlyReportPreview(storeTitle, adsData, campaignSummaries)
+    : null
 
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
@@ -3894,36 +7535,164 @@ function GoogleAdsPerformancePanel({
         </div>
       ) : null}
 
-      <div className="mt-4 overflow-x-auto rounded-lg border border-white/10">
-        <div className="min-w-[760px]">
-          <div className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.12em] text-gray-500">
-            <span>지표</span>
-            <span>현재값</span>
-            <span>전기 비교</span>
-            <span>확인 기준</span>
-            <span>운영 액션</span>
+      {campaignSummaries.length ? (
+        <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="flex flex-col gap-1 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-end sm:justify-between">
+            <p className="text-sm font-black text-white">캠페인별 광고 성과</p>
+            <p className="text-xs font-bold text-gray-500">
+              {adsData?.period.days ? `최근 ${adsData.period.days}일 기준` : '최근 기간 기준'}
+            </p>
           </div>
-          {rows.map((row) => (
-            <div key={row.label} className="grid grid-cols-[120px_140px_150px_1fr_1.2fr] gap-3 border-t border-white/10 px-4 py-4 text-sm">
-              <span className="font-black text-white">{row.label}</span>
-              <span className="font-black text-blue-100">{adsLoading ? '확인 중' : row.value || '-'}</span>
-              <span className="font-bold text-gray-400">{adsLoading ? '-' : row.delta}</span>
-              <span className="font-semibold leading-6 text-gray-400 keep-all">{row.basis}</span>
-              <span className="font-semibold leading-6 text-gray-500 keep-all">{row.action}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+          <div className="overflow-x-auto">
+            <div className="min-w-[980px]">
+              <div className="grid grid-cols-[minmax(280px,1.7fr)_88px_repeat(6,minmax(96px,0.8fr))] gap-3 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.08em] text-gray-500">
+                <span>캠페인명</span>
+                <span>상태</span>
+                <span className="text-right">노출</span>
+                <span className="text-right">클릭</span>
+                <span className="text-right">CTR</span>
+                <span className="text-right">광고비</span>
+                <span className="text-right">CPC</span>
+                <span className="text-right">액션</span>
+              </div>
+              {campaignSummaries.map((campaign) => {
+                const campaignCtr = percent(campaign.clicks, campaign.impressions) || '-'
+                const campaignCpc =
+                  campaign.clicks > 0
+                    ? `${Math.round(campaign.costMicros / 1000000 / campaign.clicks).toLocaleString('ko-KR')}원`
+                    : '-'
 
-      {localActionCards.length ? (
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          {localActionCards.map((item) => (
-            <div key={item.label} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-              <p className="text-xs font-black text-gray-500">{item.label}</p>
-              <p className="mt-3 text-3xl font-black text-white">{item.value.toLocaleString('ko-KR')}</p>
-              <p className="mt-2 text-xs font-semibold text-gray-500">광고 로컬 액션 기준</p>
+                return (
+                  <div
+                    key={campaign.id || campaign.name}
+                    className="grid grid-cols-[minmax(280px,1.7fr)_88px_repeat(6,minmax(96px,0.8fr))] gap-3 border-t border-white/10 px-4 py-4 text-sm"
+                  >
+                    <div className="min-w-0">
+                      <p className="break-all font-black text-white">{campaign.name || '-'}</p>
+                      <p className="mt-1 text-[11px] font-bold text-gray-600">
+                        {campaign.channel || '-'} · {campaign.startDate || '시작일 없음'}
+                      </p>
+                    </div>
+                    <span
+                      className={`inline-flex h-fit w-fit rounded-full border px-2 py-1 text-[11px] font-black ${adsCampaignStatusBadge(campaign.status)}`}
+                    >
+                      {campaign.status || '-'}
+                    </span>
+                    <span className="text-right font-black text-blue-100">{formatCount(campaign.impressions)}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(campaign.clicks)}</span>
+                    <span className="text-right font-bold text-gray-300">{campaignCtr}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCostMicros(campaign.costMicros)}</span>
+                    <span className="text-right font-bold text-gray-300">{campaignCpc}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCount(campaign.localActions)}</span>
+                  </div>
+                )
+              })}
             </div>
-          ))}
+          </div>
+        </div>
+      ) : null}
+
+      {adsData?.source === 'google_ads_api' ? (
+        <div className="mt-4 overflow-hidden rounded-lg border border-white/10 bg-white/[0.025]">
+          <div className="flex flex-col gap-1 border-b border-white/10 px-4 py-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-black text-white">클릭 발생 검색어</p>
+              <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                실제 사용자가 검색한 검색어 기준입니다. Google Ads 정책상 낮은 볼륨 검색어는 일부 표시되지 않을 수 있습니다.
+              </p>
+            </div>
+            <p className="text-xs font-bold text-gray-500">
+              {searchTerms.length ? `상위 ${searchTerms.length}개` : '검색어 없음'}
+            </p>
+          </div>
+          {searchTerms.length ? (
+            <div className="overflow-x-auto">
+              <div className="min-w-[980px]">
+                <div className="grid grid-cols-[minmax(240px,1.4fr)_minmax(240px,1.2fr)_minmax(160px,0.8fr)_repeat(4,minmax(92px,0.55fr))] gap-3 bg-white/[0.04] px-4 py-3 text-xs font-black uppercase tracking-[0.08em] text-gray-500">
+                  <span>검색어</span>
+                  <span>캠페인</span>
+                  <span>광고그룹</span>
+                  <span className="text-right">노출</span>
+                  <span className="text-right">클릭</span>
+                  <span className="text-right">CTR</span>
+                  <span className="text-right">광고비</span>
+                </div>
+                {searchTerms.map((term) => (
+                  <div
+                    key={`${term.searchTerm}-${term.campaignName}-${term.adGroupName}`}
+                    className="grid grid-cols-[minmax(240px,1.4fr)_minmax(240px,1.2fr)_minmax(160px,0.8fr)_repeat(4,minmax(92px,0.55fr))] gap-3 border-t border-white/10 px-4 py-4 text-sm"
+                  >
+                    <span className="break-all font-black text-white">{term.searchTerm}</span>
+                    <span className="break-all font-bold text-gray-300">{term.campaignName || '-'}</span>
+                    <span className="break-all font-bold text-gray-500">{term.adGroupName || '-'}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(term.impressions)}</span>
+                    <span className="text-right font-black text-blue-100">{formatCount(term.clicks)}</span>
+                    <span className="text-right font-bold text-gray-300">{percent(term.clicks, term.impressions) || '-'}</span>
+                    <span className="text-right font-bold text-gray-300">{formatCostMicros(term.costMicros)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="px-4 py-5 text-sm font-semibold leading-6 text-gray-500 keep-all">
+              {adsData.searchTermMessage ||
+                (summary?.clicks
+                  ? '클릭은 발생했지만 Google Ads에서 공개 가능한 검색어가 아직 내려오지 않았습니다.'
+                  : '클릭이 발생한 검색어가 아직 없습니다.')}
+            </div>
+          )}
+          {adsData.searchTermMessage && searchTerms.length ? (
+            <div className="border-t border-white/10 px-4 py-3 text-xs font-semibold leading-5 text-amber-100 keep-all">
+              {adsData.searchTermMessage}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {monthlyReportPreview ? (
+        <div className="mt-4 rounded-lg border border-white/10 bg-[#0b0d12]">
+          <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Monthly Report</p>
+              <h5 className="mt-2 text-lg font-black text-white">월간 광고 성과 보고서 미리보기</h5>
+            </div>
+            <p className="text-xs font-black text-gray-600">{monthlyReportPreview.periodLabel} · 월 1회 보고</p>
+          </div>
+          <div className="grid gap-4 p-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <p className="text-xs font-black text-gray-500">보고 요약</p>
+              <div className="mt-3 space-y-3">
+                {monthlyReportPreview.summaryLines.map((line) => (
+                  <p key={line} className="text-sm font-semibold leading-6 text-gray-300 keep-all">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+              <p className="text-xs font-black text-gray-500">다음 운영 액션</p>
+              <div className="mt-3 space-y-2">
+                {monthlyReportPreview.actionItems.map((item, index) => (
+                  <div key={item} className="flex gap-3 rounded-md bg-white/[0.03] px-3 py-2">
+                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded bg-white text-[11px] font-black text-black">
+                      {index + 1}
+                    </span>
+                    <p className="text-sm font-semibold leading-6 text-gray-300 keep-all">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4 lg:col-span-2">
+              <p className="text-xs font-black text-gray-500">캠페인별 보고 문구</p>
+              <div className="mt-3 grid gap-2 md:grid-cols-2">
+                {monthlyReportPreview.campaignLines.map((line) => (
+                  <p key={line} className="rounded-md bg-white/[0.03] px-3 py-2 text-sm font-semibold leading-6 text-gray-400 keep-all">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       ) : null}
 
@@ -3955,78 +7724,414 @@ function GoogleAdsPerformancePanel({
   )
 }
 
-function WebsiteBlogProductionPanel({ workspace }: { workspace: StoreProductWorkspace }) {
-  const blogPosts = workspace.blogPosts || []
+function WebsiteBlogContentQueuePanel({
+  storeTitle,
+  workspace,
+  cycle,
+  items,
+}: {
+  storeTitle: string
+  workspace: StoreProductWorkspace
+  cycle: WebsiteBlogCycle
+  items: WeeklyReportItem[]
+}) {
+  const posts = workspace.blogPosts || []
+  const contentDb = workspace.contentDb
+
+  if (!posts.length && !contentDb) return null
+
+  const reviewCount = posts.filter((post) => (post.notionStatus || post.status) === 'Review').length
+  const publishedCount = posts.filter((post) => (post.notionStatus || post.status) === 'Published').length
+  const doneSlotCount = items.filter((item) => item.report.status === '보고완료').length
 
   return (
     <div className="border-b border-white/10 p-5 md:p-6">
-      <div>
-        <p className="text-sm font-bold text-brand-blue">Website · Blog</p>
-        <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 작업 현황</h4>
-        <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-          GBP에서 연결할 공식 페이지, FAQ, 블로그 주제를 같은 흐름으로 관리합니다.
-        </p>
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Content Publishing Queue</p>
+          <h4 className="mt-2 text-xl font-black text-white">Notion Posts DB 발행 큐</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            {contentDb?.workflow ||
+              `${storeTitle} 웹사이트·블로그 글을 검수 상태와 발행일 기준으로 관리합니다.`}
+          </p>
+        </div>
+        {contentDb?.url ? (
+          <a
+            href={contentDb.url}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-white/15 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+          >
+            Posts DB 열기
+            <ExternalLink className="h-4 w-4" />
+          </a>
+        ) : null}
       </div>
-      <div className="mt-4 grid gap-3 lg:grid-cols-3">
-        {workspace.tasks.map((task, index) => (
-          <article key={`${workspace.key}-stage-${task.title}`} className="rounded-lg border border-white/10 bg-white/[0.035] p-4">
-            <div className="flex items-center justify-between gap-3">
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-sm font-black text-black">
-                {index + 1}
-              </span>
-              <span className={`rounded-full border px-2 py-1 text-[11px] font-black ${taskStatusBadge(task.status)}`}>
-                {task.status}
-              </span>
-            </div>
-            <h5 className="mt-4 font-black text-white keep-all">{task.title}</h5>
-            <p className="mt-3 text-sm font-semibold leading-6 text-gray-500 keep-all">{task.memo}</p>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-4">
+        <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+          <p className="text-xs font-black text-gray-500">연결 DB</p>
+          <p className="mt-2 text-lg font-black text-white keep-all">{contentDb?.name || 'Posts DB 미지정'}</p>
+          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+            {contentDb?.publishRule || 'Notion DB 연결 후 자동 발행 규칙을 표시합니다.'}
+          </p>
+        </div>
+        <div className="rounded-lg border border-brand-blue/20 bg-brand-blue/10 p-4">
+          <p className="text-xs font-black text-blue-100/70">Review</p>
+          <p className="mt-2 text-3xl font-black text-blue-50">{reviewCount}</p>
+          <p className="mt-2 text-xs font-semibold text-blue-100/70">검수 대기 글</p>
+        </div>
+        <div className="rounded-lg border border-emerald-300/20 bg-emerald-300/10 p-4">
+          <p className="text-xs font-black text-emerald-100/70">Published</p>
+          <p className="mt-2 text-3xl font-black text-emerald-50">{publishedCount}</p>
+          <p className="mt-2 text-xs font-semibold text-emerald-100/70">발행 예약/완료 글</p>
+        </div>
+        <div className="rounded-lg border border-white/10 bg-white/[0.025] p-4">
+          <p className="text-xs font-black text-gray-500">ERP 작업 슬롯</p>
+          <p className="mt-2 text-3xl font-black text-white">{doneSlotCount}/{items.length || posts.length}</p>
+          <p className="mt-2 text-xs font-semibold text-gray-500">
+            {cycle.index + 1}개월차 · {formatDateShort(cycle.start)}~{formatDateShort(cycle.end)}
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 lg:grid-cols-3">
+        {[
+          {
+            label: '1. 글 작성/검수',
+            value: 'Review',
+            memo: '작성된 글은 먼저 Review 상태로 두고 제목, 본문, 사진, 내부 링크를 확인합니다.',
+          },
+          {
+            label: '2. 발행 예약',
+            value: 'Published + 날짜',
+            memo: '검수 후 발행일을 넣고 Published로 바꾸면 해당 날짜 자동 발행 대상으로 봅니다.',
+          },
+          {
+            label: '3. ERP 기록',
+            value: '작업현황 저장',
+            memo: '발행 또는 수정한 내용은 아래 8회 작업현황과 날짜별 작업내역 보관에 남깁니다.',
+          },
+        ].map((step) => (
+          <article key={step.label} className="rounded-lg border border-white/10 bg-black p-4">
+            <p className="text-xs font-black text-brand-blue">{step.label}</p>
+            <p className="mt-2 text-lg font-black text-white">{step.value}</p>
+            <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{step.memo}</p>
           </article>
         ))}
       </div>
-      {blogPosts.length ? (
-        <div className="mt-5 rounded-lg border border-white/10 bg-white/[0.025]">
-          <div className="flex flex-col gap-2 border-b border-white/10 px-4 py-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Blog Content</p>
-              <h5 className="mt-2 text-lg font-black text-white">작성 콘텐츠 목록</h5>
-              <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
-                실제로 작성한 블로그 글을 제목, 타깃 키워드, 발행 상태 기준으로 확인합니다.
-              </p>
-            </div>
-            <p className="text-xs font-black text-gray-600">{blogPosts.length}개 글</p>
-          </div>
-          <div className="divide-y divide-white/10">
-            {blogPosts.map((post, index) => (
-              <article
-                key={`${workspace.key}-blog-post-${post.title}`}
-                className="grid gap-4 px-4 py-4 text-sm lg:grid-cols-[44px_minmax(0,1.5fr)_minmax(140px,0.65fr)_minmax(120px,0.55fr)_minmax(112px,0.45fr)]"
-              >
-                <span className="flex h-9 w-9 items-center justify-center rounded-md border border-white/10 bg-black text-xs font-black text-gray-400">
-                  {String(index + 1).padStart(2, '0')}
+
+      <div className="mt-5 overflow-hidden rounded-lg border border-white/10 bg-black">
+        <div className="grid gap-3 border-b border-white/10 px-4 py-3 text-xs font-black text-gray-600 lg:grid-cols-[76px_minmax(220px,1.3fr)_120px_128px_minmax(180px,0.9fr)_128px]">
+          <p>회차</p>
+          <p>콘텐츠</p>
+          <p>DB 상태</p>
+          <p>발행일</p>
+          <p>다음 액션</p>
+          <p className="lg:text-right">ERP 상태</p>
+        </div>
+        {posts.map((post, index) => {
+          const slot = post.cycleSlot || index + 1
+          const slotItem = items.find((item) => item.report.dayOffset + 1 === slot)
+          const erpStatus = slotItem?.report.status || '보고대기'
+
+          return (
+            <article
+              key={`${storeTitle}-content-queue-${post.title}`}
+              className="grid gap-3 border-b border-white/10 px-4 py-4 text-sm last:border-b-0 lg:grid-cols-[76px_minmax(220px,1.3fr)_120px_128px_minmax(180px,0.9fr)_128px]"
+            >
+              <div>
+                <p className="font-black text-white">{slot}회차</p>
+                <p className="mt-1 text-xs font-bold text-gray-600">{post.channel}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="font-black leading-6 text-white keep-all">{post.title}</p>
+                <p className="mt-1 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                  {post.keyword} · {post.memo}
+                </p>
+              </div>
+              <div>
+                <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${blogPostWorkflowBadge(post)}`}>
+                  {post.notionStatus || post.status}
                 </span>
-                <div className="min-w-0">
-                  <h6 className="font-black leading-6 text-white keep-all">{post.title}</h6>
-                  <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">{post.memo}</p>
-                </div>
-                <div>
-                  <p className="text-[11px] font-black text-gray-600">타깃 키워드</p>
-                  <p className="mt-2 font-bold leading-6 text-gray-300 keep-all">{post.keyword}</p>
-                </div>
-                <div>
-                  <p className="text-[11px] font-black text-gray-600">채널</p>
-                  <p className="mt-2 font-bold leading-6 text-gray-300">{post.channel}</p>
-                  <p className="mt-1 text-xs font-semibold text-gray-600">{post.publishedAt}</p>
-                </div>
-                <div className="flex items-start lg:justify-end">
-                  <span className={`inline-flex rounded-full border px-2.5 py-1.5 text-xs font-black ${taskStatusBadge(post.status)}`}>
-                    {post.status}
-                  </span>
-                </div>
-              </article>
-            ))}
+              </div>
+              <p className="font-bold text-gray-400">{post.publishDate || post.publishedAt}</p>
+              <p className="text-xs font-semibold leading-5 text-gray-500 keep-all">
+                {post.nextAction || '검수 후 발행 상태를 업데이트합니다.'}
+              </p>
+              <div className="lg:text-right">
+                <span className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-black ${weeklyReportBadge(erpStatus as StoreWeeklyReportStatus)}`}>
+                  {erpStatus}
+                </span>
+              </div>
+            </article>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function WebsiteBlogWorkLogPanel({
+  items,
+  selectedItem,
+  summary,
+  loading,
+  message,
+  updatingDate,
+  selectedUpdating,
+  autoSaveStatus,
+  cycle,
+  onRefresh,
+  onPreviousCycle,
+  onNextCycle,
+  onSelectDate,
+  onChangeMemo,
+  onSave,
+}: {
+  items: WeeklyReportItem[]
+  selectedItem: WeeklyReportItem
+  summary: ReturnType<typeof summarizeReports>
+  loading: boolean
+  message: string
+  updatingDate: string | null
+  selectedUpdating: boolean
+  autoSaveStatus: string
+  cycle: WebsiteBlogCycle
+  onRefresh: () => void
+  onPreviousCycle: () => void
+  onNextCycle: () => void
+  onSelectDate: (dateKey: string) => void
+  onChangeMemo: (dateKey: string, value: string) => void
+  onSave: (item: WeeklyReportItem, status: StoreWeeklyReportStatus, memo: string) => void
+}) {
+  const cycleGroups = websiteBlogCycleGroups(items, cycle)
+
+  return (
+    <div className="border-b border-white/10 p-5 md:p-6">
+      <div className="flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+        <div>
+          <p className="text-sm font-bold text-brand-blue">Operation Cycle Work Log</p>
+          <h4 className="mt-2 text-xl font-black text-white">웹사이트·블로그 운영회차별 8회 작업현황</h4>
+          <p className="mt-2 max-w-3xl text-sm font-semibold leading-6 text-gray-500 keep-all">
+            계약 시작일 기준 1개월 운영기간마다 8회 작업 슬롯을 주차별로 관리합니다.
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2 text-xs font-black">
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-gray-200">
+              총 {items.length}회
+            </span>
+            <span className="rounded-full border border-emerald-300/25 bg-emerald-300/10 px-3 py-1.5 text-emerald-100">
+              완료 {summary.done}
+            </span>
+            <span className="rounded-full border border-brand-blue/25 bg-brand-blue/10 px-3 py-1.5 text-blue-100">
+              작성중 {summary.inProgress}
+            </span>
+            <span className="rounded-full border border-amber-300/25 bg-amber-300/10 px-3 py-1.5 text-amber-100">
+              대기 {summary.pending}
+            </span>
           </div>
         </div>
-      ) : null}
+        <div className="flex flex-col gap-3 xl:items-end">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onPreviousCycle}
+              disabled={cycle.index === 0}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5 disabled:cursor-not-allowed disabled:text-gray-700 disabled:hover:bg-transparent"
+              aria-label="이전 운영회차"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <p className="min-w-64 text-center text-sm font-black text-white">
+              {cycle.index + 1}개월차 · {formatDateShort(cycle.start)}~{formatDateShort(cycle.end)}
+            </p>
+            <button
+              type="button"
+              onClick={onNextCycle}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-white/10 text-gray-300 transition hover:bg-white/5"
+              aria-label="다음 운영회차"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
+          <p className="text-sm font-semibold leading-6 text-gray-500 xl:text-right keep-all">
+            {loading ? '보고 DB 확인 중입니다.' : message || '운영회차별 웹사이트·블로그 작업내역을 확인합니다.'}
+          </p>
+          <button
+            type="button"
+            disabled={loading}
+            onClick={onRefresh}
+            className="h-10 rounded-md border border-white/10 px-4 text-sm font-black text-gray-200 transition hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-white disabled:cursor-not-allowed disabled:text-gray-600"
+          >
+            {loading ? '동기화 중' : 'Notion 동기화'}
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 xl:grid-cols-4">
+        {cycleGroups.map((group) => (
+          <section key={`website-blog-cycle-group-${group.label}`} className="rounded-lg border border-white/10 bg-white/[0.025] p-3">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-black text-white">{group.label}</p>
+                <p className="mt-1 text-xs font-bold text-gray-600">{group.rangeLabel}</p>
+              </div>
+              <span className="rounded-full border border-white/10 bg-black px-2.5 py-1 text-[11px] font-black text-gray-300">
+                {group.items.filter((item) => item.report.status === '보고완료').length}/2
+              </span>
+            </div>
+            <div className="space-y-2">
+              {group.items.map((item) => {
+                const active = item.dateKey === selectedItem.dateKey
+                const reportUpdating = updatingDate === item.dateKey
+                const reportDone = item.report.status === '보고완료'
+
+                return (
+                  <article
+                    key={`website-blog-log-${item.dateKey}`}
+                    onClick={() => onSelectDate(item.dateKey)}
+                    onKeyDown={(event) => {
+                      if ((event.target as HTMLElement).closest('button')) return
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault()
+                        onSelectDate(item.dateKey)
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    className={`min-h-[156px] cursor-pointer rounded-lg border p-3 text-left outline-none transition ${
+                      active
+                        ? 'border-brand-blue/60 bg-brand-blue/15'
+                        : 'border-white/10 bg-black hover:border-white/25 hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-black text-gray-500">{formatWeekday(item.date)}</p>
+                        <p className="mt-1 whitespace-nowrap text-2xl font-black leading-none tracking-tight text-white">
+                          {formatMonthDay(item.date)}
+                        </p>
+                      </div>
+                      <span className={`shrink-0 whitespace-nowrap rounded-full border px-2 py-1 text-[11px] font-black leading-none ${weeklyReportBadge(item.report.status)}`}>
+                        {item.report.status}
+                      </span>
+                    </div>
+                    <p className="mt-3 font-black leading-6 text-white keep-all">
+                      {item.report.title}
+                    </p>
+                    <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+                      {item.draftMemo || '작업내역 입력 전입니다.'}
+                    </p>
+                    <button
+                      type="button"
+                      disabled={reportUpdating || reportDone}
+                      onClick={(event) => {
+                        event.stopPropagation()
+                        onSave(item, '보고완료', item.draftMemo)
+                      }}
+                      className={`mt-3 h-8 w-full rounded-md border px-3 text-xs font-black transition ${
+                        reportDone
+                          ? 'border-emerald-300/25 bg-emerald-300/10 text-emerald-100'
+                          : 'border-white/15 bg-white/[0.03] text-gray-200 hover:border-brand-blue/50 hover:bg-brand-blue/15 hover:text-white'
+                      } disabled:cursor-not-allowed disabled:opacity-80`}
+                    >
+                      {reportUpdating ? '처리 중' : reportDone ? '완료됨' : '완료처리'}
+                    </button>
+                  </article>
+                )
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-4 rounded-lg border border-white/10 bg-white/[0.025] p-4 xl:grid-cols-[1fr_280px]">
+        <div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.14em] text-brand-blue">Selected Date</p>
+              <h5 className="mt-2 text-2xl font-black text-white keep-all">{selectedItem.report.title}</h5>
+              <p className="mt-2 text-sm font-bold text-gray-500">
+                {formatMonthDay(selectedItem.date)} · {formatWeekday(selectedItem.date)}
+              </p>
+            </div>
+            <span className={`inline-flex w-fit rounded-full border px-3 py-1.5 text-xs font-black ${weeklyReportBadge(selectedItem.report.status)}`}>
+              {selectedItem.report.status}
+            </span>
+          </div>
+          <label className="mt-4 block">
+            <span className="mb-2 flex items-center justify-between gap-3 text-xs font-black text-gray-500">
+              <span>작업내역</span>
+              <span className={`shrink-0 rounded-full border px-2 py-1 text-[11px] leading-none ${autoSaveStatusBadge(autoSaveStatus)}`}>
+                {autoSaveStatus}
+              </span>
+            </span>
+            <textarea
+              value={selectedItem.draftMemo}
+              disabled={selectedUpdating}
+              onChange={(event) => onChangeMemo(selectedItem.dateKey, event.target.value)}
+              className="min-h-[320px] w-full resize-y rounded-md border border-white/10 bg-black px-4 py-3 text-sm font-semibold leading-6 text-gray-100 outline-none transition placeholder:text-gray-600 hover:border-white/25 focus:border-brand-blue/50 disabled:cursor-not-allowed disabled:text-gray-500"
+              placeholder={`예시)
+- 지점 페이지 대표 메뉴 섹션 문구 수정
+- FAQ 3개 추가
+- 블로그 초안 제목/키워드 정리
+- Google 프로필 연결 URL 후보 확인`}
+            />
+          </label>
+        </div>
+
+        <aside className="rounded-lg border border-white/10 bg-black p-4">
+          <p className="text-sm font-black text-white">기록 액션</p>
+          <p className="mt-2 text-xs font-semibold leading-5 text-gray-500 keep-all">
+            선택한 날짜의 작업 상태와 내용을 저장합니다.
+          </p>
+          <label className="mt-4 block">
+            <span className="mb-2 block text-[11px] font-black text-gray-600">작업상태</span>
+            <select
+              value={selectedItem.report.status}
+              disabled={selectedUpdating}
+              onChange={(event) =>
+                onSave(selectedItem, event.target.value as StoreWeeklyReportStatus, selectedItem.draftMemo)
+              }
+              className="h-10 w-full rounded-md border border-white/10 bg-[#0b0d12] px-3 text-sm font-black text-white outline-none transition hover:border-white/25 disabled:cursor-not-allowed disabled:text-gray-500"
+            >
+              {REPORT_STATUS_OPTIONS.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </label>
+          <button
+            type="button"
+            disabled={selectedUpdating || selectedItem.report.status === '보고완료'}
+            onClick={() => onSave(selectedItem, '보고완료', selectedItem.draftMemo)}
+            className="mt-3 h-10 w-full rounded-md border border-emerald-300/30 bg-emerald-300/10 px-3 text-sm font-black text-emerald-100 transition hover:border-emerald-300/50 hover:bg-emerald-300/15 disabled:cursor-not-allowed disabled:border-white/10 disabled:bg-white/5 disabled:text-gray-500"
+          >
+            {selectedUpdating
+              ? '처리 중'
+              : selectedItem.report.status === '보고완료'
+                ? '완료됨'
+                : '완료처리'}
+          </button>
+          <button
+            type="button"
+            disabled={selectedUpdating}
+            onClick={() => onSave(selectedItem, selectedItem.report.status, selectedItem.draftMemo)}
+            className="mt-3 h-10 w-full rounded-md bg-brand-blue px-3 text-sm font-black text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-700 disabled:text-gray-500"
+          >
+            {selectedUpdating ? '저장 중' : '작업내역 저장'}
+          </button>
+          {selectedItem.report.status === '보고완료' ? (
+            <p className="mt-4 text-xs font-bold leading-5 text-emerald-100/80 keep-all">
+              {selectedItem.report.reporter ? `${selectedItem.report.reporter} · ` : ''}
+              {selectedItem.report.completedAt
+                ? formatDateTime(selectedItem.report.completedAt)
+                : '보고완료'}
+            </p>
+          ) : null}
+        </aside>
+      </div>
     </div>
   )
 }
@@ -4116,11 +8221,153 @@ function summarizeReports(reports: StoreWeeklyReport[]) {
   }
 }
 
+function reportsForStoreWeek(store: OperationRow, apiReports: StoreWeeklyReport[] | undefined, weekDates: Date[]) {
+  const googleProfileReports =
+    store.productWorkspaces?.find((workspace) => workspace.key === 'googleProfile')?.weeklyReports || []
+  const sourceReports = apiReports?.length ? apiReports : googleProfileReports
+
+  return weekDates.map((date, index) => {
+    const dateKey = toISODate(date)
+    const report =
+      sourceReports.find((item) => item.date === dateKey) ||
+      sourceReports.find((item) => !item.date && item.dayOffset === index)
+
+    if (report) {
+      return {
+        ...report,
+        date: report.date || dateKey,
+        dayOffset: index,
+      }
+    }
+
+    return {
+      dayOffset: index,
+      date: dateKey,
+      status: '보고대기' as StoreWeeklyReportStatus,
+      title: '보고 예정',
+      memo: '',
+    }
+  })
+}
+
+function websiteBlogContractStartForStore(storeTitle?: string) {
+  const contract = contractRevenueRecords.find((record) => record.storeName === storeTitle)
+  if (contract?.contractStartDate) return parseLocalDate(contract.contractStartDate)
+  return startOfMonth(getKstCalendarDate())
+}
+
+function websiteBlogCurrentCycleIndex(contractStart: Date, today: Date) {
+  if (today < contractStart) return 0
+
+  for (let index = 0; index < 60; index += 1) {
+    const cycle = websiteBlogCycleRange(contractStart, index)
+    if (today >= cycle.start && today <= cycle.end) return index
+  }
+
+  return 0
+}
+
+function websiteBlogCycleRange(contractStart: Date, cycleIndex: number): WebsiteBlogCycle {
+  const start = addCalendarMonths(contractStart, cycleIndex)
+  const nextStart = addCalendarMonths(contractStart, cycleIndex + 1)
+
+  return {
+    index: cycleIndex,
+    start,
+    end: addDays(nextStart, -1),
+  }
+}
+
+function websiteBlogReportsForCycle(cycle: WebsiteBlogCycle): StoreWeeklyReport[] {
+  const slotDays = Array.from({ length: 4 }, (_, weekIndex) => {
+    const segmentStart = addDays(cycle.start, weekIndex * 7)
+    const segmentEnd = weekIndex === 3 ? cycle.end : minDate(addDays(segmentStart, 6), cycle.end)
+    const firstSlot = minDate(addDays(segmentStart, 1), segmentEnd)
+    const secondSlot = minDate(addDays(segmentStart, 4), segmentEnd)
+
+    return [firstSlot, secondSlot]
+  })
+
+  return slotDays.flat().map((date, index) => ({
+    dayOffset: index,
+    date: toISODate(date),
+    status: index === 0 ? '작성중' : '보고대기',
+    title: `${index + 1}회차 블로그 작업내역`,
+    memo: '',
+  }))
+}
+
+function mergeWebsiteBlogMonthReports(baseReports: StoreWeeklyReport[], savedReports: StoreWeeklyReport[]) {
+  const savedByDate = new Map<string, StoreWeeklyReport>()
+
+  savedReports.forEach((report) => {
+    if (report.date) savedByDate.set(report.date, report)
+  })
+
+  return baseReports.map((base) => {
+    const saved = base.date ? savedByDate.get(base.date) : undefined
+    if (!saved) return base
+
+    return {
+      ...base,
+      ...saved,
+      dayOffset: base.dayOffset,
+      date: base.date,
+      title: base.title,
+    }
+  })
+}
+
+function upsertReportHistory(current: StoreWeeklyReport[], report: StoreWeeklyReport) {
+  if (!report.date) return current
+
+  return [report, ...current.filter((item) => item.date !== report.date)].sort((a, b) =>
+    (b.date || '').localeCompare(a.date || '')
+  )
+}
+
+function websiteBlogCycleGroups(items: WeeklyReportItem[], cycle: WebsiteBlogCycle) {
+  return Array.from({ length: 4 }, (_, weekIndex) => ({
+    label: `${weekIndex + 1}주차`,
+    rangeLabel: websiteBlogCycleWeekRangeLabel(cycle, weekIndex),
+    items: items.filter((item) => Math.floor(item.report.dayOffset / 2) === weekIndex),
+  }))
+}
+
+function websiteBlogCycleWeekRangeLabel(cycle: WebsiteBlogCycle, weekIndex: number) {
+  const start = addDays(cycle.start, weekIndex * 7)
+  const end = weekIndex === 3 ? cycle.end : minDate(addDays(start, 6), cycle.end)
+
+  return `${formatMonthDay(start)}~${formatMonthDay(end)}`
+}
+
+function addCalendarMonths(date: Date, months: number) {
+  const monthStart = new Date(date.getFullYear(), date.getMonth() + months, 1)
+  const lastDate = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0).getDate()
+  return new Date(monthStart.getFullYear(), monthStart.getMonth(), Math.min(date.getDate(), lastDate))
+}
+
+function minDate(a: Date, b: Date) {
+  return a <= b ? a : b
+}
+
 function taskStatusBadge(status: string) {
   if (statusIncludesAny(status, ['진행', '작성', '검수'])) return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
   if (statusIncludesAny(status, ['완료', '운영중'])) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (statusIncludesAny(status, ['대기', '예정'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
   return 'border-white/15 bg-white/5 text-gray-300'
+}
+
+function processNodeClass(status: string) {
+  if (status === '완료') return 'border-emerald-300/35 bg-emerald-300/10 text-emerald-100'
+  if (status === '진행중') return 'border-brand-blue/40 bg-brand-blue/15 text-blue-100'
+  return 'border-white/15 bg-white/5 text-gray-400'
+}
+
+function processStatusBadge(status: string) {
+  if (status === '완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '진행중') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  return 'border-white/15 bg-white/5 text-gray-400'
 }
 
 function autoSaveStatusBadge(status: string) {
@@ -4130,9 +8377,33 @@ function autoSaveStatusBadge(status: string) {
   return 'border-white/15 bg-white/5 text-gray-400'
 }
 
-function metricValue(workspace: StoreProductWorkspace | undefined, keyword: string) {
-  if (!workspace) return ''
-  return workspace.metrics.find((metric) => metric.label.includes(keyword))?.value || ''
+function billingStatusBadge(status: BillingStatus) {
+  if (status === '입금완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '청구완료') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (status === '연체') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+  if (status === '보류') return 'border-white/15 bg-white/5 text-gray-400'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function settlementReadinessBadge(status: SettlementStoreReadiness) {
+  if (status === '정산대상') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function settlementProcessBadge(status: SettlementProcessStatus) {
+  if (status === '정산완료') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === '정산대기') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (status === '정산 제외') return 'border-rose-300/30 bg-rose-300/10 text-rose-100'
+  return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function blogPostWorkflowBadge(post: StoreBlogContentPost) {
+  const status = post.notionStatus || post.status
+
+  if (status === 'Published') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (status === 'Review') return 'border-brand-blue/35 bg-brand-blue/15 text-blue-100'
+  if (statusIncludesAny(status, ['대기', '예정', '기획'])) return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+  return 'border-white/15 bg-white/5 text-gray-300'
 }
 
 function formatCount(value: number) {
@@ -4148,14 +8419,87 @@ function percent(numerator: number, denominator: number) {
   return `${((numerator / denominator) * 100).toFixed(1)}%`
 }
 
-function deltaText(current: number, previous: number, unit: string) {
-  if (!previous && !current) return '-'
-  if (!previous) return `신규 ${Math.round(current).toLocaleString('ko-KR')}${unit}`
+function buildAdsMonthlyReportPreview(
+  storeTitle: string,
+  data: GoogleAdsApiResponse,
+  campaigns: AdsCampaignSummary[]
+): AdsMonthlyReportPreview {
+  const summary = data.summary
+  const periodLabel =
+    data.period.firstDate && data.period.lastDate
+      ? `${data.period.firstDate} ~ ${data.period.lastDate}`
+      : `최근 ${data.period.days || 30}일`
+  const ctr = percent(summary.clicks, summary.impressions) || '-'
+  const cpc = summary.clicks > 0 ? `${Math.round(summary.costMicros / 1000000 / summary.clicks).toLocaleString('ko-KR')}원` : '-'
+  const hasTraffic = summary.impressions > 0 || summary.clicks > 0 || summary.costMicros > 0 || summary.localActions > 0
+  const allPaused = campaigns.length > 0 && campaigns.every((campaign) => campaign.status.toUpperCase() === 'PAUSED')
+  const enabledCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'ENABLED').length
+  const pausedCount = campaigns.filter((campaign) => campaign.status.toUpperCase() === 'PAUSED').length
+  const searchTerms = data.searchTerms || []
+  const topCampaign = [...campaigns].sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )[0]
+  const topSearchTerm = [...searchTerms].sort(
+    (a, b) => b.clicks - a.clicks || b.impressions - a.impressions || b.costMicros - a.costMicros
+  )[0]
 
-  const diff = current - previous
-  const rate = (diff / previous) * 100
-  const sign = diff > 0 ? '+' : ''
-  return `${sign}${Math.round(diff).toLocaleString('ko-KR')}${unit} (${sign}${rate.toFixed(1)}%)`
+  const statusLine = allPaused
+    ? `${storeTitle}의 Google Ads 캠페인 ${campaigns.length}개는 현재 모두 일시중지 상태입니다.`
+    : `${storeTitle}의 Google Ads 캠페인 ${campaigns.length}개 중 운영중 ${enabledCount}개, 일시중지 ${pausedCount}개로 확인됩니다.`
+
+  const performanceLine = hasTraffic
+    ? `조회 기간 동안 전체 노출 ${formatCount(summary.impressions)}회, 클릭 ${formatCount(summary.clicks)}건, CTR ${ctr}, 광고비 ${formatCostMicros(summary.costMicros)}, 평균 CPC ${cpc}, 광고 액션 ${formatCount(summary.localActions)}건입니다.`
+    : '조회 기간 내 노출, 클릭, 광고비, 광고 액션은 아직 발생하지 않았습니다.'
+
+  const topCampaignLine =
+    topCampaign && hasTraffic
+      ? `가장 반응이 높은 캠페인은 ${topCampaign.name}이며, 클릭 ${formatCount(topCampaign.clicks)}건과 광고비 ${formatCostMicros(topCampaign.costMicros)} 기준으로 우선 확인합니다.`
+      : '캠페인별 성과 비교는 실제 집행 데이터가 쌓인 뒤 언어별, 키워드별 반응 차이를 중심으로 정리합니다.'
+
+  const topSearchTermLine =
+    topSearchTerm && summary.clicks > 0
+      ? `클릭이 발생한 주요 검색어는 "${topSearchTerm.searchTerm}"이며, 노출 ${formatCount(topSearchTerm.impressions)}회, 클릭 ${formatCount(topSearchTerm.clicks)}건, 광고비 ${formatCostMicros(topSearchTerm.costMicros)}로 확인됩니다.`
+      : summary.clicks > 0
+        ? '클릭은 발생했으나 Google Ads에서 공개 가능한 검색어가 아직 제한적이어서, 다음 보고 시 검색어 공개 여부를 함께 확인합니다.'
+        : ''
+
+  const actionItems = allPaused
+    ? [
+        '집행 시작 전 캠페인 상태, 일 예산, 최종 URL, 위치 확장 연결을 먼저 확인합니다.',
+        '한국어와 영어 캠페인을 우선 점검하고, 일본어·중국어 캠페인은 예산과 검색량을 보며 순차적으로 운영합니다.',
+        '집행 첫 주에는 검색어, CPC, 클릭 후 행동을 확인해 제외 키워드와 광고 문구를 조정합니다.',
+      ]
+    : summary.impressions > 0 && summary.clicks === 0
+      ? [
+          '노출은 발생했지만 클릭이 없으므로 검색어와 광고 문구의 매장 방문 의도를 다시 확인합니다.',
+          '지역명, 메뉴명, 외국어 키워드별로 CTR 차이를 보고 예산 배분을 조정합니다.',
+          '클릭을 유도할 대표 메뉴, 위치, 예약 가능 여부를 광고 문구에 반영합니다.',
+        ]
+      : summary.clicks > 0 && summary.localActions === 0
+        ? [
+            '클릭 이후 길찾기, 전화, 웹사이트 행동이 이어지는지 전환 추적 기준을 재점검합니다.',
+            '랜딩 페이지와 Google 프로필의 영업시간, 위치, 대표 메뉴 정보가 광고와 일치하는지 확인합니다.',
+            '클릭 단가가 높은 캠페인은 검색어 리포트 기준으로 제외 키워드를 추가합니다.',
+          ]
+        : [
+            '성과가 발생한 캠페인의 검색어와 광고 문구를 우선 유지하고 예산 소진 속도를 확인합니다.',
+            'CTR과 CPC가 불리한 캠페인은 키워드 묶음과 광고 문구를 분리해 테스트합니다.',
+            '길찾기와 전화 행동이 발생한 시간대, 언어권, 키워드를 다음 달 운영 기준으로 정리합니다.',
+          ]
+
+  const campaignLines = campaigns.length
+    ? campaigns.slice(0, 6).map((campaign) => {
+        const campaignCtr = percent(campaign.clicks, campaign.impressions) || '-'
+        return `${campaign.name}: ${campaign.status}, 노출 ${formatCount(campaign.impressions)}회, 클릭 ${formatCount(campaign.clicks)}건, CTR ${campaignCtr}, 광고비 ${formatCostMicros(campaign.costMicros)}, 액션 ${formatCount(campaign.localActions)}건`
+      })
+    : ['연결된 캠페인이 아직 없어 월간 보고서에는 계정 연결 상태와 데이터 적재 필요 항목을 먼저 기록합니다.']
+
+  return {
+    periodLabel,
+    summaryLines: [statusLine, performanceLine, topCampaignLine, topSearchTermLine].filter(Boolean),
+    actionItems,
+    campaignLines,
+  }
 }
 
 function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean) {
@@ -4163,6 +8507,13 @@ function adsConnectionBadge(data: GoogleAdsApiResponse | null, loading: boolean)
   if (data?.status === 'connected') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
   if (data?.connected) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
   return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
+}
+
+function adsCampaignStatusBadge(status: string) {
+  const normalized = status.toUpperCase()
+  if (normalized === 'ENABLED') return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-100'
+  if (normalized === 'PAUSED') return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
+  return 'border-white/10 bg-white/[0.04] text-gray-300'
 }
 
 function adsSourceLabel(data: GoogleAdsApiResponse | null) {
@@ -4214,6 +8565,18 @@ function formatMonthDay(date: Date) {
   return new Intl.DateTimeFormat('ko-KR', { month: '2-digit', day: '2-digit' }).format(date)
 }
 
+function formatReportMonthDay(date: Date) {
+  return `${date.getMonth() + 1}.${date.getDate()}`
+}
+
+function formatReportWeekRange(dates: Date[]) {
+  const start = dates[0]
+  const end = dates[dates.length - 1]
+  if (!start || !end) return ''
+
+  return `${start.getFullYear()}.${String(start.getMonth() + 1).padStart(2, '0')}.${String(start.getDate()).padStart(2, '0')} - ${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}`
+}
+
 function weeklyReportClass(status: StoreWeeklyReportStatus) {
   if (status === '보고완료') return 'border-emerald-300/20 bg-emerald-300/10'
   if (status === '작성중') return 'border-brand-blue/30 bg-brand-blue/10'
@@ -4228,4 +8591,13 @@ function weeklyReportBadge(status: StoreWeeklyReportStatus) {
   if (status === '실패') return 'border-rose-300/35 bg-rose-300/10 text-rose-100'
   if (status === '생성완료') return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-amber-300/25 bg-amber-300/10 text-amber-100'
+}
+
+function reportStatusShort(status: StoreWeeklyReportStatus) {
+  if (status === '보고완료') return '완료'
+  if (status === '작성중') return '작성중'
+  if (status === '생성완료') return '생성'
+  if (status === '실패') return '실패'
+  if (status === '초안') return '초안'
+  return '대기'
 }

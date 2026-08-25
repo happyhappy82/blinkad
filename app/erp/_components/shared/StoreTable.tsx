@@ -1,11 +1,11 @@
 'use client'
 
-import { ChevronDown, Clock3, ExternalLink, Search } from 'lucide-react'
+import { ChevronDown, Clock3, ExternalLink, FileText, Search } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useMemo, useState } from 'react'
 
 import { DEFAULT_CLIENT_STATUS_OPTIONS, EFORMSIGN_URL } from '../../_lib/erp-config'
-import type { StoreRecord } from '../../_lib/erp-config'
+import type { StoreFileRecord, StoreRecord } from '../../_lib/erp-config'
 
 type StoreMetric = {
   label: string
@@ -24,7 +24,7 @@ function statusBadge(status: string) {
   if (status.includes('운영')) return 'border-emerald-300/30 bg-emerald-300/10 text-emerald-200'
   if (status.includes('계약')) return 'border-amber-300/30 bg-amber-300/10 text-amber-100'
   if (status.includes('견적')) return 'border-blue-300/30 bg-brand-blue/15 text-blue-100'
-  if (status.includes('진단')) return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
+  if (status.includes('진단') || status.includes('분석')) return 'border-cyan-300/30 bg-cyan-300/10 text-cyan-100'
   return 'border-white/15 bg-white/10 text-gray-200'
 }
 
@@ -36,6 +36,41 @@ function FileState({ count, emptyLabel }: { count: number; emptyLabel: string })
       : 'border-white/15 bg-white/5 text-gray-400')
 
   return <span className={className}>{count > 0 ? String(count) + '개 저장' : emptyLabel}</span>
+}
+
+function FileLinks({
+  count,
+  files,
+  emptyLabel,
+}: {
+  count: number
+  files: StoreFileRecord[]
+  emptyLabel: string
+}) {
+  return (
+    <div className="space-y-2">
+      <FileState count={count} emptyLabel={emptyLabel} />
+      {files.length ? (
+        <div className="flex max-w-[220px] flex-wrap gap-1.5">
+          {files.map((file, index) => (
+            <a
+              key={`${file.url}-${index}`}
+              href={file.url}
+              target="_blank"
+              rel="noreferrer"
+              title={file.name}
+              className="inline-flex h-8 items-center justify-center gap-1 rounded-md border border-white/15 bg-white/[0.03] px-2.5 text-xs font-black text-gray-200 transition hover:border-brand-blue/50 hover:bg-brand-blue/10 hover:text-white"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              {files.length === 1 ? 'PDF 열기' : `PDF ${index + 1}`}
+            </a>
+          ))}
+        </div>
+      ) : count > 0 ? (
+        <p className="text-xs font-semibold text-gray-600">파일 URL 확인 중</p>
+      ) : null}
+    </div>
+  )
 }
 
 function PrimaryButton({
@@ -110,6 +145,8 @@ export function StoreTable({
       store.category,
       store.inquirySource,
       store.nextAction,
+      ...(store.diagnosisFiles || []).map((file) => file.name),
+      ...(store.quoteFiles || []).map((file) => file.name),
     ]
       .join(' ')
       .toLowerCase()
@@ -294,13 +331,13 @@ export function StoreTable({
 
                   {columns === 'diagnosis' && (
                     <td className="px-5 py-4">
-                      <FileState count={store.diagnosisCount} emptyLabel="미생성" />
+                      <FileLinks count={store.diagnosisCount} files={store.diagnosisFiles || []} emptyLabel="미생성" />
                     </td>
                   )}
 
                   {columns === 'quote' && (
                     <td className="px-5 py-4">
-                      <FileState count={store.quoteCount} emptyLabel="미생성" />
+                      <FileLinks count={store.quoteCount} files={store.quoteFiles || []} emptyLabel="미생성" />
                     </td>
                   )}
 
@@ -353,7 +390,7 @@ export function StoreTable({
                           disabled={!store.googleMapUrl || runningAction === `diagnosis:${store.id}`}
                           onClick={() => onRunDiagnosis?.(store)}
                         >
-                          {runningAction === `diagnosis:${store.id}` ? '생성 중' : '진단자료 생성'}
+                          {runningAction === `diagnosis:${store.id}` ? '생성 중' : '분석자료 생성'}
                         </PrimaryButton>
                       ) : columns === 'quote' ? (
                         <PrimaryButton

@@ -1,9 +1,7 @@
 name: Google Ads Telegram Daily Report
 
 on:
-  # KST 15:00 = UTC 06:00
-  schedule:
-    - cron: '0 6 * * *'
+  # 자동 보고는 2026-08-24부로 중지했습니다. 필요할 때만 수동 실행합니다.
   workflow_dispatch:
 
 permissions:

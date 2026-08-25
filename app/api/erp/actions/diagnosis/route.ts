@@ -25,7 +25,7 @@ export async function POST(request: Request) {
       return NextResponse.json({
         ok: true,
         mode: 'local-worker',
-        message: workerResult.message || `${storeName} 진단자료 생성을 로컬 워커에 요청했습니다.`,
+        message: workerResult.message || `${storeName} 분석자료 생성을 로컬 워커에 요청했습니다.`,
         worker: workerResult,
       })
     }
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         mode: 'local-worker',
-        message: error instanceof Error ? error.message : '로컬 진단자료 워커 호출 중 오류가 발생했습니다.',
+        message: error instanceof Error ? error.message : '로컬 분석자료 워커 호출 중 오류가 발생했습니다.',
       },
       { status: 502 }
     )
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       ok: false,
       message:
-        '진단자료 생성 버튼은 준비되었습니다. 배포 ERP에서 실행하려면 ERP_ACTION_WORKER_WEBHOOK_URL 또는 DIAGNOSIS_WORKER_WEBHOOK_URL로 로컬 워커를 연결해야 합니다.',
+        '분석자료 생성 버튼은 준비되었습니다. 배포 ERP에서 실행하려면 ERP_ACTION_WORKER_WEBHOOK_URL 또는 DIAGNOSIS_WORKER_WEBHOOK_URL로 로컬 워커를 연결해야 합니다.',
     })
   }
 
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         ok: false,
-        message: error instanceof Error ? error.message : '진단자료 자동화 실행 중 오류가 발생했습니다.',
+        message: error instanceof Error ? error.message : '분석자료 자동화 실행 중 오류가 발생했습니다.',
       },
       { status: 500 }
     )

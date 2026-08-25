@@ -37,6 +37,8 @@ const fallbackStores = [
     nextAction: '첫 연락 후 니즈 확인',
     quoteCount: 0,
     diagnosisCount: 1,
+    quoteFiles: [],
+    diagnosisFiles: [],
     contractCount: 0,
     contractStatus: '계약 전',
     contractUrl: '',
@@ -59,6 +61,8 @@ const fallbackStores = [
     nextAction: '견적 검토 여부 확인',
     quoteCount: 1,
     diagnosisCount: 1,
+    quoteFiles: [],
+    diagnosisFiles: [],
     contractCount: 0,
     contractStatus: '계약대기',
     contractUrl: '',
@@ -81,6 +85,8 @@ const fallbackStores = [
     nextAction: '공동 대응 범위 정리',
     quoteCount: 1,
     diagnosisCount: 1,
+    quoteFiles: [],
+    diagnosisFiles: [],
     contractCount: 1,
     contractStatus: '전자계약 발송 전',
     contractUrl: '',
@@ -103,6 +109,8 @@ const fallbackStores = [
     nextAction: '운영 착수 자료 확인',
     quoteCount: 1,
     diagnosisCount: 0,
+    quoteFiles: [],
+    diagnosisFiles: [],
     contractCount: 1,
     contractStatus: '계약완료',
     contractUrl: '',
@@ -133,6 +141,18 @@ function propText(prop: any): string {
 function fileCount(prop: any): number {
   if (!prop || prop.type !== 'files') return 0
   return prop.files?.length || 0
+}
+
+function fileRecords(prop: any) {
+  if (!prop || prop.type !== 'files' || !Array.isArray(prop.files)) return []
+
+  return prop.files
+    .map((file: any, index: number) => ({
+      name: file.name || `PDF ${index + 1}`,
+      url: file.type === 'external' ? file.external?.url || '' : file.file?.url || '',
+      expiresAt: file.type === 'file' ? file.file?.expiry_time || '' : '',
+    }))
+    .filter((file: { url: string }) => Boolean(file.url))
 }
 
 function findProperty(properties: Record<string, any>, candidates: string[]) {
@@ -244,9 +264,11 @@ function pickContractUrl(properties: Record<string, any>) {
 
 function normalizePage(page: any) {
   const properties = page.properties || {}
+  const quoteProperty = findProperty(properties, ['견적서', '견적 파일', 'Quote'])
+  const diagnosisProperty = findProperty(properties, ['분석자료', '분석 자료', '진단자료', '진단 자료', 'Analysis', 'Diagnosis'])
   const status =
     propText(findProperty(properties, ['처리상태', '상태', '계약완료', 'Status'])) ||
-    (fileCount(properties['견적서']) > 0 ? '견적서' : '문의접수')
+    (fileCount(quoteProperty) > 0 ? '견적서' : '문의접수')
 
   return {
     id: page.id,
@@ -260,8 +282,10 @@ function normalizePage(page: any) {
     followupDue: propText(findProperty(properties, ['팔로업 예정일', '팔로업일', '다음 연락일', '후속 연락일', 'Follow-up Date', 'Next Follow Up'])),
     lastContacted: propText(findProperty(properties, ['마지막 연락일', '최근 연락일', '최종 연락일', 'Last Contacted', 'Last Contact'])),
     nextAction: propText(findProperty(properties, ['다음 액션', '후속액션', '후속 액션', '팔로업 메모', '메모', '비고', 'Next Action', 'Memo'])),
-    quoteCount: fileCount(properties['견적서']),
-    diagnosisCount: fileCount(properties['분석자료']),
+    quoteCount: fileCount(quoteProperty),
+    diagnosisCount: fileCount(diagnosisProperty),
+    quoteFiles: fileRecords(quoteProperty),
+    diagnosisFiles: fileRecords(diagnosisProperty),
     contractCount: fileCount(findProperty(properties, ['계약서', '계약 파일', 'Contract'])),
     contractStatus: propText(findProperty(properties, ['계약상태', '계약 상태', '전자계약 상태', 'Contract Status'])) || '계약 전',
     contractUrl: pickContractUrl(properties),

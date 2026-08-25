@@ -1,4 +1,5 @@
 import {
+  Archive,
   Badge,
   BarChart3,
   Building2,
@@ -23,6 +24,12 @@ import {
   Users,
 } from 'lucide-react'
 
+export type StoreFileRecord = {
+  name: string
+  url: string
+  expiresAt?: string
+}
+
 export type StoreRecord = {
   id: string
   name: string
@@ -37,6 +44,8 @@ export type StoreRecord = {
   nextAction: string
   quoteCount: number
   diagnosisCount: number
+  quoteFiles: StoreFileRecord[]
+  diagnosisFiles: StoreFileRecord[]
   contractCount: number
   contractStatus: string
   contractUrl: string
@@ -181,84 +190,55 @@ export type MailApiResponse = {
   mails: MailItem[]
 }
 
+export type MenuId =
+  | 'dashboard'
+  | 'project'
+  | 'pausedStores'
+  | 'terminatedStores'
+  | 'billing'
+  | 'settlement'
+  | 'crm'
+  | 'followup'
+  | 'customer'
+  | 'contractPending'
+  | 'card'
+  | 'diagnosis'
+  | 'quote'
+  | 'contract'
+  | 'blinkadMarketing'
+  | 'assets'
+  | 'schedule'
+  | 'meeting'
+  | 'weekly'
+  | 'mail'
+  | 'report'
+  | 'kpi'
+  | 'receivable'
+  | 'staff'
+  | 'outsourcing'
+  | 'settings'
+
 export const menuGroups = [
   {
-    label: '일반 ERP',
+    label: 'ERP',
     items: [{ id: 'dashboard', label: '대시보드', icon: LayoutDashboard }],
   },
   {
-    label: 'CRM/영업',
-    items: [
-      { id: 'crm', label: '문의관리', icon: Building2 },
-      { id: 'followup', label: '팔로업 관리', icon: RefreshCw },
-      { id: 'customer', label: '고객관리', icon: Users },
-      { id: 'contractPending', label: '계약대기', icon: ClipboardList },
-      { id: 'card', label: '명함관리', icon: Badge },
-    ],
-  },
-  {
-    label: '견적/수주',
-    items: [
-      { id: 'diagnosis', label: '진단자료', icon: FileSearch },
-      { id: 'quote', label: '견적서', icon: ReceiptText },
-      { id: 'contract', label: '계약서', icon: FileSignature },
-    ],
-  },
-  {
-    label: '프로젝트/작업관리',
+    label: '매장 운영',
     items: [
       { id: 'project', label: '매장 운영관리', icon: Folder },
+      { id: 'pausedStores', label: '작업보류매장', icon: Clock3 },
+      { id: 'terminatedStores', label: '계약 해제 매장', icon: Archive },
     ],
   },
   {
-    label: '자사 마케팅',
-    items: [
-      { id: 'blinkadMarketing', label: '블링크애드 마케팅', icon: BarChart3 },
-    ],
-  },
-  {
-    label: '자산/콘텐츠',
-    items: [
-      { id: 'assets', label: '콘텐츠 자산', icon: ClipboardList },
-    ],
-  },
-  {
-    label: '일정/미팅',
-    items: [
-      { id: 'schedule', label: '일정관리', icon: Calendar },
-      { id: 'meeting', label: '미팅관리', icon: Mic },
-      { id: 'weekly', label: '주간미팅', icon: CalendarDays },
-      { id: 'mail', label: '메일관리', icon: Mail },
-    ],
-  },
-  {
-    label: '성과분석/리포팅',
-    items: [
-      { id: 'report', label: '리포트', icon: CheckCircle2 },
-      { id: 'kpi', label: 'KPI 분석', icon: CircleDot },
-    ],
-  },
-  {
-    label: '인보이스/청구',
+    label: '재무 관리',
     items: [
       { id: 'billing', label: '청구관리', icon: CreditCard },
-      { id: 'receivable', label: '미수금', icon: Clock3 },
+      { id: 'settlement', label: '정산관리', icon: ReceiptText },
     ],
   },
-  {
-    label: '인사/근태',
-    items: [
-      { id: 'staff', label: '담당자 관리', icon: UserCog },
-      { id: 'outsourcing', label: '외주 PM 관리', icon: Handshake },
-    ],
-  },
-  {
-    label: '설정',
-    items: [{ id: 'settings', label: '설정', icon: Settings }],
-  },
-] as const
-
-export type MenuId = (typeof menuGroups)[number]['items'][number]['id']
+] satisfies { label: string; items: { id: MenuId; label: string; icon: typeof LayoutDashboard }[] }[]
 
 export type StoreProductKey = 'googleProfile' | 'googleAds' | 'websiteBlog'
 
@@ -283,6 +263,18 @@ export type StoreBlogContentPost = {
   channel: string
   publishedAt: string
   memo: string
+  notionStatus?: string
+  publishDate?: string
+  cycleSlot?: number
+  notionUrl?: string
+  nextAction?: string
+}
+
+export type StoreContentDb = {
+  name: string
+  url: string
+  workflow: string
+  publishRule: string
 }
 
 export type StoreWeeklyReportStatus = '초안' | '생성완료' | '보고대기' | '보고완료' | '실패' | '작성중'
@@ -311,9 +303,19 @@ export type StoreProductWorkspace = {
   heading: string
   description: string
   metrics: StoreProductMetric[]
+  contentDb?: StoreContentDb
   weeklyReports?: StoreWeeklyReport[]
   blogPosts?: StoreBlogContentPost[]
   tasks: StoreProductTask[]
+}
+
+export type StoreProcessStepStatus = '완료' | '진행중' | '대기'
+
+export type StoreProcessStep = {
+  title: string
+  product: string
+  status: StoreProcessStepStatus
+  memo: string
 }
 
 export type OperationRow = {
@@ -323,15 +325,17 @@ export type OperationRow = {
   owner: string
   due: string
   memo: string
+  googleMapUrl?: string
   copyText?: string
   products?: {
     googleProfile: string
     googleAds: string
-    website: string
+    website?: string
     material: string
     nextAction: string
   }
   productWorkspaces?: StoreProductWorkspace[]
+  processSteps?: StoreProcessStep[]
 }
 
 export type OperationView = {
@@ -389,6 +393,28 @@ https://www.notion.so/366753ebc0138087aff3fbdd8ac6aa3f?source=copy_link
 권한 초대 완료 후 단톡방에 "권한 추가 완료"라고 남겨주시면 확인 후 다음 작업을 진행하겠습니다.
 
 감사합니다.`
+
+export const RESTAURANT_MATERIAL_REQUEST_MESSAGE = `관리 시작하기에 앞서, 매장 세팅 및 관리에 필요한 자료 요청 드립니다.
+
+음식점은 고객이 검색 후 메뉴, 분위기, 위치, 리뷰를 보고 방문을 결정하기 때문에 음식 사진과 매장 분위기 사진이 중요합니다. 매장의 대표 메뉴와 신뢰 요소가 잘 드러나는 자료로 공유 부탁드립니다.
+
+요청 자료
+일단 되는 것 먼저 보내주시고, 필요한 경우 추후 요청드리겠습니다.
+
+- 매장 외부, 입구, 간판 사진 등
+- 매장 내부, 좌석, 테이블, 단체석, 프라이빗룸 등 공간 사진 등
+- 대표 메뉴 사진 등
+- 인기 메뉴, 시그니처 메뉴, 세트 메뉴 사진 등
+- 메뉴판 사진 또는 메뉴 리스트 등
+- 조리 장면, 플레이팅 장면, 서빙 장면 등
+- 원재료, 주방, 위생 관리 등 신뢰를 줄 수 있는 사진 등
+- 사장님 또는 셰프 소개 사진 등
+- 방송 출연, 맛집 선정, 수상, 인증 자료 등
+- 외국인 고객이 이해하기 쉬운 메뉴 설명 자료 등
+- 매장 분위기와 포지셔닝을 보여줄 수 있는 사진 등
+- 회식, 모임, 데이트, 가족 외식 등 이용 상황 사진 등`
+
+export const WEEKLY_REVIEW_PUSH_MESSAGE = `대표님 이번 주도 지금처럼 방문 고객분들께 자연스럽게 리뷰 안내 한 번씩만 부탁드립니다. 리뷰는 꾸준히 이어지는 흐름이 가장 중요해서, 지금 페이스를 잘 유지해주시면 구글 노출과 신뢰도에 계속 도움이 될 것 같습니다.`
 
 export const MONDAY_FEED_UPDATE_REPORT_MESSAGE = `[매장명] 대표님, 안녕하세요.
 
@@ -468,6 +494,499 @@ export function isMenuId(value: string): value is MenuId {
   return menuIds.includes(value as MenuId)
 }
 
+const JOODORAK_POSTS_DB_URL_BY_BRANCH: Record<string, string> = {
+  강남점: 'https://www.notion.so/Posts-385753ebc01380569952e42053ffdfb8?source=copy_link',
+  마곡발산점: 'https://www.notion.so/Posts-385753ebc01380e7a077e2663f324b3a?source=copy_link',
+}
+
+function createJoodorakOperationRow(branchName: string, areaName: string, areaKeyword: string): OperationRow {
+  const title = `주도락 ${branchName}`
+  const postsDbUrl = JOODORAK_POSTS_DB_URL_BY_BRANCH[branchName]
+
+  return {
+    title,
+    meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
+    status: '계약완료 · 온보딩중',
+    owner: '권순현',
+    due: '이번 주',
+    memo: `${areaName} 상권과 외국인 고객 유입 기준으로 Google 프로필, 광고, 콘텐츠 초기 세팅을 함께 관리합니다.`,
+    products: {
+      googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+      googleAds: `${areaName} 지역 키워드와 매장 방문 전환 구조 준비`,
+      website: '지점 페이지와 대표 메뉴 콘텐츠 기획',
+      material: '대표 메뉴·공간 사진·외국어 안내 자료 요청',
+      nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+    },
+    processSteps: [
+      {
+        title: '프로필 권한·기본정보 세팅',
+        product: '구글프로필',
+        status: '진행중',
+        memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+      },
+      {
+        title: '사진·메뉴·외국어 자료 수령',
+        product: '구글프로필',
+        status: '대기',
+        memo: '외관, 내부, 대표 메뉴, 외국어 안내 자료를 받아 프로필과 콘텐츠에 반영합니다.',
+      },
+      {
+        title: 'Ads 캠페인 구조 세팅',
+        product: '구글애즈',
+        status: '대기',
+        memo: `${areaName} 지역 키워드, 대표 메뉴 키워드, 방문 전환 기준을 세팅합니다.`,
+      },
+      {
+        title: '웹사이트·블로그 구조 기획',
+        product: '웹사이트·블로그',
+        status: '대기',
+        memo: '지점 페이지, 메뉴 안내, FAQ, 위치 콘텐츠 구조를 먼저 설계합니다.',
+      },
+      {
+        title: '콘텐츠 누적·GBP 연결',
+        product: '웹사이트·블로그',
+        status: '대기',
+        memo: '콘텐츠가 쌓이면 Google 프로필에서 연결할 공식 페이지와 블로그 흐름을 정리합니다.',
+      },
+      {
+        title: '월간 보고·유지보수',
+        product: '공통',
+        status: '대기',
+        memo: '월 1회 프로필, 광고, 콘텐츠 성과를 묶어 다음 운영 기준을 조정합니다.',
+      },
+    ],
+    productWorkspaces: [
+      {
+        key: 'googleProfile',
+        label: '구글프로필',
+        heading: '작업·보고 현황',
+        description: `${title}의 Google 프로필 세팅, 사진 자료, 월-금 보고 상태를 확인합니다.`,
+        metrics: [
+          { label: '이번 주 작업', value: '3건', note: '권한 추가, 기본정보, 사진 자료 요청' },
+          { label: '발송상태', value: '온보딩중', note: '운영 시작 전 기준 리포트 준비' },
+          { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+        ],
+        weeklyReports: [
+          {
+            dayOffset: 0,
+            status: '작성중',
+            title: '피드업데이트',
+            memo: 'Google 게시물과 소식지 업데이트를 준비합니다.',
+          },
+          {
+            dayOffset: 1,
+            status: '보고대기',
+            title: '키워드순위보고',
+            memo: `${areaName} 지역 주요 키워드 노출 순위와 변동을 확인합니다.`,
+          },
+          {
+            dayOffset: 2,
+            status: '보고대기',
+            title: '종합 데이터 분석',
+            memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+          },
+          {
+            dayOffset: 3,
+            status: '보고대기',
+            title: '피드업데이트',
+            memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+          },
+          {
+            dayOffset: 4,
+            status: '보고대기',
+            title: '주간 마감 보고',
+            memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
+          },
+        ],
+        tasks: [
+          {
+            title: '프로필 권한 및 기본정보 확인',
+            status: '진행중',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+          },
+          {
+            title: '대표 사진 자료 요청',
+            status: '대기',
+            owner: '블링크애드',
+            due: '자료 수신 후',
+            memo: '외국인 고객이 위치와 분위기를 빠르게 파악할 수 있는 외관, 내부, 메뉴 사진 순서로 정리합니다.',
+          },
+          {
+            title: '리뷰 응대 기준 정리',
+            status: '대기',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+          },
+        ],
+      },
+      {
+        key: 'googleAds',
+        label: '구글애즈',
+        heading: '성과 요약',
+        description: `${title}의 Google Ads 노출, 클릭, 길찾기 전환 흐름을 확인합니다.`,
+        metrics: [
+          { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+          { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+          { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+        ],
+        tasks: [
+          {
+            title: '캠페인 구조 확인',
+            status: '대기',
+            owner: '권순현',
+            due: '운영 시작 전',
+            memo: `브랜드 키워드, ${areaName} 지역 키워드, 대표 메뉴 키워드를 분리해 예산 낭비를 줄입니다.`,
+          },
+          {
+            title: '검색/지도 키워드 그룹 초안',
+            status: '대기',
+            owner: '블링크애드',
+            due: '이번 주',
+            memo: '외국인 고객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+          },
+          {
+            title: '전화·길찾기 전환 점검',
+            status: '대기',
+            owner: '권순현',
+            due: '세팅 후',
+            memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+          },
+        ],
+      },
+      {
+        key: 'websiteBlog',
+        label: '웹사이트·블로그',
+        heading: '제작·콘텐츠 현황',
+        description: `${title}의 지점 페이지, FAQ, 블로그 콘텐츠 작업 흐름을 관리합니다.`,
+        metrics: [
+          { label: '제작 상태', value: '기획중', note: '지점 페이지 구조와 콘텐츠 주제 정리' },
+          { label: '콘텐츠', value: '8회 슬롯', note: '계약 시작일 기준 1개월 8회 운영' },
+          { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
+        ],
+        contentDb: postsDbUrl
+          ? {
+              name: `${title} Posts DB`,
+              url: postsDbUrl,
+              workflow: '글 작성 후 Review 상태로 저장하고, 발행일을 지정한 뒤 Published 상태로 전환합니다.',
+              publishRule: 'Published 상태와 발행일이 함께 있는 글은 해당 날짜 기준 자동 발행 큐로 관리합니다.',
+            }
+          : undefined,
+        blogPosts: [
+          {
+            title: `${title} 방문 전 확인할 매장 정보`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: title,
+            channel: 'Posts DB',
+            publishedAt: '2026-06-21 검수',
+            publishDate: '2026-06-21',
+            cycleSlot: 1,
+            memo: '위치, 영업시간, 대표 메뉴, 이용 흐름을 방문 전 확인할 수 있게 정리합니다.',
+            nextAction: '본문 검수 후 Published 전환',
+          },
+          {
+            title: `${areaName} 방문 외국인 고객을 위한 메뉴 안내`,
+            status: 'Published',
+            notionStatus: 'Published',
+            keyword: `${areaKeyword} 외국인 식당`,
+            channel: 'Posts DB',
+            publishedAt: '2026-06-24 예약',
+            publishDate: '2026-06-24',
+            cycleSlot: 2,
+            memo: '외국인 고객이 주문 전 궁금해할 메뉴, 결제, 위치 정보를 콘텐츠화합니다.',
+            nextAction: '발행 후 GBP 웹사이트 URL 연결 후보 확인',
+          },
+          {
+            title: `${title} 대표 메뉴 주문 전 확인사항`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${title} 메뉴`,
+            channel: 'Posts DB',
+            publishedAt: '2026-06-28 검수',
+            publishDate: '2026-06-28',
+            cycleSlot: 3,
+            memo: '대표 메뉴 구성, 추천 주문 순서, 사진 기준 설명을 정리합니다.',
+            nextAction: '대표 메뉴 사진 반영',
+          },
+          {
+            title: `${areaName}역 주변에서 주도락 찾는 방법`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 주도락 위치`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-01 검수',
+            publishDate: '2026-07-01',
+            cycleSlot: 4,
+            memo: '길찾기 전환과 연결될 수 있도록 지하철, 도보, 주차 정보를 정리합니다.',
+            nextAction: '지도 캡처와 위치 설명 보강',
+          },
+          {
+            title: `${title} 이용 FAQ`,
+            status: 'Published',
+            notionStatus: 'Published',
+            keyword: `${areaKeyword} 식당 FAQ`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-05 예약',
+            publishDate: '2026-07-05',
+            cycleSlot: 5,
+            memo: '예약, 대기, 결제, 메뉴 선택, 영업시간 관련 질문을 FAQ로 정리합니다.',
+            nextAction: '발행 후 Google 프로필 FAQ 문구와 맞춤',
+          },
+          {
+            title: `${areaName} 회식 장소를 고를 때 확인할 것`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 회식 식당`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-08 검수',
+            publishDate: '2026-07-08',
+            cycleSlot: 6,
+            memo: '회식 고객 관점에서 위치, 메뉴, 대기, 이동 시간을 비교하는 콘텐츠입니다.',
+            nextAction: 'CTA와 내부 링크 정리',
+          },
+          {
+            title: `${title} 단체 방문 전 확인사항`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${areaKeyword} 단체 식당`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-12 검수',
+            publishDate: '2026-07-12',
+            cycleSlot: 7,
+            memo: '단체 방문 시 문의할 정보, 좌석, 시간대, 메뉴 선택 기준을 정리합니다.',
+            nextAction: '매장 확인 필요 항목 체크',
+          },
+          {
+            title: `${title} 월간 콘텐츠 운영 정리`,
+            status: 'Review',
+            notionStatus: 'Review',
+            keyword: `${title} 후기`,
+            channel: 'Posts DB',
+            publishedAt: '2026-07-15 검수',
+            publishDate: '2026-07-15',
+            cycleSlot: 8,
+            memo: '1개월차 콘텐츠 누적 현황과 다음 달 보강할 주제를 정리합니다.',
+            nextAction: '월간 보고서에 반영',
+          },
+        ],
+        tasks: [
+          {
+            title: '지점 페이지 구조 기획',
+            status: '진행중',
+            owner: '권순현',
+            due: '이번 주',
+            memo: 'GBP에서 연결할 공식 페이지의 메뉴, 매장 설명, 위치 정보를 먼저 설계합니다.',
+          },
+          {
+            title: 'FAQ 콘텐츠 주제 정리',
+            status: '대기',
+            owner: '블링크애드',
+            due: '다음 주',
+            memo: '외국인 고객이 방문 전 궁금해할 질문을 FAQ와 블로그 주제로 전환합니다.',
+          },
+          {
+            title: 'Google 프로필 연결 URL 확정',
+            status: '대기',
+            owner: '권순현',
+            due: '페이지 초안 후',
+            memo: '예약 링크만 연결하지 않고, 브랜드 설명이 쌓이는 공식 페이지로 연결합니다.',
+          },
+        ],
+      },
+    ],
+  }
+}
+
+function createProfileAdsOperationRow(
+  storeName: string,
+  options: { memo?: string; googleMapUrl?: string } = {}
+): OperationRow {
+  return {
+    title: storeName,
+    meta: '계약상품 · 구글프로필 + 구글애즈',
+    status: '계약완료 · 온보딩중',
+    owner: '권순현',
+    due: '이번 주',
+    memo: options.memo || `${storeName}의 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.`,
+    googleMapUrl: options.googleMapUrl,
+    products: {
+      googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+      googleAds: '지역 키워드와 매장 방문 전환 구조 준비',
+      material: '대표 사진·서비스 설명 자료 요청',
+      nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+    },
+    processSteps: [
+      {
+        title: '프로필 권한·기본정보 세팅',
+        product: '구글프로필',
+        status: '진행중',
+        memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+      },
+      {
+        title: '사진·리뷰·피드 운영 기준',
+        product: '구글프로필',
+        status: '대기',
+        memo: '대표 사진 정렬, 리뷰 응대, 주 2회 피드 업데이트 기준을 잡습니다.',
+      },
+      {
+        title: 'Ads 캠페인 구조 세팅',
+        product: '구글애즈',
+        status: '대기',
+        memo: '브랜드, 지역, 서비스 키워드를 분리해 클릭과 로컬 액션을 확인합니다.',
+      },
+      {
+        title: '주간 보고 루틴',
+        product: '공통',
+        status: '대기',
+        memo: '월-금 작업보고를 남기고 월 1회 광고·프로필 성과보고로 묶습니다.',
+      },
+      {
+        title: '월간 성과 점검·유지보수',
+        product: '공통',
+        status: '대기',
+        memo: '클릭, 길찾기, 전화, 리뷰 흐름을 기준으로 다음 달 운영 기준을 조정합니다.',
+      },
+    ],
+    productWorkspaces: [
+      {
+        key: 'googleProfile',
+        label: '구글프로필',
+        heading: '작업·보고 현황',
+        description: `${storeName}의 Google 프로필 세팅, 사진 자료, 월-금 보고 상태를 확인합니다.`,
+        metrics: [
+          { label: '이번 주 작업', value: '3건', note: '권한 추가, 기본정보, 사진 자료 요청' },
+          { label: '발송상태', value: '온보딩중', note: '운영 시작 전 기준 리포트 준비' },
+          { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+        ],
+        weeklyReports: [
+          {
+            dayOffset: 0,
+            status: '작성중',
+            title: '피드업데이트',
+            memo: 'Google 게시물과 소식지 업데이트를 준비합니다.',
+          },
+          {
+            dayOffset: 1,
+            status: '보고대기',
+            title: '키워드순위보고',
+            memo: '주요 키워드 노출 순위와 변동을 확인합니다.',
+          },
+          {
+            dayOffset: 2,
+            status: '보고대기',
+            title: '종합 데이터 분석',
+            memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+          },
+          {
+            dayOffset: 3,
+            status: '보고대기',
+            title: '피드업데이트',
+            memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+          },
+          {
+            dayOffset: 4,
+            status: '보고대기',
+            title: '주간 마감 보고',
+            memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
+          },
+        ],
+        tasks: [
+          {
+            title: '프로필 권한 및 기본정보 확인',
+            status: '진행중',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+          },
+          {
+            title: '대표 사진 자료 요청',
+            status: '대기',
+            owner: '블링크애드',
+            due: '자료 수신 후',
+            memo: '외국인 고객이 위치와 분위기를 빠르게 파악할 수 있는 외관, 내부, 대표 사진 순서로 정리합니다.',
+          },
+          {
+            title: '리뷰 응대 기준 정리',
+            status: '대기',
+            owner: '권순현',
+            due: '이번 주',
+            memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+          },
+        ],
+      },
+      {
+        key: 'googleAds',
+        label: '구글애즈',
+        heading: '성과 요약',
+        description: `${storeName}의 Google Ads 노출, 클릭, 길찾기 전환 흐름을 확인합니다.`,
+        metrics: [
+          { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+          { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+          { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+        ],
+        tasks: [
+          {
+            title: '캠페인 구조 확인',
+            status: '대기',
+            owner: '권순현',
+            due: '운영 시작 전',
+            memo: '브랜드 키워드, 지역 키워드, 서비스 키워드를 분리해 예산 낭비를 줄입니다.',
+          },
+          {
+            title: '검색/지도 키워드 그룹 초안',
+            status: '대기',
+            owner: '블링크애드',
+            due: '이번 주',
+            memo: '외국인 고객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+          },
+          {
+            title: '전화·길찾기 전환 점검',
+            status: '대기',
+            owner: '권순현',
+            due: '세팅 후',
+            memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+          },
+        ],
+      },
+    ],
+  }
+}
+
+function createProfileOnlyOperationRow(
+  storeName: string,
+  options: { memo?: string; googleMapUrl?: string } = {}
+): OperationRow {
+  const baseRow = createProfileAdsOperationRow(storeName, options)
+
+  return {
+    ...baseRow,
+    meta: '계약상품 · 구글프로필관리',
+    memo: options.memo || `${storeName}의 Google 프로필 기본 세팅과 운영 보고를 관리합니다.`,
+    products: {
+      googleProfile: baseRow.products?.googleProfile || '기본 세팅 · 리뷰 응대 · 소식지 운영',
+      googleAds: '계약 제외',
+      material: baseRow.products?.material || '대표 사진·서비스 설명 자료 요청',
+      nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+    },
+    processSteps: (baseRow.processSteps || [])
+      .filter((step) => step.product !== '구글애즈')
+      .map((step) =>
+        step.title === '주간 보고 루틴'
+          ? {
+              ...step,
+              memo: '월-금 Google 프로필 작업보고를 남기고 월 1회 성과보고로 정리합니다.',
+            }
+          : step
+      ),
+    productWorkspaces: (baseRow.productWorkspaces || []).filter(
+      (workspace) => workspace.key === 'googleProfile'
+    ),
+  }
+}
+
 export const operationViews: Partial<Record<MenuId, OperationView>> = {
   customer: {
     kicker: 'Account',
@@ -489,7 +1008,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       },
       {
         title: '월하동',
-        meta: '요식업 · 진단자료/견적서 완료',
+        meta: '요식업 · 분석자료/견적서 완료',
         status: '계약대기',
         owner: '권순현',
         due: 'D+2',
@@ -517,7 +1036,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     rows: [
       {
         title: '광주미의원',
-        meta: '병원 · GBP 진단자료 제안',
+        meta: '병원 · GBP 분석자료 제안',
         status: '재연락',
         owner: '권순현',
         due: 'D+2',
@@ -544,16 +1063,16 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   project: {
     kicker: 'Store Operations',
     title: '매장 운영관리',
-    description: '매장별로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 한 화면에서 확인합니다.',
+    description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '1' },
-      { label: '진행 상품', value: '3' },
+      { label: '운영 매장', value: '4' },
+      { label: '진행 상품', value: '8' },
       { label: '지연 작업', value: '0' },
     ],
     rows: [
       {
         title: '언리미티드',
-        meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
+        meta: '계약상품 · 구글프로필 + 구글애즈',
         status: '계약완료 · 운영중',
         owner: '권순현',
         due: '이번 주',
@@ -561,10 +1080,41 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         products: {
           googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
           googleAds: '계정/캠페인 구조 확인',
-          website: '브랜드 페이지 구조 기획',
           material: '대표 사진·서비스 설명 요청',
           nextAction: 'Google 프로필 기본정보와 대표사진 정리',
         },
+        processSteps: [
+          {
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '완료',
+            memo: '카테고리, 영업시간, 연락처, 대표 설명 기준을 먼저 맞춥니다.',
+          },
+          {
+            title: '사진·리뷰·피드 운영 기준',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '대표 사진 정렬, 리뷰 응대, 주 2회 피드 업데이트 루틴을 운영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 점검',
+            product: '구글애즈',
+            status: '진행중',
+            memo: '브랜드, 지역, 서비스 키워드를 분리해 클릭과 로컬 액션을 봅니다.',
+          },
+          {
+            title: '주간 보고 루틴',
+            product: '공통',
+            status: '진행중',
+            memo: '월-금 작업보고를 누락 없이 남기고 월 1회 성과보고로 정리합니다.',
+          },
+          {
+            title: '월간 성과 점검·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '클릭, 길찾기, 전화, 리뷰 흐름을 보고 다음 달 운영 기준을 조정합니다.',
+          },
+        ],
         productWorkspaces: [
           {
             key: 'googleProfile',
@@ -666,57 +1216,452 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
               },
             ],
           },
+        ],
+      },
+      {
+        title: '웰믹스 광화문점',
+        meta: '계약상품 · 구글프로필 + 구글애즈',
+        status: '계약완료 · 운영중',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '광화문 상권 기준으로 Google 프로필 정보와 광고 전환 상태를 함께 관리합니다.',
+        products: {
+          googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+          googleAds: '지역 키워드와 길찾기 전환 중심 점검',
+          material: '대표 메뉴·공간 사진·영문 안내 자료 요청',
+          nextAction: 'Google 프로필 사진과 대표 메뉴 정보를 우선 정리',
+        },
+        processSteps: [
           {
-            key: 'websiteBlog',
-            label: '웹사이트·블로그',
-            heading: '제작·콘텐츠 현황',
-            description: '매장별로 어떤 웹사이트, 블로그, FAQ 작업이 들어가고 있는지 체크하기 위한 공간입니다.',
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '완료',
+            memo: '광화문점 카테고리, 영업시간, 연락처, 대표 메뉴 정보를 정리합니다.',
+          },
+          {
+            title: '사진·리뷰·피드 운영 기준',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '대표 메뉴와 공간 사진을 정렬하고 리뷰 응대 기준을 운영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 점검',
+            product: '구글애즈',
+            status: '진행중',
+            memo: '광화문 지역 키워드와 메뉴 키워드를 분리해 길찾기 전환을 확인합니다.',
+          },
+          {
+            title: '주간 보고 루틴',
+            product: '공통',
+            status: '진행중',
+            memo: '월-금 작업보고를 남기고 월 1회 광고·프로필 성과보고로 묶습니다.',
+          },
+          {
+            title: '월간 성과 점검·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '클릭, 길찾기, 전화, 리뷰 흐름을 기준으로 다음 달 운영 기준을 조정합니다.',
+          },
+        ],
+        productWorkspaces: [
+          {
+            key: 'googleProfile',
+            label: '구글프로필',
+            heading: '작업·보고 현황',
+            description: '웰믹스 광화문점의 Google 프로필 작업현황과 월-금 보고 상태를 확인합니다.',
             metrics: [
-              { label: '제작 상태', value: '기획중', note: '브랜드/지점 페이지 구조 정리' },
-              { label: '콘텐츠', value: '4건 작성', note: '블로그 글 목록 샘플 기준' },
-              { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
+              { label: '이번 주 작업', value: '3건', note: '기본정보, 사진, 리뷰 기준 정리' },
+              { label: '발송상태', value: '작성중', note: '운영 시작 전 기준 리포트 준비' },
+              { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
             ],
-            blogPosts: [
+            weeklyReports: [
               {
-                title: '언리미티드 외국인 고객 방문 전 FAQ 정리',
-                status: '작성완료',
-                keyword: '언리미티드 외국인 방문',
-                channel: '공식 블로그',
-                publishedAt: '2026-05-27',
-                memo: '방문 전 자주 묻는 위치, 예약, 결제, 이용 흐름을 한 글에서 확인할 수 있게 정리합니다.',
-              },
-              {
-                title: 'Google 프로필에서 웹사이트로 이어지는 예약 동선 안내',
-                status: '검수중',
-                keyword: '언리미티드 예약 방법',
-                channel: '공식 블로그',
-                publishedAt: '2026-05-28',
-                memo: 'GBP 클릭 이후 고객이 공식 페이지에서 어떤 정보를 확인해야 하는지 순서대로 설명합니다.',
-              },
-              {
-                title: '외국인 고객이 처음 방문할 때 확인하는 매장 정보',
+                dayOffset: 0,
                 status: '작성중',
-                keyword: '외국인 고객 매장 정보',
-                channel: '블로그 초안',
-                publishedAt: '발행 전',
-                memo: '영업시간, 위치, 사진, 서비스 설명처럼 방문 판단에 필요한 기본 정보를 콘텐츠화합니다.',
+                title: '피드업데이트',
+                memo: 'Google 게시물과 소식지 업데이트를 진행합니다.',
               },
               {
-                title: '리뷰와 FAQ를 활용한 매장 신뢰도 개선 포인트',
-                status: '대기',
-                keyword: '매장 리뷰 FAQ 관리',
-                channel: '콘텐츠 주제',
-                publishedAt: '발행 전',
-                memo: 'Google 리뷰 응대와 FAQ 콘텐츠를 연결해 검색 고객이 신뢰할 수 있는 근거를 쌓습니다.',
+                dayOffset: 1,
+                status: '보고대기',
+                title: '키워드순위보고',
+                memo: '광화문 지역 주요 키워드 노출 순위와 변동을 확인합니다.',
+              },
+              {
+                dayOffset: 2,
+                status: '보고대기',
+                title: '종합 데이터 분석',
+                memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+              },
+              {
+                dayOffset: 3,
+                status: '보고대기',
+                title: '피드업데이트',
+                memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+              },
+              {
+                dayOffset: 4,
+                status: '보고대기',
+                title: '주간 마감 보고',
+                memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
               },
             ],
             tasks: [
               {
-                title: '브랜드/지점 페이지 구조 기획',
+                title: '프로필 기본정보 정리',
                 status: '진행중',
                 owner: '권순현',
                 due: '이번 주',
-                memo: 'GBP에서 연결할 공식 페이지의 메뉴, 서비스 설명, 위치 정보를 먼저 설계합니다.',
+                memo: '카테고리, 영업시간, 전화번호, 매장 설명, 대표 메뉴 정보를 먼저 맞춥니다.',
+              },
+              {
+                title: '대표 사진 구성',
+                status: '대기',
+                owner: '블링크애드',
+                due: '자료 수신 후',
+                memo: '외국인 고객이 위치와 분위기를 빠르게 파악할 수 있는 외관, 내부, 메뉴 사진 순서로 정리합니다.',
+              },
+              {
+                title: '리뷰 응대 기준 정리',
+                status: '대기',
+                owner: '권순현',
+                due: '이번 주',
+                memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+              },
+            ],
+          },
+          {
+            key: 'googleAds',
+            label: '구글애즈',
+            heading: '성과 요약',
+            description: '웰믹스 광화문점의 Google Ads 노출, 클릭, 길찾기 전환 흐름을 확인합니다.',
+            metrics: [
+              { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+              { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+              { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+            ],
+            tasks: [
+              {
+                title: '캠페인 구조 확인',
+                status: '대기',
+                owner: '권순현',
+                due: '운영 시작 전',
+                memo: '브랜드 키워드, 광화문 지역 키워드, 메뉴 키워드를 분리해 예산 낭비를 줄입니다.',
+              },
+              {
+                title: '검색/지도 키워드 그룹 초안',
+                status: '대기',
+                owner: '블링크애드',
+                due: '이번 주',
+                memo: '외국인 고객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+              },
+              {
+                title: '전화·길찾기 전환 점검',
+                status: '대기',
+                owner: '권순현',
+                due: '세팅 후',
+                memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+              },
+            ],
+          },
+        ],
+      },
+      createProfileAdsOperationRow('도르도뉴'),
+      {
+        ...createProfileAdsOperationRow('에코쟈댕 잠실롯데타워점', {
+          memo: '외국인 고객 유입을 위한 Google 프로필과 Google Ads 운영을 3개월간 관리합니다.',
+        }),
+        meta: '3개월 계약 · 운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+      },
+      {
+        ...createProfileAdsOperationRow('에코쟈댕 홍대점', {
+          memo: '외국인 고객 유입을 위한 Google 프로필과 Google Ads 운영을 1개월간 관리합니다.',
+        }),
+        meta: '1개월 계약 · 운영비 월 100만원 + 광고비 월 80만원 · VAT 별도',
+      },
+      createProfileAdsOperationRow('오닉스', {
+        memo: 'ONYX ITAEWON 기준으로 Google 프로필 기본 세팅과 광고 캠페인 구조를 함께 관리합니다.',
+      }),
+      {
+        ...createProfileOnlyOperationRow('렛츠바레', {
+          memo: '월 70만원 구글프로필관리 계약 기준으로 기본 세팅과 운영 보고를 관리합니다.',
+        }),
+        meta: '계약상품 · 구글프로필관리 70만원',
+      },
+      {
+        title: '바다당 해운대점',
+        meta: '계약상품 · 구글프로필 + 구글애즈 + 웹사이트·블로그',
+        status: '계약완료 · 온보딩중',
+        owner: '권순현',
+        due: '이번 주',
+        memo: '해운대 상권과 외국인 관광객 유입 기준으로 Google 프로필, 광고, 콘텐츠 초기 세팅을 함께 관리합니다.',
+        products: {
+          googleProfile: '기본 세팅 · 리뷰 응대 · 소식지 운영',
+          googleAds: '해운대 지역 키워드와 매장 방문 전환 구조 준비',
+          website: '지점 페이지와 대표 메뉴 콘텐츠 기획',
+          material: '대표 메뉴·공간 사진·외국어 안내 자료 요청',
+          nextAction: 'Google 프로필 권한과 대표 사진 자료를 우선 수령',
+        },
+        processSteps: [
+          {
+            title: '프로필 권한·기본정보 세팅',
+            product: '구글프로필',
+            status: '진행중',
+            memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+          },
+          {
+            title: '사진·메뉴·외국어 자료 수령',
+            product: '구글프로필',
+            status: '대기',
+            memo: '외관, 내부, 대표 메뉴, 외국어 안내 자료를 받아 프로필과 콘텐츠에 반영합니다.',
+          },
+          {
+            title: 'Ads 캠페인 구조 세팅',
+            product: '구글애즈',
+            status: '대기',
+            memo: '해운대 지역 키워드, 대표 메뉴 키워드, 방문 전환 기준을 세팅합니다.',
+          },
+          {
+            title: '웹사이트·블로그 구조 기획',
+            product: '웹사이트·블로그',
+            status: '대기',
+            memo: '지점 페이지, 메뉴 안내, FAQ, 위치 콘텐츠 구조를 먼저 설계합니다.',
+          },
+          {
+            title: '콘텐츠 누적·GBP 연결',
+            product: '웹사이트·블로그',
+            status: '대기',
+            memo: '콘텐츠가 쌓이면 Google 프로필에서 연결할 공식 페이지와 블로그 흐름을 정리합니다.',
+          },
+          {
+            title: '월간 보고·유지보수',
+            product: '공통',
+            status: '대기',
+            memo: '월 1회 프로필, 광고, 콘텐츠 성과를 묶어 다음 운영 기준을 조정합니다.',
+          },
+        ],
+        productWorkspaces: [
+          {
+            key: 'googleProfile',
+            label: '구글프로필',
+            heading: '작업·보고 현황',
+            description: '바다당 해운대점의 Google 프로필 세팅, 사진 자료, 월-금 보고 상태를 확인합니다.',
+            metrics: [
+              { label: '이번 주 작업', value: '3건', note: '권한 추가, 기본정보, 사진 자료 요청' },
+              { label: '발송상태', value: '온보딩중', note: '운영 시작 전 기준 리포트 준비' },
+              { label: '누락 체크', value: '0건', note: '현재 지연 작업 없음' },
+            ],
+            weeklyReports: [
+              {
+                dayOffset: 0,
+                status: '작성중',
+                title: '피드업데이트',
+                memo: 'Google 게시물과 소식지 업데이트를 준비합니다.',
+              },
+              {
+                dayOffset: 1,
+                status: '보고대기',
+                title: '키워드순위보고',
+                memo: '해운대 지역 주요 키워드 노출 순위와 변동을 확인합니다.',
+              },
+              {
+                dayOffset: 2,
+                status: '보고대기',
+                title: '종합 데이터 분석',
+                memo: '조회, 검색, 상호작용 데이터를 종합 점검합니다.',
+              },
+              {
+                dayOffset: 3,
+                status: '보고대기',
+                title: '피드업데이트',
+                memo: '주중 운영 내용을 반영해 피드를 추가 업데이트합니다.',
+              },
+              {
+                dayOffset: 4,
+                status: '보고대기',
+                title: '주간 마감 보고',
+                memo: '이번 주 작업 결과와 다음 주 액션을 정리합니다.',
+              },
+            ],
+            tasks: [
+              {
+                title: '프로필 권한 및 기본정보 확인',
+                status: '진행중',
+                owner: '권순현',
+                due: '이번 주',
+                memo: '관리자 권한, 카테고리, 영업시간, 전화번호, 매장 설명을 먼저 맞춥니다.',
+              },
+              {
+                title: '대표 사진 자료 요청',
+                status: '대기',
+                owner: '블링크애드',
+                due: '자료 수신 후',
+                memo: '외국인 고객이 위치와 분위기를 빠르게 파악할 수 있는 외관, 내부, 메뉴 사진 순서로 정리합니다.',
+              },
+              {
+                title: '리뷰 응대 기준 정리',
+                status: '대기',
+                owner: '권순현',
+                due: '이번 주',
+                memo: '한국어 리뷰와 외국어 리뷰에 답변할 톤, 금지 표현, 반복 응대 문구를 정합니다.',
+              },
+            ],
+          },
+          {
+            key: 'googleAds',
+            label: '구글애즈',
+            heading: '성과 요약',
+            description: '바다당 해운대점의 Google Ads 노출, 클릭, 길찾기 전환 흐름을 확인합니다.',
+            metrics: [
+              { label: '노출', value: '연동 전', note: 'Google Ads API 연결 후 자동 집계' },
+              { label: '클릭/전환', value: '연동 전', note: '전화, 길찾기, 웹사이트 이동 기준' },
+              { label: '광고비', value: '연동 전', note: '월 예산과 소진액 비교 예정' },
+            ],
+            tasks: [
+              {
+                title: '캠페인 구조 확인',
+                status: '대기',
+                owner: '권순현',
+                due: '운영 시작 전',
+                memo: '브랜드 키워드, 해운대 지역 키워드, 대표 메뉴 키워드를 분리해 예산 낭비를 줄입니다.',
+              },
+              {
+                title: '검색/지도 키워드 그룹 초안',
+                status: '대기',
+                owner: '블링크애드',
+                due: '이번 주',
+                memo: '외국인 관광객이 실제로 검색할 수 있는 영어/한국어 키워드 그룹을 정리합니다.',
+              },
+              {
+                title: '전화·길찾기 전환 점검',
+                status: '대기',
+                owner: '권순현',
+                due: '세팅 후',
+                memo: '광고 클릭 이후 전화, 길찾기, 웹사이트 이동을 추적할 수 있게 기준을 잡습니다.',
+              },
+            ],
+          },
+          {
+            key: 'websiteBlog',
+            label: '웹사이트·블로그',
+            heading: '제작·콘텐츠 현황',
+            description: '바다당 해운대점의 지점 페이지, FAQ, 블로그 콘텐츠 작업 흐름을 관리합니다.',
+            metrics: [
+              { label: '제작 상태', value: '기획중', note: '지점 페이지 구조와 콘텐츠 주제 정리' },
+              { label: '콘텐츠', value: '8회 슬롯', note: '계약 시작일 기준 1개월 8회 운영' },
+              { label: 'GBP 연결', value: '예정', note: '페이지 초안 후 프로필 URL 연결' },
+            ],
+            contentDb: {
+              name: '바다당 해운대점 Posts DB',
+              url: 'https://www.notion.so/Posts-385753ebc01380c4af92f5e6db8bb28e?source=copy_link',
+              workflow: '글 작성 후 Review 상태로 저장하고, 발행일을 지정한 뒤 Published 상태로 전환합니다.',
+              publishRule: 'Published 상태와 발행일이 함께 있는 글은 해당 날짜 기준 자동 발행 큐로 관리합니다.',
+            },
+            blogPosts: [
+              {
+                title: '바다당 해운대점 방문 전 확인할 매장 정보',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '바다당 해운대점',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-17 검수',
+                publishDate: '2026-06-17',
+                cycleSlot: 1,
+                memo: '위치, 영업시간, 대표 메뉴, 이용 흐름을 방문 전 확인할 수 있게 정리합니다.',
+                nextAction: '본문 검수 후 Published 전환',
+              },
+              {
+                title: '해운대 방문 외국인 고객을 위한 메뉴 안내',
+                status: 'Published',
+                notionStatus: 'Published',
+                keyword: '해운대 외국인 식당',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-20 예약',
+                publishDate: '2026-06-20',
+                cycleSlot: 2,
+                memo: '외국인 고객이 주문 전 궁금해할 메뉴, 결제, 위치 정보를 콘텐츠화합니다.',
+                nextAction: '발행 후 GBP 웹사이트 URL 연결 후보 확인',
+              },
+              {
+                title: '바다당 대표 메뉴를 처음 주문하는 고객을 위한 안내',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '바다당 메뉴',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-24 검수',
+                publishDate: '2026-06-24',
+                cycleSlot: 3,
+                memo: '대표 메뉴 구성, 추천 주문 순서, 사진 기준 설명을 정리합니다.',
+                nextAction: '대표 메뉴 사진 반영',
+              },
+              {
+                title: '해운대역에서 바다당까지 이동 방법',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대역 바다당',
+                channel: 'Posts DB',
+                publishedAt: '2026-06-27 검수',
+                publishDate: '2026-06-27',
+                cycleSlot: 4,
+                memo: '길찾기 전환과 연결될 수 있도록 지하철, 도보, 주차 정보를 정리합니다.',
+                nextAction: '지도 캡처와 위치 설명 보강',
+              },
+              {
+                title: '외국인 고객이 자주 묻는 바다당 이용 FAQ',
+                status: 'Published',
+                notionStatus: 'Published',
+                keyword: '해운대 식당 FAQ',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-01 예약',
+                publishDate: '2026-07-01',
+                cycleSlot: 5,
+                memo: '예약, 대기, 결제, 메뉴 선택, 영업시간 관련 질문을 FAQ로 정리합니다.',
+                nextAction: '발행 후 Google 프로필 FAQ 문구와 맞춤',
+              },
+              {
+                title: '해운대 여행 중 저녁 식사 장소를 고를 때 확인할 것',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대 저녁 식사',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-04 검수',
+                publishDate: '2026-07-04',
+                cycleSlot: 6,
+                memo: '여행객 관점에서 위치, 메뉴, 대기, 이동 시간을 비교하는 콘텐츠입니다.',
+                nextAction: 'CTA와 내부 링크 정리',
+              },
+              {
+                title: '바다당 해운대점 단체 방문 전 확인사항',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '해운대 단체 식당',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-08 검수',
+                publishDate: '2026-07-08',
+                cycleSlot: 7,
+                memo: '단체 방문 시 문의할 정보, 좌석, 시간대, 메뉴 선택 기준을 정리합니다.',
+                nextAction: '매장 확인 필요 항목 체크',
+              },
+              {
+                title: '바다당 해운대점 월간 콘텐츠 운영 정리',
+                status: 'Review',
+                notionStatus: 'Review',
+                keyword: '바다당 해운대점 후기',
+                channel: 'Posts DB',
+                publishedAt: '2026-07-11 검수',
+                publishDate: '2026-07-11',
+                cycleSlot: 8,
+                memo: '1개월차 콘텐츠 누적 현황과 다음 달 보강할 주제를 정리합니다.',
+                nextAction: '월간 보고서에 반영',
+              },
+            ],
+            tasks: [
+              {
+                title: '지점 페이지 구조 기획',
+                status: '진행중',
+                owner: '권순현',
+                due: '이번 주',
+                memo: 'GBP에서 연결할 공식 페이지의 메뉴, 매장 설명, 위치 정보를 먼저 설계합니다.',
               },
               {
                 title: 'FAQ 콘텐츠 주제 정리',
@@ -736,16 +1681,22 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
           },
         ],
       },
+      createProfileAdsOperationRow('자루야키용산로 신용산본점', {
+        memo: '신용산 상권과 외국인 고객 유입 기준으로 Google 프로필과 광고 운영 현황을 관리합니다.',
+      }),
+      createProfileAdsOperationRow('주도락 을지로점', {
+        memo: '을지로 상권과 외국인 고객 유입 기준으로 Google 프로필과 광고 운영 현황을 관리합니다.',
+      }),
     ],
   },
   assets: {
     kicker: 'Content Assets',
     title: '콘텐츠 자산',
-    description: '웰컴문구와 Google 프로필 요일별 보고 멘트를 한곳에서 열람하고 복사합니다.',
+    description: '웰컴문구, 자료요청 문구, 리뷰 안내 푸쉬 문구와 Google 프로필 요일별 보고 멘트를 한곳에서 열람하고 복사합니다.',
     stats: [
-      { label: '콘텐츠', value: '6' },
+      { label: '콘텐츠', value: '8' },
       { label: '보고 멘트', value: '5' },
-      { label: '웰컴문구', value: '1' },
+      { label: '요청/푸쉬', value: '2' },
     ],
     rows: [
       {
@@ -756,6 +1707,24 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         due: '상시',
         memo: '신규 계약 후 단톡방에 고정해 Google 비즈니스 프로필 관리자 권한 추가를 요청할 때 사용합니다.',
         copyText: WELCOME_GOOGLE_PROFILE_ACCESS_MESSAGE,
+      },
+      {
+        title: '자료요청문구(요식업)',
+        meta: '요식업 · 사진/메뉴판/신뢰자료 요청',
+        status: '템플릿',
+        owner: '블링크애드',
+        due: '운영 시작 전',
+        memo: '요식업 매장 운영 시작 전 필요한 사진, 메뉴, 인증 자료를 요청할 때 사용합니다.',
+        copyText: RESTAURANT_MATERIAL_REQUEST_MESSAGE,
+      },
+      {
+        title: '주간 리뷰 안내 푸쉬 문구',
+        meta: '리뷰 요청 · 매주 리마인드 · 대표님 공유',
+        status: '리뷰푸쉬',
+        owner: '블링크애드',
+        due: '매주',
+        memo: '지난주부터 리뷰가 꾸준히 쌓이는 매장에 이번 주도 같은 페이스를 유지해 달라고 안내할 때 사용합니다.',
+        copyText: WEEKLY_REVIEW_PUSH_MESSAGE,
       },
       {
         title: '월요일 피드 업데이트 보고 멘트',
@@ -895,8 +1864,8 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
         memo: '매장명 기준 Notion 견적서 열 업로드',
       },
       {
-        title: '진단자료 템플릿 고정',
-        meta: 'GBP 무료진단자료',
+        title: '분석자료 템플릿 고정',
+        meta: 'GBP 무료분석자료',
         status: '운영 중',
         owner: '블링크애드',
         due: '상시',
@@ -951,36 +1920,20 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
   kpi: {
     kicker: 'KPI',
     title: 'KPI 분석',
-    description: '매장별 Google 프로필 조회, 검색 노출, 문의, 방문, 리뷰 지표를 운영 기준으로 추적합니다.',
+    description: '블링크애드의 핵심 목표인 매장 50개 계약체결 달성도를 추적합니다.',
     stats: [
-      { label: '측정 매장', value: '9' },
-      { label: '개선 필요', value: '5' },
-      { label: '리포트 대기', value: '4' },
+      { label: '목표', value: '50개' },
+      { label: '지표', value: '계약체결' },
+      { label: '단위', value: '매장' },
     ],
     rows: [
       {
-        title: 'GBP 조회수 / 검색 노출',
-        meta: '인지 지표 · 월간 비교',
+        title: '매장 50개 계약체결',
+        meta: '단일 KPI',
         status: '추적중',
         owner: '블링크애드',
-        due: '월말',
-        memo: '노출 증가만 보지 않고 전화, 길찾기, 웹사이트 클릭과 함께 봅니다.',
-      },
-      {
-        title: '리뷰 수 / 평점 / 대댓글',
-        meta: '신뢰 지표 · 운영 품질',
-        status: '개선 필요',
-        owner: '권순현',
-        due: '매주',
-        memo: '저평점 리뷰와 미응답 리뷰를 작업 우선순위로 전환합니다.',
-      },
-      {
-        title: '웹사이트 클릭 / 예약 전환',
-        meta: '전환 지표 · 지점 페이지',
-        status: '세팅 필요',
-        owner: '외주 PM',
-        due: 'D+7',
-        memo: 'GBP 링크가 예약 링크만 있으면 브랜드 설명이 부족하므로 지점 페이지 연결을 점검합니다.',
+        due: '상시',
+        memo: '대시보드 계약 매장 리스트 기준으로 현재 계약 수, 목표 수, 남은 계약 수를 확인합니다.',
       },
     ],
   },
@@ -989,20 +1942,11 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '청구관리',
     description: 'GBP 계약 클라이언트의 매월 청구일, 청구 금액, 입금 상태, 다음 결제 예정일을 관리합니다.',
     stats: [
-      { label: 'GBP 계약 고객', value: '1' },
-      { label: '이번 달 청구', value: '1' },
+      { label: 'GBP 계약 고객', value: '0' },
+      { label: '이번 달 청구', value: '0' },
       { label: '미수 건', value: '0' },
     ],
-    rows: [
-      {
-        title: '언리미티드 월간 GBP 운영료',
-        meta: '정기 운영 · 매월 계약일 기준 청구',
-        status: '발행 대기',
-        owner: '권순현',
-        due: '매월 계약일',
-        memo: '계약 시작일, 월 청구 금액, 세금계산서 발행 여부, 입금 확인 상태를 한 줄에서 확인합니다.',
-      },
-    ],
+    rows: [],
   },
   receivable: {
     kicker: 'Receivables',
@@ -1112,4 +2056,74 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       },
     ],
   },
+}
+
+const terminatedStoreTitles = new Set(['웰믹스 광화문점', '도르도뉴'])
+const terminatedStoreRows = operationViews.project?.rows.filter((row) => terminatedStoreTitles.has(row.title)) || []
+
+if (operationViews.project && terminatedStoreRows.length) {
+  operationViews.project = {
+    ...operationViews.project,
+    rows: operationViews.project.rows.filter((row) => !terminatedStoreTitles.has(row.title)),
+  }
+
+  operationViews.terminatedStores = {
+    kicker: 'Contract Archive',
+    title: '계약 해제 매장',
+    description: '계약이 종료된 매장의 상품 구성, 작업 과정, 보고 이력을 보관합니다.',
+    stats: [
+      { label: '계약 해제 매장', value: String(terminatedStoreRows.length) },
+      { label: '보관 상품', value: String(terminatedStoreRows.length * 2) },
+      { label: '진행 작업', value: '0' },
+    ],
+    rows: terminatedStoreRows.map((row) => ({
+      ...row,
+      status: '계약 해제',
+      due: '이력 보관',
+      memo:
+        row.title === '도르도뉴'
+          ? `${row.memo} 1개월 계약 종료 후 기존 운영 이력을 보관합니다.`
+          : `${row.memo} 계약 종료 후 기존 운영 이력을 보관합니다.`,
+    })),
+  }
+}
+
+const pausedStoreTitles = new Set<string>()
+const removedStoreTitles = new Set(['오닉스', '언리미티드'])
+const pausedStoreRows = operationViews.project?.rows.filter((row) =>
+  pausedStoreTitles.has(row.title)
+) || []
+const pausedProductCount = pausedStoreRows.reduce(
+  (count, row) =>
+    count +
+    [row.products?.googleProfile, row.products?.googleAds, row.products?.website].filter(
+      (product) => product && product !== '계약 제외'
+    ).length,
+  0
+)
+
+if (operationViews.project) {
+  operationViews.project = {
+    ...operationViews.project,
+    rows: operationViews.project.rows.filter(
+      (row) => !pausedStoreTitles.has(row.title) && !removedStoreTitles.has(row.title)
+    ),
+  }
+}
+
+operationViews.pausedStores = {
+  kicker: 'Paused Operations',
+  title: '작업보류매장',
+  description: '작업이 일시 중단된 매장의 기존 상품 구성과 작업·보고 이력을 보관합니다.',
+  stats: [
+    { label: '작업 보류 매장', value: String(pausedStoreRows.length) },
+    { label: '보관 상품', value: String(pausedProductCount) },
+    { label: '진행 작업', value: '0' },
+  ],
+  rows: pausedStoreRows.map((row) => ({
+    ...row,
+    status: '작업 보류',
+    due: '재개 일정 미정',
+    memo: `${row.memo} 작업 재개 전까지 기존 운영 이력을 보관합니다.`,
+  })),
 }

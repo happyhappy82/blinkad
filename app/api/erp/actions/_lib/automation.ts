@@ -158,7 +158,7 @@ export async function renderAndUploadDiagnosis(payload: Required<Pick<WorkerPayl
   const uploadScript = path.join(projectRoot, '.codex/skills/blinkad-quote/scripts/upload_quote_to_notion.py')
 
   if (!existsSync(diagnosisScript) || !existsSync(uploadScript)) {
-    throw new Error('로컬 Codex 진단자료 스킬 스크립트를 찾지 못했습니다.')
+    throw new Error('로컬 Codex 분석자료 스킬 스크립트를 찾지 못했습니다.')
   }
 
   const rendered = await runProcess(
@@ -170,7 +170,7 @@ export async function renderAndUploadDiagnosis(payload: Required<Pick<WorkerPayl
   const pdfPath = renderResult?.pdf
 
   if (!pdfPath) {
-    throw new Error('진단자료 PDF 경로를 확인하지 못했습니다.')
+    throw new Error('분석자료 PDF 경로를 확인하지 못했습니다.')
   }
 
   const uploaded = await runProcess(
@@ -182,7 +182,7 @@ export async function renderAndUploadDiagnosis(payload: Required<Pick<WorkerPayl
 
   return {
     ok: true,
-    message: `${payload.storeName} 진단자료를 생성하고 Notion 분석자료 열에 저장했습니다.`,
+    message: `${payload.storeName} 분석자료를 생성하고 Notion 분석자료 열에 저장했습니다.`,
     pdf: pdfPath,
     upload: uploadResult,
   }
