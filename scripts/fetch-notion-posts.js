@@ -353,7 +353,7 @@ async function fetchNotionPosts() {
 
       // 요약 추출 (rich_text 전체 합치기)
       const excerptProperty = properties.Excerpt || properties.Summary || properties['요약'];
-      const excerpt = (excerptProperty?.rich_text || [])
+      let excerpt = (excerptProperty?.rich_text || [])
         .map(t => t.plain_text)
         .join('')
         .trim();
@@ -418,6 +418,11 @@ async function fetchNotionPosts() {
       }
       const content = markdownToHtml(processedContent);
 
+      // Notion에 요약이 없으면 본문 첫 문단에서 자동 생성 (메타 설명용)
+      if (!excerpt || excerpt.length <= 50) {
+        excerpt = generateExcerpt(content);
+      }
+
       posts.push({
         id: slug,
         title,
@@ -437,6 +442,54 @@ async function fetchNotionPosts() {
 }
 
 // 한글 제목을 영문 슬러그로 변환
+// HTML 본문에서 메타 설명용 요약 생성
+function generateExcerpt(html, maxLen = 150) {
+  if (!html) return '';
+
+  // <p> 문단만 추출 (표·리스트·제목 제외)
+  const paragraphs = [];
+  const re = /<p>([\s\S]*?)<\/p>/g;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    let text = m[1]
+      .replace(/<[^>]+>/g, '')      // 인라인 태그 제거
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (text) paragraphs.push(text);
+  }
+
+  // 인사말·정형 문구 문단은 건너뜀
+  const skip = /^(안녕하세요|블링크애드입니다|블링크애드는 외국인)/;
+  const body = paragraphs.filter(p => !skip.test(p) && p.length > 10);
+  if (body.length === 0) return '';
+
+  // 문장 단위로 이어 붙이되 maxLen을 넘기지 않음
+  let out = '';
+  for (const p of body) {
+    const sentences = p.split(/(?<=[.!?])\s+/);
+    for (const s of sentences) {
+      if (!s.trim()) continue;
+      const piece = s.trim();
+      if (out.length === 0) { out = piece; }
+      else if ((out + ' ' + piece).length <= maxLen) { out += ' ' + piece; }
+      else if (out.length < 60) {
+        // 아직 너무 짧으면 한 문장 더 붙이고 길이에 맞춰 정리
+        out = (out + ' ' + piece).slice(0, maxLen).trim();
+        return out;
+      }
+      else { return out; }
+    }
+    if (out.length >= 60) return out;   // 한 문단으로 충분하면 종료
+  }
+  return out;
+}
+
 function generateSlug(title) {
   // 약어 매핑
   const abbreviations = {
