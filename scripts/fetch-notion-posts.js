@@ -465,7 +465,8 @@ function generateExcerpt(html, maxLen = 150) {
   }
 
   // 인사말·정형 문구 문단은 건너뜀
-  const skip = /^(안녕하세요|블링크애드입니다|블링크애드는 외국인)/;
+  // 인사말·문서 메타 정보(기준일/출처 등)로 시작하는 문단은 요약에서 제외
+  const skip = /^(안녕하세요|블링크애드입니다|블링크애드는 외국인|기준일|작성일|최신 통계|최종 수정|업데이트|출처|참고 자료|본 글은|이 글은)/;
   const body = paragraphs.filter(p => !skip.test(p) && p.length > 10);
   if (body.length === 0) return '';
 
