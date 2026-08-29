@@ -97,6 +97,10 @@ export default async function BlogPost({ params }: Props) {
   const isoDate = formatDateToISO(post.date)
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
+  const renderedContent = post.content.replace(
+    '<p><a href="https://www.blinkad.kr/contact">우리 매장이 외국인 고객에게 지금 어떤 화면으로 보이는지, 광고를 시작하기 전에 무엇부터 고쳐야 하는지 점검받기</a></p>',
+    '<p>우리 매장이 외국인 고객에게 지금 어떤 화면으로 보이는지, 광고를 시작하기 전에 무엇부터 고쳐야 하는지 점검받으시려면 블링크애드로 <a href="https://www.blinkad.kr/contact">문의</a>해 주세요.</p>',
+  )
 
   // 관련 글 추천 (같은 카테고리, 최대 3개)
   const relatedPosts = BLOG_POSTS
@@ -232,7 +236,7 @@ export default async function BlogPost({ params }: Props) {
               prose-table:border-collapse prose-table:w-full prose-table:my-6
               prose-th:border prose-th:border-gray-700 prose-th:bg-gray-800 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:text-white
               prose-td:border prose-td:border-gray-700 prose-td:px-4 prose-td:py-2 prose-td:text-gray-300"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: renderedContent }}
           />
 
           {/* CTA Section */}

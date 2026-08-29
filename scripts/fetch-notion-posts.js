@@ -18,6 +18,13 @@ const n2m = new NotionToMarkdown({ notionClient: notion });
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
+// Notion DB에 없는 수동 발행 글은 동기화 대상에서 제외하지 않고 보존한다.
+const MANUAL_STATIC_POST_IDS = new Set([
+  'oigug-in-maketing-eobce-pallo-usuboda-meonjeo-muleobwaya-hal-6gaji',
+  'toronto-hanin-miyongsil-google-ai-marketing',
+  'vancouver-hanin-miyongsil-google-ai-marketing',
+]);
+
 // 마크다운을 HTML로 변환하는 함수
 function markdownToHtml(markdown) {
   if (!markdown || typeof markdown !== 'string') {
@@ -583,8 +590,12 @@ async function updateConstants(newPosts) {
 
   const existingPosts = getExistingPosts();
 
-  // Notion 포스트로 전체 교체 (날짜순 정렬)
-  const allPosts = [...newPosts];
+  // Notion 포스트와 명시된 수동 발행 글을 함께 유지한다.
+  const notionPostIds = new Set(newPosts.map((post) => post.id));
+  const manualPosts = existingPosts.filter(
+    (post) => MANUAL_STATIC_POST_IDS.has(post.id) && !notionPostIds.has(post.id),
+  );
+  const allPosts = [...newPosts, ...manualPosts];
   allPosts.sort((a, b) => {
     const dateA = a.date.replace(/\./g, '-');
     const dateB = b.date.replace(/\./g, '-');
