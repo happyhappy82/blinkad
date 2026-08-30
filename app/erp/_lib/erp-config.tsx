@@ -1065,7 +1065,7 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
     title: '매장 운영관리',
     description: '매장별 계약 상품 기준으로 구글프로필, 구글애즈, 웹사이트·블로그, 자료요청 상태를 확인합니다.',
     stats: [
-      { label: '운영 매장', value: '4' },
+      { label: '운영 매장', value: '8' },
       { label: '진행 상품', value: '8' },
       { label: '지연 작업', value: '0' },
     ],
@@ -1686,6 +1686,12 @@ export const operationViews: Partial<Record<MenuId, OperationView>> = {
       }),
       createProfileAdsOperationRow('주도락 을지로점', {
         memo: '을지로 상권과 외국인 고객 유입 기준으로 Google 프로필과 광고 운영 현황을 관리합니다.',
+      }),
+      createProfileAdsOperationRow('영종센트럴피부과', {
+        memo: '계약·입금 완료 기준으로 Google 프로필, Google Ads, AEO 작업의 온보딩 현황을 관리합니다. 세부 작업 상태는 담당자 확인 후 갱신합니다.',
+      }),
+      createProfileAdsOperationRow('원스타올드패션드 햄버거 어린이대공원점', {
+        memo: '계약·입금 완료 기준으로 Google 프로필과 Google Ads 온보딩 현황을 관리합니다. 세부 작업 상태는 담당자 확인 후 갱신합니다.',
       }),
     ],
   },
