@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   # 웹훅 트리거
   repository_dispatch:
-    types: [notion-webhook]
+    types: [notion-webhook, notion-publish]
 
 permissions:
   contents: write
@@ -50,5 +50,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "chore: sync blog posts from Notion [skip ci]"
+          git commit -m "chore: sync blog posts from Notion [skip ci]" \
+            -m "Co-Authored-By: Codex <codex@openai.com>"
           git push
