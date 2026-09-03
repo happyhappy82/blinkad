@@ -1,13 +1,13 @@
 # 블링크애드 외국인 업종 마케팅 시리즈
 
 기준일: 2026-09-03  
-상태: 초안, 미발행
+상태: 1편 발행, 11편 초안
 
 ## 발행 권장 순서
 
 | 순서 | 주 검색 의도 | 원고 |
 |---:|---|---|
-| 1 | 식당 발견 → 메뉴·예약 → 방문 | [식당 마케팅](./01-restaurant-marketing.md) |
+| 1 | 식당 발견 → 메뉴·예약 → 방문 | [식당 마케팅](./01-restaurant-marketing.md) · [발행 URL](https://www.blinkad.kr/blog/how-foreign-customers-find-korean-restaurants) |
 | 2 | 카페 발견·저장 → 길찾기 → 방문 | [카페 마케팅](./02-cafe-marketing.md) |
 | 3 | 아고다·트립닷컴 비교 → 호텔 예약 | [호텔 마케팅](./03-hotel-marketing.md) |
 | 4 | 중소 숙소 검색 → 예약 → 체크인 | [숙박업 마케팅](./04-accommodation-marketing.md) |

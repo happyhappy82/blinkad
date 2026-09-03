@@ -1,5 +1,5 @@
 ---
-status: draft
+status: published
 title: "외국인 손님은 한국 식당을 어떻게 찾을까? 식당 마케팅의 시작"
 slug: "how-foreign-customers-find-korean-restaurants"
 primary_keyword: "식당 마케팅"
@@ -8,9 +8,10 @@ secondary_keywords:
   - "외국인 관광객 식당 유입"
   - "구글맵 식당 마케팅"
 search_intent: "외국인 손님을 유치하려는 식당 운영자가 검색부터 방문까지의 경로와 준비 항목을 확인한다."
-excerpt: "외국인 손님이 Google 검색과 지도에서 한국 식당을 발견하고 메뉴·리뷰·예약을 확인해 방문하기까지, 식당이 준비할 정보를 실제 점검 순서로 정리했습니다."
+excerpt: "외국인 손님이 Google 검색과 지도에서 한국 식당을 발견하고 메뉴·가격·사진·리뷰를 비교해 길찾기나 예약으로 이동하는 과정과, 식당이 먼저 정리해야 할 프로필·외국어 메뉴·성과 지표를 실제 점검 순서로 설명합니다."
 author: "BlinkAd Team"
 reviewed_on: "2026-09-03"
+published_on: "2026-09-03"
 ---
 
 # 외국인 손님은 한국 식당을 어떻게 찾을까? 식당 마케팅의 시작
