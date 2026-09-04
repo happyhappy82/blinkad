@@ -1,5 +1,5 @@
 ---
-status: draft
+status: published
 title: "외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법"
 slug: "how-foreign-tourists-find-and-visit-korean-cafes"
 primary_keyword: "카페 마케팅"
@@ -8,9 +8,10 @@ secondary_keywords:
   - "외국인 관광객 카페 유입"
   - "구글맵 카페 마케팅"
 search_intent: "외국인 관광객의 카페 발견과 저장이 실제 길찾기와 방문으로 이어지도록 준비한다."
-excerpt: "외국인 관광객이 카페를 발견하고 저장한 뒤 실제 길찾기와 방문으로 이동하려면 어떤 사진·메뉴·위치 정보가 필요한지 정리했습니다."
+excerpt: "외국인 관광객이 한국 카페를 발견하고 저장한 뒤 실제 길찾기와 방문으로 이동하는 과정을 설명합니다. Google 지도 프로필, 대표 메뉴·가격·영업시간·입구 사진, 다국어 안내와 성과 지표를 카페 마케팅 실무 순서로 정리했습니다."
 author: "BlinkAd Team"
-reviewed_on: "2026-09-03"
+reviewed_on: "2026-09-04"
+published_on: "2026-09-04"
 ---
 
 # 외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법
@@ -103,8 +104,8 @@ reviewed_on: "2026-09-03"
 
 ## 참고 자료
 
-- Google Business Profile Help, [Tips to improve your local ranking on Google](https://support.google.com/business/answer/7091?hl=en-en)
-- Google Business Profile Help, [Manage your business category](https://support.google.com/business/answer/7249669?hl=en)
-- Google Business Profile Help, [Understand your Business Profile performance and insights](https://support.google.com/business/answer/9918094?hl=en-GB)
-- Google Search Central, [AI features and your website](https://developers.google.com/search/docs/appearance/ai-features)
-- Google Search Central, [Creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
+- Google Business Profile Help, [Google에서 지역 검색결과 순위를 높이기 위한 도움말](https://support.google.com/business/answer/7091?hl=ko)
+- Google Business Profile Help, [비즈니스 카테고리 관리하기](https://support.google.com/business/answer/7249669?hl=ko)
+- Google Business Profile Help, [비즈니스 프로필 실적 및 통계 이해하기](https://support.google.com/business/answer/9918094?hl=ko)
+- Google Search Central, [AI 기능 및 웹사이트](https://developers.google.com/search/docs/appearance/ai-features?hl=ko)
+- Google Search Central, [유용하고 신뢰할 수 있는 사용자 중심 콘텐츠 제작하기](https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko)
