@@ -41,6 +41,14 @@ function markdownToHtml(markdown) {
     return codeBlockPlaceholder(codeBlocks.length - 1);
   });
 
+  // Notion FAQ 토글을 문단으로 감싸지 않도록 먼저 보존한다.
+  const detailsBlocks = [];
+  html = html.replace(/<details>\s*<summary>([\s\S]*?)<\/summary>([\s\S]*?)<\/details>/g, (match, summary, body) => {
+    const summaryHtml = markdownToHtml(summary.trim()).replace(/^<p>|<\/p>$/g, '');
+    detailsBlocks.push(`<details><summary>${summaryHtml}</summary>\n${markdownToHtml(body.trim())}\n</details>`);
+    return `@@DETAILSBLOCK${detailsBlocks.length - 1}@@`;
+  });
+
   // 인라인 코드 처리
   html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
 
@@ -180,6 +188,7 @@ function markdownToHtml(markdown) {
       para.startsWith('<table') ||
       para.startsWith('<hr') ||
       para.startsWith('<img') ||
+      para.startsWith('@@DETAILSBLOCK') ||
       para.startsWith('@@CODEBLOCK')
     ) {
       return para;
@@ -190,9 +199,13 @@ function markdownToHtml(markdown) {
     return `<p>${para}</p>`;
   }).join('\n');
 
-  // 코드 블록 복원
+  detailsBlocks.forEach((block, i) => {
+    html = html.replace(`@@DETAILSBLOCK${i}@@`, () => block);
+  });
+
+  // 토글 안의 코드 블록까지 원래 내용으로 복원한다.
   codeBlocks.forEach((block, i) => {
-    html = html.replace(codeBlockPlaceholder(i), block);
+    html = html.replace(codeBlockPlaceholder(i), () => block);
   });
 
   // 빈 태그 정리
