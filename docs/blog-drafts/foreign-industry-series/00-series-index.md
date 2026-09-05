@@ -1,7 +1,7 @@
 # 블링크애드 외국인 업종 마케팅 시리즈
 
 기준일: 2026-09-05
-상태: 4편 발행, 8편 초안
+상태: 5편 발행, 7편 초안
 
 ## 발행 권장 순서
 
@@ -11,7 +11,7 @@
 | 2 | 카페 발견·저장 → 길찾기 → 방문 | [카페 마케팅](./02-cafe-marketing.md) · [발행 URL](https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes) |
 | 3 | 아고다·트립닷컴 비교 → 호텔 예약 | [호텔 마케팅](./03-hotel-marketing.md) · [발행 URL](https://www.blinkad.kr/blog/how-foreign-guests-choose-korean-hotels-on-agoda-and-tripcom) |
 | 4 | 중소 숙소 검색 → 예약 → 체크인 | [숙박업 마케팅](./04-accommodation-marketing.md) · [발행 URL](https://www.blinkad.kr/blog/how-foreign-guests-search-and-compare-accommodations) |
-| 5 | 에스테틱 서비스 이해 → 상담·예약 | [에스테틱 마케팅](./05-esthetic-marketing.md) |
+| 5 | 에스테틱 서비스 이해 → 상담·예약 | [에스테틱 마케팅](./05-esthetic-marketing.md) · [발행 URL](https://www.blinkad.kr/blog/how-foreign-customers-find-and-book-korean-esthetics) |
 | 6 | 원데이클래스 사전 검색 → 예약 | [원데이클래스 마케팅](./06-one-day-class-marketing.md) |
 | 7 | 여행 중 공방 검색 → 현장 방문 | [공방 마케팅](./07-workshop-marketing.md) |
 | 8 | 포트폴리오 확인 → 촬영 예약 | [사진관 마케팅](./08-photo-studio-marketing.md) |
@@ -37,7 +37,7 @@
 - 하나의 독자 상황과 하나의 주 검색 의도
 - 질문형 H2와 비교 표 또는 실행 순서
 - 블링크애드가 실제 진단에서 확인하는 절차를 경험 근거로 공개
-- 확인되지 않은 성과 수치, 가상 고객 후기와 순위 보장 배제
+- 확인 가능한 사실, 실제 점검 절차와 측정할 행동 중심으로 작성
 - 정확히 3개의 FAQ
 - Google·한국관광공사·플랫폼 공식 자료 중심의 참고 자료
 - 고유 제목, Slug, Excerpt와 최종 검수일
@@ -62,7 +62,7 @@
 
 블링크애드 사이트의 현재 블로그 상세 페이지는 `Article`과 `BreadcrumbList` 구조화 데이터를 생성한다. 발행 시 제목, Excerpt, 작성자, 대표 이미지, 게시일과 수정일이 실제 화면과 구조화 데이터에서 일치하는지 확인한다.
 
-FAQ는 독자가 질문별 답을 찾고 검색·AI 시스템이 문맥을 이해하기 쉽게 하기 위한 본문 구조다. 일반 마케팅 블로그가 FAQ 리치 결과에 노출된다고 보장하지 않으며, 지원 자격을 확인하지 않은 `FAQPage` 마크업은 추가하지 않는다.
+FAQ는 독자가 질문별 답을 찾고 검색·AI 시스템이 문맥을 이해하기 쉽게 하기 위한 본문 구조다. 지원 자격을 확인하지 않은 `FAQPage` 마크업은 추가하지 않는다.
 
 ## 발행 전 최종 확인
 
