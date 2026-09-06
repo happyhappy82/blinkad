@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "bank": "d9c4eba5-dc70-409f-841d-19d62554bd72",
+  "stores": "a1b3e629-472d-4840-aa10-6bcb7d66f35a",
+  "payments": "1b9ed9bc-3868-4a7b-9027-f3cf3c057ff3",
+  "cycles": "d3871bdd-d4d2-423b-a9c3-6d04205abfb7",
+  "allocations": "94de373a-29b1-4c12-b434-3ee6b2a4e0b5",
+  "root_page": "3d3753eb-c013-8148-b3b3-c77f394da297",
+  "health_page": "3d3753eb-c013-81b6-99e5-e2f94b605df9",
+  "auto_match_after": "2026-09-06",
+  "poll_interval_seconds": 60
+}

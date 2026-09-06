@@ -2,6 +2,13 @@
 
 Updated: 2026-09-06 KST
 
+## 2026-09-06 Notion 원장 입금 연동 — 연결 권한 대기
+
+- 관리 페이지에 카뱅 원장 직접 관계·입금 배분 DB·입금현황(자동)/미수금 계산을 적용했다. 원장86·매장3·회차5·입금4(확정2/검토2)·배분5. 네이티브 입금완료 필터4회차·검토뷰2건 검증.
+- `scripts/notion-deposit-sync.py`, `config/notion-deposit-sync.json`, 테스트15개. `com.blinkad.notion-deposit-sync` LaunchAgent를 60초 간격으로 등록했다. Mac 가동/네트워크 의존.
+- 자동 실행 연결 `SEO블로그(에이정,테크 등)`은 원장에는 접근되지만 새 관리페이지 데이터소스에 HTTP404. 사용자에게 관리페이지 ··· → 연결 추가를 요청했다. 사전 조회 실패로 쓰기 전 종료하며 권한 추가 후 자동 재시도한다. 신규 자동 매칭이 가동 중이라고 보고하지 않는다.
+- 재개: `NOTION_DEPOSIT_SYNC_20260906.md`, `.erp-private/notion-deposit-sync/health.json`. 권한 추가 후 API 실조회·연동 실행·두 번째 무변경 확인이 남아 있다. 현재 원장 직접 연결과 수식 조회는 완료.
+
 ## 2026-09-06 Notion 매장·서비스·정산 샘플
 
 - 사용자 지정 블링크애드 페이지 아래 [매장·서비스·정산 관리 — 샘플](https://app.notion.com/p/3d3753ebc0138148b3b3c77f394da297)을 생성했다.
