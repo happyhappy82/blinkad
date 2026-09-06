@@ -127,6 +127,56 @@ class MatchingTests(unittest.TestCase):
         sync.update_if_changed(NoWrites(), {'id': 'p1', '확인상태': '원장 대조'}, {'확인상태': '원장 대조'}, 'payment', audit)
         self.assertEqual(audit, [])
 
+    def test_one_transfer_allocates_to_two_stores_without_duplicate_receipts(self):
+        data = confirmed(fixture())
+        data['stores'].append(dict(data['stores'][0], id='s2'))
+        data['cycles'].append(dict(data['cycles'][0], id='c2', 매장=['s2'], **{'용역 공급가': 200, '용역 VAT': 20}))
+        data['bank'][0].update(매장=['s1', 's2'], 정산회차=['c1', 'c2'], 입금매칭='수동확정', 금액=330)
+        data['payments'][0].update(매장=['s1', 's2'], 회차=['c1', 'c2'])
+        plan = self.plan(data)
+        self.assertEqual(len(plan), 1)
+        self.assertEqual(plan[0]['stores'], ['s1', 's2'])
+        self.assertEqual(plan[0]['allocations'], [('c1', 110), ('c2', 220)])
+        self.assertEqual(sum(a for _, a in plan[0]['allocations']), 330)
+        data['bank'][0]['매장'] = ['s1']
+        self.assertEqual(self.plan(data)[0]['status'], '매칭 확인필요')
+
+    def test_refunded_unallocated_payment_stays_out_of_work_cycles(self):
+        data = fixture()
+        data['bank'][0].update(매장=['s1'], 정산회차=[], 입금매칭='수동확정')
+        data['bank'].append(dict(data['bank'][0], id='refund', 구분='출금', 거래ID='202609061100|출금|110|890', 잔액=890))
+        data['payments'] = [{'id': 'p1', '매장': ['s1'], '회차': [], '원장거래': ['b1'],
+                             '환불거래': ['refund'], '확인상태': '원장 대조', '납부구분': '선입금'}]
+        data['allocations'] = [{'id': 'a1', '입금': ['p1'], '회차': [], '매장': ['s1'], '배분종류': '선수금'}]
+        plan = self.plan(data)[0]
+        self.assertTrue(plan['unallocated'])
+        self.assertEqual(plan['allocations'], [])
+        data['bank'] = data['bank'][:1]
+        with self.assertRaises(ValueError):
+            self.plan(data)
+
+    def test_refund_reduces_available_funds_for_conflict_check(self):
+        data = confirmed(fixture())
+        data['bank'].append(dict(data['bank'][0], id='refund', 구분='출금', 금액=10,
+                                 거래ID='202609061100|출금|10|990', 잔액=990))
+        data['payments'][0]['환불거래'] = ['refund']
+        data['bank'].append(dict(data['bank'][0], id='b2', 금액=10, 입금매칭='수동확정',
+                                 거래ID='202609061200|입금|10|1000'))
+        plans = self.plan(data)
+        self.assertTrue(all(p['status'] == '원장 대조' for p in plans))
+
+    def test_verified_cash_waiting_for_cycle_is_not_applied_to_invoice(self):
+        data = fixture()
+        data['bank'][0].update(매장=['s1'], 정산회차=[], 입금매칭='회차확인')
+        data['payments'] = [{'id': 'p1', '매장': ['s1'], '회차': [], '원장거래': ['b1'],
+                             '확인상태': '원장 대조', '납부구분': '선입금'}]
+        plan = self.plan(data)[0]
+        self.assertEqual(plan['status'], '원장 대조')
+        self.assertTrue(plan['unallocated'])
+        self.assertEqual(plan['allocations'], [])
+        data['bank'][0]['상대/적요'] = 'Unverified person'
+        self.assertEqual(self.plan(data)[0]['status'], '매칭 확인필요')
+
 
 if __name__ == '__main__':
     unittest.main()

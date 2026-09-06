@@ -24,7 +24,7 @@ VERSION = '2025-09-03'
 KINDS = ('bank', 'stores', 'cycles', 'payments', 'allocations')
 BANK_FIELDS = {'매장', '정산회차', '입금매칭', '매칭메모'}
 RELATIONS = {'매장', '정산회차', '회차', '원장거래', '입금'}
-SELECTS = {'입금매칭', '확인상태', '납부구분', '배분상태'}
+SELECTS = {'입금매칭', '확인상태', '납부구분', '배분상태', '배분종류'}
 TITLES = {'입금건', '배분건'}
 
 
@@ -126,7 +126,8 @@ def build_plan(data, config):
             payments_by_bank[key] = p
     allocations_by_payment = defaultdict(list)
     for a in data['allocations']:
-        if len(a.get('입금') or []) != 1 or len(a.get('회차') or []) != 1:
+        reserve = a.get('배분종류') == '선수금' and not a.get('회차') and len(a.get('매장') or []) == 1
+        if len(a.get('입금') or []) != 1 or (len(a.get('회차') or []) != 1 and not reserve):
             raise ValueError('Allocation must have exactly one receipt and one cycle')
         allocations_by_payment[a['입금'][0]].append(a)
     aliases = defaultdict(set)
@@ -163,24 +164,44 @@ def build_plan(data, config):
             continue
         explicit = b.get('매장') or []
         matches = aliases.get(normalize_payer(b.get('상대/적요')), set())
-        sid = explicit[0] if len(explicit) == 1 and explicit[0] in stores else None
+        manual = b.get('입금매칭') == '수동확정'
+        shared = manual and len(explicit) > 1 and len(explicit) == len(set(explicit)) and all(s in stores for s in explicit)
+        sid = explicit[0] if (len(explicit) == 1 or shared) and explicit[0] in stores else None
         if sid is None and p and len(p.get('매장') or []) == 1:
             sid = p['매장'][0]
         if sid is None and len(matches) == 1:
             sid = next(iter(matches))
+        prior_stores = [s for s in (p or {}).get('매장', []) if s in stores]
+        if sid is None and prior_stores:
+            sid = prior_stores[0]
         if sid not in stores:
             continue  # Personal and unrelated bank activity is untouched.
+        store_ids = explicit if shared else prior_stores if len(prior_stores) > 1 else [sid]
         linked_cycles = b.get('정산회차') or []
         valid = bool(linked_cycles) and len(linked_cycles) == len(set(linked_cycles)) and all(
-            cid in cycles and cycles[cid].get('매장') == [sid] and amount(cycles[cid]) > 0
+            cid in cycles and len(cycles[cid].get('매장') or []) == 1
+            and cycles[cid]['매장'][0] in store_ids and amount(cycles[cid]) > 0
             for cid in linked_cycles)
-        trusted = b.get('입금매칭') == '수동확정' or (
+        if shared and valid:
+            valid = set(store_ids) == {cycles[cid]['매장'][0] for cid in linked_cycles}
+        trusted = (manual and set(explicit) == set(store_ids)) or (
             p is not None and p.get('확인상태') == '원장 대조'
             and b.get('입금매칭') == '자동확정' and sid in matches)
-        result = {'bank': b, 'payment': p, 'store': sid, 'status': '매칭 확인필요',
+        result = {'bank': b, 'payment': p, 'store': sid, 'stores': store_ids, 'status': '매칭 확인필요',
                   'allocations': [], 'reason': '입금자 대조·회차 또는 금액 확인 필요'}
+        refund_ids = (p or {}).get('환불거래') or []
+        refund_rows = [item for item in data['bank'] if item['id'] in refund_ids]
+        if len(refund_rows) != len(refund_ids) or any(item.get('구분') != '출금' for item in refund_rows):
+            raise ValueError('Refund source missing or not an expense; review required')
+        received = max(0, int(b['금액']) - sum(int(item['금액']) for item in refund_rows))
+        verified_cash = manual or (b.get('입금매칭') == '회차확인' and sid in matches
+                                  and p and p.get('확인상태') == '원장 대조')
+        if verified_cash and len(explicit) == 1 and not linked_cycles and p and p.get('납부구분') == '선입금':
+            result.update(status='원장 대조', unallocated=True, reason='회차 미배분 선수금·연결 환불 차감')
+            plans.append(result)
+            continue
         if valid and trusted:
-            prior = {a['회차'][0]: a for a in allocations_by_payment.get((p or {}).get('id'), [])}
+            prior = {a['회차'][0]: a for a in allocations_by_payment.get((p or {}).get('id'), []) if a.get('회차')}
             saved = dict(json.loads((p or {}).get('자동배분계획') or '[]'))
             if any(cid not in cycles or not isinstance(budget, (int, float)) or budget < 0
                    for cid, budget in saved.items()):
@@ -192,7 +213,7 @@ def build_plan(data, config):
             result['status'], result['reason'] = '원장 대조', '원장과 확정 회차 연결 유지'
             offset = 0
             for cid, budget in result['allocations']:
-                paid[cid] += allocate_value(int(b['금액']), budget, offset)
+                paid[cid] += allocate_value(received, budget, offset)
                 offset += budget
             plans.append(result)
         else:
@@ -202,6 +223,8 @@ def build_plan(data, config):
         b, sid = plan['bank'], plan['store']
         # A manually flagged candidate is never silently promoted.
         allow_auto = b.get('입금매칭') not in ('매장확인', '회차확인', '중복확인')
+        allow_auto = allow_auto and len(plan.get('stores', [sid])) == 1
+        allow_auto = allow_auto and not (plan['payment'] or {}).get('환불거래')
         allow_auto = allow_auto and (plan['payment'] is None or not plan['payment'].get('회차'))
         if allow_auto:
             eligible = [c for c in cycles.values() if c.get('매장') == [sid]]
@@ -302,6 +325,7 @@ def apply_plan(api, data, config, plans):
         raise ValueError('Allocation keys missing or duplicated')
     for plan in plans:
         bank, payment, sid = plan['bank'], plan['payment'], plan['store']
+        store_ids = plan.get('stores') or (payment or {}).get('매장') or [sid]
         if not bank:
             update_if_changed(api, payment, {'확인상태': '원장 없음'}, 'payment', audit)
             continue
@@ -310,21 +334,22 @@ def apply_plan(api, data, config, plans):
         cids = [cid for cid, _ in plan['allocations']]
         if not is_confirmed and payment:
             cids = payment.get('회차') or []
-        fields = {'매장': [sid], '원장거래': [bank['id']], '회차': cids,
+        fields = {'매장': store_ids, '원장거래': [bank['id']], '회차': cids,
                   '동기화키': bank['id'], '입금액': int(bank['금액']),
                   '자동배분계획': json.dumps(plan['allocations'], ensure_ascii=False) if is_confirmed else '[]',
                   '실제입금일': day(bank['거래일시']).isoformat(), '확인상태': plan['status'],
-                  '납부구분': '선입금' if is_confirmed and len(cids) > 1 else '월 입금' if is_confirmed else '입금후보'}
+                  '납부구분': '선입금' if is_confirmed and (len(cids) > 1 or plan.get('unallocated')) else '월 입금' if is_confirmed else '입금후보'}
         if is_confirmed:
             # Persist the matching decision first; interrupted receipt/allocation writes
             # are safely resumed by the next query using the bank ID and saved plan.
-            update_if_changed(api, bank, {'매장': [sid], '정산회차': cids,
-                '입금매칭': '수동확정' if bank.get('입금매칭') == '수동확정' else '자동확정',
-                '매칭메모': plan['reason']}, 'bank', audit)
+            update_if_changed(api, bank, {'매장': store_ids, '정산회차': cids,
+                '입금매칭': ('회차확인' if plan.get('unallocated') and bank.get('입금매칭') == '회차확인'
+                             else '수동확정' if bank.get('입금매칭') == '수동확정' else '자동확정'),
+                '매칭메모': bank.get('매칭메모') or plan['reason']}, 'bank', audit)
         if payment:
             update_if_changed(api, payment, fields, 'payment', audit)
         else:
-            fields['입금건'] = stores[sid]['매장명'] + ' · ' + fields['실제입금일'] + ' 입금'
+            fields['입금건'] = '·'.join(stores[s]['매장명'] for s in store_ids) + ' · ' + fields['실제입금일'] + ' 입금'
             created = api.request('POST', 'pages', {'parent': {'data_source_id': config['payments']}, 'properties': notion_props(fields)})
             payment = row(created)
             audit.append({'kind': 'payment_create', 'id': payment['id']})
@@ -333,6 +358,7 @@ def apply_plan(api, data, config, plans):
             key = payment['id'] + ':' + cid
             active_keys.add(key)
             fields = {'입금': [payment['id']], '회차': [cid], '배분예정액': budget,
+                      '매장': cycles[cid]['매장'], '배분종류': '회차배분',
                       '선배분액': offset, '배분상태': '확정', '동기화키': key}
             if key in allocations:
                 update_if_changed(api, allocations[key], fields, 'allocation', audit)
@@ -341,6 +367,18 @@ def apply_plan(api, data, config, plans):
                 created = api.request('POST', 'pages', {'parent': {'data_source_id': config['allocations']}, 'properties': notion_props(fields)})
                 audit.append({'kind': 'allocation_create', 'id': uid(created['id'])})
             offset += budget
+        if is_confirmed and plan.get('unallocated'):
+            key = payment['id'] + ':unallocated'
+            active_keys.add(key)
+            fields = {'입금': [payment['id']], '회차': [], '매장': store_ids,
+                      '배분종류': '선수금', '배분예정액': int(bank['금액']),
+                      '선배분액': 0, '배분상태': '확정', '동기화키': key}
+            if key in allocations:
+                update_if_changed(api, allocations[key], fields, 'allocation', audit)
+            else:
+                fields['배분건'] = stores[sid]['매장명'] + ' · 회차 미배분 선수금'
+                created = api.request('POST', 'pages', {'parent': {'data_source_id': config['allocations']}, 'properties': notion_props(fields)})
+                audit.append({'kind': 'allocation_create', 'id': uid(created['id'])})
         for a in data['allocations']:
             if a.get('입금') == [payment['id']] and a.get('동기화키') not in active_keys:
                 status = '확인필요' if plan['status'] == '매칭 확인필요' else '제외'
@@ -350,7 +388,7 @@ def apply_plan(api, data, config, plans):
             aliases = {normalize_payer(x) for x in (stores[sid].get('입금자명') or '').splitlines()}
             verified_payer = normalize_payer(bank.get('상대/적요')) in aliases
             pending_fields = {'입금매칭': '회차확인' if verified_payer else '매장확인', '매칭메모': plan['reason']}
-            if verified_payer:
+            if verified_payer and len(store_ids) == 1:
                 pending_fields['매장'] = [sid]
             update_if_changed(api, bank, pending_fields, 'bank', audit)
     return audit
