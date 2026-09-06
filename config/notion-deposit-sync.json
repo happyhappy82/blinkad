@@ -7,6 +7,7 @@
   "allocations": "94de373a-29b1-4c12-b434-3ee6b2a4e0b5",
   "monthly_dashboard": "1410f7b6-f530-4ca9-8c1b-646b166676d7",
   "root_page": "3d3753eb-c013-8148-b3b3-c77f394da297",
+  "auto_month_heading": true,
   "health_page": "3d3753eb-c013-81b6-99e5-e2f94b605df9",
   "auto_match_after": "2026-09-06",
   "poll_interval_seconds": 60

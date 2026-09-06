@@ -432,6 +432,27 @@ def apply_monthly_plan(api, data_source, plans):
     return audit
 
 
+def build_month_heading_plan(blocks, when):
+    """Only the dashboard's first H2 is a managed month label; leave the page title alone."""
+    heading = next((b for b in blocks if b.get('type') == 'heading_2'), None)
+    text = ''.join(p.get('plain_text', p.get('text', {}).get('content', ''))
+                   for p in (heading or {}).get('heading_2', {}).get('rich_text', []))
+    if not heading or not re.fullmatch(r'(?:[1-9]|1[0-2])월|이번 달', text):
+        raise ValueError('Dashboard first heading is no longer a managed month label')
+    label = f'{when.astimezone(KST).month}월'
+    if text == label:
+        return None
+    return {'id': heading['id'], 'previous': text, 'label': label}
+
+
+def apply_month_heading_plan(api, plan):
+    if not plan:
+        return []
+    api.request('PATCH', 'blocks/' + plan['id'], {'heading_2': {
+        'rich_text': [{'type': 'text', 'text': {'content': plan['label']}}]}})
+    return [{'kind': 'dashboard_month_heading', **plan}]
+
+
 def write_json(path, payload):
     temp = path.with_suffix('.tmp')
     temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
@@ -467,10 +488,16 @@ def main():
             write_json(state / 'latest-snapshot.json', raw)
             plans = build_plan(data, config)
             monthly_plans = build_monthly_plan(data['cycles'], data['months']) if 'months' in data else []
+            heading_plan = None
+            if config.get('auto_month_heading'):
+                children = api.request('GET', 'blocks/' + config['root_page'] + '/children?page_size=100')
+                heading_plan = build_month_heading_plan(children['results'], dt.datetime.fromisoformat(now))
             write_json(state / 'latest-plan.json', plans)
             audit = apply_plan(api, data, config, plans) if args.apply else []
             if args.apply and monthly_plans:
                 audit.extend(apply_monthly_plan(api, config['monthly_dashboard'], monthly_plans))
+            if args.apply:
+                audit.extend(apply_month_heading_plan(api, heading_plan))
             write_json(state / 'latest-audit.json', audit)
             if audit:
                 with (state / 'audit.jsonl').open('a') as history:

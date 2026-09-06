@@ -179,6 +179,28 @@ class MatchingTests(unittest.TestCase):
 
 
 class MonthlyDashboardTests(unittest.TestCase):
+    def test_month_heading_rolls_over_at_korean_midnight_and_new_year(self):
+        for old, when, expected in [('9월', '2026-09-30T15:00:00+00:00', '10월'),
+                                   ('12월', '2026-12-31T15:00:00+00:00', '1월')]:
+            blocks = [{'id': 'heading', 'type': 'heading_2', 'heading_2': {
+                'rich_text': [{'plain_text': old}]}}]
+            plan = sync.build_month_heading_plan(blocks, sync.dt.datetime.fromisoformat(when))
+            self.assertEqual(plan['label'], expected)
+            self.assertEqual(plan['id'], 'heading')
+
+    def test_current_month_heading_has_no_writes(self):
+        blocks = [{'id': 'heading', 'type': 'heading_2', 'heading_2': {
+            'rich_text': [{'text': {'content': '9월'}}]}}]
+        when = sync.dt.datetime.fromisoformat('2026-09-30T14:59:59+00:00')
+        plan = sync.build_month_heading_plan(blocks, when)
+        self.assertEqual(sync.apply_month_heading_plan(None, plan), [])
+
+    def test_user_replaced_heading_is_not_overwritten(self):
+        blocks = [{'id': name, 'type': 'heading_2', 'heading_2': {
+            'rich_text': [{'plain_text': name}]}} for name in ('별도 정산', '9월')]
+        with self.assertRaises(ValueError):
+            sync.build_month_heading_plan(blocks, sync.dt.datetime.now(sync.KST))
+
     def test_end_month_overrides_erp_and_removes_stale_month_link(self):
         cycle = dict(fixture()['cycles'][0], 실제종료일='2026-09-30')
         old = {'id': 'm1', '월': '2026-10', '기준월': '2026-10-01', '정산회차': ['c1']}
