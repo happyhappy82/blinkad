@@ -1,6 +1,14 @@
 # BlinkAd ERP Resume
 
-Updated: 2026-08-13 KST
+Updated: 2026-09-06 KST
+
+## 2026-09-06 캘린더 운영 맥락 저장
+
+- 반복 적용할 캘린더 선택·공유·회차 제목·월말 정산·금액 구분·중복 방지·인증·검증 절차는 `docs/billing-calendar-operations.md`를 먼저 읽는다.
+- 공용 맥락 진입점: 상위 작업공간 `context/ops/blinkad-billing-calendar.md`. `context/business/products/blinkad.md`, `context/ops/workflows.md`에서 연결했다.
+- 정산 캘린더는 `블링크애드 입금·정산`, 일반 팀 일정은 용올이다. 개인 할일 캘린더와 혼동하지 않는다.
+- 64건을 재생성하지 않는다. 작업 전 기존 이벤트의 `blinkadErpSourceId`를 대조한다. 최신 로컬 이벤트 원장은 `.erp-private/billing-calendar-import-20260906/monthend-settlement-update/events-after.json`이다.
+- 자동 동기화 없음, ERP 원본 시트 검증 FAIL, Apple 기존 일정 접근 오류 미해결 상태를 유지해 기록했다. 이 저장 작업으로 앱 코드·외부 일정을 바꾸거나 배포하지 않았다.
 
 ## 2026-09-06 입금·정산 공유캘린더 전체 등록
 

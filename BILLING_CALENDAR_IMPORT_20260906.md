@@ -2,6 +2,8 @@
 
 기준일: 2026-09-06 (Asia/Seoul)
 
+반복 작업의 저장 방식·공유·회차·정산 규칙은 [캘린더 운영 기준](docs/billing-calendar-operations.md)을 먼저 읽는다. 아래 목록은 위 기준일의 등록 결과이며 최신 외부 현황을 대신하지 않는다.
+
 ## 결과
 
 - 대상: Google Calendar `블링크애드 입금·정산` (소유자 travelingtoseoul@gmail.com).
