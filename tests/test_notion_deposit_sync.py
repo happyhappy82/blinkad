@@ -178,5 +178,44 @@ class MatchingTests(unittest.TestCase):
         self.assertEqual(self.plan(data)[0]['status'], '매칭 확인필요')
 
 
+class MonthlyDashboardTests(unittest.TestCase):
+    def test_end_month_overrides_erp_and_removes_stale_month_link(self):
+        cycle = dict(fixture()['cycles'][0], 실제종료일='2026-09-30')
+        old = {'id': 'm1', '월': '2026-10', '기준월': '2026-10-01', '정산회차': ['c1']}
+        plan = sync.build_monthly_plan([cycle], [old])
+        self.assertEqual(plan[0]['fields']['월'], '2026-09')
+        self.assertEqual(plan[0]['fields']['정산회차'], ['c1'])
+        self.assertEqual(plan[1]['fields']['정산회차'], [])
+        self.assertEqual(plan[1]['original']['id'], 'm1')
+
+    def test_erp_fallback_and_relation_order_do_not_rewrite_existing_month(self):
+        cycles = [fixture()['cycles'][0], dict(fixture()['cycles'][0], id='c2')]
+        month = {'id': 'm1', '월': '2026-10', '기준월': '2026-10-01', '정산회차': ['c2', 'c1']}
+        class NoWrites:
+            def request(self, *args):
+                raise AssertionError('Unnecessary monthly write')
+        self.assertEqual(sync.apply_monthly_plan(NoWrites(), 'ds', sync.build_monthly_plan(cycles, [month])), [])
+
+    def test_missing_date_and_duplicate_keys_stop_before_writes(self):
+        with self.assertRaises(ValueError):
+            sync.build_monthly_plan([{'id': 'c1'}], [])
+        with self.assertRaises(ValueError):
+            sync.build_monthly_plan([], [{'월': '2026-09'}, {'월': '2026-09'}])
+        with self.assertRaises(ValueError):
+            sync.build_monthly_plan([fixture()['cycles'][0]] * 2, [])
+
+    def test_new_month_only_creates_title_date_and_relation(self):
+        writes = []
+        class NewMonth:
+            def request(self, method, path, body):
+                writes.append((method, path, body))
+                return {'id': 'm1'}
+        sync.apply_monthly_plan(NewMonth(), 'ds', sync.build_monthly_plan(fixture()['cycles'], []))
+        props = writes[0][2]['properties']
+        self.assertEqual(set(props), {'월', '기준월', '정산회차'})
+        self.assertEqual(props['기준월'], {'date': {'start': '2026-10-01'}})
+        self.assertEqual(props['정산회차'], {'relation': [{'id': 'c1'}]})
+
+
 if __name__ == '__main__':
     unittest.main()

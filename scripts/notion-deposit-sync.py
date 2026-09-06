@@ -25,7 +25,7 @@ KINDS = ('bank', 'stores', 'cycles', 'payments', 'allocations')
 BANK_FIELDS = {'매장', '정산회차', '입금매칭', '매칭메모'}
 RELATIONS = {'매장', '정산회차', '회차', '원장거래', '입금'}
 SELECTS = {'입금매칭', '확인상태', '납부구분', '배분상태', '배분종류'}
-TITLES = {'입금건', '배분건'}
+TITLES = {'입금건', '배분건', '월'}
 
 
 def uid(value):
@@ -251,7 +251,7 @@ def notion_props(values):
             props[key] = {'select': {'name': val} if val else None}
         elif key in TITLES:
             props[key] = {'title': [{'text': {'content': val}}]}
-        elif key == '실제입금일':
+        elif key in ('실제입금일', '기준월'):
             props[key] = {'date': {'start': val} if val else None}
         elif isinstance(val, (int, float)):
             props[key] = {'number': val}
@@ -394,6 +394,44 @@ def apply_plan(api, data, config, plans):
     return audit
 
 
+def build_monthly_plan(cycles, months):
+    """Group by actual work end (ERP end as fallback), never bank receipt date."""
+    existing = {}
+    for month in months:
+        key = month.get('월') or ''
+        if not re.fullmatch(r'\d{4}-(0[1-9]|1[0-2])', key) or key in existing:
+            raise ValueError('Monthly dashboard key missing or duplicated')
+        existing[key] = month
+    groups = defaultdict(list)
+    seen = set()
+    for cycle in cycles:
+        if cycle['id'] in seen:
+            raise ValueError('Duplicate dashboard cycle')
+        seen.add(cycle['id'])
+        end = day(cycle.get('실제종료일') or cycle.get('종료일(ERP)'))
+        if not end:
+            raise ValueError('Dashboard cycle work end missing')
+        groups[end.strftime('%Y-%m')].append(cycle['id'])
+    return [{'original': existing.get(key), 'fields': {
+        '월': key, '기준월': key + '-01', '정산회차': sorted(groups.get(key, []))}}
+        for key in sorted(set(existing) | set(groups))]
+
+
+def apply_monthly_plan(api, data_source, plans):
+    audit = []
+    for plan in plans:
+        original, fields = plan['original'], plan['fields']
+        if original:
+            # Notion relation ordering has no financial meaning.
+            normalized = {**original, '정산회차': sorted(original.get('정산회차') or [])}
+            update_if_changed(api, normalized, fields, 'monthly_dashboard', audit)
+        else:
+            created = api.request('POST', 'pages', {
+                'parent': {'data_source_id': data_source}, 'properties': notion_props(fields)})
+            audit.append({'kind': 'monthly_dashboard_create', 'id': uid(created['id'])})
+    return audit
+
+
 def write_json(path, payload):
     temp = path.with_suffix('.tmp')
     temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n')
@@ -423,11 +461,16 @@ def main():
             config = json.loads(Path(args.config).read_text())
             api = Notion(Path(args.token_file).read_text().strip())
             raw = {kind: api.query(config[kind]) for kind in KINDS}
+            if config.get('monthly_dashboard'):
+                raw['months'] = api.query(config['monthly_dashboard'])
             data = {kind: [row(p) for p in pages] for kind, pages in raw.items()}
             write_json(state / 'latest-snapshot.json', raw)
             plans = build_plan(data, config)
+            monthly_plans = build_monthly_plan(data['cycles'], data['months']) if 'months' in data else []
             write_json(state / 'latest-plan.json', plans)
             audit = apply_plan(api, data, config, plans) if args.apply else []
+            if args.apply and monthly_plans:
+                audit.extend(apply_monthly_plan(api, config['monthly_dashboard'], monthly_plans))
             write_json(state / 'latest-audit.json', audit)
             if audit:
                 with (state / 'audit.jsonl').open('a') as history:
