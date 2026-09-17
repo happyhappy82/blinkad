@@ -10,7 +10,10 @@ export const metadata: Metadata = {
   verification: {
     google: 'hITjCfw5G-GhQuvrWCZ7vMCcXwt4-zSr_-K-vNruL6E',
     other: {
-      'naver-site-verification': '4b64641c3d671cfe7ae80cb01821e64a9c6f16b7',
+      'naver-site-verification': [
+        '4b64641c3d671cfe7ae80cb01821e64a9c6f16b7',
+        'ce2742aab49fa80ee9792e070534258e31d2597d',
+      ],
     },
   },
   title: `${SITE_NAME} | 구글 AEO·GEO 외국인 마케팅 전문 에이전시`,
