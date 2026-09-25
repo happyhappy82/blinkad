@@ -20,6 +20,7 @@ const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 // Notion DB에 없는 수동 발행 글은 동기화 대상에서 제외하지 않고 보존한다.
 const MANUAL_STATIC_POST_IDS = new Set([
+  'gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo',
   'myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob',
   'oigug-in-maketing-eobce-pallo-usuboda-meonjeo-muleobwaya-hal-6gaji',
   'toronto-hanin-miyongsil-google-ai-marketing',
