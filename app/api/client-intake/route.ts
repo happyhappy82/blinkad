@@ -1,6 +1,8 @@
 import { Client } from '@notionhq/client'
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getClientIntakeStoreName } from '@/app/client-intake/stores'
+
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
@@ -148,8 +150,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, submissionId: 'RECEIVED' })
   }
 
-  const missing = requiredFields.filter((field) => !textValue(payload[field]))
-  const missingConfirmations = requiredConfirmations.filter((field) => payload[field] !== true)
+  const storeKey = textValue(payload.storeKey)
+  const lockedStoreName = storeKey ? getClientIntakeStoreName(storeKey) : undefined
+  if (storeKey && !lockedStoreName) {
+    return NextResponse.json({ ok: false, message: '유효하지 않은 매장 전용 링크입니다.' }, { status: 400 })
+  }
+  const normalizedPayload: IntakePayload = {
+    ...payload,
+    businessName: lockedStoreName || textValue(payload.businessName),
+  }
+
+  const missing = requiredFields.filter((field) => !textValue(normalizedPayload[field]))
+  const missingConfirmations = requiredConfirmations.filter((field) => normalizedPayload[field] !== true)
   if (missing.length || missingConfirmations.length) {
     return NextResponse.json({ ok: false, message: '필수 항목과 제출 전 확인란을 다시 확인해 주세요.' }, { status: 400 })
   }
@@ -163,7 +175,7 @@ export async function POST(request: NextRequest) {
   const notion = new Client({ auth: token })
   const submissionId = makeSubmissionId()
   const submittedAt = new Date().toISOString()
-  const businessName = textValue(payload.businessName)
+  const businessName = textValue(normalizedPayload.businessName)
   const title = `${businessName} — ${submissionId}`.slice(0, 200)
   const folderUrl = validUrl(textValue(payload.assetFolderUrl))
 
@@ -178,6 +190,7 @@ export async function POST(request: NextRequest) {
         '외부 공개 승인': { checkbox: payload.publicUseConfirmed === true },
         '제출 ID': { rich_text: [{ text: { content: submissionId } }] },
         '동의문 버전': { rich_text: [{ text: { content: PRIVACY_NOTICE_VERSION } }] },
+        '전용 링크 키': { rich_text: storeKey ? [{ text: { content: storeKey } }] : [] },
         '출처': { select: { name: '웹 입력 Form' } },
       },
     })
@@ -196,7 +209,7 @@ export async function POST(request: NextRequest) {
 
     for (const section of sections) {
       const populated = section.fields
-        .map(([key, label]) => ({ label, value: textValue(payload[key]) }))
+        .map(([key, label]) => ({ label, value: textValue(normalizedPayload[key]) }))
         .filter((item) => item.value)
       if (!populated.length) continue
       blocks.push(headingBlock(section.title))

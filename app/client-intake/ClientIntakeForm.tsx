@@ -79,7 +79,7 @@ type IntakeFormData = {
   website: string
 }
 
-const STORAGE_KEY = 'blinkad-aeo-geo-client-intake-v2'
+const STORAGE_KEY_PREFIX = 'blinkad-aeo-geo-client-intake-v3'
 
 const initialData: IntakeFormData = {
   businessName: '',
@@ -230,9 +230,10 @@ function SectionHeading({ eyebrow, title, description }: { eyebrow: string; titl
   )
 }
 
-export default function ClientIntakeForm() {
-  const [step, setStep] = useState(0)
-  const [data, setData] = useState<IntakeFormData>(initialData)
+export default function ClientIntakeForm({ lockedBusinessName = '', storeKey = '' }: { lockedBusinessName?: string; storeKey?: string }) {
+  const storageKey = `${STORAGE_KEY_PREFIX}:${storeKey || 'general'}`
+  const [step, setStep] = useState(lockedBusinessName ? 1 : 0)
+  const [data, setData] = useState<IntakeFormData>({ ...initialData, businessName: lockedBusinessName })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [hydrated, setHydrated] = useState(false)
   const [saveState, setSaveState] = useState<'idle' | 'saved'>('idle')
@@ -242,24 +243,27 @@ export default function ClientIntakeForm() {
 
   useEffect(() => {
     try {
-      const saved = window.localStorage.getItem(STORAGE_KEY)
-      if (saved) setData({ ...initialData, ...JSON.parse(saved) })
+      const saved = window.localStorage.getItem(storageKey)
+      if (saved) {
+        const restored = JSON.parse(saved) as Partial<IntakeFormData>
+        setData({ ...initialData, ...restored, businessName: lockedBusinessName || restored.businessName || '' })
+      }
     } catch {
-      window.localStorage.removeItem(STORAGE_KEY)
+      window.localStorage.removeItem(storageKey)
     } finally {
       setHydrated(true)
     }
-  }, [])
+  }, [lockedBusinessName, storageKey])
 
   useEffect(() => {
     if (!hydrated || submissionId) return
     const timer = window.setTimeout(() => {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+      window.localStorage.setItem(storageKey, JSON.stringify(data))
       setSaveState('saved')
       window.setTimeout(() => setSaveState('idle'), 1600)
     }, 500)
     return () => window.clearTimeout(timer)
-  }, [data, hydrated, submissionId])
+  }, [data, hydrated, storageKey, submissionId])
 
   const progress = useMemo(() => Math.round(((step + 1) / sections.length) * 100), [step])
 
@@ -318,14 +322,14 @@ export default function ClientIntakeForm() {
       const response = await fetch('/api/client-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, storeKey }),
       })
       const result = (await response.json()) as { ok?: boolean; submissionId?: string; message?: string }
       if (!response.ok || !result.ok || !result.submissionId) {
         throw new Error(result.message || '제출 중 오류가 발생했습니다.')
       }
       setSubmissionId(result.submissionId)
-      window.localStorage.removeItem(STORAGE_KEY)
+      window.localStorage.removeItem(storageKey)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : '제출 중 오류가 발생했습니다.')
@@ -379,6 +383,11 @@ export default function ClientIntakeForm() {
               <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
                 검색·지도·AI 답변에 업체의 실제 강점을 정확히 반영하기 위한 자료입니다. 확인되지 않은 내용은 추측하지 말고 비워두거나 ‘확인 필요’라고 적어주세요.
               </p>
+              {lockedBusinessName && (
+                <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-100">
+                  <BadgeCheck className="h-4 w-4" /> {lockedBusinessName} 전용 링크
+                </div>
+              )}
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 text-sm text-slate-300">
               <p>예상 작성 시간 <strong className="text-white">15~20분</strong></p>
@@ -444,7 +453,15 @@ export default function ClientIntakeForm() {
               <div className="space-y-7">
                 <SectionHeading eyebrow="Step 1" title="매장명 확인" description="자료를 구분할 수 있도록 매장명만 입력해 주세요." />
                 <Field id="businessName" label="매장명" required error={errors.businessName}>
-                  <input id="businessName" className={inputClass('businessName')} value={data.businessName} onChange={(e) => update('businessName', e.target.value)} placeholder="예: 자루야키 용산" autoFocus />
+                  <input
+                    id="businessName"
+                    className={`${inputClass('businessName')} ${lockedBusinessName ? 'cursor-not-allowed bg-slate-50 font-semibold text-slate-700' : ''}`}
+                    value={data.businessName}
+                    onChange={(e) => update('businessName', e.target.value)}
+                    placeholder="예: 자루야키 용산"
+                    readOnly={Boolean(lockedBusinessName)}
+                    autoFocus={!lockedBusinessName}
+                  />
                 </Field>
               </div>
             )}

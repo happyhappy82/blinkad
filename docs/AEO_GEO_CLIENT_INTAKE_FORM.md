@@ -5,6 +5,21 @@
 - 적용 대상: 계약이 시작된 블링크애드 클라이언트
 - 목적: 목표 키워드, 실제 판매상품, 고객 질문, 고유 경험, E-E-A-T 증빙, 방문·외국인 응대 정보를 콘텐츠 제작 전에 한 번에 수집한다.
 
+## 매장별 전용 링크
+
+| 매장 | 전용 링크 |
+|---|---|
+| 자루야키 용산로 | `https://www.blinkad.kr/client-intake/jaruyaki-yongsanro` |
+| 주도락 을지로점 | `https://www.blinkad.kr/client-intake/judorak-euljiro` |
+| 바다당 해운대 청사포 | `https://www.blinkad.kr/client-intake/badadang-haeundae-cheongsapo` |
+| 영종센트럴피부과 | `https://www.blinkad.kr/client-intake/yeongjong-central-dermatology` |
+| SNU안과 | `https://www.blinkad.kr/client-intake/snu-eye` |
+| 레디영약국 홍대점 | `https://www.blinkad.kr/client-intake/readyyoung-pharmacy-hongdae` |
+
+- 전용 링크에서는 매장명이 자동 입력되고 수정되지 않는다.
+- 제출 API가 링크 키와 매장명 매핑을 다시 확인하므로 브라우저에서 매장명을 바꿔 보내도 등록 매장명으로 저장한다.
+- 작성 중 임시저장은 매장별 링크 키로 분리한다.
+
 ## 클라이언트 화면
 
 1. 매장명
