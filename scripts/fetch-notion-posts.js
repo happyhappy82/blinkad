@@ -360,10 +360,12 @@ async function fetchNotionPosts() {
 
       // 제목 추출 (rich_text 전체 합치기)
       const titleProperty = properties.Title || properties.Name || properties['제목'];
-      const title = (titleProperty?.title || [])
+      const rawTitle = (titleProperty?.title || [])
         .map(t => t.plain_text)
         .join('')
         .trim() || 'Untitled';
+      // 오픈애즈는 원고 유통처를 구분하기 위한 내부 표기이므로 공개 제목에서 제거한다.
+      const title = rawTitle.replace(/\[오픈애즈\]\s*/g, '').trim();
 
       // 카테고리 추출
       const categoryProperty = properties.Category || properties['카테고리'];

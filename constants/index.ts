@@ -94,7 +94,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     "id": "opeun-aejeu-haeoi-maejang-goanggo-google-adsboda-meonjeo-sonboaya-hal-geos",
-    "title": "[오픈애즈] 해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
+    "title": "해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
     "category": "General",
     "date": "2026.09.25",
     "excerpt": "해외 매장에 Google Ads를 시작하기 전에는 고객과 언어, 지도 정보, 랜딩페이지, 문의 경로와 전환 측정부터 확인해야 합니다. 광고비를 쓰기 전에 직접 점검할 다섯 가지를 정리했습니다.",
@@ -103,7 +103,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     "id": "opeun-aejeu-google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
-    "title": "[오픈애즈] Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+    "title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
     "category": "General",
     "date": "2026.09.25",
     "excerpt": "Google 지도에서 매장이 보이는데도 문의가 없다면 노출부터 늘릴 일이 아닐 수 있습니다. 검색어와 조회, 전화·길찾기·웹사이트 클릭, 실제 문의를 나눠 보고 고객이 멈추는 지점을 찾는 방법을 다룹니다.",
@@ -292,7 +292,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
   {
     "id": "3-opeun-aejeu-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
-    "title": "#3 [오픈애즈] 병원 알림톡, 예약·시술 후·재방문 메시지는 언제 보내야 할까",
+    "title": "#3 병원 알림톡, 예약·시술 후·재방문 메시지는 언제 보내야 할까",
     "category": "General",
     "date": "2026.08.12",
     "excerpt": "알림톡을 언제 보내야 하냐는 질문에는 답이 정해져 있습니다. 환자가 \"이제 슬슬 가야 하나\" 하고 스스로 고민하기 직전입니다. 그 시점을 병원이 잡아주면 오고, 환자가 알아서 정하게 두면 대부분 미룹니다.",
