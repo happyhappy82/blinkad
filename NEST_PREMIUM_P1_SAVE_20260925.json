@@ -1,0 +1,55 @@
+{
+  "article_id": "P1",
+  "title": "퇴근 후 들어온 외국인 환자 문의, 아침에 답해도 괜찮을까?",
+  "series": "닥터네스트·뷰티네스트 3채널 콘텐츠",
+  "platform": "네이버 프리미엄콘텐츠",
+  "database_id": "34f753eb-c013-80a9-a352-fb8852030fb2",
+  "database_title": "블링크애드 프리미엄 콘텐츠",
+  "notion_page_id": "3e6753eb-c013-818f-a249-d6a5a754aba7",
+  "notion_url": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
+  "status": "Review",
+  "naver_published": false,
+  "publish_date": null,
+  "saved_date_kst": "2026-09-25",
+  "source_file": "NEST_PREMIUM_P1_DRAFT_20260925.md",
+  "source_sha256": "7d898617cd8ae72061495988e57e71c2a31ce38d7c68793378daccc44faa8fc7",
+  "slug": "nest-p01-after-hours-foreign-patient-inquiries",
+  "excerpt": "퇴근 후 들어온 외국인 환자 문의에 어디까지 답해야 할까요? 한·영 야간 안내 문구와 인수인계 메모를 바탕으로, 다음 날 상담이 끊기지 않게 준비하는 방법을 살펴봅니다.",
+  "top_level_blocks": 48,
+  "readback_verified": true,
+  "editorial_checks": {
+    "approved_topic": "P1 / 기존 기획 #2",
+    "same_title_and_slug_duplicate_check": "0 matches before creation",
+    "fictional_examples_labeled": true,
+    "h2_count": 5,
+    "faq_toggle_count": 3,
+    "includes": [
+      "한·영 야간 안내 문구",
+      "자동 안내와 담당자 확인 범위",
+      "다음 근무 인수인계 양식",
+      "다음 날 첫 답장 예시",
+      "운영 점검 항목"
+    ],
+    "unsubstantiated_response_time_or_conversion_claims": false,
+    "clinical_advice_or_automatic_booking_claims": false,
+    "product_features_source": "공식 제품 소개와 사용자 제공 상품설명서. 운영 계정 실기능 테스트는 하지 않음.",
+    "cta_note": "H3 기존 공개 본문에 맞춰 CTA를 외국인 환자 문의→예약 상담으로 표현. 미구현 앵커 미사용.",
+    "homepage_followup": "H3 본문 보강 및 제품 도입 문의 CTA 정비는 별도 미완료 작업. 이번에는 기존 공개 글로 연결.",
+    "scope": "P1 한 편 작성 및 Notion Review 저장. 공개 발행·Notion 작업큐·context 수정 없음."
+  },
+  "source_checks": [
+    {
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "date": "2026-09-25",
+      "http_status": 200,
+      "use": "통합 상담·번역·기본 자동 안내·상담 기록 기능 설명"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p01_footer",
+      "date": "2026-09-25",
+      "http_status": 200,
+      "use": "홈페이지 연결 목적지 및 P1 유입 구분"
+    }
+  ],
+  "verification": "제목·모든 본문/하위 블록·표·FAQ 토글·링크·Review 상태·미발행·발행일 없음 일치 확인"
+}
