@@ -21,27 +21,8 @@ import {
 } from 'lucide-react'
 import { FormEvent, ReactNode, useEffect, useMemo, useState } from 'react'
 
-type ClientType = 'new' | 'existing' | ''
-
 type IntakeFormData = {
-  clientType: ClientType
   businessName: string
-  branchName: string
-  industry: string
-  contactName: string
-  contactRole: string
-  phone: string
-  email: string
-  infoAsOf: string
-  officialName: string
-  officialEnglishName: string
-  address: string
-  websiteUrl: string
-  googleMapsUrl: string
-  naverPlaceUrl: string
-  kakaoMapUrl: string
-  socialUrls: string
-  bookingUrl: string
   desiredIdentity: string
   associationKeywords: string
   priorityServices: string
@@ -89,8 +70,6 @@ type IntakeFormData = {
   recentChanges: string
   assetTypes: string[]
   assetFolderUrl: string
-  factReviewer: string
-  factReviewerContact: string
   additionalNotes: string
   factsConfirmed: boolean
   rightsConfirmed: boolean
@@ -100,27 +79,10 @@ type IntakeFormData = {
   website: string
 }
 
-const STORAGE_KEY = 'blinkad-aeo-geo-client-intake-v1'
+const STORAGE_KEY = 'blinkad-aeo-geo-client-intake-v2'
 
 const initialData: IntakeFormData = {
-  clientType: '',
   businessName: '',
-  branchName: '',
-  industry: '',
-  contactName: '',
-  contactRole: '',
-  phone: '',
-  email: '',
-  infoAsOf: '',
-  officialName: '',
-  officialEnglishName: '',
-  address: '',
-  websiteUrl: '',
-  googleMapsUrl: '',
-  naverPlaceUrl: '',
-  kakaoMapUrl: '',
-  socialUrls: '',
-  bookingUrl: '',
   desiredIdentity: '',
   associationKeywords: '',
   priorityServices: '',
@@ -168,8 +130,6 @@ const initialData: IntakeFormData = {
   recentChanges: '',
   assetTypes: [],
   assetFolderUrl: '',
-  factReviewer: '',
-  factReviewerContact: '',
   additionalNotes: '',
   factsConfirmed: false,
   rightsConfirmed: false,
@@ -180,7 +140,7 @@ const initialData: IntakeFormData = {
 }
 
 const sections = [
-  { title: '기본정보', short: '기본', icon: Building2 },
+  { title: '매장명', short: '매장', icon: Building2 },
   { title: '브랜딩 목표', short: '목표', icon: Target },
   { title: '상품·고객', short: '고객', icon: Users },
   { title: '실제 고객 질문', short: '질문', icon: MessageCircleQuestion },
@@ -191,7 +151,7 @@ const sections = [
 ]
 
 const requiredByStep: Array<Array<keyof IntakeFormData>> = [
-  ['clientType', 'businessName', 'industry', 'contactName', 'phone', 'infoAsOf'],
+  ['businessName'],
   ['desiredIdentity', 'associationKeywords', 'priorityServices'],
   ['growProducts', 'targetCustomers'],
   ['frequentQuestions'],
@@ -202,12 +162,7 @@ const requiredByStep: Array<Array<keyof IntakeFormData>> = [
 ]
 
 const labels: Partial<Record<keyof IntakeFormData, string>> = {
-  clientType: '클라이언트 구분',
-  businessName: '업체명',
-  industry: '업종',
-  contactName: '담당자 성함',
-  phone: '연락처',
-  infoAsOf: '정보 기준일',
+  businessName: '매장명',
   desiredIdentity: '원하는 브랜드 이미지',
   associationKeywords: '브랜드 연상 키워드',
   priorityServices: '가장 자신 있는 상품·서비스',
@@ -487,84 +442,9 @@ export default function ClientIntakeForm() {
           <form onSubmit={submit} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-10">
             {step === 0 && (
               <div className="space-y-7">
-                <SectionHeading eyebrow="Step 1" title="업체 기본정보" description="기존 클라이언트는 현재 정보가 맞는지 확인하고, 변경된 내용만 수정해 주세요. 비밀번호는 절대 입력하지 않습니다." />
-                <Field id="clientType" label="현재 계약 상태" required error={errors.clientType}>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {[
-                      { value: 'new', title: '신규 클라이언트', text: '처음 자료를 전달합니다.' },
-                      { value: 'existing', title: '기존 클라이언트', text: '변경·추가된 내용을 보완합니다.' },
-                    ].map((option) => (
-                      <button
-                        key={option.value}
-                        type="button"
-                        onClick={() => update('clientType', option.value as ClientType)}
-                        className={`rounded-2xl border p-4 text-left transition ${data.clientType === option.value ? 'border-blue-500 bg-blue-50 ring-4 ring-blue-50' : 'border-slate-200 hover:border-slate-300'}`}
-                      >
-                        <span className="block text-sm font-semibold text-slate-900">{option.title}</span>
-                        <span className="mt-1 block text-xs text-slate-500">{option.text}</span>
-                      </button>
-                    ))}
-                  </div>
-                </Field>
-                {data.clientType === 'existing' && (
-                  <div className="rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm leading-6 text-amber-900">
-                    기존에 전달한 내용은 반복해서 작성하지 않으셔도 됩니다. 변경되었거나 새로 추가할 내용, 증빙이 필요한 내용 위주로 적어주세요.
-                  </div>
-                )}
-                <div className="grid gap-6 md:grid-cols-2">
-                  <Field id="businessName" label="업체명" required error={errors.businessName}>
-                    <input id="businessName" className={inputClass('businessName')} value={data.businessName} onChange={(e) => update('businessName', e.target.value)} placeholder="예: 블링크안과" />
-                  </Field>
-                  <Field id="branchName" label="지점명" help="지점이 없으면 비워두세요.">
-                    <input id="branchName" className={inputClass()} value={data.branchName} onChange={(e) => update('branchName', e.target.value)} placeholder="예: 강남점" />
-                  </Field>
-                  <Field id="industry" label="업종" required error={errors.industry}>
-                    <input id="industry" className={inputClass('industry')} value={data.industry} onChange={(e) => update('industry', e.target.value)} placeholder="예: 안과, 음식점, 미용실" />
-                  </Field>
-                  <Field id="infoAsOf" label="정보 기준일" required error={errors.infoAsOf}>
-                    <input id="infoAsOf" type="date" className={inputClass('infoAsOf')} value={data.infoAsOf} onChange={(e) => update('infoAsOf', e.target.value)} />
-                  </Field>
-                  <Field id="contactName" label="담당자 성함" required error={errors.contactName}>
-                    <input id="contactName" className={inputClass('contactName')} value={data.contactName} onChange={(e) => update('contactName', e.target.value)} />
-                  </Field>
-                  <Field id="contactRole" label="직책">
-                    <input id="contactRole" className={inputClass()} value={data.contactRole} onChange={(e) => update('contactRole', e.target.value)} />
-                  </Field>
-                  <Field id="phone" label="연락처" required error={errors.phone}>
-                    <input id="phone" type="tel" className={inputClass('phone')} value={data.phone} onChange={(e) => update('phone', e.target.value)} placeholder="010-0000-0000" />
-                  </Field>
-                  <Field id="email" label="이메일">
-                    <input id="email" type="email" className={inputClass()} value={data.email} onChange={(e) => update('email', e.target.value)} />
-                  </Field>
-                  <Field id="officialName" label="공식 상호·기관명">
-                    <input id="officialName" className={inputClass()} value={data.officialName} onChange={(e) => update('officialName', e.target.value)} placeholder="사업자등록증 또는 공식 표기 기준" />
-                  </Field>
-                  <Field id="officialEnglishName" label="공식 영문명">
-                    <input id="officialEnglishName" className={inputClass()} value={data.officialEnglishName} onChange={(e) => update('officialEnglishName', e.target.value)} placeholder="확정된 표기가 없으면 비워주세요." />
-                  </Field>
-                </div>
-                <Field id="address" label="공식 주소">
-                  <input id="address" className={inputClass()} value={data.address} onChange={(e) => update('address', e.target.value)} placeholder="도로명, 건물명, 층·호수까지 적어주세요." />
-                </Field>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <Field id="websiteUrl" label="공식 홈페이지 URL">
-                    <input id="websiteUrl" type="url" className={inputClass()} value={data.websiteUrl} onChange={(e) => update('websiteUrl', e.target.value)} placeholder="https://" />
-                  </Field>
-                  <Field id="googleMapsUrl" label="Google 지도 URL">
-                    <input id="googleMapsUrl" type="url" className={inputClass()} value={data.googleMapsUrl} onChange={(e) => update('googleMapsUrl', e.target.value)} placeholder="https://" />
-                  </Field>
-                  <Field id="naverPlaceUrl" label="네이버 플레이스 URL">
-                    <input id="naverPlaceUrl" type="url" className={inputClass()} value={data.naverPlaceUrl} onChange={(e) => update('naverPlaceUrl', e.target.value)} placeholder="https://" />
-                  </Field>
-                  <Field id="kakaoMapUrl" label="카카오맵 URL">
-                    <input id="kakaoMapUrl" type="url" className={inputClass()} value={data.kakaoMapUrl} onChange={(e) => update('kakaoMapUrl', e.target.value)} placeholder="https://" />
-                  </Field>
-                </div>
-                <Field id="socialUrls" label="공식 SNS URL" help="인스타그램·유튜브·블로그 등 공식 채널을 줄바꿈하여 적어주세요.">
-                  <textarea id="socialUrls" rows={3} className={inputClass()} value={data.socialUrls} onChange={(e) => update('socialUrls', e.target.value)} />
-                </Field>
-                <Field id="bookingUrl" label="예약·문의 페이지 URL">
-                  <input id="bookingUrl" type="url" className={inputClass()} value={data.bookingUrl} onChange={(e) => update('bookingUrl', e.target.value)} placeholder="https://" />
+                <SectionHeading eyebrow="Step 1" title="매장명 확인" description="자료를 구분할 수 있도록 매장명만 입력해 주세요." />
+                <Field id="businessName" label="매장명" required error={errors.businessName}>
+                  <input id="businessName" className={inputClass('businessName')} value={data.businessName} onChange={(e) => update('businessName', e.target.value)} placeholder="예: 자루야키 용산" autoFocus />
                 </Field>
               </div>
             )}
@@ -575,7 +455,7 @@ export default function ClientIntakeForm() {
                 <Field id="desiredIdentity" label="고객에게 어떤 업체로 기억되고 싶으신가요?" required error={errors.desiredIdentity} help="예: 여행 일정 중에도 편하게 상담받을 수 있는 외국인 친화 안과">
                   <textarea id="desiredIdentity" rows={4} className={inputClass('desiredIdentity')} value={data.desiredIdentity} onChange={(e) => update('desiredIdentity', e.target.value)} />
                 </Field>
-                <Field id="associationKeywords" label="업체명과 함께 알려지고 싶은 표현을 3개까지 적어주세요." required error={errors.associationKeywords} help="예: 용산 숙성육 전문점 / 인천공항 근처 외국인 진료 피부과">
+                <Field id="associationKeywords" label="매장명과 함께 알려지고 싶은 표현을 3개까지 적어주세요." required error={errors.associationKeywords} help="예: 용산 숙성육 전문점 / 인천공항 근처 외국인 진료 피부과">
                   <textarea id="associationKeywords" rows={3} className={inputClass('associationKeywords')} value={data.associationKeywords} onChange={(e) => update('associationKeywords', e.target.value)} />
                 </Field>
                 <Field id="priorityServices" label="가장 자신 있는 상품·서비스는 무엇인가요?" required error={errors.priorityServices}>
@@ -777,14 +657,6 @@ export default function ClientIntakeForm() {
                     <input id="assetFolderUrl" type="url" className={`${inputClass()} pl-12`} value={data.assetFolderUrl} onChange={(e) => update('assetFolderUrl', e.target.value)} placeholder="https://" />
                   </div>
                 </Field>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <Field id="factReviewer" label="사실 확인 담당자">
-                    <input id="factReviewer" className={inputClass()} value={data.factReviewer} onChange={(e) => update('factReviewer', e.target.value)} placeholder="성함·직책" />
-                  </Field>
-                  <Field id="factReviewerContact" label="담당자 연락처">
-                    <input id="factReviewerContact" className={inputClass()} value={data.factReviewerContact} onChange={(e) => update('factReviewerContact', e.target.value)} />
-                  </Field>
-                </div>
                 <Field id="additionalNotes" label="추가로 전달할 내용">
                   <textarea id="additionalNotes" rows={5} className={inputClass()} value={data.additionalNotes} onChange={(e) => update('additionalNotes', e.target.value)} />
                 </Field>
@@ -793,9 +665,9 @@ export default function ClientIntakeForm() {
                   <h3 className="flex items-center gap-2 text-base font-bold text-slate-950"><ShieldCheck className="h-5 w-5 text-blue-600" /> 개인정보 수집·이용 안내</h3>
                   <dl className="mt-5 grid gap-4 text-sm leading-6 text-slate-700 md:grid-cols-[132px_1fr] md:gap-x-5 md:gap-y-3">
                     <dt className="font-semibold text-slate-950">수집 항목</dt>
-                    <dd>담당자 성명, 직책, 연락처, 이메일(선택), 입력한 업체 자료</dd>
+                    <dd>매장명과 입력·전달한 업체 자료</dd>
                     <dt className="font-semibold text-slate-950">이용 목적</dt>
-                    <dd>클라이언트 확인·연락, 계약 및 온보딩 업무, AEO·GEO 콘텐츠 기획·제작, 사실 확인과 보완 요청</dd>
+                    <dd>제출 매장 식별, 계약 및 온보딩 업무, AEO·GEO 콘텐츠 기획·제작, 사실 확인과 보완 요청</dd>
                     <dt className="font-semibold text-slate-950">보유·이용 기간</dt>
                     <dd>계약 종료 또는 마지막 업무 완료일로부터 1년간 보관 후 파기합니다. 관계 법령에 별도 보존 의무가 있는 경우에는 해당 기간 동안 보관합니다.</dd>
                     <dt className="font-semibold text-slate-950">동의 거부 안내</dt>

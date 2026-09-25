@@ -13,14 +13,8 @@ type IntakePayload = Record<string, unknown>
 
 const sections: Array<{ title: string; fields: Array<[string, string]> }> = [
   {
-    title: '1. 업체 기본정보',
-    fields: [
-      ['clientType', '클라이언트 구분'], ['businessName', '업체명'], ['branchName', '지점명'], ['industry', '업종'],
-      ['contactName', '담당자'], ['contactRole', '직책'], ['phone', '연락처'], ['email', '이메일'], ['infoAsOf', '정보 기준일'],
-      ['officialName', '공식 상호·기관명'], ['officialEnglishName', '공식 영문명'], ['address', '주소'],
-      ['websiteUrl', '홈페이지'], ['googleMapsUrl', 'Google 지도'], ['naverPlaceUrl', '네이버 플레이스'],
-      ['kakaoMapUrl', '카카오맵'], ['socialUrls', '공식 SNS'], ['bookingUrl', '예약·문의 페이지'],
-    ],
+    title: '1. 매장명',
+    fields: [['businessName', '매장명']],
   },
   {
     title: '2. 브랜딩 목표',
@@ -73,8 +67,7 @@ const sections: Array<{ title: string; fields: Array<[string, string]> }> = [
   {
     title: '8. 자료와 확인',
     fields: [
-      ['assetTypes', '전달 가능 자료'], ['assetFolderUrl', '자료 공유 폴더'], ['factReviewer', '사실 확인 담당자'],
-      ['factReviewerContact', '담당자 연락처'], ['additionalNotes', '추가 전달사항'],
+      ['assetTypes', '전달 가능 자료'], ['assetFolderUrl', '자료 공유 폴더'], ['additionalNotes', '추가 전달사항'],
       ['factsConfirmed', '사실 확인'], ['rightsConfirmed', '자료 권리 확인'], ['privacyConfirmed', '개인정보 제외 확인'],
       ['publicUseConfirmed', '콘텐츠 활용 동의'], ['privacyPolicyAgreed', '개인정보 수집·이용 동의'],
     ],
@@ -82,8 +75,7 @@ const sections: Array<{ title: string; fields: Array<[string, string]> }> = [
 ]
 
 const requiredFields = [
-  'clientType', 'businessName', 'industry', 'contactName', 'phone', 'infoAsOf',
-  'desiredIdentity', 'associationKeywords', 'priorityServices', 'growProducts',
+  'businessName', 'desiredIdentity', 'associationKeywords', 'priorityServices', 'growProducts',
   'targetCustomers', 'frequentQuestions', 'uniqueProcess',
 ]
 
@@ -171,22 +163,15 @@ export async function POST(request: NextRequest) {
   const notion = new Client({ auth: token })
   const submissionId = makeSubmissionId()
   const submittedAt = new Date().toISOString()
-  const clientType = textValue(payload.clientType) === 'existing' ? '기존 클라이언트' : '신규 클라이언트'
   const businessName = textValue(payload.businessName)
-  const branchName = textValue(payload.branchName)
-  const title = `${businessName}${branchName ? ` ${branchName}` : ''} — ${submissionId}`.slice(0, 200)
+  const title = `${businessName} — ${submissionId}`.slice(0, 200)
   const folderUrl = validUrl(textValue(payload.assetFolderUrl))
 
   try {
     const page = await notion.pages.create({
       parent: { database_id: databaseId },
       properties: {
-        '업체명': { title: [{ text: { content: title } }] },
-        '제출 구분': { select: { name: clientType } },
-        '업종': { rich_text: [{ text: { content: textValue(payload.industry) } }] },
-        '담당자': { rich_text: [{ text: { content: textValue(payload.contactName) } }] },
-        '연락처': { phone_number: textValue(payload.phone) || null },
-        '이메일': { email: textValue(payload.email) || null },
+        '매장명': { title: [{ text: { content: title } }] },
         '제출일': { date: { start: submittedAt } },
         '접수 상태': { select: { name: '신규 접수' } },
         '자료 폴더': { url: folderUrl },
