@@ -230,7 +230,7 @@ function SectionHeading({ eyebrow, title, description }: { eyebrow: string; titl
   )
 }
 
-export default function ClientIntakeForm({ lockedBusinessName = '', storeKey = '' }: { lockedBusinessName?: string; storeKey?: string }) {
+export default function ClientIntakeForm({ lockedBusinessName = '', storeKey = '', intakeAccess = '' }: { lockedBusinessName?: string; storeKey?: string; intakeAccess?: string }) {
   const storageKey = `${STORAGE_KEY_PREFIX}:${storeKey || 'general'}`
   const [step, setStep] = useState(lockedBusinessName ? 1 : 0)
   const [data, setData] = useState<IntakeFormData>({ ...initialData, businessName: lockedBusinessName })
@@ -322,7 +322,7 @@ export default function ClientIntakeForm({ lockedBusinessName = '', storeKey = '
       const response = await fetch('/api/client-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, storeKey }),
+        body: JSON.stringify({ ...data, storeKey, intakeAccess }),
       })
       const result = (await response.json()) as { ok?: boolean; submissionId?: string; message?: string }
       if (!response.ok || !result.ok || !result.submissionId) {

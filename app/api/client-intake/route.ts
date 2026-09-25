@@ -2,6 +2,7 @@ import { Client } from '@notionhq/client'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { getClientIntakeStoreName } from '@/app/client-intake/stores'
+import { resolvePortalIntakeStore } from '@/lib/client-intake-store'
 
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
@@ -151,7 +152,14 @@ export async function POST(request: NextRequest) {
   }
 
   const storeKey = textValue(payload.storeKey)
-  const lockedStoreName = storeKey ? getClientIntakeStoreName(storeKey) : undefined
+  let lockedStoreName: string | undefined = storeKey ? getClientIntakeStoreName(storeKey) : undefined
+  if (storeKey && !lockedStoreName) {
+    try {
+      lockedStoreName = (await resolvePortalIntakeStore(storeKey, textValue(payload.intakeAccess)))?.name
+    } catch {
+      return NextResponse.json({ ok: false, message: '매장 링크를 확인하고 있습니다. 잠시 후 다시 시도해 주세요.' }, { status: 503 })
+    }
+  }
   if (storeKey && !lockedStoreName) {
     return NextResponse.json({ ok: false, message: '유효하지 않은 매장 전용 링크입니다.' }, { status: 400 })
   }
