@@ -43,7 +43,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     customerRole: '북촌 한식당 대표',
     duration: '5개월',
     period: '2025.09 – 2026.01',
-    background: '북촌 한옥마을 안쪽 골목에 위치한 한식당입니다. 관광 특구라는 입지에도 불구하고 구글 검색에서의 존재감이 거의 없었습니다. 네이버 플레이스에만 의존하고 있었지만, 북촌을 찾는 외국인 관광객 대부분은 Google Maps를 사용합니다. 기존 GBP에는 상호명과 주소만 등록된 상태였고, 영문 정보는 물론 매장 사진도 기본 1장뿐이었습니다.',
+    background: '외국인 관광객이 많이 찾는 관광 상권에 자리한 한식당입니다. 구글 검색·지도에서의 존재감이 거의 없었고, 기존 GBP에는 상호명과 주소만 등록돼 영문 정보도 매장 사진도 기본 1장뿐이었습니다. 이 상권을 찾는 외국인 관광객 대부분은 Google Maps로 식당을 찾습니다.',
     approach: [
       'GBP 프로필 완전 재구성 — 영문·일문 비즈니스 설명 추가, 카테고리를 "Korean restaurant"로 세분화',
       '고품질 음식·매장 사진 30장 이상 업로드, 이후 격주 1회 신규 사진 갱신',
@@ -54,7 +54,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     insights: [
       {
         title: '일본어 "レストラン" 키워드에서 566회 노출',
-        detail: '일본어로 "레스토랑"을 뜻합니다. 북촌 일대를 방문하는 일본인 관광객이 구글맵에서 식당을 검색할 때 이 키워드로 매장이 노출되기 시작했습니다. GBP에 일본어 비즈니스 설명을 추가한 직후부터 유입이 발생한 키워드입니다.',
+        detail: '일본어로 "레스토랑"을 뜻합니다. 이 상권을 방문하는 일본인 관광객이 구글맵에서 식당을 검색할 때 이 키워드로 매장이 노출되기 시작했습니다. GBP에 일본어 비즈니스 설명을 추가한 직후부터 유입이 발생한 키워드입니다.',
       },
       {
         title: '전체 조회의 90%가 구글지도 모바일에서 발생',
@@ -72,9 +72,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     searchKeywords: [
       { keyword: 'restaurants', volume: '약 30,000', note: '일반 영문 검색 — 가장 넓은 유입 경로' },
       { keyword: 'korean restaurant', volume: '828', note: '카테고리 특화 키워드' },
-      { keyword: 'bukchon korean restaurant', volume: '574', note: '브랜드+지역 복합 키워드' },
+      { keyword: 'bukchon korean restaurant', volume: '574', note: '브랜드 복합 키워드' },
       { keyword: 'レストラン', volume: '566', note: '일본어 유입 — 다국어 최적화 성과' },
-      { keyword: '한식당', volume: '498', note: '국내 검색 유입' },
+      { keyword: '한식당', volume: '498', note: '한국어 검색 유입' },
     ],
     dataSource: 'Google 비즈니스 프로필 인사이트 | 집계 기간: 2025.09.01 – 2026.01.31',
     keyResults: [
