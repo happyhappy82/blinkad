@@ -1,0 +1,39 @@
+{
+  "article_id": "P2",
+  "title": "실장님이 퇴사하면, 진행 중인 환자 상담은 누가 이어받을까?",
+  "platform": "네이버 프리미엄콘텐츠",
+  "database_id": "34f753eb-c013-80a9-a352-fb8852030fb2",
+  "notion_page_id": "3e7753eb-c013-8182-9e26-edbc934a97fd",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381829e26edbc934a97fd",
+  "status": "Review",
+  "naver_published": false,
+  "publish_date": null,
+  "created_time": "2026-09-26T06:19:00.000Z",
+  "saved_date_kst": "2026-09-26",
+  "source_file": "NEST_PREMIUM_P2_DRAFT_20260926.md",
+  "source_sha256": "38b4a52b13ac0800ade53e97345918630dd8ddb13516a14a90fb3aaa0a755b7b",
+  "excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
+  "keyword": "닥터네스트, 병원 상담 인수인계, 실장 퇴사, 상담 기록",
+  "slug": "nest-p02-premium-202609",
+  "characters": 4127,
+  "top_level_blocks": 40,
+  "faq_toggle_count": 3,
+  "previous_article_verified": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
+  "links": [
+    {
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer"
+    }
+  ],
+  "editorial_notes": [
+    "P1의 야간 교대와 구분: 퇴사 전 미해결 상담 목록·약속·담당자 지정·인계 수락을 다룸.",
+    "가상 대화/기록 예시 표기. 개인 계정 자동 수집·자동 인계·의료 판단·도입 성과를 주장하지 않음.",
+    "제품 범위는 2026-09-26 공식 닥터네스트 소개 및 기존 PDF 6·8~9쪽 근거. 운영 계정 기능 시험 아님.",
+    "H2 계획 URL은 현재 404. 저장 가능한 완결 원고를 만들고 실제 공개 H1 기록관리 설명으로 CTA 대체. 신규 H2 작성·홈페이지 수정은 이번 범위 밖."
+  ],
+  "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-001",
+  "readback_verified": true,
+  "verified_at": "2026-09-26T15:19:38.706480+09:00",
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+}

@@ -1,0 +1,40 @@
+{
+  "article_id": "P4",
+  "title": "외국인 손님과 번역기로 대화했는데 원하는 스타일은 서로 다르게 이해했다면",
+  "platform": "네이버 프리미엄콘텐츠",
+  "database_id": "34f753eb-c013-80a9-a352-fb8852030fb2",
+  "notion_page_id": "3e7753eb-c013-81dd-a494-e631879a83e9",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381dda494e631879a83e9",
+  "status": "Review",
+  "naver_published": false,
+  "publish_date": null,
+  "created_time": "2026-09-26T06:22:00.000Z",
+  "saved_date_kst": "2026-09-26",
+  "source_file": "NEST_PREMIUM_P4_DRAFT_20260926.md",
+  "source_sha256": "5391b63f64124d38e1d070abb2674df76a6705281e32de2ca255deb8abbaa84d",
+  "excerpt": "외국인 손님과 번역기로 대화해도 길이와 색상은 다르게 이해할 수 있습니다. 사진에서 원하는 부분, 유지할 조건, 이전 시술을 확인하는 질문표와 최종 의사 확인 문구를 정리했습니다.",
+  "keyword": "뷰티네스트, 외국인 미용실 상담, 번역 상담, 스타일 확인",
+  "slug": "nest-p04-premium-202609",
+  "characters": 4197,
+  "top_level_blocks": 41,
+  "faq_toggle_count": 3,
+  "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381809043cf75229c0e8a",
+  "links": [
+    {
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer"
+    }
+  ],
+  "editorial_notes": [
+    "P3 예약 흐름과 구분해 번역 후 의미 확인·원치 않는 변화·최종 참고 사진·원문 기록에 집중.",
+    "길이·색상·시술 가능성 또는 번역 정확도를 보장하지 않으며 국가별 취향 일반화 없음.",
+    "한·영 문구 및 상담 메모는 가상 예시. 동행 통역과 실제 손님 의사 확인을 구분.",
+    "2026-09-26 H5 공식 공개 설명의 자동 번역·원문 표시·기록을 근거로 최소한의 기능 설명. 자동 스타일 분석 미소구.",
+    "H5 현재 내용에 맞는 CTA와 p04_footer UTM. 아직 없는 외국어 상담 앵커 미사용."
+  ],
+  "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-003",
+  "readback_verified": true,
+  "verified_at": "2026-09-26T15:22:13.318184+09:00",
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+}

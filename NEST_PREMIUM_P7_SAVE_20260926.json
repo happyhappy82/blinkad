@@ -1,0 +1,46 @@
+{
+  "article_id": "P7",
+  "title": "피부관리권을 끊고 안 오는 손님에게는 뭐라고 연락해야 할까?",
+  "platform": "네이버 프리미엄콘텐츠",
+  "database_id": "34f753eb-c013-80a9-a352-fb8852030fb2",
+  "notion_page_id": "3e7753eb-c013-81ac-869b-c344b23df01e",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381ac869bc344b23df01e",
+  "status": "Review",
+  "naver_published": false,
+  "publish_date": null,
+  "created_time": "2026-09-26T06:26:00.000Z",
+  "saved_date_kst": "2026-09-26",
+  "source_file": "NEST_PREMIUM_P7_DRAFT_20260926.md",
+  "source_sha256": "3e5c8874d1c779eee550a0b63063c4960ac8c2df24fd0181df785ad6438b08d9",
+  "excerpt": "피부관리권을 구매한 뒤 오지 않는 손님에게 어떻게 연락해야 할까요? 이용 기록 확인, 첫 연락 문구, 답변별 후속 처리와 다음 약속을 남기는 방법을 정리했습니다.",
+  "keyword": "뷰티네스트, 피부관리실 고객관리, 관리권 미방문, 후속 상담",
+  "slug": "nest-p07-premium-202609",
+  "characters": 4162,
+  "top_level_blocks": 35,
+  "faq_toggle_count": 3,
+  "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381839dfffa34a3cb08bb",
+  "links": [
+    {
+      "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?ancYnChk=&chrClsCd=010202&lsJoLnkSeq=1025057211",
+      "status": 200,
+      "final_url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?ancYnChk=&chrClsCd=010202&lsJoLnkSeq=1025057211"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer"
+    }
+  ],
+  "editorial_notes": [
+    "P7은 기존 관리권 이용이 멈춘 고객의 첫 연락·답변별 조치. P6 방문 직후 계획과 구분.",
+    "이용 중단 원인을 추정하지 않고 불편/일정/이용 기록 질문에 따라 다른 후속 답변을 제공.",
+    "관리권 잔액·횟수·유효기간은 기존 결제·이용 기록으로 확인. 뷰티네스트 결제/회차권 연동을 주장하지 않음.",
+    "광고 수신거부 원칙은 당일 현행 정보통신망법 제50조 확인. 기존 고객이라는 이유만으로 적법한 발송이라고 보장하지 않음.",
+    "환불/기간 변경 권리나 시술 부작용을 임의 판단하지 않고 담당 확인으로 연결. 실제 메시지 발송 없음.",
+    "H5 제품 소개에 p07_footer 연결. 자동 수신거부 제외·자동 원인 분석 등의 미확인 기능 미소구."
+  ],
+  "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-006",
+  "readback_verified": true,
+  "verified_at": "2026-09-26T15:26:22.364170+09:00",
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+}
