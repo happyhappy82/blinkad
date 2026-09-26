@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:27:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P8_DRAFT_20260926.md",
-  "source_sha256": "046363446f6f3bed2ecfb5cc390b53f5445151161b2a4cdfc2d66008da11198b",
-  "excerpt": "AI 상담에 맡길 질문과 직원이 확인할 질문을 구분해보세요. 자동 안내·직원 확인·전문 판단 기준표, 답변 근거 기록, 운영 전 예외 질문 테스트 방법을 정리했습니다.",
+  "source_sha256": "e984d05d80c88ed634a58028713be73724d46661fbbe3554c3f3736af56858ce",
+  "excerpt": "반복되는 질문이라도 매번 확인할 내용이 다를 수 있습니다. 자동으로 안내할 범위를 정하고, 정보를 최신으로 유지하며, 직원이 이어받을 상담까지 준비하는 기준을 설명합니다.",
   "keyword": "닥터네스트, AI 상담 자동응대, 직원 확인, 병원 상담 매뉴얼",
   "slug": "nest-p08-premium-202609",
-  "characters": 3694,
-  "top_level_blocks": 41,
+  "characters": 2236,
+  "top_level_blocks": 21,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381ac869bc344b23df01e",
   "links": [
@@ -37,7 +37,7 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-007",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:28:00.913120+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "verification": "제목·페이지 속성 보존, 새 본문 전체 재조회 일치, 중복 본문0, 말미 홈페이지 UTM 일치",
   "previous_versions": [
     {
       "source_sha256": "0c3ba38bd1f17dbd0b8566a924676f047a5c23464147200afb8ba8d9d5e7121e",
@@ -50,10 +50,18 @@
       "top_level_blocks": 42,
       "characters": 3761,
       "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
+    },
+    {
+      "source_sha256": "046363446f6f3bed2ecfb5cc390b53f5445151161b2a4cdfc2d66008da11198b",
+      "top_level_blocks": 41,
+      "characters": 3694,
+      "revision_note": "2026-09-26 설명·팁 중심 개편 전, CTA 수정본",
+      "editorial_checks": {},
+      "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
+  "last_edited_reason": "긴 응대 예시·양식·중복 FAQ를 덜고 필요성·실용 팁 중심으로 본문 재작성",
   "editorial_revision": {
     "paragraphs_changed": 23,
     "notion_blocks_patched": 23,
@@ -73,5 +81,43 @@
     "links_preserved": true,
     "faq_questions_preserved": true,
     "user_edits_preserved": true
+  },
+  "explainer_revision": {
+    "verified_at": "2026-09-26T17:47:22.796533+09:00",
+    "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+    "previous_characters": 3694,
+    "characters": 2236,
+    "shortened_pct": 39.5,
+    "old_body_blocks": 41,
+    "new_body_blocks": 21,
+    "long_example_forms": 0,
+    "tables": 0,
+    "faq_toggles": 0,
+    "body_readback_verified": true,
+    "footer_url_preserved": true,
+    "old_body_backed_up": true,
+    "page_id_preserved": true,
+    "properties_preserved_except": [
+      "Excerpt"
+    ],
+    "title_status_slug_tags_date_publication_preserved": true
+  },
+  "editorial_checks": {
+    "approved_title_preserved": true,
+    "format": "설명형 칼럼",
+    "h2_count": 3,
+    "faq_toggle_count": 0,
+    "long_template_count": 0,
+    "table_count": 0,
+    "unsubstantiated_response_time_or_conversion_claims": false,
+    "invented_customer_case_or_statistics": false,
+    "cta": "각 글의 불편함→관련 홈페이지 글→현재 업무에 관한 문의",
+    "scope": "P1~P8 기존 페이지 본문 개편, Review 및 미발행 상태 보존"
+  },
+  "excerpt_revision": {
+    "previous_excerpt": "AI 상담에 맡길 질문과 직원이 확인할 질문을 구분해보세요. 자동 안내·직원 확인·전문 판단 기준표, 답변 근거 기록, 운영 전 예외 질문 테스트 방법을 정리했습니다.",
+    "excerpt": "반복되는 질문이라도 매번 확인할 내용이 다를 수 있습니다. 자동으로 안내할 범위를 정하고, 정보를 최신으로 유지하며, 직원이 이어받을 상담까지 준비하는 기준을 설명합니다.",
+    "verified_at": "2026-09-26T17:47:47.711551+09:00",
+    "only_excerpt_changed": true
   }
 }

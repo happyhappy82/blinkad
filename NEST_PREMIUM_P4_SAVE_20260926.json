@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:22:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P4_DRAFT_20260926.md",
-  "source_sha256": "d6f0ed99e87d8feb03ddab5c7ed46ddb0eb74339b1d3b6592fceb944cb69fd6c",
-  "excerpt": "외국인 손님과 번역기로 대화해도 길이와 색상은 다르게 이해할 수 있습니다. 사진에서 원하는 부분, 유지할 조건, 이전 시술을 확인하는 질문표와 최종 의사 확인 문구를 정리했습니다.",
+  "source_sha256": "0aa52808b9f2ea8fbeb48dc82e10d6516479e7fb1bb071a3a7a7c2e8e8dbe9e4",
+  "excerpt": "문장이 번역돼도 원하는 스타일은 서로 다르게 이해할 수 있습니다. 눈으로 볼 수 있는 기준 정하기, 짧게 나눠 묻기, 유지할 부분 확인, 최종 요청 남기기를 설명합니다.",
   "keyword": "뷰티네스트, 외국인 미용실 상담, 번역 상담, 스타일 확인",
   "slug": "nest-p04-premium-202609",
-  "characters": 3607,
-  "top_level_blocks": 38,
+  "characters": 2153,
+  "top_level_blocks": 21,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381809043cf75229c0e8a",
   "links": [
@@ -36,7 +36,7 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-003",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:22:13.318184+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "verification": "제목·페이지 속성 보존, 새 본문 전체 재조회 일치, 중복 본문0, 말미 홈페이지 UTM 일치",
   "previous_versions": [
     {
       "source_sha256": "5391b63f64124d38e1d070abb2674df76a6705281e32de2ca255deb8abbaa84d",
@@ -49,10 +49,18 @@
       "top_level_blocks": 40,
       "characters": 3716,
       "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
+    },
+    {
+      "source_sha256": "d6f0ed99e87d8feb03ddab5c7ed46ddb0eb74339b1d3b6592fceb944cb69fd6c",
+      "top_level_blocks": 38,
+      "characters": 3607,
+      "revision_note": "2026-09-26 설명·팁 중심 개편 전, CTA 수정본",
+      "editorial_checks": {},
+      "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
+  "last_edited_reason": "긴 응대 예시·양식·중복 FAQ를 덜고 필요성·실용 팁 중심으로 본문 재작성",
   "editorial_revision": {
     "paragraphs_changed": 17,
     "notion_blocks_patched": 17,
@@ -72,5 +80,43 @@
     "links_preserved": true,
     "faq_questions_preserved": true,
     "user_edits_preserved": true
+  },
+  "explainer_revision": {
+    "verified_at": "2026-09-26T17:43:06.804132+09:00",
+    "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+    "previous_characters": 3607,
+    "characters": 2153,
+    "shortened_pct": 40.3,
+    "old_body_blocks": 38,
+    "new_body_blocks": 21,
+    "long_example_forms": 0,
+    "tables": 0,
+    "faq_toggles": 0,
+    "body_readback_verified": true,
+    "footer_url_preserved": true,
+    "old_body_backed_up": true,
+    "page_id_preserved": true,
+    "properties_preserved_except": [
+      "Excerpt"
+    ],
+    "title_status_slug_tags_date_publication_preserved": true
+  },
+  "editorial_checks": {
+    "approved_title_preserved": true,
+    "format": "설명형 칼럼",
+    "h2_count": 4,
+    "faq_toggle_count": 0,
+    "long_template_count": 0,
+    "table_count": 0,
+    "unsubstantiated_response_time_or_conversion_claims": false,
+    "invented_customer_case_or_statistics": false,
+    "cta": "각 글의 불편함→관련 홈페이지 글→현재 업무에 관한 문의",
+    "scope": "P1~P8 기존 페이지 본문 개편, Review 및 미발행 상태 보존"
+  },
+  "excerpt_revision": {
+    "previous_excerpt": "외국인 손님과 번역기로 대화해도 길이와 색상은 다르게 이해할 수 있습니다. 사진에서 원하는 부분, 유지할 조건, 이전 시술을 확인하는 질문표와 최종 의사 확인 문구를 정리했습니다.",
+    "excerpt": "문장이 번역돼도 원하는 스타일은 서로 다르게 이해할 수 있습니다. 눈으로 볼 수 있는 기준 정하기, 짧게 나눠 묻기, 유지할 부분 확인, 최종 요청 남기기를 설명합니다.",
+    "verified_at": "2026-09-26T17:47:41.906399+09:00",
+    "only_excerpt_changed": true
   }
 }

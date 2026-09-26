@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:24:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P6_DRAFT_20260926.md",
-  "source_sha256": "f0e4e3f2b0e821ae32468ab2e426ae9f74993552c1fc40565063bef3da1aa011",
-  "excerpt": "네일·왁싱 손님의 다음 방문을 챙기려면 방문일과 연락일을 따로 적어보세요. 손님이 원하는 안내를 확인하는 질문, 연락표, 답변이 없을 때의 처리 방법을 담았습니다.",
+  "source_sha256": "a96b29910bb84591e48567f70a3e88f4b27d7dd0b529ea42d1db504d2d664dd5",
+  "excerpt": "다음 방문을 권하는 인사에서 한 걸음 더 나아가 손님에게 필요한 안내를 물어보세요. 방문일과 연락일을 구분하고, 약속한 연락을 기록하고 챙기는 방법을 설명합니다.",
   "keyword": "뷰티네스트, 네일 재방문 안내, 왁싱 고객관리, 다음 연락 기록",
   "slug": "nest-p06-premium-202609",
-  "characters": 3580,
-  "top_level_blocks": 37,
+  "characters": 2259,
+  "top_level_blocks": 19,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc0138179a739e19880403767",
   "links": [
@@ -42,7 +42,7 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-005",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:25:00.535146+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "verification": "제목·페이지 속성 보존, 새 본문 전체 재조회 일치, 중복 본문0, 말미 홈페이지 UTM 일치",
   "previous_versions": [
     {
       "source_sha256": "f2749e7477bc784e8f1b1af7991eafba185343e5819c8eab03b75bde0b48034b",
@@ -55,10 +55,18 @@
       "top_level_blocks": 38,
       "characters": 3619,
       "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
+    },
+    {
+      "source_sha256": "f0e4e3f2b0e821ae32468ab2e426ae9f74993552c1fc40565063bef3da1aa011",
+      "top_level_blocks": 37,
+      "characters": 3580,
+      "revision_note": "2026-09-26 설명·팁 중심 개편 전, CTA 수정본",
+      "editorial_checks": {},
+      "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
+  "last_edited_reason": "긴 응대 예시·양식·중복 FAQ를 덜고 필요성·실용 팁 중심으로 본문 재작성",
   "editorial_revision": {
     "paragraphs_changed": 18,
     "notion_blocks_patched": 18,
@@ -78,5 +86,43 @@
     "links_preserved": true,
     "faq_questions_preserved": true,
     "user_edits_preserved": true
+  },
+  "explainer_revision": {
+    "verified_at": "2026-09-26T17:45:19.170210+09:00",
+    "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+    "previous_characters": 3580,
+    "characters": 2259,
+    "shortened_pct": 36.9,
+    "old_body_blocks": 37,
+    "new_body_blocks": 19,
+    "long_example_forms": 0,
+    "tables": 0,
+    "faq_toggles": 0,
+    "body_readback_verified": true,
+    "footer_url_preserved": true,
+    "old_body_backed_up": true,
+    "page_id_preserved": true,
+    "properties_preserved_except": [
+      "Excerpt"
+    ],
+    "title_status_slug_tags_date_publication_preserved": true
+  },
+  "editorial_checks": {
+    "approved_title_preserved": true,
+    "format": "설명형 칼럼",
+    "h2_count": 3,
+    "faq_toggle_count": 0,
+    "long_template_count": 0,
+    "table_count": 0,
+    "unsubstantiated_response_time_or_conversion_claims": false,
+    "invented_customer_case_or_statistics": false,
+    "cta": "각 글의 불편함→관련 홈페이지 글→현재 업무에 관한 문의",
+    "scope": "P1~P8 기존 페이지 본문 개편, Review 및 미발행 상태 보존"
+  },
+  "excerpt_revision": {
+    "previous_excerpt": "네일·왁싱 손님의 다음 방문을 챙기려면 방문일과 연락일을 따로 적어보세요. 손님이 원하는 안내를 확인하는 질문, 연락표, 답변이 없을 때의 처리 방법을 담았습니다.",
+    "excerpt": "다음 방문을 권하는 인사에서 한 걸음 더 나아가 손님에게 필요한 안내를 물어보세요. 방문일과 연락일을 구분하고, 약속한 연락을 기록하고 챙기는 방법을 설명합니다.",
+    "verified_at": "2026-09-26T17:47:44.313866+09:00",
+    "only_excerpt_changed": true
   }
 }

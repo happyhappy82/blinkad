@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:19:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P2_DRAFT_20260926.md",
-  "source_sha256": "777d26ecf58889ce574c629343bc480e040e3b1ef5ba7178969bc7be8cb55a6d",
-  "excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
+  "source_sha256": "8aaca69477c00a1165a2bbdce4c06f93c7bb5bab81313760688b4b05cd25c598",
+  "excerpt": "예약표만 넘겨서는 진행 중인 상담을 놓칠 수 있습니다. 아직 답하지 않은 질문과 환자에게 한 약속을 남기고, 새 담당자가 직접 기록을 찾아볼 수 있게 준비하는 방법을 설명합니다.",
   "keyword": "닥터네스트, 병원 상담 인수인계, 실장 퇴사, 상담 기록",
   "slug": "nest-p02-premium-202609",
-  "characters": 3589,
-  "top_level_blocks": 38,
+  "characters": 2145,
+  "top_level_blocks": 21,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
   "links": [
@@ -35,7 +35,7 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-001",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:19:38.706480+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "verification": "제목·페이지 속성 보존, 새 본문 전체 재조회 일치, 중복 본문0, 말미 홈페이지 UTM 일치",
   "previous_versions": [
     {
       "source_sha256": "38b4a52b13ac0800ade53e97345918630dd8ddb13516a14a90fb3aaa0a755b7b",
@@ -48,10 +48,18 @@
       "top_level_blocks": 39,
       "characters": 3660,
       "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
+    },
+    {
+      "source_sha256": "777d26ecf58889ce574c629343bc480e040e3b1ef5ba7178969bc7be8cb55a6d",
+      "top_level_blocks": 38,
+      "characters": 3589,
+      "revision_note": "2026-09-26 설명·팁 중심 개편 전, CTA 수정본",
+      "editorial_checks": {},
+      "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
+  "last_edited_reason": "긴 응대 예시·양식·중복 FAQ를 덜고 필요성·실용 팁 중심으로 본문 재작성",
   "editorial_revision": {
     "paragraphs_changed": 18,
     "notion_blocks_patched": 18,
@@ -71,5 +79,43 @@
     "links_preserved": true,
     "faq_questions_preserved": true,
     "user_edits_preserved": true
+  },
+  "explainer_revision": {
+    "verified_at": "2026-09-26T17:41:08.185187+09:00",
+    "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+    "previous_characters": 3589,
+    "characters": 2145,
+    "shortened_pct": 40.2,
+    "old_body_blocks": 38,
+    "new_body_blocks": 21,
+    "long_example_forms": 0,
+    "tables": 0,
+    "faq_toggles": 0,
+    "body_readback_verified": true,
+    "footer_url_preserved": true,
+    "old_body_backed_up": true,
+    "page_id_preserved": true,
+    "properties_preserved_except": [
+      "Excerpt"
+    ],
+    "title_status_slug_tags_date_publication_preserved": true
+  },
+  "editorial_checks": {
+    "approved_title_preserved": true,
+    "format": "설명형 칼럼",
+    "h2_count": 4,
+    "faq_toggle_count": 0,
+    "long_template_count": 0,
+    "table_count": 0,
+    "unsubstantiated_response_time_or_conversion_claims": false,
+    "invented_customer_case_or_statistics": false,
+    "cta": "각 글의 불편함→관련 홈페이지 글→현재 업무에 관한 문의",
+    "scope": "P1~P8 기존 페이지 본문 개편, Review 및 미발행 상태 보존"
+  },
+  "excerpt_revision": {
+    "previous_excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
+    "excerpt": "예약표만 넘겨서는 진행 중인 상담을 놓칠 수 있습니다. 아직 답하지 않은 질문과 환자에게 한 약속을 남기고, 새 담당자가 직접 기록을 찾아볼 수 있게 준비하는 방법을 설명합니다.",
+    "verified_at": "2026-09-26T17:47:39.466880+09:00",
+    "only_excerpt_changed": true
   }
 }

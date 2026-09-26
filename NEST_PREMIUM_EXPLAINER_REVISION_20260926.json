@@ -1,0 +1,378 @@
+{
+  "summary": {
+    "date_kst": "2026-09-26",
+    "task": "긴 응대 예시·양식에서 필요성 설명·실용 팁 중심 칼럼으로 8편 재작성",
+    "user_requested_structural_rewrite": true,
+    "articles": 8,
+    "process": "P1 작성·검수·Notion 저장·본문 재조회 완료 후 P2 진행, P8까지 동일 순서",
+    "source_characters_total": 29545,
+    "final_characters_total": 17897,
+    "reduced_total_pct": 39.4,
+    "characters_note": "공백·Markdown·URL 포함",
+    "table_count": 0,
+    "long_quote_template_count": 0,
+    "faq_count": 0,
+    "notion_body_readback_verified": 8,
+    "notion_excerpt_readback_verified": 8,
+    "notion_page_title_status_slug_tags_date_publication_preserved": true,
+    "body_block_replacement": "기존 본문·속성 백업→새 본문 저장/재조회→구 본문 archive→최종 전체 본문 재조회. 기존 페이지 ID 유지.",
+    "style_review": "humanize-korean 문체 기준 참고. 사용자 요청의 구성·분량 재작성으로 원문 인용/양식 삭제를 허용. 일반 윤문의 원문 의미·변경률 등급으로 평가하지 않음.",
+    "limits": [
+      "문체와 설명 방식에 대한 수동 편집 판단이며 성과 실측이 아님",
+      "제품 운영 계정 실기능 시험 없음",
+      "광고성 정보 전송 규정은 해당 안내에 필요한 범위만 인용"
+    ],
+    "workspace": "/Users/mcbookpro/_workspace/2026-09-26-010"
+  },
+  "articles": [
+    {
+      "article": "P1",
+      "title": "퇴근 후 들어온 외국인 환자 문의, 아침에 답해도 괜찮을까?",
+      "notion_url": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
+      "source_file": "NEST_PREMIUM_P1_DRAFT_20260925.md",
+      "source_sha256": "35ed5cb316ce5f122d36a2ced38251fa4f5cdf4513403836993ec0dcfbca4d66",
+      "before_sha256": "c46b40e4069c5a5430b2d7b6bc95996d744212f0bf74a9d05122b80b5543e80d",
+      "focus": "야간 안내의 필요성·최소 정보·다음 날 담당자",
+      "excerpt": "야간 문의에 바로 답하기 어렵다면 기다릴 시간과 다음 상담 절차부터 알려주세요. 최소한의 정보 받기, 다음 날 담당자 지정, 실제 상담이 이어졌는지 살피는 방법을 정리했습니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:40:01.348030+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 4537,
+        "characters": 2319,
+        "shortened_pct": 48.9,
+        "old_body_blocks": 45,
+        "new_body_blocks": 21,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "퇴근 후 들어온 외국인 환자 문의에 어디까지 답해야 할까요? 한·영 야간 안내 문구와 인수인계 메모를 바탕으로, 다음 날 상담이 끊기지 않게 준비하는 방법을 살펴봅니다.",
+        "excerpt": "야간 문의에 바로 답하기 어렵다면 기다릴 시간과 다음 상담 절차부터 알려주세요. 최소한의 정보 받기, 다음 날 담당자 지정, 실제 상담이 이어졌는지 살피는 방법을 정리했습니다.",
+        "verified_at": "2026-09-26T17:47:38.306096+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P2",
+      "title": "실장님이 퇴사하면, 진행 중인 환자 상담은 누가 이어받을까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381829e26edbc934a97fd",
+      "source_file": "NEST_PREMIUM_P2_DRAFT_20260926.md",
+      "source_sha256": "8aaca69477c00a1165a2bbdce4c06f93c7bb5bab81313760688b4b05cd25c598",
+      "before_sha256": "777d26ecf58889ce574c629343bc480e040e3b1ef5ba7178969bc7be8cb55a6d",
+      "focus": "미해결 상담과 약속 기록·새 담당자의 직접 확인",
+      "excerpt": "예약표만 넘겨서는 진행 중인 상담을 놓칠 수 있습니다. 아직 답하지 않은 질문과 환자에게 한 약속을 남기고, 새 담당자가 직접 기록을 찾아볼 수 있게 준비하는 방법을 설명합니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:41:08.185187+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3589,
+        "characters": 2145,
+        "shortened_pct": 40.2,
+        "old_body_blocks": 38,
+        "new_body_blocks": 21,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
+        "excerpt": "예약표만 넘겨서는 진행 중인 상담을 놓칠 수 있습니다. 아직 답하지 않은 질문과 환자에게 한 약속을 남기고, 새 담당자가 직접 기록을 찾아볼 수 있게 준비하는 방법을 설명합니다.",
+        "verified_at": "2026-09-26T17:47:39.466880+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P3",
+      "title": "원하는 머리 사진까지 보냈던 손님은 왜 예약하지 않았을까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381809043cf75229c0e8a",
+      "source_file": "NEST_PREMIUM_P3_DRAFT_20260926.md",
+      "source_sha256": "3313b896ff897b3b079829e3bcf2e826d26a710b3f77b6b3582d8d508af8fdb7",
+      "before_sha256": "a552f9f9ff6519c6aee5601bc229d178f1ae51ce53b3b49f9037b4ac7ff93d7e",
+      "focus": "예약 결정에 필요한 스타일·가격·시간·예약 절차",
+      "excerpt": "사진을 보낸 손님에게 예약을 결정할 정보까지 전달했나요? 원하는 변화 확인부터 가격·시간 안내, 질문 순서, 다음 예약 절차까지 사진 상담에서 살펴볼 점을 정리했습니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:42:08.533744+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3551,
+        "characters": 2265,
+        "shortened_pct": 36.2,
+        "old_body_blocks": 37,
+        "new_body_blocks": 21,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "원하는 머리 사진을 보낸 뒤 손님과 대화가 끊겼다면 마지막 답장을 살펴보세요. 희망 스타일, 현재 상태, 가격과 시간, 예약 방법을 이어서 안내하는 DM 상담 예시를 담았습니다.",
+        "excerpt": "사진을 보낸 손님에게 예약을 결정할 정보까지 전달했나요? 원하는 변화 확인부터 가격·시간 안내, 질문 순서, 다음 예약 절차까지 사진 상담에서 살펴볼 점을 정리했습니다.",
+        "verified_at": "2026-09-26T17:47:40.731469+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P4",
+      "title": "외국인 손님과 번역기로 대화했는데 원하는 스타일은 서로 다르게 이해했다면",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381dda494e631879a83e9",
+      "source_file": "NEST_PREMIUM_P4_DRAFT_20260926.md",
+      "source_sha256": "0aa52808b9f2ea8fbeb48dc82e10d6516479e7fb1bb071a3a7a7c2e8e8dbe9e4",
+      "before_sha256": "d6f0ed99e87d8feb03ddab5c7ed46ddb0eb74339b1d3b6592fceb944cb69fd6c",
+      "focus": "번역 뒤 길이·모양 기준·최종 요청 확인",
+      "excerpt": "문장이 번역돼도 원하는 스타일은 서로 다르게 이해할 수 있습니다. 눈으로 볼 수 있는 기준 정하기, 짧게 나눠 묻기, 유지할 부분 확인, 최종 요청 남기기를 설명합니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:43:06.804132+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3607,
+        "characters": 2153,
+        "shortened_pct": 40.3,
+        "old_body_blocks": 38,
+        "new_body_blocks": 21,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "외국인 손님과 번역기로 대화해도 길이와 색상은 다르게 이해할 수 있습니다. 사진에서 원하는 부분, 유지할 조건, 이전 시술을 확인하는 질문표와 최종 의사 확인 문구를 정리했습니다.",
+        "excerpt": "문장이 번역돼도 원하는 스타일은 서로 다르게 이해할 수 있습니다. 눈으로 볼 수 있는 기준 정하기, 짧게 나눠 묻기, 유지할 부분 확인, 최종 요청 남기기를 설명합니다.",
+        "verified_at": "2026-09-26T17:47:41.906399+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P5",
+      "title": "시술 후 안내문을 줬는데도 같은 질문을 다시 받는다면",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138179a739e19880403767",
+      "source_file": "NEST_PREMIUM_P5_DRAFT_20260926.md",
+      "source_sha256": "39524da4637caa56018b2bd9da055423d8cbb662f5fde1e96bcb4722ecf957a8",
+      "before_sha256": "90bf7d454137cd4492da0d9039f96321c60d3919b76984a6aff245a63e2c9a85",
+      "focus": "반복 질문의 이유·찾기 쉬운 안내문·후속 질문",
+      "excerpt": "같은 질문이 반복된다면 안내문에 내용을 더하기 전에 필요한 답을 찾기 쉬운지 살펴보세요. 환자의 표현으로 문서를 정리하고, 다시 볼 경로와 질문할 곳을 안내하는 방법을 담았습니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:44:18.930391+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3460,
+        "characters": 2218,
+        "shortened_pct": 35.9,
+        "old_body_blocks": 36,
+        "new_body_blocks": 20,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "시술 후 안내문을 줬는데도 질문이 반복된다면 전달 방식과 질문 유형을 살펴보세요. 귀가 전 설명, 시점별 재안내, 환자 답변의 담당자 연결을 정리하는 운영표와 문구 예시를 담았습니다.",
+        "excerpt": "같은 질문이 반복된다면 안내문에 내용을 더하기 전에 필요한 답을 찾기 쉬운지 살펴보세요. 환자의 표현으로 문서를 정리하고, 다시 볼 경로와 질문할 곳을 안내하는 방법을 담았습니다.",
+        "verified_at": "2026-09-26T17:47:43.102383+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P6",
+      "title": "네일·왁싱 손님에게 “다음에 또 오세요”만 말하고 있나요?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381839dfffa34a3cb08bb",
+      "source_file": "NEST_PREMIUM_P6_DRAFT_20260926.md",
+      "source_sha256": "a96b29910bb84591e48567f70a3e88f4b27d7dd0b529ea42d1db504d2d664dd5",
+      "before_sha256": "f0e4e3f2b0e821ae32468ab2e426ae9f74993552c1fc40565063bef3da1aa011",
+      "focus": "방문일과 연락일 구분·손님이 원하는 안내",
+      "excerpt": "다음 방문을 권하는 인사에서 한 걸음 더 나아가 손님에게 필요한 안내를 물어보세요. 방문일과 연락일을 구분하고, 약속한 연락을 기록하고 챙기는 방법을 설명합니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:45:19.170210+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3580,
+        "characters": 2259,
+        "shortened_pct": 36.9,
+        "old_body_blocks": 37,
+        "new_body_blocks": 19,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "네일·왁싱 손님의 다음 방문을 챙기려면 방문일과 연락일을 따로 적어보세요. 손님이 원하는 안내를 확인하는 질문, 연락표, 답변이 없을 때의 처리 방법을 담았습니다.",
+        "excerpt": "다음 방문을 권하는 인사에서 한 걸음 더 나아가 손님에게 필요한 안내를 물어보세요. 방문일과 연락일을 구분하고, 약속한 연락을 기록하고 챙기는 방법을 설명합니다.",
+        "verified_at": "2026-09-26T17:47:44.313866+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P7",
+      "title": "피부관리권을 끊고 안 오는 손님에게는 뭐라고 연락해야 할까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381ac869bc344b23df01e",
+      "source_file": "NEST_PREMIUM_P7_DRAFT_20260926.md",
+      "source_sha256": "a971e93b3350bcb0fcc5d13fce2f4f115430daf6967a35376fcbf5302a194937",
+      "before_sha256": "f5c059ddb1e35306020f08147015241c7f79084d907d7ca242ac741e52cbcbae",
+      "focus": "이용 중단 이유별 도움·남은 약속의 처리",
+      "excerpt": "관리권이 남아 있어도 손님이 방문하지 않는 이유는 다를 수 있습니다. 마지막 대화를 확인하고, 손님이 말한 불편에 맞춰 돕고, 답해주기로 한 일을 챙기는 방법을 정리했습니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:46:19.690419+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3527,
+        "characters": 2302,
+        "shortened_pct": 34.7,
+        "old_body_blocks": 32,
+        "new_body_blocks": 20,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "피부관리권을 구매한 뒤 오지 않는 손님에게 어떻게 연락해야 할까요? 이용 기록 확인, 첫 연락 문구, 답변별 후속 처리와 다음 약속을 남기는 방법을 정리했습니다.",
+        "excerpt": "관리권이 남아 있어도 손님이 방문하지 않는 이유는 다를 수 있습니다. 마지막 대화를 확인하고, 손님이 말한 불편에 맞춰 돕고, 답해주기로 한 일을 챙기는 방법을 정리했습니다.",
+        "verified_at": "2026-09-26T17:47:46.528640+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    },
+    {
+      "article": "P8",
+      "title": "AI가 답해도 되는 질문, 직원이 직접 답해야 하는 질문",
+      "notion_url": "https://app.notion.com/p/AI-3e7753ebc013816b8436e023569dfd29",
+      "source_file": "NEST_PREMIUM_P8_DRAFT_20260926.md",
+      "source_sha256": "e984d05d80c88ed634a58028713be73724d46661fbbe3554c3f3736af56858ce",
+      "before_sha256": "046363446f6f3bed2ecfb5cc390b53f5445151161b2a4cdfc2d66008da11198b",
+      "focus": "자동 안내에 맡길 기준·정보 갱신·직원 인계",
+      "excerpt": "반복되는 질문이라도 매번 확인할 내용이 다를 수 있습니다. 자동으로 안내할 범위를 정하고, 정보를 최신으로 유지하며, 직원이 이어받을 상담까지 준비하는 기준을 설명합니다.",
+      "revision": {
+        "verified_at": "2026-09-26T17:47:22.796533+09:00",
+        "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+        "previous_characters": 3694,
+        "characters": 2236,
+        "shortened_pct": 39.5,
+        "old_body_blocks": 41,
+        "new_body_blocks": 21,
+        "long_example_forms": 0,
+        "tables": 0,
+        "faq_toggles": 0,
+        "body_readback_verified": true,
+        "footer_url_preserved": true,
+        "old_body_backed_up": true,
+        "page_id_preserved": true,
+        "properties_preserved_except": [
+          "Excerpt"
+        ],
+        "title_status_slug_tags_date_publication_preserved": true
+      },
+      "excerpt_revision": {
+        "previous_excerpt": "AI 상담에 맡길 질문과 직원이 확인할 질문을 구분해보세요. 자동 안내·직원 확인·전문 판단 기준표, 답변 근거 기록, 운영 전 예외 질문 테스트 방법을 정리했습니다.",
+        "excerpt": "반복되는 질문이라도 매번 확인할 내용이 다를 수 있습니다. 자동으로 안내할 범위를 정하고, 정보를 최신으로 유지하며, 직원이 이어받을 상담까지 준비하는 기준을 설명합니다.",
+        "verified_at": "2026-09-26T17:47:47.711551+09:00",
+        "only_excerpt_changed": true
+      },
+      "body_review": {
+        "manual_content_review": true,
+        "no_long_examples_or_forms": true,
+        "no_tables_or_faq_repetition": true,
+        "no_new_case_statistics_or_outcome_guarantees": true,
+        "topic_specific_website_inquiry_cta": true
+      }
+    }
+  ],
+  "source_notes": [
+    "제품 설명 및 연결 목적지의 범위는 이전 CTA 개편 때 확인한 공식 홈페이지/사용자 제공 PDF에 근거. 이번 글에 새 성과 수치·자동 판단·결제 연동 기능은 추가하지 않음.",
+    "P6·P7 정보통신망법 제50조는 2026-09-26 국가법령정보센터 원문 재확인. 시행일2026-09-11. 수신동의·거부·발송 시간·표시 요건의 확인 취지만 서술.",
+    "KISA 제7차 개정본 공지는 2026-09-26 재조회. 첨부 전문을 읽었다고 주장하지 않음."
+  ]
+}

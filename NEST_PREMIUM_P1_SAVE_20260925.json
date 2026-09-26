@@ -12,30 +12,22 @@
   "publish_date": null,
   "saved_date_kst": "2026-09-25",
   "source_file": "NEST_PREMIUM_P1_DRAFT_20260925.md",
-  "source_sha256": "c46b40e4069c5a5430b2d7b6bc95996d744212f0bf74a9d05122b80b5543e80d",
+  "source_sha256": "35ed5cb316ce5f122d36a2ced38251fa4f5cdf4513403836993ec0dcfbca4d66",
   "slug": "nest-p01-after-hours-foreign-patient-inquiries",
-  "excerpt": "퇴근 후 들어온 외국인 환자 문의에 어디까지 답해야 할까요? 한·영 야간 안내 문구와 인수인계 메모를 바탕으로, 다음 날 상담이 끊기지 않게 준비하는 방법을 살펴봅니다.",
-  "top_level_blocks": 45,
+  "excerpt": "야간 문의에 바로 답하기 어렵다면 기다릴 시간과 다음 상담 절차부터 알려주세요. 최소한의 정보 받기, 다음 날 담당자 지정, 실제 상담이 이어졌는지 살피는 방법을 정리했습니다.",
+  "top_level_blocks": 21,
   "readback_verified": true,
   "editorial_checks": {
-    "approved_topic": "P1 / 기존 기획 #2",
-    "same_title_and_slug_duplicate_check": "0 matches before creation",
-    "fictional_examples_labeled": true,
-    "h2_count": 5,
-    "faq_toggle_count": 3,
-    "includes": [
-      "한·영 야간 안내 문구",
-      "자동 안내와 담당자 확인 범위",
-      "다음 근무 인수인계 양식",
-      "다음 날 첫 답장 예시",
-      "운영 점검 항목"
-    ],
+    "approved_title_preserved": true,
+    "format": "설명형 칼럼",
+    "h2_count": 4,
+    "faq_toggle_count": 0,
+    "long_template_count": 0,
+    "table_count": 0,
     "unsubstantiated_response_time_or_conversion_claims": false,
-    "clinical_advice_or_automatic_booking_claims": false,
-    "product_features_source": "공식 제품 소개와 사용자 제공 상품설명서. 운영 계정 실기능 테스트는 하지 않음.",
-    "cta_note": "H3 기존 공개 본문에 맞춰 CTA를 외국인 환자 문의→예약 상담으로 표현. 미구현 앵커 미사용.",
-    "homepage_followup": "H3 본문 보강 및 제품 도입 문의 CTA 정비는 별도 미완료 작업. 이번에는 기존 공개 글로 연결.",
-    "scope": "P1 한 편 작성 및 Notion Review 저장. 공개 발행·Notion 작업큐·context 수정 없음."
+    "invented_customer_case_or_statistics": false,
+    "cta": "각 글의 불편함→관련 홈페이지 글→현재 업무에 관한 문의",
+    "scope": "P1~P8 기존 페이지 본문 개편, Review 및 미발행 상태 보존"
   },
   "source_checks": [
     {
@@ -51,7 +43,7 @@
       "use": "홈페이지 연결 목적지 및 P1 유입 구분"
     }
   ],
-  "verification": "제목·모든 본문/하위 블록·표·FAQ 토글·링크·Review 상태·미발행·발행일 없음 일치 확인",
+  "verification": "제목·페이지 속성 보존, 새 본문 전체 재조회 일치, 중복 본문0, 말미 홈페이지 UTM 일치",
   "previous_versions": [
     {
       "source_sha256": "7d898617cd8ae72061495988e57e71c2a31ce38d7c68793378daccc44faa8fc7",
@@ -64,11 +56,38 @@
       "top_level_blocks": 47,
       "characters": 4706,
       "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
+    },
+    {
+      "source_sha256": "c46b40e4069c5a5430b2d7b6bc95996d744212f0bf74a9d05122b80b5543e80d",
+      "top_level_blocks": 45,
+      "characters": 4537,
+      "revision_note": "2026-09-26 설명·팁 중심 개편 전, CTA 수정본",
+      "editorial_checks": {
+        "approved_topic": "P1 / 기존 기획 #2",
+        "same_title_and_slug_duplicate_check": "0 matches before creation",
+        "fictional_examples_labeled": true,
+        "h2_count": 5,
+        "faq_toggle_count": 3,
+        "includes": [
+          "한·영 야간 안내 문구",
+          "자동 안내와 담당자 확인 범위",
+          "다음 근무 인수인계 양식",
+          "다음 날 첫 답장 예시",
+          "운영 점검 항목"
+        ],
+        "unsubstantiated_response_time_or_conversion_claims": false,
+        "clinical_advice_or_automatic_booking_claims": false,
+        "product_features_source": "공식 제품 소개와 사용자 제공 상품설명서. 운영 계정 실기능 테스트는 하지 않음.",
+        "cta_note": "H3 기존 공개 본문에 맞춰 CTA를 외국인 환자 문의→예약 상담으로 표현. 미구현 앵커 미사용.",
+        "homepage_followup": "H3 본문 보강 및 제품 도입 문의 CTA 정비는 별도 미완료 작업. 이번에는 기존 공개 글로 연결.",
+        "scope": "P1 한 편 작성 및 Notion Review 저장. 공개 발행·Notion 작업큐·context 수정 없음."
+      },
+      "verification": "제목·모든 본문/하위 블록·표·FAQ 토글·링크·Review 상태·미발행·발행일 없음 일치 확인"
     }
   ],
-  "characters": 4537,
+  "characters": 2319,
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
+  "last_edited_reason": "긴 응대 예시·양식·중복 FAQ를 덜고 필요성·실용 팁 중심으로 본문 재작성",
   "editorial_revision": {
     "paragraphs_changed": 21,
     "notion_blocks_patched": 21,
@@ -88,5 +107,31 @@
     "links_preserved": true,
     "faq_questions_preserved": true,
     "user_edits_preserved": true
+  },
+  "explainer_revision": {
+    "verified_at": "2026-09-26T17:40:01.348030+09:00",
+    "format": "문제 발생 이유·관리 필요성·실용 팁 중심 칼럼",
+    "previous_characters": 4537,
+    "characters": 2319,
+    "shortened_pct": 48.9,
+    "old_body_blocks": 45,
+    "new_body_blocks": 21,
+    "long_example_forms": 0,
+    "tables": 0,
+    "faq_toggles": 0,
+    "body_readback_verified": true,
+    "footer_url_preserved": true,
+    "old_body_backed_up": true,
+    "page_id_preserved": true,
+    "properties_preserved_except": [
+      "Excerpt"
+    ],
+    "title_status_slug_tags_date_publication_preserved": true
+  },
+  "excerpt_revision": {
+    "previous_excerpt": "퇴근 후 들어온 외국인 환자 문의에 어디까지 답해야 할까요? 한·영 야간 안내 문구와 인수인계 메모를 바탕으로, 다음 날 상담이 끊기지 않게 준비하는 방법을 살펴봅니다.",
+    "excerpt": "야간 문의에 바로 답하기 어렵다면 기다릴 시간과 다음 상담 절차부터 알려주세요. 최소한의 정보 받기, 다음 날 담당자 지정, 실제 상담이 이어졌는지 살피는 방법을 정리했습니다.",
+    "verified_at": "2026-09-26T17:47:38.306096+09:00",
+    "only_excerpt_changed": true
   }
 }
