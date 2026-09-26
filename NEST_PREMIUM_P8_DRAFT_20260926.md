@@ -81,8 +81,6 @@
 
 잘못된 답이 손님에게 나갔다면 내용을 기록하고 담당자가 바로잡습니다. 자료만 고치고 끝내지 말고, 이전 답변을 받은 손님에게도 정정 내용을 알려주세요. 이미 예약됐다고 이해했는지 등 후속 확인도 담당자가 맡습니다.
 
-닥터네스트 공식 소개에는 병원이 등록한 기본 안내의 자동 발송과 상담 이력 관리가 안내돼 있습니다. 진료 판단과 위험 설명은 사람이 맡는다고 명시돼 있습니다. 도입 상담 때 실제 질문으로 자동 답변을 확인하고 직원이 이어받는 과정도 살펴보세요.
-
 ## 자주 묻는 질문
 
 ### 등록한 자료에 답이 없는 질문을 받으면 어떻게 하나요?
@@ -99,6 +97,6 @@
 
 ---
 
-최근 문의를 표에 나누고 자동으로 안내할 내용과 직원이 답할 내용을 정해보세요. 아래 홈페이지 글에서 닥터네스트 기능을 확인하실 수 있습니다. 실제 병원 질문을 바탕으로 설정 범위를 상담하려면 공식 대행사 블링크애드에 문의해주세요.
+반복 질문에 답하는 일은 줄이고 싶은데 AI에게 어디까지 맡겨야 할지 막막하다면, 아래 닥터네스트 글부터 읽어보세요. 미리 정한 기본 안내를 자동으로 보내고 상담 기록을 관리하는 방식을 설명했습니다. 우리 병원에서 맡길 업무를 정하기 어렵다면 홈페이지로 문의해주세요. 자주 받는 질문의 종류와 현재 응대 방식을 바탕으로 자동 안내 범위를 함께 정리하겠습니다.
 
-[닥터네스트의 자동응대 범위와 도입 방법 살펴보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p08_footer)
+[자동으로 보낼 안내와 직원이 맡을 상담 구분하기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p08_footer)

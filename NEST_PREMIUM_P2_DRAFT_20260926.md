@@ -78,8 +78,6 @@
 
 상담 채널의 관리자와 접근 권한도 확인합니다. 담당자가 바뀌면 누구에게 권한을 넘기고, 기존 권한은 누가 회수할지 정해둡니다.
 
-닥터네스트 공식 소개에는 문의를 한 화면에 모으고, 담당자가 바뀌어도 병원 계정에서 상담 이력을 확인하는 기능이 안내돼 있습니다. 도입 상담 때 실제 상담 한 건을 예로 들어 원문과 메모를 찾는 방법, 인계 내용을 남길 위치를 확인해보세요.
-
 ## 자주 묻는 질문
 
 ### 과거 상담을 전부 읽고 옮겨야 하나요?
@@ -96,6 +94,6 @@
 
 ---
 
-상담 기록이 여러 곳에 흩어져 있다면 아래 글에서 닥터네스트의 상담 통합과 기록 관리 기능을 살펴보세요. 공식 대행사 블링크애드에서 현재 쓰는 채널과 인수인계 방식에 맞춰 도입 상담을 받으실 수 있습니다.
+담당자가 바뀔 때마다 이전 상담을 찾고 환자에게 같은 내용을 다시 묻게 된다면, 기록을 남기는 방식부터 바꿔볼 필요가 있습니다. 아래 글에서 닥터네스트로 상담을 모아 관리하는 방법을 확인해보세요. 지금 쓰는 채널과 인수인계 때 어려웠던 점을 홈페이지 문의에 남겨주시면, 병원에 맞는 기록 관리와 도입 방법을 함께 살펴보겠습니다.
 
-[닥터네스트로 상담 기록을 모으고 이어받는 방식 보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer)
+[상담 기록을 한곳에 모아 관리하는 방법 보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer)

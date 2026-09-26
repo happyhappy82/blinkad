@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:24:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P6_DRAFT_20260926.md",
-  "source_sha256": "47bb447a4d3b0db36114af496a406c474619177b74d55a160692343d7cdf2b97",
+  "source_sha256": "f0e4e3f2b0e821ae32468ab2e426ae9f74993552c1fc40565063bef3da1aa011",
   "excerpt": "네일·왁싱 손님의 다음 방문을 챙기려면 방문일과 연락일을 따로 적어보세요. 손님이 원하는 안내를 확인하는 질문, 연락표, 답변이 없을 때의 처리 방법을 담았습니다.",
   "keyword": "뷰티네스트, 네일 재방문 안내, 왁싱 고객관리, 다음 연락 기록",
   "slug": "nest-p06-premium-202609",
-  "characters": 3619,
-  "top_level_blocks": 38,
+  "characters": 3580,
+  "top_level_blocks": 37,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc0138179a739e19880403767",
   "links": [
@@ -49,10 +49,16 @@
       "top_level_blocks": 39,
       "characters": 4077,
       "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    },
+    {
+      "source_sha256": "47bb447a4d3b0db36114af496a406c474619177b74d55a160692343d7cdf2b97",
+      "top_level_blocks": 38,
+      "characters": 3619,
+      "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
   "editorial_revision": {
     "paragraphs_changed": 18,
     "notion_blocks_patched": 18,
@@ -62,5 +68,15 @@
     "verified_at": "2026-09-26T16:57:07.707981+09:00",
     "preexisting_notion_edits_detected": false,
     "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  },
+  "conversion_revision": {
+    "verified_at": "2026-09-26T17:06:04.009124+09:00",
+    "changed_blocks": 3,
+    "removed_explanation_blocks": 1,
+    "body_readback_verified": true,
+    "properties_unchanged": true,
+    "links_preserved": true,
+    "faq_questions_preserved": true,
+    "user_edits_preserved": true
   }
 }

@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:19:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P2_DRAFT_20260926.md",
-  "source_sha256": "19e8b9c2169f5138dc151e83958d0493815270ec8e0c8b344e132a40a48fbfe4",
+  "source_sha256": "777d26ecf58889ce574c629343bc480e040e3b1ef5ba7178969bc7be8cb55a6d",
   "excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
   "keyword": "닥터네스트, 병원 상담 인수인계, 실장 퇴사, 상담 기록",
   "slug": "nest-p02-premium-202609",
-  "characters": 3660,
-  "top_level_blocks": 39,
+  "characters": 3589,
+  "top_level_blocks": 38,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
   "links": [
@@ -42,10 +42,16 @@
       "top_level_blocks": 40,
       "characters": 4127,
       "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    },
+    {
+      "source_sha256": "19e8b9c2169f5138dc151e83958d0493815270ec8e0c8b344e132a40a48fbfe4",
+      "top_level_blocks": 39,
+      "characters": 3660,
+      "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
   "editorial_revision": {
     "paragraphs_changed": 18,
     "notion_blocks_patched": 18,
@@ -55,5 +61,15 @@
     "verified_at": "2026-09-26T16:56:09.295515+09:00",
     "preexisting_notion_edits_detected": false,
     "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  },
+  "conversion_revision": {
+    "verified_at": "2026-09-26T17:05:35.751545+09:00",
+    "changed_blocks": 2,
+    "removed_explanation_blocks": 1,
+    "body_readback_verified": true,
+    "properties_unchanged": true,
+    "links_preserved": true,
+    "faq_questions_preserved": true,
+    "user_edits_preserved": true
   }
 }

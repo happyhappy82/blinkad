@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:23:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P5_DRAFT_20260926.md",
-  "source_sha256": "51a64ffca14b4120188c28c3a8a6832b607471fc8ed3e599db3419a20e56af42",
+  "source_sha256": "90bf7d454137cd4492da0d9039f96321c60d3919b76984a6aff245a63e2c9a85",
   "excerpt": "시술 후 안내문을 줬는데도 질문이 반복된다면 전달 방식과 질문 유형을 살펴보세요. 귀가 전 설명, 시점별 재안내, 환자 답변의 담당자 연결을 정리하는 운영표와 문구 예시를 담았습니다.",
   "keyword": "닥터네스트, 병원 사후관리 안내, 시술 후 메시지, 환자 문의",
   "slug": "nest-p05-premium-202609",
-  "characters": 3556,
-  "top_level_blocks": 37,
+  "characters": 3460,
+  "top_level_blocks": 36,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381dda494e631879a83e9",
   "links": [
@@ -44,10 +44,16 @@
       "top_level_blocks": 38,
       "characters": 4091,
       "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    },
+    {
+      "source_sha256": "51a64ffca14b4120188c28c3a8a6832b607471fc8ed3e599db3419a20e56af42",
+      "top_level_blocks": 37,
+      "characters": 3556,
+      "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
   "editorial_revision": {
     "paragraphs_changed": 20,
     "notion_blocks_patched": 20,
@@ -57,5 +63,15 @@
     "verified_at": "2026-09-26T16:56:53.978021+09:00",
     "preexisting_notion_edits_detected": false,
     "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  },
+  "conversion_revision": {
+    "verified_at": "2026-09-26T17:05:57.665741+09:00",
+    "changed_blocks": 2,
+    "removed_explanation_blocks": 1,
+    "body_readback_verified": true,
+    "properties_unchanged": true,
+    "links_preserved": true,
+    "faq_questions_preserved": true,
+    "user_edits_preserved": true
   }
 }

@@ -1,0 +1,372 @@
+{
+  "summary": {
+    "review_date_kst": "2026-09-26",
+    "skill": "humanize-korean",
+    "task": "기능 설명 나열을 덜고 글마다 다룬 불편함→홈페이지 관련 글→도입 문의로 연결",
+    "user_requested_structural_edit": true,
+    "article_count": 8,
+    "changed_blocks": 16,
+    "removed_explanation_blocks": 11,
+    "notion_readback_verified": 8,
+    "page_properties_preserved": true,
+    "title_tables_quotes_faq_questions_urls_preserved": true,
+    "claims_review": "예약·재방문 증가, 자동 판단, 결제 연동 등 새로운 제품 기능·성과를 약속하지 않음. 문의 때 전달할 현재 업무 상황을 글별로 제시.",
+    "verification_limit": "실제 문의 증가 효과는 측정하지 않음. SequenceMatcher 변경률은 참고값이며 전용 검증기 부재로 자동 등급 없음.",
+    "workspace": "/Users/mcbookpro/_workspace/2026-09-26-009"
+  },
+  "articles": [
+    {
+      "article": "P1",
+      "title": "퇴근 후 들어온 외국인 환자 문의, 아침에 답해도 괜찮을까?",
+      "notion_url": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
+      "before_sha256": "64aa6594bf4a2a5942baf90d6706a3419bbe04da20b4a2fcb5a5d7b3322f9bb8",
+      "after_sha256": "c46b40e4069c5a5430b2d7b6bc95996d744212f0bf74a9d05122b80b5543e80d",
+      "characters": 4537,
+      "deleted_paragraphs": 2,
+      "changed_blocks": 1,
+      "edits": [
+        {
+          "before": "여러 메신저를 번갈아 열어야 하거나 담당자가 바뀔 때마다 대화 기록을 찾는 데 시간이 든다면, 상담 도구를 검토할 만합니다. 닥터네스트는 [공식 안내](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli)에서 여러 채널의 문의 통합, 자동 번역, 병원이 정해둔 기본 안내의 자동 응대, 담당자가 바뀌어도 이어지는 상담 기록을 설명하고 있습니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "도구를 도입할 때도 야간 문구와 답변 시간, 다음 날 담당자는 병원에서 정합니다. 실제 문의 하나를 예로 들어 접수부터 직원의 답변까지 어떻게 이어지는지 확인해보세요.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "야간 문의가 들어오는 채널과 다음 날 담당자를 함께 정리해보세요. 아래 홈페이지 글에는 외국어 응대와 상담 기록을 관리하는 방법을 담았습니다. 닥터네스트로 처리할 수 있는 업무도 문의하실 수 있습니다.",
+          "after": "퇴근 후 온 문의를 아침마다 여러 메신저에서 찾아보고 있다면, 야간 안내부터 다음 날 상담까지 이어지는 과정을 정리해보세요. 아래 글에서 외국인 환자의 문의 채널과 응대 방식을 살펴보실 수 있습니다. 병원 상황에 맞춰 준비하고 싶으시면 홈페이지로 문의해주세요. 사용 중인 메신저와 상담 시간을 알려주시면 [닥터네스트](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli)로 어떤 안내를 설정할지 함께 검토하겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        }
+      ],
+      "reference_change_rate_pct": 7.28,
+      "verification": {
+        "verified_at": "2026-09-26T17:05:29.426193+09:00",
+        "changed_blocks": 1,
+        "removed_explanation_blocks": 2,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "퇴근 후 온 문의를 아침마다 여러 메신저에서 찾아보고 있다면, 야간 안내부터 다음 날 상담까지 이어지는 과정을 정리해보세요. 아래 글에서 외국인 환자의 문의 채널과 응대 방식을 살펴보실 수 있습니다. 병원 상황에 맞춰 준비하고 싶으시면 홈페이지로 문의해주세요. 사용 중인 메신저와 상담 시간을 알려주시면 [닥터네스트](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli)로 어떤 안내를 설정할지 함께 검토하겠습니다.\n\n[외국인 환자 문의를 예약 상담으로 이어가는 방법 보기](https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p01_footer)"
+    },
+    {
+      "article": "P2",
+      "title": "실장님이 퇴사하면, 진행 중인 환자 상담은 누가 이어받을까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381829e26edbc934a97fd",
+      "before_sha256": "19e8b9c2169f5138dc151e83958d0493815270ec8e0c8b344e132a40a48fbfe4",
+      "after_sha256": "777d26ecf58889ce574c629343bc480e040e3b1ef5ba7178969bc7be8cb55a6d",
+      "characters": 3589,
+      "deleted_paragraphs": 1,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "닥터네스트 공식 소개에는 문의를 한 화면에 모으고, 담당자가 바뀌어도 병원 계정에서 상담 이력을 확인하는 기능이 안내돼 있습니다. 도입 상담 때 실제 상담 한 건을 예로 들어 원문과 메모를 찾는 방법, 인계 내용을 남길 위치를 확인해보세요.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "상담 기록이 여러 곳에 흩어져 있다면 아래 글에서 닥터네스트의 상담 통합과 기록 관리 기능을 살펴보세요. 공식 대행사 블링크애드에서 현재 쓰는 채널과 인수인계 방식에 맞춰 도입 상담을 받으실 수 있습니다.",
+          "after": "담당자가 바뀔 때마다 이전 상담을 찾고 환자에게 같은 내용을 다시 묻게 된다면, 기록을 남기는 방식부터 바꿔볼 필요가 있습니다. 아래 글에서 닥터네스트로 상담을 모아 관리하는 방법을 확인해보세요. 지금 쓰는 채널과 인수인계 때 어려웠던 점을 홈페이지 문의에 남겨주시면, 병원에 맞는 기록 관리와 도입 방법을 함께 살펴보겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[닥터네스트로 상담 기록을 모으고 이어받는 방식 보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer)",
+          "after": "[상담 기록을 한곳에 모아 관리하는 방법 보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        }
+      ],
+      "reference_change_rate_pct": 4.46,
+      "verification": {
+        "verified_at": "2026-09-26T17:05:35.751545+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 1,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "담당자가 바뀔 때마다 이전 상담을 찾고 환자에게 같은 내용을 다시 묻게 된다면, 기록을 남기는 방식부터 바꿔볼 필요가 있습니다. 아래 글에서 닥터네스트로 상담을 모아 관리하는 방법을 확인해보세요. 지금 쓰는 채널과 인수인계 때 어려웠던 점을 홈페이지 문의에 남겨주시면, 병원에 맞는 기록 관리와 도입 방법을 함께 살펴보겠습니다.\n\n[상담 기록을 한곳에 모아 관리하는 방법 보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p02_footer)"
+    },
+    {
+      "article": "P3",
+      "title": "원하는 머리 사진까지 보냈던 손님은 왜 예약하지 않았을까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381809043cf75229c0e8a",
+      "before_sha256": "cedcdafe3f638c7f865d4fdc6d4a91097e045afc8c001207eaa9fd58950c7fc7",
+      "after_sha256": "a552f9f9ff6519c6aee5601bc229d178f1ae51ce53b3b49f9037b4ac7ff93d7e",
+      "characters": 3551,
+      "deleted_paragraphs": 1,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "여러 직원이 사진 문의를 나눠 받는다면 이전 사진과 대화를 함께 볼 수 있는지 확인합니다. 뷰티네스트 공식 소개에는 여러 채널의 상담 통합과 손님별 기록 관리가 안내돼 있습니다. 사용하는 채널의 사진과 대화가 화면에 어떻게 보이는지는 도입 상담에서 확인하세요.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "사진 문의와 담당자 메모를 함께 관리하려면 아래 뷰티네스트 소개 글을 참고하세요. 매장에서 쓰는 DM 채널과 응대 방식을 알려주시면 도입 상담을 받으실 수 있습니다.",
+          "after": "손님이 보낸 사진과 직원의 답변을 찾느라 상담을 다시 시작하는 일이 있다면, 아래 뷰티네스트 글을 참고해보세요. 여러 채널의 문의와 고객 기록을 모아 관리하는 방식을 정리했습니다. 매장에서도 써볼 수 있을지 궁금하시면 홈페이지로 문의해주세요. DM을 받는 채널과 디자이너에게 상담 내용을 넘기는 방법을 알려주시면 필요한 설정을 상담해드리겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[뷰티네스트의 DM 상담·고객 기록 관리 방식 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p03_footer)",
+          "after": "[여러 DM의 상담과 고객 기록을 함께 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p03_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        }
+      ],
+      "reference_change_rate_pct": 4.68,
+      "verification": {
+        "verified_at": "2026-09-26T17:05:41.811171+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 1,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "손님이 보낸 사진과 직원의 답변을 찾느라 상담을 다시 시작하는 일이 있다면, 아래 뷰티네스트 글을 참고해보세요. 여러 채널의 문의와 고객 기록을 모아 관리하는 방식을 정리했습니다. 매장에서도 써볼 수 있을지 궁금하시면 홈페이지로 문의해주세요. DM을 받는 채널과 디자이너에게 상담 내용을 넘기는 방법을 알려주시면 필요한 설정을 상담해드리겠습니다.\n\n[여러 DM의 상담과 고객 기록을 함께 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p03_footer)"
+    },
+    {
+      "article": "P4",
+      "title": "외국인 손님과 번역기로 대화했는데 원하는 스타일은 서로 다르게 이해했다면",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381dda494e631879a83e9",
+      "before_sha256": "1143c457c9da4e5535a5623d9664be907469029eca1c193f20d3d3203e8f5803",
+      "after_sha256": "d6f0ed99e87d8feb03ddab5c7ed46ddb0eb74339b1d3b6592fceb944cb69fd6c",
+      "characters": 3607,
+      "deleted_paragraphs": 2,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "뷰티네스트 안내에 따르면 직원이 한국어로 쓴 답변을 손님 언어로 전달하고, 손님의 원문도 함께 볼 수 있습니다. 스타일을 결정하고 손님에게 다시 묻는 일은 담당자가 맡습니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "도입 상담에서는 실제로 받았던 모호한 질문을 예로 들어보세요. 원문을 다시 보는 방법, 확인한 요청을 적을 위치, 다른 직원에게 넘기는 과정을 확인합니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "번역한 대화와 손님의 최종 요청을 함께 남기려면 아래 뷰티네스트 소개 글을 참고하세요. 사용 언어와 문의 채널을 알려주시면 해당 업무에 맞는지 도입 상담을 받으실 수 있습니다.",
+          "after": "외국인 손님과 대화할 때마다 번역 앱과 상담창을 오가는 일이 번거롭다면, 아래 글에서 뷰티네스트의 외국어 응대 방식을 살펴보세요. 번역한 답변을 보내고 손님의 원문을 함께 확인하는 방법을 다룹니다. 자주 받는 언어와 사용 중인 메신저를 홈페이지로 알려주시면, 매장 상담에 어떻게 적용할지 안내해드리겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[뷰티네스트의 외국어 응대·원문 확인 방식 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer)",
+          "after": "[외국어 문의를 번역하고 원문을 함께 확인하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        }
+      ],
+      "reference_change_rate_pct": 6.02,
+      "verification": {
+        "verified_at": "2026-09-26T17:05:48.286458+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 2,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "외국인 손님과 대화할 때마다 번역 앱과 상담창을 오가는 일이 번거롭다면, 아래 글에서 뷰티네스트의 외국어 응대 방식을 살펴보세요. 번역한 답변을 보내고 손님의 원문을 함께 확인하는 방법을 다룹니다. 자주 받는 언어와 사용 중인 메신저를 홈페이지로 알려주시면, 매장 상담에 어떻게 적용할지 안내해드리겠습니다.\n\n[외국어 문의를 번역하고 원문을 함께 확인하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer)"
+    },
+    {
+      "article": "P5",
+      "title": "시술 후 안내문을 줬는데도 같은 질문을 다시 받는다면",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138179a739e19880403767",
+      "before_sha256": "51a64ffca14b4120188c28c3a8a6832b607471fc8ed3e599db3419a20e56af42",
+      "after_sha256": "90bf7d454137cd4492da0d9039f96321c60d3919b76984a6aff245a63e2c9a85",
+      "characters": 3460,
+      "deleted_paragraphs": 1,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "닥터네스트 상품설명서에는 상담 이력과 사후관리 메시지 기능이 안내돼 있습니다. 도입 상담 때 보낼 문구와 시점, 환자 답장이 남는 위치를 확인하세요. 발송을 예약해둔 뒤에도 새 질문을 읽고 의료진 확인을 요청할 담당자는 필요합니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "자주 묻는 질문 하나에 보낼 문구, 발송 시점, 답장을 확인할 담당자를 적어보세요. 예약·시술 후·재방문 안내를 함께 정리할 때는 아래 홈페이지 글을 참고하실 수 있습니다. 닥터네스트의 지원 범위는 블링크애드에 문의해주세요.",
+          "after": "시술 후 안내를 보낼 때마다 문구를 찾아 붙여 넣고 발송 날짜도 따로 챙기고 있다면, 아래 글을 참고해보세요. 예약·시술 후·재방문 안내를 언제 보낼지 나눠 정리한 글입니다. 병원에서 검토한 안내문을 정해진 때에 보내도록 준비하고 싶으시면 홈페이지로 문의해주세요. 현재 발송 방식과 불편한 점을 듣고 닥터네스트를 활용할 범위를 함께 검토하겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "의료진이 시술과 환자별로 정한 안내에 맞춰 보냅니다. 일반 발송 일정과 개별 지시가 다르면 개별 지시를 적용합니다. 상품설명서의 예시 일정을 공통 진료 기준으로 쓰지 않습니다.",
+          "after": "의료진이 시술과 환자별로 정한 안내에 맞춰 보냅니다. 일반 발송 일정과 개별 지시가 다르면 개별 지시를 적용합니다.",
+          "reason": "제품 문서에 관한 설명을 덜고 의료진 기준은 유지"
+        }
+      ],
+      "reference_change_rate_pct": 5.3,
+      "verification": {
+        "verified_at": "2026-09-26T17:05:57.665741+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 1,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "시술 후 안내를 보낼 때마다 문구를 찾아 붙여 넣고 발송 날짜도 따로 챙기고 있다면, 아래 글을 참고해보세요. 예약·시술 후·재방문 안내를 언제 보낼지 나눠 정리한 글입니다. 병원에서 검토한 안내문을 정해진 때에 보내도록 준비하고 싶으시면 홈페이지로 문의해주세요. 현재 발송 방식과 불편한 점을 듣고 닥터네스트를 활용할 범위를 함께 검토하겠습니다.\n\n[예약·시술 후·재방문 메시지를 보내는 시점 살펴보기](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p05_footer)"
+    },
+    {
+      "article": "P6",
+      "title": "네일·왁싱 손님에게 “다음에 또 오세요”만 말하고 있나요?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381839dfffa34a3cb08bb",
+      "before_sha256": "47bb447a4d3b0db36114af496a406c474619177b74d55a160692343d7cdf2b97",
+      "after_sha256": "f0e4e3f2b0e821ae32468ab2e426ae9f74993552c1fc40565063bef3da1aa011",
+      "characters": 3580,
+      "deleted_paragraphs": 1,
+      "changed_blocks": 3,
+      "edits": [
+        {
+          "before": "뷰티네스트 공식 소개에는 고객별 기록과 재방문 안내 기능이 안내돼 있습니다. 담당자가 정한 연락 시점을 어떻게 설정하고 바꾸는지 도입 상담에서 확인하세요. 고객별 방문일을 제품이 알아서 정하는 기능으로 생각해서는 안 됩니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "고객 기록과 다음 연락을 함께 관리하려면 아래 뷰티네스트 소개 글을 참고하세요. 현재 연락을 챙기는 방식과 사용 기기를 알려주시면 매장에 맞는지 도입 상담을 받으실 수 있습니다.",
+          "after": "손님과 다음 연락을 약속해놓고도 메모를 뒤져야 하는 날이 많다면, 아래 글에서 뷰티네스트로 고객 기록과 재방문 안내를 관리하는 방식을 확인해보세요. 누구에게 언제 연락할지 매번 따로 챙기는 일이 부담스럽다면 저희에게 문의하셔도 됩니다. 지금 연락일을 기록하는 곳과 안내를 보내는 방법을 홈페이지에 남겨주시면, 매장에 필요한 설정부터 함께 살펴보겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[뷰티네스트로 다음 방문 안내를 관리하는 방식 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p06_footer)",
+          "after": "[고객 기록과 다음 방문 안내를 함께 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p06_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        },
+        {
+          "before": "연락일·이유·처리 결과부터 짧게 적어보세요. 도구를 검토할 때는 실제로 응대하는 기기도 고려해야 합니다. 뷰티네스트 공식 소개는 현재 PC 기준으로 제공한다고 안내합니다. 휴대전화만 쓴다면 업무 방식에 맞는지 먼저 확인하세요.",
+          "after": "연락일·이유·처리 결과부터 짧게 적어보세요. 도구를 쓴다면 평소 손님에게 답할 때 사용하는 기기도 고려합니다. 뷰티네스트는 PC 기준으로 제공되므로 휴대전화만 쓰는 매장이라면 사용 환경부터 상담해주세요.",
+          "reason": "공식 소개 인용투를 제거하고 사용 환경 정보는 유지"
+        }
+      ],
+      "reference_change_rate_pct": 6.74,
+      "verification": {
+        "verified_at": "2026-09-26T17:06:04.009124+09:00",
+        "changed_blocks": 3,
+        "removed_explanation_blocks": 1,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "손님과 다음 연락을 약속해놓고도 메모를 뒤져야 하는 날이 많다면, 아래 글에서 뷰티네스트로 고객 기록과 재방문 안내를 관리하는 방식을 확인해보세요. 누구에게 언제 연락할지 매번 따로 챙기는 일이 부담스럽다면 저희에게 문의하셔도 됩니다. 지금 연락일을 기록하는 곳과 안내를 보내는 방법을 홈페이지에 남겨주시면, 매장에 필요한 설정부터 함께 살펴보겠습니다.\n\n[고객 기록과 다음 방문 안내를 함께 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p06_footer)"
+    },
+    {
+      "article": "P7",
+      "title": "피부관리권을 끊고 안 오는 손님에게는 뭐라고 연락해야 할까?",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381ac869bc344b23df01e",
+      "before_sha256": "5139b52336d70525bd7b2429da0a3a4b23905343d76fbe0ef138f7ad23cd79bc",
+      "after_sha256": "f5c059ddb1e35306020f08147015241c7f79084d907d7ca242ac741e52cbcbae",
+      "characters": 3527,
+      "deleted_paragraphs": 2,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "뷰티네스트 공식 소개에는 손님별 상담·시술 기록과 재방문 안내 기능이 안내돼 있습니다. 도입을 검토하더라도 관리권의 결제 금액, 잔액, 차감 횟수는 기존 결제·이용 기록에서 확인합니다.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "도입 상담에서는 고객 메모 한 건을 예로 들어 기록을 남길 위치와 후속 안내 방법을 확인합니다. 연락을 원하지 않는 손님은 어떻게 제외하는지, 직원이 직접 처리할 일은 무엇인지도 물어보세요.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "이용 중단 이유와 마지막 약속을 한곳에 남기고 싶다면 아래 뷰티네스트 소개 글을 참고하세요. 쓰고 있는 결제·예약 도구와 상담 채널을 알려주시면 도입 범위를 상담하실 수 있습니다.",
+          "after": "관리권이 남은 손님에게 연락할 때마다 이전 상담과 마지막 약속을 찾기 어렵다면, 아래 뷰티네스트 글을 참고해보세요. 고객 기록과 다음 방문 안내를 함께 관리하는 방법을 살펴보실 수 있습니다. 우리 매장에 적용할 방법이 궁금하시면 홈페이지로 문의해주세요. 지금 기록을 남기는 곳과 손님에게 연락하는 방식을 알려주시면 도입 상담을 도와드리겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[뷰티네스트의 고객 기록·재방문 안내 기능 확인하기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer)",
+          "after": "[고객별 상담 기록과 재방문 안내를 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        }
+      ],
+      "reference_change_rate_pct": 5.73,
+      "verification": {
+        "verified_at": "2026-09-26T17:06:11.140311+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 2,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "관리권이 남은 손님에게 연락할 때마다 이전 상담과 마지막 약속을 찾기 어렵다면, 아래 뷰티네스트 글을 참고해보세요. 고객 기록과 다음 방문 안내를 함께 관리하는 방법을 살펴보실 수 있습니다. 우리 매장에 적용할 방법이 궁금하시면 홈페이지로 문의해주세요. 지금 기록을 남기는 곳과 손님에게 연락하는 방식을 알려주시면 도입 상담을 도와드리겠습니다.\n\n[고객별 상담 기록과 재방문 안내를 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer)"
+    },
+    {
+      "article": "P8",
+      "title": "AI가 답해도 되는 질문, 직원이 직접 답해야 하는 질문",
+      "notion_url": "https://app.notion.com/p/AI-3e7753ebc013816b8436e023569dfd29",
+      "before_sha256": "08cffc4552360661f764bea3a59134541245d040d6ef3410d28d61fa4f0f6f21",
+      "after_sha256": "046363446f6f3bed2ecfb5cc390b53f5445151161b2a4cdfc2d66008da11198b",
+      "characters": 3694,
+      "deleted_paragraphs": 1,
+      "changed_blocks": 2,
+      "edits": [
+        {
+          "before": "닥터네스트 공식 소개에는 병원이 등록한 기본 안내의 자동 발송과 상담 이력 관리가 안내돼 있습니다. 진료 판단과 위험 설명은 사람이 맡는다고 명시돼 있습니다. 도입 상담 때 실제 질문으로 자동 답변을 확인하고 직원이 이어받는 과정도 살펴보세요.",
+          "after": null,
+          "reason": "기능 나열·도입 점검 문단을 말미의 문제 해결 안내와 문의로 통합"
+        },
+        {
+          "before": "최근 문의를 표에 나누고 자동으로 안내할 내용과 직원이 답할 내용을 정해보세요. 아래 홈페이지 글에서 닥터네스트 기능을 확인하실 수 있습니다. 실제 병원 질문을 바탕으로 설정 범위를 상담하려면 공식 대행사 블링크애드에 문의해주세요.",
+          "after": "반복 질문에 답하는 일은 줄이고 싶은데 AI에게 어디까지 맡겨야 할지 막막하다면, 아래 닥터네스트 글부터 읽어보세요. 미리 정한 기본 안내를 자동으로 보내고 상담 기록을 관리하는 방식을 설명했습니다. 우리 병원에서 맡길 업무를 정하기 어렵다면 홈페이지로 문의해주세요. 자주 받는 질문의 종류와 현재 응대 방식을 바탕으로 자동 안내 범위를 함께 정리하겠습니다.",
+          "reason": "글 주제의 불편함→관련 홈페이지 글→상황을 알려주는 도입 문의로 연결"
+        },
+        {
+          "before": "[닥터네스트의 자동응대 범위와 도입 방법 살펴보기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p08_footer)",
+          "after": "[자동으로 보낼 안내와 직원이 맡을 상담 구분하기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p08_footer)",
+          "reason": "링크 문구를 독자가 확인할 해결 방법으로 표현"
+        }
+      ],
+      "reference_change_rate_pct": 5.46,
+      "verification": {
+        "verified_at": "2026-09-26T17:06:17.127895+09:00",
+        "changed_blocks": 2,
+        "removed_explanation_blocks": 1,
+        "body_readback_verified": true,
+        "properties_unchanged": true,
+        "links_preserved": true,
+        "faq_questions_preserved": true,
+        "user_edits_preserved": true
+      },
+      "final_cta": "반복 질문에 답하는 일은 줄이고 싶은데 AI에게 어디까지 맡겨야 할지 막막하다면, 아래 닥터네스트 글부터 읽어보세요. 미리 정한 기본 안내를 자동으로 보내고 상담 기록을 관리하는 방식을 설명했습니다. 우리 병원에서 맡길 업무를 정하기 어렵다면 홈페이지로 문의해주세요. 자주 받는 질문의 종류와 현재 응대 방식을 바탕으로 자동 안내 범위를 함께 정리하겠습니다.\n\n[자동으로 보낼 안내와 직원이 맡을 상담 구분하기](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p08_footer)"
+    }
+  ],
+  "source_checks": [
+    {
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "checked_date": "2026-09-26",
+      "method": "직접 GET 200·본문 확인",
+      "used_for": "상담 통합·기본 안내·기록 관리와 도입 상담 범위"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "checked_date": "2026-09-26",
+      "method": "웹 도구 원문 확인",
+      "used_for": "고객 기록·번역/원문·재방문 안내·PC 기준 및 도입 상담. 과거 출시 문구는 인용하지 않음"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "checked_date": "2026-09-26",
+      "method": "직접 GET 200·본문 확인",
+      "used_for": "외국인 문의 채널·야간 안내·응대 방식. 기존 글의 단정적 효과 표현은 인용하지 않음"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "checked_date": "2026-09-26",
+      "method": "직접 GET 200·본문 확인",
+      "used_for": "예약·시술 후·재방문 메시지 시점 구분. 기존 글의 효과/재방문 수치·의학적 조언은 인용하지 않음"
+    }
+  ]
+}

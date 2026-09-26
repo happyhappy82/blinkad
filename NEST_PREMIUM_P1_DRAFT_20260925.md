@@ -93,10 +93,6 @@
 
 답변이 늦어졌다면 안내한 상담 시간과 실제 업무 배분을 대조합니다. 같은 질문을 다시 묻는다면 인수인계 메모를 읽었는지, 무엇이 빠졌는지 봅니다. 미처리와 완료 표시가 뒤섞인 경우에는 언제 완료로 바꿀지 직원끼리 정합니다.
 
-여러 메신저를 번갈아 열어야 하거나 담당자가 바뀔 때마다 대화 기록을 찾는 데 시간이 든다면, 상담 도구를 검토할 만합니다. 닥터네스트는 [공식 안내](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli)에서 여러 채널의 문의 통합, 자동 번역, 병원이 정해둔 기본 안내의 자동 응대, 담당자가 바뀌어도 이어지는 상담 기록을 설명하고 있습니다.
-
-도구를 도입할 때도 야간 문구와 답변 시간, 다음 날 담당자는 병원에서 정합니다. 실제 문의 하나를 예로 들어 접수부터 직원의 답변까지 어떻게 이어지는지 확인해보세요.
-
 ## 자주 묻는 질문
 
 ### 야간 문의가 적은 병원도 상담 프로그램부터 도입해야 하나요?
@@ -113,6 +109,6 @@
 
 ---
 
-야간 문의가 들어오는 채널과 다음 날 담당자를 함께 정리해보세요. 아래 홈페이지 글에는 외국어 응대와 상담 기록을 관리하는 방법을 담았습니다. 닥터네스트로 처리할 수 있는 업무도 문의하실 수 있습니다.
+퇴근 후 온 문의를 아침마다 여러 메신저에서 찾아보고 있다면, 야간 안내부터 다음 날 상담까지 이어지는 과정을 정리해보세요. 아래 글에서 외국인 환자의 문의 채널과 응대 방식을 살펴보실 수 있습니다. 병원 상황에 맞춰 준비하고 싶으시면 홈페이지로 문의해주세요. 사용 중인 메신저와 상담 시간을 알려주시면 [닥터네스트](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli)로 어떤 안내를 설정할지 함께 검토하겠습니다.
 
 [외국인 환자 문의를 예약 상담으로 이어가는 방법 보기](https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p01_footer)

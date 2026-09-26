@@ -73,8 +73,6 @@
 
 직원이 작성할 상담 메모 예시입니다. 사진 자동 분석이나 시술 가능 여부를 판정하는 기능을 설명한 것은 아닙니다.
 
-여러 직원이 사진 문의를 나눠 받는다면 이전 사진과 대화를 함께 볼 수 있는지 확인합니다. 뷰티네스트 공식 소개에는 여러 채널의 상담 통합과 손님별 기록 관리가 안내돼 있습니다. 사용하는 채널의 사진과 대화가 화면에 어떻게 보이는지는 도입 상담에서 확인하세요.
-
 ## 자주 묻는 질문
 
 ### 사진만 보내고 질문에는 답하지 않으면 어떻게 하나요?
@@ -91,6 +89,6 @@
 
 ---
 
-사진 문의와 담당자 메모를 함께 관리하려면 아래 뷰티네스트 소개 글을 참고하세요. 매장에서 쓰는 DM 채널과 응대 방식을 알려주시면 도입 상담을 받으실 수 있습니다.
+손님이 보낸 사진과 직원의 답변을 찾느라 상담을 다시 시작하는 일이 있다면, 아래 뷰티네스트 글을 참고해보세요. 여러 채널의 문의와 고객 기록을 모아 관리하는 방식을 정리했습니다. 매장에서도 써볼 수 있을지 궁금하시면 홈페이지로 문의해주세요. DM을 받는 채널과 디자이너에게 상담 내용을 넘기는 방법을 알려주시면 필요한 설정을 상담해드리겠습니다.
 
-[뷰티네스트의 DM 상담·고객 기록 관리 방식 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p03_footer)
+[여러 DM의 상담과 고객 기록을 함께 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p03_footer)

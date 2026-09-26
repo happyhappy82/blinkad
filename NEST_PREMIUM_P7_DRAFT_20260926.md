@@ -66,10 +66,6 @@
 
 답이 없다면 이유를 모르는 상태로 남겨둡니다. “가격 부담”, “관심 없음”이라고 추정해 적지 마세요. 다른 직원이 중복 연락하지 않도록 언제 메시지를 보냈는지도 기록합니다.
 
-뷰티네스트 공식 소개에는 손님별 상담·시술 기록과 재방문 안내 기능이 안내돼 있습니다. 도입을 검토하더라도 관리권의 결제 금액, 잔액, 차감 횟수는 기존 결제·이용 기록에서 확인합니다.
-
-도입 상담에서는 고객 메모 한 건을 예로 들어 기록을 남길 위치와 후속 안내 방법을 확인합니다. 연락을 원하지 않는 손님은 어떻게 제외하는지, 직원이 직접 처리할 일은 무엇인지도 물어보세요.
-
 ## 자주 묻는 질문
 
 ### 손님과 매장이 기억하는 남은 횟수가 다르면 어떻게 하나요?
@@ -86,6 +82,6 @@
 
 ---
 
-이용 중단 이유와 마지막 약속을 한곳에 남기고 싶다면 아래 뷰티네스트 소개 글을 참고하세요. 쓰고 있는 결제·예약 도구와 상담 채널을 알려주시면 도입 범위를 상담하실 수 있습니다.
+관리권이 남은 손님에게 연락할 때마다 이전 상담과 마지막 약속을 찾기 어렵다면, 아래 뷰티네스트 글을 참고해보세요. 고객 기록과 다음 방문 안내를 함께 관리하는 방법을 살펴보실 수 있습니다. 우리 매장에 적용할 방법이 궁금하시면 홈페이지로 문의해주세요. 지금 기록을 남기는 곳과 손님에게 연락하는 방식을 알려주시면 도입 상담을 도와드리겠습니다.
 
-[뷰티네스트의 고객 기록·재방문 안내 기능 확인하기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer)
+[고객별 상담 기록과 재방문 안내를 관리하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p07_footer)

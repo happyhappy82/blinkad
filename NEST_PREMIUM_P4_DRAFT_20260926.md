@@ -81,10 +81,6 @@
 
 대화 도중 손님이 다른 언어를 쓰기 시작했다면 원하는 상담 언어부터 확인합니다. 번역 도구에서 선택된 발송 언어와 직원 메모도 함께 살펴보세요.
 
-뷰티네스트 안내에 따르면 직원이 한국어로 쓴 답변을 손님 언어로 전달하고, 손님의 원문도 함께 볼 수 있습니다. 스타일을 결정하고 손님에게 다시 묻는 일은 담당자가 맡습니다.
-
-도입 상담에서는 실제로 받았던 모호한 질문을 예로 들어보세요. 원문을 다시 보는 방법, 확인한 요청을 적을 위치, 다른 직원에게 넘기는 과정을 확인합니다.
-
 ## 자주 묻는 질문
 
 ### 번역문에서 같은 시술 이름이 다르게 나오면 어떻게 하나요?
@@ -101,6 +97,6 @@
 
 ---
 
-번역한 대화와 손님의 최종 요청을 함께 남기려면 아래 뷰티네스트 소개 글을 참고하세요. 사용 언어와 문의 채널을 알려주시면 해당 업무에 맞는지 도입 상담을 받으실 수 있습니다.
+외국인 손님과 대화할 때마다 번역 앱과 상담창을 오가는 일이 번거롭다면, 아래 글에서 뷰티네스트의 외국어 응대 방식을 살펴보세요. 번역한 답변을 보내고 손님의 원문을 함께 확인하는 방법을 다룹니다. 자주 받는 언어와 사용 중인 메신저를 홈페이지로 알려주시면, 매장 상담에 어떻게 적용할지 안내해드리겠습니다.
 
-[뷰티네스트의 외국어 응대·원문 확인 방식 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer)
+[외국어 문의를 번역하고 원문을 함께 확인하는 방법 보기](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=naver_premium&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=p04_footer)

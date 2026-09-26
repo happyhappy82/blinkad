@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:22:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P4_DRAFT_20260926.md",
-  "source_sha256": "1143c457c9da4e5535a5623d9664be907469029eca1c193f20d3d3203e8f5803",
+  "source_sha256": "d6f0ed99e87d8feb03ddab5c7ed46ddb0eb74339b1d3b6592fceb944cb69fd6c",
   "excerpt": "외국인 손님과 번역기로 대화해도 길이와 색상은 다르게 이해할 수 있습니다. 사진에서 원하는 부분, 유지할 조건, 이전 시술을 확인하는 질문표와 최종 의사 확인 문구를 정리했습니다.",
   "keyword": "뷰티네스트, 외국인 미용실 상담, 번역 상담, 스타일 확인",
   "slug": "nest-p04-premium-202609",
-  "characters": 3716,
-  "top_level_blocks": 40,
+  "characters": 3607,
+  "top_level_blocks": 38,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381809043cf75229c0e8a",
   "links": [
@@ -43,10 +43,16 @@
       "top_level_blocks": 41,
       "characters": 4197,
       "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    },
+    {
+      "source_sha256": "1143c457c9da4e5535a5623d9664be907469029eca1c193f20d3d3203e8f5803",
+      "top_level_blocks": 40,
+      "characters": 3716,
+      "revision_note": "2026-09-26 CTA 개편 전, 문체/단독 서명 수정 완료본"
     }
   ],
   "last_edited_date_kst": "2026-09-26",
-  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "last_edited_reason": "기능 나열 문단을 덜고 글별 불편함에서 홈페이지 글·문의로 이어지도록 CTA 개편",
   "editorial_revision": {
     "paragraphs_changed": 17,
     "notion_blocks_patched": 17,
@@ -56,5 +62,15 @@
     "verified_at": "2026-09-26T16:56:38.775749+09:00",
     "preexisting_notion_edits_detected": false,
     "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  },
+  "conversion_revision": {
+    "verified_at": "2026-09-26T17:05:48.286458+09:00",
+    "changed_blocks": 2,
+    "removed_explanation_blocks": 2,
+    "body_readback_verified": true,
+    "properties_unchanged": true,
+    "links_preserved": true,
+    "faq_questions_preserved": true,
+    "user_edits_preserved": true
   }
 }
