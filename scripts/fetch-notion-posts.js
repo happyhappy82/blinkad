@@ -79,7 +79,13 @@ function markdownToHtml(markdown) {
   html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg my-4"/>');
 
   // 링크
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, href) => {
+    // Product inquiry links work in place, and still navigate without JavaScript.
+    const isProductInquiry = /^https:\/\/www\.blinkad\.kr\/contact\?service=(doctornest|beautynest)&topic=h[1-6]$/.test(href);
+    return isProductInquiry
+      ? `<a href="${href}">${label}</a>`
+      : `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+  });
 
   // 인용구
   html = html.replace(/^>\s+(.+)$/gm, '<blockquote>$1</blockquote>');
@@ -228,22 +234,7 @@ function normalizeBlinkadLinks(html) {
     .replace(/https:\/\/blinkad\.kr\//g, 'https://www.blinkad.kr/');
 }
 
-const DOCTORNEST_INTRO_SLUG = 'dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli';
-const DOCTORNEST_CTA = '<div data-blinkad-cta="doctornest" class="my-10 rounded-2xl border border-blue-500/30 bg-blue-500/10 p-6"><p><strong>닥터네스트 도입 문의는 공식 대행사 블링크애드로 연락해 주세요.</strong></p><p>현재 사용 중인 상담 채널과 응대 방식을 확인한 뒤 채널 연결, 안내 문구 설정, 사용법 교육까지 필요한 도입 범위를 안내드립니다.</p><p><a href="https://www.blinkad.kr/contact?utm_source=blinkad_blog&amp;utm_medium=content&amp;utm_campaign=doctornest" target="_blank" rel="noopener noreferrer">닥터네스트 도입 문의하기 →</a></p></div>';
-
-// Notion 원고가 다시 동기화되어도 사이트 전용 CTA를 유지한다.
-function applyPostEnhancements(slug, html) {
-  if (slug !== DOCTORNEST_INTRO_SLUG || html.includes('data-blinkad-cta="doctornest"')) {
-    return html;
-  }
-
-  const faqHeading = '<h2>자주 묻는 질문</h2>';
-  if (!html.includes(faqHeading)) {
-    return `${html}\n${DOCTORNEST_CTA}`;
-  }
-
-  return html.replace(faqHeading, `${DOCTORNEST_CTA}\n${faqHeading}`);
-}
+// Product inquiry CTAs are rendered by the blog route; do not inject campaign UTMs here.
 
 // 이미지 다운로드 함수 (Notion 파일 URL 만료 대응)
 async function downloadImage(url, filePath) {
@@ -457,7 +448,7 @@ async function fetchNotionPosts() {
           console.log(`  Body image saved: ${imgFileName}`);
         }
       }
-      const content = applyPostEnhancements(slug, markdownToHtml(processedContent));
+      const content = markdownToHtml(processedContent);
 
       // Notion에 요약이 없으면 본문 첫 문단에서 자동 생성 (메타 설명용)
       if (!excerpt || excerpt.length <= 50) {

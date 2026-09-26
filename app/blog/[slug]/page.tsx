@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
+import { NestArticleExperience } from '@/components/NestInquiry'
+import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 import Navbar from '@/components/Navbar'
 
 const SITE_URL = 'https://www.blinkad.kr'
@@ -94,6 +96,7 @@ export default async function BlogPost({ params }: Props) {
     notFound()
   }
 
+  const nestArticle = NEST_ARTICLES.find(article => article.slug === post.id)
   const isoDate = formatDateToISO(post.date)
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
@@ -114,7 +117,7 @@ export default async function BlogPost({ params }: Props) {
     description: post.excerpt || post.title,
     ...(imageUrl && { image: imageUrl }),
     datePublished: isoDate,
-    dateModified: isoDate,
+    dateModified: nestArticle ? NEST_UPDATED_AT : isoDate,
     author: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -223,7 +226,8 @@ export default async function BlogPost({ params }: Props) {
             </div>
           )}
 
-          {/* Content */}
+          {/* Content and product-specific inquiry */}
+          <NestArticleExperience article={nestArticle}>
           <div
             className="prose prose-invert prose-lg max-w-none
               prose-headings:text-white prose-headings:font-bold
@@ -239,8 +243,8 @@ export default async function BlogPost({ params }: Props) {
             dangerouslySetInnerHTML={{ __html: renderedContent }}
           />
 
-          {/* CTA Section */}
-          <BlogCTA />
+          </NestArticleExperience>
+          {!nestArticle && <BlogCTA />}
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (

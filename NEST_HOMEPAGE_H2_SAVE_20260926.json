@@ -1,0 +1,17 @@
+{
+  "article_id": "H2",
+  "title": "가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법",
+  "slug": "doctornest-consultation-manual-handover",
+  "notion_page_id": "3e7753eb-c013-81b7-ae7d-d918cb75f67a",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381b7ae7dd918cb75f67a",
+  "status": "Published",
+  "publish_date": "2026-09-26",
+  "source_file": "NEST_HOMEPAGE_H2_DRAFT_20260926.md",
+  "source_sha256": "0f3b5b579521acc3b1104ffee568abd0aecd4279aa8f8452f29548261fc203d2",
+  "top_level_blocks": 20,
+  "readback_verified": true,
+  "public_url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover",
+  "verified_at_kst": "2026-09-26T19:53:30.673333+09:00",
+  "editorial_review": "가격/행사 두 유입을 공통 기준과 고객별 이력이라는 한 주제로 통합. 변경 확인은 병원 운영으로 명시. 자동 견적·동기화·승인 UI 주장 없음. 긴 대화 예시 없음.",
+  "existing_notion_page_reused": false
+}

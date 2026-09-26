@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { getTrackingDataAsync } from '@/lib/tracker';
 
-const WEBHOOK_URL = 'https://hook.us2.make.com/nrf1jnqab3jl3u73hxaio2afexwqzlv7';
+import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 
 interface FormData {
   name: string;
@@ -85,7 +85,7 @@ export default function DiagnosisModal({
     try {
       const tracking = await getTrackingDataAsync();
 
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch(INQUIRY_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

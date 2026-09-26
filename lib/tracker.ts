@@ -250,7 +250,7 @@ export function getClarityPlaybackUrlAsync(timeoutMs = 2000): Promise<string> {
   });
 }
 
-function markClarityInquiry(): void {
+export function markClarityInquiry(): void {
   if (typeof window === 'undefined' || typeof window.clarity !== 'function') return;
 
   try {
@@ -384,13 +384,15 @@ export interface TrackingData {
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
   utm: string;
   page_title: string;
   clarity_session_url: string;
   clarity_tag: string;
 }
 
-export function getTrackingData(): TrackingData {
+export function getTrackingData(markSubmitted = true): TrackingData {
   const meta = getPageMeta();
   const utm_source = ssGet('aj_utm_source');
   const utm_medium = ssGet('aj_utm_medium');
@@ -406,7 +408,7 @@ export function getTrackingData(): TrackingData {
 
   // Clarity tag 보장
   const clarityTag = getOrCreateClarityTag();
-  markClarityInquiry();
+  if (markSubmitted) markClarityInquiry();
 
   // 정상적인 Clarity 쿠키가 있으면 해당 문의 세션의 플레이어를 바로 연다.
   // 추적 차단 등으로 쿠키가 없을 때만 기존 custom tag 필터 링크를 남긴다.
@@ -436,6 +438,8 @@ export function getTrackingData(): TrackingData {
     utm_source,
     utm_medium,
     utm_campaign,
+    utm_content: ssGet('aj_utm_content'),
+    utm_term: ssGet('aj_utm_term'),
     utm: utm_combined,
     page_title: meta.page_title,
     clarity_session_url: clarityUrl,
@@ -448,8 +452,8 @@ export interface TrackingDataWithGa extends TrackingData {
   ga_client_id: string;
 }
 
-export async function getTrackingDataAsync(): Promise<TrackingDataWithGa> {
-  const base = getTrackingData();
+export async function getTrackingDataAsync(markSubmitted = true): Promise<TrackingDataWithGa> {
+  const base = getTrackingData(markSubmitted);
   const [cid, directPlaybackUrl] = await Promise.all([
     getGaClientId(),
     getClarityPlaybackUrlAsync(),
