@@ -33,6 +33,8 @@
 - 정본 대조: 모바일 표 포장과 안내를 제외하면 HTML 변환 결과·제목·요약이 정본과 일치.
 - `node --test scripts/foreign-marketing-posts.test.mjs` 4/4, `node --check scripts/fetch-notion-posts.js`, `git diff --check`, `npm run build` 통과.
 - 페이지 공통 레이아웃·기존 01/02 사진·기존 글 본문·FAQ 스키마 정책은 변경하지 않음.
+- 로컬 production 서버에서 3개 글 × 1440/390/320px 9개 조합 및 모바일 목록을 확인. H1/canonical/Article/Breadcrumb/FAQ/표/UTM 링크 정상, 페이지 가로 넘침과 JavaScript 오류 0건. 모바일의 표 8개는 너비 576px로 개별 가로 스크롤, 키보드 포커스 지원.
+- 배포 커밋 `ee4da11`. 배포 직전 포털 재조회에서 03~05 제목·본문·요약·출처·메모·ready·version·status가 모두 최초 조회와 동일함을 확인.
 
 ## 정본 Markdown SHA-256
 
@@ -44,5 +46,9 @@
 
 ## 운영 확인
 
-배포 후 상태와 공개 화면 검증 결과를 기록한다. 검색엔진 색인·검색 노출 완료는 홈페이지 발행 완료와 다르며 이번 작업에서 보장하지 않는다.
-
+- 2026-09-26 운영 배포 `dpl_zypBHvd9H1V2ipQvWhWN7TopJiZj` Ready, `www.blinkad.kr` 등 운영 alias 연결 확인. 코드 커밋 `ee4da11`.
+- 운영 3개 URL 모두 HTTP 200, self-canonical, noindex 없음, `/blog/sitemap.xml` 포함 확인.
+- 운영에서도 3개 글 × 1440/390/320px 9개 조합 및 모바일 글 목록 통과. H1, Article/Breadcrumb JSON-LD, 표 2/3/3개, 각 글 FAQ 3개, 문의 UTM 링크 정상. 페이지 가로 넘침·JavaScript 오류 없음, 모바일 개별 표 가로 스크롤 및 키보드 포커스 확인.
+- 기존 106편 불변, 새 3편을 포함한 총 109편. 01~05 준비 원고의 홈페이지 공개가 모두 완료됐다.
+- 운영 배포는 홈페이지에만 해당한다. 오픈애즈 발행·Notion 상태 변경·고객 검수요청·대신 승인·신규 문의 전송은 하지 않았다.
+- 검색엔진 색인·검색 노출 완료는 홈페이지 발행 완료와 다르며 이번 작업에서 보장하지 않는다. 과거 지도 표본을 9월 26일 실측으로 갱신하지 않았다.
