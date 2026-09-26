@@ -1,15 +1,15 @@
 # 닥터네스트·뷰티네스트 오픈애즈 6편 작성·연결 완료
 
-2026-09-26 최종 확인. 오픈애즈 O1~O6를 한 편씩 집필·검토·Notion 저장했고, 홈페이지 6편과 제품 문의 화면의 운영 반영 후 마지막 문단을 다시 맞췄다. 오픈애즈 원고는 모두 **Review**, 발행일 없음이다. 외부 매체에는 아직 발행하지 않았다. 연결되는 홈페이지 글은 공개 상태다.
+2026-09-26 최종 확인. 사용자 문체 피드백 후 6편 전체 재교정·Notion 재조회 완료: [최신 문장 검토](NEST_OPENADS_NATURAL_LANGUAGE_REVIEW_20260926.md). 오픈애즈 O1~O6를 한 편씩 집필·검토·Notion 저장했고, 홈페이지 6편과 제품 문의 화면의 운영 반영 후 마지막 문단을 다시 맞췄다. 오픈애즈 원고는 모두 **Review**, 발행일 없음이다. 외부 매체에는 아직 발행하지 않았다. 연결되는 홈페이지 글은 공개 상태다.
 
 | 순서 | 노션 원고 | 읽는 분량¹ | 홈페이지 |
 | --- | --- | ---: | --- |
-| O1 | [문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면](https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7) | 2,212자 | [H1](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer) |
-| O2 | [“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면](https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae) | 2,188자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer) |
-| O3 | [예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?](https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd) | 2,296자 | [H4](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer) |
-| O4 | [단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?](https://app.notion.com/p/3e7753ebc0138148b723f82a901df280) | 2,202자 | [H5](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer) |
-| O5 | [인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?](https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd) | 2,449자 | [H6](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer) |
-| O6 | [광고에는 된다는데 상담실에서는 왜 안 된다고 할까?](https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad) | 2,362자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer) |
+| O1 | [문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면](https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7) | 2,080자 | [H1](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer) |
+| O2 | [“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면](https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae) | 2,112자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer) |
+| O3 | [예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?](https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd) | 2,305자 | [H4](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer) |
+| O4 | [단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?](https://app.notion.com/p/3e7753ebc0138148b723f82a901df280) | 2,164자 | [H5](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer) |
+| O5 | [인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?](https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd) | 2,476자 | [H6](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer) |
+| O6 | [광고에는 된다는데 상담실에서는 왜 안 된다고 할까?](https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad) | 2,278자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer) |
 
 ¹ 제목·공백·마크다운 포함, 링크 주소 제외. 설명과 실용 팁을 중심으로 구성하고 긴 대화 예시·양식·반복 FAQ·단독 브랜드 말미를 넣지 않았다.
 

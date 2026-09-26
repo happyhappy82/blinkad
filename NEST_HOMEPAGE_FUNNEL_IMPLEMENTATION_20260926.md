@@ -49,3 +49,5 @@ Notion 자동 동기화의 HTML 변환 결과와 정적 게시글 데이터가 6
 기획: [aeo-content-planning](/Users/mcbookpro/.codex/skills/aeo-content-planning/SKILL.md). 윤문: [humanize-korean](/Users/mcbookpro/.codex/skills/humanize-korean/SKILL.md). 업무 기록: [blinkad-work-tracker](/Users/mcbookpro/.agents/skills/blinkad-work-tracker/SKILL.md), 기존 Issue235에 기록.
 
 운영 반영 커밋: `2f936e1`. Vercel `dpl_51DcJf6zpbe9KrC8b7Wqg4UsJ6Kf` Ready, `www.blinkad.kr` alias 확인. 운영 브라우저 검사 완료: 2026-09-26 19:59 KST. [브라우저 검증](NEST_HOMEPAGE_BROWSER_AUDIT_20260926.json) · [Notion 자동 동기화 대조](NEST_HOMEPAGE_SYNC_AUDIT_20260926.json) · [편별 원문 검토](NEST_HOMEPAGE_EDITORIAL_AUDIT_20260926.json) · [오픈애즈 최종 연결 검증](NEST_OPENADS_FINAL_FUNNEL_AUDIT_20260926.json).
+
+2026-09-26 후속: 사용자 문체 피드백으로 오픈애즈 6편의 본문·소제목·문의 문구를 다시 교정했다. 홈페이지 주소·UTM·홈페이지 본문·제품 문의 UI는 유지했다. 최신 원고 검증은 [전체 문장 재교정](NEST_OPENADS_NATURAL_LANGUAGE_REVIEW_20260926.md)을 참고한다.

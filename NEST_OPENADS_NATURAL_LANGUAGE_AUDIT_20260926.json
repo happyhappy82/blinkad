@@ -1,0 +1,82 @@
+{
+  "date_kst": "2026-09-26",
+  "scope": "오픈애즈 O1~O6",
+  "total_changed_blocks": 88,
+  "articles": [
+    {
+      "article": "O1",
+      "notion_page_id": "3e7753eb-c013-81af-896d-e24eb377c7a7",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7",
+      "changed_blocks": 15,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "759fdb56e83e83522703d8d9551eff12e459da17a3aa4e27bfe3dba4f2c13b01",
+      "trailing_blank_blocks_preserved": 1
+    },
+    {
+      "article": "O2",
+      "notion_page_id": "3e7753eb-c013-8154-9468-dade4b5a1cae",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae",
+      "changed_blocks": 14,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "1221c4966027c035f912d780b9932f8e5b0260ddecd3133d902770265a0ce02c",
+      "trailing_blank_blocks_preserved": 0
+    },
+    {
+      "article": "O3",
+      "notion_page_id": "3e7753eb-c013-81eb-9be2-e18f4ff814cd",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd",
+      "changed_blocks": 16,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "9502cbd83b175224558af24e281a92c726162492175305d4817e0baa0ff42418",
+      "trailing_blank_blocks_preserved": 0
+    },
+    {
+      "article": "O4",
+      "notion_page_id": "3e7753eb-c013-8148-b723-f82a901df280",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138148b723f82a901df280",
+      "changed_blocks": 12,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "4438d2c747e3261b1eaf39b2dc74bb6c40f87f41210b16beecc997469808bc1e",
+      "trailing_blank_blocks_preserved": 0
+    },
+    {
+      "article": "O5",
+      "notion_page_id": "3e7753eb-c013-8173-b2e0-df92975416dd",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd",
+      "changed_blocks": 15,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "536efad7ede2c1e6556491b8d2088e190ba481d875ef84445490c86a340d9c21",
+      "trailing_blank_blocks_preserved": 0
+    },
+    {
+      "article": "O6",
+      "notion_page_id": "3e7753eb-c013-81a9-bee3-c5ecbe1ccbad",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad",
+      "changed_blocks": 16,
+      "readback_verified": true,
+      "properties_unchanged": true,
+      "status": "Review",
+      "publish_date": null,
+      "source_sha256": "15c67530ba7a20babc8882256329b1ec7864091ab69304ada77192e07048c2ac",
+      "trailing_blank_blocks_preserved": 0
+    }
+  ],
+  "method": "전체 원문을 읽고 문단별 의미와 문체를 검토한 뒤 기존 Notion 블록만 수정. 속성·링크 보존 및 전체 본문 재조회.",
+  "automatic_ai_detection_score": null,
+  "formal_change_rate_script_available": false
+}
