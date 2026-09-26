@@ -1,0 +1,50 @@
+{
+  "date_kst": "2026-09-26",
+  "articles": [
+    {
+      "article": "H1",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3bb753eb-c013-8130-946d-fabc69df007f",
+      "public_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli"
+    },
+    {
+      "article": "H2",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3e7753eb-c013-81b7-ae7d-d918cb75f67a",
+      "public_url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover"
+    },
+    {
+      "article": "H3",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3ba753eb-c013-8158-ba4b-f3786a950792",
+      "public_url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon"
+    },
+    {
+      "article": "H4",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3ba753eb-c013-813e-9105-ce4ce0f5bf96",
+      "public_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka"
+    },
+    {
+      "article": "H5",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3bb753eb-c013-8104-8cfe-f8091729aaf9",
+      "public_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig"
+    },
+    {
+      "article": "H6",
+      "review_sha_matches_saved_body": true,
+      "notion_page_id": "3ba753eb-c013-81d7-82c1-ebc63049b0da",
+      "public_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob"
+    }
+  ],
+  "method": "각 편 집필 후 내용/문체 검토, 저장 직전 해시 대조, 저장 후 Notion 전체 블록 재조회",
+  "unrelated_premium_file_hashes_unchanged": 20,
+  "unverified_claims_excluded": [
+    "광고별 자동 매출 귀속",
+    "자동 예약 확정",
+    "결제 잔액/차감 관리",
+    "모바일 지원 보장",
+    "성과 개선율"
+  ]
+}

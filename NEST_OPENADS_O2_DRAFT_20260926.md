@@ -34,4 +34,4 @@
 
 후속 연락을 보내기 전에는 대화에서 합의한 내용이 있었는지 확인하세요. 가능한 일정을 확인해 주기로 했다면 그 답을 보내고, 고객이 다음 달에 다시 알아보겠다고 했다면 그 의사를 기록해 두세요. 답을 받지 못했다고 같은 예약 권유를 반복하지는 마세요.
 
-직원마다 다른 가격표와 행사 문구를 찾아 쓰고 있다면, [닥터네스트의 기본 안내와 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer)를 참고해 보세요. 안내 문구 설정과 상담 이력을 함께 관리하는 방식이 나와 있습니다. 지금 쓰는 안내 자료를 어떻게 정리할지 홈페이지에서 문의해 주세요.
+가격 안내를 직원마다 따로 정리하고 있다면, [공통 가격·행사 기준과 고객별 안내 기록을 나누는 방법](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer)을 확인해 보세요. 지금 쓰는 자료를 어떻게 정리할지 해당 글에서 문의하실 수 있습니다.

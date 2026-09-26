@@ -38,4 +38,4 @@
 
 비슷한 문의가 이어진다면 고객에게 설명한 내용을 해당 광고와 연결 페이지에도 반영하세요. 다음 문의에서도 혼선이 생기지 않도록 상담 문구까지 함께 고쳐두면 됩니다.
 
-행사 조건이 바뀔 때마다 안내 자료를 따로 찾아 고치고 있다면, [닥터네스트의 기본 안내와 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer)를 살펴보세요. 병원이 등록한 안내와 이미 주고받은 상담을 어떻게 관리하는지 소개한 글입니다. 공통 안내를 정리하는 데 도움이 필요하다면 홈페이지에서 자주 설명이 엇갈리는 항목을 알려주세요.
+행사 조건이 바뀔 때마다 상담 안내도 엇갈린다면, [공통 안내와 기존 고객에게 약속한 내용을 함께 확인하는 방법](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer)을 읽어보세요. 병원에서 쓸 상담 기준을 정리하는 일은 해당 글에서 문의하실 수 있습니다.

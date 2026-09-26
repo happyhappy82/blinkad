@@ -32,4 +32,4 @@
 
 단골 그룹의 예약이 더 많았다고 그 문구가 더 좋았다고 단정하기도 어렵습니다. 이미 매장을 아는 손님과 처음 방문을 고민하는 사람은 매장에 관해 아는 정보부터 다릅니다. 각 대상에게 필요했던 정보가 전달됐는지, 적용되지 않는 행사를 보내지는 않았는지부터 확인해 보세요.
 
-손님에게 연락할 때마다 지난 상담을 다시 찾고 있다면, [뷰티네스트의 상담·시술 기록과 재방문 안내](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer)를 읽어보세요. 우리 매장에서 필요한 기록과 다음 안내를 함께 관리할 수 있을지 확인한 뒤, 홈페이지에서 도입을 문의하실 수 있습니다.
+행사 연락 때마다 손님 기록을 다시 찾고 있다면, [상담·시술 기록을 보고 다음 안내를 정하는 방법](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer)을 읽어보세요. 우리 매장의 기록 관리와 뷰티네스트 도입을 해당 글에서 문의하실 수 있습니다.

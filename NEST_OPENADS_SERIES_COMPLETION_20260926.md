@@ -1,19 +1,17 @@
-# 닥터네스트·뷰티네스트 오픈애즈 6편 작성 완료
+# 닥터네스트·뷰티네스트 오픈애즈 6편 작성·연결 완료
 
-2026-09-26 후속 교정 완료: [문체·홈페이지 연결 검수](NEST_OPENADS_HUMANIZE_FUNNEL_REVIEW_20260926.md), [홈페이지 6편 기획 v3](NEST_HOMEPAGE_CONVERSION_BRIEFS_20260926.md). 기존 노션 페이지에 반영했으며 모두 Review다. 아래 초기 작성 설명보다 후속 문서가 우선한다.
+2026-09-26 최종 확인. 오픈애즈 O1~O6를 한 편씩 집필·검토·Notion 저장했고, 홈페이지 6편과 제품 문의 화면의 운영 반영 후 마지막 문단을 다시 맞췄다. 오픈애즈 원고는 모두 **Review**, 발행일 없음이다. 외부 매체에는 아직 발행하지 않았다. 연결되는 홈페이지 글은 공개 상태다.
 
-확인일: 2026-09-26. 승인된 O1~O6를 한 편씩 집필·문체 및 내용 검토·Notion 저장·재조회한 다음 다음 편으로 진행했다. 기존 Posts DB에 모두 **Review**, 발행일 없음으로 저장했다. 오픈애즈 및 홈페이지 공개 발행은 하지 않았다.
+| 순서 | 노션 원고 | 읽는 분량¹ | 홈페이지 |
+| --- | --- | ---: | --- |
+| O1 | [문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면](https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7) | 2,212자 | [H1](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer) |
+| O2 | [“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면](https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae) | 2,188자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer) |
+| O3 | [예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?](https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd) | 2,296자 | [H4](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer) |
+| O4 | [단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?](https://app.notion.com/p/3e7753ebc0138148b723f82a901df280) | 2,202자 | [H5](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer) |
+| O5 | [인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?](https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd) | 2,449자 | [H6](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer) |
+| O6 | [광고에는 된다는데 상담실에서는 왜 안 된다고 할까?](https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad) | 2,362자 | [H2](https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer) |
 
-| 순서 | 노션 원고 | 읽는 분량¹ | 소제목 |
-| --- | --- | ---: | ---: |
-| O1 | [문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면](https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7) | 2,277자 | 4개 |
-| O2 | [“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면](https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae) | 2,223자 | 4개 |
-| O3 | [예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?](https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd) | 2,346자 | 4개 |
-| O4 | [단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?](https://app.notion.com/p/3e7753ebc0138148b723f82a901df280) | 2,225자 | 3개 |
-| O5 | [인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?](https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd) | 2,509자 | 4개 |
-| O6 | [광고에는 된다는데 상담실에서는 왜 안 된다고 할까?](https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad) | 2,415자 | 4개 |
-
-¹ 제목·공백·마크다운 포함, 링크 주소는 제외하고 링크 문구는 포함. 각 원고에는 설명과 실용 팁을 담고 긴 상담 예시·양식·표·FAQ·단독 브랜드 말미는 넣지 않았다.
+¹ 제목·공백·마크다운 포함, 링크 주소 제외. 설명과 실용 팁을 중심으로 구성하고 긴 대화 예시·양식·반복 FAQ·단독 브랜드 말미를 넣지 않았다.
 
 ## 글별 초점
 
@@ -28,13 +26,11 @@
 
 ## 홈페이지와 문의 연결
 
-각 말미에 해당 글의 불편함 → 관련 홈페이지 글 → 구체적인 상황을 남기는 도입 문의 순서로 연결했다. 6개 링크에는 `openads / referral / nest_content_202609` 및 `o01_footer`~`o06_footer`를 넣었다. 모든 목적지는 HTTP 200이며 `/contact` 링크와 공통 문의 버튼이 있다. 문의 폼은 제출하지 않았다.
+각 말미의 불편함에 맞춰 홈페이지 후속 글과 제품 도입 상담으로 연결했다. O1→H1, O2·O6→H2, O3→H4, O4→H5, O5→H6이다. H3는 프리미엄 외국인 상담 글의 목적지다.
 
-O2·O6의 최종 목적지 H2 전용 글은 아직 없으므로 현재 공개된 닥터네스트 소개 H1로 연결했다. 가격 답변 매뉴얼이 있는 것처럼 소개하지 않았다. O3는 이전 계획의 오래된 주소 대신 현재 공개된 H4 주소를 사용했고, 안내 시점 참고 글이라고 설명했다.
+새 H2가 공개되어 O2·O6의 임시 H1 링크를 교체했다. 여섯 원고의 링크는 모두 HTTP 200이며 외부 원고별 UTM을 유지했다. 홈페이지 본문과 하단 버튼에서 관심 제품과 업무가 표시된 상담창을 열 수 있다. 별도 문의 페이지도 같은 제품 문구를 사용한다.
 
-홈페이지 6편의 보강·신규 작성은 남아 있다. H1에는 제품 도입 문의 링크가 있지만 H5·H6 등의 공통 문의 화면은 SEO 진단 문구를 쓴다. 제품별 문의 문구 보강은 홈페이지 작업 때 이어갈 사항이다. 이번 원고에서는 기존 목적지의 오래된 출시 문구나 광범위한 효과 표현을 인용하지 않았다.
-
-UTM과 링크 존재는 확인했지만 실제 문의 전환 수집 및 제품 계정 기능을 검증한 것은 아니다.
+[홈페이지 6편과 문의 화면 반영 기록](NEST_HOMEPAGE_FUNNEL_IMPLEMENTATION_20260926.md)에 제목·공개 주소·검증 결과를 모았다. 운영 사이트에서 모바일·데스크톱 및 실패/재시도를 확인했고, 입력한 제품·업무·원글 정보·UTM이 전송 데이터에 포함되는지 테스트 응답으로 검증했다. 실제 문의 발송, CRM 저장, 담당자 알림은 검증하지 않았다.
 
 ## 근거와 검수
 
@@ -46,4 +42,4 @@ UTM과 링크 존재는 확인했지만 실제 문의 전환 수집 및 제품 �
 
 전체 6편의 제목·본문·링크·요약·slug·태그·저장 DB·Review·발행일 없음은 API 재조회로 일치 확인했다. 홈페이지 동기화는 Published만 대상으로 하므로 이번 Review 원고는 공개 대상에 포함되지 않는다. Notion 작업큐와 context 폴더는 수정하지 않았다.
 
-로컬 원고: `NEST_OPENADS_O1_DRAFT_20260926.md`~`NEST_OPENADS_O6_DRAFT_20260926.md`. 개별 저장 영수증: 같은 번호의 `SAVE` JSON. 세부 검수: [NEST_OPENADS_SERIES_AUDIT_20260926.json](NEST_OPENADS_SERIES_AUDIT_20260926.json).
+로컬 원고: `NEST_OPENADS_O1_DRAFT_20260926.md`~`NEST_OPENADS_O6_DRAFT_20260926.md`. 개별 저장 영수증: 같은 번호의 `SAVE` JSON. 최종 연결 검수: [NEST_OPENADS_FINAL_FUNNEL_AUDIT_20260926.json](NEST_OPENADS_FINAL_FUNNEL_AUDIT_20260926.json). 최초 저장·문체 교정 당시 검수 JSON은 이력으로 보존한다.

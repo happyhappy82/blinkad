@@ -58,5 +58,71 @@
     "desktop_and_mobile_checked": true,
     "console_errors": []
   },
-  "production": null
+  "production": {
+    "base": "https://www.blinkad.kr",
+    "checked_at": "2026-09-26T10:59:32.838Z",
+    "articles": [
+      {
+        "article": "H1",
+        "status": 200,
+        "modal_product": "doctornest",
+        "topic": "h1",
+        "mobile_overflow": false
+      },
+      {
+        "article": "H2",
+        "status": 200,
+        "modal_product": "doctornest",
+        "topic": "h2",
+        "mobile_overflow": false
+      },
+      {
+        "article": "H3",
+        "status": 200,
+        "modal_product": "doctornest",
+        "topic": "h3",
+        "mobile_overflow": false
+      },
+      {
+        "article": "H4",
+        "status": 200,
+        "modal_product": "doctornest",
+        "topic": "h4",
+        "mobile_overflow": false
+      },
+      {
+        "article": "H5",
+        "status": 200,
+        "modal_product": "beautynest",
+        "topic": "h5",
+        "mobile_overflow": false
+      },
+      {
+        "article": "H6",
+        "status": 200,
+        "modal_product": "doctornest",
+        "topic": "h6",
+        "mobile_overflow": false
+      }
+    ],
+    "mocked_submission_requests": 4,
+    "actual_external_submissions": 0,
+    "failed_request_preserves_inputs": true,
+    "duplicate_submit_guard": true,
+    "original_article_preserved_after_product_change": true,
+    "external_utm_preserved": true,
+    "generic_contact_unchanged": true,
+    "direct_product_inquiry_not_attributed_to_article": true,
+    "pii_excluded_from_custom_analytics": true,
+    "desktop_and_mobile_checked": true,
+    "console_errors": []
+  },
+  "deployment": {
+    "commit": "2f936e1",
+    "id": "dpl_51DcJf6zpbe9KrC8b7Wqg4UsJ6Kf",
+    "url": "https://blinkad-93ajpxd0x-aijeonginsight-1976s-projects.vercel.app",
+    "alias": "https://www.blinkad.kr",
+    "status": "Ready",
+    "verified_date_kst": "2026-09-26"
+  }
 }

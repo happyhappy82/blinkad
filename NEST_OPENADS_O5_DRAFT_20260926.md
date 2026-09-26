@@ -38,4 +38,4 @@
 
 협업끼리 비교할 때는 게시 후 관찰 기간과 행사 조건도 맞춰 보세요. 막 올라온 영상과 오래 노출된 영상을 같은 시점의 예약 건수만으로 비교하면 판단이 어긋날 수 있습니다. 다음 협업의 목표가 병원을 알리는 일인지 예약 상담을 받는 일인지도 함께 정해야 합니다.
 
-영상 보고서와 병원 상담 기록을 함께 보기 어렵다면, [광고 유입부터 상담·예약까지 점검하는 글](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer)을 이어서 읽어보세요. 어느 단계의 기록을 먼저 정리할지 살펴볼 수 있습니다. 현재 받는 보고서 항목과 상담 채널을 홈페이지 문의에 남겨주시면, 닥터네스트로 정리할 상담 업무를 안내해 드리겠습니다.
+영상 보고서와 병원 상담 기록을 맞추기 어렵다면, [광고 문의를 예약 결과까지 확인하려면 남겨야 할 기록](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer)을 살펴보세요. 상담 기록을 어디서부터 정리할지 글 안에서 문의하실 수 있습니다.

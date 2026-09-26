@@ -34,4 +34,4 @@
 
 변경 후에는 광고와 근무 조건이 비슷한 문의를 살펴보세요. 예약 수만으로 효과를 단정하지는 마세요. 광고 내용이나 상담 가능한 일정도 결과에 영향을 줍니다. 우선 해결하려던 문제가 줄었는지, 약속한 후속 안내가 실제로 이뤄졌는지부터 확인하면 됩니다.
 
-여러 채널을 확인하느라 누가 답했고 무엇을 기다리는지 찾기 어렵다면, [닥터네스트의 문의 통합과 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer)를 읽어보세요. 병원에서 정한 기본 안내와 직원이 이어받을 상담을 어떻게 나눌지 살펴볼 수 있습니다. 우리 병원에 필요한 설정이 궁금하다면 홈페이지 글의 도입 문의로 연락해 주세요.
+여러 채널의 문의를 함께 관리할지 고민된다면, [문의 통합 후 기본 안내와 상담 기록을 정리하는 방법](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer)을 읽어보세요. 우리 병원에 필요한 설정은 글 안에서 문의하실 수 있습니다.

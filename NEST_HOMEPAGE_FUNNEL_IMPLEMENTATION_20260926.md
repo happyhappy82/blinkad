@@ -1,6 +1,6 @@
 # 닥터네스트·뷰티네스트 홈페이지와 문의 연결
 
-2026-09-26 KST · 홈페이지 6편 집필·교정 및 문의 화면 구현 · 운영 배포 검증 중
+2026-09-26 KST · 홈페이지 6편 집필·교정 및 문의 화면 구현 · 운영 반영·공개 주소 검증 완료
 
 오픈애즈에서 문제와 개선 팁을 읽고, 홈페이지에서 제품을 적용할 업무를 확인한 뒤 같은 글에서 도입 상담을 신청하도록 연결했다. 글은 H1부터 H6까지 한 편씩 작성·검토했다. 각각 4개 소제목, 약 2,100자 안팎이며 장문 대화 예시·반복 FAQ·근거 없는 성과 수치를 넣지 않았다.
 
@@ -15,7 +15,7 @@
 | H5 | [뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig) | O4 |
 | H6 | [광고로 들어온 문의, 예약까지 어디에 기록해야 할까?](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob) | O5 |
 
-기존 다섯 글은 공개 주소와 원래 발행일을 유지했다. H2는 신규 글이다. 본문 수정일은 구조화 데이터에 2026-09-26으로 표시한다. Notion Posts의 기존 페이지 다섯 개를 수정하고 H2를 한 개 생성하며, 사용자 작업큐와 프리미엄 원고는 변경하지 않는다. 홈페이지 원고의 저장·재조회 결과는 각 `NEST_HOMEPAGE_H*_SAVE_20260926.json`에 기록한다.
+기존 다섯 글은 공개 주소와 원래 발행일을 유지했다. H2는 신규 글이다. 본문 수정일은 구조화 데이터에 2026-09-26으로 표시한다. Notion Posts의 기존 페이지 다섯 개를 수정하고 H2를 한 개 생성했다. 사용자 작업큐와 프리미엄 원고는 변경하지 않았다. 홈페이지 원고의 저장·재조회 결과는 각 `NEST_HOMEPAGE_H*_SAVE_20260926.json`에 기록한다.
 
 ## 문의 화면
 
@@ -32,7 +32,7 @@
 
 브라우저의 접수 요청은 테스트 응답으로 대체했다. 실제 문의 수신처에 테스트 연락을 보내지는 않았다. 따라서 Make 이후 CRM 저장·담당자 알림은 이번에 검증한 항목이 아니다. `nest_inquiry_accepted`는 수신 HTTP 응답을 뜻하며 실제 유효 문의나 예약 성과로 세면 안 된다. GA4 보고서의 이벤트 설정·운영 수집 여부도 별도 확인 대상이다.
 
-Notion 자동 동기화의 HTML 변환 결과와 정적 게시글 데이터를 대조한다. H1에 예전 문의 문구와 내부 UTM을 다시 삽입하던 처리를 제거했다. 이번 여섯 글 이외의 기존 게시글 데이터는 그대로 유지한다.
+Notion 자동 동기화의 HTML 변환 결과와 정적 게시글 데이터가 6편 모두 일치했다. H1에 예전 문의 문구와 내부 UTM을 다시 삽입하던 처리를 제거했다. 이번 여섯 글 이외의 기존 게시글 데이터는 그대로 유지했다.
 
 ## 사실 확인과 문체 검토
 
@@ -44,6 +44,8 @@ Notion 자동 동기화의 HTML 변환 결과와 정적 게시글 데이터를 �
 
 ## 공개 범위
 
-홈페이지는 운영 반영과 실제 주소 확인까지 진행한다. 오픈애즈 여섯 원고는 최종 홈페이지에 맞춰 마지막 문단을 수정하고 Notion `Review`·발행일 없음 상태를 유지한다. 오픈애즈와 네이버 프리미엄콘텐츠의 외부 매체 발행은 하지 않는다.
+홈페이지 6개 주소의 HTTP 200·canonical·제품 문의 화면을 운영 사이트에서 확인했다. 오픈애즈 여섯 원고는 최종 홈페이지에 맞춰 마지막 문단을 수정하고 Notion 전체 본문과 속성을 재조회했다. O2와 O6는 새 H2로 연결했다. 모두 `Review`·발행일 없음이며 오픈애즈와 네이버 프리미엄콘텐츠에는 발행하지 않았다.
 
 기획: [aeo-content-planning](/Users/mcbookpro/.codex/skills/aeo-content-planning/SKILL.md). 윤문: [humanize-korean](/Users/mcbookpro/.codex/skills/humanize-korean/SKILL.md). 업무 기록: [blinkad-work-tracker](/Users/mcbookpro/.agents/skills/blinkad-work-tracker/SKILL.md), 기존 Issue235에 기록.
+
+운영 반영 커밋: `2f936e1`. Vercel `dpl_51DcJf6zpbe9KrC8b7Wqg4UsJ6Kf` Ready, `www.blinkad.kr` alias 확인. 운영 브라우저 검사 완료: 2026-09-26 19:59 KST. [브라우저 검증](NEST_HOMEPAGE_BROWSER_AUDIT_20260926.json) · [Notion 자동 동기화 대조](NEST_HOMEPAGE_SYNC_AUDIT_20260926.json) · [편별 원문 검토](NEST_HOMEPAGE_EDITORIAL_AUDIT_20260926.json) · [오픈애즈 최종 연결 검증](NEST_OPENADS_FINAL_FUNNEL_AUDIT_20260926.json).

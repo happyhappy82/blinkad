@@ -11,11 +11,11 @@
   "publish_date": null,
   "public_publish_action_performed": false,
   "source_file": "NEST_OPENADS_O6_DRAFT_20260926.md",
-  "source_sha256": "0ffcd5028f8b0d242785d9abb118338dc6435396fb91afd13a304003b244bb3d",
+  "source_sha256": "7e2171ce6b106e85d32886a9435d08e6f87a3a63847e9072a25c59fec56bb3a1",
   "slug": "nest-o06-openads-202609",
   "excerpt": "광고를 보고 문의했는데 상담실의 설명이 다르면 고객은 조건을 다시 확인해야 합니다. 행사 적용 기준과 변경 사항이 광고·상담·예약 안내에 함께 반영되도록 정리하는 방법입니다.",
   "tags": "닥터네스트, 병원 광고, 상담 안내, 프로모션 운영",
-  "characters_including_markdown_and_urls": 2615,
+  "characters_including_markdown_and_urls": 2528,
   "top_level_blocks": 20,
   "h2_count": 4,
   "readback_verified": true,
@@ -23,14 +23,14 @@
   "duplicate_title_slug_matches_before_create": 0,
   "prior_article_verified_before_creation": 5,
   "editorial_distinction": "기존 상담 실장별 견적 차이·프리미엄 P2 인수인계와 구별: 광고에 실린 약속과 실제 제공 조건, 변경 적용일·기존 문의 처리 기준을 함께 관리하는 운영 설명.",
-  "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+  "cta_url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
   "source_checks": [
     {
-      "id": "H1",
-      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "id": "H2",
+      "url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
       "status": 200,
       "date_kst": "2026-09-26",
-      "source_kind": "공식 홈페이지 직접 조회"
+      "source_kind": "운영 반영 후 공식 홈페이지 직접 조회"
     }
   ],
   "editorial_review": {
@@ -43,7 +43,7 @@
     ],
     "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
   },
-  "verified_at_kst": "2026-09-26T18:57:32.402186+09:00",
+  "verified_at_kst": "2026-09-26T19:59:28.550288+09:00",
   "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
   "previous_versions": [
     {
@@ -52,8 +52,14 @@
       "cta_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
       "verified_at_kst": "2026-09-26T18:39:25.136383+09:00",
       "reason": "2026-09-26 후속 홈페이지 유입 기획·문체 재검토 전"
+    },
+    {
+      "source_sha256": "0ffcd5028f8b0d242785d9abb118338dc6435396fb91afd13a304003b244bb3d",
+      "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+      "reason": "홈페이지 6편·제품 문의 화면 운영 반영 전 말미"
     }
   ],
-  "last_revision": "문체 재검토·홈페이지 유입 후 문의 문구 수정",
-  "revision_record": "NEST_OPENADS_HUMANIZE_FUNNEL_AUDIT_20260926.json"
+  "last_revision": "운영 홈페이지 본문과 제품 문의 화면에 맞춘 최종 말미",
+  "revision_record": "NEST_HOMEPAGE_FUNNEL_IMPLEMENTATION_20260926.md",
+  "homepage_destination": "H2"
 }

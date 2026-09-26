@@ -36,4 +36,4 @@
 
 모든 원인을 한 번에 해결하려 하지 않아도 됩니다. 상태가 비어 있는 예약부터 정리하고, 확인할 담당과 시점을 정해보세요. 기록이 쌓이면 광고 유입의 문제인지, 상담 조건이 맞지 않았는지, 예약 후 안내를 보완할 일인지 구별할 근거가 생깁니다.
 
-예약 상태를 나눈 뒤 후속 안내도 정리하고 싶다면, [예약 전후에 연락할 시점을 다룬 글](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer)을 읽어보세요. 취소·변경 연락을 받은 뒤 어떤 안내를 챙겨야 할지 고민된다면 홈페이지에서 현재 예약 방식과 연락 채널을 알려주세요. 닥터네스트로 도울 수 있는 안내 업무를 상담해 드리겠습니다.
+취소·변경 연락을 받은 뒤 무엇부터 확인해야 할지 어렵다면, [예약 기록과 후속 안내를 함께 챙기는 방법](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer)을 참고해 보세요. 현재 예약 방식에 맞는 안내 설정은 글 안에서 상담하실 수 있습니다.
