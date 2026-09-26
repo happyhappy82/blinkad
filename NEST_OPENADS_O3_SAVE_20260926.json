@@ -1,0 +1,48 @@
+{
+  "article_id": "O3",
+  "article_title": "예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+  "notion_title": "[오픈애즈] 예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+  "platform": "오픈애즈",
+  "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+  "database_title": "Posts",
+  "notion_page_id": "3e7753eb-c013-81eb-9be2-e18f4ff814cd",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd",
+  "status": "Review",
+  "publish_date": null,
+  "public_publish_action_performed": false,
+  "source_file": "NEST_OPENADS_O3_DRAFT_20260926.md",
+  "source_sha256": "d6d0148cdd8e9d58e359709a8d2a65d0dde1b0b91f303c24774e0875bcdaa01b",
+  "slug": "nest-o03-openads-202609",
+  "excerpt": "이번 달 예약 수와 방문 수를 바로 나누면 광고 성과를 잘못 해석할 수 있습니다. 예약이 잡힌 날과 방문 예정일을 구분하고 취소·변경·방문 대기 상태를 살펴보는 기준을 설명합니다.",
+  "tags": "닥터네스트, 병원 광고, 실제 방문, 예약 성과 측정",
+  "characters_including_markdown_and_urls": 2587,
+  "top_level_blocks": 19,
+  "h2_count": 4,
+  "readback_verified": true,
+  "created_at_kst": "2026-09-26T18:37:02.490468+09:00",
+  "duplicate_title_slug_matches_before_create": 0,
+  "prior_article_verified_before_creation": 2,
+  "editorial_distinction": "기존 노쇼·알림톡 발송 시점 글과 구별: 동일 방문 예정 집단의 상태와 광고 기여 해석에 집중. H4는 예약 후 안내 시점 참고 글이며 측정 대시보드 안내로 소개하지 않음.",
+  "cta_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+  "source_checks": [
+    {
+      "id": "H4",
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "status": 200,
+      "checked_date_kst": "2026-09-26",
+      "title": "#3 병원 알림톡, 예약·시술 후·재방문 메시지는 언제 보내야 할까 - BlinkAd Blog"
+    }
+  ],
+  "editorial_review": {
+    "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+    "focus": [
+      "필요성 설명과 실용 팁",
+      "장문 상담 예시·표·FAQ 제외",
+      "근거 없는 수치와 효과 단정 제외",
+      "불편함에 맞춘 홈페이지 글 및 문의 안내"
+    ],
+    "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+  },
+  "verified_at_kst": "2026-09-26T18:37:03.136866+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+}

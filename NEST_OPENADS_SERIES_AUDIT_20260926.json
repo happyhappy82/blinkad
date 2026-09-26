@@ -1,0 +1,471 @@
+{
+  "date_kst": "2026-09-26",
+  "batch": "O1–O6 sequential OpenAds drafts",
+  "articles": [
+    {
+      "article_id": "O1",
+      "article_title": "문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+      "notion_title": "[오픈애즈] 문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-81af-896d-e24eb377c7a7",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O1_DRAFT_20260926.md",
+      "source_sha256": "fb808f9327792257d8bf59ea556b43c8340b1e5a99090aa5147904f18d3d1f49",
+      "slug": "nest-o01-openads-202609",
+      "excerpt": "답장이 늦었다는 이유만으로 놓친 문의를 설명할 수는 없습니다. 첫 답변에 필요한 정보가 있었는지, 다음 상담은 누가 이어갔는지 살펴보며 문의 응대를 개선하는 방법을 정리했습니다.",
+      "tags": "닥터네스트, 병원 마케팅, 문의 응대, 상담 전환",
+      "characters_including_markdown_and_urls": 2469,
+      "top_level_blocks": 18,
+      "h2_count": 4,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:35:06.087645+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": null,
+      "editorial_distinction": "기존 문의 단절 7가지 글과 구별: 예약 이탈 이유를 단정하지 않고 첫 실질 답변과 다음 행동을 점검. 프리미엄 P1의 야간 안내 문구나 인수인계 양식 반복 제외.",
+      "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+      "source_checks": [
+        {
+          "id": "H1",
+          "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "닥터네스트란? 병원 상담을 하나로 모으는 방식 정리 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:35:06.727532+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2269
+    },
+    {
+      "article_id": "O2",
+      "article_title": "“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+      "notion_title": "[오픈애즈] “얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-8154-9468-dade4b5a1cae",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O2_DRAFT_20260926.md",
+      "source_sha256": "a6d9c2196db636bedcf3631b649593b2851d750d6e1bb75f91a23174e8c7cad9",
+      "slug": "nest-o02-openads-202609",
+      "excerpt": "가격을 안내한 뒤 대화가 끝났다면 할인부터 고민하기 전에 답변을 살펴보세요. 가격에 포함된 조건, 추가 확인이 필요한 부분, 부담 없는 다음 질문을 함께 정리하는 방법입니다.",
+      "tags": "닥터네스트, 가격 문의, 병원 상담, 광고 전환",
+      "characters_including_markdown_and_urls": 2540,
+      "top_level_blocks": 18,
+      "h2_count": 4,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:35:48.815672+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": 1,
+      "editorial_distinction": "프리미엄 P3의 헤어 사진 상담과 구별: 병원 광고 가격 문의의 비교 조건·정보 순서·대화 부담에 집중. 미생성 H2 대신 기존 H1로 연결하며 가격 답변 전용 문서라고 소개하지 않음.",
+      "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+      "source_checks": [
+        {
+          "id": "H1",
+          "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "닥터네스트란? 병원 상담을 하나로 모으는 방식 정리 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:36:16.670838+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2340
+    },
+    {
+      "article_id": "O3",
+      "article_title": "예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+      "notion_title": "[오픈애즈] 예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-81eb-9be2-e18f4ff814cd",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O3_DRAFT_20260926.md",
+      "source_sha256": "d6d0148cdd8e9d58e359709a8d2a65d0dde1b0b91f303c24774e0875bcdaa01b",
+      "slug": "nest-o03-openads-202609",
+      "excerpt": "이번 달 예약 수와 방문 수를 바로 나누면 광고 성과를 잘못 해석할 수 있습니다. 예약이 잡힌 날과 방문 예정일을 구분하고 취소·변경·방문 대기 상태를 살펴보는 기준을 설명합니다.",
+      "tags": "닥터네스트, 병원 광고, 실제 방문, 예약 성과 측정",
+      "characters_including_markdown_and_urls": 2587,
+      "top_level_blocks": 19,
+      "h2_count": 4,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:37:02.490468+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": 2,
+      "editorial_distinction": "기존 노쇼·알림톡 발송 시점 글과 구별: 동일 방문 예정 집단의 상태와 광고 기여 해석에 집중. H4는 예약 후 안내 시점 참고 글이며 측정 대시보드 안내로 소개하지 않음.",
+      "cta_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+      "source_checks": [
+        {
+          "id": "H4",
+          "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "#3 병원 알림톡, 예약·시술 후·재방문 메시지는 언제 보내야 할까 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:37:03.136866+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2382
+    },
+    {
+      "article_id": "O4",
+      "article_title": "단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+      "notion_title": "[오픈애즈] 단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-8148-b723-f82a901df280",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138148b723f82a901df280",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O4_DRAFT_20260926.md",
+      "source_sha256": "5881c751d3b95d4fde922ec39bdeee2324d65874348e6e199032a754524b9f0b",
+      "slug": "nest-o04-openads-202609",
+      "excerpt": "방문 횟수만으로 손님이 받고 싶은 안내를 알기는 어렵습니다. 마지막 상담과 최근 방문 상태를 바탕으로 이벤트 연락의 대상과 내용을 고르는 방법을 살펴봅니다.",
+      "tags": "뷰티네스트, 미용실 마케팅, 고객 메시지, 이벤트 안내",
+      "characters_including_markdown_and_urls": 2588,
+      "top_level_blocks": 17,
+      "h2_count": 3,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:37:42.229952+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": 3,
+      "editorial_distinction": "프리미엄 P6 재방문 날짜 설정·P7 미사용 관리권과 구별: 행사 메시지의 목적과 대상 선정. 고객 상태 분류와 광고성 정보 수신 동의는 별도 판단임을 명시.",
+      "cta_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+      "source_checks": [
+        {
+          "id": "H5",
+          "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "뷰티네스트란? 미용실·네일샵 상담과 재방문을 한 화면에서 보는 방식 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:37:43.071261+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2271
+    },
+    {
+      "article_id": "O5",
+      "article_title": "인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+      "notion_title": "[오픈애즈] 인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-8173-b2e0-df92975416dd",
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O5_DRAFT_20260926.md",
+      "source_sha256": "611fdc214482febbf00b38b29623f1cf55525782c32cfa5897a152afbb5a4c64",
+      "slug": "nest-o05-openads-202609",
+      "excerpt": "영상 조회수와 병원 예약 사이에는 여러 단계가 있습니다. 문의 경로가 분명한지, 영상에서 궁금해진 내용이 상담으로 이어지는지, 어디까지 성과를 확인할 수 있는지 차례로 살펴봅니다.",
+      "tags": "닥터네스트, 인플루언서 마케팅, 병원 예약, 성과 측정",
+      "characters_including_markdown_and_urls": 2787,
+      "top_level_blocks": 20,
+      "h2_count": 4,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:38:31.638922+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": 4,
+      "editorial_distinction": "기존 체험단 운영·계약 전 9가지 글과 구별: 영상 이후 문의 경로·단계별 수치 해석·확인 가능한 유입의 한계. UTM이 개인별 예약을 자동 식별한다는 주장 제외.",
+      "cta_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer",
+      "source_checks": [
+        {
+          "id": "H6",
+          "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "병원 마케팅, 광고 유입을 상담·예약·재방문으로 연결하는 방법 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:38:46.610533+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2508
+    },
+    {
+      "article_id": "O6",
+      "article_title": "광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+      "notion_title": "[오픈애즈] 광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+      "platform": "오픈애즈",
+      "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "database_title": "Posts",
+      "notion_page_id": "3e7753eb-c013-81a9-bee3-c5ecbe1ccbad",
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad",
+      "status": "Review",
+      "publish_date": null,
+      "public_publish_action_performed": false,
+      "source_file": "NEST_OPENADS_O6_DRAFT_20260926.md",
+      "source_sha256": "4592f8b8cdd7153d6abcd19dbda472dc5bbefb529b7cc472cf08ab434d666e4a",
+      "slug": "nest-o06-openads-202609",
+      "excerpt": "광고를 보고 문의했는데 상담실의 설명이 다르면 고객은 조건을 다시 확인해야 합니다. 행사 적용 기준과 변경 사항이 광고·상담·예약 안내에 함께 반영되도록 정리하는 방법입니다.",
+      "tags": "닥터네스트, 병원 광고, 상담 안내, 프로모션 운영",
+      "characters_including_markdown_and_urls": 2673,
+      "top_level_blocks": 20,
+      "h2_count": 4,
+      "readback_verified": true,
+      "created_at_kst": "2026-09-26T18:39:24.343172+09:00",
+      "duplicate_title_slug_matches_before_create": 0,
+      "prior_article_verified_before_creation": 5,
+      "editorial_distinction": "기존 상담 실장별 견적 차이·프리미엄 P2 인수인계와 구별: 광고에 실린 약속과 실제 제공 조건, 변경 적용일·기존 문의 처리 기준을 함께 관리하는 운영 설명.",
+      "cta_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+      "source_checks": [
+        {
+          "id": "H6",
+          "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+          "status": 200,
+          "checked_date_kst": "2026-09-26",
+          "title": "병원 마케팅, 광고 유입을 상담·예약·재방문으로 연결하는 방법 - BlinkAd Blog"
+        }
+      ],
+      "editorial_review": {
+        "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+        "focus": [
+          "필요성 설명과 실용 팁",
+          "장문 상담 예시·표·FAQ 제외",
+          "근거 없는 수치와 효과 단정 제외",
+          "불편함에 맞춘 홈페이지 글 및 문의 안내"
+        ],
+        "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+      },
+      "verified_at_kst": "2026-09-26T18:39:25.136383+09:00",
+      "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+      "readable_characters_including_title": 2456
+    }
+  ],
+  "verification": {
+    "all_six_notion_body_and_properties_readback": true,
+    "all_six_review_and_no_publish_date": true,
+    "previous_article_verified_before_next_created": true,
+    "published_automatically": false,
+    "website_sync_filter": "scripts/fetch-notion-posts.js: Status Published only",
+    "premium_files_unchanged": 20,
+    "work_queue_modified": false,
+    "context_modified": false,
+    "existing_openads_titles_checked": 57,
+    "closest_existing_openads_heading_sets_read": 6
+  },
+  "editorial_review": {
+    "method": "본문 수동 검토, 승인 주제와 인접 기존 원고 비교, 제한된 상투어 패턴 검색. AI 감별 또는 정량 품질 등급 아님.",
+    "format": "각 글 H2 3~4개, 산문, 장문 상담 예시·표·FAQ·단독 브랜드 말미 없음",
+    "unsupported_claims_excluded": [
+      "1분 내 답변하지 않으면 무조건 이탈",
+      "예약·매출 상승 수치와 보장",
+      "실제 고객인 것처럼 꾸민 사례",
+      "자동 고객 분류·결제 잔액·개인별 예약 자동 추적 등 미확인 기능"
+    ],
+    "distinction_limit": "문의·상담·예약이라는 공통 주제의 일부 조언은 재등장하나 글별 질문과 점검 범위를 다르게 배정함."
+  },
+  "links": [
+    {
+      "article_id": "O1",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        },
+        {
+          "label": "닥터네스트 도입 문의하기 →",
+          "href": "https://www.blinkad.kr/contact?utm_source=blinkad_blog&utm_medium=content&utm_campaign=doctornest"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    },
+    {
+      "article_id": "O2",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        },
+        {
+          "label": "닥터네스트 도입 문의하기 →",
+          "href": "https://www.blinkad.kr/contact?utm_source=blinkad_blog&utm_medium=content&utm_campaign=doctornest"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    },
+    {
+      "article_id": "O3",
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        },
+        {
+          "label": "문의",
+          "href": "https://www.blinkad.kr/contact"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    },
+    {
+      "article_id": "O4",
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    },
+    {
+      "article_id": "O5",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    },
+    {
+      "article_id": "O6",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+      "http_status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+      "checked_date_kst": "2026-09-26",
+      "contact_links": [
+        {
+          "label": "무료 진단하기",
+          "href": "https://www.blinkad.kr/contact"
+        }
+      ],
+      "inquiry_buttons": [
+        "내 업장 진단받기"
+      ],
+      "button_behavior_evidence": "components/BlogCTA.tsx의 openModal에서 DiagnosisModal 표시. 이번에는 브라우저 클릭/제출 미실행."
+    }
+  ],
+  "primary_sources": [
+    {
+      "articles": [
+        "O4"
+      ],
+      "url": "https://www.law.go.kr/LSW/lsLinkCommonInfo.do?ancYnChk=&chrClsCd=010202&lsJoLnkSeq=1025057211",
+      "title": "정보통신망법 제50조",
+      "effective_date": "2026-09-11",
+      "verified_content": "명시적 사전 동의 원칙과 법정 예외, 수신거부/철회 후 전송금지, 발송 시간과 표시 사항 확인. 본문은 개별 적법성 판단이나 완전한 준수 안내를 제공하지 않음."
+    },
+    {
+      "articles": [
+        "O5"
+      ],
+      "url": "https://support.google.com/analytics/answer/10917952?hl=ko",
+      "title": "Google Analytics URL 작성 도구: 맞춤 URL을 사용한 캠페인 데이터 수집",
+      "verified_content": "도착 URL의 UTM은 캠페인 유입 구분에 사용. 문서가 다루는 범위를 넘어 개인별 전화/메신저 예약의 자동 추적을 주장하지 않음."
+    }
+  ],
+  "remaining_scope": {
+    "H2": "계획된 가격/상담 매뉴얼 전용 글 미생성. O2는 기존 H1 소개로 정확히 연결.",
+    "H4": "원 기획의 오래된 URL 대신 현재 200 URL 사용. 링크 설명은 예약 전후 메시지 시점으로 제한.",
+    "homepage_six": "이번 작업에서 신규 작성/보강하지 않음. 기존 목적지의 오래된 출시 문구·광범위한 효과 표현은 새 원고에 재사용하지 않음.",
+    "tracking": "UTM 링크 존재·HTTP200만 검증. 사이트에서 문의까지의 실제 전환 수집이나 제품 계정 기능은 실기동 검증하지 않음.",
+    "OpenAds": "외부 매체 발행 미실행, 모든 글 Notion Review 원고.",
+    "inquiry_cta": "H1은 닥터네스트 전용 도입 링크, H4는 본문 문의 링크, H5/H6은 공통 진단 버튼과 /contact 링크가 존재. 공통 문의 화면은 SEO 진단 문구이므로 제품별 전환 문구 보강은 후속 홈페이지 작업에 남음."
+  },
+  "contact_endpoint": {
+    "url": "https://www.blinkad.kr/contact",
+    "http_status": 200,
+    "form_submission_performed": false
+  }
+}

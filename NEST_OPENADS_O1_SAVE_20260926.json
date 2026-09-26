@@ -1,0 +1,48 @@
+{
+  "article_id": "O1",
+  "article_title": "문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+  "notion_title": "[오픈애즈] 문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+  "platform": "오픈애즈",
+  "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+  "database_title": "Posts",
+  "notion_page_id": "3e7753eb-c013-81af-896d-e24eb377c7a7",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7",
+  "status": "Review",
+  "publish_date": null,
+  "public_publish_action_performed": false,
+  "source_file": "NEST_OPENADS_O1_DRAFT_20260926.md",
+  "source_sha256": "fb808f9327792257d8bf59ea556b43c8340b1e5a99090aa5147904f18d3d1f49",
+  "slug": "nest-o01-openads-202609",
+  "excerpt": "답장이 늦었다는 이유만으로 놓친 문의를 설명할 수는 없습니다. 첫 답변에 필요한 정보가 있었는지, 다음 상담은 누가 이어갔는지 살펴보며 문의 응대를 개선하는 방법을 정리했습니다.",
+  "tags": "닥터네스트, 병원 마케팅, 문의 응대, 상담 전환",
+  "characters_including_markdown_and_urls": 2469,
+  "top_level_blocks": 18,
+  "h2_count": 4,
+  "readback_verified": true,
+  "created_at_kst": "2026-09-26T18:35:06.087645+09:00",
+  "duplicate_title_slug_matches_before_create": 0,
+  "prior_article_verified_before_creation": null,
+  "editorial_distinction": "기존 문의 단절 7가지 글과 구별: 예약 이탈 이유를 단정하지 않고 첫 실질 답변과 다음 행동을 점검. 프리미엄 P1의 야간 안내 문구나 인수인계 양식 반복 제외.",
+  "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+  "source_checks": [
+    {
+      "id": "H1",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "status": 200,
+      "checked_date_kst": "2026-09-26",
+      "title": "닥터네스트란? 병원 상담을 하나로 모으는 방식 정리 - BlinkAd Blog"
+    }
+  ],
+  "editorial_review": {
+    "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+    "focus": [
+      "필요성 설명과 실용 팁",
+      "장문 상담 예시·표·FAQ 제외",
+      "근거 없는 수치와 효과 단정 제외",
+      "불편함에 맞춘 홈페이지 글 및 문의 안내"
+    ],
+    "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+  },
+  "verified_at_kst": "2026-09-26T18:35:06.727532+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+}

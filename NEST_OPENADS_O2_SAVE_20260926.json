@@ -1,0 +1,48 @@
+{
+  "article_id": "O2",
+  "article_title": "“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+  "notion_title": "[오픈애즈] “얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+  "platform": "오픈애즈",
+  "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+  "database_title": "Posts",
+  "notion_page_id": "3e7753eb-c013-8154-9468-dade4b5a1cae",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae",
+  "status": "Review",
+  "publish_date": null,
+  "public_publish_action_performed": false,
+  "source_file": "NEST_OPENADS_O2_DRAFT_20260926.md",
+  "source_sha256": "a6d9c2196db636bedcf3631b649593b2851d750d6e1bb75f91a23174e8c7cad9",
+  "slug": "nest-o02-openads-202609",
+  "excerpt": "가격을 안내한 뒤 대화가 끝났다면 할인부터 고민하기 전에 답변을 살펴보세요. 가격에 포함된 조건, 추가 확인이 필요한 부분, 부담 없는 다음 질문을 함께 정리하는 방법입니다.",
+  "tags": "닥터네스트, 가격 문의, 병원 상담, 광고 전환",
+  "characters_including_markdown_and_urls": 2540,
+  "top_level_blocks": 18,
+  "h2_count": 4,
+  "readback_verified": true,
+  "created_at_kst": "2026-09-26T18:35:48.815672+09:00",
+  "duplicate_title_slug_matches_before_create": 0,
+  "prior_article_verified_before_creation": 1,
+  "editorial_distinction": "프리미엄 P3의 헤어 사진 상담과 구별: 병원 광고 가격 문의의 비교 조건·정보 순서·대화 부담에 집중. 미생성 H2 대신 기존 H1로 연결하며 가격 답변 전용 문서라고 소개하지 않음.",
+  "cta_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+  "source_checks": [
+    {
+      "id": "H1",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "status": 200,
+      "checked_date_kst": "2026-09-26",
+      "title": "닥터네스트란? 병원 상담을 하나로 모으는 방식 정리 - BlinkAd Blog"
+    }
+  ],
+  "editorial_review": {
+    "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+    "focus": [
+      "필요성 설명과 실용 팁",
+      "장문 상담 예시·표·FAQ 제외",
+      "근거 없는 수치와 효과 단정 제외",
+      "불편함에 맞춘 홈페이지 글 및 문의 안내"
+    ],
+    "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+  },
+  "verified_at_kst": "2026-09-26T18:36:16.670838+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+}

@@ -1,0 +1,48 @@
+{
+  "article_id": "O6",
+  "article_title": "광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+  "notion_title": "[오픈애즈] 광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+  "platform": "오픈애즈",
+  "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+  "database_title": "Posts",
+  "notion_page_id": "3e7753eb-c013-81a9-bee3-c5ecbe1ccbad",
+  "notion_url": "https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad",
+  "status": "Review",
+  "publish_date": null,
+  "public_publish_action_performed": false,
+  "source_file": "NEST_OPENADS_O6_DRAFT_20260926.md",
+  "source_sha256": "4592f8b8cdd7153d6abcd19dbda472dc5bbefb529b7cc472cf08ab434d666e4a",
+  "slug": "nest-o06-openads-202609",
+  "excerpt": "광고를 보고 문의했는데 상담실의 설명이 다르면 고객은 조건을 다시 확인해야 합니다. 행사 적용 기준과 변경 사항이 광고·상담·예약 안내에 함께 반영되도록 정리하는 방법입니다.",
+  "tags": "닥터네스트, 병원 광고, 상담 안내, 프로모션 운영",
+  "characters_including_markdown_and_urls": 2673,
+  "top_level_blocks": 20,
+  "h2_count": 4,
+  "readback_verified": true,
+  "created_at_kst": "2026-09-26T18:39:24.343172+09:00",
+  "duplicate_title_slug_matches_before_create": 0,
+  "prior_article_verified_before_creation": 5,
+  "editorial_distinction": "기존 상담 실장별 견적 차이·프리미엄 P2 인수인계와 구별: 광고에 실린 약속과 실제 제공 조건, 변경 적용일·기존 문의 처리 기준을 함께 관리하는 운영 설명.",
+  "cta_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+  "source_checks": [
+    {
+      "id": "H6",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "status": 200,
+      "checked_date_kst": "2026-09-26",
+      "title": "병원 마케팅, 광고 유입을 상담·예약·재방문으로 연결하는 방법 - BlinkAd Blog"
+    }
+  ],
+  "editorial_review": {
+    "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+    "focus": [
+      "필요성 설명과 실용 팁",
+      "장문 상담 예시·표·FAQ 제외",
+      "근거 없는 수치와 효과 단정 제외",
+      "불편함에 맞춘 홈페이지 글 및 문의 안내"
+    ],
+    "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+  },
+  "verified_at_kst": "2026-09-26T18:39:25.136383+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+}

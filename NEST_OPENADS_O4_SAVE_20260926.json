@@ -1,0 +1,48 @@
+{
+  "article_id": "O4",
+  "article_title": "단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+  "notion_title": "[오픈애즈] 단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+  "platform": "오픈애즈",
+  "database_id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+  "database_title": "Posts",
+  "notion_page_id": "3e7753eb-c013-8148-b723-f82a901df280",
+  "notion_url": "https://app.notion.com/p/3e7753ebc0138148b723f82a901df280",
+  "status": "Review",
+  "publish_date": null,
+  "public_publish_action_performed": false,
+  "source_file": "NEST_OPENADS_O4_DRAFT_20260926.md",
+  "source_sha256": "5881c751d3b95d4fde922ec39bdeee2324d65874348e6e199032a754524b9f0b",
+  "slug": "nest-o04-openads-202609",
+  "excerpt": "방문 횟수만으로 손님이 받고 싶은 안내를 알기는 어렵습니다. 마지막 상담과 최근 방문 상태를 바탕으로 이벤트 연락의 대상과 내용을 고르는 방법을 살펴봅니다.",
+  "tags": "뷰티네스트, 미용실 마케팅, 고객 메시지, 이벤트 안내",
+  "characters_including_markdown_and_urls": 2588,
+  "top_level_blocks": 17,
+  "h2_count": 3,
+  "readback_verified": true,
+  "created_at_kst": "2026-09-26T18:37:42.229952+09:00",
+  "duplicate_title_slug_matches_before_create": 0,
+  "prior_article_verified_before_creation": 3,
+  "editorial_distinction": "프리미엄 P6 재방문 날짜 설정·P7 미사용 관리권과 구별: 행사 메시지의 목적과 대상 선정. 고객 상태 분류와 광고성 정보 수신 동의는 별도 판단임을 명시.",
+  "cta_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+  "source_checks": [
+    {
+      "id": "H5",
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "status": 200,
+      "checked_date_kst": "2026-09-26",
+      "title": "뷰티네스트란? 미용실·네일샵 상담과 재방문을 한 화면에서 보는 방식 - BlinkAd Blog"
+    }
+  ],
+  "editorial_review": {
+    "method": "집필 후 본문 수동 검토와 형식·링크 검사. AI 판별 점수나 도구 검증 등급을 산출하지 않음.",
+    "focus": [
+      "필요성 설명과 실용 팁",
+      "장문 상담 예시·표·FAQ 제외",
+      "근거 없는 수치와 효과 단정 제외",
+      "불편함에 맞춘 홈페이지 글 및 문의 안내"
+    ],
+    "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
+  },
+  "verified_at_kst": "2026-09-26T18:37:43.071261+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+}
