@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 import { NEWS_POSTS } from '@/constants/news'
+import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.blinkad.kr'
@@ -76,9 +77,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // 동적 블로그 포스트들
+  const revisedNestSlugs: ReadonlySet<string> = new Set(NEST_ARTICLES.map((article) => article.slug))
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
-    lastModified: new Date(post.date.replace(/\./g, '-')),
+    lastModified: new Date(revisedNestSlugs.has(post.id) ? NEST_UPDATED_AT : post.date.replace(/\./g, '-')),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))

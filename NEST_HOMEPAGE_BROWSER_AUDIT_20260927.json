@@ -1,0 +1,64 @@
+{
+  "base": "http://localhost:3107",
+  "checked_at": "2026-09-26T16:02:07.032Z",
+  "results": [
+    {
+      "article": "h1",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    },
+    {
+      "article": "h2",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    },
+    {
+      "article": "h3",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    },
+    {
+      "article": "h4",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    },
+    {
+      "article": "h5",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    },
+    {
+      "article": "h6",
+      "status": 200,
+      "body": "revised",
+      "body_contact_links": 1,
+      "footer_buttons": 1,
+      "modal": "correct",
+      "mobile_overflow": false
+    }
+  ],
+  "sitemap_modified_date": "2026-09-27",
+  "narrower_widths_ok": true,
+  "actual_external_submissions": 0,
+  "console_errors": []
+}

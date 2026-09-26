@@ -7,11 +7,27 @@
   "status": "Published",
   "publish_date": "2026-08-14",
   "source_file": "NEST_HOMEPAGE_H1_DRAFT_20260926.md",
-  "source_sha256": "3d1cbc3c361e2fd99c7f516b7083eec32f7ea0ed870f8d56e2ffad2c73ece28f",
-  "top_level_blocks": 20,
+  "source_sha256": "28dfa4aa9409b690a778608e793d85a913d732ca4ffafaa8ce31f316b4057065",
+  "top_level_blocks": 18,
   "readback_verified": true,
   "public_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
-  "verified_at_kst": "2026-09-26T19:53:28.441196+09:00",
+  "verified_at_kst": "2026-09-27T01:00:33.287103+09:00",
   "editorial_review": "통합 후 기록·직원 확인·도입 준비 중심. 채널 전부 지원, 자동 배정, 예약 증가 단정 없음. 예시는 예약 상태 구분 한 문단으로 제한. 두 CTA 제품/주제 일치.",
-  "existing_notion_page_reused": true
+  "existing_notion_page_reused": true,
+  "previous_versions": [
+    {
+      "source_sha256": "3d1cbc3c361e2fd99c7f516b7083eec32f7ea0ed870f8d56e2ffad2c73ece28f",
+      "top_level_blocks": 20,
+      "replaced_on": "2026-09-27"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-27",
+  "last_edited_reason": "공식홈페이지 6편 제품 사용 설명·문체·문의 안내 수정",
+  "revision_20260927": {
+    "notion_blocks_patched": 17,
+    "duplicate_bottom_links_removed": 1,
+    "bottom_callout_moved_to_website": true,
+    "properties_preserved_except_excerpt": true,
+    "title_slug_publish_date_status_preserved": true
+  }
 }

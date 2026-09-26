@@ -90,7 +90,7 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
     }} className="space-y-5">
       <div>
         <Heading id={titleId} className="pr-8 text-2xl font-bold text-white">{NEST_PRODUCTS[product]} 도입 상담</Heading>
-        <p className="mt-3 break-keep leading-relaxed text-gray-300">지금 쓰는 상담 채널과 불편한 업무를 알려주세요. 필요한 기능과 설정 범위를 확인해 안내드립니다.</p>
+        <p className="mt-3 break-keep leading-relaxed text-gray-300">사업장명·담당자명·회신 연락처를 남겨주세요. 지금 불편한 일은 적지 않으셔도 됩니다.</p>
       </div>
       <fieldset disabled={pending} className="space-y-4 disabled:opacity-70">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -179,7 +179,7 @@ export function NestArticleExperience({ article, children }: { article?: NestArt
       <div onClick={intercept}>{children}</div>
       <section className="mt-12 rounded-2xl border border-brand-blue/30 bg-brand-blue/10 p-6 sm:p-8">
         <h2 className="text-2xl font-bold text-white">{NEST_PRODUCTS[article.product]} 도입 상담</h2>
-        <p className="my-4 break-keep leading-relaxed text-gray-300">지금 쓰는 상담 채널과 불편한 업무를 알려주세요. 필요한 기능과 설정 범위를 확인해 안내드립니다.</p>
+        <p className="my-4 break-keep leading-relaxed text-gray-300">{article.footerCopy}</p>
         <button onClick={() => show('article_footer')} className="rounded-xl bg-brand-blue px-5 py-3 font-semibold text-white hover:brightness-110">{article.cta}</button>
       </section>
       <dialog ref={dialog} aria-labelledby={titleId} onClose={() => setOpen(false)} onClick={event => {

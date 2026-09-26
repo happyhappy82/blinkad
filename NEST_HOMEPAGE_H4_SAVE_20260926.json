@@ -7,11 +7,27 @@
   "status": "Published",
   "publish_date": "2026-08-12",
   "source_file": "NEST_HOMEPAGE_H4_DRAFT_20260926.md",
-  "source_sha256": "c4866dde602036917a3731ce29423d8c71f6c7bacea746f6eda5a9b912d77dc6",
-  "top_level_blocks": 20,
+  "source_sha256": "5a62bda4555c8e16613ee1959df7b79e45a7686ab45d3e6dbc177fb21f0d6222",
+  "top_level_blocks": 18,
   "readback_verified": true,
   "public_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
-  "verified_at_kst": "2026-09-26T19:54:41.871970+09:00",
+  "verified_at_kst": "2026-09-27T01:01:17.967467+09:00",
   "editorial_review": "원 예약 기록과 후속 메시지 점검을 연결. 자동 일정 연동/취소/방문 감지 주장 없음. 노쇼 수치·일률적 진료 후 발송 시점 삭제. 의료 안내는 병원 기준.",
-  "existing_notion_page_reused": true
+  "existing_notion_page_reused": true,
+  "previous_versions": [
+    {
+      "source_sha256": "c4866dde602036917a3731ce29423d8c71f6c7bacea746f6eda5a9b912d77dc6",
+      "top_level_blocks": 20,
+      "replaced_on": "2026-09-27"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-27",
+  "last_edited_reason": "공식홈페이지 6편 제품 사용 설명·문체·문의 안내 수정",
+  "revision_20260927": {
+    "notion_blocks_patched": 17,
+    "duplicate_bottom_links_removed": 1,
+    "bottom_callout_moved_to_website": true,
+    "properties_preserved_except_excerpt": true,
+    "title_slug_publish_date_status_preserved": true
+  }
 }
