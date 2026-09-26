@@ -11,11 +11,11 @@
   "publish_date": null,
   "public_publish_action_performed": false,
   "source_file": "NEST_OPENADS_O3_DRAFT_20260926.md",
-  "source_sha256": "d6d0148cdd8e9d58e359709a8d2a65d0dde1b0b91f303c24774e0875bcdaa01b",
+  "source_sha256": "075ba5d052f87a1efb3eadeae098bac2fb6ff3ac482933c6be4356e385fc7cc2",
   "slug": "nest-o03-openads-202609",
   "excerpt": "이번 달 예약 수와 방문 수를 바로 나누면 광고 성과를 잘못 해석할 수 있습니다. 예약이 잡힌 날과 방문 예정일을 구분하고 취소·변경·방문 대기 상태를 살펴보는 기준을 설명합니다.",
   "tags": "닥터네스트, 병원 광고, 실제 방문, 예약 성과 측정",
-  "characters_including_markdown_and_urls": 2587,
+  "characters_including_markdown_and_urls": 2551,
   "top_level_blocks": 19,
   "h2_count": 4,
   "readback_verified": true,
@@ -29,8 +29,8 @@
       "id": "H4",
       "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
       "status": 200,
-      "checked_date_kst": "2026-09-26",
-      "title": "#3 병원 알림톡, 예약·시술 후·재방문 메시지는 언제 보내야 할까 - BlinkAd Blog"
+      "date_kst": "2026-09-26",
+      "source_kind": "공식 홈페이지 직접 조회"
     }
   ],
   "editorial_review": {
@@ -43,6 +43,17 @@
     ],
     "product_evidence_limit": "공식 소개에서 안내하는 범위만 사용. 실제 계정 기능·성과는 검증하지 않음."
   },
-  "verified_at_kst": "2026-09-26T18:37:03.136866+09:00",
-  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치"
+  "verified_at_kst": "2026-09-26T18:55:59.572526+09:00",
+  "verification": "제목·전체 본문·링크·요약·slug·태그·Posts DB·Review·발행일 없음 재조회 일치",
+  "previous_versions": [
+    {
+      "source_sha256": "d6d0148cdd8e9d58e359709a8d2a65d0dde1b0b91f303c24774e0875bcdaa01b",
+      "characters": 2587,
+      "cta_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+      "verified_at_kst": "2026-09-26T18:37:03.136866+09:00",
+      "reason": "2026-09-26 후속 홈페이지 유입 기획·문체 재검토 전"
+    }
+  ],
+  "last_revision": "문체 재검토·홈페이지 유입 후 문의 문구 수정",
+  "revision_record": "NEST_OPENADS_HUMANIZE_FUNNEL_AUDIT_20260926.json"
 }

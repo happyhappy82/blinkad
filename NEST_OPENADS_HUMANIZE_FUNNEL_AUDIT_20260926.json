@@ -1,0 +1,546 @@
+{
+  "checked_date_kst": "2026-09-26",
+  "task": "홈페이지 문의 전환 주제 기획 및 오픈애즈 6편 문체·CTA 교정",
+  "articles": [
+    {
+      "article_id": "O1",
+      "style_edits": [
+        {
+          "rule": "A-15",
+          "before": "메시지를 읽었다는 사실과 예약을 검토할 수 있는 정보를 전달했다는 사실은 다릅니다.",
+          "after": "메시지를 읽었다고 알렸어도 예약을 검토할 정보는 아직 전달하지 않은 셈입니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "응대 방식을 고치려면 상대의 마음을 추측하기보다, 우리 쪽에서 어떤 정보를 언제 전달했는지부터 살펴보는 편이 낫습니다.",
+          "after": "응대 방식을 고치려면 상대의 마음을 추측하기보다 우리 쪽에서 어떤 정보를 언제 전달했는지부터 확인해 보세요."
+        },
+        {
+          "rule": "I-3",
+          "before": "기다리는 사람이 다음 연락을 예상할 수 있게 해두자는 것입니다.",
+          "after": "기다리는 사람이 다음 연락을 예상할 수 있도록 안내해 두세요."
+        },
+        {
+          "rule": "E-2",
+          "before": "질문한 내용보다 병원 소개가 더 긴지도 살펴볼 만합니다.",
+          "after": "병원 소개가 질문의 답보다 길지는 않은지도 보세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "처음부터 모든 상담을 평가하려 하면 점검 자체가 부담이 됩니다.",
+          "after": "모든 상담을 한꺼번에 평가하려면 점검부터 부담스럽습니다."
+        },
+        {
+          "rule": "A-18",
+          "before": "누가 잘했는지 순위를 매기기보다, 어떤 정보가 전달됐고 무엇이 미확인으로 남았는지 비교하는 자리로 잡는 게 좋습니다.",
+          "after": "누가 잘했는지 순위를 매기는 자리가 되지 않게 하세요. 어떤 정보를 전달했고 무엇이 미확인으로 남았는지 비교하면 됩니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "고객이 예약하지 않은 이유를 직접 밝혔다면 그 내용을 남기고, 별다른 설명 없이 대화가 끝났다면 이유는 모르는 것으로 둡니다.",
+          "after": "고객이 예약하지 않은 이유를 직접 말했다면 그 내용을 남기세요. 설명 없이 대화가 끝났다면 이유는 모르는 것으로 둡니다."
+        },
+        {
+          "rule": "A-15",
+          "before": "답이 없다는 사실을 가격 불만이나 다른 병원 선택으로 바꾸어 기록하면 이후 판단도 흔들립니다.",
+          "after": "답이 없었다는 이유만으로 가격 불만이나 다른 병원 선택이라고 기록하면 이후에 잘못 판단할 수 있습니다."
+        },
+        {
+          "rule": "A-18",
+          "before": "변경 뒤에는 비슷한 광고와 근무 조건의 문의를 살펴보되, 예약 수만으로 효과를 단정하지는 마세요.",
+          "after": "변경 후에는 광고와 근무 조건이 비슷한 문의를 살펴보세요. 예약 수만으로 효과를 단정하지는 마세요."
+        }
+      ],
+      "style_edit_count": 9,
+      "reference_change_rate_percent": 4.51,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "채널마다 문의가 흩어져 누가 답했고 무엇을 기다리는지 확인하기 어렵다면, [문의와 상담 기록을 모아보는 닥터네스트 소개](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer)를 참고해 보세요. 지금 쓰는 문의 채널과 자주 멈추는 상담 단계를 알려주시면, 어떤 부분부터 정리할지 도입 상담에서 함께 살펴보겠습니다.",
+        "after": "여러 채널을 확인하느라 누가 답했고 무엇을 기다리는지 찾기 어렵다면, [닥터네스트의 문의 통합과 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer)를 읽어보세요. 병원에서 정한 기본 안내와 직원이 이어받을 상담을 어떻게 나눌지 살펴볼 수 있습니다. 우리 병원에 필요한 설정이 궁금하다면 홈페이지 글의 도입 문의로 연락해 주세요.",
+        "destination": "H1",
+        "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "fb808f9327792257d8bf59ea556b43c8340b1e5a99090aa5147904f18d3d1f49",
+      "final_sha256": "787704f5e3adc252303ead003d58bab3fcfbdb5b675ec15744fbe58076f1b5a1",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-011",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:54:34.958502+09:00",
+      "patched_blocks": 8,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381af896de24eb377c7a7",
+      "characters": 2477,
+      "readable_characters": 2277
+    },
+    {
+      "article_id": "O2",
+      "style_edits": [
+        {
+          "rule": "A-15",
+          "before": "이때 손볼 수 있는 것은 고객의 마음보다 우리가 보낸 가격 안내입니다. 금액을 알려줬다는 사실과 비교에 필요한 정보를 줬다는 사실을 나눠 살펴보세요.",
+          "after": "우리가 보낸 가격 안내부터 다시 읽어보세요. 고객이 금액과 조건을 비교하는 데 필요한 정보가 있는지 보면 됩니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "부가세 포함 여부, 행사 적용 기간처럼 실제 결제 금액이나 이용 가능 여부를 바꾸는 조건은 찾기 쉽게 적어두는 편이 좋습니다.",
+          "after": "부가세 포함 여부나 행사 적용 기간은 찾기 쉽게 적어두세요. 실제 결제 금액과 이용 가능 여부를 바꾸는 조건입니다."
+        },
+        {
+          "rule": "I-2",
+          "before": "어디까지 정해져 있고 무엇을 더 확인해야 하는지 설명하는 것이 답변의 역할입니다.",
+          "after": "어디까지 정해져 있고 무엇을 더 확인해야 하는지 답변에 적어주세요."
+        },
+        {
+          "rule": "A-18",
+          "before": "다음 확인은 현재 답변을 더 정확하게 만드는 데 필요한 것부터 받으세요.",
+          "after": "현재 답변을 정확히 하려면 무엇을 더 알아야 하는지 보고 다음 질문을 고르세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "고객이 이미 보낸 정보는 다시 묻지 않는 것도 중요합니다.",
+          "after": "고객이 이미 보낸 정보는 다시 묻지 않도록 확인하세요."
+        },
+        {
+          "rule": "A-4",
+          "before": "필요한 내용을 다 보냈다는 점에서는 마음이 놓이지만, 문의한 사람은 그 안에서 가격과 조건을 다시 찾아야 합니다.",
+          "after": "필요한 내용을 다 보내면 직원은 마음이 놓일 수 있습니다. 하지만 문의한 사람은 긴 메시지 안에서 가격과 조건을 다시 찾아야 합니다."
+        },
+        {
+          "rule": "A-18",
+          "before": "선택에 영향을 주는 조건을 빼서 짧게 만들자는 뜻은 아닙니다.",
+          "after": "선택에 영향을 주는 조건은 그대로 두세요."
+        },
+        {
+          "rule": "G-1",
+          "before": "후속 연락도 일률적으로 보내기보다 대화에서 합의한 내용이 있었는지 확인하는 편이 좋습니다.",
+          "after": "후속 연락을 보내기 전에는 대화에서 합의한 내용이 있었는지 확인하세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "답을 받지 못했다는 이유만으로 같은 예약 권유를 반복하는 방식은 피하는 게 좋습니다.",
+          "after": "답을 받지 못했다고 같은 예약 권유를 반복하지는 마세요."
+        }
+      ],
+      "style_edit_count": 9,
+      "reference_change_rate_percent": 6.27,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "여러 직원이 서로 다른 가격표나 오래된 행사 문구를 찾아 쓰고 있다면, 문장 하나를 고치는 것만으로는 관리가 어렵습니다. [상담 안내와 기록을 함께 관리하는 닥터네스트 소개](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer)를 읽어보세요. 가격 안내에서 자주 혼선이 생기는 항목과 현재 자료를 공유하는 방식을 문의에 남겨주세요. 병원에서 같은 기준으로 안내하려면 무엇부터 정리해야 할지 함께 살펴보겠습니다.",
+        "after": "직원마다 다른 가격표와 행사 문구를 찾아 쓰고 있다면, [닥터네스트의 기본 안내와 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer)를 참고해 보세요. 안내 문구 설정과 상담 이력을 함께 관리하는 방식이 나와 있습니다. 지금 쓰는 안내 자료를 어떻게 정리할지 홈페이지에서 문의해 주세요.",
+        "destination": "H1",
+        "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "a6d9c2196db636bedcf3631b649593b2851d750d6e1bb75f91a23174e8c7cad9",
+      "final_sha256": "f98a94882f0a3e1e8e5ae1ddcc0e7199686700a6dd6026d7331d773dccf9ffc2",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-013",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:55:24.952100+09:00",
+      "patched_blocks": 9,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381549468dade4b5a1cae",
+      "characters": 2423,
+      "readable_characters": 2223
+    },
+    {
+      "article_id": "O3",
+      "style_edits": [
+        {
+          "rule": "A-18",
+          "before": "같은 예약이 실제 방문으로 이어진 비율을 알 수 없습니다.",
+          "after": "그 예약 중 실제 방문으로 이어진 비율을 알 수 없습니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "다음 달 방문 결과까지 확인할 시점을 정해두는 편이 좋습니다.",
+          "after": "다음 달 방문 결과를 언제 다시 확인할지 정해두세요."
+        },
+        {
+          "rule": "I-3",
+          "before": "그 예약들이 실제 방문, 취소, 연락 없는 미방문, 일정 변경 중 어떤 상태인지 확인하는 것입니다.",
+          "after": "그 예약들의 상태를 실제 방문, 취소, 연락 없는 미방문, 일정 변경으로 나눠 확인하세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "취소와 일정 변경을 모두 방문 실패로 세지 마세요",
+          "after": "취소한 예약과 날짜를 바꾼 예약을 구분하세요"
+        },
+        {
+          "rule": "A-18",
+          "before": "한 사람이 서로 다른 방문을 예약한 경우와 한 예약의 날짜만 바꾼 경우도 구분해야 합니다.",
+          "after": "같은 사람이어도 서로 다른 방문을 예약한 것인지, 한 예약의 날짜만 바꾼 것인지 구분해야 합니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "나중에 날짜가 바뀌었다고 그 예약을 집계 대상에서 지우지 않는 게 좋습니다.",
+          "after": "나중에 날짜가 바뀌어도 그 예약은 집계 대상에 남겨두세요."
+        },
+        {
+          "rule": "H-3",
+          "before": "확인 기준일을 함께 남겨두는 이유도 여기에 있습니다.",
+          "after": "언제 확인한 수치인지 기준일도 함께 남겨두세요."
+        },
+        {
+          "rule": "A-15",
+          "before": "보고서가 정교해 보이더라도 판단 근거는 약해집니다.",
+          "after": "그 기록을 근거로 광고 성과를 판단하기는 어렵습니다."
+        },
+        {
+          "rule": "A-15",
+          "before": "예약 완료, 실제 방문, 결제는 각각 다른 사건입니다.",
+          "after": "예약 완료, 실제 방문, 결제는 구분해서 봐야 합니다."
+        },
+        {
+          "rule": "E-2",
+          "before": "예약 수가 늘었다는 보고를 곧바로 매출 증가로 읽지 않는 것이 좋습니다.",
+          "after": "예약 수가 늘었다는 보고만으로 매출도 늘었다고 볼 수는 없습니다."
+        },
+        {
+          "rule": "A-15",
+          "before": "분류가 끝나면 손볼 일이 구체적으로 보입니다",
+          "after": "예약 상태를 나눴다면 그에 맞게 안내를 점검하세요"
+        }
+      ],
+      "style_edit_count": 11,
+      "reference_change_rate_percent": 5.36,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "예약 후 안내를 언제 보낼지부터 정리하고 싶다면 [예약 전후 메시지 시점을 다룬 글](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer)을 참고해 보세요. 취소·변경 연락이 여러 채널에 흩어져 후속 안내를 놓치고 있다면, 현재 예약 확인 방식과 어려운 점을 남겨주세요. 닥터네스트 도입 상담에서 문의 기록과 예약 후 연락을 어떻게 이어갈지 함께 살펴보겠습니다.",
+        "after": "예약 상태를 나눈 뒤 후속 안내도 정리하고 싶다면, [예약 전후에 연락할 시점을 다룬 글](https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer)을 읽어보세요. 취소·변경 연락을 받은 뒤 어떤 안내를 챙겨야 할지 고민된다면 홈페이지에서 현재 예약 방식과 연락 채널을 알려주세요. 닥터네스트로 도울 수 있는 안내 업무를 상담해 드리겠습니다.",
+        "destination": "H4",
+        "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "d6d0148cdd8e9d58e359709a8d2a65d0dde1b0b91f303c24774e0875bcdaa01b",
+      "final_sha256": "075ba5d052f87a1efb3eadeae098bac2fb6ff3ac482933c6be4356e385fc7cc2",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-015",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:55:59.572526+09:00",
+      "patched_blocks": 10,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381eb9be2e18f4ff814cd",
+      "characters": 2551,
+      "readable_characters": 2346
+    },
+    {
+      "article_id": "O4",
+      "style_edits": [
+        {
+          "rule": "I-3",
+          "before": "대상을 나누는 이유는 이런 질문에 맞춰 안내하려는 데 있습니다.",
+          "after": "대상을 나눌 때도 각자 궁금해할 내용에 맞춰 안내해 보세요."
+        },
+        {
+          "rule": "A-18",
+          "before": "행사 문자를 보낸 뒤 손님이 무엇을 하길 바라는지 먼저 적어보세요.",
+          "after": "행사 문자를 받은 손님에게 어떤 행동을 기대하는지 먼저 적어보세요."
+        },
+        {
+          "rule": "G-1",
+          "before": "이번 행사 대상에서 빼두는 선택도 가능합니다.",
+          "after": "이번 행사 대상에서 빼두어도 됩니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "방문 횟수보다 마지막 대화에 필요한 정보가 있습니다",
+          "after": "방문 횟수와 함께 마지막 대화도 확인하세요"
+        },
+        {
+          "rule": "G-1",
+          "before": "메시지를 보내기 전에 최근 상담과 예약 상태를 함께 확인하는 편이 좋습니다.",
+          "after": "메시지를 보내기 전에 최근 상담과 예약 상태를 함께 확인하세요."
+        },
+        {
+          "rule": "A-15",
+          "before": "이런 추측이 쌓이면 대상을 나눠도 안내가 엇나갈 수 있습니다.",
+          "after": "이런 추측으로 대상을 나누면 손님에게 맞지 않는 안내를 보낼 수 있습니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "대상을 나눴다는 사실만으로 안내가 적절했다고 볼 수는 없습니다.",
+          "after": "대상을 나눈 뒤에도 안내가 적절했는지 확인해야 합니다."
+        },
+        {
+          "rule": "A-15",
+          "before": "이미 매장을 아는 손님과 처음 방문을 고민하는 사람은 출발부터 다릅니다.",
+          "after": "이미 매장을 아는 손님과 처음 방문을 고민하는 사람은 매장에 관해 아는 정보부터 다릅니다."
+        }
+      ],
+      "style_edit_count": 8,
+      "reference_change_rate_percent": 3.27,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "이 작업이 직원의 기억에만 의존한다면, 메시지를 만들 때마다 손님 상황을 다시 확인해야 합니다. [손님별 상담·시술 기록과 재방문 안내를 다룬 뷰티네스트 소개](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer)를 참고해 보세요. 행사 연락 전에 어떤 기록을 확인하기 어려운지 문의에 남겨주시면, 매장에서 필요한 기록과 안내 방식을 함께 정리해 보겠습니다.",
+        "after": "손님에게 연락할 때마다 지난 상담을 다시 찾고 있다면, [뷰티네스트의 상담·시술 기록과 재방문 안내](https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer)를 읽어보세요. 우리 매장에서 필요한 기록과 다음 안내를 함께 관리할 수 있을지 확인한 뒤, 홈페이지에서 도입을 문의하실 수 있습니다.",
+        "destination": "H5",
+        "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "5881c751d3b95d4fde922ec39bdeee2324d65874348e6e199032a754524b9f0b",
+      "final_sha256": "5b4f14533d327be3c9d37523b1b0492de5b01c68e6158797478f96112f7a892b",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-016",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:56:24.812570+09:00",
+      "patched_blocks": 9,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138148b723f82a901df280",
+      "characters": 2542,
+      "readable_characters": 2225
+    },
+    {
+      "article_id": "O5",
+      "style_edits": [
+        {
+          "rule": "A-15",
+          "before": "조회수와 예약은 서로 다른 일을 보여줍니다.",
+          "after": "조회수가 잘 나왔어도 실제 예약은 따로 확인해야 합니다."
+        },
+        {
+          "rule": "G-1",
+          "before": "게시물을 제작한 계정이 아니라 일반 이용자의 화면에서 확인하는 편이 좋습니다.",
+          "after": "게시물을 제작한 계정에서만 보지 말고 일반 이용자의 화면으로도 확인하세요."
+        },
+        {
+          "rule": "A-15",
+          "before": "영상에서 관심을 가질 만한 내용과 연결 페이지가 답하는 질문도 맞아야 합니다.",
+          "after": "영상에서 소개한 내용을 연결 페이지에서도 찾을 수 있어야 합니다."
+        },
+        {
+          "rule": "E-2",
+          "before": "문의가 적을 때도 실제로 들어온 질문은 참고가 됩니다.",
+          "after": "문의가 적어도 들어온 질문은 읽어볼 만합니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "고객이 직접 말한 사유와 확인하지 못한 사유를 나눠 두는 편이 낫습니다.",
+          "after": "고객이 직접 말한 사유와 확인하지 못한 사유는 나눠 두세요."
+        },
+        {
+          "rule": "A-18",
+          "before": "질문이 있다는 사실만으로 예약 의사가 충분하다고 판단하거나, 예약하지 않았다는 이유로 의미 없는 문의라고 분류할 필요도 없습니다.",
+          "after": "질문을 했다고 예약할 마음을 굳혔다고 보기는 어렵습니다. 예약하지 않았다는 이유로 의미 없는 문의라고 분류할 필요도 없습니다."
+        },
+        {
+          "rule": "I-4",
+          "before": "보고서에서 무엇을 세는지 정해두고, 공유 자료에는 성과 점검에 필요한 집계만 담는 편이 좋습니다.",
+          "after": "보고서에서 무엇을 세는지 정해두세요. 공유 자료에는 성과 점검에 필요한 집계만 담으세요."
+        },
+        {
+          "rule": "A-15",
+          "before": "영상에서 홈페이지로 넘어온 흔적이 적다면",
+          "after": "영상에서 홈페이지로 들어온 기록이 적다면"
+        },
+        {
+          "rule": "I-4",
+          "before": "우선 확인되지 않는 부분을 기록할 방법부터 마련해도 됩니다.",
+          "after": "확인되지 않는 부분은 다음 협업부터 어떻게 기록할지 정해두세요."
+        }
+      ],
+      "style_edit_count": 9,
+      "reference_change_rate_percent": 4.12,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "영상 보고서와 병원 상담 기록을 함께 보기 어렵다면 [광고 유입부터 상담·예약까지 점검하는 글](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer)을 참고해 보세요. 현재 받는 협업 보고서 항목과 문의 채널을 문의에 남겨주세요. 닥터네스트를 활용한 상담 기록 관리에서 어떤 부분을 보완할지 함께 살펴보겠습니다.",
+        "after": "영상 보고서와 병원 상담 기록을 함께 보기 어렵다면, [광고 유입부터 상담·예약까지 점검하는 글](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer)을 이어서 읽어보세요. 어느 단계의 기록을 먼저 정리할지 살펴볼 수 있습니다. 현재 받는 보고서 항목과 상담 채널을 홈페이지 문의에 남겨주시면, 닥터네스트로 정리할 상담 업무를 안내해 드리겠습니다.",
+        "destination": "H6",
+        "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "611fdc214482febbf00b38b29623f1cf55525782c32cfa5897a152afbb5a4c64",
+      "final_sha256": "aa06e5937a6a8b46f7d6b8525b36eab1b2b5c2c138f501f2c30b30f27c4dcfdf",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-017",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:56:53.553247+09:00",
+      "patched_blocks": 9,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc0138173b2e0df92975416dd",
+      "characters": 2788,
+      "readable_characters": 2509
+    },
+    {
+      "article_id": "O6",
+      "style_edits": [
+        {
+          "rule": "G-1",
+          "before": "광고를 만드는 사람과 문의를 받는 사람이 무엇을 약속하고 있는지 함께 확인할 일입니다.",
+          "after": "광고를 만드는 사람과 문의를 받는 사람이 고객에게 무엇을 약속했는지 함께 확인하세요."
+        },
+        {
+          "rule": "A-18",
+          "before": "작은 글씨가 있는지만 보는 데서 끝내지 말고 휴대폰 화면에서 읽어보세요.",
+          "after": "작은 글씨로 조건을 넣었는지만 확인하지 말고 휴대폰 화면에서 직접 읽어보세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "실제 운영 범위보다 넓게 받아들일 수 있는 표현이 있다면 공개하기 전에 고치는 편이 낫습니다.",
+          "after": "실제 운영 범위보다 넓게 받아들일 수 있는 표현은 공개하기 전에 고치세요."
+        },
+        {
+          "rule": "G-1",
+          "before": "이때 실제로 문의가 들어갈 화면도 함께 확인하면 좋습니다.",
+          "after": "실제로 문의가 들어갈 화면도 함께 확인하세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "현재 사용하는 안내 자료는 찾기 쉬운 한 곳에 두고, 지난 자료에는 종료 여부를 표시하는 편이 좋습니다.",
+          "after": "현재 사용하는 안내 자료는 찾기 쉬운 한 곳에 두고 지난 자료에는 종료 여부를 표시하세요."
+        },
+        {
+          "rule": "A-15",
+          "before": "실제 내용을 고친 담당이 확인 결과를 남기면 다른 직원이 다시 추측할 일이 줄어듭니다.",
+          "after": "내용을 고친 담당자가 확인 결과를 남기면 다른 직원도 어디까지 수정됐는지 알 수 있습니다."
+        },
+        {
+          "rule": "G-1",
+          "before": "조건이 다르다는 문의가 오면 고객이 어떤 광고를 봤는지부터 확인하는 게 좋습니다.",
+          "after": "조건이 다르다는 문의가 오면 고객이 어떤 광고를 봤는지부터 확인하세요."
+        },
+        {
+          "rule": "I-4",
+          "before": "고객에게 같은 설명을 여러 직원에게 반복하게 하지 않도록 확인한 광고와 안내 내용을 상담 기록에 남겨두는 것도 필요합니다.",
+          "after": "확인한 광고와 안내 내용은 상담 기록에 남겨두세요. 고객이 여러 직원에게 같은 설명을 반복하지 않도록 해야 합니다."
+        },
+        {
+          "rule": "I-3",
+          "before": "비슷한 문의가 이어진다면 상담 문장뿐 아니라 해당 광고와 연결 페이지를 함께 고쳐야 합니다. 문의한 사람에게 설명하는 일과 다음 사람에게 같은 혼선을 주지 않는 일을 함께 진행하는 것입니다.",
+          "after": "비슷한 문의가 이어진다면 고객에게 설명한 내용을 해당 광고와 연결 페이지에도 반영하세요. 다음 문의에서도 혼선이 생기지 않도록 상담 문구까지 함께 고쳐두면 됩니다."
+        }
+      ],
+      "style_edit_count": 9,
+      "reference_change_rate_percent": 5.87,
+      "change_rate_method": "difflib.SequenceMatcher character comparison; reference only, not skill-specific verifier",
+      "formal_change_rate_checker_available": false,
+      "formal_grade": null,
+      "style_protected_checks": {
+        "title": true,
+        "quoted_strings": true,
+        "numbers": true,
+        "facts_and_qualifications": "수동 대조; 운영·통계의 한계와 법률·UTM 설명 보존"
+      },
+      "cta_edit": {
+        "before": "광고 문구와 상담 안내를 따로 관리해 이런 확인이 반복된다면 [광고·상담·예약 과정을 함께 점검하는 글](https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer)을 읽어보세요. 행사 정보를 공유하는 방식과 안내가 자주 엇갈리는 부분을 문의에 남겨주세요. 닥터네스트 도입 상담에서 직원이 함께 확인할 안내와 기록을 어떻게 정리할지 살펴보겠습니다.",
+        "after": "행사 조건이 바뀔 때마다 안내 자료를 따로 찾아 고치고 있다면, [닥터네스트의 기본 안내와 상담 기록 관리](https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer)를 살펴보세요. 병원이 등록한 안내와 이미 주고받은 상담을 어떻게 관리하는지 소개한 글입니다. 공통 안내를 정리하는 데 도움이 필요하다면 홈페이지에서 자주 설명이 엇갈리는 항목을 알려주세요.",
+        "destination": "H1",
+        "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+        "reason": "홈페이지에서 추가로 볼 내용과 문의 위치를 분명히 안내. 미생성 H2/미구현 기능 약속 제외."
+      },
+      "original_sha256": "4592f8b8cdd7153d6abcd19dbda472dc5bbefb529b7cc472cf08ab434d666e4a",
+      "final_sha256": "0ffcd5028f8b0d242785d9abb118338dc6435396fb91afd13a304003b244bb3d",
+      "workspace": "/Users/mcbookpro/_workspace/2026-09-26-019",
+      "notion_verified": true,
+      "verified_at_kst": "2026-09-26T18:57:32.402186+09:00",
+      "patched_blocks": 8,
+      "properties_unchanged": true,
+      "notion_url": "https://app.notion.com/p/3e7753ebc01381a9bee3c5ecbe1ccbad",
+      "characters": 2615,
+      "readable_characters": 2415
+    }
+  ],
+  "summary": {
+    "style_edit_spans": 55,
+    "cta_paragraphs_revised": 6,
+    "body_readbacks_passed": 6,
+    "properties_preserved": 6,
+    "premium_files_unchanged": 20,
+    "reference_style_change_rates": [
+      4.51,
+      6.27,
+      5.36,
+      3.27,
+      4.12,
+      5.87
+    ],
+    "formal_humanize_grade": null,
+    "homepage_articles_written": 0,
+    "public_website_changed": false,
+    "public_publishing_performed": false,
+    "notion_queue_changed": false,
+    "context_changed": false
+  },
+  "links": [
+    {
+      "article": "O1",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o01_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    },
+    {
+      "article": "O2",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o02_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    },
+    {
+      "article": "O3",
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o03_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    },
+    {
+      "article": "O4",
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o04_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    },
+    {
+      "article": "O5",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o05_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    },
+    {
+      "article": "O6",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli?utm_source=openads&utm_medium=referral&utm_campaign=nest_content_202609&utm_content=o06_footer",
+      "http_status": 200,
+      "date_kst": "2026-09-26"
+    }
+  ],
+  "homepage_brief": "NEST_HOMEPAGE_CONVERSION_BRIEFS_20260926.md",
+  "scope_notes": [
+    "기존 홈페이지 5개 글 보강과 H2 신규 1개를 위한 브리프. 오픈애즈 O2/O6는 최종 H2로 연결.",
+    "H2 미생성으로 O2는 기존 H1, O6도 H1로 변경. 그 외 현재 링크 보존.",
+    "법률·UTM 출처 문단과 본문의 사실·수치·인용·통계 해석 한계 보존.",
+    "문체 교정과 CTA 내용 변경은 별도 기록. 변경률은 difflib 참고치이며 전용 검사기나 AI 감별 점수가 아님.",
+    "제품 전용 문의 UI와 실제 접수/저장 검증은 기획 후 제작 단계에 남음."
+  ]
+}
