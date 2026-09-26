@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:19:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P2_DRAFT_20260926.md",
-  "source_sha256": "38b4a52b13ac0800ade53e97345918630dd8ddb13516a14a90fb3aaa0a755b7b",
+  "source_sha256": "19e8b9c2169f5138dc151e83958d0493815270ec8e0c8b344e132a40a48fbfe4",
   "excerpt": "실장님 퇴사 뒤에도 환자 상담을 이어가려면 무엇을 남겨야 할까요? 진행 중인 질문과 약속을 정리하는 인계 양식, 새 담당자의 확인 절차와 첫 답장 예시를 담았습니다.",
   "keyword": "닥터네스트, 병원 상담 인수인계, 실장 퇴사, 상담 기록",
   "slug": "nest-p02-premium-202609",
-  "characters": 4127,
-  "top_level_blocks": 40,
+  "characters": 3660,
+  "top_level_blocks": 39,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e6753ebc013818fa249d6a5a754aba7",
   "links": [
@@ -35,5 +35,25 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-001",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:19:38.706480+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "previous_versions": [
+    {
+      "source_sha256": "38b4a52b13ac0800ade53e97345918630dd8ddb13516a14a90fb3aaa0a755b7b",
+      "top_level_blocks": 40,
+      "characters": 4127,
+      "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-26",
+  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "editorial_revision": {
+    "paragraphs_changed": 18,
+    "notion_blocks_patched": 18,
+    "footer_removed": true,
+    "properties_unchanged": true,
+    "user_edits_preserved": true,
+    "verified_at": "2026-09-26T16:56:09.295515+09:00",
+    "preexisting_notion_edits_detected": false,
+    "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  }
 }

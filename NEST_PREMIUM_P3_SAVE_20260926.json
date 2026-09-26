@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:20:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P3_DRAFT_20260926.md",
-  "source_sha256": "4cda0160cd832ba51bb368d1c4efa236afaaf340191be254ec0d6a536e56cffe",
+  "source_sha256": "cedcdafe3f638c7f865d4fdc6d4a91097e045afc8c001207eaa9fd58950c7fc7",
   "excerpt": "원하는 머리 사진을 보낸 뒤 손님과 대화가 끊겼다면 마지막 답장을 살펴보세요. 희망 스타일, 현재 상태, 가격과 시간, 예약 방법을 이어서 안내하는 DM 상담 예시를 담았습니다.",
   "keyword": "뷰티네스트, 미용실 DM 상담, 사진 문의, 미용실 예약",
   "slug": "nest-p03-premium-202609",
-  "characters": 4099,
-  "top_level_blocks": 39,
+  "characters": 3593,
+  "top_level_blocks": 38,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381829e26edbc934a97fd",
   "links": [
@@ -36,5 +36,25 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-002",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:20:56.248247+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "previous_versions": [
+    {
+      "source_sha256": "4cda0160cd832ba51bb368d1c4efa236afaaf340191be254ec0d6a536e56cffe",
+      "top_level_blocks": 39,
+      "characters": 4099,
+      "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-26",
+  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "editorial_revision": {
+    "paragraphs_changed": 17,
+    "notion_blocks_patched": 17,
+    "footer_removed": true,
+    "properties_unchanged": true,
+    "user_edits_preserved": true,
+    "verified_at": "2026-09-26T16:56:24.935919+09:00",
+    "preexisting_notion_edits_detected": false,
+    "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  }
 }

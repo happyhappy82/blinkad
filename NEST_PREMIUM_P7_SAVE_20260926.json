@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:26:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P7_DRAFT_20260926.md",
-  "source_sha256": "3e5c8874d1c779eee550a0b63063c4960ac8c2df24fd0181df785ad6438b08d9",
+  "source_sha256": "5139b52336d70525bd7b2429da0a3a4b23905343d76fbe0ef138f7ad23cd79bc",
   "excerpt": "피부관리권을 구매한 뒤 오지 않는 손님에게 어떻게 연락해야 할까요? 이용 기록 확인, 첫 연락 문구, 답변별 후속 처리와 다음 약속을 남기는 방법을 정리했습니다.",
   "keyword": "뷰티네스트, 피부관리실 고객관리, 관리권 미방문, 후속 상담",
   "slug": "nest-p07-premium-202609",
-  "characters": 4162,
-  "top_level_blocks": 35,
+  "characters": 3646,
+  "top_level_blocks": 34,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381839dfffa34a3cb08bb",
   "links": [
@@ -42,5 +42,25 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-006",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:26:22.364170+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "previous_versions": [
+    {
+      "source_sha256": "3e5c8874d1c779eee550a0b63063c4960ac8c2df24fd0181df785ad6438b08d9",
+      "top_level_blocks": 35,
+      "characters": 4162,
+      "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-26",
+  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "editorial_revision": {
+    "paragraphs_changed": 18,
+    "notion_blocks_patched": 18,
+    "footer_removed": true,
+    "properties_unchanged": true,
+    "user_edits_preserved": true,
+    "verified_at": "2026-09-26T16:57:23.043098+09:00",
+    "preexisting_notion_edits_detected": false,
+    "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  }
 }

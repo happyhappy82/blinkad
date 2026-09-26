@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:27:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P8_DRAFT_20260926.md",
-  "source_sha256": "0c3ba38bd1f17dbd0b8566a924676f047a5c23464147200afb8ba8d9d5e7121e",
+  "source_sha256": "08cffc4552360661f764bea3a59134541245d040d6ef3410d28d61fa4f0f6f21",
   "excerpt": "AI 상담에 맡길 질문과 직원이 확인할 질문을 구분해보세요. 자동 안내·직원 확인·전문 판단 기준표, 답변 근거 기록, 운영 전 예외 질문 테스트 방법을 정리했습니다.",
   "keyword": "닥터네스트, AI 상담 자동응대, 직원 확인, 병원 상담 매뉴얼",
   "slug": "nest-p08-premium-202609",
-  "characters": 4348,
-  "top_level_blocks": 43,
+  "characters": 3761,
+  "top_level_blocks": 42,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc01381ac869bc344b23df01e",
   "links": [
@@ -37,5 +37,25 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-007",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:28:00.913120+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "previous_versions": [
+    {
+      "source_sha256": "0c3ba38bd1f17dbd0b8566a924676f047a5c23464147200afb8ba8d9d5e7121e",
+      "top_level_blocks": 43,
+      "characters": 4348,
+      "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-26",
+  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "editorial_revision": {
+    "paragraphs_changed": 23,
+    "notion_blocks_patched": 23,
+    "footer_removed": true,
+    "properties_unchanged": true,
+    "user_edits_preserved": true,
+    "verified_at": "2026-09-26T16:57:52.418739+09:00",
+    "preexisting_notion_edits_detected": true,
+    "user_edits_note": "이미 비운 말미를 보존"
+  }
 }

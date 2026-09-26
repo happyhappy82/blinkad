@@ -11,12 +11,12 @@
   "created_time": "2026-09-26T06:24:00.000Z",
   "saved_date_kst": "2026-09-26",
   "source_file": "NEST_PREMIUM_P6_DRAFT_20260926.md",
-  "source_sha256": "f2749e7477bc784e8f1b1af7991eafba185343e5819c8eab03b75bde0b48034b",
+  "source_sha256": "47bb447a4d3b0db36114af496a406c474619177b74d55a160692343d7cdf2b97",
   "excerpt": "네일·왁싱 손님의 다음 방문을 챙기려면 방문일과 연락일을 따로 적어보세요. 손님이 원하는 안내를 확인하는 질문, 연락표, 답변이 없을 때의 처리 방법을 담았습니다.",
   "keyword": "뷰티네스트, 네일 재방문 안내, 왁싱 고객관리, 다음 연락 기록",
   "slug": "nest-p06-premium-202609",
-  "characters": 4077,
-  "top_level_blocks": 39,
+  "characters": 3619,
+  "top_level_blocks": 38,
   "faq_toggle_count": 3,
   "previous_article_verified": "https://app.notion.com/p/3e7753ebc0138179a739e19880403767",
   "links": [
@@ -42,5 +42,25 @@
   "humanize_audit_path": "/Users/mcbookpro/_workspace/2026-09-26-005",
   "readback_verified": true,
   "verified_at": "2026-09-26T15:25:00.535146+09:00",
-  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인"
+  "verification": "제목·요약·slug·모든 본문/표/FAQ 하위 블록·링크·Review·미발행·발행일 없음 확인",
+  "previous_versions": [
+    {
+      "source_sha256": "f2749e7477bc784e8f1b1af7991eafba185343e5819c8eab03b75bde0b48034b",
+      "top_level_blocks": 39,
+      "characters": 4077,
+      "revision_note": "2026-09-26 사용자 요청 전 저장본"
+    }
+  ],
+  "last_edited_date_kst": "2026-09-26",
+  "last_edited_reason": "단독 블링크애드 말미 삭제·AI식 문장 윤문·단정 완화",
+  "editorial_revision": {
+    "paragraphs_changed": 18,
+    "notion_blocks_patched": 18,
+    "footer_removed": true,
+    "properties_unchanged": true,
+    "user_edits_preserved": true,
+    "verified_at": "2026-09-26T16:57:07.707981+09:00",
+    "preexisting_notion_edits_detected": false,
+    "user_edits_note": "수정 전 로컬 원고와 다른 Notion 편집 없음"
+  }
 }
