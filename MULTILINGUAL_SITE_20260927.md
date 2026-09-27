@@ -37,4 +37,11 @@
 
 ## 배포
 
-로컬 검증 완료. 운영 배포 및 운영 도메인 재검증 결과는 아래에 기록한다.
+코드 커밋 `2b2628e`를 main에 push하고 기존 BlinkAd 프로젝트에 운영 배포했다.
+
+- 배포 ID: `dpl_d8zF8nGMxKevcSEQun1DNndYHDsJ` — Ready.
+- 배포 URL: `https://blinkad-8uv3n51s3-aijeonginsight-1976s-projects.vercel.app`.
+- 운영 도메인 `https://www.blinkad.kr`에서 `verify:languages`와 `verify:english` 전체 통과. 외국어 51개와 한국어 대응 URL, 109개 원문 보존, 404 경계, 메타정보, 사이트맵을 재검증했다.
+- www 없는 `/en`, `/ja`, `/zh`도 올바른 www URL로 이동해 각각 en/ja/zh-Hans HTML과 HTTP 200을 반환한다.
+- Chrome에서 운영 일본어 홈과 언어 메뉴를 거쳐 중국어 홈으로 실제 이동한 결과를 확인했다. 로컬 중국어 인사이트 목록은 320px에서 한국어 원문 안내와 글 링크까지 확인했다.
+- 검수용 탭을 닫고 기존 사용자 탭으로 복귀. 개발자 도구와 기기 모드도 종료했다. 실제 문의 발송은 0건이다.
