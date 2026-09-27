@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import Tracker from '@/components/Tracker'
+import { LANGUAGE_INFO, type SiteLanguage } from '@/lib/site-languages'
+import { siteCopy } from '@/i18n/site'
 
 const SITE_NAME = 'BlinkAd'
 
@@ -49,15 +51,14 @@ export default function SiteDocument({
   language = 'ko',
 }: {
   children: React.ReactNode
-  language?: 'ko' | 'en'
+  language?: SiteLanguage
 }) {
-  const isEnglish = language === 'en'
-  const siteUrl = `https://www.blinkad.kr${isEnglish ? '/en' : ''}`
-  const description = isEnglish
-    ? 'BlinkAd connects Google Search, Maps, websites and AI search to help Korean businesses reach international customers.'
+  const siteUrl = `https://www.blinkad.kr${language === 'ko' ? '' : '/' + language}`
+  const description = language !== 'ko'
+    ? siteCopy[language].description
     : '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.'
   return (
-    <html lang={language}>
+    <html lang={LANGUAGE_INFO[language].html}>
       <head>
         {/* Google Tag Manager */}
         <script
@@ -102,11 +103,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               name: SITE_NAME,
               alternateName: ['Blink Ad', '블링크애드', 'blinkad.kr'],
               url: siteUrl,
-              inLanguage: language,
+              inLanguage: LANGUAGE_INFO[language].html,
               description,
               potentialAction: {
                 '@type': 'SearchAction',
-                target: 'https://www.blinkad.kr/blog?q={search_term_string}',
+                target: `${siteUrl}/blog?q={search_term_string}`,
                 'query-input': 'required name=search_term_string',
               },
             }),
@@ -123,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               alternateName: ['Blink Ad', '블링크애드'],
               url: 'https://www.blinkad.kr',
               logo: 'https://www.blinkad.kr/logo-white-nav.png',
-              description: isEnglish ? 'Google, AEO and GEO marketing for international customer acquisition' : '구글 AEO·GEO 외국인 마케팅 전문 에이전시',
+              description,
               sameAs: [],
               contactPoint: {
                 '@type': 'ContactPoint',

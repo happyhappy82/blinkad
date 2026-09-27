@@ -22,7 +22,7 @@ for (const path of pairs) {
   assert.match(html, /hrefLang="ko"/)
   assert.match(html, /hrefLang="en"/)
   for (const script of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(script[1])
-  const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ')
+  const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<a\b[^>]*lang="ko"[^>]*>[\s\S]*?<\/a>/g, '').replace(/<[^>]+>/g, ' ')
   if (!['/blog', '/case-studies', '/hospital-sample', '/restaurant-sample'].includes(path)) assert.doesNotMatch(visible, /[가-힣]/, `untranslated content ${en}`)
   if (!path.includes('-sample')) {
     const ko = await get(path)

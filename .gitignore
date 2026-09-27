@@ -47,4 +47,4 @@ next-env.d.ts
 .playwright-mcp/
 
 # Generated from the shared Korean layouts and reviewed English dictionary
-localized/en/
+localized/

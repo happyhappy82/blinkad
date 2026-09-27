@@ -29,7 +29,9 @@ select {
   word-break: keep-all;
 }
 
-html[lang="en"] .keep-all {
+html[lang="en"] .keep-all,
+html[lang="ja"] .keep-all,
+html[lang="zh-Hans"] .keep-all {
   word-break: normal;
   overflow-wrap: anywhere;
 }

@@ -1,19 +1,20 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
-import Navbar from '@/localized/en/components/Navbar'
-import Footer from '@/localized/en/components/Footer'
+import { siteCopy } from '@/i18n/site'
+import type { ForeignLanguage } from '@/lib/site-languages'
 
-export default function EnglishBlog() {
+export default function LocalizedBlog({ language, Navbar, Footer }: { language: ForeignLanguage; Navbar: React.ComponentType; Footer: React.ComponentType }) {
+  const copy = siteCopy[language]
   return (
     <div className="min-h-screen bg-black">
       <Navbar />
       <main className="pt-28 pb-20">
         <div className="mx-auto max-w-7xl px-5 md:px-6">
           <header className="mb-14">
-            <h1 className="mb-6 text-5xl font-bold text-white md:text-7xl">Insights.</h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-gray-300">Practical insights on Google marketing, international customers and AI search.</p>
-            <p className="mt-5 max-w-2xl border-l-2 border-brand-blue pl-4 text-sm leading-relaxed text-gray-400">Our article archive is currently available in Korean. The links below open the original Korean articles.</p>
+            <h1 className="mb-6 text-5xl font-bold text-white md:text-7xl">{copy.insights}.</h1>
+            <p className="max-w-2xl text-lg leading-relaxed text-gray-300">{copy.insightsDescription}</p>
+            <p className="mt-5 max-w-2xl border-l-2 border-brand-blue pl-4 text-sm leading-relaxed text-gray-400">{copy.archive}</p>
           </header>
           <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-3">
             {BLOG_POSTS.map((post, index) => (
@@ -27,7 +28,7 @@ export default function EnglishBlog() {
                     <h2 lang="ko" className="keep-all text-2xl font-bold leading-snug text-white transition-colors group-hover:text-brand-blue">{post.title}</h2>
                     {post.excerpt && <p lang="ko" className="keep-all line-clamp-3 text-sm leading-relaxed text-gray-400">{post.excerpt}</p>}
                   </div>
-                  <span className="mt-6 text-sm font-semibold text-brand-blue">Read article in Korean →</span>
+                  <span className="mt-6 text-sm font-semibold text-brand-blue">{copy.readOriginal}</span>
                 </Link>
               </article>
             ))}
