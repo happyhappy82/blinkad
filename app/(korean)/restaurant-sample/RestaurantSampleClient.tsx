@@ -39,8 +39,9 @@ const languages = [
 
 type Lang = (typeof languages)[number]['code']
 
-const copy = {
+export const restaurantSampleCopy = {
   ko: {
+    demo: '웹사이트 제작 예시입니다. 매장·메뉴·가격·영업시간·연락처는 가상 정보이며 실제 예약을 제공하지 않습니다.',
     nav: {
       story: '공간',
       menu: '메뉴',
@@ -149,6 +150,7 @@ const copy = {
     },
   },
   en: {
+    demo: 'Website demo. Restaurant, menu, prices, opening hours and contact details are fictional. No actual bookings are provided.',
     nav: {
       story: 'Space',
       menu: 'Menu',
@@ -235,7 +237,7 @@ const copy = {
       items: [
         {
           q: 'Can I walk in without a reservation?',
-          a: 'Yes, but reservations are recommended on Friday evenings and weekends. Bar seats are kept for walk-ins.',
+          a: 'Yes, but reservations are recommended on Friday evenings and weekends. Walk-ins are also welcome at the bar.',
         },
         {
           q: 'Do you have English, Japanese, and Chinese menus?',
@@ -257,6 +259,7 @@ const copy = {
     },
   },
   ja: {
+    demo: 'ウェブサイトの制作例です。店舗・メニュー・価格・営業時間・連絡先は架空の情報です。実際の予約は受け付けていません。',
     nav: {
       story: '空間',
       menu: 'メニュー',
@@ -268,7 +271,7 @@ const copy = {
       eyebrow: '北村韓屋通りのモダン韓国ダイニング',
       title: 'ハヌルシクタク',
       subtitle:
-        '季節のナムル、炭火焼き、伝統味噌を現代的に楽しむソウル北村のディナー。',
+        '季節のナムル、炭火焼き、伝統的な発酵調味料を現代的に楽しむソウル北村のディナー。',
       primary: '予約する',
       secondary: 'メニューを見る',
       map: '道案内',
@@ -325,7 +328,7 @@ const copy = {
       ],
     },
     nearby: {
-      title: '北村で続く夕食',
+      title: '北村散策のあとの夕食',
       body:
         '景福宮、国立現代美術館ソウル、三清洞カフェ通りから近く、観光後の食事に便利です。韓服レンタル店やホテルも多く、海外ゲストにも案内しやすい場所です。',
       bullets: ['景福宮まで徒歩9分', '国立現代美術館ソウルまで徒歩7分', '三清洞カフェ通りまで徒歩5分'],
@@ -365,6 +368,7 @@ const copy = {
     },
   },
   zh: {
+    demo: '网站设计示例。门店、菜单、价格、营业时间及联系方式均为虚构信息，不提供实际预约服务。',
     nav: {
       story: '空间',
       menu: '菜单',
@@ -428,7 +432,7 @@ const copy = {
         {
           name: '五味子梨挞',
           price: '12,000韩元',
-          desc: '五味子果冻、梨子果酱和米粉酥粒。',
+          desc: '五味子果冻、糖煮梨和米粉酥粒。',
         },
       ],
     },
@@ -478,7 +482,7 @@ const visitIcons = [MapPin, Train, Car, CalendarDays, Leaf, Accessibility]
 
 export default function RestaurantSampleClient({ initialLang = 'ko' }: { initialLang?: Lang }) {
   const [lang, setLang] = useState<Lang>(initialLang)
-  const t = copy[lang]
+  const t = restaurantSampleCopy[lang]
 
   const activeLanguage = useMemo(
     () => languages.find((item) => item.code === lang) ?? languages[0],
@@ -487,27 +491,28 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
 
   return (
     <main
-      lang={lang}
+      lang={lang === 'zh' ? 'zh-Hans' : lang}
       className="min-h-screen bg-[#10100f] text-[#f8f2e8] [font-family:var(--font-pretendard)]"
     >
+      <p className="bg-[#25231f] px-5 py-3 text-center text-xs leading-relaxed text-[#f8f2e8]">{t.demo}</p>
       <section className="relative min-h-[92svh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-black/35 to-[#10100f]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/[0.35] via-black/[0.35] to-[#10100f]" />
 
-        <header className="absolute left-0 right-0 top-0 z-20 border-b border-white/10 bg-black/20 backdrop-blur-md">
+        <header className="absolute left-0 right-0 top-0 z-20 border-b border-white/[0.1] bg-black/[0.2] backdrop-blur-md">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10">
             <a href="#top" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.3] bg-white/[0.1]">
                 <Utensils className="h-5 w-5" aria-hidden="true" />
               </span>
               <span className="text-base font-semibold">HANEUL TABLE</span>
             </a>
 
-            <nav className="hidden items-center gap-7 text-sm text-white/78 lg:flex">
+            <nav className="hidden items-center gap-7 text-sm text-white/[0.78] lg:flex">
               <a className="transition hover:text-white" href="#story">
                 {t.nav.story}
               </a>
@@ -523,8 +528,8 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
             </nav>
 
             <div className="flex items-center gap-2">
-              <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-black/25 p-1 sm:flex">
-                <Languages className="ml-2 h-4 w-4 text-white/65" aria-hidden="true" />
+              <div className="hidden items-center gap-1 rounded-full border border-white/[0.15] bg-black/[0.25] p-1 sm:flex">
+                <Languages className="ml-2 h-4 w-4 text-white/[0.65]" aria-hidden="true" />
                 {languages.map((item) => (
                   <button
                     key={item.code}
@@ -535,7 +540,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                       item.code === lang
                         ? 'bg-[#f8f2e8] text-[#1d1712]'
-                        : 'text-white/68 hover:bg-white/10 hover:text-white'
+                        : 'text-white/[0.68] hover:bg-white/[0.1] hover:text-white'
                     }`}
                   >
                     {item.label}
@@ -551,7 +556,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
               </a>
             </div>
           </div>
-          <div className="flex gap-1 overflow-x-auto border-t border-white/10 px-5 py-2 sm:hidden">
+          <div className="flex gap-1 overflow-x-auto border-t border-white/[0.1] px-5 py-2 sm:hidden">
             {languages.map((item) => (
               <button
                 key={item.code}
@@ -559,7 +564,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
                 aria-pressed={item.code === lang}
                 onClick={() => setLang(item.code)}
                 className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold ${
-                  item.code === lang ? 'bg-[#f8f2e8] text-[#18120e]' : 'text-white/72'
+                  item.code === lang ? 'bg-[#f8f2e8] text-[#18120e]' : 'text-white/[0.72]'
                 }`}
               >
                 {item.native}
@@ -578,7 +583,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
           <h1 className="max-w-5xl text-5xl font-semibold leading-none tracking-normal text-white md:text-7xl lg:text-8xl">
             {t.hero.title}
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/82 md:text-2xl md:leading-10">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/[0.82] md:text-2xl md:leading-10">
             {t.hero.subtitle}
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -591,7 +596,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
             </a>
             <a
               href="#menu"
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.35] bg-white/[0.1] px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/[0.2]"
             >
               <ChefHat className="h-4 w-4" aria-hidden="true" />
               {t.hero.secondary}
@@ -600,7 +605,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
               href="https://maps.google.com/?q=Bukchon%20Hanok%20Village%20Seoul"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/20 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/15"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.25] bg-black/[0.2] px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/[0.15]"
             >
               <Navigation className="h-4 w-4" aria-hidden="true" />
               {t.hero.map}
@@ -609,7 +614,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#181512]">
+      <section className="border-y border-white/[0.1] bg-[#181512]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 px-5 md:grid-cols-4 md:divide-x md:divide-y-0 md:px-10">
           {t.quick.map((item, index) => {
             const Icon = [Clock, MapPin, Phone, Users][index]
@@ -617,7 +622,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
               <div key={item.label} className="flex min-h-28 items-center gap-4 py-6 md:px-6">
                 <Icon className="h-5 w-5 shrink-0 text-[#e5c076]" aria-hidden="true" />
                 <div>
-                  <p className="text-xs font-semibold uppercase text-white/42">
+                  <p className="text-xs font-semibold uppercase text-white/[0.42]">
                     {item.label}
                   </p>
                   <p className="mt-2 text-base font-semibold text-white">{item.value}</p>
@@ -638,7 +643,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
               {t.story.title}
             </h2>
             <p className="mt-7 text-lg leading-8 text-[#d8cec0]">{t.story.body}</p>
-            <p className="mt-7 border-l-2 border-[#e5c076] pl-5 text-sm font-semibold leading-7 text-white/72">
+            <p className="mt-7 border-l-2 border-[#e5c076] pl-5 text-sm font-semibold leading-7 text-white/[0.72]">
               {t.story.proof}
             </p>
           </div>
@@ -706,7 +711,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
             {t.menu.items.map((item) => (
               <article
                 key={item.name}
-                className="rounded-md border border-white/10 bg-[#20251f] p-6 transition hover:border-[#e5c076]/50"
+                className="rounded-md border border-white/[0.1] bg-[#20251f] p-6 transition hover:border-[#e5c076]/[0.5]"
               >
                 <div className="flex items-start justify-between gap-5">
                   <h3 className="text-2xl font-semibold text-white">{item.name}</h3>
@@ -734,7 +739,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
             <p className="mt-6 text-lg leading-8 text-[#d8cec0]">{t.nearby.body}</p>
             <ul className="mt-7 space-y-3">
               {t.nearby.bullets.map((item) => (
-                <li key={item} className="flex items-center gap-3 text-white/82">
+                <li key={item} className="flex items-center gap-3 text-white/[0.82]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[#70b986]" />
                   {item}
                 </li>
@@ -744,18 +749,18 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#201713] py-16">
+      <section className="border-y border-white/[0.1] bg-[#201713] py-16">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <h2 className="text-3xl font-semibold text-white">{t.reviews.title}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {t.reviews.items.map((item) => (
-              <blockquote key={item} className="rounded-md border border-white/10 bg-white/5 p-6">
+              <blockquote key={item} className="rounded-md border border-white/[0.1] bg-white/[0.05] p-6">
                 <div className="flex gap-1 text-[#e5c076]" aria-hidden="true">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <Star key={index} className="h-4 w-4 fill-current" />
                   ))}
                 </div>
-                <p className="mt-5 leading-7 text-white/82">{item}</p>
+                <p className="mt-5 leading-7 text-white/[0.82]">{item}</p>
               </blockquote>
             ))}
           </div>
@@ -799,7 +804,7 @@ export default function RestaurantSampleClient({ initialLang = 'ko' }: { initial
               href="https://maps.google.com/?q=Bukchon%20Hanok%20Village%20Seoul"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.25] px-6 py-3 text-sm font-bold text-white transition hover:bg-white/[0.1]"
             >
               <Navigation className="h-4 w-4" aria-hidden="true" />
               Google Maps

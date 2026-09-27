@@ -4,6 +4,8 @@ import { LOCALIZED_PAGES, LANGUAGE_INFO, localizedPath, languageAlternates } fro
 import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { NEWS_POSTS } from '../constants/news'
 import { BLOG_POSTS } from '../constants'
+import { hospitalSampleCopy } from '../app/(korean)/hospital-sample/HospitalSampleClient'
+import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/RestaurantSampleClient'
 
 const base = process.argv[2] || 'http://localhost:3152'
 const languages = ['en', 'ja', 'zh'] as const
@@ -43,6 +45,23 @@ async function main() {
         assert.ok(!html.includes(`href="/${language}/blog/${BLOG_POSTS[0].id}"`))
       }
       if (path.includes('-sample')) assert.match(html, /noindex/)
+      if (path === '/hospital-sample') {
+        const copy = hospitalSampleCopy[language]
+        assert.ok(visible.includes(copy.demo), `visible hospital demo notice ${url}`)
+        const positions = copy.answers.items.map(item => visible.indexOf(item.q))
+        assert.ok(positions[0] >= 0 && positions[0] < positions[1] && positions[1] < positions[2], `question parity ${url}`)
+        for (const row of copy.procedures.rows) assert.ok(visible.includes(row[0]), `procedure parity ${url}`)
+        assert.doesNotMatch(visible, /InMode|インモード/)
+      }
+      if (path === '/restaurant-sample') assert.ok(visible.includes(restaurantSampleCopy[language].demo), `visible restaurant demo notice ${url}`)
+      if (path === '/news/pnj-google-marketing-seminar') {
+        assert.match(visible, /PNJ/)
+        assert.doesNotMatch(visible, /P(?:&|&amp;)J/)
+      }
+      if (path === '/news/medical-tourism-association-aeo-geo-education') {
+        assert.match(visible, /Kihyun Kang/)
+        assert.doesNotMatch(visible, /Kang Gihyun|董事/)
+      }
       checks++
     }
     const inquiry = await get(`/${language}/contact?service=doctornest&topic=h2`)

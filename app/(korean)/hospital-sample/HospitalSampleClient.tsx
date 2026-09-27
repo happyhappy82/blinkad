@@ -40,8 +40,9 @@ const languages = [
 
 type Lang = (typeof languages)[number]['code']
 
-const copy = {
+export const hospitalSampleCopy = {
   ko: {
+    demo: '웹사이트 제작 예시입니다. 병원·의료진·면허·검토일·연락처는 가상 정보이며 실제 진료나 예약을 제공하지 않습니다.',
     nav: {
       answers: 'Q&A',
       procedures: '시술정보',
@@ -150,28 +151,29 @@ const copy = {
     },
   },
   en: {
+    demo: 'Website demo. Clinic, clinician, license, review date and contact details are fictional. No medical services or bookings are provided.',
     nav: {
       answers: 'Q&A',
       procedures: 'Procedures',
-      columns: 'Column',
+      columns: 'Articles',
       doctors: 'Doctor',
       visit: 'Visit',
-      book: 'Book consult',
+      book: 'Book a consultation',
     },
     hero: {
       eyebrow: 'Blink Dermatology Clinic Gangnam',
       title: 'Check the essentials before your dermatology consultation',
       subtitle:
-        'Doctor-reviewed answers and multilingual visit guidance for common questions about acne scars, Botox, pigmentation care, and skin procedures.',
+        'Doctor-reviewed answers and local visit information for common questions about acne, acne scars, Botox, melasma, pigmentation and skin lifting.',
       primary: 'View Q&A',
       secondary: 'Read column',
       reviewed: 'Medically reviewed on June 5, 2026',
     },
     quick: [
-      { label: 'Specialty', value: 'Dermatology · Aesthetics' },
+      { label: 'Location', value: 'Dermatology near Gangnam Station' },
+      { label: 'Care areas', value: 'Acne · Pigmentation · Botox · Skin lifting' },
       { label: 'Content', value: 'Doctor-reviewed Q&A' },
       { label: 'Languages', value: 'Korean · English · Japanese · Chinese' },
-      { label: 'Purpose', value: 'Education before consultation' },
     ],
     answers: {
       eyebrow: 'Questions patients ask',
@@ -180,14 +182,14 @@ const copy = {
         'Short answers help you understand the basics before seeing a clinician. Personal diagnosis is confirmed in consultation.',
       items: [
         {
+          q: 'Where should acne treatment at a Gangnam clinic begin?',
+          a: 'For recurring acne, assessing the causes comes before choosing extractions or a device. A clinician reviews inflammation, oil production, lifestyle and medications, then considers medication, skincare and laser treatment as appropriate.',
+          tag: 'Acne treatment in Gangnam',
+        },
+        {
           q: 'How long does Botox usually last?',
           a: 'Botulinum toxin effects vary by area, dose, and muscle activity, but many patients are told to expect roughly three to six months. Treatment intervals should be decided by a licensed clinician.',
           tag: 'Botox duration',
-        },
-        {
-          q: 'How often can InMode be done?',
-          a: 'Radiofrequency treatment intervals depend on skin thickness, bruising, pain sensitivity, and energy settings. Recent laser, filler, or thread lifting history should be checked first.',
-          tag: 'InMode interval',
         },
         {
           q: 'Can melasma improve after one laser session?',
@@ -204,9 +206,9 @@ const copy = {
       headers: ['Concern', 'What to discuss', 'Content'],
       rows: [
         ['Acne scars', 'Scar type, skin tone, downtime, medications', 'Read column'],
+        ['Acne treatment', 'Inflammation, oil production, need for extractions, medication', 'Q&A soon'],
         ['Botox', 'Area-specific duration, interval, resistance risk', 'Q&A soon'],
-        ['Pigmentation', 'Aggravation risk, sun care, combined care', 'Guide soon'],
-        ['Lifting', 'Skin thickness, bruising, pain, maintenance', 'Q&A soon'],
+        ['Melasma and pigmentation', 'Aggravation risk, sun care, combined care', 'Guide soon'],
       ],
     },
     column: {
@@ -220,9 +222,9 @@ const copy = {
       eyebrow: 'Reviewed by physician',
       title: 'Medical reviewer',
       name: 'Dr. Min Seo Kim',
-      role: 'Dermatology care · Aesthetic procedure reviewer',
+      role: 'Dermatology care · Acne, pigmentation and laser content reviewer',
       bio:
-        'Common consultation-room questions are rewritten with clinical experience and publicly citeable medical sources. The answers support understanding before a consultation and do not replace diagnosis.',
+        'Blink Dermatology Clinic organizes common consultation questions into doctor-reviewed answers. This educational material supports understanding before a consultation and does not provide a personal diagnosis.',
       credentials: ['Medical license SAMPLE-24819', '12 years of skin and laser consultation', 'Last reviewed June 5, 2026'],
     },
     visit: {
@@ -230,16 +232,16 @@ const copy = {
       title: 'What visitors should check before a clinic visit',
       items: [
         {
-          title: 'Consultation language',
-          body: 'English, Japanese, and Chinese guides are provided. Final medical decisions are confirmed during consultation.',
+          title: 'Location and access',
+          body: 'Find the address, phone number, opening hours and appointment availability for a visit near Gangnam Station in one place.',
         },
         {
           title: 'Before visiting',
           body: 'Recent procedures, current medication, allergies, pregnancy, and breastfeeding status should be checked before booking.',
         },
         {
-          title: 'Clinic location',
-          body: 'Check the Gangnam location, hours, and contact number before your visit.',
+          title: 'Multilingual guidance',
+          body: 'English, Japanese and Chinese guides are provided for international patients. Clinical care is determined in consultation with a clinician.',
         },
       ],
     },
@@ -258,6 +260,7 @@ const copy = {
     },
   },
   ja: {
+    demo: 'ウェブサイトの制作例です。医院・医師・免許・確認日・連絡先は架空の情報です。実際の診療や予約は提供していません。',
     nav: {
       answers: 'Q&A',
       procedures: '施術情報',
@@ -270,32 +273,32 @@ const copy = {
       eyebrow: 'Blink Dermatology Clinic 江南院',
       title: '皮膚科相談の前に、必要な情報を確認できます',
       subtitle:
-        'ニキビ跡、ボトックス、肝斑治療など、相談前によくある質問を医師監修コンテンツと多言語の来院案内で整理しました。',
+        'ニキビ、ニキビ跡、ボトックス、肝斑・色素、リフティングなど、相談前によくある質問を医師監修の回答と地域の来院情報にまとめました。',
       primary: 'よくある質問を見る',
       secondary: 'コラムを読む',
       reviewed: '医学的確認日 2026.06.05',
     },
     quick: [
-      { label: '専門分野', value: '皮膚科 · 美容施術' },
+      { label: '地域', value: '江南駅周辺の皮膚科' },
+      { label: '診療分野', value: 'ニキビ · 色素 · ボトックス · リフティング' },
       { label: '内容', value: '医師監修Q&A' },
       { label: '言語', value: '韓国語 · 英語 · 日本語 · 中国語' },
-      { label: '目的', value: '相談前の理解を助ける情報' },
     ],
     answers: {
       eyebrow: 'Questions patients ask',
       title: '診察室でよくある質問',
       subtitle:
-        '口コミより先に確認したい基本情報を短い回答にまとめました。個別診断は診察で確定します。',
+        '相談前に理解しやすいよう、結論から説明します。個別の診断や施術の適否は対面での診察で判断します。',
       items: [
+        {
+          q: '江南の皮膚科でニキビ治療は何から始めますか？',
+          a: '繰り返すニキビは、圧出や機器の選択より先に原因を確認します。炎症の程度、皮脂、生活習慣、服薬を確認し、薬物療法、スキンケア、補助的なレーザー治療を段階的に検討します。',
+          tag: '江南の皮膚科でのニキビ治療',
+        },
         {
           q: 'ボトックスの効果はどのくらい続きますか？',
           a: '効果は部位、量、筋肉の使い方で変わりますが、一般的には3〜6か月程度と案内されます。間隔は医師が部位と耐性リスクを見て判断します。',
           tag: 'ボトックス持続期間',
-        },
-        {
-          q: 'インモードは何週間おきに受けますか？',
-          a: '高周波施術の間隔は皮膚の厚さ、内出血、痛み、出力設定により異なります。直近のレーザーやフィラー歴も確認します。',
-          tag: 'インモード間隔',
         },
         {
           q: '肝斑はレーザー1回で改善しますか？',
@@ -312,9 +315,9 @@ const copy = {
       headers: ['悩み', '相談時に確認すること', '関連コンテンツ'],
       rows: [
         ['ニキビ跡', '瘢痕タイプ、肌色、回復期間、服薬', 'コラムを見る'],
+        ['ニキビ治療', '炎症の段階、皮脂、圧出の必要性、薬物療法の併用', 'Q&A準備中'],
         ['ボトックス', '部位別の持続期間、間隔、耐性', 'Q&A準備中'],
         ['肝斑・色素', '悪化リスク、紫外線管理、併用管理', '施術情報準備中'],
-        ['リフティング', '皮膚の厚さ、内出血、痛み、維持管理', 'Q&A準備中'],
       ],
     },
     column: {
@@ -328,9 +331,9 @@ const copy = {
       eyebrow: 'Reviewed by physician',
       title: '監修医',
       name: 'キム・ミンソ代表院長',
-      role: '皮膚科診療 · 美容施術監修',
+      role: '皮膚科診療 · ニキビ・色素・レーザーのコンテンツ監修',
       bio:
-        '診察室で繰り返される質問を、診療経験と公開可能な医学的根拠に基づいて整理します。回答は個別診断ではなく相談前の理解を助ける教育用情報です。',
+        'Blink Dermatology Clinicでは、診察室でよくある質問を医師監修の回答にまとめています。個別の診断ではなく、相談前の理解を助ける教育用資料です。',
       credentials: ['医師免許 SAMPLE-24819', '皮膚・レーザー相談12年', '最終確認 2026.06.05'],
     },
     visit: {
@@ -338,16 +341,16 @@ const copy = {
       title: '外国人患者が来院前に確認する情報',
       items: [
         {
-          title: '相談言語',
-          body: '英語、日本語、中国語の案内を提供し、実際の診療内容は医師相談で確定します。',
+          title: '所在地とアクセス',
+          body: '江南駅周辺への来院に向け、住所、電話番号、診療時間、予約の可否を一つのページで確認できるよう整理します。',
         },
         {
           title: '来院前準備',
           body: '最近の施術歴、服薬、アレルギー、妊娠・授乳の有無を予約前に確認します。',
         },
         {
-          title: '位置案内',
-          body: '江南駅周辺の位置、診療時間、予約連絡先を来院前に確認できます。',
+          title: '多言語のご案内',
+          body: '外国人患者向けに英語、日本語、中国語の案内を提供します。実際の診療内容は医師との相談で判断します。',
         },
       ],
     },
@@ -366,6 +369,7 @@ const copy = {
     },
   },
   zh: {
+    demo: '网站设计示例。诊所、医生、执照、审核日期及联系方式均为虚构信息，不提供实际诊疗或预约服务。',
     nav: {
       answers: '问答',
       procedures: '项目信息',
@@ -378,32 +382,32 @@ const copy = {
       eyebrow: 'Blink Dermatology Clinic 江南店',
       title: '皮肤科咨询前，先确认必要信息',
       subtitle:
-        '把痘坑、肉毒素、黄褐斑治疗等常见问题整理成医生审核内容和多语言到访说明。',
+        '将痤疮、痘坑痘疤、肉毒素、黄褐斑与色素、提升项目等常见问题，整理为医生审核的回答和本地就诊信息。',
       primary: '查看常见问题',
       secondary: '阅读专栏',
       reviewed: '医学审核日期 2026.06.05',
     },
     quick: [
-      { label: '专业领域', value: '皮肤科 · 医美项目' },
+      { label: '地区', value: '江南站附近的皮肤科诊所' },
+      { label: '诊疗领域', value: '痤疮 · 色素 · 肉毒素 · 提升项目' },
       { label: '内容', value: '医生审核问答' },
       { label: '语言', value: '韩语 · 英语 · 日语 · 中文' },
-      { label: '目的', value: '帮助咨询前理解' },
     ],
     answers: {
       eyebrow: 'Questions patients ask',
       title: '咨询室常见问题',
       subtitle:
-        '先确认比网上评价更基础的信息。个人诊断需要在面诊中确认。',
+        '先给出结论，帮助您在咨询前理解基本信息。个人诊断及是否适合接受相关治疗，需通过面诊确认。',
       items: [
+        {
+          q: '在江南皮肤科治疗痤疮，应从哪里开始？',
+          a: '反复出现的痤疮，应先了解成因，而不是先选择清痘或设备。医生会了解炎症程度、皮脂分泌、生活习惯及用药情况，再分阶段考虑药物、皮肤护理和激光辅助治疗。',
+          tag: '江南皮肤科痤疮治疗',
+        },
         {
           q: '肉毒素效果通常能维持多久？',
           a: '效果会根据部位、剂量和肌肉使用量而不同，通常可维持约3至6个月。治疗间隔应由医生根据部位和耐药风险决定。',
           tag: '肉毒素维持时间',
-        },
-        {
-          q: 'InMode 通常间隔多久做一次？',
-          a: '射频项目间隔取决于皮肤厚度、淤青、疼痛敏感度和能量设置。近期激光、填充或线雕经历也需要确认。',
-          tag: 'InMode 间隔',
         },
         {
           q: '黄褐斑一次激光就能好吗？',
@@ -420,9 +424,9 @@ const copy = {
       headers: ['问题/项目', '咨询时确认', '相关内容'],
       rows: [
         ['痘坑痘疤', '疤痕类型、肤色、恢复期、用药', '阅读专栏'],
+        ['痤疮治疗', '炎症阶段、皮脂、是否需要清痘、配合用药', '问答准备中'],
         ['肉毒素', '部位维持时间、间隔、耐药可能', '问答准备中'],
         ['黄褐斑·色素', '加重风险、防晒、联合管理', '项目信息准备中'],
-        ['提升项目', '皮肤厚度、淤青、疼痛、维持管理', '问答准备中'],
       ],
     },
     column: {
@@ -436,9 +440,9 @@ const copy = {
       eyebrow: 'Reviewed by physician',
       title: '审核医生',
       name: '金敏瑞代表院长',
-      role: '皮肤科诊疗 · 医美项目审核',
+      role: '皮肤科诊疗 · 痤疮、色素与激光内容审核',
       bio:
-        '把咨询室里反复出现的问题，用临床经验和可公开引用的医学依据整理成内容。所有回答用于咨询前理解，不等同于个人诊断。',
+        'Blink Dermatology Clinic将咨询中反复出现的问题整理为医生审核的回答。所有内容均为帮助咨询前理解的教育资料，不提供个人诊断。',
       credentials: ['医生执照 SAMPLE-24819', '皮肤与激光咨询12年', '最后审核 2026.06.05'],
     },
     visit: {
@@ -446,16 +450,16 @@ const copy = {
       title: '海外患者到访前需要确认的信息',
       items: [
         {
-          title: '咨询语言',
-          body: '提供英语、日语、中文说明，最终医疗决定需在医生咨询中确认。',
+          title: '位置与交通',
+          body: '为计划前往江南站附近就诊的人士，在同一页面整理地址、电话、诊疗时间及预约信息。',
         },
         {
           title: '到访准备',
           body: '预约前需要确认近期项目经历、正在服用的药物、过敏、怀孕或哺乳情况。',
         },
         {
-          title: '位置说明',
-          body: '可在到访前确认江南站附近位置、诊疗时间和预约联系方式。',
+          title: '多语言说明',
+          body: '为国际患者提供英语、日语和中文说明。实际诊疗内容需与医生面谈后确定。',
         },
       ],
     },
@@ -475,12 +479,12 @@ const copy = {
   },
 } as const
 
-const quickIcons = [Stethoscope, BookOpen, Globe2, ShieldCheck]
-const visitIcons = [Languages, ClipboardCheck, MapPin]
+const quickIcons = [MapPin, Stethoscope, BookOpen, Globe2]
+const visitIcons = [MapPin, ClipboardCheck, Languages]
 
 export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLang?: Lang }) {
   const [lang, setLang] = useState<Lang>(initialLang)
-  const t = copy[lang]
+  const t = hospitalSampleCopy[lang]
 
   const activeLanguage = useMemo(
     () => languages.find((item) => item.code === lang) ?? languages[0],
@@ -489,27 +493,28 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
 
   return (
     <main
-      lang={lang}
+      lang={lang === 'zh' ? 'zh-Hans' : lang}
       className="min-h-screen bg-[#f6f3ee] text-[#18221f] [font-family:var(--font-pretendard)]"
     >
+      <p className="bg-[#e9e3d8] px-5 py-3 text-center text-xs leading-relaxed text-[#343e39]">{t.demo}</p>
       <section className="relative min-h-[78svh] overflow-hidden bg-[#17332f]">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-[#102622]/72" />
+        <div className="absolute inset-0 bg-[#102622]/[0.72]" />
 
-        <header className="absolute left-0 right-0 top-0 z-20 border-b border-white/12 bg-[#102622]/78 backdrop-blur-md">
-          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10">
-            <a href="#top" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-md border border-white/24 bg-white/10">
+        <header className="relative left-0 right-0 top-0 z-20 border-b border-white/[0.12] bg-[#102622]/[0.78] backdrop-blur-md sm:absolute">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-4 sm:flex-nowrap md:px-10">
+            <a href="#top" className="flex min-w-0 items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-white/[0.24] bg-white/[0.1] text-white">
                 <Hospital className="h-5 w-5" aria-hidden="true" />
               </span>
-              <span className="text-base font-semibold text-white">BLINK DERMATOLOGY CLINIC</span>
+              <span className="text-xs font-semibold text-white sm:text-base">BLINK DERMATOLOGY CLINIC</span>
             </a>
 
-            <nav className="hidden items-center gap-7 text-sm text-white/76 lg:flex">
+            <nav className="hidden items-center gap-7 text-sm text-white/[0.76] lg:flex">
               <a className="transition hover:text-white" href="#answers">
                 {t.nav.answers}
               </a>
@@ -528,8 +533,8 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
             </nav>
 
             <div className="flex items-center gap-2">
-              <div className="hidden items-center gap-1 rounded-full border border-white/15 bg-black/20 p-1 sm:flex">
-                <Languages className="ml-2 h-4 w-4 text-white/68" aria-hidden="true" />
+              <div className="hidden items-center gap-1 rounded-full border border-white/[0.15] bg-black/[0.2] p-1 sm:flex">
+                <Languages className="ml-2 h-4 w-4 text-white/[0.68]" aria-hidden="true" />
                 {languages.map((item) => (
                   <button
                     key={item.code}
@@ -540,7 +545,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
                     className={`rounded-full px-3 py-1.5 text-xs font-semibold transition ${
                       item.code === lang
                         ? 'bg-[#f6f3ee] text-[#17332f]'
-                        : 'text-white/72 hover:bg-white/10 hover:text-white'
+                        : 'text-white/[0.72] hover:bg-white/[0.1] hover:text-white'
                     }`}
                   >
                     {item.label}
@@ -556,7 +561,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
               </a>
             </div>
           </div>
-          <div className="flex gap-1 overflow-x-auto border-t border-white/10 px-5 py-2 sm:hidden">
+          <div className="flex gap-1 overflow-x-auto border-t border-white/[0.1] px-5 py-2 sm:hidden">
             {languages.map((item) => (
               <button
                 key={item.code}
@@ -564,7 +569,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
                 aria-pressed={item.code === lang}
                 onClick={() => setLang(item.code)}
                 className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold ${
-                  item.code === lang ? 'bg-[#f6f3ee] text-[#17332f]' : 'text-white/72'
+                  item.code === lang ? 'bg-[#f6f3ee] text-[#17332f]' : 'text-white/[0.72]'
                 }`}
               >
                 {item.native}
@@ -575,15 +580,15 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
 
         <div
           id="top"
-          className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-32 md:px-10 md:pb-16"
+          className="relative z-10 mx-auto flex min-h-[60svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-10 sm:min-h-[78svh] sm:pt-32 md:px-10 md:pb-16"
         >
           <p className="mb-5 max-w-2xl text-sm font-semibold uppercase text-[#99dfcf]">
             {t.hero.eyebrow}
           </p>
-          <h1 className="max-w-5xl text-5xl font-semibold leading-none tracking-normal text-white md:text-7xl">
+          <h1 className="max-w-5xl text-4xl font-semibold leading-tight tracking-normal text-white sm:text-5xl md:text-7xl">
             {t.hero.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/86 md:text-2xl md:leading-10">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-white/[0.86] md:text-2xl md:leading-10">
             {t.hero.subtitle}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
@@ -596,13 +601,13 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
             </a>
             <a
               href={columnPath}
-              className="inline-flex items-center gap-2 rounded-full border border-white/35 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.35] bg-white/[0.1] px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/[0.2]"
             >
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               {t.hero.secondary}
             </a>
           </div>
-          <p className="mt-8 inline-flex max-w-max items-center gap-2 rounded-full border border-white/18 bg-black/24 px-4 py-2 text-sm font-semibold text-white/84">
+          <p className="mt-8 inline-flex max-w-max items-center gap-2 rounded-full border border-white/[0.18] bg-black/[0.24] px-4 py-2 text-sm font-semibold text-white/[0.84]">
             <ShieldCheck className="h-4 w-4 text-[#99dfcf]" aria-hidden="true" />
             {t.hero.reviewed}
           </p>
@@ -664,7 +669,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
               <h2 className="mt-4 text-4xl font-semibold leading-tight md:text-6xl">
                 {t.procedures.title}
               </h2>
-              <p className="mt-5 text-lg leading-8 text-white/72">{t.procedures.subtitle}</p>
+              <p className="mt-5 text-lg leading-8 text-white/[0.72]">{t.procedures.subtitle}</p>
             </div>
             <div
               className="min-h-[360px] rounded-md bg-cover bg-center"
@@ -673,10 +678,10 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
             />
           </div>
 
-          <div className="mt-12 overflow-x-auto rounded-md border border-white/14 bg-white/6">
+          <div className="mt-12 overflow-x-auto rounded-md border border-white/[0.14] bg-white/[0.06]">
             <table className="w-full min-w-[760px] border-collapse text-left">
               <thead>
-                <tr className="border-b border-white/14 bg-white/8 text-sm text-white/72">
+                <tr className="border-b border-white/[0.14] bg-white/[0.08] text-sm text-white/[0.72]">
                   {t.procedures.headers.map((header) => (
                     <th key={header} className="px-5 py-4 font-semibold">
                       {header}
@@ -686,9 +691,9 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
               </thead>
               <tbody>
                 {t.procedures.rows.map((row, index) => (
-                  <tr key={row[0]} className="border-b border-white/10 last:border-b-0">
+                  <tr key={row[0]} className="border-b border-white/[0.1] last:border-b-0">
                     <td className="px-5 py-5 text-lg font-semibold">{row[0]}</td>
-                    <td className="px-5 py-5 text-white/76">{row[1]}</td>
+                    <td className="px-5 py-5 text-white/[0.76]">{row[1]}</td>
                     <td className="px-5 py-5">
                       {index === 0 ? (
                         <a
@@ -832,7 +837,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
               <h2 className="text-4xl font-semibold leading-tight md:text-6xl">{t.footer.title}</h2>
-              <p className="mt-6 text-lg leading-8 text-white/72">{t.footer.body}</p>
+              <p className="mt-6 text-lg leading-8 text-white/[0.72]">{t.footer.body}</p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <a
@@ -847,7 +852,7 @@ export default function HospitalSampleClient({ initialLang = 'ko' }: { initialLa
               </a>
               <a
                 href="https://www.blinkad.kr"
-                className="inline-flex min-h-24 items-center justify-between gap-4 rounded-md border border-white/22 bg-white/8 p-6 text-left font-bold text-white transition hover:bg-white/14"
+                className="inline-flex min-h-24 items-center justify-between gap-4 rounded-md border border-white/[0.22] bg-white/[0.08] p-6 text-left font-bold text-white transition hover:bg-white/[0.14]"
               >
                 <span className="inline-flex items-center gap-3">
                   <ExternalLink className="h-5 w-5" aria-hidden="true" />

@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import fs from 'node:fs'
+import { hospitalSampleCopy } from '../app/(korean)/hospital-sample/HospitalSampleClient'
+import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/RestaurantSampleClient'
 import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { ENGLISH_PAGES, SITE_LANGUAGES, LANGUAGE_INFO, englishPath, localizedPath, splitLanguagePath, languageAlternates, validInternationalPhone } from '../lib/site-languages'
 
@@ -94,4 +96,65 @@ test('English modules reuse assets and omit the Korean blog body payload', () =>
   assert.match(navbar, /href: "\/en\/services"/)
   assert.match(navbar, /src="\/logo-white-nav.png"/)
   assert.match(navbar, /@\/components\/LanguageSwitch/)
+})
+
+test('reviewed copy retains source structure and consistent display names', () => {
+  for (const language of ['en', 'ja', 'zh']) {
+    const dictionary = JSON.parse(fs.readFileSync(`i18n/${language}.json`, 'utf8')) as Record<string, string>
+    const all = Object.values(dictionary).join('\n')
+    assert.doesNotMatch(all, /P&J|Kang Gihyun|Kwon Soonhyun|董事Kihyun|走向向|产品导入咨询|咨询医疗机构咨询管理|相談時の案内整理を相談/)
+    for (const [source, target] of Object.entries(dictionary)) {
+      if (source.includes('권순현')) assert.match(target, /Soonhyun Kwon/)
+      if (source.includes('강기현')) assert.match(target, /Kihyun Kang/)
+      if (source.includes('주식회사 피엔제이')) assert.match(target, /PNJ/)
+      if (source.includes('<p>')) assert.deepEqual(target.match(/<\/?[a-z][^>]*>/g), source.match(/<\/?[a-z][^>]*>/g))
+    }
+    const statistic = Object.entries(dictionary).find(([key]) => key.includes('한국인의 54.5%'))![1]
+    assert.match(statistic, /2025/)
+    assert.match(statistic, /989/)
+    assert.match(statistic, /990/)
+    assert.doesNotMatch(statistic, /a year earlier|1年前の39|一年前的39/)
+    assert.match(Object.entries(dictionary).find(([key]) => key.includes('근거의 58%'))![1], /2024/)
+    assert.match(Object.entries(dictionary).find(([key]) => key.includes('3.2배 많'))![1], /independently verified|独立した検証|独立验证/)
+  }
+})
+
+test('hospital demo preserves question and procedure topics across all four languages', () => {
+  const expected = {
+    ko: [/여드름/, /보톡스/, /기미/],
+    en: [/acne/i, /Botox/, /melasma/i],
+    ja: [/ニキビ/, /ボトックス/, /肝斑/],
+    zh: [/痤疮/, /肉毒素/, /黄褐斑/],
+  }
+  for (const language of ['ko', 'en', 'ja', 'zh'] as const) {
+    const copy = hospitalSampleCopy[language]
+    assert.equal(copy.answers.items.length, 3)
+    assert.equal(copy.procedures.rows.length, 4)
+    assert.equal(copy.quick.length, 4)
+    assert.equal(copy.visit.items.length, 3)
+    assert.ok(copy.demo.length > 30)
+    assert.doesNotMatch(JSON.stringify(copy), /InMode|インモード|publicly citeable/)
+    for (const [index, pattern] of expected[language].entries()) {
+      assert.match(copy.answers.items[index].q, pattern)
+      assert.match(copy.procedures.rows[index + 1][0], pattern)
+    }
+    assert.equal(copy.footer.phone, hospitalSampleCopy.ko.footer.phone)
+  }
+})
+
+test('restaurant demo labels examples and corrects food translations without reserving bar seats', () => {
+  assert.match(JSON.stringify(restaurantSampleCopy.ja), /伝統的な発酵調味料/)
+  assert.match(JSON.stringify(restaurantSampleCopy.ja), /北村散策のあとの夕食/)
+  assert.match(JSON.stringify(restaurantSampleCopy.zh), /糖煮梨/)
+  assert.doesNotMatch(JSON.stringify(restaurantSampleCopy), /伝統味噌|梨子果酱|Bar seats are kept/)
+  for (const language of ['ko', 'en', 'ja', 'zh'] as const) assert.ok(restaurantSampleCopy[language].demo.length > 30)
+})
+
+test('demo opacity utilities use supported arbitrary values and mobile clinic header stays in flow', () => {
+  for (const page of ['hospital-sample/HospitalSampleClient.tsx', 'restaurant-sample/RestaurantSampleClient.tsx']) {
+    const source = fs.readFileSync(`app/(korean)/${page}`, 'utf8')
+    assert.doesNotMatch(source, /(?:text|bg|border|from|via|to)-(?:white|black|\[#[a-fA-F0-9]+\])\/\d+/)
+  }
+  const hospital = fs.readFileSync('app/(korean)/hospital-sample/HospitalSampleClient.tsx', 'utf8')
+  assert.match(hospital, /<header className="relative [^"]+ sm:absolute"/)
 })
