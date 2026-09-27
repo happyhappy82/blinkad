@@ -38,7 +38,7 @@ PDF 스킬은 Opensurvey의 조사 분모·비교 기간을 원본 표와 대조
 - `npm run test:languages`: 13/13 통과. 이름·회사명·오역 방지·통계 조건·데모 질문/시술 순서·투명도 클래스·승인 H1 보호 포함.
 - `npx tsc --noEmit`, `npm run build`, `git diff --check`: 통과. 기존 블로그·libheif·Browserslist 경고는 이 변경과 무관하다.
 - 로컬 `verify:languages`: 51개 외국어 페이지 및 한국어 대응 링크·메타데이터·JSON-LD·원문 109개·404·사이트맵 검사 통과. `verify:english`: 기존 영어 17개 페이지 회귀검사 통과. 문의 전송 없음.
-- 실제 Chrome: 영문 병원 데모 PC에서 색상 문제 발견 후 수정, 수정본 모바일 390px/320px에서 안내·헤더·H1 잘림/겹침 없음 확인. 일본어 음식점 데모 320px 및 중국어 AEO 통계 카드 390px 줄바꿈·설명 표시 확인.
+- 실제 Chrome: 영문 병원 데모 PC에서 색상 문제 발견 후 수정, 수정본 PC 및 모바일 390px/320px에서 안내·헤더·H1 잘림/겹침 없음 확인. 일본어 음식점 데모 320px 및 중국어 AEO 통계 카드 390px 줄바꿈·설명 표시 확인. 영문 홈 PC의 승인 문구와 메뉴도 확인했다.
 
 ## 남은 한계
 
@@ -49,4 +49,9 @@ PDF 스킬은 Opensurvey의 조사 분모·비교 기간을 원본 표와 대조
 
 ## 운영 반영
 
-검증 및 배포 진행 중.
+- 구현 커밋 `50a83ef`, 영문 CTA 정합화 `db66a73`: `origin/main` push 완료.
+- 최종 운영 배포 `dpl_aZJrWA7tJBSccYgnnueikhccYsz4` / `blinkad-19wfzgpfp-aijeonginsight-1976s-projects.vercel.app` → `https://www.blinkad.kr`, Vercel `Ready` 확인.
+- 최종 운영 `npm run verify:languages -- https://www.blinkad.kr`: 51페이지 검사 통과. `verify:english`의 17페이지 회귀검사도 통과.
+- 운영 3개 언어의 AEO·블로그 마케팅 6페이지에서 통계 조건 18개가 실제 본문에 나오는지 추가 검사 통과. 최종 영문 홈 CTA도 검사 통과.
+- 실제 Chrome에서도 운영 영문 홈의 정확한 제목·H1·최종 CTA, 병원 데모의 예시 고지와 여드름 질문을 확인했다. 검수 탭·개발자 도구를 닫고 원래 사용자 탭으로 복원했다.
+- 최종 소스에서도 `constants/index.ts`, `constants/news.ts`, `i18n/site.ts`, 한국어 홈은 이전 커밋과 동일함을 확인했다. ERP·원문 글·문의 데이터 쓰기·유료 AI 측정 없음.
