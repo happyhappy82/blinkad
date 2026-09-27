@@ -27,9 +27,16 @@
 - `npm run test:english`: 경로 변환, 보존 범위, 언어 대체주소, 국제 전화번호, 기존 문의 수신 구조, 원문 검색어·자산 보존 6개 테스트 통과.
 - `npm run verify:english`: 영문 17개와 한국어 대응 페이지의 HTTP 상태·lang·canonical·hreflang·H1·JSON-LD 파싱, Nest 문의 쿼리, 한국어 원문, 404 경계, 사이트맵 검증.
 - `npx tsc --noEmit`, `npm run build`, `git diff --check` 확인. 기존 109개 글의 썸네일/요약 길이 및 `libheif-js` 경고는 이번 변경과 별개다.
-- Chrome 실제 UI: PC 메인, 390px 메인·서비스·메뉴 확장, 서비스 경로 유지, KO→EN 왕복, 영문 문의 모달 및 빈 입력 오류 확인.
+- Chrome 실제 UI: PC 메인, 390px 메인·서비스·메뉴 확장, 서비스 경로 유지, KO→EN 왕복, 영문 문의 모달 및 빈 입력 오류, 320px 문의창 표시 확인.
 - 외부 문의 발송 0건. 실수신 CRM 저장·알림은 별도 E2E 검증하지 않았으며 기존 연동을 유지했다.
 
 ## 배포
 
-코드 검증 후 main 커밋·push 및 기존 BlinkAd Vercel 프로젝트에 운영 배포한다. 운영 주소에서 같은 읽기 전용 검증을 재실행한다.
+코드 커밋 `f056d48`을 main에 push하고 기존 BlinkAd Vercel 프로젝트에 운영 배포했다.
+
+- 배포: `dpl_5gTn5dzQrFXSYiCLaEYa5mYvqocZ`
+- 배포 URL: `https://blinkad-7cvasqjko-aijeonginsight-1976s-projects.vercel.app`
+- 운영 URL: `https://www.blinkad.kr/en`
+- 운영 도메인에서 `npm run verify:english -- https://www.blinkad.kr` 전체 통과: 영문 17개, 한국어 대응 페이지, 메타정보·언어 대체주소·구조화 데이터, Nest 문의 선택값, 기존 원문, 404 및 사이트맵.
+- `https://blinkad.kr/en`도 www 주소로 정상 이동하여 HTTP 200과 영문 HTML을 반환한다.
+- Chrome에서 운영 영문 메인의 기존 전구 배경·영문 제목·EN/KO 전환 메뉴를 직접 확인했다. 문의 실발송은 하지 않았다.
