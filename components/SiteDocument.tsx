@@ -1,0 +1,140 @@
+import type { Metadata } from 'next'
+import Tracker from '@/components/Tracker'
+
+const SITE_NAME = 'BlinkAd'
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.blinkad.kr'),
+  applicationName: SITE_NAME,
+  verification: {
+    google: 'hITjCfw5G-GhQuvrWCZ7vMCcXwt4-zSr_-K-vNruL6E',
+    other: {
+      'naver-site-verification': [
+        '4b64641c3d671cfe7ae80cb01821e64a9c6f16b7',
+        'ce2742aab49fa80ee9792e070534258e31d2597d',
+      ],
+    },
+  },
+  title: `${SITE_NAME} | 구글 AEO·GEO 외국인 마케팅 전문 에이전시`,
+  description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
+  openGraph: {
+    title: `${SITE_NAME} | 구글 AEO·GEO 외국인 마케팅 전문 에이전시`,
+    description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
+    url: 'https://www.blinkad.kr',
+    siteName: SITE_NAME,
+    images: [
+      {
+        url: 'https://www.blinkad.kr/og-image.png',
+        width: 1200,
+        height: 734,
+      },
+    ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${SITE_NAME} | 구글 AEO·GEO 외국인 마케팅 전문 에이전시`,
+    description: '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.',
+    images: ['https://www.blinkad.kr/og-image.png'],
+  },
+}
+
+export default function SiteDocument({
+  children,
+  language = 'ko',
+}: {
+  children: React.ReactNode
+  language?: 'ko' | 'en'
+}) {
+  const isEnglish = language === 'en'
+  const siteUrl = `https://www.blinkad.kr${isEnglish ? '/en' : ''}`
+  const description = isEnglish
+    ? 'BlinkAd connects Google Search, Maps, websites and AI search to help Korean businesses reach international customers.'
+    : '블링크애드는 구글 AEO·GEO를 중심으로 외국인 마케팅을 설계합니다. 검색 결과와 AI 답변에서 한국 비즈니스가 외국인에게 더 잘 발견되고 선택되도록 돕습니다. 의료관광·맛집·로컬 브랜드의 글로벌 노출과 전환을 동시에 키웁니다.'
+  return (
+    <html lang={language}>
+      <head>
+        {/* Google Tag Manager */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K2TTW7SV');`,
+          }}
+        />
+        {/* End Google Tag Manager */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Preconnect for external resources */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* RSS Feed */}
+        <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} Blog RSS`} href="https://www.blinkad.kr/feed.xml" />
+      </head>
+      <body className="bg-black text-white antialiased">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-K2TTW7SV"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
+        {/* 통합 문의 추적 트래커 (Layout 마운트, Client Component) */}
+        <Tracker />
+        {/* Schema.org - WebSite */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: SITE_NAME,
+              alternateName: ['Blink Ad', '블링크애드', 'blinkad.kr'],
+              url: siteUrl,
+              inLanguage: language,
+              description,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://www.blinkad.kr/blog?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
+        {/* Schema.org - Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: SITE_NAME,
+              alternateName: ['Blink Ad', '블링크애드'],
+              url: 'https://www.blinkad.kr',
+              logo: 'https://www.blinkad.kr/logo-white-nav.png',
+              description: isEnglish ? 'Google, AEO and GEO marketing for international customer acquisition' : '구글 AEO·GEO 외국인 마케팅 전문 에이전시',
+              sameAs: [],
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'customer service',
+                availableLanguage: ['Korean'],
+              },
+            }),
+          }}
+        />
+        {children}
+      </body>
+    </html>
+  )
+}

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 import { NEWS_POSTS } from '@/constants/news'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
+import { ENGLISH_PAGES, englishPath, languageAlternates } from '@/lib/site-languages'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.blinkad.kr'
@@ -93,5 +94,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }))
 
-  return [...staticPages, ...blogPosts, ...newsPosts]
+  const localizedPages = [...staticPages, ...newsPosts].flatMap(page => {
+    const path = new URL(page.url).pathname
+    if (!(ENGLISH_PAGES as readonly string[]).includes(path) && !path.startsWith('/news/')) return [page]
+    const alternates = { languages: languageAlternates(path) }
+    return [{ ...page, alternates }, { ...page, url: `${baseUrl}${englishPath(path)}`, alternates }]
+  })
+  return [...localizedPages, ...blogPosts]
 }

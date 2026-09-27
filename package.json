@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "predev": "npm run build:english",
+    "prebuild": "npm run build:english",
+    "build:english": "node scripts/build-english.mjs",
+    "test:english": "npm run build:english && tsx --test scripts/site-languages.test.ts",
+    "verify:english": "tsx scripts/verify-english.ts",
     "dev": "next dev",
     "build": "npm run validate:posts && next build",
     "start": "next start",

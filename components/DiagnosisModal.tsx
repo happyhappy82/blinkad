@@ -133,7 +133,7 @@ export default function DiagnosisModal({
     >
       <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" />
 
-      <div className="relative bg-gray-900/95 backdrop-blur-md rounded-3xl w-full max-w-md border border-white/10 shadow-2xl transform transition-all animate-in fade-in zoom-in duration-300">
+      <div className="relative max-h-[calc(100dvh-2rem)] overflow-y-auto bg-gray-900/95 backdrop-blur-md rounded-3xl w-full max-w-md border border-white/10 shadow-2xl transform transition-all animate-in fade-in zoom-in duration-300">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-full"

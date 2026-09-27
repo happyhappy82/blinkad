@@ -29,6 +29,11 @@ select {
   word-break: keep-all;
 }
 
+html[lang="en"] .keep-all {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

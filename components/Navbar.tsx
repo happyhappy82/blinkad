@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { recordCtaClick } from '@/lib/tracker';
+import LanguageSwitch from './LanguageSwitch';
 
 const serviceLinks = [
   { href: '/services', label: '전체 서비스' },
@@ -105,6 +106,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
+          <LanguageSwitch />
           <Link
             href="/contact"
             onClick={trackContactCta}
