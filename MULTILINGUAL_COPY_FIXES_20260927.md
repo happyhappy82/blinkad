@@ -34,7 +34,7 @@ PDF 스킬은 Opensurvey의 조사 분모·비교 기간을 원본 표와 대조
 
 ## 검증
 
-- 사전 변경: EN 24개, JA 19개, ZH 24개 값. 키 797개 및 실제 빌드 사용 796개 유지. 뉴스 HTML 태그 구조 보존.
+- 사전 변경: EN 32개, JA 19개, ZH 24개 값. 키 797개 및 실제 빌드 사용 796개 유지. 뉴스 HTML 태그 구조 보존.
 - `npm run test:languages`: 13/13 통과. 이름·회사명·오역 방지·통계 조건·데모 질문/시술 순서·투명도 클래스·승인 H1 보호 포함.
 - `npx tsc --noEmit`, `npm run build`, `git diff --check`: 통과. 기존 블로그·libheif·Browserslist 경고는 이 변경과 무관하다.
 - 로컬 `verify:languages`: 51개 외국어 페이지 및 한국어 대응 링크·메타데이터·JSON-LD·원문 109개·404·사이트맵 검사 통과. `verify:english`: 기존 영어 17개 페이지 회귀검사 통과. 문의 전송 없음.

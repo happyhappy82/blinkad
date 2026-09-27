@@ -104,6 +104,7 @@ test('reviewed copy retains source structure and consistent display names', () =
     const all = Object.values(dictionary).join('\n')
     assert.doesNotMatch(all, /P&J|Kang Gihyun|Kwon Soonhyun|董事Kihyun|走向向|产品导入咨询|咨询医疗机构咨询管理|相談時の案内整理を相談/)
     for (const [source, target] of Object.entries(dictionary)) {
+      if (language === 'en' && source !== '해외 마케팅') assert.doesNotMatch(target, /international marketing|inbound marketing/i)
       if (source.includes('권순현')) assert.match(target, /Soonhyun Kwon/)
       if (source.includes('강기현')) assert.match(target, /Kihyun Kang/)
       if (source.includes('주식회사 피엔제이')) assert.match(target, /PNJ/)
