@@ -1,7 +1,7 @@
 /** Read-only integration checks. No form submission or external data changes. */
 import assert from 'node:assert/strict'
 import { LOCALIZED_PAGES, LANGUAGE_INFO, localizedPath, languageAlternates } from '../lib/site-languages'
-import { siteCopy } from '../i18n/site'
+import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { NEWS_POSTS } from '../constants/news'
 import { BLOG_POSTS } from '../constants'
 
@@ -22,6 +22,17 @@ async function main() {
       assert.ok(html.includes(`<html lang="${LANGUAGE_INFO[language].html}"`), `HTML language ${url}`)
       assert.ok(html.includes(`rel="canonical" href="https://www.blinkad.kr${url}"`), `canonical ${url}`)
       assert.equal((html.match(/<h1[\s>]/g) || []).length, 1, `one H1 ${url}`)
+      if (path === '/') {
+        const title = (html.match(/<title>(.*?)<\/title>/)?.[1] || '').replaceAll('&amp;', '&')
+        assert.equal(title, language === 'en' ? englishHomeCopy.title : siteCopy[language].title, `home title ${url}`)
+        const heading = (html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/)?.[1] || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+        if (language === 'en') {
+          assert.equal(heading, englishHomeCopy.heading, `approved H1 ${url}`)
+          const encodedTitle = englishHomeCopy.title.replaceAll('&', '&amp;')
+          assert.ok(html.includes(`property="og:title" content="${encodedTitle}"`))
+          assert.ok(html.includes(`name="twitter:title" content="${encodedTitle}"`))
+        } else assert.equal(heading.replace(/\s/g, ''), language === 'ja' ? 'Googleで見つかり、AIに伝わるブランドへ。' : '让Google找到您，让AI理解您的品牌。')
+      } else assert.ok(!html.includes(englishHomeCopy.heading), `homepage copy must not leak into ${url}`)
       for (const [lang, href] of Object.entries(languageAlternates(path))) assert.ok(html.includes(`hrefLang="${lang}" href="${href}"`), `alternate ${lang} ${url}`)
       for (const script of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(script[1])
       const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<a\b[^>]*lang="ko"[^>]*>[\s\S]*?<\/a>/g, '').replace(/<[^>]+>/g, ' ')

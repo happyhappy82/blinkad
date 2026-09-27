@@ -1,5 +1,11 @@
 import type { ForeignLanguage } from '@/lib/site-languages'
 
+// Homepage-only wording approved by the user. Other page titles remain unchanged.
+export const englishHomeCopy = {
+  title: 'BlinkAd | Korea Inbound Tourism Marketing Agency for Foreign Tourists — Google Maps & Google Business Profile',
+  heading: 'BlinkAd is an inbound tourism marketing agency in Korea. We help Korean hospitals, clinics, restaurants and local brands attract foreign tourists through Google Maps and Google Business Profile.',
+} as const
+
 export const siteCopy = {
   en: {
     title: 'BlinkAd | Google, AEO & GEO Marketing Agency',

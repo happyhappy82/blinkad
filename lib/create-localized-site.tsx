@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import LocalizedBlog from '@/components/EnglishBlog'
 import HospitalSample from '@/app/(korean)/hospital-sample/HospitalSampleClient'
 import RestaurantSample from '@/app/(korean)/restaurant-sample/RestaurantSampleClient'
-import { siteCopy } from '@/i18n/site'
+import { englishHomeCopy, siteCopy } from '@/i18n/site'
 import { LOCALIZED_PAGES, LANGUAGE_INFO, languageAlternates, type ForeignLanguage } from '@/lib/site-languages'
 
 type Query = Promise<Record<string, string | string[] | undefined>>
@@ -39,6 +39,7 @@ export function createLocalizedSite(language: ForeignLanguage, config: Config) {
       else if (isNews(path)) metadata = await config.NewsPost.generateMetadata({ params: Promise.resolve({ slug: path[1] }) })
       else if (pages[key]) metadata = { title: copy.title, description: copy.description, ...pages[key].metadata }
       else notFound()
+      if (language === 'en' && key === '') metadata.title = englishHomeCopy.title
       const url = `https://www.blinkad.kr/${language}${key ? '/' + key : ''}`
       const title = typeof metadata.title === 'string' ? metadata.title : 'BlinkAd'
       return {

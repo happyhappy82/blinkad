@@ -1,7 +1,22 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import fs from 'node:fs'
+import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { ENGLISH_PAGES, SITE_LANGUAGES, LANGUAGE_INFO, englishPath, localizedPath, splitLanguagePath, languageAlternates, validInternationalPhone } from '../lib/site-languages'
+
+test('approved inbound-tourism wording is exact and separate from other page defaults', () => {
+  assert.equal(englishHomeCopy.title, 'BlinkAd | Korea Inbound Tourism Marketing Agency for Foreign Tourists — Google Maps & Google Business Profile')
+  assert.equal(englishHomeCopy.heading, 'BlinkAd is an inbound tourism marketing agency in Korea. We help Korean hospitals, clinics, restaurants and local brands attract foreign tourists through Google Maps and Google Business Profile.')
+  assert.equal(siteCopy.en.title, 'BlinkAd | Google, AEO & GEO Marketing Agency')
+  assert.equal(siteCopy.ja.title, 'BlinkAd | Google・AEO・GEOマーケティング')
+  assert.equal(siteCopy.zh.title, 'BlinkAd | Google、AEO与GEO营销服务')
+  assert.match(fs.readFileSync('localized/en/app/(korean)/page.tsx', 'utf8'), /<Hero heading=\{englishHomeCopy.heading\} \/>/)
+  for (const file of ['app/(korean)/page.tsx', 'localized/ja/app/(korean)/page.tsx', 'localized/zh/app/(korean)/page.tsx']) {
+    const source = fs.readFileSync(file, 'utf8')
+    assert.match(source, /<Hero \/>/)
+    assert.doesNotMatch(source, /englishHomeCopy/)
+  }
+})
 
 test('public routes get an English equivalent with query and fragment preserved', () => {
   for (const path of ENGLISH_PAGES) assert.equal(englishPath(path), `/en${path === '/' ? '' : path}`)

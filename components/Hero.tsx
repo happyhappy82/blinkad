@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import { FadeIn } from './ui/FadeIn';
 
-const Hero: React.FC = () => {
+const Hero: React.FC<{ heading?: string }> = ({ heading }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -67,11 +67,13 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content Overlay - Bottom */}
-      <div className="absolute top-[30svh] bottom-auto sm:top-auto sm:bottom-10 md:bottom-14 left-0 right-0 z-30 px-5 md:px-6">
+      <div className={heading
+        ? 'relative z-30 w-full px-5 md:px-6 pt-40 pb-16 md:pt-64 md:pb-14'
+        : 'absolute top-[30svh] bottom-auto sm:top-auto sm:bottom-10 md:bottom-14 left-0 right-0 z-30 px-5 md:px-6'}>
         <div className="max-w-7xl mx-auto">
         <FadeIn delay={200}>
-          <h1 className="text-[2.45rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-5 md:mb-6 max-w-4xl bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75 drop-shadow-lg keep-all">
-            Google에서 발견되고,<br />AI가 이해하는<br className="sm:hidden" /> 브랜드로 만듭니다.
+          <h1 className={`${heading ? 'text-[1.75rem] leading-[1.2] sm:text-4xl lg:text-5xl max-w-5xl' : 'text-[2.45rem] leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl'} font-bold tracking-tighter mb-5 md:mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/75 drop-shadow-lg keep-all`}>
+            {heading || <>Google에서 발견되고,<br />AI가 이해하는<br className="sm:hidden" /> 브랜드로 만듭니다.</>}
           </h1>
         </FadeIn>
 

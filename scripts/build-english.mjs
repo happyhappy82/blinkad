@@ -81,6 +81,11 @@ for (const file of files) {
   }
   visit(ast);
   for (const edit of edits.sort((a, b) => b.start - a.start)) source = source.slice(0, edit.start) + edit.value + source.slice(edit.end);
+  // The approved English homepage headline is intentionally different from the source slogan.
+  if (language === 'en' && file === 'app/(korean)/page.tsx') {
+    if ((source.match(/<Hero \/>/g) || []).length !== 1) throw new Error('Expected one homepage Hero');
+    source = 'import { englishHomeCopy } from "@/i18n/site";\n' + source.replace('<Hero />', '<Hero heading={englishHomeCopy.heading} />');
+  }
   // English forms accept international numbers without changing the Korean form or receiver schema.
   if (['Contact', 'DiagnosisModal', 'NestInquiry'].some(name => file === `components/${name}.tsx`)) {
     source = source.replace(/const phoneRegex = .*?;/, '')
