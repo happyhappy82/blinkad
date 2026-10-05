@@ -46,7 +46,7 @@ export function createLocalizedSite(language: ForeignLanguage, config: Config) {
         ...metadata,
         alternates: { canonical: url, languages: languageAlternates('/' + key) },
         openGraph: { ...metadata.openGraph, title, description: metadata.description || undefined, url, siteName: 'BlinkAd', locale: LANGUAGE_INFO[language].og, alternateLocale: Object.entries(LANGUAGE_INFO).filter(([key]) => key !== language).map(([, value]) => value.og), images: metadata.openGraph?.images || ['/og-image.png'] },
-        twitter: { card: 'summary_large_image', title, description: metadata.description || undefined, images: ['/og-image.png'] },
+        twitter: { card: 'summary_large_image', title, description: metadata.description || undefined, images: metadata.twitter?.images || ['/og-image.png'] },
       }
     },
     async Page({ params, searchParams }: Props) {

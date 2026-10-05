@@ -187,18 +187,18 @@ export default async function NewsPostPage({ params }: Props) {
           </header>
 
           {post.imageUrls && post.imageUrls.length > 0 && (
-            <div className="mb-10 grid gap-3 sm:grid-cols-2 md:mb-14 md:gap-4">
+            <div className={`mb-10 grid gap-3 md:mb-14 md:gap-4 ${post.imageLayout === 'wide' ? '' : 'sm:grid-cols-2'}`}>
               {post.imageUrls.map((imageUrl, index) => (
                 <div
                   key={imageUrl}
-                  className="relative aspect-[16/10] overflow-hidden rounded-lg bg-gray-900"
+                  className={`relative overflow-hidden rounded-lg bg-gray-900 ${post.imageLayout === 'wide' ? 'aspect-video' : 'aspect-[16/10]'}`}
                 >
                   <Image
                     src={imageUrl}
                     alt={`${post.imageAlt ?? post.title} ${index + 1}`}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) calc(100vw - 40px), 440px"
+                    sizes={post.imageLayout === 'wide' ? '(max-width: 896px) calc(100vw - 40px), 896px' : '(max-width: 640px) calc(100vw - 40px), 440px'}
                     priority={index === 0}
                   />
                 </div>

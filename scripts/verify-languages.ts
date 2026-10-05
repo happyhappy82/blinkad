@@ -14,8 +14,13 @@ const get = async (path: string) => {
   assert.equal(response.status, 200, path)
   return response.text()
 }
+const imageMetadata = (html: string, key: 'og:image' | 'twitter:image') => [...html.matchAll(/<meta\b[^>]*>/g)]
+  .filter(([tag]) => tag.includes(`property="${key}"`) || tag.includes(`name="${key}"`))
+  .map(([tag]) => (tag.match(/\bcontent="([^"]*)"/)?.[1] || '').replaceAll('&amp;', '&'))
 async function main() {
   const paths = [...LOCALIZED_PAGES, ...NEWS_POSTS.map(post => `/news/${post.id}`)]
+  const newsByPath = new Map(NEWS_POSTS.map(post => [`/news/${post.id}`, post]))
+  const checkedImages = new Set<string>()
   let checks = 0
   for (const language of languages) {
     for (const path of paths) {
@@ -36,7 +41,28 @@ async function main() {
         } else assert.equal(heading.replace(/\s/g, ''), language === 'ja' ? 'Googleで見つかり、AIに伝わるブランドへ。' : '让Google找到您，让AI理解您的品牌。')
       } else assert.ok(!html.includes(englishHomeCopy.heading), `homepage copy must not leak into ${url}`)
       for (const [lang, href] of Object.entries(languageAlternates(path))) assert.ok(html.includes(`hrefLang="${lang}" href="${href}"`), `alternate ${lang} ${url}`)
-      for (const script of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(script[1])
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(script => JSON.parse(script[1]))
+      const newsPost = newsByPath.get(path)
+      if (newsPost) {
+        const articles = schemas.filter(schema => schema['@type'] === 'NewsArticle')
+        assert.equal(articles.length, 1, `one NewsArticle ${url}`)
+        const article = articles[0]
+        const canonical = `https://www.blinkad.kr${url}`
+        assert.equal(article.url, canonical, `NewsArticle URL ${url}`)
+        assert.equal(article.mainEntityOfPage?.['@id'], canonical, `NewsArticle mainEntityOfPage ${url}`)
+        const expectedImage = new URL(newsPost.imageUrls?.[0] || '/og-image.png', 'https://www.blinkad.kr').href
+        assert.equal(article.image, newsPost.imageUrls?.[0] ? expectedImage : undefined, `NewsArticle shared image ${url}`)
+        assert.deepEqual(imageMetadata(html, 'og:image'), [expectedImage], `OG shared image ${url}`)
+        assert.deepEqual(imageMetadata(html, 'twitter:image'), [expectedImage], `Twitter shared image ${url}`)
+        if (!checkedImages.has(expectedImage)) {
+          const sharedImage = new URL(expectedImage)
+          const response = await fetch(new URL(sharedImage.pathname + sharedImage.search, base))
+          assert.equal(response.status, 200, `shared news image ${expectedImage}`)
+          assert.match(response.headers.get('content-type') || '', /^image\//, `shared news image type ${expectedImage}`)
+          assert.ok((await response.arrayBuffer()).byteLength, `shared news image body ${expectedImage}`)
+          checkedImages.add(expectedImage)
+        }
+      }
       const visible = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<a\b[^>]*lang="ko"[^>]*>[\s\S]*?<\/a>/g, '').replace(/<[^>]+>/g, ' ')
       if (!['/blog', '/case-studies', '/hospital-sample', '/restaurant-sample'].includes(path)) assert.doesNotMatch(visible, /[가-힣]/, `untranslated text ${url}`)
       if (path === '/blog') {
@@ -85,6 +111,6 @@ async function main() {
     assert.ok(!sitemap.includes(`https://www.blinkad.kr/${language}/blog/${BLOG_POSTS[0].id}`))
   }
   for (const post of BLOG_POSTS) assert.ok(sitemap.includes(`https://www.blinkad.kr/blog/${post.id}`))
-  console.log(`PASS: ${checks} language pages, Korean reciprocal links, metadata/HTML/JSON-LD, ${BLOG_POSTS.length} original articles preserved, query context, protected routes/404s and sitemap. No forms submitted.`)
+  console.log(`PASS: ${checks} language pages, Korean reciprocal links, metadata/HTML/JSON-LD, ${checkedImages.size} shared news images, ${BLOG_POSTS.length} original articles preserved, query context, protected routes/404s and sitemap. No forms submitted.`)
 }
 main().catch(error => { console.error(error); process.exitCode = 1 })

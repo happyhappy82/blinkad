@@ -64,7 +64,11 @@ for (const file of files) {
         }
         if (value === 'ko_KR') value = { en: 'en_US', ja: 'ja_JP', zh: 'zh_CN' }[language];
         if (value === 'ko-KR') value = { en: 'en', ja: 'ja', zh: 'zh-Hans' }[language];
-        value = localPath(value);
+        // A bare slash can be a URL separator or string utility. Only a home
+        // navigation href should become the language root.
+        const isHomeHref = (ts.isJsxAttribute(node.parent) && node.parent.name.getText(ast) === 'href')
+          || (ts.isPropertyAssignment(node.parent) && node.parent.name.getText(ast) === 'href');
+        if (value !== '/' || isHomeHref) value = localPath(value);
       }
       if (value !== node.text) {
         if (ts.isJsxText(node)) replace(node, `{${JSON.stringify(value)}}`);
