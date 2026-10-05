@@ -1,0 +1,454 @@
+{
+  "checked_date": "2026-10-05",
+  "engine": "Google autocomplete",
+  "language": "ko",
+  "country_hint": "KR",
+  "method": "Public suggest endpoint, no sign-in or paid API; not volume or contract-intent measurement.",
+  "input_count": 20,
+  "results": [
+    {
+      "query": "외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:50.916650+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "외국인 마케팅",
+        [
+          "외국인 마케팅",
+          "외국인 마케팅 채용",
+          "외국인 마케팅 대행사",
+          "외국인 마케팅 업체",
+          "외국인 대상 마케팅",
+          "외국인 관광객 마케팅",
+          "외국인 환자 유치 마케팅",
+          "외국인 관광객 유치 마케팅",
+          "올리브영 외국인 마케팅",
+          "토스 외국인 마케팅"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              512
+            ],
+            [
+              30
+            ],
+            [
+              30
+            ],
+            [
+              30
+            ],
+            [
+              8,
+              30
+            ],
+            [
+              8,
+              30
+            ],
+            [
+              8,
+              30
+            ],
+            [
+              8,
+              30
+            ],
+            [
+              5,
+              30
+            ],
+            [
+              5,
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "외국인 마케팅",
+        "외국인 마케팅 채용",
+        "외국인 마케팅 대행사",
+        "외국인 마케팅 업체",
+        "외국인 대상 마케팅",
+        "외국인 관광객 마케팅",
+        "외국인 환자 유치 마케팅",
+        "외국인 관광객 유치 마케팅",
+        "올리브영 외국인 마케팅",
+        "토스 외국인 마케팅"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "외국인 마케팅 대행",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%8C%80%ED%96%89",
+      "checked_at": "2026-10-05T16:31:50.917284+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "외국인 마케팅 대행",
+        [
+          "외국인 마케팅 대행사"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "외국인 마케팅 대행사"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "외국인 마케팅 업체",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85+%EC%97%85%EC%B2%B4",
+      "checked_at": "2026-10-05T16:31:50.923303+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "외국인 마케팅 업체",
+        [
+          "외국인 마케팅 업체"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "외국인 마케팅 업체"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "외국인 관광객 유치",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EA%B4%80%EA%B4%91%EA%B0%9D+%EC%9C%A0%EC%B9%98",
+      "checked_at": "2026-10-05T16:31:50.923803+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "외국인 관광객 유치",
+        [
+          "외국인 관광객 유치 뜻",
+          "외국인 관광객 유치 방안",
+          "외국인 관광객 유치",
+          "외국인 관광객 유치 마케팅",
+          "외국인 관광객 유치 목표"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              512
+            ],
+            [
+              512
+            ],
+            [
+              30
+            ],
+            [
+              30
+            ],
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "외국인 관광객 유치 뜻",
+        "외국인 관광객 유치 방안",
+        "외국인 관광객 유치",
+        "외국인 관광객 유치 마케팅",
+        "외국인 관광객 유치 목표"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "약국 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.290999+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "약국 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "홍대 약국 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%ED%99%8D%EB%8C%80+%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.297766+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "홍대 약국 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "홍대 약국 외국인",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%ED%99%8D%EB%8C%80+%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8",
+      "checked_at": "2026-10-05T16:31:51.298113+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "홍대 약국 외국인",
+        [
+          "홍대 약국 외국인"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "홍대 약국 외국인"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "홍대 외국인 약국",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%ED%99%8D%EB%8C%80+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EC%95%BD%EA%B5%AD",
+      "checked_at": "2026-10-05T16:31:51.302821+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "홍대 외국인 약국",
+        [
+          "홍대 외국인 약국"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "홍대 외국인 약국"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "홍대 피부과 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%ED%99%8D%EB%8C%80+%ED%94%BC%EB%B6%80%EA%B3%BC+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.515918+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "홍대 피부과 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "홍대 피부과 외국인",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%ED%99%8D%EB%8C%80+%ED%94%BC%EB%B6%80%EA%B3%BC+%EC%99%B8%EA%B5%AD%EC%9D%B8",
+      "checked_at": "2026-10-05T16:31:51.522113+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "홍대 피부과 외국인",
+        [
+          "홍대 피부과 외국인"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "홍대 피부과 외국인"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "성수 에스테틱 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EC%97%90%EC%8A%A4%ED%85%8C%ED%8B%B1+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.527328+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 에스테틱 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "성수 에스테틱",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EC%97%90%EC%8A%A4%ED%85%8C%ED%8B%B1",
+      "checked_at": "2026-10-05T16:31:51.618750+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 에스테틱",
+        [
+          "성수 에스테틱"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "성수 에스테틱"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "성수 약국 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.810706+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 약국 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "성수 약국 화장품",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EC%95%BD%EA%B5%AD+%ED%99%94%EC%9E%A5%ED%92%88",
+      "checked_at": "2026-10-05T16:31:51.811010+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 약국 화장품",
+        [
+          "성수 약국 화장품"
+        ],
+        [],
+        {
+          "google:suggestsubtypes": [
+            [
+              30
+            ]
+          ]
+        }
+      ],
+      "suggestions": [
+        "성수 약국 화장품"
+      ],
+      "status": "ok"
+    },
+    {
+      "query": "성수 미용실 외국인 마케팅",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EB%AF%B8%EC%9A%A9%EC%8B%A4+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85",
+      "checked_at": "2026-10-05T16:31:51.816245+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 미용실 외국인 마케팅",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "성수 미용실 외국인",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%84%B1%EC%88%98+%EB%AF%B8%EC%9A%A9%EC%8B%A4+%EC%99%B8%EA%B5%AD%EC%9D%B8",
+      "checked_at": "2026-10-05T16:31:51.910451+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "성수 미용실 외국인",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "구글맵 마케팅 대행",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EA%B5%AC%EA%B8%80%EB%A7%B5+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%8C%80%ED%96%89",
+      "checked_at": "2026-10-05T16:31:52.055401+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "구글맵 마케팅 대행",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "구글 비즈니스 프로필 관리 대행",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EA%B5%AC%EA%B8%80+%EB%B9%84%EC%A6%88%EB%8B%88%EC%8A%A4+%ED%94%84%EB%A1%9C%ED%95%84+%EA%B4%80%EB%A6%AC+%EB%8C%80%ED%96%89",
+      "checked_at": "2026-10-05T16:31:52.055607+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "구글 비즈니스 프로필 관리 대행",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "외국인 마케팅 비용",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%B9%84%EC%9A%A9",
+      "checked_at": "2026-10-05T16:31:52.060969+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "외국인 마케팅 비용",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    },
+    {
+      "query": "약국 마케팅 대행",
+      "url": "https://suggestqueries.google.com/complete/search?client=firefox&hl=ko&gl=KR&q=%EC%95%BD%EA%B5%AD+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%8C%80%ED%96%89",
+      "checked_at": "2026-10-05T16:31:52.234423+09:00",
+      "curl_exit": 0,
+      "http_status": 200,
+      "raw_response": [
+        "약국 마케팅 대행",
+        []
+      ],
+      "suggestions": [],
+      "status": "ok"
+    }
+  ],
+  "limits": [
+    "Country/language request hints do not establish user location or personalization.",
+    "Consumer place searches do not establish merchant agency demand.",
+    "Normal empty predictions are not zero demand; request failures are separate."
+  ]
+}

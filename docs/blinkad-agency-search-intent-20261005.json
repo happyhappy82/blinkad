@@ -1,0 +1,475 @@
+{
+  "checked_at_kst": "2026-10-05T16:34:25.871741+09:00",
+  "goal_confirmed_by_user": "한국어 B2B 외국인마케팅 대행 문의 증가",
+  "direct_google": {
+    "checked_at": "2026-10-05T07:31:50.031Z",
+    "method": {
+      "engine": "Google direct web SERP",
+      "locale": "ko-KR",
+      "google_params": {
+        "hl": "ko",
+        "gl": "kr",
+        "pws": "0",
+        "num": "10"
+      },
+      "viewport": "1440x1000",
+      "logged_in": false,
+      "geo_ip_country": "not independently verified",
+      "review_scope": "Initial page only; first up to 10 h3 links; no scrolling, page2, CAPTCHA bypass or submission",
+      "writes": 0,
+      "paid_calls": 0
+    },
+    "results": [
+      {
+        "query": "외국인 마케팅 대행",
+        "input_url": "https://www.google.com/search?q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%8C%80%ED%96%89&hl=ko&gl=kr&pws=0&num=10",
+        "checked_at": "2026-10-05T07:31:41.848Z",
+        "http_status": 200,
+        "page_title": "https://www.google.com/search?q=%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85+%EB%8C%80%ED%96%89&hl=ko&gl=kr&pws=0&num=10",
+        "final_host": "www.google.com",
+        "final_path": "/sorry/index",
+        "captcha": true,
+        "visible_h3_results": [],
+        "related_question_texts": [],
+        "valid_google_serp": false,
+        "failure": "Google unusual-traffic/CAPTCHA page; not bypassed"
+      },
+      {
+        "query": "약국 외국인 마케팅",
+        "input_url": "https://www.google.com/search?q=%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "checked_at": "2026-10-05T07:31:44.050Z",
+        "http_status": 200,
+        "page_title": "https://www.google.com/search?q=%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "final_host": "www.google.com",
+        "final_path": "/sorry/index",
+        "captcha": true,
+        "visible_h3_results": [],
+        "related_question_texts": [],
+        "valid_google_serp": false,
+        "failure": "Google unusual-traffic/CAPTCHA page; not bypassed"
+      },
+      {
+        "query": "홍대 약국 외국인 마케팅",
+        "input_url": "https://www.google.com/search?q=%ED%99%8D%EB%8C%80+%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "checked_at": "2026-10-05T07:31:46.079Z",
+        "http_status": 200,
+        "page_title": "https://www.google.com/search?q=%ED%99%8D%EB%8C%80+%EC%95%BD%EA%B5%AD+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "final_host": "www.google.com",
+        "final_path": "/sorry/index",
+        "captcha": true,
+        "visible_h3_results": [],
+        "related_question_texts": [],
+        "valid_google_serp": false,
+        "failure": "Google unusual-traffic/CAPTCHA page; not bypassed"
+      },
+      {
+        "query": "성수 에스테틱 외국인 마케팅",
+        "input_url": "https://www.google.com/search?q=%EC%84%B1%EC%88%98+%EC%97%90%EC%8A%A4%ED%85%8C%ED%8B%B1+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "checked_at": "2026-10-05T07:31:48.163Z",
+        "http_status": 200,
+        "page_title": "https://www.google.com/search?q=%EC%84%B1%EC%88%98+%EC%97%90%EC%8A%A4%ED%85%8C%ED%8B%B1+%EC%99%B8%EA%B5%AD%EC%9D%B8+%EB%A7%88%EC%BC%80%ED%8C%85&hl=ko&gl=kr&pws=0&num=10",
+        "final_host": "www.google.com",
+        "final_path": "/sorry/index",
+        "captcha": true,
+        "visible_h3_results": [],
+        "related_question_texts": [],
+        "valid_google_serp": false,
+        "failure": "Google unusual-traffic/CAPTCHA page; not bypassed"
+      }
+    ]
+  },
+  "discovery_queries": [
+    {
+      "query": "외국인 마케팅 대행",
+      "source": "web.run single-query discovery; engine/locale/rank not specified",
+      "review_scope": "First up to 10 returned source blocks in this tool response; returned_order is NOT a Google or Naver ranking",
+      "returned_sources_reviewed": [
+        {
+          "returned_order": 1,
+          "title": "외국인 마케팅 경험 多 업체 찾습니다. - 대행의뢰 - 마케팅 대행 - 아이보스",
+          "url": "https://www.i-boss.co.kr/ab-1958-87145",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 3 months ago; Crawled: 2 weeks ago; 외국인 마케팅 경험 많은 회사와 인스타 브랜드 운영대행 업체를 찾고 있습니다. ... 외국인 마케팅의 경우 단순히 샤오홍슈 / 구글 cpc 제안은 필요하지 않습니다."
+        },
+        {
+          "returned_order": 2,
+          "title": "구글지도 상위노출 · 구글맵 리뷰 마케팅 · GBP 등록 대행 99,000원 | 코리아맵",
+          "url": "https://korea-map.com/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 weeks ago; LIVE · SEARCH \"KOREAN BBQ NEAR ME\" 지금 이 순간에도 외국인이 검색 중입니다 ... 한국 외식·소매업의 외국인 고객 획득 경로가 네이버에서 구글로 빠르게 재편되고 있습니다. ... 구글지도 상위노출과 구글맵 리뷰 마케팅, 구글 비즈니스 프로필 등록 대행부터 다국어 콘텐츠, 월간 업데이트까지. ... 본사 일괄 발주 시 추가 할인. ... 관리 영역 요금 안내 진행 절차 구글지도 상위노출 구글맵 리뷰 마케팅 로컬 SEO · 다국어 운영"
+        },
+        {
+          "returned_order": 3,
+          "title": "마이닥터킴 | 중국 의료 마케팅 전문",
+          "url": "https://mydrkim.com/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: yesterday; 중국 본토 마케팅 대행, 메이투안·따중띠엔핑 플랫폼 운영, 클리닉 개원 컨설팅까지 ... 마이닥터킴은 중국 본토부터 글로벌 중화권 환자까지, 피부과의 외국인 환자 매출을 월 10억~20억 이상으로 함께 만들어갈 병원을 찾습니다. ... 지금 당장 외국인 환자가 한 명도 없어도 됩니다. ... 마이닥터킴은 2026년 메이투안 의약건강사업부(美团医药健康事业部)로부터 공식 인증 서비스 제공사(美团官方认证服务商)로 선정된 한국 유일의 5성 인증 대행사입니다. ...   * 국내·글로벌 마케팅팀 구성 및 운영 체계 수립"
+        },
+        {
+          "returned_order": 4,
+          "title": "외국인 크리에이터·인플루언서 마케팅 대행 및 솔루션 | 수하우스(Soo House) by 수앤캐롯츠",
+          "url": "https://www.sooandcarrots.com/client/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 3 weeks ago; 단순 참여자 모집뿐 아니라 국적·언어·거주 지역·콘텐츠 카테고리를 기준으로 외국인 크리에이터를 선별하고, 콘텐츠 가이드와 검수, SNS 게시, 리워드 지급과 성과 보고까지 지원합니다.외국인 인플루언서 마케팅은 어디까지 대행하나요? ... 캠페인 목표와 타깃 국가 설정, 외국인 인플루언서 모집·선별, 콘텐츠 기획, 업로드 전 검수, SNS 확산, 원본 취합, 2차 활용 동의와 성과 리포팅까지 전 과정을 대행합니다.수하우스는 국내 거주 외국인 체험단부터 글로벌 인플루언서 섭외, UGC 제작, 콘텐츠 검수, SNS 확산과 성과 분석까지 한 번에 운영하는 수앤캐롯츠의 글로벌 마케팅 솔루션입니다. ... 한국어/English/日本語/Français/简体中文/العربية/ไทย"
+        },
+        {
+          "returned_order": 5,
+          "title": "외국인 마케팅 가능한 업체 찾습니다! - 대행의뢰 - 마케팅 대행 - 아이보스",
+          "url": "https://www.i-boss.co.kr/ab-1958-86121",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 5 months ago; Crawled: 3 weeks ago; # 외국인 마케팅 가능한 업체 찾습니다! ... 외국인 손님 바이럴 마케팅 가능하신 업체 연락주세요 매출상승 목적입니다.대행사에서 등록한 의뢰입니다"
+        },
+        {
+          "returned_order": 6,
+          "title": "운영 대행 — 마케팅 서비스 | Soo House 수하우스",
+          "url": "https://www.sooandcarrots.com/client/about/operations/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: last month; 단발적 캠페인이 아닌, 지속적인 외국인 타깃 운영이 필요한 팀을 위해 ... 운영 대행 상담받기 →진단·견적 받기 ...   * K-뷰티 마케팅 ... 대표이사 김수현 서울특별시 광진구 광나루로 520, NEST 4층 AI Lab[email protected]"
+        },
+        {
+          "returned_order": 7,
+          "title": "식당·카페 마케팅 대행 | 자영업 통합 마케팅 - 성장엔진",
+          "url": "https://growth-engine.co.kr/service",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 weeks ago; 성장엔진은 식당, 카페, 음식점 등 자영업·외식업 매장의 네이버, 구글, 카카오맵, 당근마켓 마케팅을 한 팀에서 통합 관리하는 광고 대행사입니다.성장엔진은 식당, 카페, 음식점 등 자영업·외식업 매장의 네이버, 구글, 카카오맵, 당근마켓 마케팅을 한 팀에서 통합 관리하는 광고 대행사입니다. ... ### 셋, 한국을 찾은 외국인 고객이 이용하는 플랫폼, 구글"
+        },
+        {
+          "returned_order": 8,
+          "title": "2026「제4회 유라리 건맥축제」행사 대행 용역",
+          "url": "https://www.g2b.go.kr/fs/fsc/fsca/fileUpload.do?k00=a2MMYzianzwExorC2swMQwxC2swNQwwC2syNgwvZGF0YS9BdHRhY2hmaWxlcy9wbnBlLzIwMjYvMDUvMjIvOTMxNDBjODM5NjNkNDJiMGEyYjM5NWI5ODMyNjNiZmEucGRmC2szMQzqs7zsl4Xsp4Dsi5zshJxfMjAyNiDsoJw07ZqMIOycoOudvOumrCDqsbTrp6XstpXsoJwucGRmC2syMQw4NjgyMGIyNS0xM2FmLTRhODEtODZlNy01MmFmMGQ0ZDVjNWMsMQ%3D%3D",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 4 months ago; 구 분 오프닝 행사 | 내 용 w 식전공연, 내빈소개, 축사, 축하공연 등 --- | --- 구 분 건맥마켓 | 내 용 w 남포동건어물도매시장의 건어물과 부산 대표 수제맥주 판매하는 팝업스토어 운영 구 분 건맥라운지 | 내 용 w 건맥을 맛있고 재미있게 즐길 수 있는 공간 조성 w 피크닉 존, 스탠딩 존 운영(가족, 연인이 독립적으로 즐길 수 있는 공간) 등 구 분 건어물스쿨 | 내 용 w 건어물을 활용한 다양한 요리를 배워보는 쿠킹클래스 운영 구 분 유라리마켓 | 내 용 w 부산지역 소상공인들의 다양한 상품 판매(플리마켓) 및 푸드트럭 존 운영 구 분 부대행사 | 내 용 w 공연 및 이벤트 프로그램 진행 w 각종 체험 및 콘텐츠 등 제안사에서 구성 제출 ※ 외국인 관광객 대상 마케팅 기획/ 부산관광공사 비짓부산패스 등 기관협력 계획 제안 ※ 제안사가 제출한 세부계획의 창의성·우수성과 더불어 외국인 관광객 대상"
+        },
+        {
+          "returned_order": 9,
+          "title": "로그통 - 중국 인플루언서 마케팅 대행 | 왕홍·샤오홍슈·도우인",
+          "url": "https://logtongads.co.kr/page/china_influencer.php",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 3 weeks ago; 왕홍·샤오홍슈 마케팅으로 중국 인플루언서가 당신의 브랜드를 직접 알립니다.검색되고, 공유되고, 방문까지 이어지는 실전 중국 마케팅 전략! ... 외국인 소비가 전반적으로 증가한 가운데, ... 맛집, 여행, 쇼핑 정보를 검색할 때 구글이나 네이버 대신 샤오홍슈를 씁니다. ... 한국의 ‘식신’과 ‘망고플레이트’, ‘네이버 리뷰’를 합친 것 같은 존재입니다. ... ‘홍대맛집’, ‘서울카페’, ‘제주호텔’을 검색했을 때 내 매장이 보인다면? ... [Input] 대행사면 체크 부탁드립니다. ... Logtong (logtongads.co.kr) helps Korean brands reach Chinese tourists through Wanghong (KOL) marketing on Xiaohongshu, Douyin, and Dazhong Dianping — platforms Chinese travelers use instead of Naver or Google when researching restaurants, shopping, and attractions in Korea."
+        },
+        {
+          "returned_order": 10,
+          "title": "외국인 관광객 마케팅 실행사를 찾고 있습니다. - 대행의뢰 - 마케팅 대행 - 아이보스",
+          "url": "https://www.i-boss.co.kr/ab-1958-88664",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 4 days ago; Crawled: 4 days ago; 부산 지역 식당 대상으로 외국인 관광객 마케팅 실행사를 찾고 있습니다. ... 대만 및 말레이시아 역시 현지에서 실제 사용하는 플랫폼과 인플루언서 채널 중심으로 진행 가능한 업체를 찾고 있습니다. ...   * 국가별 광고 집행 ... 실제로 외국인 관광객 유입까지 실행해본 경험이 있는 실행사를 우선적으로 보고 있습니다."
+        }
+      ],
+      "observations": {
+        "observed_format": "대행 서비스 소개, 대행 의뢰, 운영 범위·국가/채널·사례·진단/견적 상담 형식이 반환됨.",
+        "intent_interpretation": "사업자의 서비스 비교·대행사 선택 의도에 가까운 표본. 전체 검색자의 실제 의도를 증명하지는 않음.",
+        "editorial_selection_questions": [
+          "무엇을 대행하며 무엇은 별도 비용인가?",
+          "우리 업종·예산·대상 국가와 유사한 운영 경험이 있는가?",
+          "Google 지도 관리, 다국어 콘텐츠, 웹사이트 문의 동선을 어떻게 연결하는가?",
+          "누가 계정 접근권한을 가지며 월간 실적을 어떤 지표로 받는가?"
+        ]
+      }
+    },
+    {
+      "query": "약국 외국인 마케팅",
+      "source": "web.run single-query discovery; engine/locale/rank not specified",
+      "review_scope": "First up to 10 returned source blocks in this tool response; returned_order is NOT a Google or Naver ranking",
+      "returned_sources_reviewed": [
+        {
+          "returned_order": 1,
+          "title": "약국 외국인 마케팅 시작 전 반드시 확인할 것은? 바로 데이터입니다.",
+          "url": "https://alb.openads.co.kr/content/contentDetail?contsId=20101",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: last month; Crawled: last week; 외국인 관광객을 대상으로 하는 약국 마케팅에서 가장 자주 생략되는 단계가 수요 측정입니다. ... 한국관광공사 데이터 기준으로 외국인의 국내 약국 소비액은 2021년 76억 원에서 2025년 1,256억 원으로 약 16배 늘었습니다. ... 눈에 띄는 지점은 '약국영어'가 '약국마케팅'의 20배가 넘는다는 것입니다. ... 가장 큰 검색어에 지역명이 없다는 점이 중요합니다. 'near me' 계열이 압도적이라는 것은, 관광 상권이 아닌 매장도 노출 기회가 있다는 뜻이면서 동시에 지도 정보 정비가 광고보다 먼저라는 뜻이기도 합니다. ... 참고로 한국어 검색량은 강남약국 1,530회, 명동약국 1,290회, 홍대약국 1,120회로 강남이 1위입니다. ...   * 추천된 약국 중 일부는 구글 프로필 상호명에 한국어, 영어, 중국어, 일본어를 모두 넣어두었습니다 ... 외국인 대상 로컬 마케팅에서 데이터 없이 시작하면 상권마다 다른 언어 구성을 놓칩니다. ... AI 답변은 같은 날 비로그인 상태에서 측정한 1회 사례입니다."
+        },
+        {
+          "returned_order": 2,
+          "title": "외국인 관광객 마케팅, 약국·미용실·안경원이 먼저 준비해야 할 3가지 - 로컬루어 - 외국인 관광객을 위한 로컬 큐레이션 매거진",
+          "url": "https://blog.locallure.kr/foreign-tourist-marketing-guide",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 5 months ago; Crawled: 5 days ago; # 외국인 관광객 마케팅, 약국·미용실·안경원이 먼저 준비해야 할 3가지외국인 관광객의 K-뷰티 소비가 약국, 미용실, 안경원까지 넓어지고 있습니다. ... 한국인에게는 익숙한 일상이지만 외국인에게는 한국에서만 해볼 수 있는 특별한 경험으로 보이기 때문이죠. ... Image: 구글맵에 외국인이 남긴 리뷰 일주: 성수 레디영 약국 구글맵에 외국인이 남긴 리뷰 일주: 성수 레디영 약국"
+        },
+        {
+          "returned_order": 3,
+          "title": "팝뷰(POPVIEW)",
+          "url": "https://popview.co.kr/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: last month; 샤오홍슈 리뷰, 따종디엔핑 평점 관리부터 중국인 관광객의 방문을 이끄는 컨텐츠 제작까지, 효과적인 중국 마케팅을 완성합니다. ... 오프라인 매장이 없는 제품은, 한국에 거주 중인 외국인 또는 내국인 크리에이터가 제품을 배송받아 직접 사용한 후 리얼 체험 컨텐츠를 제작·업로드하는 방식으로 마케팅을 진행합니다. ...   * 한·중·일·영 4개 국어 지원  * 키워드, 해시태그, 위치태그 최적화 (인스타그램, 샤오홍슈, 구글맵 등 맞춤형 전략 ) ... “일주일에 일본인 손님 한두 팀 오는 게 전부였는데, 팝뷰 체험단 이후 외국인 손님이 눈에 띄게 늘더니 지금은 외국인 손님이 절반 이상입니다. ... ### 장인닭갈비 홍대점"
+        },
+        {
+          "returned_order": 4,
+          "title": "에이앤씨미디어",
+          "url": "https://ancmedia.kr/brand-market",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 days ago; ## K-뷰티와 헬스케어 트렌드를 이끄는 ... 약국 위상 변화: ‘조제’ 공간에서 ‘K-뷰티 & 헬스 쇼핑 채널’로 ... 방한 외국인 의료 소비의 핵심 방문지는 약국(64%)K-PHARMACY MARKET OVERVIEW * 출처: 한국관광공사 DATA LAB ... 최적의 마케팅 터치포인트 ... ### 연도별 방한 외국인 ... 단순 기념품이 아닌 ‘패키지/대량 구매’ 성향 ... 약국이라는 ‘신뢰’의 공간과 SNS의 ‘트렌드’가 결합하여, 고객의 구매 저항을 최소화합니다."
+        },
+        {
+          "returned_order": 5,
+          "title": "약국 마케팅, 손님이 몰리는 약국들의 운영 방식 3가지 - 마케팅 - 정보공유 - 아이보스",
+          "url": "https://www.i-boss.co.kr/ab-6141-70330",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 5 months ago; Crawled: last week; 약국을 운영하시는 국장님들이라면 한 번쯤 이런 고민 해보셨을 겁니다. ... 오늘은 약국에서 비교적 빠르게 적용해볼 수 있는 외국인 유입 중심 마케팅 방향 3가지를 정리해보겠습니다. ... 외국인 관광객이 한국에 와서 약국을 찾을 때 가장 많이 보는 플랫폼은 구글 지도입니다. ... 실제로 영양제, 피로회복 제품, 피부 관련 제품, 생활 의약품 관련 후기 콘텐츠가 꾸준히 올라오고 있습니다. ... 약국 마케팅도 이제 국내 고객만 보는 시대는 조금씩 바뀌고 있습니다. ... 내 상권에 어떤 국적의 고객이 많은지 먼저 보고,"
+        },
+        {
+          "returned_order": 6,
+          "title": "약국 마케팅 전략 3가지 | 외국인 관광객 잡는 2026 최신 노하우",
+          "url": "https://ts-bless.tistory.com/entry/knowhow-for-pharmacy-marketing",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 5 months ago; Crawled: 4 weeks ago; > 약국 마케팅, 이제는 동네 주민이 아니라 '외국인 관광객'을 잡아야 매출이 오릅니다.명동·홍대·강남 약국이 먼저 시작한 약국 마케팅 3가지 전략과 상권별 적용 방법을 정리합니다. ... K-뷰티를 시작으로 한국산 영양제, 일반 의약품, 숙취해소제, 파스, 재생 연고까지. ...   * 외국어 응대 가능 언어 명시 (English, 中文, 日本語 등) ... \"한국 여행 약국 꿀템\", \"서울 약국 추천\" 같은 검색어로 여행 전부터 쇼핑 리스트를 정리하는 문화가 자리 잡았습니다. ...   * 지방 관광지(부산·제주) → 인스타그램 + 구글 지도 동시 진행"
+        },
+        {
+          "returned_order": 7,
+          "title": "올영도 다이소도 아니었다…月 10억 버는 외국인 쇼핑 성지 | 한국경제",
+          "url": "https://www.hankyung.com/article/2026090451541",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: last month; Crawled: last month; Google 검색에서 한국경제 기사를 더 자주 볼 수 있습니다. ... 뷰티업계 관계자는 “이들 약국은 처방전을 내주는 병원이 아니라 관광객 동선을 따라 입지를 정한다”고 말했다.서울 대표 관광 상권인 명동의 신규 개설 약국 수는 2024년 2곳에 불과했지만 올해 1~8월엔 19곳에 달했다. ... 올리브영만 약을 떼어내고 뷰티 편집숍으로 갈아타 살아남았다.유통 대기업이 연달아 실패한 사업이 최근 외국인 수요에 힘입어 확대되고 있다.뷰티 편집숍의 진열 노하우와 마케팅 방법론을 약국이 그대로 흡수했다. ... 4일 유통업계에 따르면 무신사가 오는 11일 여는 초대형 뷰티 매장인 ‘무신사 뷰티 홍대’ 건물 지하 1층에 약국 체인 온누리H&C의 뷰티온누리약국 1호점이 들어선다. ... 과거 의료 관광이 한 차례 성형수술에 큰돈을 쓰는 것이었다면 지금은 레이저 시술을 받고 약국에서 케어 제품을 산다."
+        },
+        {
+          "returned_order": 8,
+          "title": "명동 약국이 외국인 관광객의 필수 코스가 된 이유 - 마케팅 - 정보공유 - 아이보스",
+          "url": "https://www.i-boss.co.kr/ab-6141-71349?PB_1330918089=17&PB_1499924161=2",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 2 months ago; Crawled: 5 days ago; # 명동 약국이 외국인 관광객의 필수 코스가 된 이유 ... 명동 상권에서 화장품 로드숍이 빠진 자리를, 관광객을 겨냥한 대형 약국이 채우고 있습니다. ... SNS발 확산 — 숏폼 콘텐츠로 '한국 약국 쇼핑' 후기가 퍼지며 여행 필수 코스로 정착 ... 타 업종의 외국인 마케팅 전략 설계 시 참고할 만한 사례입니다."
+        },
+        {
+          "returned_order": 9,
+          "title": "알리페이·위챗페이·텍스리펀드 해외결제 솔루션 | KS파트너스",
+          "url": "https://www.taxrefundkorea.com/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 weeks ago; 외국인 손님이 결제할 때, ... ## 매장 운영을 완성하는 ... ### 중국·일본·동남아 손님, 그냥 보내지 마세요. ... 외국인 고객 유치 마케팅 지원 ... 업종[Input: 예: 음식점, 의류점, 약국, 병원 등] ... 서울특별시 마포구 동교동 205-6, 8층 ... 알리페이 · 위챗페이 · 텍스리펀드 가맹점 모집 한국공식대행사.외국인 매출 + 기업 고정 매출 + 모든 결제 인프라를 한 번에."
+        },
+        {
+          "returned_order": 10,
+          "title": "에이앤씨미디어",
+          "url": "https://ancmedia.kr/brand-signage",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 5 days ago; 한국 화장품에 대한 호감도가 높은 외국인이 방문하며, 약국이라는 공신력을 이용해 K-더마 브랜드의 대량 구매가 일어나는 거점 ... 점심 및 퇴근 시간을 활용해 약국을 주기적으로 방문하는 타깃층으로, 트러블 케어와 안티에이징 등 일상적인 데일리 더마 케어 제품 소비가 활발한 타깃 ... SEOUL 공항·직장인 상권 20+MZ+ 외국인 상권 20+외국인 핵심 방문지 20+메디컬 상권 20+"
+        }
+      ],
+      "observations": {
+        "observed_format": "약국 운영자를 위한 시작 전 데이터 확인, 준비 순서·운영 3가지 체크리스트와 마케팅 서비스 페이지가 반환됨.",
+        "intent_interpretation": "사업자 정보 확인/준비 의도와 서비스 탐색이 혼재. 소비자의 제품·매장 찾기와 구분하여 운영자에게 대행 범위를 설명할 필요가 있음.",
+        "editorial_selection_questions": [
+          "우리 약국은 지도 기본정보와 외국어 상품·방문 안내 중 무엇부터 맡겨야 하는가?",
+          "진단에 필요한 실제 취급 품목, 주소·영업시간·사진 자료는 무엇인가?",
+          "운영 대행료·콘텐츠 제작 범위·광고비와 확인 가능한 성과를 어떻게 나누는가?"
+        ]
+      }
+    },
+    {
+      "query": "홍대 약국 외국인 마케팅",
+      "source": "web.run single-query discovery; engine/locale/rank not specified",
+      "review_scope": "First up to 10 returned source blocks in this tool response; returned_order is NOT a Google or Naver ranking",
+      "returned_sources_reviewed": [
+        {
+          "returned_order": 1,
+          "title": "2025 SEOUL",
+          "url": "https://assets.cushmanwakefield.com/-/media/cw/apac/south-korea/insights/research/2025-seoul-high-street-report_kor.pdf",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 10 months ago; 홍대는 10~20대 젊은 층과 외국인 관광객이 함께 형성 ... 공연·전시·버스킹 등 문화 콘텐츠가 결합된 상업 구조를 ... SNS 활용을 결합한 마케팅 전략을 강화하고 있다. ... 국인 관광객의 증가에 힘입어 상권은 견조한 흐름을 보"
+        },
+        {
+          "returned_order": 2,
+          "title": "5. MARKET SNAPSHOT",
+          "url": "https://assets.cushmanwakefield.com/-/media/cw/apac/south-korea/insights/research/2025-seoul-high-street-report_kor.pdf?rev=076bb241b09f4049a22213334b463871",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 10 months ago; 홍대는 10~20대 젊은 층과 외국인 관광객이 함께 형성하는 복합 소비 상권으로, 서울 내에서도 소비 트렌드 변화에 민감한 지역 중 하나이다.거리 문화와 예술적 감성이 공존하는 특성상, 패션·뷰티·F&B 업종뿐 아니라 공연·전시·버스킹 등 문화 콘텐츠가 결합된 상업 구조를 이루고 있다. ... MZ세대 비중이 높은 상권인 점을 고려해, 브랜드들은 오프라인 체험과 SNS 활용을 결합한 마케팅 전략을 강화하고 있다."
+        },
+        {
+          "returned_order": 3,
+          "title": "팝뷰(POPVIEW)",
+          "url": "https://popview.co.kr/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: last month; 일본, 대만, 홍콩 등의 영어권 국가들의 관광객을 대상으로 인스타그램과 구글맵 마케팅을 진행합니다. ... 샤오홍슈 리뷰, 따종디엔핑 평점 관리부터 중국인 관광객의 방문을 이끄는 컨텐츠 제작까지, 효과적인 중국 마케팅을 완성합니다. ... 오프라인 매장이 없는 제품은, 한국에 거주 중인 외국인 또는 내국인 크리에이터가 제품을 배송받아 직접 사용한 후 리얼 체험 컨텐츠를 제작·업로드하는 방식으로 마케팅을 진행합니다. ...   * 한·중·일·영 4개 국어 지원 ... “외국인 환자가 늘기 시작할 때 체험단을 진행했는데 예약이 폭주해서 지금은 빠르게 병원도 확장하고 있습니다.”"
+        },
+        {
+          "returned_order": 4,
+          "title": "약국 외국인 마케팅 시작 전 반드시 확인할 것은? 바로 데이터입니다.",
+          "url": "https://alb.openads.co.kr/content/contentDetail?contsId=20101",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: last month; Crawled: last week; 외국인 관광객을 대상으로 하는 약국 마케팅에서 가장 자주 생략되는 단계가 수요 측정입니다. ... 눈에 띄는 지점은 '약국영어'가 '약국마케팅'의 20배가 넘는다는 것입니다. ... 참고로 한국어 검색량은 강남약국 1,530회, 명동약국 1,290회, 홍대약국 1,120회로 강남이 1위입니다.국내 데이터만 보고 상권 우선순위를 정하면 외국인 대응에서는 순서가 뒤집힙니다. ... 약국 사례에서는 그 결과로 '명동은 일본어, 홍대는 번체'라는 실행 기준이 나왔습니다. ... 검색량은 네이버 검색광고 키워드 도구와 구글 애즈 키워드 데이터를 2026년 8월 8일 조회한 값."
+        },
+        {
+          "returned_order": 5,
+          "title": "[비크닉] 외국인들 약국에 줄 섰다…'K-뷰티 투어' 성지 된 홍대 핫플 | 뉴스레터 | 중앙일보",
+          "url": "https://www.joongang.co.kr/newsletter/bicnic/19941",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 6 days ago; # [비크닉] 외국인들 약국에 줄 섰다…'K-뷰티 투어' 성지 된 홍대 핫플 ... 인스타그램과 틱톡에서 수백만 조회 수를 기록한 ‘#한국 약국 투어(Korean Pharmacy Tour)’ 해시태그를 타고, ‘K-뷰티 투어의 필수 코스’로 떠오른 것이다. ... 미국·중국·일본 등 국가별로 따로 제작된 팸플릿과 각 나라 언어로 번역된 K-기초화장품 추천 안내문이 눈에 띈다. ... 그는 “화장품 시장이 지나치게 마케팅 중심으로 흘러가고 있다는 느낌을 받았다”며 “유효 성분이나 과학적 근거보다 콘셉트와 스토리가 앞서는 경우를 많이 봤다”고 말했다. ... 이어 “식당으로 치면 미슐랭 스타를 받을 수 있는 약국이 목표”라며 “한 명의 외국인 관광객에게 홍익약국의 경험은 곧 한국 여행의 전부일 수 있다”고 강조했다."
+        },
+        {
+          "returned_order": 6,
+          "title": "2026. 5. 18 (월)",
+          "url": "https://www.hankyung.com/koreamarket/consensus/pdf/2026-05-9c13cd38b557d1bec03602659a9ea086",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 4 months ago; 많이 발생하는 약국은 홍대/성수/명동/남대문, 부산 광안리와 남포동 등에 위치한 60개 정도에 불과하다. ... 하지만, 인구 감소로 약국 시장의 성장이 정체된 것은 사실이고, 외국인 약국 소비가 굉장히 빠르 ... 중장기적으로 올리브영 더마 매대에 있는 제품들은 다 약국으로 들어올 수 있다고 본다. ... * 다이소가 외국인들에게 선물용 화장품 구매로 인기 좋은 이유는 가격 때문이다."
+        },
+        {
+          "returned_order": 7,
+          "title": "약국서 화장품 싹 쓸어간다…외국인 몰리는 '홍대 약국' 정체 [비크닉]",
+          "url": "https://v.daum.net/v/20260214140239912",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 7 months ago; Crawled: 2 weeks ago; Image: 서울 마포구 홍대입구역 홍익약국 전경. ... 외국인 관광객이 몰리는 홍대 거리에서 요즘 가장 핫한 매장은 약국이다. ... 인스타그램과 틱톡에서 수백만 조회 수를 기록한 ‘#한국 약국 투어(Korean Pharmacy Tour)’ 해시태그를 타고, 약국이 ‘K-뷰티 투어의 필수 코스’로 떠오른 것이다. ... 미국·중국·일본 등 국가별로 따로 제작한 팸플릿과 국가별로 번역한 K-기초화장품 추천 안내문이 눈에 띈다."
+        },
+        {
+          "returned_order": 8,
+          "title": "[르포] 캐리어 끌고 재생크림 싹쓸이… 외국인 'K-약국 쇼핑' 둘러보니 | 아주경제",
+          "url": "https://www.ajunews.com/view/20260619134539936",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 3 months ago; Crawled: 3 weeks ago; 한국관광공사에 따르면 지난 5월 방한 외국인 관광객의 카드 소비액은 2조1222억원으로 집계됐다. ... 홍대 상권에서는 피부과 시술을 마친 외국인 관광객들이 마스크를 쓴 채 약국을 찾는 모습이 자주 눈에 띄었다. ... 외국인들의 의약품·화장품 쇼핑이 늘면서 약국들도 영어·중국어·일본어 등 외국어 가능 인력을 배치해 제품 설명을 하는가 하면 약사의 복약지도도 통역하는 등 맞춤형 서비스에 나섰다."
+        },
+        {
+          "returned_order": 9,
+          "title": "[(주)와우바이오텍] [K뷰티] 약국영업/MD/마케팅/영업지원/해외담당자 모집 - 사람인",
+          "url": "https://www.saramin.co.kr/zf_user/jobs/view?rec_idx=54338992",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 3 weeks ago;      (국내 및 외국인 상권 - 명동/홍대/성수 등) ... 마케팅 담당 ㆍ약국용 건강식품/이너뷰티/화장품 바이럴 마케팅 ... 마케팅 ㆍ중국,일본, 대만 등 해외마케팅"
+        },
+        {
+          "returned_order": 10,
+          "title": "[현장]K-뷰티 타고 뜨는 '약국템'…무신사·온누리 결합에 약국가 긴장",
+          "url": "https://v.daum.net/v/20260911124300163",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 3 weeks ago; Crawled: last week; 특히 약국 화장품과 피부·두피 관련 일반의약품 등이 처방조제 외 약국의 새로운 매출 아이템으로 주목받고 있는 상황에서 대형 플랫폼의 집객력과 마케팅 역량을 갖춘 약국의 등장은 약국가에서는 우려의 목소리가 높다.무신사 뷰티와 온누리약국체인은 오늘(11일) 서울 마포구 홍대 인근에 문을 연 무신사 뷰티 첫 오프라인 매장 '무신사 뷰티 홍대'에서 뷰티와 약국을 결합한 '뷰티온누리약국'을 선보였다. ... 실제로 개점 당일에도 외국인 고객이 특정 제품의 취급 여부를 문의해 구매하는 사례가 있었으며, 올리브영이나 무신사 등에서 쉽게 구할 수 없는 제품을 찾는 수요도 있다는 게 약국장의 설명이다."
+        }
+      ],
+      "observations": {
+        "observed_format": "약국 쇼핑/홍대 상권 뉴스·연구자료·구인과 일부 일반 약국 마케팅/서비스 페이지가 반환됨.",
+        "intent_interpretation": "이 표본에서 정확한 지역+업종+B2B 조합의 대행 선택 의도는 확인하기 어려움. 일반 홍대 약국 찾기 또는 트렌드 뉴스와 혼합된 결과이며 검색량 없음의 근거가 아님.",
+        "editorial_selection_questions": [
+          "홍대 약국 운영자가 외국인 방문 문의를 늘리려면 지도관리와 다국어 설명 중 어떤 대행 범위가 필요한가?",
+          "명동약국/일반약국 글과 다른 홍대 고유 운영 질문·원본 사례가 있는가?"
+        ]
+      }
+    },
+    {
+      "query": "성수 에스테틱 외국인 마케팅",
+      "source": "web.run single-query discovery; engine/locale/rank not specified",
+      "review_scope": "First up to 10 returned source blocks in this tool response; returned_order is NOT a Google or Naver ranking",
+      "returned_sources_reviewed": [
+        {
+          "returned_order": 1,
+          "title": "성수동 피부관리·에스테틱 리뷰 많은 TOP 5 · 26.10",
+          "url": "https://dangolpick.co.kr/local/seongsu-skincare",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 3 days ago; ## 한눈에 보는 성수동 피부관리·에스테틱 마케팅 ... 홈페이지·플레이스·인스타의 문구에서 \"시술\", \"치료\" 같은 의료 표현을 \"관리\", \"케어\"로 바꾸는 것이 첫 번째입니다. ... Image 성수동 피부관리·에스테틱 상권 이야기성수역·연무장길 일대 손님 흐름과 시작 순서 ... 성수역·연무장길 쪽에 처음 오는 손님이 많다는 것은 검색과 SNS에서 어떻게 보이느냐가 매출에 직결된다는 뜻입니다."
+        },
+        {
+          "returned_order": 2,
+          "title": "오아시스테라피 성수 - 에스테틱",
+          "url": "https://seolletrip.com/ko/shop/aesthetics/oasis-therapy-seongsu",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 6 days ago; KST (한국 표준시) ... 몸이 너무 뻐근해서 휴일에 방문했어요~ 조용하고 고급진 분위기가 정말 좋았고 선생님들 전부 친절하셔서 너무 기분 좋게 받고 갑니다🫶🏼… ... 스톤 테라피 (70분) [회원가] ₩90,000 스톤 테라피 (100분) [회원가] ₩120,000 스톤 테라피 (130분) [회원가] ₩150,000 ... 오아시스테라피 성수는 서울 성수에 위치한 에스테틱·스파입니다.페이셜·마사지·바디케어 등 9개 관리 프로그램을 제공하며, 설레(Seolle)를 통해 다국어로 예약·상담할 수 있습니다. ... 일부 업체는 소액의 예약금이 필요하며, 취소 시 전액 환불됩니다."
+        },
+        {
+          "returned_order": 3,
+          "title": "성수 카페 외국인 손님 속 해외 같은 분위기, 무화과 수플레 5to7 성수본점 · Superchart",
+          "url": "https://superchart.com/ko/%40how-it-feels/seongsu-fig-souffle-foreign-vibe-cafe/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: last week; Crawled: 4 days ago; 작성자는 무화과 수플레 22,000원과 더치 아메리카노, 디카페인 아메리카노를 주문했고, 작성자 일행을 빼면 손님 대부분이 서양인이라 해외 현지 카페에 온 듯한 분위기였다고 해요. ... 순간 성수에 있는 카페가 아니라 해외여행 중 현지 카페에 들어온 것 같은 느낌~ 성수동은 외국인 관광객들도 많이 찾는 곳이라고 생각은 했지만, 이날처럼 한 공간에 이렇게 많은 외국인 손님이 있는 건 처음이라 신기했어요. ... 수플레와 생크림이 달콤한 편이라 깔끔한 커피를 같이 마셔주면 입안이 클렌징되어서 궁합이 좋았어요. ... Image: 5to7 성수본점 테라스 5to7 성수본점 테라스 Image: 5to7 성수본점 매장 모습 Image: 5to7 성수본점 매장 공간 Image: 5to7 성수본점 매장 가로 사진 Image: 5to7 성수본점 내부 5to7 성수본점 내부 ... 무엇보다 이날은 외국인 손님들이 정말 많아서 그 모습 자체가 인상적이었어요.저희 테이블만 한국인이고 주변 테이블이 거의 서양인이다 보니 카페 안 분위기가 굉장히 독특하게 느껴졌답니다 ㅎㅎ"
+        },
+        {
+          "returned_order": 4,
+          "title": "<visual_element id=\"e1\">",
+          "url": "https://assets.cushmanwakefield.com/-/media/cw/apac/south-korea/insights/research/2025-seoul-high-street-report_kor.pdf?rev=076bb241b09f4049a22213334b463871",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 10 months ago; 한국관광공사 자료에 따르면, 명동은 2023년에 이어 2024년에도 서울 외국인 방문 규모 1위 지역으로 확고한 우위를 유지했으며, 방문객 수는 전년 대비 32% 증가했다. ... 또한 최근 외국인 의료 관광, 특히 피부과·에스테틱 등 뷰티 서비스 이용 목적의 방문이 증가하고 있다. ... 성수는 팝업스토어와 국내외 패션·뷰티 브랜드의 대형 플래그십 스토어가 즐비하고, 창고·공장지대를 기반으로 한 문화·예술·갤러리 공간과 F&B의 결합이 성수만의 독자적 매력을 형성하고 있다."
+        },
+        {
+          "returned_order": 5,
+          "title": "체키 Checkie — 성수 게임 테마파크",
+          "url": "https://checkie.co.kr/ko",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: last week; 성수의 게임 테마파크 · OPEN NOW ... 현장 탑승 (20분)예약 탑승 (50분) ... 마음에 드는 투어를 선택하세요 ... · 오늘, 가장 재밌는 게임 한 판! ... 체키 성수서울특별시 성동구 성수동2가 301-8 지하1층 B1F, 301-8 Seongsu-dong 2-ga, Seongdong-gu, Seoul ... 별도의 주차공간이 없습니다."
+        },
+        {
+          "returned_order": 6,
+          "title": "맵달SEOUL 성수 대관 | 성수 생일카페 | 덕플레이스",
+          "url": "https://dukplace.com/ko/place/cafe/detail/17725",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 days ago; Image: 맵달SEOUL 성수 사진 6장 전체보기 ... 외국인 가능 ... 신청 가능한 날짜를 고르면 로그인 후에도 선택이 유지됩니다. ... 회색으로 표시된 날짜는 이미 예약되었거나 대관이 불가능한 날짜입니다. ... Image: 맵달SEOUL 성수 공간 이미지 1 Image: 맵달SEOUL 성수 공간 이미지 2 Image: 맵달SEOUL 성수 공간 이미지 3 Image: 맵달SEOUL 성수 공간 이미지 4 Image: 맵달SEOUL 성수 공간 이미지 5"
+        },
+        {
+          "returned_order": 7,
+          "title": "2025 SEOUL",
+          "url": "https://assets.cushmanwakefield.com/-/media/cw/apac/south-korea/insights/research/2025-seoul-high-street-report_kor.pdf",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Published: 10 months ago; Note: 각 괄호 안의 비율은 7대 상권 전체 외국인 관광객 방문수 대비 해당 상권이 차지하는 비중을 의미함. ... 외국인 관광객 방문지: 명동은 굳건한 1위, 성수는 핫플레이스로 부상 ... 한국관광공사 자료에 따르 ... 이외에도 강남(31%), 한남·이태원(37%), 가로수길 ... 관광, 특히 피부과·에스테틱 등 뷰티 서비스 이용 목적"
+        },
+        {
+          "returned_order": 8,
+          "title": "성수동 카페 마케팅, 뭐부터 해야 할까요? 체크리스트·광고 규제 | 단골픽",
+          "url": "https://dangolpick.co.kr/local/seongsu-cafe",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 4 weeks ago; 성수역·연무장길 일대 카페 마케팅, 뭐부터 할지 막막하다면. ... 성수동은 팝업스토어의 성지로 트렌드가 가장 빨리 도는 상권이라 더욱 그렇습니다. ... 성수역·연무장길 쪽에 처음 오는 손님이 많다는 것은 검색과 SNS에서 어떻게 보이느냐가 매출에 직결된다는 뜻입니다. ... 플레이스와 인스타를 한 세트로 관리해야 합니다."
+        },
+        {
+          "returned_order": 9,
+          "title": "ETF베이커리 성수 | 서울특별시 성동구 성수동2가 | 베이커리 | 당근 동네 업체",
+          "url": "https://www.daangn.com/kr/local-profile/etf%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC-%EC%84%B1%EC%88%98-3sk453cm2vmr/",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: 2 days ago; ·후기 11 서울시 성동구 성수동2가·베이커리 ...   * 서울 성동구 성수이로16길 32 주3 1, 2층 ... 가격대도 저렴한 편이고 야외 풍경이 참 아름답네요.지난번에는 포장만 했었는데 이번에는 야외에 자리를 잡고 빵이랑 음료를 같이 즐겼어요."
+        },
+        {
+          "returned_order": 10,
+          "title": "에그마카슈 성수> 여행지 :대한민국 구석구석",
+          "url": "https://korean.visitkorea.or.kr/detail/ms_detail.do?cotid=41c703e4-0b69-4c65-aa2e-b04e857223ef",
+          "retrieval_metadata_and_snippet": "[wordlim: 200] Crawled: yesterday; 에그마카슈 성수는 서울 지하철 2호선 뚝섬역 4번 출구에서 약 300미터 주택단지에 있다.매장 앞 주차 공간이 마련되어 있다.원도심 한복판에 있다 보니 주차장이 협소하여 방문 시 자가용보다는 버스나 지하철 등 대중교통을 이용하는 것이 편리하다. ... 대표 메뉴로는 에그타르트, 초코타르트, 견과타르트, 고구마타르트, 마카롱(크림치즈/유자/녹차/요거트/레몬/초코/인절미/흑임자) 등이 있다.카페 인근에 성수동 카페거리, 성수동 구두테마공원, 서울숲 등이 있어 산책하기에도 좋은 곳이다. ... ※ 반려동물 동반 여행정보는 현지 사정에 따라 변동될 수 있으므로 반드시 방문 전 문의 부탁드립니다."
+        }
+      ],
+      "observations": {
+        "observed_format": "지역 에스테틱 비교 목록, 실제 매장 프로그램·예약 상세, 무관한 성수 소비자 매장 페이지와 일부 지역 마케팅 체크리스트가 반환됨.",
+        "intent_interpretation": "소비자의 관리 프로그램·매장 비교/예약 탐색이 상당히 섞여 있어 정확한 B2B 대행 수요는 이 표본으로 확정할 수 없음.",
+        "editorial_selection_questions": [
+          "성수 에스테틱 운영자가 대행을 맡길 때 실제 비의료 서비스·소요시간·가격/예약조건을 어디까지 준비해야 하는가?",
+          "지도에서 발견된 뒤 다국어 서비스 설명과 실제 예약 링크까지 누가 관리하는가?",
+          "광고 운영만 맡길지, 지도·서비스 설명·예약 동선까지 함께 맡길지 어떻게 비교하는가?"
+        ]
+      }
+    }
+  ],
+  "primary_sources": [
+    {
+      "title": "Google Search: 유용하고 신뢰할 수 있는 사용자 중심 콘텐츠 만들기",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko",
+      "fact_scope": "특정 독자에게 독창적이며 충분한 정보를 제공하고 읽은 뒤 목적을 달성하도록 돕는 콘텐츠 원칙. 검색 엔진을 위한 지역명 바꿔쓰기의 효과를 보장하지 않음."
+    },
+    {
+      "title": "Google Business Profile: 지역 검색결과 순위를 높이기 위한 도움말",
+      "url": "https://support.google.com/business/answer/7091?hl=ko",
+      "fact_scope": "완전하고 정확한 비즈니스 정보·사진·리뷰 응답; 관련성/거리/명성 설명. 순위를 구매하거나 요청해 보장할 수 없음."
+    },
+    {
+      "title": "Google Business Profile: 비즈니스 정보를 게시하는 방식과 관련된 가이드라인",
+      "url": "https://support.google.com/business/answer/3038177?hl=ko",
+      "fact_scope": "실제 사업체를 정확히 반영하고 정책을 준수하는 정보를 제공해야 함. 개별 약국/에스테틱의 적법성이나 실제 상품 범위를 이번 조사에서 판정하지 않음."
+    },
+    {
+      "title": "Google Business Profile: 서드 파티와 협력하여 프로필을 관리하기 위한 도움말",
+      "url": "https://support.google.com/business/answer/7163406?hl=ko",
+      "fact_scope": "유사한 예산/타깃·관리 경험·다른 서비스 확인, 서비스와 비용이 명확한 계약, 월간 실적 확인·접근권한 관리·순위 보장 경계."
+    },
+    {
+      "title": "BlinkAd 외국인마케팅 현재 공식 서비스",
+      "url": "https://www.blinkad.kr/foreign-marketing",
+      "fact_scope": "자사 서비스 범위 확인용: GBP·구글맵 리뷰·다국어 콘텐츠·웹사이트/블로그 연결; 노출진단→프로필정보→리뷰/게시물→공식 콘텐츠; 무료진단 CTA와 문의 폼 존재. 효과/매출/순위의 독립 검증 근거로 쓰지 않음."
+    }
+  ],
+  "followup_application_editorial_only": [
+    {
+      "id": "06",
+      "subject": "홍대약국",
+      "status": "후속 후보; 원고 작성/발행 없음",
+      "application": "지도/언어/방문 정보를 어떤 범위로 대행할지 판단하는 운영자 글. 일반약국·명동약국과 구별할 실제 자료가 필요.",
+      "evidence_level": "4-query observation plus editorial inference, not measured exact-keyword volume"
+    },
+    {
+      "id": "07",
+      "subject": "홍대피부과",
+      "status": "후속 후보; 이번4개 쿼리에는 해당 정확 검색어를 조회하지 않음",
+      "application": "대행·공식 의료정보·다국어 문의/예약의 담당 범위를 구분하는 사업자 질문 후보.",
+      "evidence_level": "editorial hypothesis only; no inherited hospital facts"
+    },
+    {
+      "id": "08",
+      "subject": "성수에스테틱",
+      "status": "후속 후보; 원고 작성/발행 없음",
+      "application": "실제 비의료 관리 설명·예약조건을 지도/다국어 콘텐츠/예약 동선으로 어디까지 대행할지 결정.",
+      "evidence_level": "mixed-result observation plus editorial inference; exact B2B intent not confirmed"
+    },
+    {
+      "id": "09",
+      "subject": "성수약국",
+      "status": "후속 후보; 이번4개 쿼리에는 해당 정확 검색어를 조회하지 않음",
+      "application": "실제 품목·상품질문과 지도 방문관리의 관계를 검토. 06과 다른 자료가 없다면 분리 필요성을 재검토.",
+      "evidence_level": "general pharmacy-query observation plus editorial hypothesis"
+    },
+    {
+      "id": "10",
+      "subject": "성수미용실",
+      "status": "후속 후보; 이번4개 쿼리에는 해당 정확 검색어를 조회하지 않음",
+      "application": "실제 스타일/서비스 조건/예약 링크의 대행 범위 비교 후보. 기존 홍대미용실 글과 고유 자료로 차별화 필요.",
+      "evidence_level": "editorial hypothesis only"
+    }
+  ],
+  "conclusion": "대행 비교·선택을 중심에 두고 서비스 범위/초기 준비/비용·계약/유사 경험/월간 실적·문의 연결의 선택 질문을 제시하는 것이 기획상 적합하다. 이 문장은 관찰 자료를 토대로 한 편집 판단이며 실제 검색자의 의도 조사나 수요 순위가 아니다.",
+  "limits": [
+    "직접 Google SERP 4/4 CAPTCHA, 정상 SERP/순위/PAA 확인 불가.",
+    "웹검색 도구 4개 단일-query 응답 각 첫10 source블록은 발견/형식 자료이며 Google/Naver 순위·한국 검색량이 아님.",
+    "뉴스·경쟁사·홍보문서의 매출, 통계, 국적별 행동, 성과 및 리뷰/상위노출 보장 주장을 사실 근거로 채택하지 않음.",
+    "질문은 편집 제안이며 실제 검색 PAA/자동완성 문구나 고객 문의 원문이 아님.",
+    "실제 타깃 언어·비용·계약조건·채널별 효과·문의실적·AI성과는 미측정.",
+    "홍대피부과/성수약국/성수미용실의 정확 쿼리는 이번4개 표본으로 조사되지 않았음."
+  ],
+  "public_source_failure": [
+    {
+      "url": "https://support.google.com/business/answer/4579699?hl=ko",
+      "failure": "web open inaccessible; did not use as factual source; followed current official local-ranking page link to correct7163406 instead"
+    }
+  ],
+  "writes": {
+    "site": 0,
+    "repo": 0,
+    "notion": 0,
+    "account_settings": 0,
+    "form_submissions": 0,
+    "paid_queries": 0,
+    "temp_evidence_only": true
+  }
+}
