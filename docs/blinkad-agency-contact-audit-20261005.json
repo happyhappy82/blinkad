@@ -1,0 +1,2044 @@
+{
+  "checkedAt": "2026-10-05T16:53:18.987907+09:00",
+  "url": "https://www.blinkad.kr/contact",
+  "repoHead": "51bdc82b910dda29a0b0da049997dd58ce19cc16",
+  "browserEvidence": "/tmp/blinkad-external-contact-20261005/browser-results.json",
+  "browserSummary": {
+    "cases": 6,
+    "http200": 6,
+    "redirects": 0,
+    "visibleForm": 6,
+    "applicationPageErrors": 0,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "inputsEntered": 0,
+    "submissionsAttempted": 0,
+    "sourceSamplesAreFinalCampaignValues": false
+  },
+  "observed": [
+    "All six plain/OpenAds sample UTM/Naver Premium sample UTM cases retain the same name/phone/message form with submit visible and no horizontal page overflow.",
+    "All four UTM cases retain all five supplied UTM values in aj_utm_* cookies, domain .blinkad.kr, Secure, SameSite Lax.",
+    "GTM-K2TTW7SV script returns HTTP 200 in all six cases. Automatic Google Analytics collect POSTs were attempted and blocked by the audit route; receipt and conversion reporting were not verified.",
+    "window.gtag is undefined at the recorded loaded state in all six cases.",
+    "Exact final-plan 10 URLs also pass HTTP 200, no redirect, visible same form and all four UTM cookie values match; OpenAds five desktop cases and Naver Premium five mobile cases. No application page errors. Campaign/content are exact planned values."
+  ],
+  "sourceFacts": [
+    {
+      "fact": "Default contact opens general free diagnosis modal automatically; source is fixed premium_content_contact.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/DiagnosisContactPage.tsx",
+      "lines": [
+        8,
+        43,
+        47
+      ]
+    },
+    {
+      "fact": "Known Nest service/topic may select a different form; UTM-only does not select Nest.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/app/(korean)/contact/page.tsx",
+      "lines": [
+        8,
+        11,
+        28,
+        35
+      ]
+    },
+    {
+      "fact": "Name and phone required by JavaScript; message optional; no store/business/service fields in default form. HTML required is absent.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/DiagnosisModal.tsx",
+      "lines": [
+        55,
+        75,
+        162,
+        205
+      ]
+    },
+    {
+      "fact": "Submission is programmed to POST name/phone/message/source/submittedAt plus tracking object; actual submission not tested.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/DiagnosisModal.tsx",
+      "lines": [
+        85,
+        101
+      ]
+    },
+    {
+      "fact": "Tracker captures five UTM values in 7200-second cookies.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/lib/tracker.ts",
+      "lines": [
+        81,
+        140
+      ]
+    },
+    {
+      "fact": "Submission tracking includes utm_source/medium/campaign/content/term, referrer and landing.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/lib/tracker.ts",
+      "lines": [
+        424,
+        446
+      ]
+    },
+    {
+      "fact": "GA client ID helper returns empty when window.gtag is not a function; loaded-state undefined was observed but actual inquiry payload was not sent.",
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/lib/tracker.ts",
+      "lines": [
+        336,
+        354,
+        455,
+        466
+      ]
+    }
+  ],
+  "limitations": [
+    "No external platform post/click was tested; provided contact URL and audit UTM variants were loaded directly. Real referrer preservation from OpenAds/Naver was not measured.",
+    "No form input, submit, endpoint/CRM receipt, GA4 DebugView or conversion report checked. All non-GET/HEAD/OPTIONS browser requests blocked to prevent writes.",
+    "No actual phone keyboard/mobile-device/assistive-technology usability test. Responsive Chromium desktop/mobile viewport rendering and screenshots checked.",
+    "Source is current local worktree only; browser confirms visible form/cookie behavior, not equality of all live JS bundles to local source."
+  ],
+  "sources": [
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/app/(korean)/contact/page.tsx",
+      "sha256": "c8bcdc141263dbbd9ebbe23e21c2731928f1dbf7f00119fc60ffb729cd166a17"
+    },
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/DiagnosisContactPage.tsx",
+      "sha256": "88b27916808e798863b29ec10948357cc577030095b9e32219686db639d030dd"
+    },
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/DiagnosisModal.tsx",
+      "sha256": "0ca902887f167e0b001b745ba5575266544a3b3f5b340aa0c58ae450a0b26f62"
+    },
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/Tracker.tsx",
+      "sha256": "9b19e9b9237fb8593f5e4b79064056ee067d9f5e53a3c885e1e48ea1fc1d1e49"
+    },
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/components/SiteDocument.tsx",
+      "sha256": "30076110f1dfebd498fd64470d48e97d475325045671ec720cadacf8a666e129"
+    },
+    {
+      "path": "/tmp/blinkad-inquiry-content-resume-20261005/lib/tracker.ts",
+      "sha256": "d52ba707f502adf249a320a9e54ba635a234297b9f982d5dcf3b793e9e34349c"
+    }
+  ],
+  "exactFinalPlanEvidence": "/tmp/blinkad-external-contact-20261005/final-links-results.json",
+  "exactFinalPlanSummary": {
+    "urls": 10,
+    "http200": 10,
+    "redirects": 0,
+    "utmMatches": 10,
+    "applicationPageErrors": 0,
+    "campaign": "foreign_marketing_agency",
+    "contentValues": [
+      "agency_01",
+      "agency_02",
+      "agency_03",
+      "agency_04",
+      "agency_05"
+    ],
+    "openadsViewport": "1440x1000",
+    "naverPremiumViewport": "390x844",
+    "inputsEntered": 0,
+    "submissionsAttempted": 0
+  },
+  "browserCases": [
+    {
+      "checkedAt": "2026-10-05T07:51:06.203Z",
+      "channel": "plain",
+      "url": "https://www.blinkad.kr/contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 529,
+          "y": 393.5,
+          "width": 382,
+          "height": 405,
+          "bottom": 798.5,
+          "right": 911
+        },
+        "modalRect": {
+          "x": 496,
+          "y": 168.5,
+          "width": 448,
+          "height": 663,
+          "bottom": 831.5,
+          "right": 944
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 529,
+              "y": 421.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 471.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 529,
+              "y": 519.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 569.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 529,
+              "y": 617.5,
+              "width": 382,
+              "height": 98,
+              "bottom": 715.5,
+              "right": 911
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 529,
+            "y": 742.5,
+            "width": 382,
+            "height": 56,
+            "bottom": 798.5,
+            "right": 911
+          }
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "pageScrollWidth": 1440,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193865.392673
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193865.392711
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://g.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": "/tmp/blinkad-external-contact-20261005/contact-desktop.png",
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "checkedAt": "2026-10-05T07:51:08.579Z",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 529,
+          "y": 393.5,
+          "width": 382,
+          "height": 405,
+          "bottom": 798.5,
+          "right": 911
+        },
+        "modalRect": {
+          "x": 496,
+          "y": 168.5,
+          "width": 448,
+          "height": 663,
+          "bottom": 831.5,
+          "right": 944
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 529,
+              "y": 421.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 471.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 529,
+              "y": 519.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 569.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 529,
+              "y": 617.5,
+              "width": 382,
+              "height": 98,
+              "bottom": 715.5,
+              "right": 911
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 529,
+            "y": 742.5,
+            "width": 382,
+            "height": 56,
+            "bottom": 798.5,
+            "right": 911
+          }
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "pageScrollWidth": 1440,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831009
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831086
+        },
+        {
+          "name": "aj_utm_source",
+          "value": "openads",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831117
+        },
+        {
+          "name": "aj_utm_medium",
+          "value": "referral",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.83114
+        },
+        {
+          "name": "aj_utm_campaign",
+          "value": "foreign_marketing_inquiry_202610",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831159
+        },
+        {
+          "name": "aj_utm_term",
+          "value": "agency_contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831179
+        },
+        {
+          "name": "aj_utm_content",
+          "value": "topic01",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193866.831198
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://e.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": null,
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "checkedAt": "2026-10-05T07:51:10.982Z",
+      "channel": "naver-premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 529,
+          "y": 393.5,
+          "width": 382,
+          "height": 405,
+          "bottom": 798.5,
+          "right": 911
+        },
+        "modalRect": {
+          "x": 496,
+          "y": 168.5,
+          "width": 448,
+          "height": 663,
+          "bottom": 831.5,
+          "right": 944
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 529,
+              "y": 421.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 471.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 529,
+              "y": 519.5,
+              "width": 382,
+              "height": 50,
+              "bottom": 569.5,
+              "right": 911
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 529,
+              "y": 617.5,
+              "width": 382,
+              "height": 98,
+              "bottom": 715.5,
+              "right": 911
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 529,
+            "y": 742.5,
+            "width": 382,
+            "height": 56,
+            "bottom": 798.5,
+            "right": 911
+          }
+        },
+        "viewport": {
+          "width": 1440,
+          "height": 1000
+        },
+        "pageScrollWidth": 1440,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.20754
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.207589
+        },
+        {
+          "name": "aj_utm_source",
+          "value": "naver_premium",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.207624
+        },
+        {
+          "name": "aj_utm_medium",
+          "value": "referral",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.20767
+        },
+        {
+          "name": "aj_utm_campaign",
+          "value": "foreign_marketing_inquiry_202610",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.207695
+        },
+        {
+          "name": "aj_utm_term",
+          "value": "agency_contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.207717
+        },
+        {
+          "name": "aj_utm_content",
+          "value": "topic01",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193869.207738
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://h.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": null,
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "checkedAt": "2026-10-05T07:51:13.553Z",
+      "channel": "plain",
+      "url": "https://www.blinkad.kr/contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 49,
+          "y": 315.5,
+          "width": 292,
+          "height": 405,
+          "bottom": 720.5,
+          "right": 341
+        },
+        "modalRect": {
+          "x": 16,
+          "y": 90.5,
+          "width": 358,
+          "height": 663,
+          "bottom": 753.5,
+          "right": 374
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 49,
+              "y": 343.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 393.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 49,
+              "y": 441.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 491.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 49,
+              "y": 539.5,
+              "width": 292,
+              "height": 98,
+              "bottom": 637.5,
+              "right": 341
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 49,
+            "y": 664.5,
+            "width": 292,
+            "height": 56,
+            "bottom": 720.5,
+            "right": 341
+          }
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "pageScrollWidth": 390,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193871.725177
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193871.725219
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://u.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": "/tmp/blinkad-external-contact-20261005/contact-mobile.png",
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "checkedAt": "2026-10-05T07:51:15.900Z",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 49,
+          "y": 315.5,
+          "width": 292,
+          "height": 405,
+          "bottom": 720.5,
+          "right": 341
+        },
+        "modalRect": {
+          "x": 16,
+          "y": 90.5,
+          "width": 358,
+          "height": 663,
+          "bottom": 753.5,
+          "right": 374
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 49,
+              "y": 343.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 393.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 49,
+              "y": 441.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 491.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 49,
+              "y": 539.5,
+              "width": 292,
+              "height": 98,
+              "bottom": 637.5,
+              "right": 341
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 49,
+            "y": 664.5,
+            "width": 292,
+            "height": 56,
+            "bottom": 720.5,
+            "right": 341
+          }
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "pageScrollWidth": 390,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.132182
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.13224
+        },
+        {
+          "name": "aj_utm_source",
+          "value": "openads",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.132279
+        },
+        {
+          "name": "aj_utm_medium",
+          "value": "referral",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.132306
+        },
+        {
+          "name": "aj_utm_campaign",
+          "value": "foreign_marketing_inquiry_202610",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.13233
+        },
+        {
+          "name": "aj_utm_term",
+          "value": "agency_contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.132349
+        },
+        {
+          "name": "aj_utm_content",
+          "value": "topic01",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193874.132387
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://b.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": null,
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "checkedAt": "2026-10-05T07:51:18.233Z",
+      "channel": "naver-premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_inquiry_202610&utm_content=topic01&utm_term=agency_contact",
+      "status": 200,
+      "redirects": [],
+      "render": {
+        "title": "무료 업장 진단 | BlinkAd",
+        "h1": "우리 업장도 상위노출 가능할까?",
+        "formCount": 1,
+        "formRect": {
+          "x": 49,
+          "y": 315.5,
+          "width": 292,
+          "height": 405,
+          "bottom": 720.5,
+          "right": 341
+        },
+        "modalRect": {
+          "x": 16,
+          "y": 90.5,
+          "width": 358,
+          "height": 663,
+          "bottom": 753.5,
+          "right": 374
+        },
+        "modalScrollHeight": 661,
+        "modalClientHeight": 661,
+        "fields": [
+          {
+            "id": "diagnosis-name",
+            "name": "name",
+            "type": "text",
+            "required": false,
+            "valueEmpty": true,
+            "label": "이름 *",
+            "rect": {
+              "x": 49,
+              "y": 343.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 393.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-phone",
+            "name": "phone",
+            "type": "tel",
+            "required": false,
+            "valueEmpty": true,
+            "label": "전화번호 *",
+            "rect": {
+              "x": 49,
+              "y": 441.5,
+              "width": 292,
+              "height": 50,
+              "bottom": 491.5,
+              "right": 341
+            }
+          },
+          {
+            "id": "diagnosis-message",
+            "name": "message",
+            "type": "textarea",
+            "required": false,
+            "valueEmpty": true,
+            "label": "궁금한 점 (선택)",
+            "rect": {
+              "x": 49,
+              "y": 539.5,
+              "width": 292,
+              "height": 98,
+              "bottom": 637.5,
+              "right": 341
+            }
+          }
+        ],
+        "submit": {
+          "text": "진단 신청하기",
+          "disabled": false,
+          "rect": {
+            "x": 49,
+            "y": 664.5,
+            "width": 292,
+            "height": 56,
+            "bottom": 720.5,
+            "right": 341
+          }
+        },
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "pageScrollWidth": 390,
+        "visibleModal": true,
+        "gtmInstalled": true,
+        "gtagType": "undefined",
+        "dataLayerEvents": [
+          "gtm.js",
+          "gtm.dom",
+          "gtm.scrollDepth",
+          "gtm.load"
+        ],
+        "clarityType": "function"
+      },
+      "cookies": [
+        {
+          "name": "aj_landing",
+          "value": "https://www.blinkad.kr/contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.462905
+        },
+        {
+          "name": "aj_referrer",
+          "value": "direct",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.46296
+        },
+        {
+          "name": "aj_utm_source",
+          "value": "naver_premium",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.462994
+        },
+        {
+          "name": "aj_utm_medium",
+          "value": "referral",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.463042
+        },
+        {
+          "name": "aj_utm_campaign",
+          "value": "foreign_marketing_inquiry_202610",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.463096
+        },
+        {
+          "name": "aj_utm_term",
+          "value": "agency_contact",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.463124
+        },
+        {
+          "name": "aj_utm_content",
+          "value": "topic01",
+          "domain": ".blinkad.kr",
+          "path": "/",
+          "secure": true,
+          "sameSite": "Lax",
+          "expires": 1791193876.463163
+        }
+      ],
+      "blockedWrites": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect"
+        }
+      ],
+      "failures": [
+        {
+          "method": "POST",
+          "url": "https://analytics.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://stats.g.doubleclick.net/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://www.google.com/g/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        },
+        {
+          "method": "POST",
+          "url": "https://j.clarity.ms/collect",
+          "failure": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        }
+      ],
+      "pageErrors": [],
+      "tagResponses": [
+        {
+          "status": 200,
+          "url": "https://www.googletagmanager.com/gtm.js"
+        }
+      ],
+      "screenshot": null,
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    }
+  ],
+  "exactFinalPlanCases": [
+    {
+      "id": "BLK-AGENCY-01-NAVER_PREMIUM",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:55.476Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_01"
+      },
+      "actualUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_01"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-01-OPENADS",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:55.476Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "expectedUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_01"
+      },
+      "actualUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_01"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-02-NAVER_PREMIUM",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:56.819Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_02"
+      },
+      "actualUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_02"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-02-OPENADS",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:55.471Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "expectedUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_02"
+      },
+      "actualUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_02"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-03-NAVER_PREMIUM",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:56.969Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_03"
+      },
+      "actualUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_03"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-03-OPENADS",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:56.626Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "expectedUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_03"
+      },
+      "actualUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_03"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-04-NAVER_PREMIUM",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:57.916Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_04"
+      },
+      "actualUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_04"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-04-OPENADS",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:57.866Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "expectedUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_04"
+      },
+      "actualUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_04"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-05-NAVER_PREMIUM",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:58.985Z",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "expectedUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_05"
+      },
+      "actualUtm": {
+        "utm_source": "naver_premium",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_05"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 390,
+        "viewportWidth": 390
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    },
+    {
+      "id": "BLK-AGENCY-05-OPENADS",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
+      "effectiveUrl": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
+      "status": 200,
+      "checkedAt": "2026-10-05T07:52:58.066Z",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "expectedUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_05"
+      },
+      "actualUtm": {
+        "utm_source": "openads",
+        "utm_medium": "referral",
+        "utm_campaign": "foreign_marketing_agency",
+        "utm_content": "agency_05"
+      },
+      "utmMatches": true,
+      "render": {
+        "formFields": [
+          {
+            "name": "name",
+            "valueEmpty": true
+          },
+          {
+            "name": "phone",
+            "valueEmpty": true
+          },
+          {
+            "name": "message",
+            "valueEmpty": true
+          }
+        ],
+        "submitText": "진단 신청하기",
+        "gtagType": "undefined",
+        "scrollWidth": 1440,
+        "viewportWidth": 1440
+      },
+      "pageErrors": [],
+      "inputsEntered": 0,
+      "submissionsAttempted": 0
+    }
+  ]
+}
