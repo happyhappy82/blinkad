@@ -19,9 +19,10 @@
       "channel": "openads",
       "title_proposal": "외국인 마케팅 업체, 계약 전에 확인할 5가지",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
-      "status": "draft_v1_pending_user_review_not_published",
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
       "local_draft": "BLINKAD_OPENADS_AGENCY_01_DRAFT_20261005.md",
-      "version": "v1"
+      "version": "v1",
+      "previous_status": "draft_v1_pending_user_review_not_published"
     },
     {
       "id": "BLK-AGENCY-01-NAVER_PREMIUM",
@@ -29,7 +30,8 @@
       "channel": "naver_premium",
       "title_proposal": "외국인 마케팅 대행사를 비교할 때 쓰는 계약 전 확인표",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-02-OPENADS",
@@ -37,7 +39,8 @@
       "channel": "openads",
       "title_proposal": "외국인 마케팅 대행 비용, 광고비·운영비·제작비를 나눠 보세요",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-02-NAVER_PREMIUM",
@@ -45,7 +48,8 @@
       "channel": "naver_premium",
       "title_proposal": "외국인 마케팅 견적 비교: 월 운영비와 일회성 제작비를 구분하는 법",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_02",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-03-OPENADS",
@@ -53,7 +57,8 @@
       "channel": "openads",
       "title_proposal": "구글맵 외국인 마케팅, 직접 할 일과 맡길 일을 나누는 법",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-03-NAVER_PREMIUM",
@@ -61,7 +66,8 @@
       "channel": "naver_premium",
       "title_proposal": "구글맵 외국어 정보 관리, 사업주와 대행사의 역할을 정하는 법",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_03",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-04-OPENADS",
@@ -69,7 +75,8 @@
       "channel": "openads",
       "title_proposal": "우리 매장도 외국인 마케팅을 시작할 수 있을까?",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-04-NAVER_PREMIUM",
@@ -77,7 +84,8 @@
       "channel": "naver_premium",
       "title_proposal": "외국인 마케팅 시작 전, 매장의 정보·응대·예약 조건 점검하기",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_04",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-05-OPENADS",
@@ -85,7 +93,8 @@
       "channel": "openads",
       "title_proposal": "외국인 고객용 홈페이지, 제작 견적에서 확인할 문의 연결",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     },
     {
       "id": "BLK-AGENCY-05-NAVER_PREMIUM",
@@ -93,8 +102,11 @@
       "channel": "naver_premium",
       "title_proposal": "외국인 홈페이지 제작 의뢰서: 번역·검색·문의·유지 범위를 정하는 법",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
-      "status": "planned_not_written_or_published"
+      "status": "withdrawn_for_topic_overlap_do_not_publish",
+      "previous_status": "planned_not_written_or_published"
     }
   ],
-  "latest_update": "2026-10-05: User requested one body draft for review; OpenAds01 written, no platform upload/publication"
+  "latest_update": "2026-10-05: User requires new topics that do not duplicate registered content; former five-topic batch withdrawn pending new inventory review",
+  "current_batch_status": "withdrawn_for_registered_topic_overlap",
+  "retirement_reason": "Existing content reuse/enhancement does not satisfy user nonduplication requirement"
 }

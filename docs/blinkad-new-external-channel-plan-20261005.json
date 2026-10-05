@@ -1,0 +1,58 @@
+{
+  "updated_at": "2026-10-05T18:02:45.001487+09:00",
+  "user_latest_requirement": "지금까지 등록한 글들이랑 겹치지 않는 주제여야해",
+  "canonical_plan": "BLINKAD_REGISTERED_TOPIC_DUPLICATION_AUDIT_20261005.md",
+  "topic_count": 2,
+  "channel_entry_count": 4,
+  "actual_drafts_written": 1,
+  "not_written": 3,
+  "status": "new_topics_selected_with_documented_comparison_limits",
+  "old_manifest": "docs/blinkad-agency-external-channel-plan-20261005.json",
+  "old_manifest_status": "withdrawn_for_topic_overlap_do_not_publish",
+  "topic_distinctness_rule": "Same central question or answer is excluded, even if title, region, industry, language or policy sentence changes.",
+  "entries": [
+    {
+      "topic_id": "BLK-NEW-01",
+      "channel": "openads",
+      "title": "매장 이전, 구글맵 주소만 바꾸면 끝일까요?",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": "draft_v1_user_review",
+      "draft_file": "BLINKAD_OPENADS_RELOCATION_01_DRAFT_20261005.md",
+      "external_registered": false,
+      "externally_published": false
+    },
+    {
+      "topic_id": "BLK-NEW-01",
+      "channel": "naver_premium",
+      "title": "매장 이전일, 구글맵·외국어 페이지·광고·예약 안내를 함께 바꾸는 순서",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false
+    },
+    {
+      "topic_id": "BLK-NEW-02",
+      "channel": "openads",
+      "title": "영어로 만든 구글 검색광고, 외국인에게만 보일까요?",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false
+    },
+    {
+      "topic_id": "BLK-NEW-02",
+      "channel": "naver_premium",
+      "title": "외국인 광고 의뢰 전, 광고 언어와 국적을 구분해야 하는 이유",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false
+    }
+  ],
+  "conversion_destination": "https://www.blinkad.kr/contact",
+  "inquiry_results_measured": false,
+  "external_writes": 0
+}

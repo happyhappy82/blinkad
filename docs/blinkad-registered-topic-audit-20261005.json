@@ -1,0 +1,4658 @@
+{
+  "checked_at": "2026-10-05T18:02:45.001487+09:00",
+  "user_requirement": "지금까지 등록한 글들이랑 겹치지 않는 주제여야해",
+  "method": "Read only: source parsing, existing authenticated DB queries/GET, public GET; no content or queue mutation",
+  "scope": {
+    "homepage_source_posts": 109,
+    "company_registered_entries": 196,
+    "premium_registered_entries": 62,
+    "total_registered_entries": 258,
+    "notion_status_counts": {
+      "Published": 158,
+      "Review": 93,
+      "Deleted": 4,
+      "Draft": 3
+    },
+    "top_level_bodies_read": 258,
+    "body_read_errors": 0,
+    "move_related_nested_pages": 17,
+    "move_related_nested_queries": 80,
+    "language_additional_nested_pages": 1,
+    "language_additional_nested_queries": 1,
+    "recursive_body_coverage": {
+      "selected_pages": 18,
+      "nested_query_count": 81,
+      "pages_with_nested_children_remaining": 145,
+      "nested_parent_blocks_remaining": 562,
+      "all_top_level_bodies": 258,
+      "body_read_errors": 0
+    },
+    "registered_counts_are_not_unique_articles_or_external_publication_counts": true
+  },
+  "db_pagination": [
+    {
+      "id": "2ea753eb-c013-8151-bdfd-fd874ff3b110",
+      "title": "Posts",
+      "page_count": 196,
+      "query_page_count": 2,
+      "pagination_complete": true
+    },
+    {
+      "id": "34f753eb-c013-80a9-a352-fb8852030fb2",
+      "title": "블링크애드 프리미엄 콘텐츠",
+      "page_count": 62,
+      "query_page_count": 1,
+      "pagination_complete": true
+    }
+  ],
+  "status_counts_by_channel": {
+    "company_homepage_or_shared_draft": {
+      "Published": 100,
+      "Review": 23,
+      "Deleted": 3
+    },
+    "openads_draft_in_company_posts": {
+      "Review": 59,
+      "Published": 3,
+      "Draft": 1,
+      "Deleted": 1
+    },
+    "premium_draft_in_company_posts": {
+      "Review": 4,
+      "Draft": 1,
+      "Published": 1
+    },
+    "naver_premium": {
+      "Review": 7,
+      "Published": 54,
+      "Draft": 1
+    }
+  },
+  "current_openads": {
+    "checked_at": "2026-10-05T17:48:41.247105+09:00",
+    "author_url": "https://www.openads.co.kr/insighter/insighterDetail?authorId=740",
+    "total_count": 14,
+    "list_count": 14,
+    "articles": [
+      {
+        "id": 20565,
+        "title": "광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20565",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.486019+09:00",
+        "headings": [
+          "광고를 보고 문의했는데 안내받은 조건이 다릅니다.",
+          "직원이 아는 조건을 고객도 알고 있나요?",
+          "광고가 나가기 전에 상담실에서 먼저 읽어보세요",
+          "조건이 바뀌면 이전에 상담한 고객에게 적용할 기준도 정하세요",
+          "고객이 받은 안내부터 확인하고 답하세요"
+        ]
+      },
+      {
+        "id": 20564,
+        "title": "인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20564",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.716922+09:00",
+        "headings": [
+          "협업 영상의 조회수가 잘 나오면 예약도 늘기를 기대하게 됩니다.",
+          "영상을 본 사람이 문의할 곳을 찾을 수 있나요?",
+          "들어온 문의가 무엇을 묻는지 읽어보세요",
+          "어떤 영상을 보고 문의했는지 기록하세요",
+          "다음 협업에서 무엇을 바꿀지 정해보세요"
+        ]
+      },
+      {
+        "id": 20563,
+        "title": "단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20563",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.476363+09:00",
+        "headings": [
+          "행사를 준비하면 안내 문구부터 쓰게 됩니다.",
+          "누구에게 보낼지 정하기 전에 연락의 목적을 정하세요",
+          "방문 횟수와 함께 마지막 대화도 확인하세요",
+          "나눠 보낸 뒤에는 답장의 내용도 살펴보세요"
+        ]
+      },
+      {
+        "id": 20562,
+        "title": "예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20562",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.632234+09:00",
+        "headings": [
+          "광고 보고서에는 예약이 늘었다고 나옵니다.",
+          "예약을 받은 날과 방문하기로 한 날을 나눠 보세요",
+          "취소한 예약과 날짜를 바꾼 예약을 구분하세요",
+          "광고로 들어온 예약과 전체 예약을 구분하세요",
+          "취소·변경 사유를 보고 예약 안내를 고쳐보세요"
+        ]
+      },
+      {
+        "id": 20561,
+        "title": "“얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20561",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.622375+09:00",
+        "headings": [
+          "가격 문의에는 성실히 답했는데 대화가 거기서 끝납니다.",
+          "가격을 안내할 때 적용 조건도 함께 적어주세요",
+          "가격을 물었다고 예약할 준비가 끝난 것은 아닙니다",
+          "금액과 적용 조건을 먼저 읽을 수 있게 쓰세요",
+          "답이 없는 문의를 모두 같은 이유로 묶지 마세요"
+        ]
+      },
+      {
+        "id": 20560,
+        "title": "문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20560",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.794897+09:00",
+        "headings": [
+          "문의에 답장을 보냈는데 이미 다른 병원에 예약했다는 말을 들으면 답변이 늦었던 건 아닌지 돌아보게 됩니다.",
+          "접수했다는 답과 궁금증을 풀어준 답을 구분하세요",
+          "날짜를 물을지, 예약 링크를 보낼지 정하세요",
+          "예약으로 이어진 상담과 중간에 끝난 상담을 비교해 보세요",
+          "다음 주에는 한 가지부터 바꿔보세요"
+        ]
+      },
+      {
+        "id": 20546,
+        "title": "해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20546",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.803469+09:00",
+        "headings": [
+          "해외 매장에 Google Ads를 붙이기 전에는 광고를 누른 사람이 어디로 가고, 무엇을 확인하고, 어떻게 문의하는지부터 점검해야 합니다.",
+          "누구에게 무엇을 팔지 한 문장으로 정합니다",
+          "Google 지도 정보부터 실제 운영과 맞춥니다",
+          "광고 문구와 도착 페이지의 내용이 이어져야 합니다",
+          "문의 버튼은 담당자가 직접 끝까지 눌러봅니다",
+          "클릭이 아니라 실제 문의를 전환으로 잡습니다",
+          "광고를 켜기 전 다섯 가지를 확인합니다",
+          "자주 묻는 질문",
+          "Q. 홈페이지가 없어도 Google Ads를 시작할 수 있나요?",
+          "Q. 현지어 페이지는 몇 개 언어로 만들어야 하나요?",
+          "Q. 전환 추적 없이 클릭 수만 보고 시작해도 되나요?"
+        ]
+      },
+      {
+        "id": 20544,
+        "title": "해외 한인 매장, 교민 소개만 기다려도 될까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20544",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:40.949083+09:00",
+        "headings": [
+          "해외 한인 매장은 대개 교민 소개로 첫 손님을 만납니다.",
+          "교민 소개는 강하지만 매장이 조절하기 어렵습니다",
+          "처음 보는 손님은 상호명보다 지역과 업종으로 찾습니다",
+          "Google 지도에서 바로 확인할 수 있어야 합니다",
+          "현지어 안내는 필요한 내용부터 시작합니다",
+          "매장 정보를 고친 뒤 광고를 시작합니다",
+          "소개 없이 찾아오는 손님을 늘리려면",
+          "자주 묻는 질문",
+          "Q. 한국인 손님이 대부분이어도 현지어 정보가 필요한가요?",
+          "Q. 홈페이지와 Google 비즈니스 프로필 중 무엇부터 해야 하나요?",
+          "Q. 프로필을 정리하면 바로 지도 상단에 노출되나요?"
+        ]
+      },
+      {
+        "id": 20538,
+        "title": "병원 알림톡 발송 시점 가이드: 예약·시술 후·재방문 메시지는 언제 보낼까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20538",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.051026+09:00",
+        "headings": []
+      },
+      {
+        "id": 20531,
+        "title": "AI가 인용하는 랜딩페이지는 무엇이 다를까? AEO·GEO 설계 원칙 6가지",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20531",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.042487+09:00",
+        "headings": []
+      },
+      {
+        "id": 20545,
+        "title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20545",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.102652+09:00",
+        "headings": [
+          "Google 지도에 매장이 뜬다고 문의가 생기는 건 아닙니다.",
+          "상호명 검색만으로는 새 고객에게 보이는지 알기 어렵습니다",
+          "조회와 문의 사이를 네 구간으로 나눠봅니다"
+        ]
+      },
+      {
+        "id": 20101,
+        "title": "약국 외국인 마케팅 시작 전 반드시 확인할 것은? 바로 데이터입니다.",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20101",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.178996+09:00",
+        "headings": [
+          "왜 약국을 사례로 골랐나",
+          "측정은 세 갈래로 나눴습니다",
+          "1. 사업자가 검색하는 것 (네이버 검색광고)",
+          "2. 손님이 검색하는 것 (구글 애즈, 한국 지역 기준)",
+          "3. 상권별 언어 분포 (같은 도구, 지역명 조합)",
+          "AI 검색까지 확인했습니다",
+          "이 측정을 다른 업종에 적용하려면?",
+          "자주 묻는 질문",
+          "정리"
+        ]
+      },
+      {
+        "id": 20077,
+        "title": "피부과 성형외과 고객은 AI에게 어떻게 질문할까? 6.7배 더 많이 묻는 질문은?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=20077",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.199257+09:00",
+        "headings": []
+      },
+      {
+        "id": 19439,
+        "title": "외국인 관광객 유치 마케팅 무료진단, 우리 매장은 과연 잘 보이고 있을까?",
+        "url": "https://www.openads.co.kr/content/contentDetail?contsId=19439",
+        "status": 200,
+        "checkedAt": "2026-10-05T17:48:41.245481+09:00",
+        "headings": []
+      }
+    ]
+  },
+  "registered_inventory": [
+    {
+      "id": "3e7753eb-c013-81b7-ae7d-d918cb75f67a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법",
+      "status": "Published",
+      "headings": [
+        "자주 묻는 가격에는 조건을 함께 적으세요",
+        "이미 보낸 답은 고객별 상담에서 확인합니다",
+        "행사가 바뀌면 문구와 이전 상담을 함께 보세요",
+        "설명이 자주 엇갈리는 항목을 알려주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-81a9-bee3-c5ecbe1ccbad",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 광고에는 된다는데 상담실에서는 왜 안 된다고 할까?",
+      "status": "Review",
+      "headings": [
+        "직원이 아는 조건을 고객도 알고 있나요?",
+        "광고가 나가기 전에 상담실에서 먼저 읽어보세요",
+        "조건이 바뀌면 이전에 상담한 고객에게 적용할 기준도 정하세요",
+        "고객이 받은 안내부터 확인하고 답하세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8173-b2e0-df92975416dd",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+      "status": "Review",
+      "headings": [
+        "영상을 본 사람이 문의할 곳을 찾을 수 있나요?",
+        "들어온 문의가 무엇을 묻는지 읽어보세요",
+        "어떤 영상을 보고 문의했는지 기록하세요",
+        "다음 협업에서 무엇을 바꿀지 정해보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8148-b723-f82a901df280",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 단골과 처음 온 손님에게 같은 이벤트 문자를 보내고 있나요?",
+      "status": "Review",
+      "headings": [
+        "누구에게 보낼지 정하기 전에 연락의 목적을 정하세요",
+        "방문 횟수와 함께 마지막 대화도 확인하세요",
+        "나눠 보낸 뒤에는 답장의 내용도 살펴보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-81eb-9be2-e18f4ff814cd",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 예약은 늘었는데 실제 방문은 그대로, 광고 성과를 어떻게 봐야 할까?",
+      "status": "Review",
+      "headings": [
+        "예약을 받은 날과 방문하기로 한 날을 나눠 보세요",
+        "취소한 예약과 날짜를 바꾼 예약을 구분하세요",
+        "광고로 들어온 예약과 전체 예약을 구분하세요",
+        "취소·변경 사유를 보고 예약 안내를 고쳐보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8154-9468-dade4b5a1cae",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] “얼마예요?”에 가격을 보냈는데 그 뒤로 답이 없다면",
+      "status": "Review",
+      "headings": [
+        "가격을 안내할 때 적용 조건도 함께 적어주세요",
+        "가격을 물었다고 예약할 준비가 끝난 것은 아닙니다",
+        "금액과 적용 조건을 먼저 읽을 수 있게 쓰세요",
+        "답이 없는 문의를 모두 같은 이유로 묶지 마세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-81af-896d-e24eb377c7a7",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 문의에 답했더니 “다른 병원 예약했어요”라는 말을 들었다면",
+      "status": "Review",
+      "headings": [
+        "접수했다는 답과 궁금증을 풀어준 답을 구분하세요",
+        "날짜를 물을지, 예약 링크를 보낼지 정하세요",
+        "예약으로 이어진 상담과 중간에 끝난 상담을 비교해 보세요",
+        "다음 주에는 한 가지부터 바꿔보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8177-8281-dcd59460bbfa",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 대만 한국 식당은 왜 중국어 지도 검색부터 봐야 할까?",
+      "status": "Review",
+      "headings": [
+        "식당 이름을 모르는 손님이 입력할 말을 먼저 모읍니다",
+        "상호는 실제 이름대로 두고 중국어 설명은 다른 항목에서 풀어냅니다",
+        "번체 중국어 메뉴는 글자로 읽을 수 있어야 합니다",
+        "주소는 영문 번역보다 중국어 원주소와 정확한 핀이 먼저입니다",
+        "사진은 음식과 함께 주문 상황을 보여줘야 합니다",
+        "후기 답변도 검색한 사람의 언어와 질문을 따라갑니다",
+        "검색 결과를 직접 비교해야 수정 우선순위가 보입니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-819e-ba69-e520fb9f188f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 포르투갈 한인민박, 예약 사이트에만 기대면 생기는 빈틈",
+      "status": "Review",
+      "headings": [
+        "플랫폼은 객실을 팔고, 숙소 페이지는 망설이는 이유를 풀어야 합니다",
+        "포르투갈에서는 등록번호가 광고 페이지에도 보여야 합니다",
+        "‘한인민박’이라는 이름보다 실제 숙소 형태를 정확히 적습니다",
+        "Google 지도 등록은 숙소 유형을 확인한 뒤 결정합니다",
+        "직접 안내 페이지는 가격을 감추는 곳이 아닙니다",
+        "예약 뒤 정보까지 직접 관리해야 문의가 줄어듭니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-81a5-b883-ce337cd718ba",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 리스본·포르투 한국 식당, 메뉴 사진이 방문을 결정할까?",
+      "status": "Review",
+      "headings": [
+        "음식 사진 한 장에는 이름과 주문 기준이 따라붙어야 합니다",
+        "Google 지도에는 사진과 읽을 수 있는 메뉴를 함께 올립니다",
+        "포르투갈어 메뉴는 선택사항이 아니라 기본 정보에 가깝습니다",
+        "대표 사진은 ‘가장 예쁜 메뉴’보다 처음 주문하기 쉬운 메뉴가 낫습니다",
+        "메뉴를 확인한 사람에게 다음 행동을 하나만 분명히 보여줍니다",
+        "사진 성과는 좋아요보다 길찾기와 예약으로 확인합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-810c-9363-c894172adc0c",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 리스본과 포르투 한인마트, 손님은 가까운 매장을 어떻게 찾을까?",
+      "status": "Review",
+      "headings": [
+        "리스본점과 포르투점은 각각 하나의 실제 매장으로 보여야 합니다",
+        "‘한인마트’보다 손님이 사려는 상품이 먼저 검색됩니다",
+        "재고 정보는 ‘있다’보다 ‘어느 지점에 언제 기준으로 있는가’가 중요합니다",
+        "리스본과 포르투를 한 페이지에 넣더라도 길은 갈라져야 합니다",
+        "수입식품은 검색용 번역과 법정 표시를 구분합니다",
+        "방문 전 마지막 확인을 한 화면에서 끝냅니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-819a-a45f-cbc484f47bdf",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 싱가포르 한인 변호사, 전문 분야가 바로 보여야 문의가 옵니다",
+      "status": "Review",
+      "headings": [
+        "분야 이름보다 상담자의 상황을 먼저 보여줍니다",
+        "‘싱가포르 한인 변호사’ 안에도 등록 유형과 업무 범위가 다를 수 있습니다",
+        "전문성 주장은 바로 보여야 하지만 근거도 바로 확인돼야 합니다",
+        "분야별 페이지는 광고 문구가 아니라 상담 분류표여야 합니다",
+        "Google 프로필에서는 사무소와 변호사의 역할을 나눕니다",
+        "상담 신청에서 분야와 관할을 자연스럽게 확인합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8147-883e-d68da41579e8",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 싱가포르 한인치과, 환자가 예약 전에 확인하는 정보",
+      "status": "Review",
+      "headings": [
+        "첫 번째 확인은 ‘한인치과’보다 등록된 기관과 진료인력입니다",
+        "진료 항목은 ‘가능’과 ‘전문’을 구분해 표시합니다",
+        "치료 전후 사진과 후기보다 먼저 사실을 설명합니다",
+        "비용은 하나의 숫자보다 범위와 포함 항목이 중요합니다",
+        "예약 화면에는 치료명이 아니라 방문 목적을 고르게 합니다",
+        "한국어 가능 범위도 구체적으로 적습니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8189-b70a-f17031f75602",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 싱가포르 한인마트는 가까운데도 왜 검색에서 안 보일까?",
+      "status": "Review",
+      "headings": [
+        "가까운 순서대로만 보여주는 검색은 아닙니다",
+        "상호명에 키워드를 붙이기 전에 기본정보부터 맞춥니다",
+        "한국어 상품명만 올리면 현지 검색과 연결되기 어렵습니다",
+        "상품 검색에는 지역 재고 데이터가 필요할 수 있습니다",
+        "순위 한 번보다 검색 후 행동을 봅니다",
+        "지점 정보가 바뀌는 날 Google 데이터도 함께 고칩니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-817b-ac35-daccec8fd13d",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 싱가포르 한인 미용실, 단골 소개만으로 충분할까요?",
+      "status": "Review",
+      "headings": [
+        "소개 고객과 검색 고객은 알고 있는 정보가 다릅니다",
+        "서비스 이름은 고객이 검색하고 예약할 말로 적습니다",
+        "스타일 사진은 잘한 결과보다 선택 기준을 보여줘야 합니다",
+        "예약 링크는 ‘문의’가 아니라 시간을 확정하는 곳입니다",
+        "단골 소개도 기록해야 어느 경로가 좋은지 알 수 있습니다",
+        "소개 없이 찾아온 사람이 예약할 수 있는지 시험합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-815d-b868-f75bf12e7b0d",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 싱가포르 한식당, 메뉴는 있는데 왜 방문으로 이어지지 않을까?",
+      "status": "Review",
+      "headings": [
+        "메뉴가 있다는 것과 메뉴를 이해할 수 있다는 것은 다릅니다",
+        "싱가포르 메뉴는 표시가격 다음 금액까지 알 수 있어야 합니다",
+        "Google 지도에 남은 오래된 메뉴부터 정리합니다",
+        "메뉴를 본 뒤 매장 방문까지 한 화면 안에서 이어져야 합니다",
+        "메뉴 조회만 늘고 방문 행동이 없다면 다음 화면을 봅니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8178-a305-c566006b1c2c",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한국 식당, 리뷰는 많은데 처음 오는 손님이 적다면",
+      "status": "Review",
+      "headings": [
+        "리뷰 수와 신규 방문은 같은 지표가 아닙니다",
+        "오래된 메뉴 사진이 첫 방문을 막을 수 있습니다",
+        "위치 정보는 주소만 맞는다고 끝나지 않습니다",
+        "예약·주문 버튼은 해당 지점에서 끝나야 합니다",
+        "리뷰 답글은 단골 인사가 아니라 공개 안내입니다",
+        "신규 고객 행동은 프로필 성과에서 따로 봅니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-81ac-a712-c43a0172edcb",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한인 변호사는 전문 분야가 한눈에 보여야 합니다",
+      "status": "Review",
+      "headings": [
+        "첫 화면에서는 대표 분야를 좁혀 보여줍니다",
+        "분야명 아래에 ‘누구의 어떤 문제인지’를 적습니다",
+        "‘주요 취급 분야’와 ‘전문가 인증’은 같은 말이 아닙니다",
+        "변호사 소개와 분야 페이지를 서로 연결합니다",
+        "Google 프로필도 사무소와 개인을 뒤섞지 않습니다",
+        "문의는 분야별로 나누되 민감한 정보는 적게 받습니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8154-aefa-d10ebc31ba74",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 토론토 한인 변호사, 검색한 사람이 상담까지 오는 과정",
+      "status": "Review",
+      "headings": [
+        "첫 검색에서는 ‘한인’보다 내 문제를 맡는지가 먼저입니다",
+        "검색 화면에서 확인할 수 있는 기본정보를 맞춥니다",
+        "홈페이지에서는 문제별로 다음 행동을 알려줘야 합니다",
+        "신뢰는 후기 수만이 아니라 확인 가능한 정보에서 생깁니다",
+        "상담 신청서는 사건을 해결하는 곳이 아니라 첫 연락을 정리하는 곳입니다",
+        "첫 회신에서 상담 여부를 판단할 수 있어야 합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8168-90b8-fc9ab6c91bf2",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한인마트, 배달 가능한데 검색에는 안 보인다면?",
+      "status": "Review",
+      "headings": [
+        "먼저 무엇이 안 보이는지 세 가지로 나눕니다",
+        "방문 매장과 배달 서비스 지역을 함께 설정합니다",
+        "홈페이지 링크와 주문 링크의 목적을 구분합니다",
+        "상품명 검색까지 원한다면 제품 데이터가 필요합니다",
+        "한국어 상품명만으로는 현지 검색어와 만나기 어렵습니다",
+        "배달 운영이 바뀌는 날 검색정보도 함께 고칩니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8199-8883-d7a193ccb947",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 토론토 한인마트, 영업시간이 검색 화면에서 빠져 있다면?",
+      "status": "Review",
+      "headings": [
+        "시간이 빠졌다면 프로필을 고치기 전에 세 가지부터 확인합니다",
+        "기본 영업시간은 손님이 매장에 들어갈 수 있는 시간입니다",
+        "공휴일은 평소 시간을 지우지 말고 특별 영업시간으로 넣습니다",
+        "매장·픽업·배달 시간을 한 줄로 섞지 않습니다",
+        "수정했는데 계속 안 보인다면 고객 화면을 기록합니다",
+        "매주 바꾸기보다 변경일을 미리 관리합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8190-8631-e44f66393e38",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한인민박, 숙소 사진만으로 예약이 잡히지 않는 이유",
+      "status": "Review",
+      "headings": [
+        "사진은 관심을 만들고, 설명은 예약 가능성을 판단하게 합니다",
+        "‘밴쿠버에 있다’보다 어느 일정에 맞는지가 중요합니다",
+        "밴쿠버 한인민박은 두 종류의 번호를 확인해야 할 수 있습니다",
+        "가격과 빈방 정보가 사진보다 늦게 관리되면 예약이 끊깁니다",
+        "한국어 응대는 장점이지만 예약정보를 대신하지는 못합니다",
+        "사진을 올린 뒤 확인할 예약 점검표",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-81bd-8f98-f3d7fd3fb797",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 토론토 한인민박을 고를 때 여행객이 가장 먼저 확인하는 것",
+      "status": "Review",
+      "headings": [
+        "첫 화면에서 날짜·인원·지역을 판단할 수 있어야 합니다",
+        "토론토에서는 등록번호가 단순한 장식이 아닙니다",
+        "1박 가격보다 최종 결제조건을 맞춰야 합니다",
+        "사진은 공간을 예쁘게 보이는 것보다 오해를 줄여야 합니다",
+        "Google 지도 등록부터 만들면 안 되는 숙소도 있습니다",
+        "예약 전에 보여줄 정보를 한 장으로 점검합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8166-b29e-d7ce16bb69e5",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 토론토에서 한국 식당을 찾은 손님은 메뉴를 어디서 볼까?",
+      "status": "Review",
+      "headings": [
+        "Google 지도 안에서도 메뉴가 한곳에만 있는 것은 아닙니다",
+        "기준 메뉴를 하나 정해야 다른 채널도 맞출 수 있습니다",
+        "음식 이름만 번역하면 주문할 수 있는 메뉴가 되지 않습니다",
+        "메뉴 링크와 주문 링크는 역할이 다릅니다",
+        "메뉴가 바뀌는 날을 운영 일정으로 잡습니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-814e-b6a1-f3658c8b86e0",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한인치과, 후기만 많다고 예약이 잡히지는 않습니다",
+      "status": "Review",
+      "headings": [
+        "후기는 신뢰를 돕지만 예약 절차를 대신하지 않습니다",
+        "리뷰는 실제 경험을 바탕으로 받아야 합니다",
+        "리뷰 옆에는 현재 진료 정보가 보여야 합니다",
+        "문의를 받는 화면이 환자의 첫 질문에 답해야 합니다",
+        "후기 수와 예약 수 사이를 나눠서 봅니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8125-9724-e810f3b385fe",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 밴쿠버 한인 미용실은 손님에게 어떻게 발견될까?",
+      "status": "Review",
+      "headings": [
+        "상호명이 아니라 지역과 시술로 검색해 봅니다",
+        "대표 업종은 하는 일을 정확히 말해야 합니다",
+        "고객이 검색하는 말과 매장이 쓰는 메뉴명을 맞춥니다",
+        "프로필을 본 다음 확인할 페이지가 필요합니다",
+        "발견됐는지는 조회수보다 검색어와 행동으로 확인합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8175-8e7a-de8bb4bf3cb4",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 토론토 한인 미용실, 사진은 많은데 예약 문의가 없다면",
+      "status": "Review",
+      "headings": [
+        "사진이 많다는 것과 선택하기 쉽다는 것은 다릅니다",
+        "사진 옆에서 서비스 이름과 가격 기준을 확인할 수 있어야 합니다",
+        "예약 버튼을 누른 다음 화면에서 고객을 다시 헤매게 하면 안 됩니다",
+        "조회가 많은지보다 어느 단계에서 멈췄는지 봅니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-810c-88e3-e486046b31e9",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 현지어 홈페이지와 Google 비즈니스 프로필 중 무엇부터 만들까?",
+      "status": "Review",
+      "headings": [
+        "Google 비즈니스 프로필은 매장을 찾게 하는 화면입니다",
+        "현지어 홈페이지는 선택할 이유를 설명하는 화면입니다",
+        "처음부터 홈페이지 전체를 번역할 필요는 없습니다",
+        "둘을 따로 만들지 말고 연결해야 합니다",
+        "우리 매장은 무엇부터 해야 할까",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-81d9-b7ba-ea0d21562bf6",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
+      "status": "Published",
+      "headings": [
+        "누구에게 무엇을 팔지 한 문장으로 정합니다",
+        "Google 지도 정보부터 실제 운영과 맞춥니다",
+        "광고 문구와 도착 페이지의 내용이 이어져야 합니다",
+        "문의 버튼은 담당자가 직접 끝까지 눌러봅니다",
+        "클릭이 아니라 실제 문의를 전환으로 잡습니다",
+        "광고를 켜기 전 다섯 가지를 확인합니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-8166-8ad0-cc6a0d26683f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+      "status": "Published",
+      "headings": [
+        "상호명 검색만으로는 새 고객에게 보이는지 알기 어렵습니다",
+        "조회와 문의 사이를 네 구간으로 나눠봅니다",
+        "프로필 첫 화면이 고객의 질문에 답하고 있는지 봅니다",
+        "전화와 예약 링크는 직접 눌러봐야 합니다",
+        "리뷰 수보다 최근 내용과 답변을 확인합니다",
+        "문의 경로가 정상인지 확인한 뒤 광고를 붙입니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-81cd-9428-eddff4a10477",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "해외 한인 매장, 교민 소개만 기다려도 될까?",
+      "status": "Published",
+      "headings": [
+        "교민 소개는 강하지만 매장이 조절하기 어렵습니다",
+        "처음 보는 손님은 상호명보다 지역과 업종으로 찾습니다",
+        "Google 지도에서 바로 확인할 수 있어야 합니다",
+        "현지어 안내는 필요한 내용부터 시작합니다",
+        "매장 정보를 고친 뒤 광고를 시작합니다",
+        "소개 없이 찾아오는 손님을 늘리려면",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3d2753eb-c013-811b-a95d-f3412a0bf317",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 고객은 한국 에스테틱을 어떻게 찾고 예약할까? 에스테틱 마케팅의 시작",
+      "status": "Published",
+      "headings": [
+        "외국인 고객은 에스테틱을 어떤 순서로 찾을까?",
+        "서비스 설명에는 무엇을 적어야 할까?",
+        "Google 지도에서는 어떤 정보를 연결해야 할까?",
+        "블링크애드는 예약 동선을 어떻게 직접 점검할까?",
+        "고객 사진과 상담 정보는 어떻게 관리해야 할까?",
+        "외국어 서비스 페이지는 어떻게 구성할까?",
+        "검색과 AI가 참고하기 쉬운 페이지는 어떻게 만들까?",
+        "에스테틱 마케팅 성과는 무엇부터 확인할까?",
+        "자주 묻는 질문",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3d2753eb-c013-8127-aaee-fb0c7e0b44a9",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 손님은 숙소를 어디서 검색하고 비교할까? 숙박업 마케팅의 시작",
+      "status": "Published",
+      "headings": [
+        "외국인 손님이 숙소를 찾는 화면에는 무엇이 있어야 할까?",
+        "게스트하우스와 한옥스테이는 어떤 차이를 설명해야 할까?",
+        "Google 지도에는 어떤 숙소를 등록할 수 있을까?",
+        "공식 자료를 대조하며 확인한 것은 무엇일까?",
+        "운영자가 직접 보완하면 좋은 설명은 무엇일까?",
+        "검색과 AI가 참고할 숙소 페이지는 어떻게 구성할까?",
+        "숙박업 마케팅 성과는 무엇부터 볼까?",
+        "자주 묻는 질문",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3d2753eb-c013-8187-aefc-e708f178065a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 관광객은 아고다·트립닷컴에서 무엇을 보고 호텔을 예약할까? 호텔 마케팅의 시작",
+      "status": "Published",
+      "headings": [
+        "아고다·트립닷컴에서 고객이 먼저 보는 것은 무엇일까?",
+        "호텔 이름을 검색했을 때 공식 정보는 이어지고 있을까?",
+        "공식 안내를 직접 대조해 보니 무엇이 달랐을까?",
+        "같은 객실을 비교하려면 어떤 조건을 맞춰야 할까?",
+        "호텔 마케팅에서 공식 홈페이지는 어떤 역할을 할까?",
+        "검색과 AI가 참고할 호텔 정보는 어떻게 써야 할까?",
+        "예약 플랫폼과 직접 예약 채널은 어떻게 함께 운영할까?",
+        "자주 묻는 질문",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3d1753eb-c013-8160-a5b8-cd19017a8806",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법",
+      "status": "Published",
+      "headings": [
+        "외국인 관광객은 카페를 어디에서 발견할까?",
+        "저장된 카페가 실제 방문으로 이어지지 않는 이유는 무엇일까?",
+        "블링크애드는 카페 유입을 어떻게 점검할까?",
+        "외국인 카페 마케팅에는 어떤 정보가 필요할까?",
+        "SEO·AEO·GEO를 함께 고려하려면 어떻게 써야 할까?",
+        "카페 마케팅 성과는 무엇으로 확인할까?",
+        "자주 묻는 질문",
+        "인스타그램 사진이 많으면 외국인 카페 마케팅에 충분한가요?",
+        "카페 메뉴를 여러 언어로 모두 번역해야 하나요?",
+        "Google Maps에서 카페를 잘 찾게 하려면 무엇부터 준비해야 하나요?",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3d0753eb-c013-812a-b543-d5614673877b",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 손님은 한국 식당을 어떻게 찾을까? 식당 마케팅의 시작",
+      "status": "Published",
+      "headings": [
+        "외국인 손님은 식당을 어떤 순서로 찾을까?",
+        "식당 마케팅은 무엇부터 점검해야 할까?",
+        "블링크애드는 식당을 진단할 때 무엇을 실제로 확인할까?",
+        "외국어 페이지에는 어떤 정보를 담아야 할까?",
+        "식당 마케팅 성과는 어떤 숫자로 확인해야 할까?",
+        "외국인 식당 마케팅은 무엇부터 시작하면 될까?",
+        "자주 묻는 질문",
+        "외국인 식당 마케팅은 Google Maps만 관리하면 충분한가요?",
+        "영어 메뉴판만 만들면 외국인 손님이 늘어날까요?",
+        "외국인 식당 마케팅 효과는 어떻게 확인하나요?",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3c9753eb-c013-8101-bfc9-feb72996fa96",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 마케팅 우리 업종도 될까요?",
+      "status": "Published",
+      "headings": [
+        "업종 이름으로는 갈리지 않습니다",
+        "되는 곳에는 네 가지 조건이 있습니다",
+        "어려운 경우도 솔직하게 말씀드립니다",
+        "관광객이 아니라 사는 외국인이 답일 때도 있습니다",
+        "우리 매장은 어느 쪽인지 확인해 보세요",
+        "안 될 것 같으면 저희가 먼저 말씀드립니다"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3c9753eb-c013-81bb-be83-fd354b515d6f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 관광객 손님은 네이버에서 우리 매장을 찾지 않습니다",
+      "status": "Published",
+      "headings": [
+        "네이버를 안 쓰는 게 아니라, 쓰는 순간이 다릅니다",
+        "갈 곳은 한국에 오기 전에 거의 정해집니다",
+        "도착한 다음에는 지도 안에서만 고릅니다",
+        "들어갈지 말지는 30초 안에 갈립니다",
+        "요즘은 AI에게 물어보고 옵니다",
+        "우리 매장은 지금 어떻게 보이고 있을까요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81b0-9029-c5bee36c9aa7",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[전략] 닥터네스트·뷰티네스트 54편 채널 배분 — 오픈애즈 단일화",
+      "status": "Review",
+      "headings": [
+        "닥터네스트·뷰티네스트 54편 채널 배분 전략",
+        "1. 전략을 결정하는 실측값",
+        "2. 그래서 역할을 이렇게 나눕니다",
+        "3. 키워드 축 분리 규칙 (가장 중요)",
+        "4. 54편 배분",
+        "A. 공식 블로그 전용 — 22편",
+        "B. 아이보스 — 8편",
+        "C. 오픈애즈 — 12편",
+        "D. 네이버 프리미엄콘텐츠 — 11편",
+        "E. 보류 — 1편",
+        "5. 유입 장치 설계",
+        "하지 말아야 할 것",
+        "할 것",
+        "착지 매핑 (31편 → 자사 11편)",
+        "6. 발행 순서",
+        "완료 (2026-08-14)",
+        "오픈애즈 발행 속도",
+        "7. 측정",
+        "8. 확정된 조건 (2026-08-13)",
+        "9. AI 크롤러 접근 실측 (robots.txt, 2026-08-13)",
+        "이게 배분에 주는 결론",
+        "10. 남은 확인 사항"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81c5-a55f-fd51ab4d3bb4",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#L3 [랜딩] 닥터네스트·뷰티네스트 자주 묻는 질문",
+      "status": "Review",
+      "headings": [
+        "자주 묻는 질문",
+        "제품",
+        "도입",
+        "기능",
+        "요금",
+        "데이터와 안전",
+        "도입 판단"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8130-80ec-d11a0882007e",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#L2 [랜딩] 닥터네스트·뷰티네스트 요금",
+      "status": "Review",
+      "headings": [
+        "요금 구조",
+        "왜 두 부분으로 나눴나",
+        "사용량은 어떻게 계산되나",
+        "견적을 받으실 때",
+        "견적이 만들어지는 순서",
+        "업종별 안내는 따로 있습니다",
+        "먼저 점검부터 받아보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8135-95f5-ee45e1294744",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#L1 [랜딩] 닥터네스트·뷰티네스트 제품 소개",
+      "status": "Review",
+      "headings": [
+        "문의는 들어오는데, 다 받고 계신가요",
+        "무엇을 하는가",
+        "쓰던 프로그램은 그대로 둡니다",
+        "이런 곳에 맞습니다",
+        "이런 경우엔 권하지 않습니다",
+        "도입은 이렇게 진행됩니다",
+        "블링크애드가 맡습니다",
+        "먼저 점검부터 받아보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81fa-bfe5-e308cac97c02",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N8 [오픈애즈] 체험단·인플루언서 계약 전에 정해둬야 할 9가지",
+      "status": "Review",
+      "headings": [
+        "산출물을 개수로만 정하면 생기는 일",
+        "콘텐츠에 반드시 들어가야 할 세 가지",
+        "표시 의무를 미리 확인하십시오",
+        "문의를 받을 준비를 함께 정합니다",
+        "성과 기준을 계약 전에 맞춥니다",
+        "저희가 확인한 것",
+        "계약 전 점검표",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8144-b237-d5c6ae7717cc",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N6 [오픈애즈] 카카오톡·LINE·WhatsApp은 보낼 수 있는 메시지 규칙이 서로 다릅니다",
+      "status": "Review",
+      "headings": [
+        "채널마다 다른 세 가지",
+        "1. 먼저 말을 걸 수 있는가",
+        "2. 형식을 미리 등록해야 하는가",
+        "3. 광고성 메시지의 기준이 다른가",
+        "설계할 때 순서",
+        "실무에서 자주 겪는 상황",
+        "저희가 확인한 것",
+        "확인해 두실 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-819b-90bf-de4d442bc13c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#N5 운영시간 외 자동응답, 외국인 환자에게 한국어로 나가고 있지 않나요",
+      "status": "Review",
+      "headings": [
+        "왜 알아채기 어려운가",
+        "점검할 다섯 가지",
+        "1. 외국어 문의에도 한국어 안내가 나가고 있는가",
+        "2. 언어별로 다른 문구가 나갈 수 있는가",
+        "3. 안내에 시간 정보가 들어 있는가",
+        "4. 안내가 나가는 시간대가 맞는가",
+        "5. 안내 뒤에 무엇을 할 수 있는지 알려주는가",
+        "문구를 만들 때",
+        "저희가 확인한 것",
+        "지금 바로 해보실 수 있는 테스트",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8141-9b16-de62c680701f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N4 [오픈애즈] 퇴근 후 들어온 문의, 직원 개인 휴대폰으로 받게 할 것인가",
+      "status": "Review",
+      "headings": [
+        "직원 개인 휴대폰으로 받으면 생기는 일",
+        "그럼 어떻게 해야 하나",
+        "1. 응답 가능 시간을 명확히 안내합니다",
+        "2. 자주 오는 질문은 자동으로 답합니다",
+        "3. 긴급한 경우의 안내를 정합니다",
+        "4. 다음 영업일에 이어받는 구조를 만듭니다",
+        "외국인 환자 문의는 특히 이 구간입니다",
+        "저희가 확인한 것",
+        "직원과 미리 정해두면 좋은 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-813a-8388-f4a3290a9e76",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N3 [오픈애즈] 상담 실장이 두 명 이상일 때 생기는 문제, 같은 시술에 다른 견적",
+      "status": "Review",
+      "headings": [
+        "상담자가 늘면 생기는 네 가지",
+        "1. 같은 질문에 다른 답이 나갑니다",
+        "2. 누가 상담했는지 찾기 어렵습니다",
+        "3. 이어받을 때 처음부터 다시 설명하게 합니다",
+        "4. 응대 편차를 알 수 없습니다",
+        "정리하면 되는 세 가지",
+        "1. 자주 오는 질문의 답을 정합니다",
+        "2. 상담 기록이 남는 곳을 하나로 정합니다",
+        "3. 담당과 권한을 정합니다",
+        "판단할 때 도움이 되는 숫자",
+        "저희가 확인한 것",
+        "원장님이 보실 수 있어야 합니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81eb-bc4f-cb74196b4e8c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "재방문 주기, 환자가 정하게 두면 안 옵니다",
+      "status": "Published",
+      "headings": [
+        "사람은 애매하면 미룹니다",
+        "결정권을 가져오는 일입니다",
+        "시점을 정하는 방법",
+        "1. 시술별로 권장 주기를 적어둡니다",
+        "2. 주기가 짧은 시술부터 설계합니다",
+        "3. 방문 시점에 다음을 정합니다",
+        "4. 자동으로 나가게 만듭니다",
+        "안 온 경우는 다르게 접근합니다",
+        "저희가 확인한 것",
+        "업종별로 적용하면",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8121-8da7-f8448c7ab4f0",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N2 [오픈애즈] 지점이 늘어날수록 상담 채널 관리 비용이 곱해집니다 (다지점·MSO 점검표)",
+      "status": "Review",
+      "headings": [
+        "지점이 늘면 채널 수는 곱해집니다",
+        "본사에서 봐야 하는 숫자",
+        "통합할 때 정해야 하는 세 가지",
+        "저희가 확인한 것",
+        "지점이 늘어나기 전에 잡는 게 낫습니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81a5-85c4-e358b3dfa211",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#N1 [오픈애즈] 병원 하나가 계약해야 하는 업체 4곳, 따로 쓸 때 생기는 일",
+      "status": "Review",
+      "headings": [
+        "병원이 계약하는 업체 네 종류",
+        "1. 차트·청구 프로그램",
+        "2. 광고 대행",
+        "3. 체험단·인플루언서",
+        "4. 외국인 환자 유치",
+        "네 곳으로 나뉘면 생기는 일",
+        "정리해 보시면 바로 보입니다",
+        "저희가 확인한 것",
+        "업체를 줄이라는 얘기는 아닙니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8108-b457-f989d6c4bc72",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "뷰티네스트로 외국인 손님 문의 받는 법 (LINE·WhatsApp·Instagram)",
+      "status": "Published",
+      "headings": [
+        "외국인 손님 문의에서 자주 막히는 지점",
+        "뷰티네스트에서 처리되는 방식",
+        "채널을 한 화면에서 받습니다",
+        "직원이 한국어로 답하면 됩니다",
+        "시술 중에는 자동 안내가 먼저 나갑니다",
+        "자주 오는 질문은 미리 등록해 둡니다",
+        "준비할 것",
+        "관광객 손님은 재방문보다 리뷰입니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81ba-8dd0-dbd7eb27d157",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "닥터네스트 알림톡, 어떤 메시지가 자동으로 나가나",
+      "status": "Deleted",
+      "headings": [
+        "기본으로 설정하는 여섯 가지",
+        "1. 예약 확인",
+        "2. 방문 전 안내",
+        "3. 시술 직후 안내",
+        "4. 경과 확인",
+        "5. 재방문 안내",
+        "6. 이탈 확인",
+        "설정할 때 정해야 하는 것",
+        "발송 전에 확인할 것",
+        "어느 채널로 나가는가",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81b7-949d-fb62a581d9ee",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "닥터네스트 도입 후 첫 달에 보는 지표 3가지",
+      "status": "Deleted",
+      "headings": [
+        "1. 첫 응답까지 걸린 시간",
+        "2. 진료 시간 외 문의 처리율",
+        "3. 채널별 문의 건수",
+        "첫 달에 아직 안 보이는 것",
+        "도입 전에 기록해 두셔야 할 것",
+        "두 번째 달부터 볼 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8175-aecc-d9308685d841",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "뷰티네스트 요금과 시작 방법",
+      "status": "Published",
+      "headings": [
+        "구독료와 사용량으로 나눈 이유",
+        "시작하는 순서",
+        "매장 규모에 따라 달라지는 것",
+        "비용을 판단하는 기준",
+        "확인해 두면 좋은 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-816a-a629-cbc74af5054f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "닥터네스트를 쓰면 안 되는 병원 (도입 전 솔직한 체크리스트)",
+      "status": "Published",
+      "headings": [
+        "1. 진료 기록이나 청구가 불편한 경우",
+        "2. 문의가 전화 한 곳으로만 오는 경우",
+        "3. PC를 쓰지 않는 환경",
+        "4. 진료 후 관리 자동화만 필요한 경우",
+        "5. 지금 응대에 문제가 없는 경우",
+        "6. 도입은 하는데 정할 사람이 없는 경우",
+        "그럼에도 검토해 볼 만한 경우",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81ba-af8d-c39faca33850",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#B6 닥터네스트 도입 절차, 신청부터 상담 채널 연결까지",
+      "status": "Review",
+      "headings": [
+        "진행 순서",
+        "1단계. 현황 확인",
+        "2단계. 계정과 채널 연결",
+        "3단계. 안내 문구 설정",
+        "4단계. 사용법 교육",
+        "5단계. 시작하고 조정",
+        "미리 준비해 두면 빨라지는 것",
+        "도입 기간이 길어지는 경우",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8191-af07-cc8cb98bc44f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#B5 닥터네스트, 기존 차트(EMR)를 그대로 두고 붙일 수 있나",
+      "status": "Review",
+      "headings": [
+        "무엇이 어디에 남는가",
+        "차트를 안 바꿔도 되는 이유",
+        "도입 과정에서 차트를 건드리지 않습니다",
+        "두 곳을 오가는 게 번거롭지 않나",
+        "도입 전에 확인하실 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-810f-9fb7-fa1de36f906d",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#B3 닥터네스트 vs 애프터닥 vs 닥터팔레트, 뭐가 어떻게 다른가",
+      "status": "Review",
+      "headings": [
+        "세 제품이 서 있는 자리",
+        "어느 쪽이 필요한지 판단하는 기준",
+        "응대 도구 안에서 나누는 기준",
+        "닥터네스트가 다른 점",
+        "닥터네스트가 답이 아닌 경우",
+        "비교하실 때 권하는 방법",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-815f-8dea-e66c992d99b2",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#B2 닥터네스트 요금과 과금 구조 (월 구독료와 사용량 과금)",
+      "status": "Review",
+      "headings": [
+        "요금이 두 부분으로 나뉘는 이유",
+        "사용량은 언제 발생하나",
+        "견적을 받으실 때 확인할 것",
+        "도입 전에 예산을 가늠하는 방법",
+        "비용을 판단하는 기준",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8104-8cfe-f8091729aaf9",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법",
+      "status": "Published",
+      "headings": [
+        "다음 상담에 필요한 내용만 남겨보세요",
+        "뷰티네스트에서 상담과 시술 기록을 이어 봅니다",
+        "다음 연락에는 이유와 시점이 있어야 합니다",
+        "지금 찾기 어려운 기록부터 말씀해 주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8130-946d-fabc69df007f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "카카오톡·DM으로 흩어진 병원 문의, 한곳에서 관리하려면",
+      "status": "Published",
+      "headings": [
+        "자주 쓰는 문의 채널부터 모아보세요",
+        "다음 직원이 할 일을 상담 메모에 남깁니다",
+        "반복하는 안내는 등록해 두고 직원이 이어받습니다",
+        "가장 번거로운 문의 한 가지부터 말씀해 주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81ed-85d1-e530201ed416",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#32 [오픈애즈] 뷰티 인플루언서 체험단, 문의부터 재방문까지 관리하는 법",
+      "status": "Review",
+      "headings": [
+        "보고서 숫자와 매출 사이에 있는 구간",
+        "함께 봐야 할 네 가지",
+        "집행 전에 준비할 것",
+        "저희가 확인한 것",
+        "보고서에서 조심해서 볼 항목",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8183-a634-d474130302e2",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#31 [오픈애즈] 피부관리실 고객관리, 재방문 주기와 외국인 상담을 함께 보는 법",
+      "status": "Review",
+      "headings": [
+        "회차 관리와 재방문 관리는 다릅니다",
+        "회차 관리에서 챙길 것",
+        "재방문 관리에서 챙길 것",
+        "저희가 확인한 것",
+        "외국인 손님이 오는 상권이라면",
+        "정리해 두면 좋은 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8135-822e-c9ece458fb11",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#30 [오픈애즈] 반영구 마케팅, 외국인 고객의 사진 상담과 리터치 예약을 관리하는 법",
+      "status": "Review",
+      "headings": [
+        "반영구 문의의 특징",
+        "1. 사진이 오갑니다",
+        "2. 시술 전 확인 사항이 많습니다",
+        "3. 시술 후 관리 기간이 있습니다",
+        "4. 리터치 시점이 정해져 있습니다",
+        "문의부터 리터치까지 흐름으로 봅니다",
+        "저희가 확인한 것",
+        "외국인 손님 문의가 오는 경우",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8137-9a58-e21bde1309e6",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#29 [오픈애즈] SNS 통합 관리, 카카오톡·LINE·WhatsApp 상담을 한 화면에서 보는 법",
+      "status": "Review",
+      "headings": [
+        "채널이 늘어날 때 실제로 생기는 문제",
+        "통합한다는 게 무슨 뜻인가",
+        "확인할 여섯 가지",
+        "저희가 확인한 것",
+        "통합 전에 정리해 두면 좋은 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8103-83d1-f7888e59a523",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #28 [오픈애즈] 외국인 미용실 예약, LINE·WhatsApp·Instagram 중 무엇부터 열어야 할까",
+      "status": "Review",
+      "headings": [
+        "문의 채널이 많을수록 예약이 쉬워지는 것은 아닙니다",
+        "구글 프로필에서 메시지를 받을 수 있다고 가정하지 않습니다",
+        "다국어 페이지가 DM의 첫 답변을 대신해야 합니다",
+        "채널마다 받을 정보를 통일합니다",
+        "광고부터 실제 방문까지 이어서 측정합니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-8185-9789-e0fa5f76ef2f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #27 [오픈애즈] 미용실 광고 클릭 뒤 DM 문의가 예약으로 이어지는지 측정하는 법",
+      "status": "Review",
+      "headings": [
+        "광고 성과와 예약 성과를 분리해서 봅니다",
+        "DM에서 반복되는 질문은 페이지로 먼저 답합니다",
+        "광고와 프로필은 역할이 다릅니다",
+        "‘문의 시작’과 ‘예약 완료’를 같은 전환으로 세지 않습니다",
+        "응대 속도보다 ‘운영 가능한 약속’이 중요합니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3bb753eb-c013-81ce-9316-f93d7dc2ea70",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#26 [오픈애즈] 뷰티샵 고객관리, 엑셀·수기 장부에서 넘어갈 때 확인할 것",
+      "status": "Review",
+      "headings": [
+        "엑셀이 무너지는 지점은 정해져 있습니다",
+        "프로그램으로 넘어갈 때 확인할 것",
+        "무료 프로그램을 알아보고 계시다면",
+        "저희가 확인한 것",
+        "넘어가기 전에 정리해 두면 좋은 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8126-b046-d52bf784b5e1",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#25 [오픈애즈] 네일샵·왁싱샵 고객관리, 재방문 주기를 손님이 기억하게 만드는 법",
+      "status": "Review",
+      "headings": [
+        "손님은 주기를 계산하지 않습니다",
+        "시점을 정하고 남기는 것부터",
+        "안내가 자동으로 나가야 유지됩니다",
+        "어느 채널로 보낼지도 정해야 합니다",
+        "저희가 확인한 것",
+        "시작하는 순서",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8147-96d0-e611da169185",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #24 [오픈애즈] 외국인 환자 문의 전 한의원이 먼저 점검할 4가지",
+      "status": "Review",
+      "headings": [
+        "외국어 한 줄보다 ‘확인 가능한 정보’가 먼저입니다",
+        "1. 구글 프로필의 기본 정보가 실제와 맞는가",
+        "2. 다국어 페이지가 상담 전에 필요한 답을 주는가",
+        "3. 상담 담당자와 의료진의 경계를 정했는가",
+        "4. 검색과 AI에서 같은 설명이 확인되는가",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81dd-94a0-f98785eb0d17",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #23 [오픈애즈] 치과 상담 문의가 진료 예약에서 끊기는 5단계",
+      "status": "Review",
+      "headings": [
+        "같은 치과 문의라도 필요한 답은 다릅니다",
+        "예약 전환을 보는 다섯 단계",
+        "랜딩페이지가 상담의 반복 질문을 줄여야 합니다",
+        "긴급 문의와 일반 문의를 구분합니다",
+        "구글 프로필 행동도 함께 봅니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8186-9789-dd37048bfbb0",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#22 카카오톡 채널 마케팅, 광고 문의를 예약과 재방문으로 연결하는 법",
+      "status": "Review",
+      "headings": [
+        "전화보다 메시지를 편해하는 사람이 많습니다",
+        "광고와 채널을 잇는 방법",
+        "메시지 발송은 다르게 접근해야 합니다",
+        "채널이 늘어나면 생기는 문제",
+        "저희가 확인한 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8176-b126-f7e3d9bf315f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#21 [오픈애즈] 노쇼 방지, 예약 문자만으로 부족할 때 점검할 3가지",
+      "status": "Review",
+      "headings": [
+        "노쇼를 0으로 만들 수는 없습니다",
+        "예약 문자가 효과가 없는 세 가지 경우",
+        "1. 안내만 있고 변경 방법이 없습니다",
+        "2. 보내는 시점이 하나뿐입니다",
+        "3. 취소 연락이 와도 자리가 안 채워집니다",
+        "예약 부도가 잦은 유형을 먼저 봅니다",
+        "페널티를 도입하기 전에",
+        "저희가 확인한 것",
+        "정리하면 이 순서입니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81d2-a907-f1d88bd06e26",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #20 [오픈애즈] 외국인 의료관광 마케팅, 국가보다 유입 데이터로 메신저를 고르는 법",
+      "status": "Review",
+      "headings": [
+        "“이 나라는 이 메신저”라는 공식부터 버립니다",
+        "구글 프로필의 메시지 기능은 현재 상태를 확인해야 합니다",
+        "채널보다 먼저 준비할 네 가지",
+        "광고와 메신저 사이에 다국어 페이지를 둡니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8137-852a-e57d6cdd7429",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#19 [오픈애즈] 병원 콜센터, 전화·카카오톡·WhatsApp 상담을 함께 관리하려면",
+      "status": "Review",
+      "headings": [
+        "전화만 관리하면 생기는 일",
+        "채널별로 성격이 다릅니다",
+        "전화의 진짜 약점은 기록입니다",
+        "저희가 확인한 것",
+        "콜센터를 검토하실 때 함께 볼 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81bf-8dd6-e1ddbfbd213a",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#18 [오픈애즈] 자동 번역 도입 전 병원이 확인할 의료용어·보안·검수 기준",
+      "status": "Review",
+      "headings": [
+        "1. 의료 용어를 어떻게 다루는가",
+        "2. 환자 정보가 어디로 가는가",
+        "3. 나간 내용을 누가 확인하는가",
+        "저희가 확인한 것",
+        "도입 전 점검표",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81d8-ab86-d5cf8ae58f04",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#17 [오픈애즈] 실시간 번역과 AI 번역, 외국인 환자 상담에 바로 써도 될까",
+      "status": "Review",
+      "headings": [
+        "일상 번역과 상담 번역은 다릅니다",
+        "실무에서 자주 겪는 네 가지",
+        "1. 앞 대화가 반영되지 않습니다",
+        "2. 어조가 달라집니다",
+        "3. 전문 용어가 일상어로 바뀝니다",
+        "4. 중국어는 두 가지입니다",
+        "그래서 어디까지 쓸 수 있나",
+        "저희가 확인한 것",
+        "도구를 고를 때 확인할 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8158-ba4b-f3786a950792",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 환자 문의, 번역부터 다음 상담까지 어떻게 이어갈까?",
+      "status": "Published",
+      "headings": [
+        "원문과 번역을 함께 읽으세요",
+        "반복되는 기본 안내는 짧게 준비합니다",
+        "다음 직원에게 답하지 못한 질문을 남깁니다",
+        "주로 받는 언어와 질문만 알려주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81c5-a915-e0fd68bffb27",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #15 [오픈애즈] 병원 블로그 조회를 상담 문의까지 연결하는 측정 설계",
+      "status": "Review",
+      "headings": [
+        "좋은 글을 썼는데 문의 경로가 없다면",
+        "글 한 편에 목적을 하나씩 둡니다",
+        "UTM과 GA4로 글 이후의 행동을 봅니다",
+        "AI 검색까지 고려하면 ‘질문 단위’가 더 중요해집니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81ac-914a-df498ad10df3",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#14 [오픈애즈] 성형외과 마케팅에서 재진 관리가 잘 안 통하는 이유",
+      "status": "Review",
+      "headings": [
+        "성형외과는 문의부터 결정까지가 깁니다",
+        "그럼 무엇을 봐야 하나",
+        "1. 첫 응답 속도",
+        "2. 고민 기간 동안 끊기지 않는 연결",
+        "3. 상담 내용의 일관성",
+        "4. 담당자가 바뀌어도 이어지는 기록",
+        "5. 외국인 문의 비중",
+        "저희가 확인한 것",
+        "재방문 관리가 아예 필요 없는 건 아닙니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-815d-9f27-de14b6c2f324",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#13 [오픈애즈] AI 챗봇 상담, 병원이 자동응답에 맡겨도 되는 질문과 안 되는 질문",
+      "status": "Review",
+      "headings": [
+        "자동 응답에 맡기면 안 되는 질문",
+        "자동으로 답해도 되는 질문",
+        "챗봇보다 먼저 필요한 건 부재 응답입니다",
+        "외국어 문의에서는 판단이 조금 다릅니다",
+        "저희가 확인한 것",
+        "도입 전에 확인할 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8120-8bb4-ed591923a480",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #12 [오픈애즈] 지방 병원 마케팅, 서울 대행사의 지역검색 운영을 검증하는 3가지",
+      "status": "Review",
+      "headings": [
+        "거리보다 운영 구조를 먼저 봐야 합니다",
+        "1. 지역 검색을 한 지점에서만 보고 있지 않은가",
+        "2. 병원이 계정과 데이터를 직접 확인할 수 있는가",
+        "3. 현장 변화가 다음 보고에 반영되는가",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #11 [오픈애즈] 병원 광고 문의가 예약으로 이어지지 않는 7가지 단절",
+      "status": "Review",
+      "headings": [
+        "문의 수와 예약 수 사이에는 일곱 개의 점검 지점이 있습니다",
+        "첫 번째는 ‘어떤 검색어가 문의를 만들었는가’입니다",
+        "광고 시간과 상담 시간을 맞춥니다",
+        "‘문의’ 전환부터 다시 정의합니다",
+        "랜딩페이지에는 상담 전에 필요한 답이 있어야 합니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-812a-a584-c52d4bbbf46f",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#10 [오픈애즈] 의료통역사 없이 외국인 환자 상담하는 방법",
+      "status": "Review",
+      "headings": [
+        "통역이 반드시 필요한 구간이 있습니다",
+        "그런데 통역 비용의 대부분은 다른 구간에서 발생합니다",
+        "구간을 나누면 답이 나옵니다",
+        "번역으로 처리할 때 확인할 것",
+        "저희가 확인한 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8124-ae91-cf4b134715fe",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#9 외국인환자 유치 수수료, 재방문과 소개에도 계속 붙습니다",
+      "status": "Review",
+      "headings": [
+        "수수료가 계속 붙는 이유",
+        "문제의 뿌리는 연락처가 어디 있느냐입니다",
+        "유치업체를 쓰지 말라는 얘기가 아닙니다",
+        "직접 받는 통로를 만드는 순서",
+        "저희가 확인한 것",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-817b-ac2e-da422eaa980d",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "#8 [오픈애즈] 미용실 고객관리 프로그램, 예약장부만으로 놓치는 3가지",
+      "status": "Review",
+      "headings": [
+        "예약장부만으로는 안 보이는 세 가지",
+        "1. 문의가 어디서 들어오는지",
+        "2. 시술 중에 놓친 문의",
+        "3. 다시 올 때가 된 손님",
+        "고객관리 프로그램을 고를 때 볼 것",
+        "저희가 확인한 것",
+        "도입 전에 한 주만 세어보세요",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8141-bfc7-e667db4b5a64",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #7 [오픈애즈] 피부과 마케팅, 신규 환자 광고와 재방문을 분리 측정하는 법",
+      "status": "Review",
+      "headings": [
+        "광고 문의가 늘어도 매출이 그대로일 수 있습니다",
+        "먼저 지표를 분리합니다",
+        "광고는 시술명이 아니라 환자의 질문에서 시작합니다",
+        "재방문은 ‘메시지 발송’보다 기준 설계가 먼저입니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81f9-9ccf-dbe77a804950",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "병원 마케팅 대행사 고르는 법, 광고 보고서보다 상담 전환을 보세요",
+      "status": "Published",
+      "headings": [
+        "대행사가 책임지는 구간은 생각보다 짧습니다",
+        "보고서에서 확인할 세 가지",
+        "계약 전에 물어볼 다섯 가지 질문",
+        "저희가 확인한 것",
+        "업체가 여러 곳으로 나뉘어 있다면",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81d6-997a-cd7eb0ffd405",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ #5 [오픈애즈] 외국인환자 유치업 등록 후 문의를 예약으로 잇는 4단계",
+      "status": "Review",
+      "headings": [
+        "등록을 마쳤는데도 문의가 늘지 않는 이유",
+        "행정 요건과 마케팅 운영은 따로 점검해야 합니다",
+        "예약 전환을 막는 네 가지 단절",
+        "구글·AI·광고가 같은 정보를 말하게 해야 합니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81d7-82c1-ebc63049b0da",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "광고로 들어온 문의, 예약까지 어디에 기록해야 할까?",
+      "status": "Published",
+      "headings": [
+        "광고 보고서와 상담 기록은 따로 읽어야 합니다",
+        "닥터네스트에는 대화와 다음 연락을 남깁니다",
+        "예약 여부는 병원 예약 기록에서 확인합니다",
+        "지금 받는 문의부터 기록 방법을 맞춰보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-813e-9105-ce4ce0f5bf96",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "예약 확인·변경 연락을 놓치지 않으려면 무엇을 정리해야 할까?",
+      "status": "Published",
+      "headings": [
+        "변경 요청을 받은 내용부터 남기세요",
+        "예약이 바뀌면 예약 프로그램이나 장부부터 수정하세요",
+        "날짜가 바뀌면 예정된 메시지도 확인하세요",
+        "자주 놓치는 예약 연락을 알려주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-8107-9836-ee7172eda08f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "#2 병원 CRM 프로그램 고르는 법, EMR 교체와 상담 애드온의 차이",
+      "status": "Review",
+      "headings": [
+        "병원에서 CRM이라고 부르는 것은 보통 세 가지입니다",
+        "교체할 것인가, 얹을 것인가",
+        "차트 교체가 무거운 결정인 이유",
+        "상담 쪽 도구를 검토한다면 확인할 여섯 가지",
+        "저희가 확인한 것",
+        "도입 전에 한 주만 세어보시면 됩니다",
+        "정리",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3ba753eb-c013-81a7-adfd-e78dce4c7f32",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "닥터팔레트 vs 애프터닥, 비교 전에 병원이 먼저 정해야 할 것",
+      "status": "Published",
+      "headings": [
+        "부족한 게 차트인지 상담인지부터 나눠야 합니다",
+        "우리 병원이 어느 층에서 새는지 확인하는 방법",
+        "차트를 바꾸는 결정이 무거운 이유",
+        "상담 쪽이 문제라면 확인할 것 다섯 가지",
+        "저희가 확인한 것",
+        "세 번째 선택지도 있습니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b6753eb-c013-81a3-8b69-d3f86b39854c",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "약국 외국인 마케팅, 검색량을 실측해봤습니다: 로컬 업종 데이터 사례",
+      "status": "Draft",
+      "headings": [
+        "왜 약국을 사례로 골랐나",
+        "측정은 세 갈래로 나눴습니다",
+        "1. 사업자가 검색하는 것 (네이버 검색광고)",
+        "2. 손님이 검색하는 것 (구글 애즈, 한국 지역 기준)",
+        "3. 상권별 언어 분포 (같은 도구, 지역명 조합)",
+        "AI 검색까지 확인했습니다",
+        "이 측정을 다른 업종에 적용하려면",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b6753eb-c013-8117-bf67-e731bc610aaf",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "ChatGPT에 '명동 약국 추천' 물어봤습니다: 우리 약국은 나올까",
+      "status": "Review",
+      "headings": [
+        "실제로 물어본 방법",
+        "ChatGPT는 지도와 함께 4곳을 보여줬습니다",
+        "Gemini도 거의 같은 곳을 추천했습니다",
+        "답변을 보다가 발견한 것",
+        "따라 하기 전에 알아야 할 것",
+        "직접 확인해보는 방법",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b6753eb-c013-8185-8925-f6346048d322",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "약국 영어 회화보다 중요한 외국인 손님이 우리 약국을 찾아오게 만드는 법",
+      "status": "Published",
+      "headings": [
+        "약사님들이 실제로 검색하는 것",
+        "외국인은 이렇게 우리 약국을 찾습니다",
+        "그래서 순서는 이렇게 잡습니다.",
+        "1단계. 구글에서 검색되는 상태 만들기",
+        "2단계. 무엇을 파는 약국인지 보이게 하기",
+        "3단계. 리뷰 쌓기",
+        "4단계. 그다음이 응대입니다",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b6753eb-c013-811c-a93d-f3cbb4e034cb",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 약국 소비 17배 가까이 늘었는데, 우리 약국은 왜 조용할까?",
+      "status": "Published",
+      "headings": [
+        "약국 시장은 이미 이만큼 커졌습니다",
+        "그런데 왜 우리 약국은 조용할까요?",
+        "약사님들도 이미 필요를 느끼고 계십니다",
+        "지금 바로 확인해볼 수 있는 3가지",
+        "자주 묻는 질문",
+        "정리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b5753eb-c013-81da-bc30-d0275cd6bd82",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 환자 유치, 왜 광고보다 구글 지도 순위 진단이 먼저일까?",
+      "status": "Published",
+      "headings": [
+        "강남의 한 피부과, 75개 지점에서 순위를 재봤습니다",
+        "결과는 한국어 0/25, 영어 4/25, 일본어 0/25",
+        "평점 5.0인데 왜 안 보일까요?",
+        "외국인 마케팅, 왜 진단이 먼저일까요",
+        "진단에서 확인해야 할 것들",
+        "우리 병원은 지금 어떤 상태일까요",
+        "함께 보면 좋은 글"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81a7-92e6-c82c90d2b5d5",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "랜딩페이지란? 홈페이지와 무엇이 다르고 언제 필요할까",
+      "status": "Review",
+      "headings": [
+        "홈페이지와 랜딩페이지, 한 표 정리",
+        "랜딩페이지가 필요한 순간 4가지",
+        "전환되는 랜딩페이지의 기본 구조",
+        "요즘 달라진 점, 랜딩페이지도 검색과 AI에 잃힙니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81b0-b65d-cecd7a5e41df",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] 인바운드 여행사와 제휴해서 외국인 단체 손님 받는 법",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81b6-8196-f7042a62021c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "AI가 인용하는 랜딩페이지는 구조가 다릅니다: AEO GEO 랜딩페이지 설계법",
+      "status": "Published",
+      "headings": [
+        "원칙 1. 결론이 먼저, 설명은 나중",
+        "원칙 2. 한 페이지가 한 질문에 완결되게",
+        "원칙 3. 숫자와 조건은 표로, 단 텍스트 표로",
+        "원칙 4. 질문 그대로의 소제목 + 짧은 답",
+        "원칙 5. 누가 말하는지가 보여야 합니다",
+        "원칙 6. 기술 요소는 마지막에 점검",
+        "설계 체크리스트",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8188-aee0-c71094837f39",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 타겟 홈페이지 제작 업체 고르기 전 체크리스트 6가지",
+      "status": "Published",
+      "headings": [
+        "1. 도메인·호스팅 명의가 내 것인가?",
+        "2. 유지보수 조건이 숫자로 적혀 있는가?",
+        "3. 모바일 화면을 기준으로 시안을 보여주는가?",
+        "4. 검색 및 AEO,GEO을 말이 아니라 항목으로 보여주는가?",
+        "5. 비슷한 업종 제작 사례가 있는가?",
+        "6. 계약 종료 시 인계 범위가 정의되어 있는가?",
+        "견적 비교를 위한 추천 질문",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81a6-b2a7-dceef8be4571",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] AEO,GEO에 홈페이지형 블로그 제작만으로 충분할까? ",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-817e-81ab-ceb277ca1a1a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "병원 홈페이지 제작 비용, 견적서에서 반드시 확인할 6가지",
+      "status": "Review",
+      "headings": [
+        "비용이 갈리는 구조부터 이해하기",
+        "확인 1. 도메인과 호스팅 소유권이 누구 명의인가",
+        "확인 2. 유지보수 범위와 수정 속도",
+        "확인 3. 의료광고 규정을 아는 제작사인가",
+        "확인 4. 검색과 AI가 읽을 수 있는 구조인가",
+        "확인 5. 구글 비즈니스 프로필과 연결되는가",
+        "확인 6. 원본 데이터와 콘텐츠의 귀속",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81ca-b098-dd0716bc86bb",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "펜션 홈페이지, 외국인 예약까지 받으려면 무엇이 달라야 할까",
+      "status": "Review",
+      "headings": [
+        "외국인 손님은 이 경로로 들어옵니다",
+        "외국인 예약을 받는 펜션 홈페이지의 5가지 조건",
+        "1. 영문 페이지가 번역기 품질이면 안 됩니다",
+        "2. 위치 안내는 주소가 아니라 이동 방법으로",
+        "3. 예약 방법이 외국인 기준으로 설계됐는가",
+        "4. 사진은 객실보다 \"경험\"이 먼저",
+        "5. 구글 비즈니스 프로필과 정보 일치",
+        "예약 플랫폼과 홈페이지의 역할 분담",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8172-b009-eed2e815ca89",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "✅ [오픈애즈] AI 검색 인용 링크 클릭은 1%였다, 제로클릭 시대 KPI를 다시 보는 법",
+      "status": "Review",
+      "headings": [
+        "클릭이 줄어도 검색의 영향력은 사라지지 않습니다",
+        "‘인용’은 노출이 아니라 검증 신호입니다",
+        "AI 검색 KPI는 세 층으로 나눠 봅니다",
+        "블링크애드가 연결하는 구간"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8175-9c01-e19a469d85e5",
+      "source_database": "company_posts",
+      "channel_scope": "openads_draft_in_company_posts",
+      "title": "[오픈애즈] 환자는 AI에게 \"어디 병원\"보다 \"이 시술 어때\"를 6.7배 더 묻는다",
+      "status": "Deleted",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8112-b9c6-eede5a896d70",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "[아이보스] 구글 광고 투명성 센터로 경쟁사 광고 5분 만에 확인하는 법",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8174-a4b0-c50332129081",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "[아이보스] 매장방문 PMAX 5일 실측, 노출 9,402회에 전환 0이 남긴 교훈",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8139-b981-f63ea0969d9a",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] 검진과 미용을 묶은 외국인 상품, KMI 사례로 본 병원 제휴 전략",
+      "status": "Draft",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8175-9e44-c6a9dd11f5cd",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] 슈링크 AEO GEO, 울쎄라와 비교하는 환자 질문을 먼저 잡으려면",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8106-a2ee-c4b868cfbb4c",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] 외국인 환자 유치, 등록 안 하면 처벌받습니다 (요건 정리)",
+      "status": "Review",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81ce-8eb2-d0a65cfff90d",
+      "source_database": "company_posts",
+      "channel_scope": "premium_draft_in_company_posts",
+      "title": "[프리미엄콘텐츠] 의료관광 117만 명 시대, 외국인 환자는 어느 진료과로 몰렸을까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-816c-862c-e9379e84e487",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 키워드 광고 vs PMAX, 소상공인은 뭐부터 해야 할까",
+      "status": "Review",
+      "headings": [
+        "두 캠페인은 작동 방식이 다릅니다",
+        "실제 운영 데이터로 본 차이",
+        "소상공인을 위한 투입 순서",
+        "PMAX를 쓸 때 미리 알아둠 점",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81eb-8858-e537d39d2cd1",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 계정 만들기? 워크스페이스와 비즈니스 프로필 헷갈림 정리",
+      "status": "Review",
+      "headings": [
+        "헷갈리는 세 가지, 한 표 정리",
+        "사장님이 필요한 건 대부분 비즈니스 프로필입니다",
+        "워크스페이스는 이메일 상품입니다",
+        "손해 보는 혼동 사례 3가지",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81c1-aba7-f6d6b3f99ed0",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글애즈 고객센터 연결 안 될 때, 계정정지·결제오류 해결 경로 정리",
+      "status": "Review",
+      "headings": [
+        "문제 유형부터 구분하세요",
+        "상황 1, 계정 정지",
+        "상황 2, 광고 비승인",
+        "상황 3, 사람에게 물어보고 싶을 때",
+        "예방이 가장 싼 해결책입니다",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-81d8-97b6-d1e6d83d252e",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글애즈 대행 수수료 구조, 어디까지 해주는 게 정상일까",
+      "status": "Review",
+      "headings": [
+        "수수료 방식은 크게 3가지입니다",
+        "계약 전 확인 질문 6가지",
+        "\"수수료 0원\" 광고의 구조",
+        "대행이 맞는 경우, 직접 운영이 맞는 경우",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-8151-9ad4-ffc02dbb5769",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글애즈 첫 세팅 가이드, 계정 만들기부터 첫 캠페인 송출까지",
+      "status": "Review",
+      "headings": [
+        "시작 전 준비물 3가지",
+        "1단계, 계정 만들기에서 가장 많이 하는 실수",
+        "2단계, 캠페인보다 전환 설정이 먼저입니다",
+        "3단계, 첫 캠페인 구성 순서",
+        "4단계, 키워드와 제외 키워드",
+        "검수와 송출 확인",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b2753eb-c013-817b-83b4-ecae4a4c8992",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글애즈 전환추적 설정법, 이것 없이 광고 돌리면 돈이 샙니다",
+      "status": "Review",
+      "headings": [
+        "전환추적이 없을 때 생기는 일 3가지",
+        "매장·병원이 잡아야 할 전환 액션 4가지",
+        "설정 방법 1, 구글애즈 태그로 직접 설정",
+        "설정 방법 2, GA4 연동으로 가져오기",
+        "설정 후 반드시 확인할 것 3가지",
+        "전환 데이터를 읽을 때 주의할 점",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36b753eb-c013-8180-a1c7-ce9a2c66b632",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "위챗페이 한국 결제, 중국인 관광객 많은 매장이 확인할 것",
+      "status": "Published",
+      "headings": [
+        "위챗페이와 Weixin Pay를 함께 이해해야 합니다",
+        "한국 매장에서 위챗페이는 어떻게 연결될까",
+        "알리페이 글과 다르게 봐야 할 점",
+        "매장 안 안내문은 이렇게 준비하세요",
+        "구글맵에는 결제 정보를 사진으로 보여주세요",
+        "직원 응대 문장을 미리 정해두세요",
+        "중국인 관광객 매장이라면 결제수단을 묶어서 봐야 합니다",
+        "업종별로 어디에 더 효과가 있을까",
+        "매장이 흔히 하는 실수",
+        "위챗페이 준비 체크리스트",
+        "리뷰 답글에서도 결제 경험을 관리하세요",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "중국인 관광객 결제 안내 정리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36b753eb-c013-8133-9db0-ed82e8f8114c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "알리페이 한국 결제, 외국인 손님 받는 매장이 준비할 것",
+      "status": "Published",
+      "headings": [
+        "알리페이와 알리페이플러스는 다르게 봐야 합니다",
+        "2026년 기준으로 확인할 흐름",
+        "외국인 손님은 이런 상황에서 헷갈립니다",
+        "매장 안 안내문은 짧게 쓰세요",
+        "구글맵에는 결제 가능성을 사진으로 보여주세요",
+        "직원 응대 문장을 정해두세요",
+        "알리페이만 준비하면 끝이 아닙니다",
+        "외국인 관광객 상권에서 특히 유용한 업종",
+        "매장이 흔히 하는 실수",
+        "알리페이 결제 준비 체크리스트",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "외국인 결제 안내 정리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36b753eb-c013-8166-80ce-fc2c703258b8",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "택스리펀드 매장, 외국인 관광객이 헷갈리지 않게 안내하는 방법",
+      "status": "Published",
+      "headings": [
+        "택스리펀드는 Duty Free와 다릅니다",
+        "2026년 기준으로 먼저 확인할 핵심 조건",
+        "식당·카페가 특히 조심해야 할 부분",
+        "매장 안에서는 짧고 정확하게 보여주세요",
+        "구글맵에는 이런 사진을 올리세요",
+        "직원 응대 문장은 미리 정해두세요",
+        "리뷰 답글에서도 택스리펀드 경험을 관리하세요",
+        "매장이 흔히 하는 실수",
+        "택스리펀드 안내 체크리스트",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "외국인 관광객 안내 정리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36b753eb-c013-81d1-a6fa-f0387f94e449",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "와우패스 쓰는 외국인 관광객, 식당·카페 결제 준비 방법",
+      "status": "Published",
+      "headings": [
+        "와우패스는 어떤 카드인가",
+        "왜 식당·카페가 와우패스를 알아야 할까",
+        "1. 카드 단말기부터 실제로 테스트하세요",
+        "2. 결제 가능 안내 문구를 매장 안에 붙이세요",
+        "3. 직원 응대 문장을 정해두세요",
+        "4. 구글맵 정보에도 결제 준비를 연결하세요",
+        "5. 와우패스만 보지 말고 외국인 결제 전체를 봐야 합니다",
+        "식당·카페 사장님 체크리스트",
+        "외국인 손님이 불편해하는 결제 상황",
+        "리뷰 답글에서도 결제 경험을 관리하세요",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "외국인 결제와 구글맵 정리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36b753eb-c013-81fe-b334-fa1c7979b4c6",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 손님 응대 매뉴얼, 리뷰까지 좋아지는 기본 문장",
+      "status": "Published",
+      "headings": [
+        "외국인 손님 응대가 리뷰에 영향을 주는 이유",
+        "응대 매뉴얼은 길게 만들 필요가 없습니다",
+        "1. 입장할 때 쓰는 기본 문장",
+        "2. 대기 안내 문장",
+        "3. 대표 메뉴 추천 문장",
+        "4. 맵기와 재료 설명 문장",
+        "5. 주문 조건 안내 문장",
+        "6. 결제와 포장 안내 문장",
+        "7. 리뷰 요청과 감사 인사",
+        "외국어 리뷰 답글도 응대의 일부입니다",
+        "직원 교육은 이렇게 하면 현실적입니다",
+        "사장님들이 자주 놓치는 부분",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "외국인 손님 응대와 리뷰 관리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36a753eb-c013-819a-9148-d0f2db03dbad",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "다국어 메뉴판 영어,일본어,중국어 어디까지 준비해야 할까?",
+      "status": "Published",
+      "headings": [
+        "다국어 메뉴판을 왜 준비해야 할까",
+        "1순위는 영어 메뉴판입니다",
+        "일본어 메뉴판은 어느 상권에서 필요할까",
+        "중국어 메뉴판은 간체와 번체를 나눠 봐야 합니다",
+        "처음부터 3개 언어를 모두 만들 필요는 없습니다",
+        "언어보다 먼저 정리해야 하는 정보",
+        "구글맵 메뉴 정보와 같이 맞춰야 합니다",
+        "상권별 추천 언어 우선순위",
+        "명동·동대문",
+        "홍대·성수·이태원",
+        "신촌·대학가",
+        "부산·제주 관광 상권",
+        "사장님이 바로 적용할 수 있는 순서",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "다국어 메뉴판과 구글맵 정리가 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36a753eb-c013-8111-8664-ca6215c8fe40",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "메뉴판 번역 맡기기 전, 식당 사장님이 확인해야 할 5가지",
+      "status": "Published",
+      "headings": [
+        "메뉴판 번역 전에 먼저 해야 할 일",
+        "1. 대표 메뉴와 전체 메뉴를 구분하세요",
+        "2. 메뉴명을 직역하지 말고 설명형으로 정리하세요",
+        "3. 가격, 1인분 기준, 최소 주문 수량을 따로 표시하세요",
+        "4. 맵기와 알레르기 정보를 먼저 정리하세요",
+        "5. 번역본을 구글맵 정보와 같이 맞추세요",
+        "번역 업체에 전달하면 좋은 자료",
+        "사장님이 직접 검수할 때 보는 기준",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "메뉴판 번역부터 구글맵 정리까지 필요하다면",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "36a753eb-c013-815b-aeae-f1b4c1a00e58",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "영어 메뉴판 만드는 법, 외국인 손님이 구글맵에서 실제로 보는것은?",
+      "status": "Published",
+      "headings": [
+        "왜 지금 영어 메뉴판을 다시 봐야 할까",
+        "외국인 손님이 메뉴를 보는 실제 순서",
+        "영어 메뉴판 만드는 법: 7단계",
+        "1. 메뉴명을 직역하지 말고 음식 유형을 먼저 알려주세요",
+        "2. 맵기, 고기 종류, 해산물 여부를 표시하세요",
+        "3. 대표 메뉴 5개를 먼저 보여주세요",
+        "4. 가격과 주문 단위를 분명히 쓰세요",
+        "5. 사진 파일명과 메뉴명이 서로 맞아야 합니다",
+        "6. 구글맵 메뉴 정보까지 같이 정리하세요",
+        "7. 리뷰 답글에도 메뉴 표현을 반복하세요",
+        "업종별로 다르게 봐야 할 포인트",
+        "고기집",
+        "한식당",
+        "카페·베이커리",
+        "술집·이자카야",
+        "사장님들이 자주 하는 실수",
+        "블링크애드가 보는 핵심",
+        "FAQ",
+        "참고 자료",
+        "외국인 메뉴판 정리가 필요하다면"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "359753eb-c013-81cd-a2cd-ecb16f8f52c3",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "외국인 관광객 통계와 추이, 2026년 외국인마케팅이 중요한 이유",
+      "status": "Published",
+      "headings": [
+        "2026년 3월 방한 외국인 관광객 수는 204만 명을 넘었습니다",
+        "데이터 기준을 먼저 확인해야 합니다",
+        "국가별 순위는 중국, 일본, 대만이 핵심입니다",
+        "외국인 관광객은 서울만의 이야기가 아닙니다",
+        "소비 지표도 같이 봐야 합니다",
+        "의료관광과 K뷰티는 이미 숫자로 확인됩니다",
+        "방문자는 늘었는데 내 브랜드가 조용한 이유",
+        "외국인 관광객 유치를 위해 먼저 점검할 것",
+        "결론: 외국인 관광객 증가는 준비된 곳에 먼저 보입니다",
+        "참고자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "357753eb-c013-8188-8847-fd574c747843",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "안과 AEO, 치과 AEO로 신규 환자를 늘릴 수 있을까?",
+      "status": "Published",
+      "headings": [
+        "안과와 치과는 이미 환자 질문이 많은 진료과입니다",
+        "안과 AEO는 수술명보다 상담 전 질문을 먼저 받아야 합니다",
+        "치과 AEO는 생활권 검색과 진료별 질문을 같이 잡아야 합니다",
+        "AEO는 FAQ를 많이 넣는 일이 아니라 답변 블록을 만드는 일입니다.",
+        "신규 환자를 늘리고 싶다면 병원 이름보다 질문 흐름부터 다시 봐야 합니다",
+        "외국인 환자 마케팅까지 보면 한국어 페이지로는 부족할 수 있습니다",
+        "안과와 치과가 AEO로 신규 환자를 늘리려면 먼저 세 가지만 보면 됩니다",
+        "안과 AEO와 치과 AEO에서 중요한 본질은?",
+        "함께 보면 좋은 글"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "357753eb-c013-8129-90af-c7e427177ec6",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "성형외과 GEO, 피부과 GEO로 정체된 매출을 늘릴 수 있을까?",
+      "status": "Published",
+      "headings": [
+        "매출이 정체된 병원은 대개 검색 흐름이 먼저 막혀 있습니다",
+        "GEO는 결국 병원 이름이 더 자주, 더 맞는 맥락에서 보이게 만드는 일입니다",
+        "성형외과 GEO는 비교 질문을 잡을 때 매출과 더 직접 연결됩니다",
+        "피부과 GEO는 로컬 검색과 시술 질문을 같이 받기",
+        "채널을 더 늘리기보다 같은 이야기를 하게 만들어야 합니다",
+        "외국인 환자 마케팅까지 보면 GEO는 언어와 제도까지",
+        "GEO로 매출을 다시 움직이려면 결국 세 가지가 먼저입니다",
+        "광고와 GEO를 따로 보면 매출 정체가 더 길어질 수 있습니다"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34b753eb-c013-8118-a57a-cf3165735181",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "병원 마케팅 의료법 자주 걸리는 8가지 위반 사례는?",
+      "status": "Published",
+      "headings": [
+        "1. 의료법 제56조와 제57조: 두 조항만 알면 90% 해결됩니다",
+        "제56조 (의료광고의 금지 등)",
+        "제57조 (의료광고의 심의)",
+        "2. 자주 걸리는 위반 8가지, 적발 빈도순으로 정리",
+        "① 자발적 후기를 가장한 치료경험담 (적발 1위, 31.7%)",
+        "② 비급여 진료비 할인·면제 오인 광고 (26.7%)",
+        "③ 거짓·과장 광고 (24.9%)",
+        "④ 사전심의 누락 SNS·블로그·유튜브",
+        "⑤ \"1위\", \"최고\", \"유일한\" 절대적 표현",
+        "⑥ Before/After 사진 무단 사용",
+        "⑦ 환자 유인·알선 (3,000만원 벌금)",
+        "⑧ 의사 자격·경력 과장",
+        "3. 위험 표현 → 안전 표현으로 바꾼다면?",
+        "4. 사전심의 신청 절차와 비용",
+        "신청 기관",
+        "신청 절차 (공통)",
+        "심의 수수료",
+        "유효기간",
+        "5. AEO 콘텐츠와 의료광고 심의를 동시에 만족시키는 방법은?",
+        "원칙 1: 1차 데이터 중심으로 작성",
+        "원칙 2: FAQ 형태로 정리",
+        "원칙 3: 안전 표현 매뉴얼 내재화",
+        "원칙 4: 모든 외부 노출 콘텐츠는 사전심의",
+        "6. 의료법 준수는 필수!",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34b753eb-c013-81c0-8446-c22d31d93674",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "피부과,성형외과 외국인 환자 유치 AEO로 가능할까?",
+      "status": "Published",
+      "headings": [
+        "1. 외국인 환자 117만 시대 그중 피부과 56.6%?",
+        "한국보건산업진흥원 2024 통계",
+        "국가별 분포",
+        "정부 목표",
+        "2. 왜 영문 AI 답변에 한국 병원이 안 잡히나",
+        "이유 1: 영문 1차 콘텐츠 자산 부재",
+        "이유 2: 외부 영문 플랫폼 미노출",
+        "이유 3: 영문 schema 마크업 누락",
+        "이유 4: Perplexity Health 같은 신규 채널 무대응",
+        "3. K-뷰티 영문 AEO 5단계 실행 가이드",
+        "1단계: 시술별 영문 가이드 작성 (1~3주차)",
+        "2단계: Perplexity Health · ChatGPT 답변 모니터링 (2주차부터 매주)",
+        "3단계: 외부 영문 디렉토리 등록 (3~5주차)",
+        "4단계: 영문 FAQ 30개 + FAQPage 스키마 (4~6주차)",
+        "5단계: 영문 환자 후기 (의료광고 심의 통과형) (6~8주차)",
+        "4. 외국인 환자 유치 등록기관 법적 요건",
+        "등록 요건",
+        "미등록 유치행위 처벌",
+        "등록 정보 확인",
+        "영문 콘텐츠에 명시할 사항",
+        "5. 영문 AI 답변 점유 앞으로 중요해집니다.",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34b753eb-c013-8105-b9c1-e23e64414f8c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "환자가 ChatGPT에 \"강남 치과 추천\" 물어보면 우리 병원이 안 나오는 이유",
+      "status": "Published",
+      "headings": [
+        "1. 글로벌 지표를 보면 AI 추천은 기존 검색보다 30배 어렵습니다.",
+        "SOCi 2026 Local Visibility Index",
+        "추천된 매장의 공통 조건",
+        "Perplexity의 의료 인용 패턴",
+        "2. 한국 시장: 환자의 첫 검색이 ChatGPT로 옮겨가는 중",
+        "3. 치과,성형외과에 특별히 더 가혹한 이유는?",
+        "YMYL 분류와 의료 인용 기준",
+        "의료 분야 AI 인용의 신뢰 기준",
+        "의료광고 심의가 만드는 또 하나의 장벽",
+        "4. 우리 병원이 지금 받고 있는 4가지 피해",
+        "5. AEO로 우리 병원이 살아남게 만드려면?",
+        "6. 우리 병원 점검 체크리스트 5개",
+        "7. ChatGPT 1.2%의 자리에 들어가야 살아남습니다.",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34b753eb-c013-8198-86b8-f21355046b1d",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "2026 병원 블로그 잘쓰는법, AI 검색에 인용되는 5문장 답변 구조",
+      "status": "Published",
+      "headings": [
+        "1. 잘못된 접근 (대부분의 병원 블로그가 지금 하고 있는 것)",
+        "2. 올바른 접근 원칙 (3가지 방법으로 정리)",
+        "첫째, 답을 먼저, 설명은 뒤에 (Answer-First)",
+        "둘째, 60~180단어 안에 답을 압축 (Chunkability)",
+        "셋째, 1차 데이터와 검증 가능한 출처 (Verifiability)",
+        "3. 5문장 답변 구조 단계별 How-to",
+        "템플릿: 5문장 답변 구조",
+        "단계 1: 답을 먼저 쓴다",
+        "단계 2: 60~100단어 안에 답을 끝낸다",
+        "단계 3: FAQ 스키마를 붙인다",
+        "단계 4: 1차 데이터를 본문에 녹인다",
+        "4. Before/After 예시: 같은 주제, 두 가지 글",
+        "Before (기존 병원 블로그)",
+        "After (AI 인용용 5문장 구조)",
+        "비교 정리",
+        "5. 발행 전 점검 체크리스트 (7개)",
+        "6. 병원 블로그 \"인용 가능 블록 수\"로 계산합니다",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34a753eb-c013-811d-b484-ce6a5518d6d8",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 AI 오버뷰 시대, 병원 광고 어떻게 바뀌나 (병원 마케터 필독)",
+      "status": "Published",
+      "headings": [
+        "1. 광고 노출 위치가 통째로 밀려났습니다",
+        "검색 결과 페이지의 상단을 AI가 차지",
+        "수치로 본 충격",
+        "2. AI Overview 안에 광고가 들어가기 시작했습니다",
+        "무엇이 바뀌나",
+        "거꾸로 말하면",
+        "3. 한국 의료광고는 규제까지 더 강해졌습니다",
+        "의료광고 사전심의 대상 확대",
+        "처벌 수위",
+        "디지털 광고 효율과의 충돌",
+        "4. 클릭은 줄어도 conversion rate는 오히려 올라갑니다",
+        "병원 마케터 분들이라면 어떤 선택을 할건가요?",
+        "5. 병원 마케터가 지금 해야 할 4가지 ",
+        "① \"정보형 vs 상업형\" 키워드 분리 운영",
+        "② 광고 카피를 AI Overview 인용용으로 재설계",
+        "③ AEO 자산을 광고 랜딩페이지로 활용",
+        "④ Google Business Profile + 네이버 플레이스 강화",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34a753eb-c013-815f-8615-e692d4f14042",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "Perplexity , ChatGPT가 환자에게 추천하는 병원의 5가지 공통점",
+      "status": "Published",
+      "headings": [
+        "공통점 첫째, 모든 페이지에 명시된 \"원장 이름\"이 있다",
+        "데이터",
+        "우리 병원에 적용",
+        "공통점 둘째, 답이 페이지 첫 60~100단어 안에 있다",
+        "데이터",
+        "우리 병원에 적용",
+        "공통점 셋째, FAQ 스키마 + 인라인 인용이 있다",
+        "데이터",
+        "두 가지 구체적 요소",
+        "공통점 넷째, 30~90일 내 업데이트된 흔적이 있다",
+        "데이터",
+        "우리 병원에 적용",
+        "공통점 다섯째, 외부 신뢰 플랫폼에 동시 노출된다",
+        "데이터",
+        "Cloudbeds 호텔 데이터의 시사점",
+        "우리 병원 점검",
+        "종합하면, AI 추천 병원의 5가지 공통점 체크리스트",
+        "1.2%에 들어가는 병원 공통점 이해 되셨나요?",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34a753eb-c013-81b8-b49c-e00e861dac42",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "AEO GEO 피부과 마케팅 전략 2026 AI 답변 1순위 차지하려면?",
+      "status": "Published",
+      "headings": [
+        "1. 시장 상황은 어떨까? ",
+        "시장 규모",
+        "외국인 환자 폭증",
+        "강남 상권 재편",
+        "2. 잘못된 접근 (대부분의 피부과가 지금 하고 있는 것은?)",
+        "3. 올바른 접근은? (3축으로 정리)",
+        "첫째, 89% 검색 단계를 점유한다",
+        "둘째, 1차 데이터로 AI 인용률을 끌어올린다",
+        "셋째, 의료광고 심의와 AEO를 동시에 만족시킨다",
+        "4. 6단계 실행 가이드",
+        "1단계: 현재 위치 진단 (1주차)",
+        "2단계: 시술별 1차 데이터 자산화 시키기 (2~3주차)",
+        "3단계: 심의 통과형 FAQ 30개 작성 (3~4주차)",
+        "4단계: 원장 인터뷰 유튜브 (4~6주차)",
+        "5단계: 외국인 환자 영문 AEO (6~8주차)",
+        "6단계: 90일 주기 업데이트 시스템 구축 (지속)",
+        "5. 우리 병원 점검 체크리스트",
+        "6. 피부과 마케팅, 앞으로 계속 바뀔겁니다.",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34a753eb-c013-8109-a3ce-fdd8585e37b1",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "AI 답변 확산으로 병원 웹사이트 트래픽이 줄어드는 이유 (2026)",
+      "status": "Published",
+      "headings": [
+        "1. 글로벌 지표: CTR이 절반 아래로 떨어지고 있습니다",
+        "Pew Research 2025년 7월 조사",
+        "SEER Interactive 2025년 9월 리포트",
+        "Zero-click 증가 추세",
+        "2. 한국 시장: 네이버가 무너지고 ChatGPT가 올라오는 중",
+        "오픈서베이 AI 검색 트렌드 리포트 2026",
+        "네이버의 전략이 바뀐다.",
+        "3. 병원(의료)은 AI 답변 노출이 가장 많은 분야입니다",
+        "Ahrefs 분석 (2025년 9월 데스크탑 SERP 기준)",
+        "의료 AI 답변은 누구를 인용하나",
+        "인용 정확도 이슈",
+        "4. 그래서 병원은 지금 무슨 피해를 보고 있나",
+        "5. 해결 어떻게 할까? 검색엔진 최적화에서 답변엔진 최적화로",
+        "6. 결론은? 지금 무엇부터 점검해야 할까요?",
+        "참고 자료"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "31a753eb-c013-817a-bad5-d4490d84343a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "[테스트] 블링크애드 썸네일 테스트 글",
+      "status": "Deleted",
+      "headings": [
+        "썸네일 테스트",
+        "테스트 목적",
+        "확인 사항"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81eb-81da-fab3b2fa163b",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 광고 비용, 월 얼마면 효과 볼 수 있을까? 업종별 현실 정리",
+      "status": "Published",
+      "headings": [
+        "구글 광고 비용의 기본 구조",
+        "업종별 평균 CPC 비교표",
+        "구글 광고 월 예산 시뮬레이션",
+        "구글 광고 vs SEO  비용 효율 비교",
+        "소상공인이 구글 광고를 시작할 때 주의할 점 3가지",
+        "1. 키워드를 너무 넓게 잡지 마세요",
+        "2. 전환 추적을 반드시 설정하세요",
+        "3. 광고 품질점수를 관리하세요",
+        "광고 없이도 구글에서 노출되는 방법",
+        "자주 묻는 질문",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-8190-ac30-d3844150a0ab",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "소상공인 온라인 마케팅, 구글에서 손님 받는 3단계",
+      "status": "Published",
+      "headings": [
+        "왜 구글이 소상공인 온라인 마케팅의 최적 채널일까?",
+        "1단계: 구글 비즈니스 프로필 등록과 최적화",
+        "기본 등록 방법",
+        "최적화 핵심 포인트",
+        "2단계: 리뷰 확보와 관리 전략",
+        "자연스럽게 리뷰를 받는 방법",
+        "리뷰 관리 원칙",
+        "3단계: 간단한 콘텐츠로 꾸준히 활성화하기",
+        "구글 비즈니스 프로필 '게시물' 활용법",
+        "비용 비교 유료 마케팅 vs 구글 마케팅",
+        "현실적인 타임라인 언제 효과가 나타날까",
+        "마무리하며- 마케팅 효과를 극대화하는 팁",
+        "자주 묻는 질문",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81b4-b2de-d63971e8dc62",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "하이퍼로컬 마케팅이란? 반경 1km 안에서 매출 만드는 전략",
+      "status": "Published",
+      "headings": [
+        "하이퍼로컬 마케팅이란?",
+        "왜 \"반경 1km\"가 중요한가",
+        "하이퍼로컬 마케팅하는 방법 5가지",
+        "1. 구글 비즈니스 프로필(GBP) 최적화",
+        "2. 동네 특화 키워드 활용",
+        "3. 지역 커뮤니티 참여 (온·오프라인)",
+        "4. 구글 지도 반경 타깃 광고",
+        "5. 로컬 고객 리뷰 확보",
+        "무엇을 측정해야 할까요?",
+        "전통적 마케팅 vs 하이퍼로컬 마케팅 비교",
+        "자주 묻는 질문",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81eb-9edf-f5fbcd551383",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "로컬 SEO란? 동네 장사하는 사장님을 위한 쉬운 설명",
+      "status": "Published",
+      "headings": [
+        "로컬 SEO란 무엇인가요?",
+        "왜 동네 장사에 로컬 SEO가 중요한가요?",
+        "로컬 SEO의 핵심 요소 4가지",
+        "1. 구글 비즈니스 프로필(Google Business Profile)",
+        "2. 고객 리뷰 관리",
+        "3. NAP 정보 일관성",
+        "4. 지역 키워드 활용",
+        "로컬 SEO vs 일반 SEO, 뭐가 다른가요?",
+        "지금 바로 시작하는 로컬 SEO 5단계",
+        "자주 묻는 질문",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-8139-82cd-ff1cbec6b6c4",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 지도 리뷰 vs 네이버 플레이스 리뷰, 어디가 매출에 도움될까?",
+      "status": "Published",
+      "headings": [
+        "한국 검색 시장, 구글이 치고 올라오고 있습니다",
+        "구글 지도 리뷰 vs 네이버 플레이스 리뷰, 무엇이 다를까?",
+        "업종별로 보면, 어디가 더 중요할까?",
+        "관광·숙박업",
+        "외식업 (맛집, 카페, 술집)",
+        "미용·뷰티",
+        "병원·클리닉",
+        "로컬 생활 서비스 (세탁소, 수리점, 학원 등)",
+        "구글을 안 하면 놓치는 것들",
+        "두 플랫폼, 효율적으로 동시 관리하는 방법",
+        "1단계: 기본 세팅 먼저 끝내기",
+        "2단계: 리뷰 요청 프로세스 만들기",
+        "3단계: 리뷰 답변 루틴 만들기",
+        "4단계: 월 1회 리뷰 분석",
+        "자주 묻는 질문",
+        "마치며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81b5-9462-d9788f7ae6a2",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 마이비즈니스 등록부터 관리까지, 2026년 최신 가이드",
+      "status": "Published",
+      "headings": [
+        "등록 전에 준비해두셔야 할 것들",
+        "구글 마이비즈니스 등록, 이렇게 따라하세요 (7단계)",
+        "1단계: 구글 비즈니스 프로필 사이트 접속",
+        "2단계: 비즈니스 이름 입력",
+        "3단계: 업종 카테고리 선택",
+        "4단계: 오프라인 매장 여부 및 주소 입력",
+        "5단계: 연락처 및 웹사이트 입력",
+        "6단계: 인증(Verification) 진행",
+        "7단계: 인증 완료 후 프로필 게시 확인",
+        "등록 후 반드시 해야 할 초기 세팅 5가지",
+        "주간/월간 구글 마이비즈니스 관리 루틴",
+        "매주 해야 할 것 (10분이면 충분합니다)",
+        "매월 해야 할 것 (30분 투자)",
+        "자주 묻는 질문",
+        "마치며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81c2-9e07-e92250b461cf",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 사진, 이 5장이 클릭률을 2배로 만듭니다",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필 사진, 진짜 클릭률이 달라질까?",
+        "반드시 올려야 할 사진 5장",
+        "1. 외관 사진 - \"여기가 그 가게구나\"",
+        "2. 내부 사진 - \"분위기 좋아 보이네\"",
+        "3. 대표 상품/메뉴 사진 - \"이거 맛있겠다, 이거 사고 싶다\"",
+        "4. 작업 과정/서비스 사진 - \"전문가답네\"",
+        "5. 팀/사장님 사진 - \"사람이 하는 가게구나\"",
+        "이런 사진은 오히려 역효과입니다",
+        "구글 비즈니스 프로필 사진 변경, 이렇게 하세요",
+        "자주 묻는 질문",
+        "정리하면 이겁니다"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81f3-a905-ee1fa66f8ead",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 리뷰 관리, 별점 4.5점 유지하는 가게들이 매일 하는 ‘이것’은?",
+      "status": "Published",
+      "headings": [
+        "구글 리뷰가 매출에 미치는 영향 클까?",
+        "별점 4.5 이상 유지하는 가게들의 공통 루틴 5가지는?",
+        "1. 매일 아침 10분, 새 리뷰 확인 및 답글 작성",
+        "2. 긍정 리뷰에도 반드시 답글 달기",
+        "3. 자연스러운 리뷰 요청 동선 만들기",
+        "4. 부정 리뷰(악플) 확인 시 '감정 분리 → 사실 확인 → 답글' 순서 지키기",
+        "5. 월 1회 리뷰 데이터 점검",
+        "리뷰 답글 작성 템플릿",
+        "긍정 리뷰 답글 템플릿",
+        "부정 리뷰 답글 템플릿",
+        "구글 리뷰 알림 설정 방법",
+        "모바일 앱 알림 설정",
+        "이메일 알림 설정",
+        "추가 팁",
+        "부정 리뷰, 감정적으로 대응하지 않는 5가지 팁",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81eb-8f5a-c9829310312a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 마이비즈니스 vs 비즈니스 프로필, 뭐가 다른 건가요?",
+      "status": "Published",
+      "headings": [
+        "구글 마이비즈니스에서 구글 비즈니스 프로필로, 왜 바뀌었나요?",
+        "바뀐 것과 안 바뀐 것, 한눈에 비교",
+        "기존 구글 마이비즈니스 사용자, 지금 뭘 해야 하나요?",
+        "사장님들이 자주 겠는 혼동 사례 5가지",
+        "1. \"구글 마이비즈니스 앱이 사라졌어요\"",
+        "2. \"business.google.com에 로그인이 안 돼요\"",
+        "3. \"구글 마이비즈니스 새로 가입하려는데 어디서 해요?\"",
+        "4. \"내 가게가 구글에서 검색이 안 돼요\"",
+        "5. \"두 개 다 등록해야 하나요?\"",
+        "2026년 현재, 구글 비즈프로필 실행 방법",
+        "자주 묻는 질문 (FAQ)",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81de-b740-c8f1737db2d1",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 인증 안 될 때, 이렇게 해결하세요",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필 인증, 왜 꼭 해야 하나요?",
+        "구글 비즈니스 프로필 인증 방법 종류",
+        "1. 엽서(우편) 인증",
+        "2. 전화 인증",
+        "3. 이메일 인증",
+        "4. 영상 인증",
+        "5. 실시간 화상 통화 인증",
+        "인증이 안 되는 흔한 원인 7가지와 해결법",
+        "원인 1: 엽서가 도착하지 않음",
+        "원인 2: 전화·이메일 인증 옵션이 보이지 않음",
+        "원인 3: 영상 인증이 거부됨",
+        "원인 4: \"이미 다른 사용자가 이 비즈니스를 소유권 주장했습니다\"",
+        "원인 5: 인증 코드 입력 오류 또는 만료",
+        "원인 6: 사업장 주소와 사업자등록증 주소가 다름",
+        "원인 7: 업종이 서비스 지역 비즈니스인 경우",
+        "인증 대기 중에 할 수 있는 것들",
+        "자주 묻는 질문",
+        "그래도 안 된다면"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-8188-891d-c28c41a5b8d2",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 SEO 체크리스트 2026, 이것만 따라하세요!",
+      "status": "Published",
+      "headings": [
+        "왜 '구글 SEO 체크리스트'가 필요한가요?",
+        "1단계: 기본 설정 체크리스트",
+        "2단계: 콘텐츠 체크리스트",
+        "3단계: 로컬 SEO 체크리스트",
+        "4단계: 기술 SEO 체크리스트",
+        "5단계: 2026년 최신 트렌드 반영",
+        "AI 검색(AI Overview) 대응",
+        "E-E-A-T 강화",
+        "구글 Authenticity Update",
+        "자주 묻는 질문",
+        "지금 바로 시작하세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81dc-a696-c06d874ada71",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "홈페이지 없이 마케팅 하는 법, 구글 비즈니스 프로필이면 충분합니다",
+      "status": "Published",
+      "headings": [
+        "홈페이지가 없어도 온라인 마케팅이 가능한 이유",
+        "구글 비즈니스 프로필로 할 수 있는 것 5가지",
+        "1. 가게 정보 노출",
+        "2. 사진 업로드",
+        "3. 게시물 작성",
+        "4. 리뷰 관리",
+        "5. 예약 및 전화 연결",
+        "홈페이지 vs 구글 비즈니스 프로필 비교",
+        "구글 비즈니스 프로필만으로 충분한 업종 vs 홈페이지가 추가로 필요한 업종",
+        "구글 비즈니스 프로필만으로 충분한 업종",
+        "홈페이지가 추가로 필요한 업종",
+        "지금 당장 시작하는 3단계",
+        "1단계: 구글 비즈니스 프로필 등록",
+        "2단계: 정보 빠짐없이 채우기",
+        "3단계: 첫 게시물 올리기",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-8176-b196-d0190806ad65",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "악성 리뷰 대응법, 사장님이 절대 하면 안 되는 답글 유형 3가지",
+      "status": "Published",
+      "headings": [
+        "악성 리뷰에 감정적으로 대응하면 안 되는 이유",
+        "사장님이 절대 하면 안 되는 답글 유형 3가지",
+        "유형 1. 감정 폭발형 — \"그쪽이 잘못한 거 아닌가요?\"",
+        "유형 2. 개인정보 언급형 — \"몇 월 며칠에 오신 분이시죠?\"",
+        "유형 3. 무시·조롱형 — \"ㅋㅋ 그러셨군요\"",
+        "올바른 악성 리뷰 대응 답글 템플릿 3가지",
+        "템플릿 1. 기본 사과 + 개선 의지형",
+        "템플릿 2. 오해 해소가 필요한 경우",
+        "템플릿 3. 명백한 허위 리뷰인 경우",
+        "구글에 악성 리뷰 신고/삭제 요청하는 방법",
+        "리뷰 관리를 꾸준히 해야 하는 이유 - 구글 알고리즘 관점",
+        "악성 리뷰를 위기가 아니라 기회라고 생각하세요."
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81bb-b2f1-c8d2a8b6f76b",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 리뷰 늘리는 방법, 손님에게 자연스럽게 요청하는 멘트 5가지",
+      "status": "Published",
+      "headings": [
+        "구글 리뷰, 왜 이렇게 중요한 걸까요?",
+        "리뷰 요청이 어색한 사장님을 위한 마인드셋",
+        "오프라인에서 자연스럽게 구글 리뷰 요청하는 멘트 5가지",
+        "1. 식당 — 식사를 마치고 계산할 때",
+        "2. 카페 — 음료를 건네면서",
+        "3. 미용실 — 시술이 끝나고 거울을 보여줄 때",
+        "4. 병원/의원 — 진료 후 접수 데스크에서",
+        "5. 헬스장/학원 등 정기 이용 매장 — 등록 1개월 차에",
+        "온라인으로 구글 리뷰 요청하는 방법",
+        "리뷰 링크 만드는 법",
+        "문자/카카오톡 템플릿",
+        "QR코드로 리뷰를 쉽게 받는 방법",
+        "QR코드 만들기 순서",
+        "매장 내 QR코드 활용 아이디어",
+        "절대 하면 안 되는 것  - 구글 정책 위반 사항",
+        "이 글도 한번 보세요",
+        "오늘부터 바로 시작해 보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-8196-8bb8-c4d62eb017cd",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 게시물 작성법, 무료로 광고하는 방법",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필 게시물이란?",
+        "게시물 유형 4가지",
+        "게시물 작성하는 방법 (5단계)",
+        "1단계: 구글 비즈니스 프로필 접속",
+        "2단계: 게시물 메뉴 진입",
+        "3단계: 유형 선택",
+        "4단계: 내용 작성",
+        "5단계: 게시",
+        "클릭되는 게시물 작성 팀 5가지",
+        "팀 1. 사진이 절반이다",
+        "팀 2. 제목에 숫자를 넣어라",
+        "팀 3. 행동을 유도하는 문구를 넣어라",
+        "팀 4. 주 1회 이상 꾸준히 올려라",
+        "팀 5. 키워드를 자연스럽게 포함하라",
+        "업종별 게시물 예시",
+        "식당/카페",
+        "미용실/네일샵",
+        "병원/한의원",
+        "게시물 성과 확인하는 방법",
+        "자주 묻는 질문",
+        "지금 바로 시작하세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "319753eb-c013-81e6-8fac-cc7d4ef245ab",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 지도에 가게 등록했는데 안 뜹니다, 원인과 해결법 5가지",
+      "status": "Published",
+      "headings": [
+        "먼저 체크할것, 진짜 안 뜨는 건가요?",
+        "원인 1. 구글 비즈니스 프로필 인증이 완료되지 않았다",
+        "왜 이런 일이?",
+        "해결법",
+        "원인 2. 가게 정보가 불완전하게 등록되어 있다",
+        "왜 이런 일이?",
+        "해결법",
+        "원인 3. 카테고리를 잘못 설정했다",
+        "왜 이런 일이?",
+        "흔한 실수 예시",
+        "해결법",
+        "원인 4. 주소나 위치 핀이 잘못 찍혀 있다",
+        "왜 이런 일이?",
+        "해결법",
+        "원인 5. 가게를 등록한 지 얼마 되지 않았다",
+        "왜 이런 일이?",
+        "일반적인 노출 타임라인",
+        "이 기간 동안 할 수 있는 것",
+        "그래도 안 뜨면 이 3가지도 체크하세요",
+        "정리: 구글 지도 노출 안됨 체크리스트",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "30d753eb-c013-8190-b797-ee5f8279a7a2",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 SEO 시작 방법 입문자를 위한 90일 실전 로드맵 2026",
+      "status": "Published",
+      "headings": [
+        "한 줄 답변",
+        "핵심 데이터 / 시장 현황",
+        "체크리스트",
+        "방법",
+        "방법 1) 0~30일: 기초 다지기",
+        "방법 2) 31~60일: 콘텐츠와 검색의도 맞추기",
+        "방법 3) 61~90일: 성과 측정과 개선 루프 구축",
+        "방법 4) 초보자가 반드시 피해야 할 5가지 실수",
+        "방법 5) 주간/월간 SEO 실행 루틴 수립하기",
+        "방법 6) SEO 입문자를 위한 필수 도구 세팅",
+        "실행 기준",
+        "자주 묻는 질문(FAQ)",
+        "Q1. SEO는 보통 언제부터 효과가 보이나요?",
+        "Q2. 백링크는 90일 안에 꼭 해야 하나요?",
+        "Q3. 매일 글 1개씩 쓰는 것이 유리한가요?",
+        "Q4. SEO와 광고를 동시에 해야 하나요?",
+        "Q5. SEO 도구는 얼마나 들나요?",
+        "Q6. 혼자서도 SEO를 할 수 있나요?",
+        "Q7. AI가 SEO를 대체할 수 있나요?",
+        "함께 읽으면 좋은 글",
+        "결론",
+        "참고한 글"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "30a753eb-c013-8168-af13-db98e466b34a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 프로필 관리, 왜 가만히 있으면 안될까?",
+      "status": "Published",
+      "headings": [
+        "요약",
+        "체크리스트",
+        "블링크 애드가 제안하는 방법",
+        "하지말아야 할것은 무엇일까요?",
+        "실행 기준",
+        "운영 SLA",
+        "품질 KPI",
+        "성과 KPI",
+        "의사결정 룰",
+        "자주 묻는 질문(FAQ)",
+        "이 글을 마무리하며",
+        "함께 보면 좋은 글"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "30a753eb-c013-81ef-bd88-e29d9643493c",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 관리 대행 서비스 완벽 가이드 2026",
+      "status": "Published",
+      "headings": [
+        "한 줄 요약",
+        "왜 지금 ‘구글 비즈니스 프로필 관리 대행’이 중요한가?",
+        "구글 비즈니스 프로필 대행, 정확히 어디까지 해주나?",
+        "1) 기본 정보 운영",
+        "2) 콘텐츠 운영",
+        "3) 고객 신뢰 운영",
+        "4) 성과 분석 운영",
+        "좋은 대행사는 무엇이 다른가? (핵심 기준 7가지)",
+        "기준 1. 소유권 구조가 안전한가",
+        "기준 2. 해지/인수인계 조항이 명확한가",
+        "기준 3. 허위 보장 문구를 쓰지 않는가",
+        "기준 4. 운영 범위를 숫자로 제시하는가",
+        "기준 5. 리포트가 행동지표 중심인가",
+        "기준 6. 업종/상권 맞춤 전략이 있는가",
+        "기준 7. 정책 준수 프로세스가 있는가",
+        "구글 비즈니스 프로필 관리 비용, 어떻게 봐야 하나?",
+        "비용을 좌우하는 5가지 변수",
+        "견적서에서 꼭 체크할 항목",
+        "도입 전 체크리스트: 상담 전에 이것만 준비하세요",
+        "자주 묻는 질문(FAQ)",
+        "Q1. 구글 비즈니스 프로필 대행 맡기면 언제부터 효과가 보이나요?",
+        "Q2. 계정 비밀번호를 대행사에 줘야 하나요?",
+        "Q3. 구글 비즈니스 프로필 관리 비용이 낮으면 좋은 건가요?",
+        "Q4. 리뷰가 적은 신규 매장도 대행이 필요한가요?",
+        "Q5. 네이버 플레이스만 운영 중인데 구글도 해야 하나요?",
+        "결론",
+        "추가 글",
+        "참고 근거 (작성 리서치)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "30a753eb-c013-81d5-bfe1-f957e07cb63b",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 운영 대행, 어떤 업체에 맡겨야 할까? 2026",
+      "status": "Published",
+      "headings": [
+        "30초 판단표: 이 3개만 먼저 보세요",
+        "왜 '구글 비즈니스 프로필 운영 대행'은 선택 기준이 더 중요한가요?",
+        "1) 구글은 \"돈으로 순위 구매\"를 허용하지 않습니다",
+        "2) 순위는 운영 완성도에서 갈립니다",
+        "3) 정책 위반은 \"성과\"보다 먼저 리스크가 됩니다",
+        "업체 선정 전에 반드시 확인할 7가지",
+        "1. 소유권 구조: \"사업주 소유\"가 기본인지",
+        "2. 동의 절차: 무단 클레임을 하지 않는지",
+        "3. 비현실적 약속을 하는지",
+        "4. 리뷰 운영 방식이 정책 친화적인지",
+        "5. 운영 범위가 명확한지 (월 작업표)",
+        "6. 보고서가 \"결과\"가 아니라 \"행동+결과\"를 같이 보여주는지",
+        "7. 해지/인계 조건이 쉬운지",
+        "이런 업체 제안은 바로 보류하세요.",
+        "지역 데이터 + 운영 루틴이 중요한 이유",
+        "결국 좋은 대행사는 \"순위\"가 아니라 \"운영 시스템\"으로 증명합니다.",
+        "FAQ (AEO 최적화)",
+        "Q1. 구글 비즈니스 프로필 운영 대행을 맡기면 순위가 바로 오르나요?",
+        "Q2. 대행사가 Owner 권한을 가져가도 괜찮나요?",
+        "Q3. 리뷰 수만 빠르게 늘리면 되나요?",
+        "Q4. \"상위노출 보장\" 문구는 믿어도 되나요?",
+        "Q5. 소상공인도 직접 운영 가능한데 굳이 대행이 필요한가요?",
+        "Q6. 계약 전에 최소한 무엇을 받아야 하나요?"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-814e-86ae-fbd272d374b9",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "명일2동 구글 비즈니스 프로필 정보관리",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필(GBP), 왜 명일2동 소상공인에게 필수일까요?",
+        "명일2동 상권을 꿰뚫는 구글 비즈니스 프로필 최적화 전략",
+        "키워드 분석으로 검색 의도 파악하기",
+        "우리 가게 정보, 빈틈없이 채워야 해요",
+        "고객 리뷰는 강력한 자산이에요",
+        "게시물과 상품 등록으로 잠재 고객을 사로잡으세요",
+        "명일2동 상권 데이터로 보는 실전 GBP 활용 팁",
+        "경쟁 강도를 활용한 전략적 접근",
+        "주요 상권 거리 및 건물 정보 활용",
+        "로컬 상권 특성에 맞춘 소통",
+        "마무리하며",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-816d-9f56-d81100fd4cf0",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "명일1동 구글 비즈니스 프로필 리뷰관리 대행",
+      "status": "Published",
+      "headings": [
+        "명일1동에서 구글 비즈니스 프로필(GBP)이 꼭 필요한 이유예요",
+        "명일1동 상권 데이터 기반 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석 및 검색 의도 파악으로 고객을 끌어당겨요",
+        "2. 구체적인 실행 가이드: 명일1동 GBP 최적화 체크리스트",
+        "명일1동 상권 특성을 활용한 추가 팁",
+        "마무리하며",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81f4-a5b8-f37c79621185",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "둔촌2동 구글 비즈니스 프로필 세팅 대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 중요할까요?",
+        "둔촌2동에서 성공하는 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석 및 검색 의도 파악",
+        "2. 콘텐츠 최적화 전략",
+        "3. 둔촌2동 소상공인을 위한 실전 관리 체크리스트 및 팁",
+        "자주 묻는 질문 (Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81d0-af5b-f67988021f71",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "둔촌1동 구글 비즈니스 프로필 등록,관리 대행",
+      "status": "Published",
+      "headings": [
+        "키워드 분석 및 검색 의도 파악: 둔촌1동 고객은 무엇을 찾을까요?",
+        "둔촌1동 상권, 구글 비즈니스 프로필(GBP)로 잡는 법",
+        "콘텐츠 최적화 전략: 우리 가게를 돋보이게 만드는 방법",
+        "실행 가이드: 지금 바로 시작하는 둔촌1동 GBP 최적화 체크리스트",
+        "마무리하며: 둔촌1동에서 우리 가게의 빛을 발하세요!",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-819a-b40f-c39f9a73fc43",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "길동 구글 비즈니스 프로필 상위노출 최적화",
+      "status": "Published",
+      "headings": [
+        "길동 상권에서 구글 비즈니스 프로필이 왜 중요할까요?",
+        "길동 구글 비즈니스 프로필, 이렇게 최적화해보세요!",
+        "길동 상권을 위한 실전 팁과 주의사항",
+        "우리 가게, 길동에서 가장 빛나는 별이 될 거예요!",
+        "자주 묻는 질문"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81da-b427-d54b29c99017",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "고덕2동 구글 비즈니스 프로필 관리 서비스",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필(GBP), 왜 고덕2동 사장님들께 필수일까요?",
+        "고덕2동 상권 분석 기반, 구체적인 GBP 최적화 전략",
+        "1. 키워드 분석 및 검색 의도 파악",
+        "2. 콘텐츠 최적화 전략",
+        "3. 고덕2동 상권 데이터 활용 실전 전략",
+        "4. 고덕2동 사장님들을 위한 GBP 실전 팁 & 주의사항",
+        "마무리하며: 꾸준함이 고덕2동의 온라인 성공을 만듭니다",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8158-a2a0-ca3793531bde",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "고덕1동 구글 비즈니스 프로필 운영 전문 ",
+      "status": "Published",
+      "headings": [
+        "고덕1동, 왜 구글 비즈니스 프로필이 필수일까요?",
+        "고덕1동 상권 데이터로 알아보는 구글 비즈니스 프로필 최적화 전략",
+        "키워드 분석 및 검색 의도 파악",
+        "콘텐츠 최적화 전략",
+        "실행 가이드: 우리 가게 구글 비즈니스 프로필 이렇게 관리해요!",
+        "실전 팁: 고덕1동 로컬 SEO, 이것만은 꼭 기억하세요!",
+        "마무리",
+        "자주 묻는 질문 (Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8136-aabb-cec52794afe8",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "강일동 구글 비즈니스 프로필 최적화 대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필(GBP), 강일동 사업장의 필수 생존 전략이에요",
+        "강일동 맞춤형 GBP 최적화, 이렇게 시작해 보세요!",
+        "기본 정보 완벽하게 채우기",
+        "사진과 동영상으로 시각적인 매력 어필하기",
+        "고객 리뷰 적극적으로 관리하기",
+        "최신 정보로 꾸준히 업데이트하기",
+        "강일동 상권 특성 활용 전략",
+        "실전에서 바로 써먹는 강일동 GBP 관리 팁",
+        "우리 가게, 강일동의 랜드마크가 될 수 있어요!",
+        "자주 묻는 질문 (Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8062-ab5e-df2774f03d9e",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "제주 구좌읍 구글 비즈니스 프로필 관리",
+      "status": "Published",
+      "headings": [
+        "키워드 분석과 검색 의도 파악: 왜 구글 비즈니스 프로필이 중요할까요?",
+        "구좌읍 상권 데이터로 본 맞춤형 구글 비즈니스 프로필 최적화 전략",
+        "구좌읍 사장님들을 위한 실전 구글 비즈니스 프로필 관리 팁",
+        "자주 묻는 질문 (Q&A)",
+        "마무리"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8037-8418-d5abf8899f25",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 프로필이 필요한 제주도 노형동 상권 특징은? ",
+      "status": "Published",
+      "headings": [
+        "노형동에서 구글 비즈니스 프로필이 필수인 이유",
+        "구글 비즈니스 프로필 최적화 전략: 키워드 분석부터 실행까지",
+        "1. 키워드 분석 및 검색 의도 파악 (Keywords & Search Intent)",
+        "2. 콘텐츠 최적화 전략 (Content Optimization Strategy)",
+        "3. 실행 가이드: 우리 가게 구글 비즈니스 프로필 체크리스트",
+        "실전에서 바로 써먹는 팁과 주의사항",
+        "자주 묻는 질문 (Q&A)",
+        "Q1: 구글 비즈니스 프로필과 네이버 스마트플레이스는 뭐가 다른가요?",
+        "Q2: 고객 리뷰 관리가 그렇게 중요한가요?",
+        "Q3: 키워드는 어떻게 찾아야 하나요?",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-801a-a352-cab7dad8c996",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "도두동에서 구글 비즈니스 프로필이 중요한 이유",
+      "status": "Published",
+      "headings": [
+        "제주 도두동 구글 비즈니스 프로필, 이제 전문가처럼 관리해봐요!",
+        "왜 제주 도두동에서 구글 비즈니스 프로필이 필수일까요?",
+        "데이터로 보는 제주 도두동, 우리 가게는 어디에 있나요? (검색 의도 파악)",
+        "제주 도두동 구글 비즈니스 프로필, 이렇게 최적화하면 성공해요! (콘텐츠 최적화 전략 & 실행 가이드)",
+        "1단계: 정확하고 완벽한 프로필 정보 입력",
+        "2단계: 고객 리뷰 관리, 최고의 마케팅 무기",
+        "3단계: 구글 포스트와 Q&A로 소통하기",
+        "4단계: 실시간 데이터 분석 및 개선",
+        "제주 도두동 업종별 특화 전략 팁",
+        "자주 묻는 질문 (FAQ)",
+        "Q1: 구글 비즈니스 프로필, 꼭 해야 하나요?",
+        "Q2: 리뷰가 없는데 어떻게 해야 할까요?",
+        "Q3: 프랜차이즈가 아닌 로컬 업소인데, 구글 비즈니스 프로필이 더 중요할까요?",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81e8-b29b-fd10b741ccf3",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "조치원읍 구글 비즈니스 프로필 관리 서비스",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 조치원읍 사업장에 필수입니다.",
+        "조치원읍 구글 비즈니스 프로필 최적화",
+        "1단계: 정확한 정보 입력은 기본 중의 기본이에요!",
+        "2단계: 고객 리뷰 관리는 선택이 아닌 필수예요!",
+        "3단계: '게시물' 기능을 활용해 최신 소식을 알려요!",
+        "4단계: 조치원읍 상권 데이터를 활용한 전략 세우기",
+        "실전에서 바로 써먹는 조치원읍 GBP 관리 팁!",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-813d-b199-c74a22212c76",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "연서면 구글 비즈니스 프로필 마케팅 관리",
+      "status": "Published",
+      "headings": [
+        "연서면 고객들은 무엇을 검색할까요?",
+        "검색 의도 파악: 우리 가게를 찾는 고객의 마음 읽기",
+        "구글 비즈니스 프로필, 이렇게 관리하세요!",
+        "기본 정보는 정확하고 풍부하게 채워주세요",
+        "업종 선택과 카테고리 설정은 신중하게!",
+        "매력적인 사진과 동영상으로 시선을 사로잡으세요",
+        "고객 리뷰는 최고의 마케팅 도구예요",
+        "게시물 기능으로 최신 소식을 알려주세요",
+        "연서면 경쟁 환경을 이기는 체크리스트",
+        "연서면 맞춤 전략: 경쟁 강도를 활용하는 방법",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-812d-8670-e0ee4d257f4e",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "해밀동 구글 비즈니스 프로필 스마트관리",
+      "status": "Published",
+      "headings": [
+        "왜 해밀동에서 구글 비즈니스 프로필이 필수일까요?",
+        "해밀동 사장님들을 위한 구글 비즈니스 프로필 최적화 전략",
+        "1. 정확한 정보 입력은 기본 중의 기본이에요",
+        "2. 고객 후기 관리는 곧 신뢰도 관리예요",
+        "3. 사진과 동영상으로 시각적인 매력을 어필하세요",
+        "4. 꾸준한 게시물(Posts) 발행으로 활동성을 보여주세요",
+        "5. 경쟁 환경을 이해하고 차별화 포인트를 찾으세요",
+        "실전에서 바로 써먹는 구글 비즈니스 프로필 관리 팁",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-810f-b352-cd16eabdb0f7",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "한솔동 구글 비즈니스 프로필 매장관리 대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 한솔동 성공의 핵심 열쇠예요!",
+        "한솔동 상권 분석 기반, 구글 비즈니스 프로필 최적화 전략",
+        "1. 정확하고 풍부한 기본 정보 입력은 필수예요",
+        "2. 고품질 사진과 동영상으로 시선을 사로잡아요",
+        "3. 솔직하고 진정성 있는 리뷰 관리가 중요해요",
+        "4. 게시물 기능을 활용해 최신 소식을 알려요",
+        "경쟁이 치열한 한솔동, 이렇게 차별화해요! (실전 팁)",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-819d-9646-f09cef62d25d",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "종촌동 구글 비즈니스 프로필 로컬SEO 관리",
+      "status": "Published",
+      "headings": [
+        "종촌동 사장님들, 구글 비즈니스 프로필이 왜 중요할까요?",
+        "종촌동 비즈니스를 위한 구글 비즈니스 프로필 최적화 전략",
+        "키워드 분석: 고객은 무엇을 검색할까요?",
+        "검색 의도 파악: 고객은 무엇을 원할까요?",
+        "콘텐츠 최적화 전략: 매력적인 프로필 만들기",
+        "실전에서 바로 써먹는 종촌동 GBP 관리 팁 & 주의사항",
+        "자주 묻는 질문 (Q&A)",
+        "마치며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-815a-b2e6-d9db46563980",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "전의면 구글 비즈니스 프로필 통합관리 대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 전의면에서 더 중요할까요?",
+        "전의면 상권 맞춤형 구글 비즈니스 프로필 최적화 전략",
+        "검색 의도 파악 및 키워드 분석",
+        "콘텐츠 최적화 전략",
+        "전의면 사장님을 위한 GBP 최적화 체크리스트",
+        "전의면 업종별 맞춤 전략: 레드오션에서 살아남고, 블루오션에서 기회를 잡으세요!",
+        "자주 묻는 질문 (FAQ)",
+        "마치며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-813c-9bdd-dea9aecabea8",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "전동면 구글 비즈니스 프로필 성과관리해드립니다.",
+      "status": "Published",
+      "headings": [
+        "치열한 전동면 상권에서 살아남는 비법은?",
+        "키워드 분석: 전동면 고객들은 무엇을 검색할까요?",
+        "검색 의도 파악하기 ",
+        "콘텐츠 최적화 전략: 전동면 비즈니스를 돋보이게 하는 비법",
+        "구글 비즈니스 프로필(GBP) 정보  채우기",
+        "고객 리뷰 관리: 신뢰를 쌓는 가장 빠른 길",
+        "최신 정보 업데이트 및 게시물 활용",
+        "실행 가이드: 지금 바로 시작하는 전동면 GBP 최적화 체크리스트",
+        "자주 묻는 질문 (Q&A)",
+        "마치며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8173-9680-f04f43943d9b",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "장군면 구글 비즈니스 프로필 진단해드립니다.",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 장군면 사장님께 필수일까요?",
+        "장군면 상권, 데이터로 살펴봐요",
+        "장군면 구글 비즈니스 프로필 최적화 전략",
+        "1. 기본 정보는 완벽하게, 그리고 꾸준히 업데이트해요",
+        "2. 고품질 사진과 동영상으로 시각적인 매력을 더해요",
+        "3. 고객 리뷰 관리는 선택이 아닌 필수예요",
+        "4. '게시물' 기능으로 최신 소식을 알려요",
+        "5. 키워드 최적화로 검색 노출을 높여요",
+        "실전에서 바로 써먹는 팁과 주의사항",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-812a-9b41-dae99d370744",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "연동면 구글 비즈니스 프로필 노출최적화",
+      "status": "Published",
+      "headings": [
+        "연동면 상권에서 구글 비즈니스 프로필이 필수인 이유",
+        "연동면 가게를 위한 구글 비즈니스 프로필 최적화 전략",
+        "연동면 로컬 비즈니스를 위한 실전 팁 & 주의사항",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8133-ac8b-e78e6942a317",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "연기면 구글 비즈니스 프로필 리스팅관리",
+      "status": "Published",
+      "headings": [
+        "연기면 사장님, 구글 비즈니스 프로필이 왜 중요할까요?",
+        "연기면 사업자를 위한 구글 비즈니스 프로필 최적화 전략",
+        "1. 핵심 키워드 분석 및 검색 의도 파악",
+        "2. 콘텐츠 최적화 전략",
+        "3. 연기면 사업자를 위한 구글 비즈니스 프로필 최적화 체크리스트",
+        "4. 연기면 상권 특성을 활용한 실전 팁",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8103-b5c6-c03d92045329",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "어진동 구글 비즈니스 프로필 작업대행",
+      "status": "Published",
+      "headings": [
+        "어진동 상권, 키워드 분석과 검색 의도",
+        "키워드 분석: 어진동 고객은 무엇을 검색할까요?",
+        "검색 의도 파악: 고객은 왜 우리 가게를 찾을까요?",
+        "어진동 비즈니스를 위한 구글 비즈니스 프로필(GBP) 최적화 전략",
+        "프로필 정보, 빈틈없이 채워야 해요",
+        "매력적인 시각 자료로 시선을 사로잡으세요",
+        "고객 리뷰는 최고의 마케팅 도구예요",
+        "게시물 기능으로 최신 소식을 알려요",
+        "정확한 카테고리 설정이 핵심이에요",
+        "실행 가이드: 지금 바로 시작하는 어진동 GBP 최적화 체크리스트",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81f0-8a04-d114e2edec01",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "아름동 구글 비즈니스 프로필 평판 관리 대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 아름동 성공의 필수 조건이에요",
+        "아름동 상권에 최적화된 구글 비즈니스 프로필 관리 전략",
+        "아름동 상권 특성을 고려한 실전 팁",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8171-bf29-cd9615c063f7",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "소정면 구글 비즈니스 프로필 관리 컨설팅",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 소정면 비즈니스에 필수적일까요?",
+        "소정면 비즈니스를 위한 구글 비즈니스 프로필 최적화 전략",
+        "키워드 분석과 검색 의도 파악으로 고객을 유인해요",
+        "콘텐츠 최적화 전략: 정보의 정확성과 풍부함이 핵심이에요",
+        "소정면 경쟁 강도에 따른 맞춤 전략",
+        "구글 비즈니스 프로필 최적화 체크리스트",
+        "실전에서 바로 써먹는 꿀팁과 주의사항",
+        "자주 묻는 질문 (Q&A)",
+        "우리 매장이 소정면에서 경쟁력이 될 수 있어요."
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81d9-b51d-ec028b4dffe9",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "소담동 구글 비즈니스 프로필 계정관리",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 소담동에서 필수일까요?",
+        "소담동 상권 데이터를 활용한 구글 비즈니스 프로필 전략",
+        "실전에서 바로 써먹는 소담동 구글 비즈니스 프로필 팁",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-811c-a851-d591eb66391f",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "새롬동 구글 비즈니스 프로필 유지관리",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 새롬동에서 필수일까요?",
+        "새롬동 업종별 경쟁도를 고려한 구글 비즈니스 프로필 최적화 전략",
+        "지금 바로 시작하는 새롬동 구글 비즈니스 프로필 관리 실행 가이드",
+        "새롬동 로컬 비즈니스를 위한 실전 SEO 팁",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81ed-b199-d357cb79601a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "부강면 구글 비즈니스 프로필 등록,운영",
+      "status": "Published",
+      "headings": [
+        "왜 지금 당장 구글 비즈니스 프로필을 시작해야 할까요?",
+        "부강면 상권 맞춤형 구글 비즈니스 프로필 최적화 전략",
+        "1. 정확하고 상세한 정보 입력으로 신뢰도 높이기",
+        "2. 키워드 활용으로 검색 노출 기회 늘리기",
+        "3. 고객 리뷰 적극적으로 관리하기",
+        "4. 경쟁 업소 분석을 통한 차별화 전략",
+        "5. 게시물과 사진으로 최신 정보 꾸준히 업데이트하기",
+        "실전에서 바로 써먹는 팁과 주의사항",
+        "1. 지역 키워드 활용의 중요성",
+        "2. 모바일 최적화는 필수",
+        "3. 가이드라인 준수",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8135-a265-dfccc2d2e384",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "보람동 구글 비즈니스 프로필 세팅,관리 ",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필(Google Business Profile)이란 무엇이며, 왜 중요할까요?",
+        "보람동에서 우리 가게를 빛낼 구글 비즈니스 프로필 최적화 전략",
+        "1. 정확하고 상세한 정보는 기본 중의 기본이에요!",
+        "2. 업종 카테고리 선정은 신중하게!",
+        "3. 시선을 사로잡는 고품질 사진과 동영상으로 매력을 발산하세요!",
+        "4. 고객 리뷰 관리는 우리 가게의 평판을 좌우해요!",
+        "5. 꾸준한 게시물 발행으로 소식을 전하세요!",
+        "보람동 경쟁에서 살아남는 실전 팁!",
+        "- 레드오션 업종이라면 더욱 철저하게 관리하세요!",
+        "- 블루오션 업종이라면 선점 효과를 노리세요!",
+        "- 주요 상권 건물 이름을 활용해 보세요!",
+        "- 지속적인 업데이트와 관리는 선택이 아닌 필수!",
+        "자주 묻는 질문(Q&A)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8185-b563-c827d89d8838",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "반곡동 구글 비즈니스 프로필 상위노출 관리 ",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 반곡동 사장님께 필수일까요?",
+        "반곡동 상권 분석 기반, 구체적인 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석과 검색 의도 파악: 고객은 무엇을 찾을까요?",
+        "2. 콘텐츠 최적화 전략: 우리 가게의 매력을 어필하세요!",
+        "3. 실전에서 바로 써먹는 팁과 주의사항",
+        "자주 묻는 질문 (Q&A)",
+        "우리 가게, 반곡동 검색의 중심이 될 수 있어요!"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81d5-aa4f-e6839db850c4",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "도담동 구글 비즈니스 프로필 관리대행",
+      "status": "Published",
+      "headings": [
+        "도담동, 왜 구글 비즈니스 프로필(GBP)이 중요할까요?",
+        "도담동 상권 데이터로 본 GBP 최적화 전략",
+        "키워드 분석 및 검색 의도 파악",
+        "콘텐츠 최적화, 우리 가게 돋보이게 만들기",
+        "도담동 주요 상권별 맞춤 전략: 위치의 힘",
+        "실전에서 바로 써먹는 GBP 관리 팁과 주의사항",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-811e-b267-c8d6c3c4fe54",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "대평동은  구글 비즈니스 프로필 관리 운영대행",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 대평동 사장님들에게 필수일까요?",
+        "대평동 구글 비즈니스 프로필, 이렇게 관리하면 매출이 달라져요!",
+        "실전에서 바로 써먹는 대평동 구글 비즈니스 프로필 관리 팁!",
+        "자주 묻는 질문(Q&A)",
+        "대평동 상권에서 우리 가게의 빛나는 미래를 위해!"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81fb-852b-f0be3cc6e51a",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "다정동 상권 분석 및 구글 비즈니스 프로필 관리",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 다정동 사장님께 왜 중요할까요?",
+        "다정동 경쟁에서 이기는 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석 및 검색 의도 파악",
+        "2. 콘텐츠 최적화 전략 실행 가이드",
+        "3. 다정동 업종별 GBP 최적화 팁 (데이터 기반)",
+        "4. 실전에서 바로 써먹는 다정동 GBP 관리 꿀팁",
+        "자주 묻는 질문 (FAQ)"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8199-ae64-e17788a691f9",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "나성동 사장님, 이거는 필수입니다.",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 나성동 로컬 상권의 필수 생존 전략이에요",
+        "나성동 고객을 사로잡는 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석과 검색 의도 파악으로 고객 마음 읽기",
+        "2. 구글 비즈니스 프로필 정보 완벽하게 채우기",
+        "3. 꾸준한 소통과 업데이트로 활성화하기",
+        "실전에서 바로 써먹는 나성동 맞춤형 팁",
+        "자주 묻는 질문 (Q&A)",
+        "나성동에서 우리 매장을 더 알리려면?"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-81f9-9de8-d44f72c20024",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "구글 비즈니스 프로필 관리(금남면) ",
+      "status": "Published",
+      "headings": [
+        "금남면 지역 상권에서 구글 비즈니스 프로필이 필수인 이유",
+        "우리 가게를 돋보이게 하는 구글 비즈니스 프로필 최적화 전략",
+        "1. 기본 정보의 정확성과 최신성 유지",
+        "2. 카테고리 선정과 상세 정보 추가",
+        "3. 고품질 사진과 동영상 활용",
+        "4. 고객 리뷰 관리 (별점과 답변)",
+        "5. 구글 게시물(Google Posts) 활용",
+        "6. 금남면 경쟁 강도에 따른 맞춤 전략",
+        "실전에서 바로 써먹는 팁과 주의사항",
+        "자주 묻는 질문 (Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ee753eb-c013-8165-864d-c067b2cc3ed4",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "고운동에서 구글 비즈니스 프로필 관리란?",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 고운동에서 특히 중요할까요?",
+        "고운동 상권을 위한 구글 비즈니스 프로필 최적화 전략",
+        "키워드 분석으로 고객의 마음 읽기",
+        "검색 의도 파악으로 맞춤 정보 제공하기",
+        "콘텐츠 최적화 전략으로 매력 발산하기",
+        "실전에서 바로 써먹는 고운동 GBP 관리 팁",
+        "자주 묻는 질문(Q&A)",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ed753eb-c013-818a-a221-eb902c0355f8",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "제주 봉개동 사장님, 구글 프로필 관리는 필수입니다.",
+      "status": "Published",
+      "headings": [
+        "구글 비즈니스 프로필, 왜 봉개동에서 꼭 필요할까요?",
+        "봉개동 상권 데이터를 활용한 구글 비즈니스 프로필 최적화 전략",
+        "1. 키워드 분석 및 검색 의도 파악으로 손님 마음 읽기",
+        "2. 구글 비즈니스 프로필 정보, 빈틈없이 채워야 해요!",
+        "3. 봉개동 경쟁 업종별 GBP 최적화 전략 (데이터 기반)",
+        "4. 실전에서 바로 써먹는 팁!",
+        "자주 묻는 질문 (Q&A)",
+        "Q1: 구글 비즈니스 프로필, 네이버 스마트플레이스랑 다른가요?",
+        "Q2: 봉개동에서 경쟁이 너무 치열한데, 어떻게 해야 노출될 수 있나요?",
+        "Q3: 리뷰 관리가 그렇게 중요한가요? 부정적인 리뷰는 어떻게 대응해야 할까요?",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "2ed753eb-c013-815d-ab57-c6790ebdcbb4",
+      "source_database": "company_posts",
+      "channel_scope": "company_homepage_or_shared_draft",
+      "title": "제주 건입동 구글 비즈니스 프로필 관리",
+      "status": "Published",
+      "headings": [
+        "제주 건입동, 왜 구글 비즈니스 프로필이 필수일까요?",
+        "건입동 가게를 위한 구글 비즈니스 프로필 최적화 전략",
+        "1. 정확하고 풍부한 정보는 기본 중의 기본!",
+        "2. 매력적인 사진과 동영상으로 시선 강탈!",
+        "3. 꾸준한 최신 소식 업데이트로 활력 UP!",
+        "4. 고객 리뷰는 검색 순위의 핵심! 적극적으로 관리해요.",
+        "5. 지역 키워드 최적화로 '우리 동네 1등' 노리기!",
+        "자주 묻는 질문 (FAQ)",
+        "Q1: 리뷰가 너무 없는데 어떻게 늘릴 수 있을까요?",
+        "Q2: 건입동에서 우리 가게가 구글 지도 상위 노출되려면 얼마나 걸릴까요?",
+        "마무리하며"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-816b-8436-e023569dfd29",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "AI가 답해도 되는 질문 vs 직원이 직접 답해야 하는 질문",
+      "status": "Review",
+      "headings": [
+        "답하기 전에 확인할 일이 있는지 봅니다",
+        "안내가 바뀔 때 누가 고칠지 정해두세요",
+        "직원이 이어받을 상담도 준비합니다"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-81ac-869b-c344b23df01e",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "피부관리권을 끊고 안 오는 손님에게는 뭐라고 연락해야 할까?",
+      "status": "Review",
+      "headings": [
+        "첫 연락 전에 이전 대화를 읽어보세요",
+        "손님이 말한 어려움에 맞춰 답합니다",
+        "예약 여부 외에 답해주기로 한 일도 챙기세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8183-9dff-fa34a3cb08bb",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "네일·왁싱 손님에게 “다음에 또 오세요”만 말하고 있나요?",
+      "status": "Review",
+      "headings": [
+        "다음 예약을 정하지 못한 이유부터 들어보세요",
+        "방문일과 연락일을 나눠 생각합니다",
+        "약속한 연락을 기억에만 맡기지 마세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8179-a739-e19880403767",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "시술 후 안내문을 줬는데도 같은 질문을 다시 받는다면?",
+      "status": "Review",
+      "headings": [
+        "환자가 찾는 말로 안내를 정리해보세요",
+        "귀가 후에도 다시 찾을 수 있게 해주세요",
+        "답장이 오면 무엇을 묻는지 먼저 봅니다"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-81dd-a494-e631879a83e9",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "외국인 손님과 번역기로 대화했는데 원하는 스타일은 서로 다르게 이해했다면",
+      "status": "Review",
+      "headings": [
+        "모호한 표현에는 눈으로 볼 수 있는 기준을 붙입니다",
+        "한 번에 한 가지씩 물어보세요",
+        "원하는 변화와 유지할 부분을 함께 확인합니다",
+        "마지막으로 정한 내용이 다음 직원에게도 보이게 하세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8180-9043-cf75229c0e8a",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "원하는 머리 사진까지 보냈던 손님은 왜 예약하지 않았을까?",
+      "status": "Review",
+      "headings": [
+        "사진에서 원하는 부분부터 확인하세요",
+        "가격 질문을 계속 뒤로 미루지 마세요",
+        "질문은 답변에 맞춰 이어가세요",
+        "상담이 끝나면 다음 행동을 알려주세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e7753eb-c013-8182-9e26-edbc934a97fd",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "실장님이 퇴사하면, 진행 중인 환자 상담은 누가 이어받을까?",
+      "status": "Review",
+      "headings": [
+        "아직 답하지 않은 상담부터 살펴보세요",
+        "환자에게 한 약속이 기록에 남아 있나요?",
+        "새 담당자가 직접 기록을 열어보게 하세요",
+        "퇴사 전에 몰아서 정리하지 않으려면"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3e6753eb-c013-818f-a249-d6a5a754aba7",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "퇴근 후 들어온 외국인 환자 문의, 아침에 답해도 괜찮을까?",
+      "status": "Published",
+      "headings": [
+        "기다릴 시간을 알 수 있게 해주세요",
+        "첫 안내에 질문을 너무 많이 넣지 마세요",
+        "아침에 누가 이어받을지까지 정해둡니다",
+        "답장이 나간 뒤의 상담도 살펴보세요"
+      ],
+      "top_level_body_read": true
+    },
+    {
+      "id": "3b6753eb-c013-8151-8217-f3e72bfcf0b8",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "강남 명동 홍대 약국은 매달 몇 번 검색될까? 상권별 외국인 수요 실측",
+      "status": "Draft",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "39a753eb-c013-8183-a27d-ff2f2f876d19",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "구글마케팅 시작하려면? 외국인 고객 유입은 여기서 시작됩니다",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "359753eb-c013-8136-a5ce-eb49033eedd2",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "외국인 관광객 많은 곳보다 중요한 것이 구글지도인 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "359753eb-c013-81a1-ae7a-deaa8879577f",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "1. 외국인 관광객 증가로 매출 기회가 생긴 업종 12개",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-810c-acab-e7c379559680",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "레이저토닝 AEO GEO, 오래된 색소 키워드도 AI 답변용으로 다시 설계해야 합니다",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8127-8ea3-f324689890ce",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "스킨부스터 AEO GEO, 리쥬란·쥬베룩 선택 질문에서 병원이 보이려면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-81b9-92c3-cc68aab78e4c",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "쥬베룩 AEO GEO, 리쥬란과 비교하는 상담 전 질문을 잡는 법",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8121-a6dc-dfd3230f0ccc",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "스킨보톡스 AEO GEO, 일반 보톡스와 차이를 묻는 고객을 선점하려면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-815b-b135-dcdc930d6d9c",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "리프팅 AEO GEO, 어떤 시술이 맞는지 묻는 고객을 잡으려면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8176-aa28-ca209f7766de",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "울쎄라 AEO GEO, AI 답변에 병원이 선택받는방법은?",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-81ca-bdc0-f38bdbc53767",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "피코토닝 AEO GEO 질문에서 AI 답변에 잡히는 법",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8168-8d14-de5f13b89a8b",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "올리지오 AEO GEO, 리프팅 장비 비교 질문에서 병원이 보이려면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8193-94c8-c30b67a27854",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "보톡스 AEO GEO, 부위별 질문을 선점해야 예약 전환이 빨라집니다",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-81af-b7f1-c1727a93da7d",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "인모드 AEO GEO, 얼굴라인 고민 질문을 잡으면 상담 문의가 늘어납니다",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-81f8-b040-f2ce52c95033",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "써마지 AEO GEO, 고가 리프팅 상담 전 고객이 묻는 질문들은?",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "358753eb-c013-8174-a035-f00200bd93e9",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "리쥬란 AEO GEO, 시술 전 효과·통증 질문을 잡아 상담으로 연결하려면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "356753eb-c013-81ff-aaf6-f8b29135b855",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "86. 의료광고심의, AI가 쓴 병원 글을 그대로 쓰면 위험한 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "356753eb-c013-81d8-98b0-fe68dca6890d",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "84. 퍼플렉시티에 병원명이 언급되는 곳과 안 되는 곳의 차이",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "356753eb-c013-81fc-9276-de6d8e35274f",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "83. 챗GPT로 바뀐 병원 검색, 원장님이 올해 놓치면 안 되는 변화는?",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8155-9de3-c1a3988668ff",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "78. 구글 비즈니스 프로필 운영, 직접 할지 대행 맡길지 어디서 갈라야 할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81d9-9be4-e75985bdb96b",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "77. 병원마케팅대행사를 바꿔야 할 시점은 언제일까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8160-a61b-c322cc0b11df",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "76. 성형외과마케팅을 할 때 광고보다 먼저 손봐야 할 것",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-815e-a981-f8d209984bb1",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "75. 병원블로그마케팅, 직접 운영과 대행은 어디서 갈라야 할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8104-80dc-e871d970618b",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "74. 병원마케팅대행사, AEO를 모르면 어떤 문제가 생길까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8108-a968-ea4d66e5d199",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "73. 병원마케팅대행사를 고를 때 결과보다 먼저 봐야 할 것",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81b5-a36f-ea1f7ead5af3",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "72. 피부과마케팅대행사, 이런 기준이 없다면 위험할 수 있습니다",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81dd-a40f-de4ca16c3c27",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "71. 병원마케팅을 맡기기 전에 먼저 점검해야 할 것",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8107-8726-d4552b26c885",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "70. 구글비즈니스프로필등록방법보다 더 중요한 운영 포인트 5가지",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8100-a9c3-c378bcaf4ae0",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "69. 구글비즈니스프로필만들기, 병원은 어디부터 세팅해야 할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8158-b948-f5ae45f35e26",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "68. 병원블로그마케팅에서 가장 많이 하는 실수 5가지",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81e9-8c9e-e98ba26fbb95",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "67. 병원블로그마케팅은 왜 홈페이지 SEO와 따로 가면 약해질까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-813b-b7cd-d21fdb0f4e7d",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "66. 성형외과마케팅에서 후기 콘텐츠만으로는 부족한 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8187-a909-faa9c2232d7c",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "65. 피부과마케팅에서 블로그보다 먼저 봐야 할 페이지 구조",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81c6-80f3-f5eb690d9ae0",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "64. 성형외과블로그는 왜 홍보글만으로는 힘이 붙지 않을까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-817f-8ff3-c6a4112090dd",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "63. 성형외과마케팅은 왜 이제 AI 검색까지 같이 봐야 할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81ac-a81c-d5d1a3e8fa21",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "62. 성형외과마케팅, 브랜드가 커도 검색 구조가 약하면 밀리는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8108-a973-d130d0f3c8bd",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "61. 피부과블로그가 있어도 문의로 안 이어지는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81ff-bfa3-d2fcb68f68b8",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "60. 피부과마케팅은 왜 후기보다 검색 의도 대응이 더 중요할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8184-9dcc-e8b65ef0ba38",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "59. 피부과마케팅, 왜 같은 지역인데 어떤 병원만 계속 보일까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-8116-871a-df29901202ea",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "58. 병원광고보다 먼저 정리해야 할 검색 흐름은 무엇일까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81a2-bd1b-ce4708472272",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "57. 병원블로그마케팅, 글을 계속 올리는데도 문의가 안 오는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81b4-8c31-ca1b32aae7f5",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "56. 2026년에도 병원블로그는 계속 중요할까?",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-816a-b8e0-fc3745f20d56",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "55. 병원마케팅은 왜 이제 홈페이지 구조까지 같이 봐야 할까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-81c5-ae7d-df276029ed16",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "54. 병원마케팅에서 먼저 정리해야 할 검색 자산은 무엇일까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "355753eb-c013-816e-b3f9-ecc9ac6dc297",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "53. 병원마케팅, 광고만으로 해결되지 않는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-817d-ae20-e34e47234213",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "9. 구글 비즈니스 프로필이 있어도 문의가 늘지 않는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-818c-9544-e02696d7eb0e",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "8. 브랜드 블로그가 있어도 문의가 안 오는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-81fb-a04a-da5bf31362d3",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "7. 우리 브랜드는 왜 AI 검색에 잘 안 잡힐까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-81d4-83e6-de211aeade6a",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "6. 구글 마케팅을 광고만으로 보면 놓치는 것",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-8107-a1d0-e5e0297288d9",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "5. 구글 비즈니스 프로필은 왜 아직 가장 저평가된 채널일까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-81ee-b157-fc5f5df00866",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "4. AI 검색이 커질수록 브랜드 블로그가 더 중요해지는 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-8170-9d85-d940e0579707",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "3. AEO와 GEO는 같은 말일까, 무엇이 다를까",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-8177-bff3-d9406a88ad5f",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "2. AEO, SEO, 구글 비즈니스 프로필 이 3가지가 하나의 흐름인 이유",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    },
+    {
+      "id": "34f753eb-c013-8135-a124-e357ff77ef70",
+      "source_database": "naver_premium",
+      "channel_scope": "naver_premium",
+      "title": "1. AEO, GEO, SEO는 무엇이 다를까? 우리 브랜드에 먼저 필요한 것부터 정리해보면",
+      "status": "Published",
+      "headings": [],
+      "top_level_body_read": true
+    }
+  ],
+  "rejected_old_plan": [
+    {
+      "proposal_id": "BLK-AGENCY-01",
+      "topic": "외국인 마케팅 업체 선택 5기준",
+      "decision": "Exclude generic selection rewrite under the user requested non-overlap condition",
+      "overlap": "Ownership, service scope, fees, reporting and handover selection questions already directly answered; not a claim that the exact new five-part title is registered",
+      "registered_evidence_ids": [
+        "30a753eb-c013-81d5-bfe1-f957e07cb63b",
+        "3ba753eb-c013-81f9-9ccf-dbe77a804950",
+        "355753eb-c013-8108-a968-ea4d66e5d199"
+      ]
+    },
+    {
+      "proposal_id": "BLK-AGENCY-02",
+      "topic": "광고비·운영비·제작비 견적",
+      "decision": "Partial overlap; exclude until an independently distinct decision is demonstrated",
+      "overlap": "Ads budget, GBP service cost and agency fee/contract comparison already registered. A bundled three-service quote is not proved to be an exact duplicate, but generic fee comparison does not satisfy strict non-overlap",
+      "registered_evidence_ids": [
+        "3b2753eb-c013-81d8-97b6-d1e6d83d252e",
+        "30a753eb-c013-81ef-bd88-e29d9643493c",
+        "319753eb-c013-81eb-81da-fab3b2fa163b"
+      ]
+    },
+    {
+      "proposal_id": "BLK-AGENCY-03",
+      "topic": "구글맵 직접 관리와 대행 역할",
+      "decision": "Exclude generic direct-versus-agency rewrite",
+      "overlap": "Direct/outsourced operation and ownership/reporting scope directly answered",
+      "registered_evidence_ids": [
+        "355753eb-c013-8155-9de3-c1a3988668ff",
+        "30a753eb-c013-81d5-bfe1-f957e07cb63b"
+      ]
+    },
+    {
+      "proposal_id": "BLK-AGENCY-04",
+      "topic": "외국인 마케팅 시작 적합도",
+      "decision": "Exclude generic readiness rewrite",
+      "overlap": "Industry-independent readiness and real conditions already central question",
+      "registered_evidence_ids": [
+        "3c9753eb-c013-8101-bfc9-feb72996fa96",
+        "355753eb-c013-81dd-a40f-de4ca16c3c27"
+      ]
+    },
+    {
+      "proposal_id": "BLK-AGENCY-05",
+      "topic": "외국인 홈페이지 제작 견적·문의 범위",
+      "decision": "Exclude generic production quote/handover checklist rewrite",
+      "overlap": "Foreign-customer website selection six criteria plus registered hospital website quote six checks",
+      "registered_evidence_ids": [
+        "3b2753eb-c013-8188-aee0-c71094837f39",
+        "3b2753eb-c013-817e-81ab-ceb277ca1a1a"
+      ]
+    }
+  ],
+  "topic_assessment": {
+    "move_day_transition": {
+      "question": "매장 실제 이전일 전후 기존 GBP 주소·외국어 페이지·광고·예약 동선을 어떤 순서로 전환할까?",
+      "finding": "No registered central-question match found in all titles/top-level bodies and targeted recursive verification/address/review/name/adjacent pages. Conditional distinct topic; not an absolute proof of zero textual overlap.",
+      "adjacent_only_ids": [
+        "319753eb-c013-81de-b740-c8f1737db2d1",
+        "319753eb-c013-81b5-9462-d9788f7ae6a2"
+      ],
+      "adjacent_details": "Verification guide mentions recently moved business address; registration guide mentions address changes and routine information checks. Neither makes the move-day cross-channel transition order its central answer. No policy claim is adopted from those old drafts."
+    },
+    "multilocation": {
+      "decision": "Exclude generic branch information/routing topic",
+      "strong_overlap_id": "3e6753eb-c013-810c-9363-c894172adc0c",
+      "additional_consultation_overlap_id": "3bb753eb-c013-8121-8da7-f8448c7ab4f0",
+      "verified_nested_answer": "Each actual location separately with its own name/address/phone/hours/webpage, avoiding duplicate profiles."
+    },
+    "ad_schedule": {
+      "decision": "Exclude generic advertising hours versus response hours",
+      "strong_overlap_id": "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+      "verified_heading": "광고 시간과 상담 시간을 맞춥니다",
+      "details": "Existing direct answer includes campaign ad schedule and whether online reservation versus immediate consultation supports advertising outside staffed hours. Time-zone conversion alone would need narrower proof of a distinct decision."
+    }
+  },
+  "language_assessment": {
+    "question": "영어 구글 검색광고는 외국인에게만 보일까?",
+    "nearest_registered_id": "3b2753eb-c013-8151-9ad4-ffc02dbb5769",
+    "nearest_registered_title": "구글애즈 첫 세팅 가이드, 계정 만들기부터 첫 캠페인 송출까지",
+    "comparison": "Full top-level body/FAQ and nested match-type table compared; existing article answers account setup sequence and briefly advises language selection, not whether language matching identifies nationality. Distinct central question within reviewed scope.",
+    "official_source": "https://support.google.com/google-ads/answer/1722078?hl=en",
+    "current_policy_note": "Official page says changes start September 2026 for Search and the Search portion of Performance Max; no account rollout completion verified.",
+    "status": "new_brief_no_draft"
+  },
+  "limits": [
+    "All active DB entries and all statuses included, including 4 Deleted-status rows. Notion Published is not proof of public platform publication.",
+    "Shared Posts channel labels are stored-content routing evidence, not verified external platform registrations.",
+    "All 258 top-level page bodies fully paginated; targeted move/review/name/address/verification and adjacent advertising pages recursively expanded. Other nested tables/toggles/list children remain an explicit comparison limit.",
+    "No archived pages are returned by ordinary Notion database query.",
+    "Homepage109 is source inventory, not109 live URL checks.",
+    "Registered entries may include variants and channel versions; do not add109+258+14 into a unique-article count.",
+    "No search-volume/ranking/inquiry results measured for these new editorial questions."
+  ],
+  "actions": {
+    "notion_writes": 0,
+    "queue_state_changes": 0,
+    "homepage_code_changes": 0,
+    "external_registration": 0,
+    "external_publication": 0,
+    "inquiry_submissions": 0
+  }
+}

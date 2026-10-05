@@ -1,0 +1,130 @@
+{
+  "checked_at": "2026-10-05T18:03:32.550290+09:00",
+  "method": "Four direct requests HTTP GETs after one failed urllib transport attempt; no JavaScript execution, form input or submission.",
+  "results": [
+    {
+      "topic_id": "BLK-NEW-01",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "redirected": false,
+      "content_type": "text/html; charset=utf-8",
+      "html_bytes": 30180
+    },
+    {
+      "topic_id": "BLK-NEW-01",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "redirected": false,
+      "content_type": "text/html; charset=utf-8",
+      "html_bytes": 30192
+    },
+    {
+      "topic_id": "BLK-NEW-02",
+      "channel": "openads",
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "redirected": false,
+      "content_type": "text/html; charset=utf-8",
+      "html_bytes": 30176
+    },
+    {
+      "topic_id": "BLK-NEW-02",
+      "channel": "naver_premium",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "redirected": false,
+      "content_type": "text/html; charset=utf-8",
+      "html_bytes": 30188
+    }
+  ],
+  "limits": [
+    "This is not a click from a published external article.",
+    "New exact URLs were checked with HTTP GET, not repeated browser/cookie/UI audit. Previous16 browser checks are separate historical evidence.",
+    "No inquiry storage, CRM, analytics receipt or conversion results verified."
+  ],
+  "attempts": [
+    {
+      "method": "urllib HTTP GET",
+      "checked_at": "2026-10-05T18:02:45.095219+09:00",
+      "results": [
+        {
+          "topic_id": "BLK-NEW-01",
+          "channel": "openads",
+          "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "error": "URLError"
+        },
+        {
+          "topic_id": "BLK-NEW-01",
+          "channel": "naver_premium",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "error": "URLError"
+        },
+        {
+          "topic_id": "BLK-NEW-02",
+          "channel": "openads",
+          "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "error": "URLError"
+        },
+        {
+          "topic_id": "BLK-NEW-02",
+          "channel": "naver_premium",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "error": "URLError"
+        }
+      ],
+      "result": "Transport errors; reason not captured. Do not infer application failure."
+    },
+    {
+      "method": "requests HTTP GET",
+      "checked_at": "2026-10-05T18:03:32.550290+09:00",
+      "results": [
+        {
+          "topic_id": "BLK-NEW-01",
+          "channel": "openads",
+          "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "status": 200,
+          "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "redirected": false,
+          "content_type": "text/html; charset=utf-8",
+          "html_bytes": 30180
+        },
+        {
+          "topic_id": "BLK-NEW-01",
+          "channel": "naver_premium",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "status": 200,
+          "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+          "redirected": false,
+          "content_type": "text/html; charset=utf-8",
+          "html_bytes": 30192
+        },
+        {
+          "topic_id": "BLK-NEW-02",
+          "channel": "openads",
+          "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "status": 200,
+          "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "redirected": false,
+          "content_type": "text/html; charset=utf-8",
+          "html_bytes": 30176
+        },
+        {
+          "topic_id": "BLK-NEW-02",
+          "channel": "naver_premium",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "status": 200,
+          "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+          "redirected": false,
+          "content_type": "text/html; charset=utf-8",
+          "html_bytes": 30188
+        }
+      ]
+    }
+  ]
+}
