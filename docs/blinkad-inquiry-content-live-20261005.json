@@ -1,0 +1,649 @@
+{
+  "checked_at": "2026-10-05T16:25:24.491888+09:00",
+  "source_root": "/tmp/blinkad-inquiry-content-resume-20261005",
+  "source_head": "1bfabb1",
+  "method": "Public HTTP GET only, article body CTA destinations and sitemap membership; no form submit. Browser confirmation recorded separately.",
+  "local_post_count": 109,
+  "industry_expected_count": 5,
+  "nest_expected_count": 6,
+  "sitemaps": [
+    {
+      "url": "https://www.blinkad.kr/sitemap.xml",
+      "status": 200,
+      "checked_at": "2026-10-05T16:25:20.260753+09:00",
+      "sha256": "9fe4a03f55687074478e017a489f28c6fff4149417a362236997da7716b1dd3b",
+      "entry_count": 173
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/sitemap.xml",
+      "status": 200,
+      "checked_at": "2026-10-05T16:25:20.417399+09:00",
+      "sha256": "80cbab719295e405dd3c099c299d485e8c46555148c3350238a06d9e4094f24b",
+      "entry_count": 110
+    }
+  ],
+  "pages": [
+    {
+      "group": "industry",
+      "id": "01",
+      "title": "명동 약국 외국인 마케팅, 관광객의 ‘외국인 약국’ 검색을 방문으로 바꾸는 법",
+      "slug": "myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob",
+      "url": "https://www.blinkad.kr/blog/myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob",
+      "published_local": "2026.09.18",
+      "checked_at": "2026-10-05T16:25:20.417800+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob",
+      "body_sha256": "04212547ba275a512653b1ff6bb7d3116c8355c4ee1be6a1484280e5cf9a1ac1",
+      "h1": [
+        "명동 약국 외국인 마케팅, 관광객의 ‘외국인 약국’ 검색을 방문으로 바꾸는 법"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "외국인 마케팅 진단을 신청",
+          "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_pharmacy",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "내 업장 진단받기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-18T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-18T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "industry",
+      "id": "02",
+      "title": "강남 피부과 외국인 마케팅, 구글지도 검색을 상담 예약으로 연결하는 구조",
+      "slug": "gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo",
+      "url": "https://www.blinkad.kr/blog/gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo",
+      "published_local": "2026.09.18",
+      "checked_at": "2026-10-05T16:25:20.423025+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo",
+      "body_sha256": "8926e7e3b2c778cfc329ca14ddb932f2fee410150df55600d71b59e0e603ea45",
+      "h1": [
+        "강남 피부과 외국인 마케팅, 구글지도 검색을 상담 예약으로 연결하는 구조"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "강남 피부과 외국인 마케팅의 지도·홈페이지·상담 구조를 함께 점검하고 싶다면 문의해 주세요.",
+          "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_dermatology",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "내 업장 진단받기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-18T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-18T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "industry",
+      "id": "03",
+      "title": "강남 성형외과 외국인 마케팅, 일본·중국·영어권 검색을 문의로 연결하려면",
+      "slug": "gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+      "url": "https://www.blinkad.kr/blog/gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+      "published_local": "2026.09.26",
+      "checked_at": "2026-10-05T16:25:20.423219+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+      "body_sha256": "3a42ddc5973240063e8bb73b98bc382426a253b8a9d0f13060fc7bcb6929f523",
+      "h1": [
+        "강남 성형외과 외국인 마케팅, 일본·중국·영어권 검색을 문의로 연결하려면"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "영어·일본어·중국어 홈페이지가 실제 문의까지 연결되는지 진단이 필요하다면 블링크애드에 문의해 주세요.",
+          "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_plastic_surgery",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "내 업장 진단받기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "industry",
+      "id": "04",
+      "title": "홍대 미용실 외국인 마케팅, Google Maps와 Instagram 문의를 예약으로 바꾸는 법",
+      "slug": "hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob",
+      "url": "https://www.blinkad.kr/blog/hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob",
+      "published_local": "2026.09.26",
+      "checked_at": "2026-10-05T16:25:21.043220+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob",
+      "body_sha256": "56356d0027b975121dad85bb28b4c238783f0f0076202bc40df8a51a5f780878",
+      "h1": [
+        "홍대 미용실 외국인 마케팅, Google Maps와 Instagram 문의를 예약으로 바꾸는 법"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "외국인 고객의 검색이 실제 예약까지 이어지는지 진단이 필요하다면 블링크애드에 문의해 주세요.",
+          "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=hongdae_hair_salon",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "내 업장 진단받기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "industry",
+      "id": "05",
+      "title": "명동 피부과 외국인 마케팅, 단기 체류 환자의 검색을 예약으로 연결하는 법",
+      "slug": "myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob",
+      "url": "https://www.blinkad.kr/blog/myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob",
+      "published_local": "2026.09.26",
+      "checked_at": "2026-10-05T16:25:21.071534+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob",
+      "body_sha256": "2c189064f912c8b6ec3d2c15f930135a5922b9eb92dbc865fb56d5a442c34658",
+      "h1": [
+        "명동 피부과 외국인 마케팅, 단기 체류 환자의 검색을 예약으로 연결하는 법"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "단기 체류 외국인 고객이 어느 단계에서 이탈하는지 진단이 필요하다면 블링크애드에 문의해 주세요.",
+          "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_skin_clinic",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "내 업장 진단받기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h1",
+      "slug": "dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "product": "doctornest",
+      "concern": "inbox",
+      "label": "여러 채널의 문의 관리",
+      "cta": "우리 병원 문의 관리 상담하기",
+      "footerCopy": "카카오톡과 DM에서 답변 여부를 다시 찾고 있나요? 지금 쓰는 채널을 알려주시면 연결 가능 여부와 상담 이력을 확인하는 방법을 안내해 드리겠습니다.",
+      "title": "카카오톡·DM으로 흩어진 병원 문의, 한곳에서 관리하려면",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "checked_at": "2026-10-05T16:25:21.099931+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "body_sha256": "81a8e62af8a58274021dec09c87eef3866c95947a7e6e85a6743dc55ecc080d5",
+      "h1": [
+        "카카오톡·DM으로 흩어진 병원 문의, 한곳에서 관리하려면"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "우리 병원 문의 관리 상담하기",
+          "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h1",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "우리 병원 문의 관리 상담하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-08-14T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h2",
+      "slug": "doctornest-consultation-manual-handover",
+      "product": "doctornest",
+      "concern": "consultation_guidance",
+      "label": "가격·행사 안내 기준",
+      "cta": "상담 안내 정리 문의하기",
+      "footerCopy": "직원마다 가격이나 행사 조건을 다르게 안내하나요? 자주 엇갈리는 항목을 알려주시면 공통 문구와 고객별 상담 기록을 어떻게 쓸지 설명해 드리겠습니다.",
+      "title": "가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법",
+      "url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover",
+      "checked_at": "2026-10-05T16:25:21.770840+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover",
+      "body_sha256": "1125292d03fe60c9d0d5eae6ce29ee303255315cbe628783200f0bb02837a1b3",
+      "h1": [
+        "가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "상담 안내 정리 문의하기",
+          "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h2",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "상담 안내 정리 문의하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-26T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h3",
+      "slug": "oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "product": "doctornest",
+      "concern": "foreign_consultation",
+      "label": "외국인 환자 상담",
+      "cta": "외국인 상담 운영 문의하기",
+      "footerCopy": "번역한 대화와 다음 직원이 할 일을 따로 정리하고 있나요? 자주 받는 언어와 채널을 알려주시면 원문·번역·상담 메모를 함께 확인하는 방법을 안내해 드리겠습니다.",
+      "title": "외국인 환자 문의, 번역부터 다음 상담까지 어떻게 이어갈까?",
+      "url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "checked_at": "2026-10-05T16:25:21.785642+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "body_sha256": "b727034680a348d503dc311f6d895870ecf1930f8ad0e3eecfbac037aa94535b",
+      "h1": [
+        "외국인 환자 문의, 번역부터 다음 상담까지 어떻게 이어갈까?"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "외국인 상담 운영 문의하기",
+          "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h3",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "외국인 상담 운영 문의하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-08-15T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h4",
+      "slug": "3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "product": "doctornest",
+      "concern": "appointment_followup",
+      "label": "예약 확인·변경·후속 안내",
+      "cta": "예약 후 안내 상담하기",
+      "footerCopy": "예약을 변경한 뒤 장부와 안내 메시지를 각각 확인하고 있나요? 지금 쓰는 예약 방식과 연락 채널을 알려주시면 확인할 순서를 함께 정리해 드리겠습니다.",
+      "title": "예약 확인·변경 연락을 놓치지 않으려면 무엇을 정리해야 할까?",
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "checked_at": "2026-10-05T16:25:21.800527+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "body_sha256": "065f26f9bed3f604e4906d4d02cc4564a4c6799aae595095d64489a996d27d61",
+      "h1": [
+        "예약 확인·변경 연락을 놓치지 않으려면 무엇을 정리해야 할까?"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "예약 후 안내 상담하기",
+          "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h4",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "예약 후 안내 상담하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-08-12T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h5",
+      "slug": "byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "product": "beautynest",
+      "concern": "customer_records",
+      "label": "고객 기록·다음 방문 안내",
+      "cta": "우리 매장 고객관리 상담하기",
+      "footerCopy": "손님에게 연락하기 전에 지난 상담과 시술 기록을 여러 곳에서 찾고 있나요? 기록을 남기는 곳과 보내고 싶은 안내를 알려주시면 뷰티네스트에서 어떻게 확인할지 설명해 드리겠습니다.",
+      "title": "뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법",
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "checked_at": "2026-10-05T16:25:21.939772+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "body_sha256": "be6c302f495b6a75d2e3ec6cd23a00d8b5a1d244c13f9e78126614428d73e7be",
+      "h1": [
+        "뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "우리 매장 고객관리 상담하기",
+          "url": "https://www.blinkad.kr/contact?service=beautynest&topic=h5",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "우리 매장 고객관리 상담하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-08-14T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "group": "nest",
+      "id": "h6",
+      "slug": "byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "product": "doctornest",
+      "concern": "campaign_inquiries",
+      "label": "광고 문의·예약 기록",
+      "cta": "광고 문의 관리 상담하기",
+      "footerCopy": "광고 보고서와 상담·예약 기록을 맞춰 보기 어렵나요? 문의가 들어오는 채널을 알려주시면 상담 메모에 무엇을 남기고 예약 결과를 어디서 확인할지 안내해 드리겠습니다.",
+      "title": "광고로 들어온 문의, 예약까지 어디에 기록해야 할까?",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "checked_at": "2026-10-05T16:25:22.375693+09:00",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "body_sha256": "5683c01cf9734183b08a704c8b86da97e96202e69459d65be56d7b5ca094002f",
+      "h1": [
+        "광고로 들어온 문의, 예약까지 어디에 기록해야 할까?"
+      ],
+      "canonical": [
+        "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob"
+      ],
+      "robots_meta": [],
+      "x_robots_tag": null,
+      "body_inquiry_links": [
+        {
+          "text": "광고 문의 관리 상담하기",
+          "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h6",
+          "target": null
+        }
+      ],
+      "article_buttons": [
+        "광고 문의 관리 상담하기",
+        "",
+        "도입 상담 요청하기"
+      ],
+      "title_matches_local": true,
+      "sitemap_membership": [
+        {
+          "sitemap": "https://www.blinkad.kr/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-09-27T00:00:00.000Z"
+        },
+        {
+          "sitemap": "https://www.blinkad.kr/blog/sitemap.xml",
+          "present": true,
+          "lastmod": "2026-08-14T00:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "inquiry_destination_gets": [
+    {
+      "url": "https://www.blinkad.kr/contact?service=beautynest&topic=h5",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=beautynest&topic=h5",
+      "checked_at": "2026-10-05T16:25:23.524453+09:00",
+      "h1": [
+        "뷰티네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h1",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=doctornest&topic=h1",
+      "checked_at": "2026-10-05T16:25:23.333567+09:00",
+      "h1": [
+        "닥터네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h2",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=doctornest&topic=h2",
+      "checked_at": "2026-10-05T16:25:24.008690+09:00",
+      "h1": [
+        "닥터네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h3",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=doctornest&topic=h3",
+      "checked_at": "2026-10-05T16:25:23.737556+09:00",
+      "h1": [
+        "닥터네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h4",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=doctornest&topic=h4",
+      "checked_at": "2026-10-05T16:25:23.894320+09:00",
+      "h1": [
+        "닥터네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?service=doctornest&topic=h6",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?service=doctornest&topic=h6",
+      "checked_at": "2026-10-05T16:25:24.201465+09:00",
+      "h1": [
+        "닥터네스트 도입 상담"
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_dermatology",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_dermatology",
+      "checked_at": "2026-10-05T16:25:24.118419+09:00",
+      "h1": [
+        "외국인마케팅, 구글에서 발견되고 문의까지 이어지게 만듭니다."
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_plastic_surgery",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=gangnam_plastic_surgery",
+      "checked_at": "2026-10-05T16:25:24.222508+09:00",
+      "h1": [
+        "외국인마케팅, 구글에서 발견되고 문의까지 이어지게 만듭니다."
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=hongdae_hair_salon",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=hongdae_hair_salon",
+      "checked_at": "2026-10-05T16:25:24.400165+09:00",
+      "h1": [
+        "외국인마케팅, 구글에서 발견되고 문의까지 이어지게 만듭니다."
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_pharmacy",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_pharmacy",
+      "checked_at": "2026-10-05T16:25:24.384229+09:00",
+      "h1": [
+        "외국인마케팅, 구글에서 발견되고 문의까지 이어지게 만듭니다."
+      ]
+    },
+    {
+      "url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_skin_clinic",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/foreign-marketing?utm_source=blinkad_blog&utm_medium=content&utm_campaign=local_foreign_marketing&utm_content=myeongdong_skin_clinic",
+      "checked_at": "2026-10-05T16:25:24.490004+09:00",
+      "h1": [
+        "외국인마케팅, 구글에서 발견되고 문의까지 이어지게 만듭니다."
+      ]
+    }
+  ],
+  "hongdae_pharmacy_06": {
+    "local_title_matches": [],
+    "sitemap_slug_candidates": [],
+    "interpretation": "No matching published title or public-sitemap URL found; review portal draft state was not read."
+  },
+  "limits": [
+    "HTTP200/sitemap membership is not search indexing, traffic or inquiry performance.",
+    "Destination GET does not establish form receiver/CRM save/notification delivery.",
+    "Only existing 11 targets and public sitemap inspected; latest review portal/Notion approval/draft state not read."
+  ],
+  "site_repo_account_writes": false,
+  "actual_form_submissions": 0
+}

@@ -1,0 +1,231 @@
+{
+  "checked_at": "2026-10-05T07:27:46.083Z",
+  "method": "Unlogged Chromium desktop 1440x1000; one footer CTA click per Nest article; all foreign-origin, API and non-GET requests blocked; no input values, submission, publication or account writes.",
+  "results": [
+    {
+      "id": "h1",
+      "url": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "expected_title": "카카오톡·DM으로 흩어진 병원 문의, 한곳에서 관리하려면",
+      "expected_product": "doctornest",
+      "expected_topic": "h1",
+      "cta": "우리 병원 문의 관리 상담하기",
+      "checked_at": "2026-10-05T07:27:37.117Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "닥터네스트 도입 상담",
+      "product": "doctornest",
+      "topic": "h1",
+      "topic_label": "여러 채널의 문의 관리",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+      "pass": true,
+      "closed": true
+    },
+    {
+      "id": "h2",
+      "url": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover",
+      "expected_title": "가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법",
+      "expected_product": "doctornest",
+      "expected_topic": "h2",
+      "cta": "상담 안내 정리 문의하기",
+      "checked_at": "2026-10-05T07:27:38.784Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "닥터네스트 도입 상담",
+      "product": "doctornest",
+      "topic": "h2",
+      "topic_label": "가격·행사 안내 기준",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover",
+      "pass": true,
+      "closed": true
+    },
+    {
+      "id": "h3",
+      "url": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "expected_title": "외국인 환자 문의, 번역부터 다음 상담까지 어떻게 이어갈까?",
+      "expected_product": "doctornest",
+      "expected_topic": "h3",
+      "cta": "외국인 상담 운영 문의하기",
+      "checked_at": "2026-10-05T07:27:40.000Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "닥터네스트 도입 상담",
+      "product": "doctornest",
+      "topic": "h3",
+      "topic_label": "외국인 환자 상담",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+      "pass": true,
+      "closed": true
+    },
+    {
+      "id": "h4",
+      "url": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "expected_title": "예약 확인·변경 연락을 놓치지 않으려면 무엇을 정리해야 할까?",
+      "expected_product": "doctornest",
+      "expected_topic": "h4",
+      "cta": "예약 후 안내 상담하기",
+      "checked_at": "2026-10-05T07:27:41.234Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "닥터네스트 도입 상담",
+      "product": "doctornest",
+      "topic": "h4",
+      "topic_label": "예약 확인·변경·후속 안내",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+      "pass": true,
+      "closed": true
+    },
+    {
+      "id": "h5",
+      "url": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "expected_title": "뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법",
+      "expected_product": "beautynest",
+      "expected_topic": "h5",
+      "cta": "우리 매장 고객관리 상담하기",
+      "checked_at": "2026-10-05T07:27:42.492Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "뷰티네스트 도입 상담",
+      "product": "beautynest",
+      "topic": "h5",
+      "topic_label": "고객 기록·다음 방문 안내",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+      "pass": true,
+      "closed": true
+    },
+    {
+      "id": "h6",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "expected_title": "광고로 들어온 문의, 예약까지 어디에 기록해야 할까?",
+      "expected_product": "doctornest",
+      "expected_topic": "h6",
+      "cta": "광고 문의 관리 상담하기",
+      "checked_at": "2026-10-05T07:27:43.724Z",
+      "status": 200,
+      "footer_cta_count": 1,
+      "heading": "닥터네스트 도입 상담",
+      "product": "doctornest",
+      "topic": "h6",
+      "topic_label": "광고 문의·예약 기록",
+      "form_input_values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "page_url_after_click": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+      "pass": true,
+      "closed": true
+    }
+  ],
+  "summary": {
+    "cases": 6,
+    "pass": 6,
+    "fail": 0,
+    "submitted": 0,
+    "site_repo_account_writes": 0,
+    "blocked_non_get_requests": 0
+  },
+  "blocked_requests": [
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    },
+    {
+      "method": "GET",
+      "origin": "https://cdn.jsdelivr.net",
+      "path": "/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    },
+    {
+      "method": "GET",
+      "origin": "https://www.googletagmanager.com",
+      "path": "/gtm.js"
+    }
+  ],
+  "limits": [
+    "Does not test actual inquiry receiver or CRM acceptance.",
+    "Does not measure search exposure, ranking, inquiry increase or server analytics reception.",
+    "Body inquiry-link destinations were independently checked by GET; this run clicks only the six article-footer CTAs."
+  ]
+}
