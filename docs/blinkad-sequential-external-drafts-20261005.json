@@ -1,0 +1,99 @@
+{
+  "updated_at": "2026-10-05T20:38:27+09:00",
+  "user_request": "해당 주제로 초안을 써보자. 하나씩 순차적으로",
+  "canonical_plan": "BLINKAD_BRANDING_TOPIC_PORTFOLIO_20261005.md",
+  "topic_portfolio_count": 20,
+  "order": [
+    "BLK-BRAND-02",
+    "BLK-BRAND-05",
+    "BLK-BRAND-16",
+    "BLK-BRAND-17",
+    "BLK-BRAND-12",
+    "BLK-BRAND-01",
+    "BLK-BRAND-03",
+    "BLK-BRAND-04",
+    "BLK-BRAND-06",
+    "BLK-BRAND-07",
+    "BLK-BRAND-08",
+    "BLK-BRAND-09",
+    "BLK-BRAND-10",
+    "BLK-BRAND-11",
+    "BLK-BRAND-13",
+    "BLK-BRAND-14",
+    "BLK-BRAND-15",
+    "BLK-BRAND-18",
+    "BLK-BRAND-19",
+    "BLK-BRAND-20"
+  ],
+  "next_topic": "BLK-BRAND-05",
+  "specific_channel_entry_count": 5,
+  "active_drafts_written": 2,
+  "new_drafts_this_request": 1,
+  "entries": [
+    {
+      "topic_id": "BLK-BRAND-19",
+      "channel": "openads",
+      "title": "매장 이전, 구글맵 주소만 바꾸면 끝일까요?",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": "draft_v1_user_review",
+      "draft_file": "BLINKAD_OPENADS_RELOCATION_01_DRAFT_20261005.md",
+      "external_registered": false,
+      "externally_published": false,
+      "original_topic_id": "BLK-NEW-01"
+    },
+    {
+      "topic_id": "BLK-BRAND-19",
+      "channel": "naver_premium",
+      "title": "매장 이전일, 구글맵·외국어 페이지·광고·예약 안내를 함께 바꾸는 순서",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=relocation_01",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false,
+      "original_topic_id": "BLK-NEW-01"
+    },
+    {
+      "topic_id": "BLK-BRAND-20",
+      "channel": "openads",
+      "title": "영어로 만든 구글 검색광고, 외국인에게만 보일까요?",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false,
+      "original_topic_id": "BLK-NEW-02"
+    },
+    {
+      "topic_id": "BLK-BRAND-20",
+      "channel": "naver_premium",
+      "title": "외국인 광고 의뢰 전, 광고 언어와 국적을 구분해야 하는 이유",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=language_02",
+      "status": "planned_not_written",
+      "draft_file": null,
+      "external_registered": false,
+      "externally_published": false,
+      "original_topic_id": "BLK-NEW-02"
+    },
+    {
+      "topic_id": "BLK-BRAND-02",
+      "channel": "openads",
+      "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+      "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+      "status": "draft_v1_user_review",
+      "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+      "external_registered": false,
+      "externally_published": false,
+      "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REVIEW_20261005.md"
+    }
+  ],
+  "conversion_destination": "https://www.blinkad.kr/contact",
+  "external_writes": {
+    "notion": 0,
+    "review_portal": 0,
+    "openads": 0,
+    "naver_premium": 0,
+    "homepage_code": 0,
+    "form_submissions": 0
+  },
+  "inquiry_results_measured": false
+}

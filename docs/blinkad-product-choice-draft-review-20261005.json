@@ -1,0 +1,351 @@
+{
+  "saved_at": "2026-10-05T20:43:49+09:00",
+  "topic_id": "BLK-BRAND-02",
+  "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+  "draft_sha256": "906450164ac7a8b6ad6fc022e1cdac4dca9fae4750a1b04058ddb2c013b921cd",
+  "readable_characters": 2452,
+  "registered_refresh": {
+    "checked_at": "2026-10-05T20:31:42.473331+09:00",
+    "previous": 258,
+    "current": 258,
+    "added": 0,
+    "changed": 0,
+    "no_longer_returned": 0,
+    "changed_bodies_read": 0,
+    "protected_evidence_preserved": true
+  },
+  "prewrite_duplicate_review": {
+    "checked_at": "2026-10-05T20:34:34.747481+09:00",
+    "method": "body_excerpt를 사용하지 않고 258 comparison_text+nested_comparison_text의 전체 가용 본문을 대조. 지정 메뉴/광고비 글은 새 GET8의 하위 본문을 덮어 읽고, 추가 인접 메뉴 번역 글 전문·홈페이지 소스와 저장된 공개OpenAds14 본문을 비교.",
+    "comparison_scope": {
+      "registered_entries": 258,
+      "registered_top_level_bodies_available": 258,
+      "baseline_recursive_body_coverage": {
+        "selected_pages": 18,
+        "nested_query_count": 81,
+        "pages_with_nested_children_remaining": 145,
+        "nested_parent_blocks_remaining": 562,
+        "all_top_level_bodies": 258,
+        "body_read_errors": 0
+      },
+      "new_nearest_nested_pages": 2,
+      "new_nearest_nested_parent_queries": 8,
+      "new_nearest_nested_returned_children": 32,
+      "new_nearest_nested_errors": 0,
+      "new_nearest_nested_checked_at": "2026-10-05T20:32:53.949390+09:00",
+      "homepage_source_articles": 109,
+      "saved_public_openads_bodies": 14,
+      "public_get_snapshot_checked_at": "2026-10-05T17:48:41.247105+09:00",
+      "counts_not_additive_unique_articles": true,
+      "all_registered_nested_blocks_expanded": false
+    },
+    "verdict": "no_same_core_answer_found_in_compared_text",
+    "actual_duplicates_found": [],
+    "assessment": "지정3편의 전문과 관련 미확장8부모를 포함해, 상품별 추가 비용을 뺀 금액과 제공 시간으로 광고 대표상품을 고르는 직접 답은 확인되지 않았다. 등록258 가용 전문 및 공개14 저장 본문에서도 같은 중심 답을 찾지 못했다. 새로운 원고의 경제성·상품 선택 중심을 유지하면 집필 가능하다.",
+    "nearest_articles": [
+      {
+        "registered_id": "3e6753eb-c013-81a5-b883-ce337cd718ba",
+        "title": "[오픈애즈] 리스본·포르투 한국 식당, 메뉴 사진이 방문을 결정할까?",
+        "notion_url": "https://app.notion.com/p/3e6753ebc01381a5b883ce337cd718ba",
+        "stored_status": "Review",
+        "existing_answer": "메뉴 사진에서 음식 이름·구성·가격·주문 단위와 해당 지점 예약으로 연결하고, 처음 주문하기 쉬우면서 현재 제공 가능한 대표 사진을 고르는 답이다."
+      },
+      {
+        "registered_id": "319753eb-c013-81eb-81da-fab3b2fa163b",
+        "title": "구글 광고 비용, 월 얼마면 효과 볼 수 있을까? 업종별 현실 정리",
+        "notion_url": "https://app.notion.com/p/319753ebc01381eb81dafab3b2fa163b",
+        "stored_status": "Published",
+        "existing_answer": "광고 과금·업종별 CPC·월 예산과 추적·SEO 비교를 답한다. 업종별 평균 비용이나 클릭 기대치를 광고할 개별 상품의 경제성과 동일하게 보지 않는다."
+      },
+      {
+        "registered_id": "3b2753eb-c013-8139-b981-f63ea0969d9a",
+        "title": "[프리미엄콘텐츠] 검진과 미용을 묶은 외국인 상품, KMI 사례로 본 병원 제휴 전략",
+        "notion_url": "https://app.notion.com/p/KMI-3b2753ebc0138139b981f63ea0969d9a",
+        "stored_status": "Draft",
+        "existing_answer": "검진과 미용을 묶는 기관 제휴·고객 목적 결합·등록·계약 책임을 답한다. 수익 배분이라는 계약 항목은 있으나 현재 여러 상품의 비용·시간을 비교하는 답은 아니다."
+      },
+      {
+        "registered_id": "36a753eb-c013-8111-8664-ca6215c8fe40",
+        "title": "메뉴판 번역 맡기기 전, 식당 사장님이 확인해야 할 5가지",
+        "notion_url": "https://app.notion.com/p/5-36a753ebc01381118664ca6215c8fe40",
+        "stored_status": "Published",
+        "existing_answer": "대표 메뉴는 단순히 잘 팔리는 메뉴만 뜻하지 않으며 이해하기 쉽고 설명과 매장 장점을 보여주는 메뉴를 고르라고 답한다."
+      }
+    ],
+    "limits": [
+      "모든 등록 원고의 미확장 표·토글이나 아카이브의 부재를 증명한 결과가 아니다. 이번 가장 가까운 메뉴·광고비8부모의 반환 자식은 모두 확인했다.",
+      "공개14는 저장된 직접GET 본문을 대조했으며 이번 작업에서 사이트14곳을 재GET한 것은 아니다. 최신 Notion metadata에서 추가·변경은 없었지만 플랫폼 자체 변경의 완전 부재를 뜻하지 않는다.",
+      "주제의 검색량·난이도·판매 가능성·문의 성과는 이번 중복 검토로 확인하지 않았다."
+    ],
+    "actions": {
+      "project_changes": 0,
+      "new_drafts": 0,
+      "git_writes": 0,
+      "notion_or_queue_writes": 0,
+      "publications": 0,
+      "paid_calls": 0
+    }
+  },
+  "additional_nested_review": {
+    "checked_at": "2026-10-05T20:32:53.949390+09:00",
+    "query_count": 8,
+    "errors": 0,
+    "protected_evidence_preserved": true,
+    "duplicate_assessment": {
+      "reviewed_at": "2026-10-05T20:33:21.267707+09:00",
+      "proposed_topic": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+      "core_decision": "기존 상품별로 판매가에서 실제 추가 비용을 뺀 금액과 제공 시간을 함께 비교해 무엇을 유입의 대표 상품으로 정할지 선택한다.",
+      "verdict": "same_direct_answer_not_found_in_these_two_full_top_bodies_and_eight_nested_parents",
+      "pages": [
+        {
+          "id": "3e6753eb-c013-81a5-b883-ce337cd718ba",
+          "existing_direct_answers": [
+            "음식 사진과 메뉴명·구성·총가격·주문 단위 연결",
+            "최신 메뉴와 지점별 가격·예약 링크 관리",
+            "포르투갈어 표시와 번역·주문 설명"
+          ],
+          "difference": "최상위의 대표 사진 선택은 처음 주문하기 쉬움·현재 제공 가능성·대표성을 기준으로 한다. 표·FAQ에는 상품별 남는 금액·제공 시간의 경제성 선택이 없다."
+        },
+        {
+          "id": "319753eb-c013-81eb-81da-fab3b2fa163b",
+          "existing_direct_answers": [
+            "CPC·CPM·CPA 과금 방식 표",
+            "업종별 평균 CPC 표",
+            "예산별 클릭·전환 예시 표",
+            "Google Ads와 SEO 비용·지속성 비교 표"
+          ],
+          "difference": "광고 예산과 광고 채널 비용 비교이며, 현재 판매 상품들 가운데 상품별 추가 비용·제공 시간을 비교해 대표상품을 정하는 답은 없다."
+        }
+      ],
+      "reuse_limit": "기존 등록 표의 CPC·CPA·전환율·효과·예산 수치는 최신 사실 검증이 아니므로 새 원고의 근거로 자동 승계하지 않는다.",
+      "scope_limit": "추가 조회한 두 글의 지정8개 하위 부모와 반환된 자식은 모두 읽었다. 전체 등록글 모든 하위의 부재를 보증하는 판단은 아니다."
+    }
+  },
+  "draft_independent_review": {
+    "review_mode": "blind_completed_body_first",
+    "brief_read": false,
+    "verdict": "현재 최종 수정본 재검수 통과. 두 선택 보완 모두 반영되었고 필수 수정 오류 없음.",
+    "reconstructed_question": "판매량이 높은 상품과 판매 후 남는 금액·제공 시간이 유리한 상품이 다를 때, 외국인에게 어떤 상품부터 홍보할지 어떻게 결정할까?",
+    "answer_map": [
+      {
+        "element": "핵심 답",
+        "draft_lines": [
+          3,
+          5
+        ],
+        "actual_answer": "판매량, 한 건당 남는 금액, 제공 시간과 추가 판매 여유를 함께 비교한다.",
+        "condition": "더 팔아도 실제 제공 가능하고 고객이 구매할 이유가 있어야 한다.",
+        "assessment": "첫 문단이 제목의 질문에 바로 답함."
+      },
+      {
+        "element": "한 건당 비교 기준",
+        "draft_lines": [
+          9,
+          11,
+          20,
+          22
+        ],
+        "actual_answer": "실제 판매가에서 판매에 따라 늘어나는 변동비를 뺀다. 이 금액은 고정비도 충당해야 하므로 순수익으로 보지 않는다.",
+        "condition": "실제 할인 판매가·추가 인건비·수수료를 포함하고, 가정 표는 VAT 제외·광고비와 대행료 제외임을 표시함.",
+        "assessment": "단위당 공헌이익 정의와 예시의 한계가 분명함."
+      },
+      {
+        "element": "시간·추가 판매 가능량",
+        "draft_lines": [
+          26,
+          28,
+          30
+        ],
+        "actual_answer": "준비·제공·정리를 같은 기준으로 계산하고, 기존 예약 후 실제 추가 판매가 가능한 요일·시간·물량을 대행사에 전달한다.",
+        "condition": "같은 직원/공간을 사용하는 경우와 실제 운영 여유를 확인함.",
+        "assessment": "시간이 짧다는 사실만으로 무조건 선택하지 않음."
+      },
+      {
+        "element": "고객의 선택 이유",
+        "draft_lines": [
+          34,
+          36,
+          38
+        ],
+        "actual_answer": "외국인 고객의 문의·구매 기록을 살펴 상품에 맞는 고객, 포함 항목, 소요시간을 설명한다. 아직 확인되지 않은 후보는 제한된 범위에서 소개하며 조정한다.",
+        "condition": "기대 재방문·추가 구매를 이미 생긴 이익에 넣지 않음.",
+        "assessment": "높은 단위 공헌이익만으로 판매 성공을 약속하지 않음."
+      },
+      {
+        "element": "다음 행동",
+        "draft_lines": [
+          42,
+          44,
+          45,
+          46,
+          47,
+          49,
+          53,
+          55
+        ],
+        "actual_answer": "홍보 후보별 실제 가격·변동비, 점유시간, 추가 판매 여유, 외국인 문의/구매 여부를 정리해 상담한다.",
+        "condition": "외부 전달이 어려운 비용은 남는 금액의 범위나 상대 차이로 공유할 수 있음.",
+        "assessment": "독자가 실행할 입력 항목이 구체적임. CTA는 /contact 1개."
+      },
+      {
+        "element": "브랜드 추가 가치",
+        "draft_lines": [
+          49,
+          51,
+          53,
+          55
+        ],
+        "actual_answer": "대표상품의 검색어, 다국어 안내, 구글맵·홈페이지에서 문의로 이어지는 경로를 상담 과제로 구체화함.",
+        "condition": "매장 원가 확인·수익 확정·상품 개발을 블링크애드가 대신한다고 약속하지 않음.",
+        "assessment": "현재 공개 서비스 범위와 맞고, 상품 개발·회계 컨설팅·성과 보장·실제 운영 경험을 새로 주장하지 않음."
+      }
+    ],
+    "calculations": [
+      {
+        "label": "A",
+        "draft_lines": [
+          15,
+          16,
+          17
+        ],
+        "sale_price_krw": 100000,
+        "unit_variable_cost_krw": 60000,
+        "calculated_unit_contribution_krw": 40000,
+        "stated_krw": 40000,
+        "pass": true
+      },
+      {
+        "label": "B",
+        "draft_lines": [
+          15,
+          16,
+          17
+        ],
+        "sale_price_krw": 70000,
+        "unit_variable_cost_krw": 25000,
+        "calculated_unit_contribution_krw": 45000,
+        "stated_krw": 45000,
+        "pass": true
+      }
+    ],
+    "arithmetic_interpretation": "이 가정에서 B의 단위 공헌이익이 크고 점유시간이 짧다는 결론은 맞음. B의 실제 수요·추가 판매량·광고 성과·매장 순수익 우월성까지 입증하는 계산은 아님. 본문도 그 조건을 유지함.",
+    "style_and_claims": {
+      "audience": "매장 사업주가 홍보할 상품과 추가 판매 목표를 선택하는 글로 읽힘.",
+      "naturalness": "평이한 설명과 가정 표가 이어져 읽기 어렵지 않음. 공헌이익은 처음 쓰는 자리에서 정의함.",
+      "repetition": "후보 선택·고객 구매 이유를 반복하지만 기준→운영 여유→수요→상담 자료로 진행됨. 필수 삭제할 반복 없음.",
+      "hypothetical_vs_experience": "11행에 계산 가정이라고 명시하고 20행도 이 가정의 결론이라고 한정함. 실제 클라이언트 사례나 실측 성과처럼 서술하지 않음.",
+      "unsupported_performance_claims": [],
+      "invented_prices": "없음. 표의 금액은 가정 예시로 표시됨.",
+      "new_legal_guidance": "없음.",
+      "unsupported_product_or_accounting_service_promise": "없음. 비용을 정리해 상품·판매 목표를 상담하는 역할만 말하며 회계·수익 확정·상품 개발 서비스를 제공한다고 하지 않음."
+    },
+    "official_source_checks": [
+      {
+        "title": "OpenStax 관리회계 3.1",
+        "url": "https://openstax.org/books/principles-managerial-accounting/pages/3-1-explain-contribution-margin-and-calculate-contribution-margin-per-unit-contribution-margin-ratio-and-total-contribution-margin",
+        "verified_on": "2026-10-05",
+        "format": "공식 HTML 본문",
+        "location": "Unit Contribution Margin 및 고정비 충당 설명",
+        "draft_lines_supported": [
+          9,
+          22
+        ],
+        "verified_point": "단위 판매가에서 단위 변동비를 뺀 금액을 고정비 충당과 이익에 사용한다. 단위 공헌이익을 순수익이나 사용할 수 있는 광고 예산 전체로 읽지 않는 설명과 일치.",
+        "limits": "이 교재는 실제 외국인 고객의 수요나 예시 상품 B의 홍보 성과를 검증하는 자료가 아님."
+      },
+      {
+        "title": "SBA 사업계획·손익분기 자료",
+        "url": "https://www.sba.gov/counseling/plan-your-business/",
+        "verified_on": "2026-10-05",
+        "format": "현행 공식 HTML",
+        "location": "Calculate your startup costs → Break-even point → Getting started / Tips and tricks",
+        "draft_lines_supported": [
+          9,
+          22
+        ],
+        "verified_point": "판매 단가·단위 변동비·고정비를 함께 고려하는 단위 손익분기 구조를 대조했다. 비용 분류와 추정의 한계를 별도로 안내한다.",
+        "limits": "SBA 매출액 기준 식에서는 공헌이익 비율을 사용하므로 본문의 원 단위 금액과 혼용하지 않았다. 본문은 손익분기 계산이나 회계 확정을 제공하지 않음."
+      },
+      {
+        "title": "BlinkAd 현재 서비스",
+        "url": "https://www.blinkad.kr/services",
+        "verified_on": "2026-10-05",
+        "format": "현재 공개 HTML",
+        "location": "외국인마케팅 대행 → 포함 서비스; AI 검색 최적화 → 연결 구조",
+        "draft_lines_supported": [
+          51,
+          53,
+          55
+        ],
+        "verified_point": "현재 공개 서비스 범위와 맞고, 상품 개발·회계 컨설팅·성과 보장·실제 운영 경험을 새로 주장하지 않음.",
+        "limits": "해당 페이지에서 회계·상품개발 컨설팅 제공은 확인하지 못했다. 본문도 그런 서비스를 약속하지 않으며 모든 실제 제공 서비스를 이 페이지 하나로 부재 확정하지는 않음."
+      }
+    ],
+    "required_changes": [],
+    "optional_improvements": [],
+    "checks_not_performed": [
+      "브리프 대조",
+      "새 검색량·고객 수요 조사",
+      "가격표·업종별 수익성 조사",
+      "원고 수정·외부 업로드·문의 전송",
+      "실제 CTA 수신 또는 GA4 측정"
+    ],
+    "expected_reviewed_sha256": "906450164ac7a8b6ad6fc022e1cdac4dca9fae4750a1b04058ddb2c013b921cd",
+    "checked_at": "2026-10-05T20:41:57.102094+09:00",
+    "draft_path": "/tmp/blinkad-inquiry-content-resume-20261005/BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+    "current_sha256": "906450164ac7a8b6ad6fc022e1cdac4dca9fae4750a1b04058ddb2c013b921cd",
+    "matches_reviewed_version": true,
+    "draft_line_count": 55,
+    "file_edits": 0,
+    "external_writes": 0,
+    "cta_check": {
+      "count": 1,
+      "ctas": [
+        {
+          "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+          "query": {
+            "utm_source": [
+              "openads"
+            ],
+            "utm_medium": [
+              "referral"
+            ],
+            "utm_campaign": [
+              "foreign_marketing_agency"
+            ],
+            "utm_content": [
+              "product_choice_02"
+            ]
+          }
+        }
+      ],
+      "all_contact": true,
+      "no_nest_branch_parameters": true,
+      "manifest_match_not_checked": true
+    },
+    "initial_blind_review_sha256": "bf93b572aa3424961b95e117a0c0ead07ba6fcbe2d2670eff625ce7975419d54",
+    "historical_review_expected_sha256": "bf93b572aa3424961b95e117a0c0ead07ba6fcbe2d2670eff625ce7975419d54",
+    "current_version_review_scope": "55행 완성 본문 전체를 다시 읽고, 9행 단위 공헌이익 정의와 53행 브랜드 상담 과제를 재대조함. 브리프는 읽지 않음.",
+    "optional_improvements_applied": [
+      {
+        "draft_lines": [
+          9
+        ],
+        "change": "한 건의 판매가에서 한 건당 변동비를 뺀 금액을 한 건당 공헌이익으로 명확히 정의함.",
+        "assessment": "공식 OpenStax의 단위당 정의와 일치. 공헌이익 비율이나 순수익으로 혼용하지 않음."
+      },
+      {
+        "draft_lines": [
+          53
+        ],
+        "change": "대표상품의 검색어, 다국어 안내, 구글맵·홈페이지에서 문의로 이어지는 경로를 상담 과제로 구체화함.",
+        "assessment": "현재 공개 서비스 범위와 맞고, 상품 개발·회계 컨설팅·성과 보장·실제 운영 경험을 새로 주장하지 않음."
+      }
+    ],
+    "final_status": "passed_for_user_draft_review",
+    "draft_file_edits": 0,
+    "evidence_file_written": true,
+    "reviewed_sha256": "906450164ac7a8b6ad6fc022e1cdac4dca9fae4750a1b04058ddb2c013b921cd"
+  },
+  "further_external_state_changes": 0
+}
