@@ -8,7 +8,7 @@
   "canonical_contact_url": "https://www.blinkad.kr/contact",
   "topics": 5,
   "channel_drafts_planned": 10,
-  "actual_drafts_written": 0,
+  "actual_drafts_written": 1,
   "actual_external_posts_published": 0,
   "contact_form_submissions": 0,
   "attribution_status": "Planned UTM links; form submission and inquiry-record attribution untested",
@@ -19,7 +19,9 @@
       "channel": "openads",
       "title_proposal": "외국인 마케팅 업체, 계약 전에 확인할 5가지",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_01",
-      "status": "planned_not_written_or_published"
+      "status": "draft_v1_pending_user_review_not_published",
+      "local_draft": "BLINKAD_OPENADS_AGENCY_01_DRAFT_20261005.md",
+      "version": "v1"
     },
     {
       "id": "BLK-AGENCY-01-NAVER_PREMIUM",
@@ -93,5 +95,6 @@
       "cta_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=agency_05",
       "status": "planned_not_written_or_published"
     }
-  ]
+  ],
+  "latest_update": "2026-10-05: User requested one body draft for review; OpenAds01 written, no platform upload/publication"
 }
