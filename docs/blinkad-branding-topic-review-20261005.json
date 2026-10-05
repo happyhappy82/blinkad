@@ -1,0 +1,463 @@
+{
+  "saved_at": "2026-10-05T20:26:43+09:00",
+  "scope": "Independent topic-plan review, not validation of 20 written articles or proof of absence in every nested/archived article.",
+  "strategy_review": {
+    "checked_at": "2026-10-05T20:22:51.217876+09:00",
+    "method": "20개 후보의 중심 결정·필수 답변을 서로 대조하고, 지정 6개 후보는 등록 comparison_text+nested_comparison_text와 가까운 기존 원고 전문·FAQ 및 전체 본문 용어/문맥 검색을 재대조. body_excerpt는 사용하지 않음.",
+    "scope": {
+      "registered_entries": 258,
+      "top_level_bodies_available": 258,
+      "selected_recursive_baseline": {
+        "selected_pages": 18,
+        "nested_query_count": 81,
+        "pages_with_nested_children_remaining": 145,
+        "nested_parent_blocks_remaining": 562,
+        "all_top_level_bodies": 258,
+        "body_read_errors": 0
+      },
+      "homepage_source_articles": 109,
+      "public_openads_saved_get_articles": 14,
+      "portfolio_additional_nested_review": 7,
+      "all_nested_expanded": false
+    },
+    "mandatory_corrections": [],
+    "actual_errors_found": 0,
+    "decision": "현재 기획에서 같은 중심 결정의 재활용 또는 기존 글이 이미 직접 답한 내용을 신규로 확정한 명확한 오류는 발견하지 못했다.",
+    "focused_checks": [
+      {
+        "topic": "BLK-BRAND-02",
+        "decision": "현재 판매 중인 여러 상품의 경제성과 시간 소모를 비교해 유입 대표 상품 선택",
+        "distinct_from": [
+          "BLK-BRAND-04: 아직 수요가 확인되지 않은 신상품의 유지·수정",
+          "BLK-BRAND-09: 서비스 제공 가능한 빈 슬롯으로 유입 목표 변경",
+          "BLK-BRAND-13: 검증된 사업자 가치와 후기의 선택 이유로 대표 표현 선택",
+          "BLK-BRAND-15: 같은 상품의 한시 할인 여부·경제적 한도"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "다른 사업 결정이다. 비용·시간 자료를 일부 함께 쓰지만 결과로 정하는 대상이 다르다."
+      },
+      {
+        "topic": "BLK-BRAND-04",
+        "decision": "신상품의 수요 가설을 유지·변경할지와 광고·설명 개선의 우선순위",
+        "distinct_from": [
+          "BLK-BRAND-02: 이미 판매하는 상품 중 광고할 상품의 선택",
+          "BLK-BRAND-13: 제품을 바꾸지 않고 사실에 맞는 대표 메시지를 선택"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "기존 적합도·메뉴·가격 조건 안내는 지원 답이지만 신상품을 수정할지라는 결정을 직접 답하지 않는다. 조건부 판정과 일반 전환 측정으로 축소 금지 가드가 현재 기획에 있다."
+      },
+      {
+        "topic": "BLK-BRAND-09",
+        "decision": "이미 찬 시간 대신 제공 가능한 평일·서비스·슬롯의 수용량으로 유입 목표 변경",
+        "distinct_from": [
+          "BLK-BRAND-10: 확정 단체 계약 물량과 개별 고객의 유입 경로 사이에서 자원 배분"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "기존 #11은 광고 노출 시간과 상담 응대 시간을 맞추는 답이다. 서비스 제공 시간과 좌석·공간의 판매 가능량을 정하는 질문과 다르다."
+      },
+      {
+        "topic": "BLK-BRAND-10",
+        "decision": "이미 거래하는 여행사의 계약 물량과 새 직접 고객 유입 사이에서 자원·의존도 배분",
+        "distinct_from": [
+          "BLK-BRAND-09: 일반적인 빈 시간·공간의 판매 목표"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "기존 여행사 글에는 수용 인원·정산·취소 기준이 있지만 제휴 찾기와 준비가 중심이다. 기존 계약을 지키면서 단체와 직접 유입 사이의 배분을 정하는 중심 결정은 별도다."
+      },
+      {
+        "topic": "BLK-BRAND-13",
+        "decision": "자사 주장과 실제 고객이 언급한 강점의 차이를 비교해 콘텐츠 대표 메시지 선택",
+        "distinct_from": [
+          "BLK-BRAND-02: 어떤 상품을 광고할지",
+          "BLK-BRAND-04: 신상품 자체를 유지·수정할지"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "기존 리뷰 글은 긍정 리뷰의 반복 강점을 월별 점검하고 운영 개선에 반영하라는 지원 답이 있다. 자사 주장의 강점과 대조해 대표 브랜드 메시지를 고르는 직접 답은 확인되지 않았다. 원리 일부 중첩만으로 중복 처리할 근거는 없다.",
+        "existing_partial_evidence": {
+          "registered_id": "319753eb-c013-81f3-a905-ee1fa66f8ead",
+          "heading": "5. 월 1회 리뷰 데이터 점검",
+          "text": "긍정 리뷰에서 자주 언급되는 강점",
+          "role": "지원 정보 중첩; 같은 대표 메시지 선택 결정은 아님"
+        }
+      },
+      {
+        "topic": "BLK-BRAND-15",
+        "decision": "같은 상품의 첫 방문 할인 여부·할인 후 손실 한도·기간·총 사용량 선택",
+        "distinct_from": [
+          "BLK-BRAND-02: 여러 기존 상품 중 유입 대표 상품 선택"
+        ],
+        "nearest_direct_answer_found": false,
+        "assessment": "기존 이벤트 문자는 이미 정해진 행사의 적용 대상별 안내, 가격 문의 글은 가격의 적용 조건을 설명한다. 할인 자체의 경제적 한도와 시행 여부는 별도다."
+      }
+    ],
+    "other_portfolio_checks": [
+      "06 반복 계절의 운영 목표 vs 07 특정 행사의 일시 투자 vs 08 팝업 종료 뒤 남길 브랜드 접점은 결정의 결과가 다르다.",
+      "17 Reddit에서 어떤 안내 질문을 뽑을지 vs 18 규칙·목표에 맞춰 광고 또는 참여 방식을 선택할지는 서로 다른 결정이다.",
+      "선정20·신규18·유지2·기존 원고1·이번 신규 본문0·성과/검색량 미검증·외부 쓰기0 표기는 내부 일치한다.",
+      "가까운 기존 등록글 제목·ID가 현재 258개 목록에서 모두 확인된다."
+    ],
+    "limits": [
+      "확보된 최상위 전문과 선택적으로 펼친 하위 본문 비교다. 모든 258개 원고의 미확장 표·토글과 아카이브까지 부재를 증명한 결과가 아니다.",
+      "이번 검수는 실제 원고 20편의 신규성 확정이나 검색 수요 측정이 아니라 기획의 중심 결정과 필수 답변 분리가 성립하는지에 대한 검토다.",
+      "실제 원고가 상품 선택·메시지 선택·일반 측정·메뉴 체크리스트로 뭉쳐지면 다시 중복을 판정해야 한다. 현재 기획에는 해당 가드가 있다."
+    ],
+    "actions": {
+      "project_changes": 0,
+      "drafts_written": 0,
+      "notion_writes": 0,
+      "external_publications": 0
+    }
+  },
+  "portfolio_review": {
+    "reviewed_at": "2026-10-05T20:26:03.021113+09:00",
+    "summary": {
+      "required_corrections": 0,
+      "proven_new_same_central_question_duplicates": 0,
+      "proven_within_portfolio_same_decision_duplicates": 0,
+      "conditional_topic_ids": [
+        "BLK-BRAND-04",
+        "BLK-BRAND-11",
+        "BLK-BRAND-14"
+      ],
+      "scope": "등록258개 최상위 전문·관련20페이지 선택 하위88조회·홈페이지 소스109개·공개OpenAds14개 전문의 비교 범위에서 중심질문의 직접 중복을 발견하지 못했다. 모든 하위·과거 공개글의 전수를 뜻하지 않는다."
+    },
+    "checks": {
+      "topic_count_20": true,
+      "topic_ids_unique": true,
+      "18_new_2_retained": true,
+      "50_candidate_rows": true,
+      "258_registered_bodies_nonempty": true,
+      "109_homepage_source_records": true,
+      "14_public_openads_full_bodies": true,
+      "all_nearest_registered_ids_exist": true,
+      "all_primary_source_ids_exist": true,
+      "all_20_cta_contact": true,
+      "all_topics_2_channels": true,
+      "no_new_drafts_this_expansion": true,
+      "one_preserved_draft_exists": true,
+      "external_writes_reported_zero": true,
+      "all_topics_no_external_registration_or_publication": true,
+      "all_new_performance_measures_false": true,
+      "additional_queries_7_no_error_preserved": true,
+      "selected_nested20_queries88": true,
+      "preserved_draft_file_exists": true
+    },
+    "topic_assessments": [
+      {
+        "id": "BLK-BRAND-01",
+        "title": "외국인마케팅과 해외마케팅, 매장 방문과 해외 판매는 무엇이 다를까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "현장 방문 목표와 해외 배송 판매 목표의 의뢰 범위 구분. 기존 업종적합도 답을 반복하지 않는 조건.",
+        "nearest_registered_ids": [
+          "3c9753eb-c013-8101-bfc9-feb72996fa96"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-02",
+        "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "기존 상품들 가운데 추가 비용과 제공 시간으로 대표 상품을 선택. 사진·예산·제휴상품 구성과 구분.",
+        "nearest_registered_ids": [
+          "3e6753eb-c013-81a5-b883-ce337cd718ba",
+          "319753eb-c013-81eb-81da-fab3b2fa163b",
+          "3b2753eb-c013-8139-b981-f63ea0969d9a"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-03",
+        "title": "한 나라 손님에게 매출이 몰린 매장, 외국인마케팅을 어디부터 넓힐까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "이미 특정 고객시장에 매출이 집중된 경우의 확장·의존 결정. 첫 언어·방문 통계와 구분.",
+        "nearest_registered_ids": [
+          "359753eb-c013-81cd-a2cd-ecb16f8f52c3",
+          "3c9753eb-c013-8101-bfc9-feb72996fa96"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-04",
+        "title": "외국인에게 안 팔리는 신상품, 광고를 바꿀까 상품을 바꿀까?",
+        "verdict": "conditional_keep",
+        "rationale": "설명·발견 실패와 미확인 신상품 수요의 분리. 메뉴·가격·전환 체크리스트로 돌아가면 기존 답과 겹치므로 조건부.",
+        "nearest_registered_ids": [
+          "3e6753eb-c013-81a5-b883-ce337cd718ba",
+          "3c9753eb-c013-8101-bfc9-feb72996fa96",
+          "3e7753eb-c013-8154-9468-dade4b5a1cae"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-05",
+        "title": "외국인마케팅대행사, 신규 매장 오픈 전에 무엇부터 준비할까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "실제 개업일의 선후 작업과 판매 가능 상태를 역산. 등록 절차·대행 준비의 일반 목록과 구분.",
+        "nearest_registered_ids": [
+          "319753eb-c013-81b5-9462-d9788f7ae6a2",
+          "355753eb-c013-81dd-a40f-de4ca16c3c27"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-06",
+        "title": "비수기 외국인마케팅, 광고를 줄일까 다음 성수기를 준비할까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "반복적인 시즌의 현재 유입 예산과 다음 시즌 준비 목표를 결정. 통계 업데이트·광고비 비교와 구분.",
+        "nearest_registered_ids": [
+          "359753eb-c013-81cd-a2cd-ecb16f8f52c3",
+          "319753eb-c013-81eb-81da-fab3b2fa163b",
+          "3bb753eb-c013-8175-aecc-d9308685d841"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-07",
+        "title": "지역 축제·대형 행사 때 외국인마케팅, 평소 광고를 늘리기만 하면 될까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "외부 특정 행사의 일시 사업 기회·추가 판매량 투자 결정. 평소 시즌과 자체 팝업 목표와 구분.",
+        "nearest_registered_ids": [
+          "359753eb-c013-81cd-a2cd-ecb16f8f52c3",
+          "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+          "3b2753eb-c013-81b0-b65d-cecd7a5e41df"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-08",
+        "title": "팝업 외국인마케팅, 행사장을 알릴까 브랜드를 남길까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "자체 단기 팝업의 방문 목표와 종료 후 지속할 브랜드 접점 선택. 외부 행사 유입 투자와 구분.",
+        "nearest_registered_ids": [
+          "359753eb-c013-81cd-a2cd-ecb16f8f52c3"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-09",
+        "title": "주말 예약이 꽉 찬 매장, 외국인마케팅 목표는 무엇으로 바꿀까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "이미 꽉 찬 제공 시간 대신 실제 빈 판매량으로 유입 목표 변경. 광고 송출·응대 시간 설정과 구분.",
+        "nearest_registered_ids": [
+          "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+          "3c9753eb-c013-8101-bfc9-feb72996fa96"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-10",
+        "title": "외국인마케팅대행사에 개별 손님 유입을 맡기면, 여행사 단체는 줄여야 할까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "기존 계약 단체 물량과 직접 유입의 수용량·채널 배분. 여행사 발굴·제휴 절차와 구분.",
+        "nearest_registered_ids": [
+          "3b2753eb-c013-81b0-b65d-cecd7a5e41df",
+          "3e6753eb-c013-81a5-b883-ce337cd718ba"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-11",
+        "title": "날짜 미정 체험 이용권이 팔렸는데, 매장 예약도 확정된 걸까?",
+        "verdict": "conditional_keep",
+        "rationale": "날짜 미정 구매권 판매와 실제 날짜·인원 슬롯 확보의 상품 권리 분리. 일반 문의와 확정 안내는 기존 답이므로 실제 상품 조건 확보 전 조건부.",
+        "nearest_registered_ids": [
+          "3b2753eb-c013-81b0-b65d-cecd7a5e41df",
+          "3d2753eb-c013-811b-a95d-f3412a0bf317",
+          "3ba753eb-c013-813e-9105-ce4ce0f5bf96"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-12",
+        "title": "구글맵·예약앱·홈페이지의 영문 상호가 다르면 무엇을 통일해야 할까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "공식명·동일 사업장 식별정보를 대조해 영문 이름 혼동을 해결. 기존 기본정보 정확성 지원문장과 정책은 부분 중첩.",
+        "nearest_registered_ids": [
+          "3e6753eb-c013-8189-b70a-f17031f75602",
+          "3e6753eb-c013-819e-ba69-e520fb9f188f"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-13",
+        "title": "사장님의 강점과 외국인 후기가 말하는 강점이 다르다면?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "사업주 주장과 실제 후기의 선택 이유를 비교해 대표 콘텐츠 메시지를 정함. 후기 응답·운영 개선 지원문장은 부분 중첩.",
+        "nearest_registered_ids": [
+          "319753eb-c013-81f3-a905-ee1fa66f8ead",
+          "3b2753eb-c013-8112-b9c6-eede5a896d70"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-14",
+        "title": "제휴사 이름으로 팔리는 외국인 상품, 우리 매장 이름을 숨겨도 될까?",
+        "verdict": "conditional_keep",
+        "rationale": "제휴 판매자의 브랜드와 실제 제공 매장 공개 방식 선택. N8의 태그·위치·예약·기간·재사용 권리는 기존 답으로 제외한 좁힌 조건부 기획.",
+        "nearest_registered_ids": [
+          "3b2753eb-c013-8139-b981-f63ea0969d9a",
+          "3bb753eb-c013-81fa-bfe5-e308cac97c02"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-15",
+        "title": "외국인마케팅, 첫 방문 할인은 어디까지 해도 괜찮을까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "첫 방문 할인을 할지와 경제적 한도를 결정. 정해진 이벤트 대상·문자 작성·조건 설명과 구분.",
+        "nearest_registered_ids": [
+          "3e7753eb-c013-8148-b723-f82a901df280",
+          "3e7753eb-c013-8154-9468-dade4b5a1cae",
+          "3b2753eb-c013-8139-b981-f63ea0969d9a"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-16",
+        "title": "AI가 우리 매장 위치와 영업시간을 틀리게 알려준다면?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "이미 관측된 AI의 위치·시간 오류를 출처별로 진단하고 정정 경로 선택. 일반 인용 콘텐츠 설계·노출 측정과 구분.",
+        "nearest_registered_ids": [
+          "34a753eb-c013-815f-8615-e692d4f14042",
+          "356753eb-c013-81d8-98b0-fe68dca6890d"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-17",
+        "title": "외국인마케팅, 레딧 질문에서 고객이 망설이는 이유를 찾는 법",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "공개 Reddit 질문의 맥락에서 다음 콘텐츠에 답할 정보를 선택. 커뮤니티 소개와 참여 방식 선택과 구분.",
+        "nearest_registered_ids": [
+          "3c9753eb-c013-81bb-be83-fd354b515d6f"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-18",
+        "title": "외국인마케팅대행사, 레딧에서는 광고와 커뮤니티 참여를 어떻게 구분할까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "특정 커뮤니티 규칙에 따른 유료광고·허용 참여 방식 선택. 질문 리서치와 구분; Reddit Ads 운영을 새 제공 서비스로 약속하지 않아야 함.",
+        "nearest_registered_ids": [
+          "3c9753eb-c013-81bb-be83-fd354b515d6f"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-19",
+        "title": "매장 이전, 구글맵 주소만 바꾸면 끝일까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "같은 매장의 실제 이전일에 지도·외국어 안내·광고·기존 예약 동선 전환 순서. 일반 주소 정정·인증과 구분.",
+        "nearest_registered_ids": [
+          "319753eb-c013-81b5-9462-d9788f7ae6a2"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      },
+      {
+        "id": "BLK-BRAND-20",
+        "title": "영어로 만든 구글 검색광고, 외국인에게만 보일까?",
+        "verdict": "no_same_central_answer_found_in_compared_scope",
+        "rationale": "광고/이해 언어와 국적을 구분. 일반 첫 캠페인 세팅과 다른 직접 답이며 현재 Google 변경 안내는 시작 시점과 개별 계정 확인을 구분해야 함.",
+        "nearest_registered_ids": [
+          "3b2753eb-c013-8151-9ad4-ffc02dbb5769"
+        ],
+        "not_absolute_nonduplication_guarantee": true
+      }
+    ],
+    "near_pair_distinctions": [
+      {
+        "ids": [
+          "BLK-BRAND-02",
+          "BLK-BRAND-04",
+          "BLK-BRAND-15"
+        ],
+        "distinction": "기존 상품 선택 / 신상품 수요·내용 변경 / 같은 상품의 첫 방문 할인 한도"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-03",
+          "BLK-BRAND-10"
+        ],
+        "distinction": "고객 시장 집중 / 계약 단체와 개별 고객의 채널·공급량 배분"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-06",
+          "BLK-BRAND-07",
+          "BLK-BRAND-08"
+        ],
+        "distinction": "반복 시즌 / 외부 특정 행사 / 자체 단기 팝업과 지속 브랜드"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-09",
+          "BLK-BRAND-10",
+          "BLK-BRAND-11"
+        ],
+        "distinction": "빈 판매 시간으로 목표 변경 / 계약 경로별 배분 / 날짜 미정 구매권과 예약 확정 권리"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-12",
+          "BLK-BRAND-14",
+          "BLK-BRAND-16"
+        ],
+        "distinction": "공식 표기의 동일 매장 식별 / 판매자·제공 매장 공개 / AI의 틀린 답과 원정보 정정"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-17",
+          "BLK-BRAND-18"
+        ],
+        "distinction": "질문 조사로 콘텐츠 선택 / 실제 참여 방식 선택"
+      },
+      {
+        "ids": [
+          "BLK-BRAND-05",
+          "BLK-BRAND-19"
+        ],
+        "distinction": "미오픈 초기 준비 / 기존 영업·예약을 보호하는 이전일 전환"
+      }
+    ],
+    "actual_service_review": {
+      "primary_url": "https://www.blinkad.kr/services",
+      "checked_date": "2026-10-05",
+      "confirmed": "검색동선·지도·다국어정보·리뷰/사진/게시물·연결동선·AEO·해외커뮤니티 질문 리서치와 맥락/규칙 기반 접점",
+      "limits": "자사 설명이다. 수출·물류·회계·티켓 운영·여행사 중개·법률 자문·Reddit Ads 운영을 기존 제공 상품으로 추가하지 않는다. 이번 기획에서 이들을 새 서비스로 약속한 결함은 발견하지 못했다."
+    },
+    "official_policy_recheck": [
+      {
+        "url": "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "checked_date": "2026-10-05",
+        "finding": "2026년9월부터 Search 언어 설정 변경이 시작된다는 안내가 실재한다. 이해 언어는 국적과 같지 않으며 특정 계정 적용 완료를 단정하지 않는다."
+      },
+      {
+        "url": "https://support.reddithelp.com/hc/en-us/articles/360043504051-Spam",
+        "checked_date": "2026-10-05",
+        "source_updated": "2026-05-19",
+        "finding": "반복·원치 않는 대량 활동 금지, 사업 이익 링크 중심 참여의 빈도 고려·광고 선택, 개별 커뮤니티 규칙 확인이라는 범위가 기획과 일치한다."
+      }
+    ],
+    "remaining_limits": [
+      "전체 등록 항목의 모든 하위블록·아카이브를 읽지는 않았다.",
+      "258은 상태를 포함한 항목 수이며 고유 글 수나 현재 외부 발행 수가 아니다.",
+      "109는 홈페이지 소스 비교 수이며 모든 현재 공개 URL을 이 검토에서 새로 조회한 수가 아니다.",
+      "비수기·수요·할인·제휴 판단은 실제 매장 자료가 필요한 편집 제안이다.",
+      "검색량·자동완성·AI 언급·실제 문의 증가를 이번 검토에서 측정하지 않았다."
+    ],
+    "review_external_state_changes": 0,
+    "review_repo_edits": 0
+  },
+  "resolved_optional_copy_edit": {
+    "topics": [
+      "BLK-BRAND-19",
+      "BLK-BRAND-20"
+    ],
+    "change": "19 주소/방문 안내와20 언어 매칭의 범위 문장을 각 주제에 맞게 분리",
+    "resolved": true
+  },
+  "source_report_sha256": {
+    "strategy-final-review.json": "4d020d4cf68aa6702401b0b608c4ce72736874e6b8ab0c50ba327ad53546eec3",
+    "final-portfolio-review.json": "bb2a259338d8466db9b1b82bc2296a50069d8bf2b73ed9f172c0b5a1022c540c"
+  }
+}

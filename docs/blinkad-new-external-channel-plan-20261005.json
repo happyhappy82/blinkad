@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-10-05T18:02:45.001487+09:00",
-  "user_latest_requirement": "지금까지 등록한 글들이랑 겹치지 않는 주제여야해",
-  "canonical_plan": "BLINKAD_REGISTERED_TOPIC_DUPLICATION_AUDIT_20261005.md",
+  "user_latest_requirement": "기등록 중심질문·답변 중복을 피하면서 외국인마케팅·대행사·업체 브랜딩 소재20개로 확장. 이 manifest는 먼저 정한2개/4채널의 상세기획이다.",
+  "canonical_plan": "BLINKAD_BRANDING_TOPIC_PORTFOLIO_20261005.md",
   "topic_count": 2,
   "channel_entry_count": 4,
   "actual_drafts_written": 1,
@@ -54,5 +54,14 @@
   ],
   "conversion_destination": "https://www.blinkad.kr/contact",
   "inquiry_results_measured": false,
-  "external_writes": 0
+  "external_writes": 0,
+  "previous_canonical_plan": "BLINKAD_REGISTERED_TOPIC_DUPLICATION_AUDIT_20261005.md",
+  "comparison_report": "BLINKAD_REGISTERED_TOPIC_DUPLICATION_AUDIT_20261005.md",
+  "portfolio_manifest": "docs/blinkad-branding-topic-portfolio-20261005.json",
+  "scope": "retained_detail_batch_for_2_of_expanded_20_topics",
+  "portfolio_topic_count": 20,
+  "retained_topic_mapping": {
+    "BLK-NEW-01": "BLK-BRAND-19",
+    "BLK-NEW-02": "BLK-BRAND-20"
+  }
 }
