@@ -1,0 +1,401 @@
+{
+  "saved_at": "2026-10-07T16:43:53.668616+09:00",
+  "user_request": "다시 수정해서 다시 써봐.",
+  "topic_id": "BLK-BRAND-02",
+  "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
+  "draft_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5",
+  "draft_revision": "v2",
+  "previous_draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+  "previous_draft_sha256": "906450164ac7a8b6ad6fc022e1cdac4dca9fae4750a1b04058ddb2c013b921cd",
+  "registered_refresh": {
+    "checked_at": "2026-10-07T16:35:54.809102+09:00",
+    "previous": 258,
+    "current": 258,
+    "added": 0,
+    "changed": 0,
+    "no_longer_returned": 0,
+    "changed_bodies_read": 0,
+    "errors": 0,
+    "baseline_preserved": true,
+    "method": "metadata refresh only; prior available full bodies reused, no new changed body reads"
+  },
+  "feedback_implementation": [
+    {
+      "request": "이 글이 우리 서비스와 맞는 글인가? / 다시 수정해서 다시 써봐.",
+      "issue": "원가·공헌이익·점유시간 중심으로 서비스와 연결이 약함",
+      "implemented": "경제성 표 제거; 목표상품과 실제 문의상품의 차이에 따라 검색·프로필·외국어상품안내·문의 연결의 보완 작업을 정하는 본문 전체 재작성",
+      "locations": "도입·4개 H2·상담 CTA",
+      "review_status": "독립 최종 전문 재검토"
+    }
+  ],
+  "duplicate_review": {
+    "checked_at": "2026-10-07T16:39:26.234166+09:00",
+    "draft_file": "/tmp/blinkad-inquiry-content-resume-20261005/BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
+    "draft_sha256": "4933a5a46121d891c85de4198b951fe353ae29192776049e26edb67d2c588b2f",
+    "read_full_draft": true,
+    "verdict": "narrowed_core_decision_retained_and_service_aligned",
+    "mandatory_corrections": [],
+    "core_checks": [
+      {
+        "lines": [
+          3,
+          5,
+          7,
+          19
+        ],
+        "decision": "전체 문의와 새 대표상품 문의, 기존 인기상품 문의, 상품 불명·비교 문의를 구분",
+        "assessment": "유지됨. 원고 첫 답과 첫 H2가 목표상품과 실제 문의상품의 불일치에 집중한다. 상품 불명 문의의 성과 편입과 홍보 경로 추정을 금지한다."
+      },
+      {
+        "lines": [
+          21,
+          29
+        ],
+        "decision": "새 상품을 홍보했지만 기존 상품만 보이는 소개·검색·연결을 점검",
+        "assessment": "유지됨. 특정 새 상품과 실제 보이는 상품의 불일치를 다음 작업의 대상으로 고정한다. 연결 방법 자체는 기존 글과 일부 겹치지만 지원 설명이다."
+      },
+      {
+        "lines": [
+          31,
+          39
+        ],
+        "decision": "새 상품을 못 본 경우와 양쪽을 보고 기존 상품을 선택한 경우를 구분하여 보완 순서 선택",
+        "assessment": "유지됨. 소개 위치·연결 보완과 두 상품 차이·이용조건 보완의 다른 작업을 제안하며 실제 질문과 선택 기록을 근거로 요구한다."
+      },
+      {
+        "lines": [
+          41,
+          51
+        ],
+        "decision": "목표상품 문의와 매장 전체 지표를 같은 성과로 세지 않고 다음 검색·정보·문의 작업을 정함",
+        "assessment": "유지됨. 실제 구글맵·홈페이지 링크와 알리려는 상품/문의상품의 차이를 받는 CTA로 마무리해 실제 서비스 의뢰 흐름과 맞는다."
+      }
+    ],
+    "comparison": [
+      {
+        "registered_id": "3e6753eb-c013-81d9-b7ba-ea0d21562bf6",
+        "public_url": "https://www.openads.co.kr/content/contentDetail?contsId=20546",
+        "title": "해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
+        "existing_direct_answer": "고객상황 브리프·광고와 같은 서비스 페이지·언어·문의 연결·클릭과 실제 문의를 구분하는 광고 전 준비",
+        "v2_difference": "같은 매장의 기존 인기상품과 새 목표상품의 문의가 서로 다른 경우에 홍보 목적과 실제 문의를 일치시킬 작업을 고른다. 광고 전 준비 일반론을 다시 중심 답으로 삼지 않는다."
+      },
+      {
+        "registered_id": "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+        "title": "병원 광고 문의가 예약으로 이어지지 않는 7가지 단절",
+        "existing_direct_answer": "검색어·소재·랜딩·문의·응대·예약·전환의 단계별 이탈과 개선",
+        "v2_difference": "한 상품으로 알려 다른 제공 상품의 문의가 늘어난 목표 불일치를 판단한다. 단계별 이탈 분류만 반복하지 않는다."
+      },
+      {
+        "registered_id": "3e7753eb-c013-8173-b2e0-df92975416dd",
+        "public_url": "https://www.openads.co.kr/content/contentDetail?contsId=20564",
+        "title": "인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+        "existing_direct_answer": "소개한 상담 항목의 연결, 고객 질문, 영상별 유입과 실제 예약, 구간별 보완",
+        "v2_difference": "어느 콘텐츠나 채널의 성과인지에 앞서 매장의 목표상품 A와 실제 문의상품 B·불명 문의를 따로 보고 소개·비교 정보의 보완을 결정한다."
+      }
+    ],
+    "overlap_risk": "연결 페이지·이용조건·실제 문의 기록이라는 지원 원칙의 중첩은 남아 있다. 현재 전문에서는 목표상품/기존상품 문의 불일치가 반복해서 판단 대상으로 유지되어 같은 일반 직접 답의 재게재가 본문 중심이라고 볼 근거는 부족하다.",
+    "service_fit": {
+      "assessment": "경제성·원가·운영 수용량 분석을 중심으로 삼았던 V1의 서비스 이탈이 해소되었다. 검색 표현과 프로필·다국어 상품 설명·문의 연결을 무엇부터 보완할지 정하는 실제 대행 작업 중심이다.",
+      "official_service_urls": [
+        "https://www.blinkad.kr/services",
+        "https://www.blinkad.kr/foreign-marketing"
+      ],
+      "service_pages_previously_read_this_turn_date": "2026-10-07",
+      "new_service_or_performance_guarantee_found": false
+    },
+    "technical_reference_check": {
+      "url": "https://support.google.com/business/answer/9918094?hl=ko",
+      "read_public_official_page": true,
+      "checked_date": "2026-10-07",
+      "assessment": "검색어·프로필 조회·웹사이트 클릭과 비즈니스별 적용 항목 차이를 공식 도움말에서 확인했다. 원고는 프로필 지표를 상품별 실제 문의와 동일시하지 않는다. 상품 조회 지표 자체가 전혀 없다고 주장하지 않으므로 공식 문서의 제품 조회 항목과도 충돌하지 않는다."
+    },
+    "comparison_limits": [
+      "기존258 comparison_text+nested의 확보된 범위와 저장된 공개14 본문을 비교했다. 모든 미확장 하위·아카이브 원고의 부재를 보장하지 않는다.",
+      "최신 metadata10/7 258·추가변경0은 parent가 별도로 확인해 전달한 상태다. 이 검토에서 DB를 다시 조회하거나 상태를 바꾸지 않았다.",
+      "초안의 상품·매장 예시는 가정이며 실측 매출·유입·문의 성과로 제시되지 않는다."
+    ],
+    "actions": {
+      "draft_changes": 0,
+      "project_changes": 0,
+      "external_publications": 0,
+      "notion_or_queue_writes": 0,
+      "logins": 0,
+      "full_private_body_copied_to_git": false
+    }
+  },
+  "final_quality_review": {
+    "review_mode": "blind_body_first_read_only",
+    "brief_read": false,
+    "draft_path": "/tmp/blinkad-inquiry-content-resume-20261005/BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
+    "reviewed_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5",
+    "reviewed_lines": 51,
+    "verdict": "최신 최종본 전문 재검수 통과. 두 권장 수정과 자연스럽게 정리한 서비스 근거 링크를 확인했으며 필수 오류 없음.",
+    "answer_reconstruction": {
+      "core_question": "새 대표상품을 홍보했는데 실제 문의는 기존 상품에 몰릴 때, 무엇을 확인하고 어떤 안내를 먼저 고쳐야 할까?",
+      "direct_answer": {
+        "lines": [
+          3,
+          5,
+          39
+        ],
+        "answer": "전체 문의와 상품별 문의를 나누고, 새 상품 안내를 보지 못한 경우와 안내를 본 뒤 기존 상품을 선택한 경우를 구분해 안내 위치·연결 또는 상품 차이·이용 조건을 보완한다."
+      },
+      "conditions": [
+        {
+          "lines": [
+            15,
+            17
+          ],
+          "condition": "상품이나 유입 경로가 확인되지 않은 문의는 미확인으로 남긴다. 문의 접수와 광고·상품 홍보를 보고 들어왔다는 사실을 같게 취급하지 않는다."
+        },
+        {
+          "lines": [
+            27
+          ],
+          "condition": "검색어와 실제 문의 내용을 연결할 수 있는 범위에서 비교한다. 모든 고객의 검색어를 추적할 수 있다고 보장하지 않는다."
+        },
+        {
+          "lines": [
+            33,
+            35,
+            37,
+            39
+          ],
+          "condition": "고객이 실제로 본 정보와 반복 질문·선택 기록, 현재 제공 조건에 근거해 보완한다. 운영하지 않는 시간·주문 조건을 추가하지 않는다."
+        },
+        {
+          "lines": [
+            45,
+            47
+          ],
+          "condition": "같은 기간의 문의 기록을 사용하고, GBP 집계 지표로 특정 상품 문의를 대체하지 않는다."
+        }
+      ],
+      "next_action": {
+        "lines": [
+          47,
+          49,
+          51
+        ],
+        "answer": "홍보할 상품, 현재 구글맵·소개 페이지 링크, 같은 기간의 상품별 문의와 실제 선택 이유를 정리해 /contact에서 상담한다."
+      },
+      "brand_added_value": {
+        "lines": [
+          25,
+          29,
+          49
+        ],
+        "answer": "고객이 찾고 비교하는 구글 비즈니스 프로필의 사진·메뉴/서비스 안내, 외국어 상품 콘텐츠, 웹사이트와 문의 연결을 함께 살펴 목표상품에 맞게 정리한다."
+      }
+    },
+    "service_match": {
+      "verdict": "적합",
+      "supported_lines": [
+        25,
+        29,
+        37,
+        49,
+        51
+      ],
+      "confirmed_public_scope": "/services의 외국인 검색 동선 진단·다국어 정보 구조 정리·프로필/웹사이트 연결, /foreign-marketing의 사진·메뉴·서비스 정비와 가격·예약·FAQ 공식 콘텐츠 연결에 대응함.",
+      "unsupported_service_promise_found": false,
+      "limits": "공개 페이지는 브랜드가 제시한 서비스 범위의 근거다. 실제 고객별 수행 이력이나 문의 증가 효과를 독립 검증한 자료로 사용하지 않았다. 문의 운영 대행·전 고객 검색어 추적·회계 컨설팅·수익 보장은 본문에서 약속하지 않는다."
+    },
+    "google_9918094_check": {
+      "draft_lines": [
+        43,
+        45
+      ],
+      "verdict": "정확",
+      "verified_points": [
+        "표시 가능한 실적 항목은 사업체에 따라 다르며, 프로필 검색어·조회·웹사이트 링크 클릭은 제공되는 실적 범위에 포함된다.",
+        "조회는 Google 전체 매장 조회가 아니라 검색·지도상의 비즈니스 프로필을 본 사용자 기준이다.",
+        "웹사이트 클릭은 프로필의 웹사이트 링크 클릭 횟수이며 실제 문의 완료나 특정 상품 문의 내용은 아니다.",
+        "제품 또는 메뉴 조회 지표가 표시될 수 있어도 특정 상품의 실제 문의가 확인되는 것은 아니다."
+      ],
+      "interpretation_limit": "집계 검색어·조회·클릭과 문의 내용을 대조할 수 있다는 운영 제안이다. 개인별 검색어와 개별 문의를 GBP만으로 자동 연결한다고 주장하지 않는다.",
+      "source_urls": [
+        "https://support.google.com/business/answer/9918094?hl=ko",
+        "https://support.google.com/business/answer/9918094?hl=en"
+      ]
+    },
+    "claims_and_style": {
+      "hypothetical_case": {
+        "lines": [
+          5,
+          25,
+          35,
+          37
+        ],
+        "verdict": "5행에서 식당을 가정한다고 명시. 저녁 코스·점심 단품은 설명 사례이며 블링크애드 실적이나 특정 매장의 실제 질문으로 확정하는 문장 없음."
+      },
+      "causality": {
+        "lines": [
+          3,
+          17,
+          27,
+          33,
+          39,
+          45
+        ],
+        "verdict": "문의 증가를 새상품 홍보 효과로 단정하지 않고, 가능한 경로와 실제 기록을 분리한다. 특정 보완이 문의 증가를 보장한다는 주장 없음."
+      },
+      "performance_guarantees": [],
+      "fake_experience": [],
+      "invented_prices_or_statistics": [],
+      "natural_korean": "사업주 대상 설명으로 읽히며 4개 소제목이 기록→노출·안내 연결→선택 이유→상담 자료로 이어진다. 새상품·문의 반복은 비교 대상 유지에 필요하고 필수 삭제할 반복은 없다.",
+      "difference_from_generic_tracking": "일반 광고 준비나 전환 집계 설정 자체가 중심이 아니다. 이미 정한 새 대표상품과 실제 문의 대상의 불일치를 해결하기 위해, 못 본 고객과 보고도 다른 상품을 고른 고객에게 필요한 안내 작업을 나눈다. 새 트래킹 도구 구축이나 모든 유입의 개인별 추적을 제안하지 않는다.",
+      "duplicate_check_limit": "완성 본문의 중심 질문과 필수 답만 평가했다. 최신 등록 원고 전체와 별도 재대조하지 않았으므로 비중복 확정 판정은 아니다."
+    },
+    "required_changes": [],
+    "recommended_changes": [],
+    "sources": [
+      {
+        "url": "https://www.blinkad.kr/services",
+        "method": "public GET",
+        "http_status": 200,
+        "checked_at": "2026-10-07T16:38:15.983011+09:00",
+        "response_sha256": "3ca379bd9230ecd7fd143fcd5d14093fd9f17c66c2061a279e8f12dca139805d",
+        "location": "외국인마케팅 대행 → 포함 서비스",
+        "supports_lines": [
+          25,
+          29,
+          49
+        ]
+      },
+      {
+        "url": "https://www.blinkad.kr/foreign-marketing",
+        "method": "public GET",
+        "http_status": 200,
+        "checked_at": "2026-10-07T16:38:15.975352+09:00",
+        "response_sha256": "6cf3bb13145654b81bd2d26d0d7e9851c3459bf97f265249e24da0d93629b3a1",
+        "location": "BlinkAd Method 02·04 및 진단 체크리스트",
+        "supports_lines": [
+          25,
+          29,
+          37,
+          49
+        ]
+      },
+      {
+        "url": "https://support.google.com/business/answer/9918094?hl=ko",
+        "method": "web official current HTML",
+        "checked_on": "2026-10-07",
+        "location": "사용 가능한 실적 측정항목 이해하기 → 검색결과·조회수·웹사이트 클릭수·제품·메뉴",
+        "supports_lines": [
+          45
+        ]
+      },
+      {
+        "url": "https://support.google.com/business/answer/9918094?hl=en",
+        "method": "web official current English HTML cross-check",
+        "checked_on": "2026-10-07",
+        "location": "Understand available performance metrics → Searches, Views, Website clicks, Products, Menus",
+        "supports_lines": [
+          45
+        ]
+      }
+    ],
+    "cta": {
+      "count": 1,
+      "line": 51,
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+      "purpose": "외부 원고에서 BlinkAd 대행 상담 직접 문의",
+      "receiving_and_analytics_not_checked": true
+    },
+    "draft_file_edits": 0,
+    "login": 0,
+    "publication": 0,
+    "external_writes": 0,
+    "current_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5",
+    "matches_reviewed_version": true,
+    "checked_at": "2026-10-07T16:41:47.834018+09:00",
+    "historical_reviewed_sha256": "4933a5a46121d891c85de4198b951fe353ae29192776049e26edb67d2c588b2f",
+    "historical_intermediate_sha256": "0c681fc71a7164f7ad33f7682ad58659c7e9cb13d3d90c7b40292f28c4ac77a4",
+    "recommendations_applied": [
+      {
+        "lines": [
+          3
+        ],
+        "change": "점검할 대상과 우선순위를 정하는 도입으로 바뀜.",
+        "result": "본문의 원인별 판단과 일치."
+      },
+      {
+        "lines": [
+          43
+        ],
+        "change": "조회·클릭 범위를 매장 프로필로 한정함.",
+        "result": "45행 GBP 지표 설명과 일치."
+      },
+      {
+        "lines": [
+          49
+        ],
+        "change": "브랜드명에 /services 출처 링크를 연결함.",
+        "result": "서비스 주장은 그대로이며 문장 흐름이 자연스러움. 상담 목적지는 말미 /contact 한 곳으로 유지."
+      }
+    ],
+    "final_check": {
+      "full_body_reread": true,
+      "core_answer_preserved": true,
+      "service_fit": "적합",
+      "factual_errors_found": [],
+      "performance_guarantees_found": [],
+      "fake_experiences_found": [],
+      "causal_overclaims_found": [],
+      "natural_korean": "51행 전체 문맥과 4개 소제목의 전개가 유지되며 필수 문체 수정 없음.",
+      "source_links_are_not_consultation_ctas": true,
+      "new_research_needed": false
+    },
+    "source_check_reused": "2026-10-07 같은 검토에서 공개 /services·/foreign-marketing GET 200과 Google 9918094 한국어·영어 현행 공식 HTML을 확인한 결과를 사용함.",
+    "link_role_check": [
+      {
+        "label": "Google 비즈니스 프로필 실적 안내",
+        "url": "https://support.google.com/business/answer/9918094?hl=ko",
+        "role": "source_reference"
+      },
+      {
+        "label": "블링크애드",
+        "url": "https://www.blinkad.kr/services",
+        "role": "source_reference"
+      },
+      {
+        "label": "블링크애드 외국인마케팅 대행 상담",
+        "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+        "role": "consultation_cta"
+      }
+    ]
+  },
+  "parent_delta_review": {
+    "changes": "도입의 즉시수정 단정을 점검순서 결정으로 수정; 프로필 조회/클릭으로 범위 명확화; 같은 서비스 주장에 출처 링크 연결",
+    "core_answer_unchanged": true,
+    "independent_final_read_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5"
+  },
+  "contact_get": {
+    "checked_at": "2026-10-07T16:38:45.740114+09:00",
+    "method": "GET",
+    "requested_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+    "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
+    "http_status": 200,
+    "redirected": false,
+    "form_submissions": 0,
+    "scope": "Destination GET only; no browser cookies, external-platform click, CRM or GA4 receipt check."
+  },
+  "source_urls": [
+    "https://www.blinkad.kr/services",
+    "https://www.blinkad.kr/foreign-marketing",
+    "https://support.google.com/business/answer/9918094?hl=ko"
+  ],
+  "new_drafts": 0,
+  "revised_drafts": 1,
+  "active_drafts": 2,
+  "other_19_topics_reassessed": false,
+  "external_writes": {
+    "notion": 0,
+    "portal": 0,
+    "external_publications": 0,
+    "homepage_content": 0,
+    "form_submissions": 0
+  },
+  "inquiry_results_measured": false
+}

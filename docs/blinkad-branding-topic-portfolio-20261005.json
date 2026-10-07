@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-05T20:38:27+09:00",
-  "latest_user_request": "해당 주제로 초안을 써보자. 하나씩 순차적으로",
+  "updated_at": "2026-10-07T16:43:53.668616+09:00",
+  "latest_user_request": "다시 수정해서 다시 써봐.",
   "canonical_plan": "BLINKAD_BRANDING_TOPIC_PORTFOLIO_20261005.md",
   "status": "sequential_drafting_started_one_topic_at_a_time",
   "topic_count": 20,
@@ -244,87 +244,53 @@
       "id": "BLK-BRAND-02",
       "candidate_key": "strategy_02",
       "group": "사업 방향과 성장",
-      "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+      "title": "외국인마케팅, 새 대표상품을 알렸는데 문의는 다른 상품에 몰린다면",
       "primary_keyword": "외국인마케팅대행사",
       "query_phrase_status": "editorial_proposal_not_verified_search_demand",
-      "core_decision": "기존에 판매하는 여러 상품 중 무엇을 유입의 대표 상품으로 정할지, 판매량·매출이 아닌 상품별 남는 금액과 제공 시간도 함께 보고 선택한다.",
+      "core_decision": "새 대표상품을 홍보했지만 기존 인기상품 문의가 늘어날 때 어떤 검색·정보·문의 작업을 먼저 보완할지 정한다.",
       "required_answer_points": [
-        "판매가에서 실제로 추가되는 비용을 뺀 금액과 인력·공간 점유 시간을 함께 보는 상품 비교",
-        "잘 팔리지만 여유가 없는 상품, 수익은 남지만 설명이 부족한 상품의 다른 유입 목표",
-        "어떤 상품을 앞에 보여줄지 결정할 때 필요한 고객 수요 확인과 손실 제한 조건"
+        "새상품/기존상품/상품불명·비교 문의를 구분하고 전체 문의를 목표상품 성과로 등치하지 않음",
+        "새 상품을 못 본 고객은 소개·연결, 보고 다른 상품을 고른 고객은 차이·이용조건으로 보완 대상 구분",
+        "현재 상품 안내·실제 문의 내용으로 검색/프로필/다국어정보/문의 연결의 다음 작업 결정"
       ],
-      "branding_role": "외국인마케팅대행사에 무엇을 맡길지 서비스 이름 대신 판매할 상품과 사업 목표로 대화하게 만든다.",
+      "branding_role": "대표상품 홍보와 실제 문의상품의 차이를 실제 외국인 유입 대행 작업으로 해결하도록 상담과 연결",
       "nearest_registered": [
         {
-          "id": "3e6753eb-c013-81a5-b883-ce337cd718ba",
-          "title": "[오픈애즈] 리스본·포르투 한국 식당, 메뉴 사진이 방문을 결정할까?",
-          "notion_url": "https://app.notion.com/p/3e6753ebc01381a5b883ce337cd718ba",
-          "stored_status": "Review",
-          "nested_parent_blocks_unread_in_baseline": [
-            {
-              "id": "8dc7b738-40ca-4f8d-a177-16c304ef1566",
-              "type": "table"
-            },
-            {
-              "id": "4b0368ba-6442-4100-a26d-c35d09fd2699",
-              "type": "toggle"
-            },
-            {
-              "id": "dc36ef2e-73dc-4112-9f21-cb2d8b735237",
-              "type": "toggle"
-            },
-            {
-              "id": "e50d7f1c-e3ee-439f-9fa2-be3b17356964",
-              "type": "toggle"
-            }
-          ]
+          "registered_id": "3e6753eb-c013-81d9-b7ba-ea0d21562bf6",
+          "public_url": "https://www.openads.co.kr/content/contentDetail?contsId=20546",
+          "title": "해외 매장 광고, Google Ads보다 먼저 손봐야 할 것",
+          "existing_direct_answer": "고객상황 브리프·광고와 같은 서비스 페이지·언어·문의 연결·클릭과 실제 문의를 구분하는 광고 전 준비",
+          "v2_difference": "같은 매장의 기존 인기상품과 새 목표상품의 문의가 서로 다른 경우에 홍보 목적과 실제 문의를 일치시킬 작업을 고른다. 광고 전 준비 일반론을 다시 중심 답으로 삼지 않는다."
         },
         {
-          "id": "319753eb-c013-81eb-81da-fab3b2fa163b",
-          "title": "구글 광고 비용, 월 얼마면 효과 볼 수 있을까? 업종별 현실 정리",
-          "notion_url": "https://app.notion.com/p/319753ebc01381eb81dafab3b2fa163b",
-          "stored_status": "Published",
-          "nested_parent_blocks_unread_in_baseline": [
-            {
-              "id": "5932c089-43b3-464c-8b26-68d8c971b4d9",
-              "type": "table"
-            },
-            {
-              "id": "2c8ca0fa-cf00-4e5f-80d3-c37e98c84ae1",
-              "type": "table"
-            },
-            {
-              "id": "de88ad29-2ca6-4b1d-8bc5-db03b7d71c6e",
-              "type": "table"
-            },
-            {
-              "id": "4642d4e7-8f4e-4139-bdb0-4b19778ed651",
-              "type": "table"
-            }
-          ]
+          "registered_id": "3ba753eb-c013-8190-befd-d53e7ecd5aa9",
+          "title": "병원 광고 문의가 예약으로 이어지지 않는 7가지 단절",
+          "existing_direct_answer": "검색어·소재·랜딩·문의·응대·예약·전환의 단계별 이탈과 개선",
+          "v2_difference": "한 상품으로 알려 다른 제공 상품의 문의가 늘어난 목표 불일치를 판단한다. 단계별 이탈 분류만 반복하지 않는다."
         },
         {
-          "id": "3b2753eb-c013-8139-b981-f63ea0969d9a",
-          "title": "[프리미엄콘텐츠] 검진과 미용을 묶은 외국인 상품, KMI 사례로 본 병원 제휴 전략",
-          "notion_url": "https://app.notion.com/p/KMI-3b2753ebc0138139b981f63ea0969d9a",
-          "stored_status": "Draft",
-          "nested_parent_blocks_unread_in_baseline": []
+          "registered_id": "3e7753eb-c013-8173-b2e0-df92975416dd",
+          "public_url": "https://www.openads.co.kr/content/contentDetail?contsId=20564",
+          "title": "인플루언서 영상 조회수는 높은데 병원 예약은 왜 늘지 않을까?",
+          "existing_direct_answer": "소개한 상담 항목의 연결, 고객 질문, 영상별 유입과 실제 예약, 구간별 보완",
+          "v2_difference": "어느 콘텐츠나 채널의 성과인지에 앞서 매장의 목표상품 A와 실제 문의상품 B·불명 문의를 따로 보고 소개·비교 정보의 보완을 결정한다."
         }
       ],
-      "difference_from_existing_answer": "기존 메뉴 글은 처음 주문하기 쉬운 대표 사진과 정확한 구성을, 광고 비용 글은 CPC·예산을, KMI 글은 제휴 묶음을 설명한다. 현재 상품별 경제성과 시간 소모로 광고할 상품을 고르는 질문은 별도다.",
+      "difference_from_existing_answer": "일반 광고 준비·퍼널 단절 점검을 새 중심 답으로 삼지 않고 목표상품A와 실제 문의상품B의 불일치를 판단한다.",
       "writing_evidence_needed": [
-        "실제 판매가·추가 비용·제공 시간",
-        "매장이 승인한 대표상품 후보"
+        "현재 상품 안내·구글맵/홈페이지",
+        "상품별 실제 문의와 선택 이유; 실제 자료 미수취 예시는 가정으로 한정"
       ],
       "primary_source_ids": [
         "S1"
       ],
       "scope_guards": [
-        "실제 이익률·효과 수치와 사례를 만들지 않는다. 수익 회계 컨설팅을 BlinkAd의 새 상품으로 선언하지 않는다."
+        "원가·회계·상품 개발 자문을 새 서비스로 약속하지 않음",
+        "미확인 유입/문의상품은 미확인; 조회·클릭을 특정상품 문의로 등치하지 않음"
       ],
       "comparison_verdict": "same_core_answer_not_found_in_compared_text",
-      "status": "draft_v1_user_review",
-      "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+      "status": "draft_v2_user_review",
+      "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
       "channels": [
         "openads",
         "naver_premium"
@@ -333,7 +299,21 @@
       "external_registered_by_this_work": false,
       "externally_published_by_this_work": false,
       "draft_channel": "openads",
-      "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REVIEW_20261005.md"
+      "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REWRITE_REVIEW_20261007.md",
+      "previous_brief_20261005": {
+        "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+        "core_decision": "기존에 판매하는 여러 상품 중 무엇을 유입의 대표 상품으로 정할지, 판매량·매출이 아닌 상품별 남는 금액과 제공 시간도 함께 보고 선택한다.",
+        "required_answer_points": [
+          "판매가에서 실제로 추가되는 비용을 뺀 금액과 인력·공간 점유 시간을 함께 보는 상품 비교",
+          "잘 팔리지만 여유가 없는 상품, 수익은 남지만 설명이 부족한 상품의 다른 유입 목표",
+          "어떤 상품을 앞에 보여줄지 결정할 때 필요한 고객 수요 확인과 손실 제한 조건"
+        ],
+        "branding_role": "외국인마케팅대행사에 무엇을 맡길지 서비스 이름 대신 판매할 상품과 사업 목표로 대화하게 만든다.",
+        "difference_from_existing_answer": "기존 메뉴 글은 처음 주문하기 쉬운 대표 사진과 정확한 구성을, 광고 비용 글은 CPC·예산을, KMI 글은 제휴 묶음을 설명한다. 현재 상품별 경제성과 시간 소모로 광고할 상품을 고르는 질문은 별도다.",
+        "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+        "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REVIEW_20261005.md"
+      },
+      "draft_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5"
     },
     {
       "id": "BLK-BRAND-03",
@@ -1549,7 +1529,12 @@
       "total_nested_queries": 96,
       "all_registered_nested_blocks_expanded": false
     },
-    "evidence": "docs/blinkad-product-choice-draft-review-20261005.json"
+    "evidence": "docs/blinkad-product-choice-rewrite-review-20261007.json",
+    "previous_evidence_20261005": "docs/blinkad-product-choice-draft-review-20261005.json",
+    "latest_revision_request": "다시 수정해서 다시 써봐.",
+    "current_02_draft": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
+    "next_topic_prewrite_check": "기존 추천05 집필시 실제 서비스 적합성·대행문의 목적·중복 함께 재확인"
   },
-  "drafts_written_during_topic_planning": 0
+  "drafts_written_during_topic_planning": 0,
+  "revision_scope": "02본문·브리프만 수정; 다른19주제 전체 적합성 재평가는 미수행"
 }

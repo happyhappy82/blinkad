@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-05T20:38:27+09:00",
-  "user_request": "해당 주제로 초안을 써보자. 하나씩 순차적으로",
+  "updated_at": "2026-10-07T16:43:53.668616+09:00",
+  "user_request": "다시 수정해서 다시 써봐.",
   "canonical_plan": "BLINKAD_BRANDING_TOPIC_PORTFOLIO_20261005.md",
   "topic_portfolio_count": 20,
   "order": [
@@ -28,7 +28,7 @@
   "next_topic": "BLK-BRAND-05",
   "specific_channel_entry_count": 5,
   "active_drafts_written": 2,
-  "new_drafts_this_request": 1,
+  "new_drafts_this_request": 0,
   "entries": [
     {
       "topic_id": "BLK-BRAND-19",
@@ -77,13 +77,23 @@
     {
       "topic_id": "BLK-BRAND-02",
       "channel": "openads",
-      "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+      "title": "외국인마케팅, 새 대표상품을 알렸는데 문의는 다른 상품에 몰린다면",
       "cta_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=foreign_marketing_agency&utm_content=product_choice_02",
-      "status": "draft_v1_user_review",
-      "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+      "status": "draft_v2_user_review",
+      "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_V2_20261007.md",
       "external_registered": false,
       "externally_published": false,
-      "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REVIEW_20261005.md"
+      "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REWRITE_REVIEW_20261007.md",
+      "previous_versions": [
+        {
+          "title": "외국인마케팅대행사에 어떤 상품부터 맡길까? 잘 팔리는 상품과 남는 상품이 다를 때",
+          "status": "draft_v1_user_review",
+          "draft_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_DRAFT_20261005.md",
+          "review_file": "BLINKAD_OPENADS_PRODUCT_CHOICE_02_REVIEW_20261005.md",
+          "superseded_reason": "서비스 적합성 재평가 후 사용자 재작성 요청"
+        }
+      ],
+      "draft_sha256": "d14461474cdebffba1933780f7d4d21c99ae9faa1a78c8e270a41327c510bae5"
     }
   ],
   "conversion_destination": "https://www.blinkad.kr/contact",
@@ -95,5 +105,7 @@
     "homepage_code": 0,
     "form_submissions": 0
   },
-  "inquiry_results_measured": false
+  "inquiry_results_measured": false,
+  "previous_user_request": "해당 주제로 초안을 써보자. 하나씩 순차적으로",
+  "revised_drafts_this_request": 1
 }
