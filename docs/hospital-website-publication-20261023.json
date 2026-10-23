@@ -1,0 +1,156 @@
+{
+  "publishedDate": "2026-10-23",
+  "sourceFile": "공식블로그_병원홈페이지_10편_전체초안.md",
+  "sourceSha256": "62cd4f407eedfc0a2709fac2e6df03ddcbbb5463c77d9464b5ba2e18998bbf1f",
+  "articleCount": 10,
+  "preservedExistingPosts": 109,
+  "articles": [
+    {
+      "number": 1,
+      "slug": "hospital-website-ai-search",
+      "title": "병원 홈페이지 제작, AI 검색까지 고려하면 무엇이 달라질까?",
+      "url": "https://www.blinkad.kr/blog/hospital-website-ai-search",
+      "source": "content/hospital-website/01-hospital-website-ai-search.md",
+      "sourceBodySha256": "11c8780c12def0b8184639bcd8fe529c4c542e79a3ef8dbd0db9e9cc1726ff42"
+    },
+    {
+      "number": 2,
+      "slug": "hospital-website-audit",
+      "title": "병원 홈페이지 진단은 무엇을 보고, 어떤 개선안을 내야 할까?",
+      "url": "https://www.blinkad.kr/blog/hospital-website-audit",
+      "source": "content/hospital-website/02-hospital-website-audit.md",
+      "sourceBodySha256": "9dc80ff072ef3a1527264ec4a795d24c9a09301703788c4a75275d560954172f"
+    },
+    {
+      "number": 3,
+      "slug": "hospital-website-improvement-vs-rebuild",
+      "title": "병원 홈페이지 개선과 재제작, 작업 범위는 어떻게 달라질까?",
+      "url": "https://www.blinkad.kr/blog/hospital-website-improvement-vs-rebuild",
+      "source": "content/hospital-website/03-hospital-website-improvement-vs-rebuild.md",
+      "sourceBodySha256": "98acf2c88ba01a4bb6f002aed657f66acfac6103fbd75dbd5a197f109a30aae8"
+    },
+    {
+      "number": 4,
+      "slug": "hospital-website-agency-checklist",
+      "title": "병원 홈페이지 제작사에 확인할 검색·운영·인수 조건",
+      "url": "https://www.blinkad.kr/blog/hospital-website-agency-checklist",
+      "source": "content/hospital-website/04-hospital-website-agency-checklist.md",
+      "sourceBodySha256": "f004f15e5668d1d0bdbf6cb5cbe679e58901eb87365a6cbe36096a96c4dda349"
+    },
+    {
+      "number": 5,
+      "slug": "hospital-website-seo-review",
+      "title": "병원 홈페이지 SEO 검수, 실제 페이지에서 확인하는 항목",
+      "url": "https://www.blinkad.kr/blog/hospital-website-seo-review",
+      "source": "content/hospital-website/05-hospital-website-seo-review.md",
+      "sourceBodySha256": "7c2ed1b4bab4f6f5a94231294cf0c5315cbf156c6c48a6bfd940a02debfb6c7c"
+    },
+    {
+      "number": 6,
+      "slug": "hospital-website-cost-scope",
+      "title": "병원 홈페이지 제작비가 달라지는 작업 범위와 추가 비용",
+      "url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+      "source": "content/hospital-website/06-hospital-website-cost-scope.md",
+      "sourceBodySha256": "7eeba690a3d6e607f522de8ee41bf5b5d13921fdde5d1c87dcf16e4bdd8baca1"
+    },
+    {
+      "number": 7,
+      "slug": "hospital-website-content-structure",
+      "title": "병원 소개·의료진·진료 안내를 검색 가능한 페이지로 구성하는 법",
+      "url": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+      "source": "content/hospital-website/07-hospital-website-content-structure.md",
+      "sourceBodySha256": "68ec6696c39194356910a4eb594383f76af200adb2f23fd94197d000cc8b83e6"
+    },
+    {
+      "number": 8,
+      "slug": "hospital-website-inquiry-booking",
+      "title": "병원 홈페이지 문의·예약 경로, 제작 단계에서 점검할 부분",
+      "url": "https://www.blinkad.kr/blog/hospital-website-inquiry-booking",
+      "source": "content/hospital-website/08-hospital-website-inquiry-booking.md",
+      "sourceBodySha256": "8420bde443ad335ac04b26ae2003dcb1b270518afc1c141a2616a0f33e3e1bbe"
+    },
+    {
+      "number": 9,
+      "slug": "hospital-website-renewal-url-migration",
+      "title": "병원 홈페이지 리뉴얼, 기존 주소와 검색 유입을 지키는 이전 작업",
+      "url": "https://www.blinkad.kr/blog/hospital-website-renewal-url-migration",
+      "source": "content/hospital-website/09-hospital-website-renewal-url-migration.md",
+      "sourceBodySha256": "afb7757fd00cf69c07d3fedc7f8285fe8df35e2adff3a341f1dd690537616d1b"
+    },
+    {
+      "number": 10,
+      "slug": "hospital-website-launch-maintenance",
+      "title": "병원 홈페이지 오픈 검수와 이후 관리, 어디까지 맡겨야 할까?",
+      "url": "https://www.blinkad.kr/blog/hospital-website-launch-maintenance",
+      "source": "content/hospital-website/10-hospital-website-launch-maintenance.md",
+      "sourceBodySha256": "39db9d584a4f08a01316e4fcb1950919236f1d5f6daefd150edc8ee8b0ebf446"
+    }
+  ],
+  "sourceLinks": [
+    {
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/ai-features"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/snippet",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/snippet"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/title-link",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/title-link"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/301-redirects",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/crawling-indexing/301-redirects"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/crawling-indexing/links-crawlable"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=ko",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes?hl=ko"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/fundamentals/do-i-need-seo",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/fundamentals/do-i-need-seo"
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/bots",
+      "status": 200,
+      "final_url": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "url": "https://support.google.com/analytics/answer/6004245?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/analytics/answer/6004245?hl=en"
+    },
+    {
+      "url": "https://support.google.com/webmasters/answer/9012289",
+      "status": 200,
+      "final_url": "https://support.google.com/webmasters/answer/9012289"
+    },
+    {
+      "url": "https://www.blinkad.kr/aeo",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/aeo"
+    },
+    {
+      "url": "https://www.blinkad.kr/contact",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact"
+    }
+  ]
+}

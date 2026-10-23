@@ -20,6 +20,17 @@ const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 // Notion DB에 없는 수동 발행 글은 동기화 대상에서 제외하지 않고 보존한다.
 const MANUAL_STATIC_POST_IDS = new Set([
+  // 2026-10-23: Aside 병원 홈페이지 원고 10편, 홈페이지 인사이트 수동 발행.
+  'hospital-website-ai-search',
+  'hospital-website-audit',
+  'hospital-website-improvement-vs-rebuild',
+  'hospital-website-agency-checklist',
+  'hospital-website-seo-review',
+  'hospital-website-cost-scope',
+  'hospital-website-content-structure',
+  'hospital-website-inquiry-booking',
+  'hospital-website-renewal-url-migration',
+  'hospital-website-launch-maintenance',
   'gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon',
   'hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob',
   'myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob',
