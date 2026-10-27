@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-10-27T21:24:06.589576+09:00",
+  "status": "PASS",
+  "new_reservations": 5,
+  "before_count": 33,
+  "after_count": 38,
+  "existing33_title_datetime_public_setting_unchanged": true,
+  "new_ids_unique_and_not_in_existing33": true,
+  "exact_approved_title_dates_free_public_and_reservation_flags_match": true,
+  "input_html_sha_and_stored_text_links_match_receipts": true,
+  "new_date_conflicts_with_existing16": 0,
+  "new_to_new_date_conflicts": 0,
+  "actual_public_publication_confirmed": false,
+  "independent_audit_file": "openads-five-reservation-independent-audit-20261027.json",
+  "server_reservation_and_text_evidence": "Aside current CMS saved-detail observations; root re-compared result to approved spec and before/after lists",
+  "thumbnail_evidence": "Independent actual HTTP GET:5/5 PNG1280x600 and exact source SHA256"
+}

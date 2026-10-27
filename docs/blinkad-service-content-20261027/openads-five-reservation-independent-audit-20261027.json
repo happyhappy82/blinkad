@@ -1,0 +1,460 @@
+{
+  "started_at": "2026-10-27T21:18:04.164484+09:00",
+  "scope": "독립 읽기 검증: 승인 입력파일/Aside 관측 영수증 간 일치, ID·일정 충돌, 공개 썸네일 실제 GET. 서버 예약·저장본문 UI는 직접 재조회하지 않았으며 Aside 영수증을 근거로 함.",
+  "source_schedule": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/schedule-approved.json",
+  "source_schedule_sha256": "0e5259f2fbd65d6ac200f82bf9e39df71d21f8d6d8a295f43f3f84d420f6fa4e",
+  "before_inventory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/existing-reservations-before.json",
+  "before_inventory_sha256": "285bb3f243d49ba7e504efec9a13a4731d6ddc22447044a81b80bdabc1c2f436",
+  "result_file": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/openads-five-schedule-result.json",
+  "poll_interval_seconds": 35,
+  "maximum_wait_seconds": 720,
+  "writes_limited_to": "/tmp/blinkad-openads5-reservation-independent-audit-20261027.json",
+  "entries": [
+    {
+      "code": "O01",
+      "actual_id": "20933",
+      "title": "구글맵 관리 대행이 필요한 3가지 상황",
+      "scheduled_at": "2026-10-28T13:00:00+09:00",
+      "fields_match": {
+        "title": true,
+        "scheduled_at": true,
+        "free_public": true,
+        "public_setting": true,
+        "reservation_verified": true,
+        "reservation_flag": true,
+        "body_source": true,
+        "body_sha256": true,
+        "body_verified": true,
+        "body_source_sha_verified": true,
+        "stored_text_equal": true,
+        "links_verified": true,
+        "saved_links": true,
+        "thumbnail_sha256_receipt": true,
+        "thumbnail_verified_receipt": true,
+        "created_new": true
+      },
+      "aside_observed_review_status": "검수 대기",
+      "aside_reservation_evidence": "설정 (2026.10.28 13:00)",
+      "aside_verified_at": "2026-10-27T12:15:10.965Z",
+      "direct_server_reservation_check": false,
+      "saved_links": [
+        "https://support.google.com/business/answer/7353941?hl=en",
+        "https://support.google.com/business/answer/3039617?hl=en",
+        "https://support.google.com/business/answer/3403100?hl=en-GB",
+        "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
+      ],
+      "thumbnail_direct_get": {
+        "url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/구글맵 관리 대행이 필요한 3가지 상황.png",
+        "source_sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+        "http_status": 200,
+        "content_type": "image/png",
+        "bytes": 420714,
+        "actual_sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+        "exact_byte_sha_match": true,
+        "image_format": "PNG",
+        "dimensions": [
+          1280,
+          600
+        ],
+        "comparison": "원본 PNG와 바이트·SHA256 동일"
+      },
+      "issues": [],
+      "notes": [],
+      "audited_at": "2026-10-27T21:18:04.418373+09:00"
+    },
+    {
+      "code": "O03",
+      "actual_id": "20934",
+      "title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+      "scheduled_at": "2026-10-30T13:00:00+09:00",
+      "fields_match": {
+        "title": true,
+        "scheduled_at": true,
+        "free_public": true,
+        "public_setting": true,
+        "reservation_verified": true,
+        "reservation_flag": true,
+        "body_source": true,
+        "body_sha256": true,
+        "body_verified": true,
+        "body_source_sha_verified": true,
+        "stored_text_equal": true,
+        "links_verified": true,
+        "saved_links": true,
+        "thumbnail_sha256_receipt": true,
+        "thumbnail_verified_receipt": true,
+        "created_new": true
+      },
+      "aside_observed_review_status": "검수 대기",
+      "aside_reservation_evidence": "설정 (2026.10.30 13:00)",
+      "aside_verified_at": "2026-10-27T12:16:28.706Z",
+      "direct_server_reservation_check": false,
+      "saved_links": [
+        "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta"
+      ],
+      "thumbnail_direct_get": {
+        "url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/병원 다국어 홈페이지  해외 외국인 마케팅에 중요할까.png",
+        "source_sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+        "http_status": 200,
+        "content_type": "image/png",
+        "bytes": 421534,
+        "actual_sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+        "exact_byte_sha_match": true,
+        "image_format": "PNG",
+        "dimensions": [
+          1280,
+          600
+        ],
+        "comparison": "원본 PNG와 바이트·SHA256 동일"
+      },
+      "issues": [],
+      "notes": [],
+      "audited_at": "2026-10-27T21:18:04.589897+09:00"
+    },
+    {
+      "code": "O05",
+      "actual_id": "20935",
+      "title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+      "scheduled_at": "2026-11-03T13:00:00+09:00",
+      "fields_match": {
+        "title": true,
+        "scheduled_at": true,
+        "free_public": true,
+        "public_setting": true,
+        "reservation_verified": true,
+        "reservation_flag": true,
+        "body_source": true,
+        "body_sha256": true,
+        "body_verified": true,
+        "body_source_sha_verified": true,
+        "stored_text_equal": true,
+        "links_verified": true,
+        "saved_links": true,
+        "thumbnail_sha256_receipt": true,
+        "thumbnail_verified_receipt": true,
+        "created_new": true
+      },
+      "aside_observed_review_status": "검수 대기",
+      "aside_reservation_evidence": "설정 (2026.11.03 13:00)",
+      "aside_verified_at": "2026-10-27T12:17:37.848Z",
+      "direct_server_reservation_check": false,
+      "saved_links": [
+        "https://support.google.com/google-ads/answer/1722038?hl=en",
+        "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "https://support.google.com/adspolicy/answer/176031?hl=en",
+        "https://support.google.com/google-ads/answer/11459091?hl=en-IN",
+        "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta"
+      ],
+      "thumbnail_direct_get": {
+        "url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/병원 구글 광고  어떻게 하는 게 가장 좋을까.png",
+        "source_sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+        "http_status": 200,
+        "content_type": "image/png",
+        "bytes": 422357,
+        "actual_sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+        "exact_byte_sha_match": true,
+        "image_format": "PNG",
+        "dimensions": [
+          1280,
+          600
+        ],
+        "comparison": "원본 PNG와 바이트·SHA256 동일"
+      },
+      "issues": [],
+      "notes": [],
+      "audited_at": "2026-10-27T21:18:04.733844+09:00"
+    },
+    {
+      "code": "O06",
+      "actual_id": "20936",
+      "title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+      "scheduled_at": "2026-11-05T13:00:00+09:00",
+      "fields_match": {
+        "title": true,
+        "scheduled_at": true,
+        "free_public": true,
+        "public_setting": true,
+        "reservation_verified": true,
+        "reservation_flag": true,
+        "body_source": true,
+        "body_sha256": true,
+        "body_verified": true,
+        "body_source_sha_verified": true,
+        "stored_text_equal": true,
+        "links_verified": true,
+        "saved_links": true,
+        "thumbnail_sha256_receipt": true,
+        "thumbnail_verified_receipt": true,
+        "created_new": true
+      },
+      "aside_observed_review_status": "검수 대기",
+      "aside_reservation_evidence": "설정 (2026.11.05 13:00)",
+      "aside_verified_at": "2026-10-27T12:18:41.894Z",
+      "direct_server_reservation_check": false,
+      "saved_links": [
+        "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+        "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro",
+        "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body"
+      ],
+      "thumbnail_direct_get": {
+        "url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/영어권 고객이 우리 브랜드  병원을 검색하길 원한다면 필수로 해야 하는 것.png",
+        "source_sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+        "http_status": 200,
+        "content_type": "image/png",
+        "bytes": 422066,
+        "actual_sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+        "exact_byte_sha_match": true,
+        "image_format": "PNG",
+        "dimensions": [
+          1280,
+          600
+        ],
+        "comparison": "원본 PNG와 바이트·SHA256 동일"
+      },
+      "issues": [],
+      "notes": [],
+      "audited_at": "2026-10-27T21:19:14.910082+09:00"
+    },
+    {
+      "code": "O04",
+      "actual_id": "20937",
+      "title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+      "scheduled_at": "2026-11-07T13:00:00+09:00",
+      "fields_match": {
+        "title": true,
+        "scheduled_at": true,
+        "free_public": true,
+        "public_setting": true,
+        "reservation_verified": true,
+        "reservation_flag": true,
+        "body_source": true,
+        "body_sha256": true,
+        "body_verified": true,
+        "body_source_sha_verified": true,
+        "stored_text_equal": true,
+        "links_verified": true,
+        "saved_links": true,
+        "thumbnail_sha256_receipt": true,
+        "thumbnail_verified_receipt": true,
+        "created_new": true
+      },
+      "aside_observed_review_status": "검수 대기",
+      "aside_reservation_evidence": "설정 (2026.11.07 13:00)",
+      "aside_verified_at": "2026-10-27T12:20:26.696Z",
+      "direct_server_reservation_check": false,
+      "saved_links": [
+        "https://developers.google.com/search/docs/appearance/title-link",
+        "https://developers.google.com/search/docs/appearance/snippet",
+        "https://developers.google.com/search/docs/appearance/ai-features",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta"
+      ],
+      "thumbnail_direct_get": {
+        "url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/GEO 마케팅 대행  맡긴 홈페이지 개선은 실제로 반영됐나요.png",
+        "source_sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+        "http_status": 200,
+        "content_type": "image/png",
+        "bytes": 423206,
+        "actual_sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+        "exact_byte_sha_match": true,
+        "image_format": "PNG",
+        "dimensions": [
+          1280,
+          600
+        ],
+        "comparison": "원본 PNG와 바이트·SHA256 동일"
+      },
+      "issues": [],
+      "notes": [],
+      "audited_at": "2026-10-27T21:21:00.119972+09:00"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "status": "completed_pass",
+  "existing_registration_count": 33,
+  "input_checks": {
+    "O01": {
+      "body_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O01/body.html",
+        "actual_sha256": "86d5c91b88b21c54d3f9cf654a8ec0a1605bd0ae29302cadd3f25ff98d0c8be2",
+        "expected_sha256": "86d5c91b88b21c54d3f9cf654a8ec0a1605bd0ae29302cadd3f25ff98d0c8be2",
+        "match": true
+      },
+      "body_markdown_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O01/body.md",
+        "actual_sha256": "3bb4e6c2a4e9af3be9da871a4b29a13973a6345b0b2ea85c20c9c77d17d13e06",
+        "expected_sha256": "3bb4e6c2a4e9af3be9da871a4b29a13973a6345b0b2ea85c20c9c77d17d13e06",
+        "match": true
+      },
+      "source_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O01/source.md",
+        "actual_sha256": "73c229028f879fc6f0192481f0974c19b63f0f0bfa364224b19ff52495b66a48",
+        "expected_sha256": "73c229028f879fc6f0192481f0974c19b63f0f0bfa364224b19ff52495b66a48",
+        "match": true
+      },
+      "thumbnail_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O01/thumbnail.png",
+        "actual_sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+        "expected_sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+        "match": true
+      },
+      "source_html_links": [
+        "https://support.google.com/business/answer/7353941?hl=en",
+        "https://support.google.com/business/answer/3039617?hl=en",
+        "https://support.google.com/business/answer/3403100?hl=en-GB",
+        "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
+      ]
+    },
+    "O03": {
+      "body_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O03/body.html",
+        "actual_sha256": "4ae306877135e3954882779514d6317a2f9666591efc2a896f1e81c65dd209bb",
+        "expected_sha256": "4ae306877135e3954882779514d6317a2f9666591efc2a896f1e81c65dd209bb",
+        "match": true
+      },
+      "body_markdown_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O03/body.md",
+        "actual_sha256": "be92ec14e1971628d95d947e2a977462e813276746c7efcc96925307a6cb2df2",
+        "expected_sha256": "be92ec14e1971628d95d947e2a977462e813276746c7efcc96925307a6cb2df2",
+        "match": true
+      },
+      "source_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O03/source.md",
+        "actual_sha256": "cfaa8307e0cb94978f15b7f65038b3068fc5cbbf0eccfd7980ac01f86c722173",
+        "expected_sha256": "cfaa8307e0cb94978f15b7f65038b3068fc5cbbf0eccfd7980ac01f86c722173",
+        "match": true
+      },
+      "thumbnail_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O03/thumbnail.png",
+        "actual_sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+        "expected_sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+        "match": true
+      },
+      "source_html_links": [
+        "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta"
+      ]
+    },
+    "O05": {
+      "body_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O05/body.html",
+        "actual_sha256": "c3f1da904a79d10789547f53c1eaba029a82e2c02d28f5509d995ca921ab3fa6",
+        "expected_sha256": "c3f1da904a79d10789547f53c1eaba029a82e2c02d28f5509d995ca921ab3fa6",
+        "match": true
+      },
+      "body_markdown_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O05/body.md",
+        "actual_sha256": "1487b1a52aeb42e2db072280424e89096ab0b811ad11c340019cc9ee3a16678b",
+        "expected_sha256": "1487b1a52aeb42e2db072280424e89096ab0b811ad11c340019cc9ee3a16678b",
+        "match": true
+      },
+      "source_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O05/source.md",
+        "actual_sha256": "f5479a4022ecbadc90ea03961700b32eff5132c829245ad7c1a78e85cc6f490e",
+        "expected_sha256": "f5479a4022ecbadc90ea03961700b32eff5132c829245ad7c1a78e85cc6f490e",
+        "match": true
+      },
+      "thumbnail_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O05/thumbnail.png",
+        "actual_sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+        "expected_sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+        "match": true
+      },
+      "source_html_links": [
+        "https://support.google.com/google-ads/answer/1722038?hl=en",
+        "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "https://support.google.com/adspolicy/answer/176031?hl=en",
+        "https://support.google.com/google-ads/answer/11459091?hl=en-IN",
+        "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta"
+      ]
+    },
+    "O06": {
+      "body_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O06/body.html",
+        "actual_sha256": "ab83812812a5251473aaafa55b728a62b2e7081e70f05b9ccb2be607504f4eaa",
+        "expected_sha256": "ab83812812a5251473aaafa55b728a62b2e7081e70f05b9ccb2be607504f4eaa",
+        "match": true
+      },
+      "body_markdown_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O06/body.md",
+        "actual_sha256": "c5940f78b0f5b6ff81461396428956cce43f155da89d91c83e0e2a26a454463d",
+        "expected_sha256": "c5940f78b0f5b6ff81461396428956cce43f155da89d91c83e0e2a26a454463d",
+        "match": true
+      },
+      "source_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O06/source.md",
+        "actual_sha256": "f38ef05d411081f90106bcc74e947a9efc7646071d907fc6a8f18f4097b36064",
+        "expected_sha256": "f38ef05d411081f90106bcc74e947a9efc7646071d907fc6a8f18f4097b36064",
+        "match": true
+      },
+      "thumbnail_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O06/thumbnail.png",
+        "actual_sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+        "expected_sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+        "match": true
+      },
+      "source_html_links": [
+        "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+        "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro",
+        "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body"
+      ]
+    },
+    "O04": {
+      "body_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O04/body.html",
+        "actual_sha256": "4e859d93cf3127310419de94a70397f3d2df12c1fa803591ab2af1f99f6a3b45",
+        "expected_sha256": "4e859d93cf3127310419de94a70397f3d2df12c1fa803591ab2af1f99f6a3b45",
+        "match": true
+      },
+      "body_markdown_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O04/body.md",
+        "actual_sha256": "d7664d2de90658b5fa096d6f7650f6abf51838520cb717c61031ea2fbae61ebb",
+        "expected_sha256": "d7664d2de90658b5fa096d6f7650f6abf51838520cb717c61031ea2fbae61ebb",
+        "match": true
+      },
+      "source_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O04/source.md",
+        "actual_sha256": "30ab9c081dbe96d38eaff3d711903c2dc42fd733cb2d727edd0d93bc394b986c",
+        "expected_sha256": "30ab9c081dbe96d38eaff3d711903c2dc42fd733cb2d727edd0d93bc394b986c",
+        "match": true
+      },
+      "thumbnail_file": {
+        "path": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/오픈애즈_신규5편_예약_20261028/input_package/O04/thumbnail.png",
+        "actual_sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+        "expected_sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+        "match": true
+      },
+      "source_html_links": [
+        "https://developers.google.com/search/docs/appearance/title-link",
+        "https://developers.google.com/search/docs/appearance/snippet",
+        "https://developers.google.com/search/docs/appearance/ai-features",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta"
+      ]
+    }
+  },
+  "updated_at": "2026-10-27T21:21:00.121817+09:00",
+  "audited_count": 5,
+  "elapsed_seconds": 176.0,
+  "latest_aside_status": "in_progress",
+  "latest_aside_updated_at": "2026-10-27T12:20:26.696Z",
+  "aside_actions_receipt": {
+    "existing_content_modified": false,
+    "naver_accessed": false,
+    "official_website_modified": false,
+    "canva_modified": false,
+    "immediate_publish": false
+  }
+}

@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "홈페이지1편공개·5편예약 유지. 오픈애즈5편 재작성·검토완료·미발행. 네이버6편 재작성대기.",
+  "stage": "홈페이지1공개·5예약 유지. 오픈애즈5편 예약등록완료·공개대기. 네이버6편 재작성대기.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -791,8 +791,9 @@
           "현재 참고글 제목·본문과 링크 문맥 일치",
           "모바일 접근 확인"
         ],
-        "platform_posting_authorized_this_turn": false,
-        "platform_posted": false
+        "platform_posting_authorized_this_turn": true,
+        "platform_posted": false,
+        "platform_registered": true
       },
       "search_intent_revision": {
         "at": "2026-10-27T18:38:24.228900+09:00",
@@ -825,7 +826,32 @@
           "current_paragraph": "직접 관리할 부분과 맡길 부분을 정하기 전에는 [Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?](https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body)도 참고해보세요. 프로필 정보와 리뷰, 외국어 안내와 문의 경로를 점검할 때 참고하실 수 있습니다.",
           "source_verified": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka"
         }
-      ]
+      ],
+      "openads_reservation": {
+        "actual_id": "20933",
+        "title": "구글맵 관리 대행이 필요한 3가지 상황",
+        "scheduled_at": "2026-10-28T13:00:00+09:00",
+        "reservation_verified": true,
+        "reservation_flag": "Y",
+        "reservation_evidence": "설정 (2026.10.28 13:00)",
+        "thumbnail_verified": true,
+        "thumbnail_url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/구글맵 관리 대행이 필요한 3가지 상황.png",
+        "thumbnail_sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+        "free_public": true,
+        "public_setting": "공개",
+        "body_verified": true,
+        "body_sha256": "86d5c91b88b21c54d3f9cf654a8ec0a1605bd0ae29302cadd3f25ff98d0c8be2",
+        "stored_text_equal": true,
+        "links_verified": true,
+        "review_status": "검수 대기",
+        "observed_url": "https://www.openads.co.kr/insighter/insighterCMS/insighterContsDetail?contsId=20933",
+        "public_url": null,
+        "created": true,
+        "reused_existing": false,
+        "verified_at": "2026-10-27T12:15:10.965Z",
+        "proof_file": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
+      },
+      "scheduled_at": "2026-10-28T13:00:00+09:00"
     },
     {
       "id": "N01",
@@ -997,8 +1023,9 @@
           "제목·본문과 링크 문맥 일치",
           "모바일 접근 확인"
         ],
-        "platform_posting_authorized_this_turn": false,
-        "platform_posted": false
+        "platform_posting_authorized_this_turn": true,
+        "platform_posted": false,
+        "platform_registered": true
       },
       "search_intent_revision": {
         "at": "2026-10-27T19:03:38.256107+09:00",
@@ -1025,7 +1052,32 @@
           ],
           "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
         }
-      ]
+      ],
+      "openads_reservation": {
+        "actual_id": "20934",
+        "title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+        "scheduled_at": "2026-10-30T13:00:00+09:00",
+        "reservation_verified": true,
+        "reservation_flag": "Y",
+        "reservation_evidence": "설정 (2026.10.30 13:00)",
+        "thumbnail_verified": true,
+        "thumbnail_url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/병원 다국어 홈페이지  해외 외국인 마케팅에 중요할까.png",
+        "thumbnail_sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+        "free_public": true,
+        "public_setting": "공개",
+        "body_verified": true,
+        "body_sha256": "4ae306877135e3954882779514d6317a2f9666591efc2a896f1e81c65dd209bb",
+        "stored_text_equal": true,
+        "links_verified": true,
+        "review_status": "검수 대기",
+        "observed_url": "https://www.openads.co.kr/insighter/insighterCMS/insighterContsDetail?contsId=20934",
+        "public_url": null,
+        "created": true,
+        "reused_existing": false,
+        "verified_at": "2026-10-27T12:16:28.706Z",
+        "proof_file": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
+      },
+      "scheduled_at": "2026-10-30T13:00:00+09:00"
     },
     {
       "id": "N05",
@@ -1160,8 +1212,9 @@
           "제목·본문과 링크 문맥 일치",
           "모바일 접근 확인"
         ],
-        "platform_posting_authorized_this_turn": false,
-        "platform_posted": false
+        "platform_posting_authorized_this_turn": true,
+        "platform_posted": false,
+        "platform_registered": true
       },
       "search_intent_revision": {
         "at": "2026-10-27T19:03:38.256107+09:00",
@@ -1198,7 +1251,32 @@
           "after": "예산을 조정할 때는 문의를 어떻게 측정했는지 함께 봅니다",
           "reason": "사용자 피드백: 문의로 셌는지 대신 문의를 측정했는지로 자연스럽게 교정"
         }
-      ]
+      ],
+      "openads_reservation": {
+        "actual_id": "20935",
+        "title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+        "scheduled_at": "2026-11-03T13:00:00+09:00",
+        "reservation_verified": true,
+        "reservation_flag": "Y",
+        "reservation_evidence": "설정 (2026.11.03 13:00)",
+        "thumbnail_verified": true,
+        "thumbnail_url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/병원 구글 광고  어떻게 하는 게 가장 좋을까.png",
+        "thumbnail_sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+        "free_public": true,
+        "public_setting": "공개",
+        "body_verified": true,
+        "body_sha256": "c3f1da904a79d10789547f53c1eaba029a82e2c02d28f5509d995ca921ab3fa6",
+        "stored_text_equal": true,
+        "links_verified": true,
+        "review_status": "검수 대기",
+        "observed_url": "https://www.openads.co.kr/insighter/insighterCMS/insighterContsDetail?contsId=20935",
+        "public_url": null,
+        "created": true,
+        "reused_existing": false,
+        "verified_at": "2026-10-27T12:17:37.848Z",
+        "proof_file": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
+      },
+      "scheduled_at": "2026-11-03T13:00:00+09:00"
     },
     {
       "id": "N06",
@@ -1365,8 +1443,9 @@
           "제목·본문과 링크 문맥 일치",
           "모바일 접근 확인"
         ],
-        "platform_posting_authorized_this_turn": false,
-        "platform_posted": false
+        "platform_posting_authorized_this_turn": true,
+        "platform_posted": false,
+        "platform_registered": true
       },
       "search_intent_revision": {
         "at": "2026-10-27T19:03:38.256107+09:00",
@@ -1393,7 +1472,32 @@
           ],
           "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
         }
-      ]
+      ],
+      "openads_reservation": {
+        "actual_id": "20936",
+        "title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+        "scheduled_at": "2026-11-05T13:00:00+09:00",
+        "reservation_verified": true,
+        "reservation_flag": "Y",
+        "reservation_evidence": "설정 (2026.11.05 13:00)",
+        "thumbnail_verified": true,
+        "thumbnail_url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/영어권 고객이 우리 브랜드  병원을 검색하길 원한다면 필수로 해야 하는 것.png",
+        "thumbnail_sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+        "free_public": true,
+        "public_setting": "공개",
+        "body_verified": true,
+        "body_sha256": "ab83812812a5251473aaafa55b728a62b2e7081e70f05b9ccb2be607504f4eaa",
+        "stored_text_equal": true,
+        "links_verified": true,
+        "review_status": "검수 대기",
+        "observed_url": "https://www.openads.co.kr/insighter/insighterCMS/insighterContsDetail?contsId=20936",
+        "public_url": null,
+        "created": true,
+        "reused_existing": false,
+        "verified_at": "2026-10-27T12:18:41.894Z",
+        "proof_file": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
+      },
+      "scheduled_at": "2026-11-05T13:00:00+09:00"
     },
     {
       "id": "O04",
@@ -1490,8 +1594,9 @@
           "제목·본문과 링크 문맥 일치",
           "모바일 접근 확인"
         ],
-        "platform_posting_authorized_this_turn": false,
-        "platform_posted": false
+        "platform_posting_authorized_this_turn": true,
+        "platform_posted": false,
+        "platform_registered": true
       },
       "search_intent_revision": {
         "at": "2026-10-27T19:03:38.256107+09:00",
@@ -1521,7 +1626,32 @@
           ],
           "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
         }
-      ]
+      ],
+      "openads_reservation": {
+        "actual_id": "20937",
+        "title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+        "scheduled_at": "2026-11-07T13:00:00+09:00",
+        "reservation_verified": true,
+        "reservation_flag": "Y",
+        "reservation_evidence": "설정 (2026.11.07 13:00)",
+        "thumbnail_verified": true,
+        "thumbnail_url": "https://openads-real.s3.amazonaws.com/openadsAdmin/images/contsThumb/GEO 마케팅 대행  맡긴 홈페이지 개선은 실제로 반영됐나요.png",
+        "thumbnail_sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+        "free_public": true,
+        "public_setting": "공개",
+        "body_verified": true,
+        "body_sha256": "4e859d93cf3127310419de94a70397f3d2df12c1fa803591ab2af1f99f6a3b45",
+        "stored_text_equal": true,
+        "links_verified": true,
+        "review_status": "검수 대기",
+        "observed_url": "https://www.openads.co.kr/insighter/insighterCMS/insighterContsDetail?contsId=20937",
+        "public_url": null,
+        "created": true,
+        "reused_existing": false,
+        "verified_at": "2026-10-27T12:20:26.696Z",
+        "proof_file": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
+      },
+      "scheduled_at": "2026-11-07T13:00:00+09:00"
     },
     {
       "id": "N04",
@@ -1608,7 +1738,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T21:09:55.325162+09:00",
+  "updated_at": "2026-10-27T21:24:06.589576+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1756,7 +1886,8 @@
       "O05",
       "O06",
       "O04"
-    ]
+    ],
+    "external_reserved_count": 5
   },
   "external_reference_policy": {
     "user_instruction": "홈페이지6편 주소를 앞으로 네이버프리미엄콘텐츠·오픈애즈 본문에 관련 참고글 하이퍼링크로 사용한다.",
@@ -1917,7 +2048,7 @@
     "current_id": null,
     "current_position": 5,
     "next_id": null,
-    "state": "오픈애즈5편 순차작성·검토완료·미발행",
+    "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
     "external_rewrite_pending": 6
   },
   "external_link_inventory": {
@@ -1929,5 +2060,7 @@
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 4
+  "external_scheduled_reference_links_in_drafts": 4,
+  "openads_reservation_count": 5,
+  "openads_reservation_result": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json"
 }
