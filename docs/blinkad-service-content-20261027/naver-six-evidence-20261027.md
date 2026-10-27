@@ -17,3 +17,12 @@
 - 자료: https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites
 - 홈페이지참고: H03 · https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body · scheduled
 - 실제고객/성과/수요실측·외부게시미실행.
+
+
+## N05 · 외국인 구글광고, 관련 없는 검색에 광고비가 쓰이고 있나요?
+
+- 독립검토: 필수오류0. 실검색어·서비스적합성·비용/문의자료→유지/제외/보류흐름명확. Search제외일치·동의어/단복수별도·대소문자/오타고려·검색어일부누락정확. 문의0=무관/효과보장없음. H05업체선정·O05전체운영과핵심질문구분. 문체교정필수없음.
+- 편집상핵심답: 실제 검색어의 원문과 서비스 적합성을 확인하고, 연결 페이지와 비용·문의 기록을 함께 본 뒤 유지·제외·추가 확인을 정합니다. 제외할 때는 일치 방식과 적용 범위를 맞춥니다.
+- 자료: https://support.google.com/google-ads/answer/2472708?hl=en · https://support.google.com/google-ads/answer/2453972?hl=en
+- 홈페이지참고: H05 · https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body · scheduled
+- 실제고객/성과/수요실측·외부게시미실행.

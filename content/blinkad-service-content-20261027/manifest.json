@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 2/6 · 미발행",
+  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 3/6 · 미발행",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -1255,38 +1255,124 @@
       "id": "N05",
       "type": "신규 인사이트",
       "channel": "네이버 프리미엄콘텐츠",
-      "title": "외국인 구글광고, 검색어를 번역만 보고 제외하지 마세요",
-      "seo_title": "외국인 구글광고, 검색어를 번역만 보고 제외하지 마세요",
-      "excerpt": "외국어 검색광고를 운영하다 보면 번역된 검색어가 우리 서비스와 맞지 않아 보여 제외를 고민하게 됩니다.",
-      "meta_description": "외국어 검색광고를 운영하다 보면 번역된 검색어가 우리 서비스와 맞지 않아 보여 제외를 고민하게 됩니다.",
-      "primary_keyword": "외국어 구글광고 검색어 제외 키워드",
+      "title": "외국인 구글광고, 관련 없는 검색에 광고비가 쓰이고 있나요?",
+      "seo_title": "외국인 구글광고, 관련 없는 검색에 광고비가 쓰이고 있나요?",
+      "excerpt": "외국인 구글광고의 실제 검색어를 제공 서비스·비용·문의 자료와 대조해 유지·제외·보류하고 제외키워드 적용 범위를 정하는 방법을 설명합니다.",
+      "meta_description": "외국인 구글광고의 실제 검색어를 제공 서비스·비용·문의 자료와 대조해 유지·제외·보류하고 제외키워드 적용 범위를 정하는 방법을 설명합니다.",
+      "primary_keyword": "외국인 구글광고 검색어",
       "parent_keyword": "외국인 타겟 구글광고 대행",
       "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
-      "proposed_slug": "foreign-search-terms-negative-keywords",
+      "proposed_slug": "foreign-google-ads-irrelevant-searches",
       "public_url": null,
       "body_file": "N05-foreign-search-terms-negative-keywords.md",
-      "body_sha256": "5e6e368b40960b313c41c3c3e3e1d59ca5a2692288633e9df4dd4fe78556b866",
-      "body_chars": 2795,
+      "body_sha256": "f9a6af32458963866e4784faf42bb757293174de80afcb6e346d86de6ef22282",
+      "body_chars": 3579,
       "writing_order": 11,
       "writing_batch": 6,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:02:15.414902+09:00",
+      "last_substantive_edit_at": "2026-10-27T21:57:40.240046+09:00",
       "published_at": null,
       "links": [
         "https://support.google.com/google-ads/answer/2472708?hl=en",
         "https://support.google.com/google-ads/answer/2453972?hl=en",
-        "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch06-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
-        "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
-        "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+        "필수오류0. 실검색어·서비스적합성·비용/문의자료→유지/제외/보류흐름명확. Search제외일치·동의어/단복수별도·대소문자/오타고려·검색어일부누락정확. 문의0=무관/효과보장없음. H05업체선정·O05전체운영과핵심질문구분. 문체교정필수없음."
+      ],
+      "pre_naver_search_intent_revision": {
+        "id": "N05",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "외국인 구글광고, 검색어를 번역만 보고 제외하지 마세요",
+        "seo_title": "외국인 구글광고, 검색어를 번역만 보고 제외하지 마세요",
+        "excerpt": "외국어 검색광고를 운영하다 보면 번역된 검색어가 우리 서비스와 맞지 않아 보여 제외를 고민하게 됩니다.",
+        "meta_description": "외국어 검색광고를 운영하다 보면 번역된 검색어가 우리 서비스와 맞지 않아 보여 제외를 고민하게 됩니다.",
+        "primary_keyword": "외국어 구글광고 검색어 제외 키워드",
+        "parent_keyword": "외국인 타겟 구글광고 대행",
+        "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+        "proposed_slug": "foreign-search-terms-negative-keywords",
+        "public_url": null,
+        "body_file": "N05-foreign-search-terms-negative-keywords.md",
+        "body_sha256": "5e6e368b40960b313c41c3c3e3e1d59ca5a2692288633e9df4dd4fe78556b866",
+        "body_chars": 2795,
+        "writing_order": 11,
+        "writing_batch": 6,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:02:15.414902+09:00",
+        "published_at": null,
+        "links": [
+          "https://support.google.com/google-ads/answer/2472708?hl=en",
+          "https://support.google.com/google-ads/answer/2453972?hl=en",
+          "https://support.google.com/google-ads/answer/1722078?hl=en",
+          "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch06-evidence.md",
+        "review_notes": [
+          "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
+          "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
+          "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+        ]
+      },
+      "homepage_reference": {
+        "external_id": "N05",
+        "homepage_id": "H05",
+        "homepage_title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "base_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
+        "homepage_publish_date": "2026-11-02",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-11-02",
+        "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+        "checks": [
+          "참고글HTTP200",
+          "제목·본문과링크문맥일치",
+          "모바일접근확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_registered": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T21:57:40.240046+09:00",
+        "status": "최신제목 본문재작성·독립검토완료·미발행",
+        "direct_answer": "실제 검색어의 원문과 서비스 적합성을 확인하고, 연결 페이지와 비용·문의 기록을 함께 본 뒤 유지·제외·추가 확인을 정합니다. 제외할 때는 일치 방식과 적용 범위를 맞춥니다.",
+        "outline": [
+          "실제 검색어와 그 검색에 쓰인 비용을 함께 봅니다",
+          "뜻과 서비스 조건을 확인한 뒤 세 가지로 정리합니다",
+          "제외할 표현과 적용 범위를 같이 정합니다",
+          "비용 변화와 필요한 문의가 유지되는지 함께 확인합니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상실무권고·명시한예시",
+          "claim": "실제 검색어의 원문과 서비스 적합성을 확인하고, 연결 페이지와 비용·문의 기록을 함께 본 뒤 유지·제외·추가 확인을 정합니다. 제외할 때는 일치 방식과 적용 범위를 맞춥니다.",
+          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+        },
+        {
+          "type": "공식자료의기능·공개안내",
+          "sources": [
+            "https://support.google.com/google-ads/answer/2472708?hl=en",
+            "https://support.google.com/google-ads/answer/2453972?hl=en"
+          ],
+          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+        }
       ]
     },
     {
@@ -1910,7 +1996,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T21:55:00.052856+09:00",
+  "updated_at": "2026-10-27T21:57:40.240046+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2051,7 +2137,7 @@
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
     "external11_rewrite_pending": true,
-    "external_rewrite_pending_count": 4,
+    "external_rewrite_pending_count": 3,
     "external_draft_revised_ids": [
       "O01",
       "O03",
@@ -2059,7 +2145,8 @@
       "O06",
       "O04",
       "N01",
-      "N03"
+      "N03",
+      "N05"
     ],
     "external_reserved_count": 5
   },
@@ -2099,7 +2186,7 @@
         "homepage_publish_date": "2026-11-02",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -2208,7 +2295,8 @@
       "O06",
       "O04",
       "N01",
-      "N03"
+      "N03",
+      "N05"
     ],
     "other_bodies_unchanged": true
   },
@@ -2225,18 +2313,18 @@
     "current_position": 5,
     "next_id": null,
     "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
-    "external_rewrite_pending": 4
+    "external_rewrite_pending": 3
   },
   "external_link_inventory": {
-    "placed_links_in_drafts": 18,
-    "placed_scheduled_homepage_links": 6,
+    "placed_links_in_drafts": 19,
+    "placed_scheduled_homepage_links": 7,
     "new_reference_plan_count": 11,
-    "actual_rewrite_count": 7,
-    "remaining_rewrite_count": 4,
+    "actual_rewrite_count": 8,
+    "remaining_rewrite_count": 3,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 6,
+  "external_scheduled_reference_links_in_drafts": 7,
   "openads_reservation_count": 5,
   "openads_reservation_result": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json",
   "naver_sequential_rewrite": {
@@ -2251,9 +2339,10 @@
     ],
     "completed_ids": [
       "N01",
-      "N03"
+      "N03",
+      "N05"
     ],
-    "next_id": "N05",
-    "state": "순차집필·독립검토 2/6 · 미발행"
+    "next_id": "N06",
+    "state": "순차집필·독립검토 3/6 · 미발행"
   }
 }
