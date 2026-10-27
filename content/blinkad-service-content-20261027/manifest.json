@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 3/6 · 미발행",
+  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 4/6 · 미발행",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -1540,36 +1540,34 @@
       "id": "N06",
       "type": "신규 인사이트",
       "channel": "네이버 프리미엄콘텐츠",
-      "title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
-      "seo_title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
-      "excerpt": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
-      "meta_description": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
-      "primary_keyword": "영어권 고객 레딧 후기 비교",
+      "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+      "seo_title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+      "excerpt": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
+      "meta_description": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
+      "primary_keyword": "영어권 고객 레딧 후기",
       "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
       "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
       "proposed_slug": "reddit-reviews-after-ad-exposure",
       "public_url": null,
       "body_file": "N06-reddit-reviews-after-ad-exposure.md",
-      "body_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
-      "body_chars": 2554,
+      "body_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+      "body_chars": 3227,
       "writing_order": 13,
       "writing_batch": 7,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+      "last_substantive_edit_at": "2026-10-27T22:00:42.588014+09:00",
       "published_at": null,
       "links": [
         "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
-        "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/"
+        "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
-        "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
-        "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+        "필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움."
       ],
       "pending_public_link": {
         "planned_id": "H06",
@@ -1583,7 +1581,105 @@
           "utm_content": "n06_body"
         },
         "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
-      }
+      },
+      "pre_naver_search_intent_revision": {
+        "id": "N06",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+        "seo_title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+        "excerpt": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+        "meta_description": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+        "primary_keyword": "영어권 고객 레딧 후기 비교",
+        "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+        "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+        "proposed_slug": "reddit-reviews-after-ad-exposure",
+        "public_url": null,
+        "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+        "body_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
+        "body_chars": 2554,
+        "writing_order": 13,
+        "writing_batch": 7,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+        "published_at": null,
+        "links": [
+          "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+          "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+        "review_notes": [
+          "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+          "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+          "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+        ],
+        "pending_public_link": {
+          "planned_id": "H06",
+          "public_url": null,
+          "anchor_text": "영어권 외국인 마케팅에서 레딧을 함께 볼 이유",
+          "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+          "utm_parameters": {
+            "utm_source": "naver_premium",
+            "utm_medium": "referral",
+            "utm_campaign": "blinkad_service_content_20261027",
+            "utm_content": "n06_body"
+          },
+          "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+        }
+      },
+      "homepage_reference": {
+        "external_id": "N06",
+        "homepage_id": "H06",
+        "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+        "homepage_publish_date": "2026-11-04",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-11-04",
+        "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+        "checks": [
+          "참고글HTTP200",
+          "제목·본문과링크문맥일치",
+          "모바일접근확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_registered": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T22:00:42.588014+09:00",
+        "status": "최신제목 본문재작성·독립검토완료·미발행",
+        "direct_answer": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
+        "outline": [
+          "광고에서 강조한 조건 하나부터 골라봅니다",
+          "후기를 읽을 때는 이용한 상황과 시점을 확인합니다",
+          "광고 문구를 고칠지, 공식 설명을 보탤지 정합니다",
+          "바꾼 설명이 광고와 실제 응대에서도 맞는지 봅니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상실무권고·명시한예시",
+          "claim": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
+          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+        },
+        {
+          "type": "공식자료의기능·공개안내",
+          "sources": [
+            "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy"
+          ],
+          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+        }
+      ]
     },
     {
       "id": "O06",
@@ -1996,7 +2092,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T21:57:40.240046+09:00",
+  "updated_at": "2026-10-27T22:00:42.588014+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2011,7 +2107,7 @@
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
   "external_current_links": 12,
-  "external_planned_h06_links": 1,
+  "external_planned_h06_links": 0,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
     "at": "2026-10-27T16:55:24.987361+09:00",
@@ -2137,7 +2233,7 @@
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
     "external11_rewrite_pending": true,
-    "external_rewrite_pending_count": 3,
+    "external_rewrite_pending_count": 2,
     "external_draft_revised_ids": [
       "O01",
       "O03",
@@ -2146,7 +2242,8 @@
       "O04",
       "N01",
       "N03",
-      "N05"
+      "N05",
+      "N06"
     ],
     "external_reserved_count": 5
   },
@@ -2198,7 +2295,7 @@
         "homepage_publish_date": "2026-11-04",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -2296,7 +2393,8 @@
       "O04",
       "N01",
       "N03",
-      "N05"
+      "N05",
+      "N06"
     ],
     "other_bodies_unchanged": true
   },
@@ -2313,18 +2411,18 @@
     "current_position": 5,
     "next_id": null,
     "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
-    "external_rewrite_pending": 3
+    "external_rewrite_pending": 2
   },
   "external_link_inventory": {
-    "placed_links_in_drafts": 19,
-    "placed_scheduled_homepage_links": 7,
+    "placed_links_in_drafts": 20,
+    "placed_scheduled_homepage_links": 8,
     "new_reference_plan_count": 11,
-    "actual_rewrite_count": 8,
-    "remaining_rewrite_count": 3,
+    "actual_rewrite_count": 9,
+    "remaining_rewrite_count": 2,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 7,
+  "external_scheduled_reference_links_in_drafts": 8,
   "openads_reservation_count": 5,
   "openads_reservation_result": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json",
   "naver_sequential_rewrite": {
@@ -2340,9 +2438,10 @@
     "completed_ids": [
       "N01",
       "N03",
-      "N05"
+      "N05",
+      "N06"
     ],
-    "next_id": "N06",
-    "state": "순차집필·독립검토 3/6 · 미발행"
+    "next_id": "N04",
+    "state": "순차집필·독립검토 4/6 · 미발행"
   }
 }

@@ -26,3 +26,12 @@
 - 자료: https://support.google.com/google-ads/answer/2472708?hl=en · https://support.google.com/google-ads/answer/2453972?hl=en
 - 홈페이지참고: H05 · https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body · scheduled
 - 실제고객/성과/수요실측·외부게시미실행.
+
+
+## N06 · 영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유
+
+- 독립검토: 필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움.
+- 편집상핵심답: 광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.
+- 자료: https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy
+- 홈페이지참고: H06 · https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body · scheduled
+- 실제고객/성과/수요실측·외부게시미실행.

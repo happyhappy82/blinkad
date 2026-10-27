@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-27T22:00:42.588014+09:00",
+  "id": "N06",
+  "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+  "before_git_commit": "93ed856",
+  "before_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
+  "after_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+  "body_chars": 3227,
+  "independent_review": {
+    "reviewer": "inventory_homepage_topics",
+    "blocking_errors_after_correction": 0,
+    "notes": "필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움."
+  },
+  "sequential_position": 4,
+  "previous_ids_committed": [
+    "N01",
+    "N03",
+    "N05"
+  ],
+  "next_id": "N04",
+  "platform_writes": 0,
+  "homepage_or_openads_reservations_changed": false
+}
