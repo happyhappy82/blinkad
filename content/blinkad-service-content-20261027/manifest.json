@@ -4,9 +4,16 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "17건 기존 집필 이력 보존·검색의도 반영 홈페이지6건 재작성 완료·외부11건 재작성 대기·전부 미발행",
+  "stage": "홈페이지6편순차확인·사전등록완료:10/27 H02공개·나머지5편미래날짜예약. 외부11편본문재작성대기.",
   "published_at": null,
-  "deployment": false,
+  "deployment": {
+    "actual_site": "https://www.blinkad.kr",
+    "production_commit": "681db943e79a2636dde548d6a90c1f1723e421b2",
+    "vercel_project": "blinkad",
+    "deployment_id": "dpl_ARfj5YDhfULj81KmpMRLdF1kW4RN",
+    "source": "git",
+    "status": "READY"
+  },
   "items": [
     {
       "id": "H02",
@@ -19,7 +26,7 @@
       "parent_keyword": "병원 외국인 마케팅 대행",
       "target_audience": "병원 원장·경영 책임자·마케팅 담당자",
       "proposed_slug": "hospital-foreign-marketing",
-      "public_url": null,
+      "public_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
       "body_file": "H02-hospital-inbound-marketing-services.md",
       "body_sha256": "3b8dc85d547fff706e10d21ff6812572b2f1a7230588099844bde3ea973a8690",
       "body_chars": 2968,
@@ -31,7 +38,7 @@
       "medical_review": "의학적 효능·진단·치료 권고 없음. 의료진 감수 완료 표시를 하지 않음.",
       "fact_checked_at": "2026-10-27",
       "last_substantive_edit_at": "2026-10-27T16:55:24.987361+09:00",
-      "published_at": null,
+      "published_at": "2026-10-27",
       "links": [
         "https://www.blinkad.kr/google-map-marketing",
         "https://www.blinkad.kr/aeo",
@@ -108,7 +115,14 @@
       "copy_edit": {
         "at": "2026-10-27T17:46:28.819505+09:00",
         "instruction": "서비스 표기는 레딧 마케팅으로 통일. 실제 질문·후기·경험의 근거 설명은 유지."
-      }
+      },
+      "publication_state": "published",
+      "scheduled_publish_date": "2026-10-27",
+      "notion_page_id": "406753eb-c013-8103-8b58-cc1757f6f660",
+      "notion_url": "https://app.notion.com/p/406753ebc01381038b58cc1757f6f660?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "user_publication_authorized": true,
+      "publication_verified_at": "2026-10-27T18:19:51.769255+09:00"
     },
     {
       "id": "H03",
@@ -222,7 +236,14 @@
         "direct_answer": "현재 제작·호스팅 환경에서 새 언어 영역과 메뉴를 연결할 수 있고 필요한 협조가 가능하다면 기존 한국어 사이트를 유지하는 추가 제작을 검토할 수 있습니다.",
         "previous_commit": "95f00a0",
         "pair": 1
-      }
+      },
+      "publication_state": "scheduled",
+      "scheduled_publish_date": "2026-10-29",
+      "notion_page_id": "406753eb-c013-8121-83c0-f8387730d928",
+      "notion_url": "https://app.notion.com/p/406753ebc013812183c0f8387730d928?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "user_publication_authorized": true,
+      "publication_verified_at": null
     },
     {
       "id": "H01",
@@ -334,7 +355,14 @@
         "direct_answer": "관리할 매장과 업무 범위, 직영점·가맹점의 협조 방식, 매장별 작업·성과 확인 자료를 함께 비교합니다. 매장 추가 비용과 종료 시 소유권·인계 조건도 확인합니다.",
         "previous_commit": "95f00a0",
         "pair": 2
-      }
+      },
+      "publication_state": "scheduled",
+      "scheduled_publish_date": "2026-10-31",
+      "notion_page_id": "406753eb-c013-81cb-9464-e214945bed43",
+      "notion_url": "https://app.notion.com/p/406753ebc01381cb9464e214945bed43?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+      "user_publication_authorized": true,
+      "publication_verified_at": null
     },
     {
       "id": "H05",
@@ -454,7 +482,14 @@
         "direct_answer": "목표 국가·언어·고객을 정한 근거, 광고→외국어 페이지→문의 흐름, 실제 문의를 확인할 방법이라는 세 기준으로 설명과 화면·보고서 자료를 요청해 비교합니다.",
         "previous_commit": "95f00a0",
         "pair": 2
-      }
+      },
+      "publication_state": "scheduled",
+      "scheduled_publish_date": "2026-11-02",
+      "notion_page_id": "406753eb-c013-81d4-ad77-f73ddf618c27",
+      "notion_url": "https://app.notion.com/p/406753ebc01381d4ad77f73ddf618c27?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+      "user_publication_authorized": true,
+      "publication_verified_at": null
     },
     {
       "id": "H06",
@@ -538,7 +573,14 @@
       "copy_edit": {
         "at": "2026-10-27T17:46:28.819505+09:00",
         "instruction": "서비스 표기는 레딧 마케팅으로 통일. 실제 질문·후기·경험의 근거 설명은 유지."
-      }
+      },
+      "publication_state": "scheduled",
+      "scheduled_publish_date": "2026-11-04",
+      "notion_page_id": "406753eb-c013-8181-a513-ffd2202ed384",
+      "notion_url": "https://app.notion.com/p/406753ebc0138181a513ffd2202ed384?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+      "user_publication_authorized": true,
+      "publication_verified_at": null
     },
     {
       "id": "H04",
@@ -617,7 +659,14 @@
           ],
           "scope": "고정 지원 언어·가격·기간·계약 물량·성과를 추가 약속하지 않음"
         }
-      ]
+      ],
+      "publication_state": "scheduled",
+      "scheduled_publish_date": "2026-11-06",
+      "notion_page_id": "406753eb-c013-8173-a0de-fa2effd9f5d9",
+      "notion_url": "https://app.notion.com/p/406753ebc0138173a0defa2effd9f5d9?pvs=204",
+      "planned_public_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+      "user_publication_authorized": true,
+      "publication_verified_at": null
     },
     {
       "id": "O01",
@@ -1069,7 +1118,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T17:53:18.103769+09:00",
+  "updated_at": "2026-10-27T18:22:19.323422+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1085,7 +1134,7 @@
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
   "external_current_links": 16,
   "external_planned_h06_links": 2,
-  "production_publication_or_reservation": false,
+  "production_publication_or_reservation": true,
   "search_intent_revision": {
     "at": "2026-10-27T16:55:24.987361+09:00",
     "revised_ids": [
@@ -1108,10 +1157,10 @@
     "scope": "현재 원고·메타·기획·로컬보기. 과거 근거/수정 이력은 보존."
   },
   "sequential_homepage_workflow": {
-    "at": "2026-10-27T17:53:18.103769+09:00",
+    "at": "2026-10-27T18:22:19.323422+09:00",
     "user_instruction": "공식홈페이지 글부터 한 편씩 순차 작성·제시. 현재 한 편 피드백 후 다음 글 진행.",
-    "current_id": "H02",
-    "current_position": 1,
+    "current_id": null,
+    "current_position": 6,
     "homepage_order": [
       "H02",
       "H03",
@@ -1120,9 +1169,95 @@
       "H06",
       "H04"
     ],
-    "next_id": "H03",
-    "current_state": "첫 원고 정리·내용검토 완료·사용자 피드백 대기·미발행",
+    "next_id": null,
+    "current_state": "홈페이지6편순차확인·등록완료. H02공개·5편예약.",
     "automatic_next_article": false,
-    "prior_six_drafts": "이전6편 초안은 보존하며 이번부터 한 편씩 진행한다."
+    "prior_six_drafts": "이전6편 초안은 보존하며 이번부터 한 편씩 진행한다.",
+    "latest_user_instruction": "한편씩작성후공식홈페이지게시,10/27부터글을미리등록하고미래게시일지정",
+    "publication_authorized": true
+  },
+  "publication_summary": {
+    "at": "2026-10-27T18:22:19.323422+09:00",
+    "homepage_registered": 6,
+    "publicly_published": 1,
+    "scheduled_future": 5,
+    "items": [
+      {
+        "id": "H02",
+        "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
+        "date": "2026-10-27",
+        "state": "published",
+        "public_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "planned_public_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "notion_page_id": "406753eb-c013-8103-8b58-cc1757f6f660",
+        "notion_url": "https://app.notion.com/p/406753ebc01381038b58cc1757f6f660?pvs=204",
+        "source_sha256": "3b8dc85d547fff706e10d21ff6812572b2f1a7230588099844bde3ea973a8690"
+      },
+      {
+        "id": "H03",
+        "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "date": "2026-10-29",
+        "state": "scheduled",
+        "public_url": null,
+        "planned_public_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "notion_page_id": "406753eb-c013-8121-83c0-f8387730d928",
+        "notion_url": "https://app.notion.com/p/406753ebc013812183c0f8387730d928?pvs=204",
+        "source_sha256": "068227687c835794b63ae36be5fb19475c9a85fcf6860fad81bf495952182efe"
+      },
+      {
+        "id": "H01",
+        "title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "date": "2026-10-31",
+        "state": "scheduled",
+        "public_url": null,
+        "planned_public_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "notion_page_id": "406753eb-c013-81cb-9464-e214945bed43",
+        "notion_url": "https://app.notion.com/p/406753ebc01381cb9464e214945bed43?pvs=204",
+        "source_sha256": "702c730c156d821fda277276870b59fd6f006f7da95d952241828881fd87282c"
+      },
+      {
+        "id": "H05",
+        "title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "date": "2026-11-02",
+        "state": "scheduled",
+        "public_url": null,
+        "planned_public_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "notion_page_id": "406753eb-c013-81d4-ad77-f73ddf618c27",
+        "notion_url": "https://app.notion.com/p/406753ebc01381d4ad77f73ddf618c27?pvs=204",
+        "source_sha256": "76b7aacb5f57e5ce13baca89a67ed5cf0e47f32edda4d915132a93456a284296"
+      },
+      {
+        "id": "H06",
+        "title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "date": "2026-11-04",
+        "state": "scheduled",
+        "public_url": null,
+        "planned_public_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "notion_page_id": "406753eb-c013-8181-a513-ffd2202ed384",
+        "notion_url": "https://app.notion.com/p/406753ebc0138181a513ffd2202ed384?pvs=204",
+        "source_sha256": "e15d15cce730cde96c1dff1f33bba1fd89a7adad5918b8df01fac95e67979235"
+      },
+      {
+        "id": "H04",
+        "title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
+        "date": "2026-11-06",
+        "state": "scheduled",
+        "public_url": null,
+        "planned_public_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "notion_page_id": "406753eb-c013-8173-a0de-fa2effd9f5d9",
+        "notion_url": "https://app.notion.com/p/406753ebc0138173a0defa2effd9f5d9?pvs=204",
+        "source_sha256": "d6fa1a8a84ae3a60b99c67b72a31a3a56a4a84633db943e10e38b54dad817f76"
+      }
+    ],
+    "schedule_basis": "기존2일간격을기준으로한다는가정을사용자에게공지. 날짜변경가능.",
+    "schedule_timezone": "Asia/Seoul",
+    "exact_time_guaranteed": false,
+    "existing_schedule": "GitHub Actions KST13:00/18:00 정기동기화 후 Git/Vercel자동배포",
+    "source_of_publication": "Notion Posts collection://2ea753eb-c013-8106-91de-000bdc0838bf",
+    "production_commit": "681db943e79a2636dde548d6a90c1f1723e421b2",
+    "deployment_id": "dpl_ARfj5YDhfULj81KmpMRLdF1kW4RN",
+    "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
+    "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
+    "external11_rewrite_pending": true
   }
 }

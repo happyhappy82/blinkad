@@ -91,9 +91,10 @@
   "external11_bodies_and_item_metadata_equal_to_95f00a0": true,
   "h1_and_meta_match": true,
   "html_full_text_and_links_match_markdown": true,
-  "published_urls_all_null": true,
   "publication_or_deployment": false,
   "visual_screenshot_review": false,
   "terminology_edit_at": "2026-10-27T17:46:28.819505+09:00",
-  "one_by_one_edit_at": "2026-10-27T17:53:18.103769+09:00"
+  "one_by_one_edit_at": "2026-10-27T17:53:18.103769+09:00",
+  "published_urls_all_null_at_original_draft_check": true,
+  "current_publication_state_file": "homepage-publication-summary.json"
 }
