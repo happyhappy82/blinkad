@@ -1,0 +1,562 @@
+{
+  "created_at": "2026-10-27T20:43:24.920443+09:00",
+  "purpose": "새 오픈애즈5개 Canva 썸네일 제작 전, 기존17개 및 승인된20개 원본 보존 대조 기준. 원본 이미지 읽기만 수행.",
+  "source_reports": [
+    "/tmp/blinkad-insights-context-20261023/BLINKAD_THUMBNAIL_CONTEXT_20261023.md",
+    "/tmp/blinkad-insights-context-20261023/docs/blinkad-thumbnails-20-verification-20261024.json"
+  ],
+  "files": [
+    {
+      "group": "original17",
+      "number": 1,
+      "path": "/Users/mcbookpro/Downloads/01_대형병원 GEO 마케팅.png",
+      "filename": "01_대형병원 GEO 마케팅.png",
+      "bytes": 463728,
+      "sha256": "0de0adab996ff59f0defe7340cbffd1c7fdddb0aff1c88f533e5c770a45c21d7",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 2,
+      "path": "/Users/mcbookpro/Downloads/02_외국인이 대형병원 찾는법.png",
+      "filename": "02_외국인이 대형병원 찾는법.png",
+      "bytes": 419314,
+      "sha256": "f8f82f04d51e9323da7dd959c069d2b09e6b5e1847ad46a31f3b04cd91ebf646",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 3,
+      "path": "/Users/mcbookpro/Downloads/03_외국인문의 안느는 이유.png",
+      "filename": "03_외국인문의 안느는 이유.png",
+      "bytes": 418466,
+      "sha256": "b76bda27d3db0e01a2b9598e5b42e5d2228138684c969d2f879e82c3e364dc31",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 4,
+      "path": "/Users/mcbookpro/Downloads/04_영어질문에 병원이 안뜬다면.png",
+      "filename": "04_영어질문에 병원이 안뜬다면.png",
+      "bytes": 420059,
+      "sha256": "cf6c7d319985851ac3ee614f53589d5df0eca0f5a2a7d3fa0550ac2cc53d6ed0",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 5,
+      "path": "/Users/mcbookpro/Downloads/05_외국인문의 예약으로 안이어지면.png",
+      "filename": "05_외국인문의 예약으로 안이어지면.png",
+      "bytes": 421278,
+      "sha256": "183232930a8092e7d42a40c0ae2cc35cf89b7dee9dc61c36cf42ba7cee73a08f",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 6,
+      "path": "/Users/mcbookpro/Downloads/06_GEO마케팅 대행사계약전 확인할것.png",
+      "filename": "06_GEO마케팅 대행사계약전 확인할것.png",
+      "bytes": 421696,
+      "sha256": "42ce953b3aab0a44132e3aedf2eed04b87192b6e47d2581c2b6e2cf5c195c582",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 7,
+      "path": "/Users/mcbookpro/Downloads/07_GEO 성과 검색 순위가 전부일까.png",
+      "filename": "07_GEO 성과 검색 순위가 전부일까.png",
+      "bytes": 421656,
+      "sha256": "2014e15b8b596219d6225540ce6dd4239f07fab39e1cfba8b3f62d221b7c6a7c",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 8,
+      "path": "/Users/mcbookpro/Downloads/08_외국인 마케팅 광고가 먼저일까.png",
+      "filename": "08_외국인 마케팅 광고가 먼저일까.png",
+      "bytes": 420844,
+      "sha256": "1c1bc830c743a1e87f677154e8d779e36dda9b501024de4420114f9fbc59ec84",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 9,
+      "path": "/Users/mcbookpro/Downloads/09_거주 외국인 의료관광 환자 마케팅은 다르게.png",
+      "filename": "09_거주 외국인 의료관광 환자 마케팅은 다르게.png",
+      "bytes": 421841,
+      "sha256": "aa17a48a424c63c9f58fa3b8689485beb66b611044b14b0b6ee022d94fee2a86",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 10,
+      "path": "/Users/mcbookpro/Downloads/10_광고 SEO GEO 병원에 맞게 나누는 법.png",
+      "filename": "10_광고 SEO GEO 병원에 맞게 나누는 법.png",
+      "bytes": 420462,
+      "sha256": "9faba227f033c93e2e617c21a65193a94c1573b000c057f593c01971e81db3db",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 11,
+      "path": "/Users/mcbookpro/Downloads/11_AI 검색 노출 보장 믿어도 될까.png",
+      "filename": "11_AI 검색 노출 보장 믿어도 될까.png",
+      "bytes": 419688,
+      "sha256": "4a369bde625983d0200dc76fd49628e07d059fce9c2ed9940e8f0f4ff2703d5c",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 12,
+      "path": "/Users/mcbookpro/Downloads/12_피부과 레딧마케팅 영어로 소개하면 끝일까.png",
+      "filename": "12_피부과 레딧마케팅 영어로 소개하면 끝일까.png",
+      "bytes": 420769,
+      "sha256": "0a3bfdc2df69605301f36c074982d494bb65033cc31c54f248747e3d7f0279a7",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 13,
+      "path": "/Users/mcbookpro/Downloads/13_피부과 레딧마케팅 댓글 쓰기 전 질문부터 읽으세요.png",
+      "filename": "13_피부과 레딧마케팅 댓글 쓰기 전 질문부터 읽으세요.png",
+      "bytes": 421188,
+      "sha256": "fb759c286aac688b15a49110aff3dcfce7c96fc7d63a5336ce43da1f4b525aab",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 14,
+      "path": "/Users/mcbookpro/Downloads/14_성형외과 레딧마케팅 사진은 많은데 귀국 후 안내는.png",
+      "filename": "14_성형외과 레딧마케팅 사진은 많은데 귀국 후 안내는.png",
+      "bytes": 422785,
+      "sha256": "4c4e13084fa37661b7e73378909772e926ced4e32cc8af761a1c593c4a007efd",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 15,
+      "path": "/Users/mcbookpro/Downloads/15_성형외과 레딧마케팅 해외 고객 질문 상담으로 잇는 법.png",
+      "filename": "15_성형외과 레딧마케팅 해외 고객 질문 상담으로 잇는 법.png",
+      "bytes": 422617,
+      "sha256": "53724b9b329b5f67dd8e060dc2a948c75c180568fae5915e0c1671244769d690",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 16,
+      "path": "/Users/mcbookpro/Downloads/16_안과 레딧마케팅 라식 라섹 스마일 골라달라면.png",
+      "filename": "16_안과 레딧마케팅 라식 라섹 스마일 골라달라면.png",
+      "bytes": 420629,
+      "sha256": "1efb2794f8d5fa99f6e14c9eef8ca337c7220e3e61f491f08c464764b69c0001",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "original17",
+      "number": 17,
+      "path": "/Users/mcbookpro/Downloads/17_안과 레딧마케팅 수술 후 귀국 안내는 어디까지.png",
+      "filename": "17_안과 레딧마케팅 수술 후 귀국 안내는 어디까지.png",
+      "bytes": 421739,
+      "sha256": "63e7f08d0438849a29837b547ee936e0d21c0a7908c3d1c13e7fc889691d0626",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true
+    },
+    {
+      "group": "final20",
+      "number": 1,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/01_병원 홈페이지 AI 검색 필요할까?.png",
+      "filename": "01_병원 홈페이지 AI 검색 필요할까?.png",
+      "bytes": 420614,
+      "sha256": "2e92b3077e905059d017ae05e4aa77cf1baffb953d06a623de7e3f8e1884f524",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "2e92b3077e905059d017ae05e4aa77cf1baffb953d06a623de7e3f8e1884f524",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 1,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/01_AI 검색 무엇부터 확인할까?.png",
+      "filename": "01_AI 검색 무엇부터 확인할까?.png",
+      "bytes": 420059,
+      "sha256": "47dfc5361277b8d2d637c3251cc47f3f7e1529d0f964be4695083f3dad1abd2d",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "47dfc5361277b8d2d637c3251cc47f3f7e1529d0f964be4695083f3dad1abd2d",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 2,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/02_우리 병원 AI 검색엔 안 뜬다면?.png",
+      "filename": "02_우리 병원 AI 검색엔 안 뜬다면?.png",
+      "bytes": 420345,
+      "sha256": "c39ca02c37450840a8811daa65fdcd588a3728724315658ed2c589ac58d84794",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "c39ca02c37450840a8811daa65fdcd588a3728724315658ed2c589ac58d84794",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 2,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/02_우리 병원 검색 상태 점검법.png",
+      "filename": "02_우리 병원 검색 상태 점검법.png",
+      "bytes": 419338,
+      "sha256": "c5c48a18e09f23a7f208e62c8b0f13850df21f6656bc552646fdc647282f1d3e",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "c5c48a18e09f23a7f208e62c8b0f13850df21f6656bc552646fdc647282f1d3e",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 3,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/03_홈페이지 전부 바꿔야 할까?.png",
+      "filename": "03_홈페이지 전부 바꿔야 할까?.png",
+      "bytes": 420477,
+      "sha256": "6af358edec8b93f565bd7648fd85b8dcb46592753fe00f5e1993a0162e153931",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "6af358edec8b93f565bd7648fd85b8dcb46592753fe00f5e1993a0162e153931",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 3,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/03_홈페이지 고칠까? 새로 만들까?.png",
+      "filename": "03_홈페이지 고칠까? 새로 만들까?.png",
+      "bytes": 420450,
+      "sha256": "28f57644697b7bb9f153fbb3db8d3c3a675e4da4fdc255552f5c814aac43e037",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "28f57644697b7bb9f153fbb3db8d3c3a675e4da4fdc255552f5c814aac43e037",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 4,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/04_소개받은 업체 바로 계약할까?.png",
+      "filename": "04_소개받은 업체 바로 계약할까?.png",
+      "bytes": 419316,
+      "sha256": "38d19eed5367b748e0e075aa3ab83dcd7f81aa896645e2379ee4f566c4012275",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "38d19eed5367b748e0e075aa3ab83dcd7f81aa896645e2379ee4f566c4012275",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 4,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/04_제작업체 계약 전 필수 질문.png",
+      "filename": "04_제작업체 계약 전 필수 질문.png",
+      "bytes": 419220,
+      "sha256": "6d1186e017beed82e58f72d4509ea609e51bfd3b752a60ff949e3792ebe94894",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "6d1186e017beed82e58f72d4509ea609e51bfd3b752a60ff949e3792ebe94894",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 5,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/05_SEO 포함 어디까지 해줄까?.png",
+      "filename": "05_SEO 포함 어디까지 해줄까?.png",
+      "bytes": 420606,
+      "sha256": "842ce565c45bb042ae0d348cf2b036c17d80dce033d0d526836067b20df3792b",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "842ce565c45bb042ae0d348cf2b036c17d80dce033d0d526836067b20df3792b",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 5,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/05_SEO 맡겼다면 꼭 받을 결과물.png",
+      "filename": "05_SEO 맡겼다면 꼭 받을 결과물.png",
+      "bytes": 418008,
+      "sha256": "0c05b290783f8be4c4b321314164d941b54cc254c22b35373a7f9dc8f9021be8",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "0c05b290783f8be4c4b321314164d941b54cc254c22b35373a7f9dc8f9021be8",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 6,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/06_제작비 비싸면 더 좋을까?.png",
+      "filename": "06_제작비 비싸면 더 좋을까?.png",
+      "bytes": 420117,
+      "sha256": "6b85a5efb5fd249da5aa8f17c71d5daec7f50c4ecde254681c9b4b534ce0b89f",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "6b85a5efb5fd249da5aa8f17c71d5daec7f50c4ecde254681c9b4b534ce0b89f",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 6,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/06_홈페이지 견적 가격 말고 볼 것.png",
+      "filename": "06_홈페이지 견적 가격 말고 볼 것.png",
+      "bytes": 418748,
+      "sha256": "0c110716b91b1e8b8dddc77c436ae9d3b74183db3d09793c6005ac3c045edd24",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "0c110716b91b1e8b8dddc77c436ae9d3b74183db3d09793c6005ac3c045edd24",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 7,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/07_새 홈페이지 병원 소개는 그대로?.png",
+      "filename": "07_새 홈페이지 병원 소개는 그대로?.png",
+      "bytes": 419825,
+      "sha256": "8d6496077195cf5dc3bc23ba5a8432309d2672ed45c95d9866aa29bef5e88df6",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "8d6496077195cf5dc3bc23ba5a8432309d2672ed45c95d9866aa29bef5e88df6",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 7,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/07_홈페이지 제작 전 준비물.png",
+      "filename": "07_홈페이지 제작 전 준비물.png",
+      "bytes": 418574,
+      "sha256": "ec06da23720dd61c08841d1c64dcff6d3993c12a6650de0a2440a71fc4c133cb",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "ec06da23720dd61c08841d1c64dcff6d3993c12a6650de0a2440a71fc4c133cb",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 8,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/08_광고로 온 환자 다음은 어디로?.png",
+      "filename": "08_광고로 온 환자 다음은 어디로?.png",
+      "bytes": 419022,
+      "sha256": "a0abf2932171b7a694232bc4aa70059c9608fd78e8c51c3d0d582f99f355c720",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "a0abf2932171b7a694232bc4aa70059c9608fd78e8c51c3d0d582f99f355c720",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 8,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/08_모바일 예약 끝까지 해봤나요?.png",
+      "filename": "08_모바일 예약 끝까지 해봤나요?.png",
+      "bytes": 420372,
+      "sha256": "54da1aa99a8bb02c7dc56cba28f172db19edc1ac7de73b568c76e765342b0926",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "54da1aa99a8bb02c7dc56cba28f172db19edc1ac7de73b568c76e765342b0926",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 9,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/09_업체 바꾸는데 계정이 없다면?.png",
+      "filename": "09_업체 바꾸는데 계정이 없다면?.png",
+      "bytes": 419647,
+      "sha256": "7ab2cd0c5101adf9af2689df7a9435938ea37c0898881c6197a8d5ca127f90d7",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "7ab2cd0c5101adf9af2689df7a9435938ea37c0898881c6197a8d5ca127f90d7",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 9,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/09_리뉴얼 전 계정·자료 챙겼나요?.png",
+      "filename": "09_리뉴얼 전 계정·자료 챙겼나요?.png",
+      "bytes": 421361,
+      "sha256": "768e064de471c4a9780b24e5199c15dfac0d2d440d6ee8b93b41b162ed131777",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "768e064de471c4a9780b24e5199c15dfac0d2d440d6ee8b93b41b162ed131777",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 10,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/10_오픈 완료 확인 없이 끝낼까?.png",
+      "filename": "10_오픈 완료 확인 없이 끝낼까?.png",
+      "bytes": 420255,
+      "sha256": "c8d5cdd2021417e58f61a5dd68d532971fed242af5f1300e01e3cf796a960348",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "오픈애즈",
+      "sha256_at_20261024": "c8d5cdd2021417e58f61a5dd68d532971fed242af5f1300e01e3cf796a960348",
+      "matches_20261024_record": true
+    },
+    {
+      "group": "final20",
+      "number": 10,
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/10_홈페이지 잔금 전 체크리스트.png",
+      "filename": "10_홈페이지 잔금 전 체크리스트.png",
+      "bytes": 419274,
+      "sha256": "81cd4e043d90f5945a7c07a6cddb79e111bf662bec3bc2006592e6e48ff33025",
+      "dimensions": [
+        1280,
+        600
+      ],
+      "png_signature_valid": true,
+      "channel": "네이버프리미엄콘텐츠",
+      "sha256_at_20261024": "81cd4e043d90f5945a7c07a6cddb79e111bf662bec3bc2006592e6e48ff33025",
+      "matches_20261024_record": true
+    }
+  ],
+  "summary": {
+    "original17_count": 17,
+    "final20_count": 20,
+    "total_count": 37,
+    "all_expected_exist": true,
+    "all_1280x600": true,
+    "all_png_signatures_valid": true,
+    "final20_all_match_20261024_record": true,
+    "missing": [],
+    "issues": []
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "created_at": "2026-10-27T20:49:45.659621+09:00",
+  "channel": "오픈애즈",
+  "count": 5,
+  "production": "Aside 지정 대화에서 Canva 기존 양식의 새 사본으로 제작",
+  "canva_edit_url": "https://www.canva.com/design/DAHZM-sX47Y/N8Bf8ndfYIYJJAzLQSh9HA/edit",
+  "reference_template": "https://www.canva.com/design/DAHYuV_qP3M/ra4-9wWGV99EtUVmDZeT5w/edit",
+  "items": [
+    {
+      "id": "O01",
+      "title": "구글맵 관리 대행이 필요한 3가지 상황",
+      "file": "01_O01_구글맵관리.png",
+      "copy_lines": [
+        "구글맵 관리",
+        "맡겨야 할",
+        "3가지 상황"
+      ],
+      "width": 1280,
+      "height": 600,
+      "sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+      "bytes": 420714,
+      "body_file": "O01-google-maps-third-party-booking-links.md"
+    },
+    {
+      "id": "O03",
+      "title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+      "file": "02_O03_병원다국어홈페이지.png",
+      "copy_lines": [
+        "병원 다국어",
+        "홈페이지",
+        "꼭 필요할까?"
+      ],
+      "width": 1280,
+      "height": 600,
+      "sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+      "bytes": 421534,
+      "body_file": "O03-hospital-overseas-assets-access.md"
+    },
+    {
+      "id": "O05",
+      "title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+      "file": "03_O05_병원구글광고.png",
+      "copy_lines": [
+        "병원 구글 광고",
+        "어떻게 해야",
+        "효과적일까?"
+      ],
+      "width": 1280,
+      "height": 600,
+      "sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+      "bytes": 422357,
+      "body_file": "O05-hospital-brand-nonbrand-ad-budget.md"
+    },
+    {
+      "id": "O06",
+      "title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+      "file": "04_O06_레딧마케팅.png",
+      "copy_lines": [
+        "영어권 고객",
+        "유치하려면",
+        "레딧 마케팅"
+      ],
+      "width": 1280,
+      "height": 600,
+      "sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+      "bytes": 422066,
+      "body_file": "O06-reddit-brand-search-english-customers.md"
+    },
+    {
+      "id": "O04",
+      "title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+      "file": "05_O04_GEO마케팅.png",
+      "copy_lines": [
+        "GEO 마케팅",
+        "홈페이지 개선",
+        "반영됐나요?"
+      ],
+      "width": 1280,
+      "height": 600,
+      "sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+      "bytes": 423206,
+      "body_file": "O04-geo-llms-txt-delivery-review.md"
+    }
+  ],
+  "existing37_images_unchanged": true,
+  "external_platform_posts_or_schedules": 0,
+  "visual_review": {
+    "completed": true,
+    "reviewer": "Codex",
+    "images_individually_opened": 5,
+    "copy_lines_matched": 15,
+    "three_centered_lines_each": true,
+    "text_clipping_detected": false,
+    "matches_existing_template": true,
+    "local_gallery_opened_in_chrome": true,
+    "gallery_image_display_screenshot_checked": true
+  }
+}
