@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-27T14:55:11.372504+09:00",
+  "read_only": true,
+  "brief_path": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/topic-plan.json",
+  "brief_sha256": "945b8ad6570ef215289ba5f10723bbaaeeb205cb5809d2ef6596b1c59c410656",
+  "brief_file_written": false,
+  "manuscripts_written": 0,
+  "platform_mutations": 0,
+  "current_nv_reservation_state_verified": false,
+  "items": [
+    "N02"
+  ],
+  "evidence_file": "batch09-evidence.md",
+  "query": {
+    "text": "LASIK Seoul English consultation",
+    "language": "English query",
+    "country_or_google_location_controlled": false,
+    "engine": "integrated web search tool search_query; not controlled Google SERP",
+    "observed_day_kst": "2026-10-27",
+    "monthly_volume_measured": false,
+    "rank_claim": false
+  },
+  "clinic_primary_samples": [
+    {
+      "name": "St. Mary's Jin Eye Center",
+      "url": "https://jin-eye.co.kr/en_us/international-patients/",
+      "status": 200,
+      "observed": [
+        "영문 국제환자 안내",
+        "시력교정 진료 메뉴",
+        "병원의 영어 상담 자체 설명",
+        "온라인 문의/상담 링크"
+      ],
+      "service_delivery_or_medical_outcome_verified": false
+    },
+    {
+      "name": "B&VIIT Eye Center",
+      "url": "https://english.bnviit.com/",
+      "status": 200,
+      "official_relationship": "Korean hospital homepage https://www.bnviit.com/ English link -> https://english.bnviit.com/ observed via web tool",
+      "observed": [
+        "영문 진료 메뉴",
+        "검사 예약/연락 안내",
+        "위치 안내 링크"
+      ],
+      "rank_in_query_claimed": false,
+      "service_delivery_or_medical_outcome_verified": false
+    }
+  ],
+  "owned_foreign_source": {
+    "url": "https://www.blinkad.kr/foreign-marketing",
+    "status": 200,
+    "checked_at": "2026-10-27T14:50:35.418944+09:00"
+  },
+  "comparison_goal": "마케팅 비교 후보 포함/제외 이유; 의료 추천·우열평가 아님"
+}
