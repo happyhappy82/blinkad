@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-27T20:43:05.240659+09:00",
+  "id": "O05",
+  "before": "예산을 조정할 때는 무엇을 문의로 셌는지 함께 봅니다",
+  "after": "예산을 조정할 때는 문의를 어떻게 측정했는지 함께 봅니다",
+  "before_sha256": "183806cf90ad33ebe759e98a4bd5ff5d0b27711b572d65f4f49b59f2fffc25ee",
+  "after_sha256": "f5479a4022ecbadc90ea03961700b32eff5132c829245ad7c1a78e85cc6f490e",
+  "source_html_updated": [
+    "index.html",
+    "openads.html",
+    "O05-openads-article.html",
+    "전체17편_원고보기.html",
+    "openads-five-drafts.html"
+  ],
+  "other16_bodies_and_item_metadata_unchanged": true,
+  "clean_delivery_body_matches": true,
+  "external_posting_or_scheduling": false
+}

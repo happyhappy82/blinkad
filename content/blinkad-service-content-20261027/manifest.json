@@ -1056,15 +1056,15 @@
       "proposed_slug": "hospital-google-ads-operations",
       "public_url": null,
       "body_file": "O05-hospital-brand-nonbrand-ad-budget.md",
-      "body_sha256": "183806cf90ad33ebe759e98a4bd5ff5d0b27711b572d65f4f49b59f2fffc25ee",
-      "body_chars": 3273,
+      "body_sha256": "f5479a4022ecbadc90ea03961700b32eff5132c829245ad7c1a78e85cc6f490e",
+      "body_chars": 3275,
       "writing_order": 12,
       "writing_batch": 6,
       "internal_editorial_review": "독립 전체원고·근거·중복경계·문체 검토 및 교정 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T19:03:38.256107+09:00",
+      "last_substantive_edit_at": "2026-10-27T20:43:05.240659+09:00",
       "published_at": null,
       "links": [
         "https://support.google.com/google-ads/answer/1722038?hl=en",
@@ -1148,7 +1148,7 @@
           "먼저 알릴 진료와 실제로 상담할 수 있는 조건을 맞춥니다",
           "광고에서 소개한 진료를 연결 페이지에서도 바로 설명합니다",
           "운영 중에는 문의 결과를 보고 바꿀 부분을 정합니다",
-          "예산을 조정할 때는 무엇을 문의로 셌는지 함께 봅니다"
+          "예산을 조정할 때는 문의를 어떻게 측정했는지 함께 봅니다"
         ]
       },
       "claim_ledger": [
@@ -1166,6 +1166,14 @@
             "https://support.google.com/google-ads/answer/11459091?hl=en-IN"
           ],
           "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
+        }
+      ],
+      "wording_revisions": [
+        {
+          "at": "2026-10-27T20:43:05.240659+09:00",
+          "before": "예산을 조정할 때는 무엇을 문의로 셌는지 함께 봅니다",
+          "after": "예산을 조정할 때는 문의를 어떻게 측정했는지 함께 봅니다",
+          "reason": "사용자 피드백: 문의로 셌는지 대신 문의를 측정했는지로 자연스럽게 교정"
         }
       ]
     },
@@ -1577,7 +1585,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T19:03:38.256107+09:00",
+  "updated_at": "2026-10-27T20:43:05.240659+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
