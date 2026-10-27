@@ -10,14 +10,15 @@
     {
       "id": "H02",
       "previous_sha256": "d9dcba6eaf4d492ecb889d0137a4451d1616a854eaf0b6dc4d0d2b60f4a230e3",
-      "revised_sha256": "62059be1330da103e4ca237056e5c7f3cd03a17178d96540fc77aeafc9d4ddb4",
+      "revised_sha256": "8ed59b180ce4e61a9448491652b63026e562d59efdcae10933c80a3784cda32f",
       "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?"
     },
     {
       "id": "H03",
       "previous_sha256": "034a8eb8c9650ae2511b20de8cc1145f99fe28a220d553f2481ceb8b4cbceae0",
-      "revised_sha256": "9d9912b1fa0e17f272a93fe5f909059a10e9e6f270e4d7920b289db05c9596b7",
+      "revised_sha256": "068227687c835794b63ae36be5fb19475c9a85fcf6860fad81bf495952182efe",
       "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?"
     }
-  ]
+  ],
+  "review_followup": "링크 문구·메뉴 연결 담당·어색한 분량 문장 교정"
 }
