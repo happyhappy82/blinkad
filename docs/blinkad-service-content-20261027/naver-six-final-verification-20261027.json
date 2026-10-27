@@ -1,0 +1,188 @@
+{
+  "at": "2026-10-27T22:09:15.521417+09:00",
+  "status": "PASS",
+  "order": [
+    "N01",
+    "N03",
+    "N05",
+    "N06",
+    "N04",
+    "N02"
+  ],
+  "naver_completed": 6,
+  "naver_unpublished": 6,
+  "article_level_checkpoints_before_next": [
+    {
+      "at": "2026-10-27T21:52:03.243658+09:00",
+      "id": "N01",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "before_git_commit": "93ed856",
+      "before_sha256": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+      "after_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
+      "body_chars": 3757,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "필수오류0. 공통/지점별업무→변경수집/실반영→고객불편우선→다음관리업무라는답명확. 그룹접근/개별프로필권한·전화클릭/길찾기요청/Ads포함범위정확. H01선정·O01외주필요·옛N01지표비교를상세반복하지않음. 담당자설명어투자연스러움."
+      },
+      "sequential_position": 1,
+      "previous_ids_committed": [],
+      "next_id": "N03",
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    },
+    {
+      "at": "2026-10-27T21:55:00.052856+09:00",
+      "id": "N03",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "before_git_commit": "93ed856",
+      "before_sha256": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
+      "after_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+      "body_chars": 3515,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "필수오류0. 주력진료/문의/원문/실제응대조건으로첫진료·언어범위결정→한묶음안내→공개후확장이라는답명확. 국적과언어·영문페이지와영어상담구분,효과/경험창작없음. H03기술/O03필요성/옛N03언어버튼검수상세반복없음. Google설명·담당자어투적절."
+      },
+      "sequential_position": 2,
+      "previous_ids_committed": [
+        "N01"
+      ],
+      "next_id": "N05",
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    },
+    {
+      "at": "2026-10-27T21:57:40.240046+09:00",
+      "id": "N05",
+      "title": "외국인 구글광고, 관련 없는 검색에 광고비가 쓰이고 있나요?",
+      "before_git_commit": "93ed856",
+      "before_sha256": "5e6e368b40960b313c41c3c3e3e1d59ca5a2692288633e9df4dd4fe78556b866",
+      "after_sha256": "f9a6af32458963866e4784faf42bb757293174de80afcb6e346d86de6ef22282",
+      "body_chars": 3579,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "필수오류0. 실검색어·서비스적합성·비용/문의자료→유지/제외/보류흐름명확. Search제외일치·동의어/단복수별도·대소문자/오타고려·검색어일부누락정확. 문의0=무관/효과보장없음. H05업체선정·O05전체운영과핵심질문구분. 문체교정필수없음."
+      },
+      "sequential_position": 3,
+      "previous_ids_committed": [
+        "N01",
+        "N03"
+      ],
+      "next_id": "N06",
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    },
+    {
+      "at": "2026-10-27T22:00:42.588014+09:00",
+      "id": "N06",
+      "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+      "before_git_commit": "93ed856",
+      "before_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
+      "after_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+      "body_chars": 3227,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움."
+      },
+      "sequential_position": 4,
+      "previous_ids_committed": [
+        "N01",
+        "N03",
+        "N05"
+      ],
+      "next_id": "N04",
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    },
+    {
+      "at": "2026-10-27T22:03:23.981108+09:00",
+      "id": "N04",
+      "title": "GEO 대행사의 AI 추천·인용 성과, 근거는 어떻게 확인할까요?",
+      "before_git_commit": "93ed856",
+      "before_sha256": "f5359380b99aaf0231ca2117d849d2faae829f8e25e12a7f365acff564a12bf9",
+      "after_sha256": "660b53d872ecaf365a97f6706e92cedc3f5a86a245bbf6641decabf44ff47713",
+      "body_chars": 3502,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "독립검토필수교정1곳반영: 실제고객의열람/선택처럼읽히던문장을 AI가어떤질문과조건에서후보로제시했는지로교정·대조확인. 나머지한주장→답변→출처근거→판단흐름·Gemini범위·가상예시·중복경계·어투필수문제없음. 교정후필수오류0."
+      },
+      "sequential_position": 5,
+      "previous_ids_committed": [
+        "N01",
+        "N03",
+        "N05",
+        "N06"
+      ],
+      "next_id": "N02",
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    },
+    {
+      "at": "2026-10-27T22:05:53.431214+09:00",
+      "id": "N02",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "before_git_commit": "93ed856",
+      "before_sha256": "cbf68a8a56f3643c9c3255ffcc2d89dfa6524928f4a8a29f8471520724655cde",
+      "after_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+      "body_chars": 3577,
+      "independent_review": {
+        "reviewer": "inventory_homepage_topics",
+        "blocking_errors_after_correction": 0,
+        "notes": "사실/근거범위/중복필수오류0. 공개안내와실제언어지원·예약구분,특정병원경쟁사/순위/의료질단정없음. 어색한 소제목 우리병원의개선할업무를 비교한내용을바탕으로우리병원에서고칠일을정합니다 로교정·대조확인. 교정후필수오류0."
+      },
+      "sequential_position": 6,
+      "previous_ids_committed": [
+        "N01",
+        "N03",
+        "N05",
+        "N06",
+        "N04"
+      ],
+      "next_id": null,
+      "platform_writes": 0,
+      "homepage_or_openads_reservations_changed": false
+    }
+  ],
+  "other11_bodies_and_item_metadata_equal_to_93ed856": true,
+  "homepage_publication_and_openads_reservations_preserved": true,
+  "readers_full_text_and_links_match_markdown": true,
+  "article_cards_checked": 80,
+  "all_six_titles_h1_seo_and_body_sha_aligned": true,
+  "references_applied_naver": 6,
+  "owned_utm_links_all_external_drafts": 20,
+  "owned_links_current_public_destinations": 11,
+  "owned_links_scheduled_homepage_destinations": 9,
+  "new_naver_platform_writes": 0,
+  "independent_editorial_review_each": true,
+  "actual_reader_study_or_query_demand_or_campaign_performance_measurement": false,
+  "http_link_check": {
+    "urls": 21,
+    "http200": 16,
+    "expected_scheduled_homepage_http404": 5,
+    "unexpected_non200": 0
+  },
+  "browser_visual_preview": {
+    "chrome_new_tab_opened": true,
+    "six_navigation_titles_and_current_body_observed": true,
+    "first_viewport_screenshot_checked": true,
+    "all_six_separate_screenshots_claimed": false
+  },
+  "final_metadata_corrections": [
+    "external11_rewrite_pending=false",
+    "link deployment:OpenAds5reserved/9links vs Naver6unpublished/11links"
+  ],
+  "independent_package_audit": {
+    "status": "PASS",
+    "comparison_count": 468,
+    "mismatches": 0,
+    "selected_html_files": 17,
+    "selected_article_cards": 64,
+    "other11_body_and_item_metadata_preserved": true,
+    "existing_openads5_reservation_receipt_unchanged": true,
+    "scope": "source/delivery/metadata/body/link comparison, not new platform execution or campaign outcomes"
+  }
+}

@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 6/6 · 미발행",
+  "stage": "공식홈페이지1공개·5예약/오픈애즈5예약보존. 네이버6편 최신제목본문작성·독립검토완료·미발행.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -2410,7 +2410,7 @@
     "deployment_id": "dpl_ARfj5YDhfULj81KmpMRLdF1kW4RN",
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
-    "external11_rewrite_pending": true,
+    "external11_rewrite_pending": false,
     "external_rewrite_pending_count": 0,
     "external_draft_revised_ids": [
       "O01",
@@ -2578,7 +2578,8 @@
       "N04",
       "N02"
     ],
-    "other_bodies_unchanged": true
+    "other_bodies_unchanged": true,
+    "naver_body_application_completed_at": "2026-10-27T22:09:15.521417+09:00"
   },
   "external_one_by_one_workflow": {
     "current_channel": "오픈애즈",
@@ -2592,8 +2593,9 @@
     "current_id": null,
     "current_position": 5,
     "next_id": null,
-    "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
-    "external_rewrite_pending": 0
+    "state": "오픈애즈5예약·네이버6원고작성완료",
+    "external_rewrite_pending": 0,
+    "naver_completed_count": 6
   },
   "external_link_inventory": {
     "placed_links_in_drafts": 20,
@@ -2601,7 +2603,14 @@
     "new_reference_plan_count": 11,
     "actual_rewrite_count": 11,
     "remaining_rewrite_count": 0,
-    "links_are_draft_copy_not_platform_posts": true
+    "links_are_draft_copy_not_platform_posts": false,
+    "deployment_state": {
+      "openads_reserved_articles": 5,
+      "owned_utm_links_in_openads_reserved_bodies": 9,
+      "naver_unpublished_drafts": 6,
+      "owned_utm_links_in_naver_drafts": 11,
+      "new_external_public_publication_confirmed": 0
+    }
   },
   "external_current_links_at_previous_completion": 16,
   "external_scheduled_reference_links_in_drafts": 9,
@@ -2626,6 +2635,7 @@
       "N02"
     ],
     "next_id": null,
-    "state": "순차집필·독립검토 6/6 · 미발행"
+    "state": "네이버6편 순차집필·독립검토완료·미발행",
+    "completed_at": "2026-10-27T22:09:15.521417+09:00"
   }
 }

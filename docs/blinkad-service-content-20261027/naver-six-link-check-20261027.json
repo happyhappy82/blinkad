@@ -1,0 +1,134 @@
+{
+  "checked_at": "2026-10-27T22:11:29.036703+09:00",
+  "links": [
+    {
+      "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://english.bnviit.com/",
+      "status": 200,
+      "final_url": "https://english.bnviit.com/",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://jin-eye.co.kr/en_us/international-patients/",
+      "status": 200,
+      "final_url": "https://jin-eye.co.kr/en_us/international-patients/",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/business/answer/3403100?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/3403100?hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/business/answer/6085339?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/6085339?hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/business/answer/9918094?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/9918094?hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/gemini/answer/14143489?co=GENIE.Platform%3DDesktop&hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/gemini/answer/14143489?co=GENIE.Platform%3DDesktop&hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/2453972?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/google-ads/answer/2453972?hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/2472708?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/google-ads/answer/2472708?hl=en",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+      "expected_future_reference": true
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+      "expected_future_reference": true
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
+      "expected_future_reference": true
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+      "expected_future_reference": true
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
+      "expected_future_reference": true
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_cta",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_cta",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta",
+      "expected_future_reference": false
+    },
+    {
+      "url": "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+      "status": 200,
+      "final_url": "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+      "expected_future_reference": false
+    }
+  ],
+  "expected_scheduled_references": 5,
+  "publication_ready": false,
+  "note": "Future homepage references remain draft-only pending real publication; this is an HTTP access check, not an indexing or performance measurement."
+}

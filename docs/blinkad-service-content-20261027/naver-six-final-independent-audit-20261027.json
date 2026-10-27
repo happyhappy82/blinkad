@@ -1,0 +1,137 @@
+{
+  "checked_at": "2026-10-27T22:13:38.100783+09:00",
+  "status": "PASS",
+  "scope": "Read-only Naver six-article final package audit; only this verification receipt may be written.",
+  "baseline_commit": "93ed856",
+  "source_root": "/tmp/blinkad-official-content-first-pair-20261027",
+  "planning_root": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027",
+  "delivery_root": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고6편_20261027",
+  "order": [
+    "N01",
+    "N03",
+    "N05",
+    "N06",
+    "N04",
+    "N02"
+  ],
+  "items": [
+    {
+      "id": "N01",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "primary_keyword": "프랜차이즈 구글맵 관리",
+      "body_file": "N01-franchise-google-maps-performance-comparison.md",
+      "body_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
+      "body_chars": 3757,
+      "parent": "H01",
+      "publication_not_before": "2026-10-31",
+      "own_links": 2,
+      "platform_registered": false,
+      "platform_posted": false
+    },
+    {
+      "id": "N03",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "primary_keyword": "병원 다국어 홈페이지 제작",
+      "body_file": "N03-hospital-language-page-links.md",
+      "body_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+      "body_chars": 3515,
+      "parent": "H03",
+      "publication_not_before": "2026-10-29",
+      "own_links": 2,
+      "platform_registered": false,
+      "platform_posted": false
+    },
+    {
+      "id": "N05",
+      "title": "외국인 구글광고, 관련 없는 검색에 광고비가 쓰이고 있나요?",
+      "primary_keyword": "외국인 구글광고 검색어",
+      "body_file": "N05-foreign-search-terms-negative-keywords.md",
+      "body_sha256": "f9a6af32458963866e4784faf42bb757293174de80afcb6e346d86de6ef22282",
+      "body_chars": 3579,
+      "parent": "H05",
+      "publication_not_before": "2026-11-02",
+      "own_links": 2,
+      "platform_registered": false,
+      "platform_posted": false
+    },
+    {
+      "id": "N06",
+      "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+      "primary_keyword": "영어권 고객 레딧 후기",
+      "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+      "body_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+      "body_chars": 3227,
+      "parent": "H06",
+      "publication_not_before": "2026-11-04",
+      "own_links": 1,
+      "platform_registered": false,
+      "platform_posted": false
+    },
+    {
+      "id": "N04",
+      "title": "GEO 대행사의 AI 추천·인용 성과, 근거는 어떻게 확인할까요?",
+      "primary_keyword": "GEO 대행 성과 근거",
+      "body_file": "N04-geo-report-recommendation-citation-evidence.md",
+      "body_sha256": "660b53d872ecaf365a97f6706e92cedc3f5a86a245bbf6641decabf44ff47713",
+      "body_chars": 3502,
+      "parent": "H04",
+      "publication_not_before": "2026-11-06",
+      "own_links": 2,
+      "platform_registered": false,
+      "platform_posted": false
+    },
+    {
+      "id": "N02",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "primary_keyword": "병원 외국인 마케팅 경쟁분석",
+      "body_file": "N02-hospital-inbound-competitor-selection.md",
+      "body_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+      "body_chars": 3577,
+      "parent": "H02",
+      "publication_not_before": "2026-10-27",
+      "own_links": 2,
+      "platform_registered": false,
+      "platform_posted": false
+    }
+  ],
+  "checks_run": 468,
+  "html_files_checked": 17,
+  "html_article_comparisons": 64,
+  "other_homepage_and_openads_items_preserved": 11,
+  "links": {
+    "total_owned_external": 20,
+    "naver_draft_links": 11,
+    "openads_registered_body_links": 9,
+    "currently_public_destinations_by_metadata": 11,
+    "future_homepage_destinations_by_metadata": 9,
+    "unplaced_planned_links": 0
+  },
+  "naver_registered_or_scheduled_or_published": false,
+  "openads_reservation_receipt_preserved": true,
+  "new_live_platform_checks": false,
+  "new_reader_research_or_marketing_performance_measurement": false,
+  "visual_screenshot_qa": false,
+  "warnings": [],
+  "errors": [],
+  "top_level_flags_rechecked": {
+    "source_external11_rewrite_pending": false,
+    "plan_external11_rewrite_pending": false,
+    "all_links_are_only_draft_copy": false,
+    "inventory_detail": {
+      "placed_links_in_drafts": 20,
+      "placed_scheduled_homepage_links": 9,
+      "new_reference_plan_count": 11,
+      "actual_rewrite_count": 11,
+      "remaining_rewrite_count": 0,
+      "links_are_draft_copy_not_platform_posts": false,
+      "deployment_state": {
+        "openads_reserved_articles": 5,
+        "owned_utm_links_in_openads_reserved_bodies": 9,
+        "naver_unpublished_drafts": 6,
+        "owned_utm_links_in_naver_drafts": 11,
+        "new_external_public_publication_confirmed": 0
+      }
+    }
+  },
+  "mutations": "No content, repository, UI, account, reservation or platform changes. Verification receipt only."
+}
