@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-27T21:52:03.243658+09:00",
+  "id": "N01",
+  "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+  "before_git_commit": "93ed856",
+  "before_sha256": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+  "after_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
+  "body_chars": 3757,
+  "independent_review": {
+    "reviewer": "inventory_homepage_topics",
+    "blocking_errors_after_correction": 0,
+    "notes": "필수오류0. 공통/지점별업무→변경수집/실반영→고객불편우선→다음관리업무라는답명확. 그룹접근/개별프로필권한·전화클릭/길찾기요청/Ads포함범위정확. H01선정·O01외주필요·옛N01지표비교를상세반복하지않음. 담당자설명어투자연스러움."
+  },
+  "sequential_position": 1,
+  "previous_ids_committed": [],
+  "next_id": "N03",
+  "platform_writes": 0,
+  "homepage_or_openads_reservations_changed": false
+}
