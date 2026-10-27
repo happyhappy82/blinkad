@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-27T21:09:55.325162+09:00",
+  "id": "O01",
+  "old_reference": {
+    "external_id": "O01",
+    "homepage_id": "H01",
+    "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+    "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+    "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+    "homepage_publish_date": "2026-10-31",
+    "homepage_current_state": "scheduled",
+    "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+    "actual_body_applied": true,
+    "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+  },
+  "new_reference": {
+    "external_id": "O01",
+    "homepage_id": "PUBLIC-GOOGLE-MAPS-INQUIRY",
+    "homepage_title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+    "base_url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+    "url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+    "homepage_publish_date": null,
+    "homepage_current_state": "published",
+    "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+    "actual_body_applied": true,
+    "publication_gate": "2026-10-27 실제 HTTP200·제목/본문 확인. 10/28 발행에 맞춰 공개된 관련 참고글로 연결.",
+    "reference_http_verified_at": "2026-10-27T21:09:55.325162+09:00",
+    "reference_http_status": 200
+  },
+  "before_sha256": "88a856de7d0f78c282585e5881878fb59fd3aa5bfbfb6ac3dbf58a1a7d62003f",
+  "after_sha256": "73c229028f879fc6f0192481f0974c19b63f0f0bfa364224b19ff52495b66a48",
+  "changed_paragraph_only": true,
+  "other16_item_metadata_unchanged": true,
+  "http_status": 200,
+  "observed_h1": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+  "changed_html": [
+    "index.html",
+    "openads.html",
+    "전체17편_원고보기.html",
+    "openads-five-drafts.html",
+    "O01-first-openads-article.html"
+  ],
+  "purpose": "10/28예약발행시미공개참고링크회피",
+  "new_post_scheduled": false
+}

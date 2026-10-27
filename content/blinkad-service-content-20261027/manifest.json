@@ -682,21 +682,21 @@
       "proposed_slug": "when-google-maps-management-agency-is-needed",
       "public_url": null,
       "body_file": "O01-google-maps-third-party-booking-links.md",
-      "body_sha256": "88a856de7d0f78c282585e5881878fb59fd3aa5bfbfb6ac3dbf58a1a7d62003f",
-      "body_chars": 3049,
+      "body_sha256": "73c229028f879fc6f0192481f0974c19b63f0f0bfa364224b19ff52495b66a48",
+      "body_chars": 3089,
       "writing_order": 7,
       "writing_batch": 4,
       "internal_editorial_review": "독립 검색의도·중복 경계·공식 근거·문체 검토 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T18:38:24.228900+09:00",
+      "last_substantive_edit_at": "2026-10-27T21:09:55.325162+09:00",
       "published_at": null,
       "links": [
         "https://support.google.com/business/answer/7353941?hl=en",
         "https://support.google.com/business/answer/3039617?hl=en",
         "https://support.google.com/business/answer/3403100?hl=en-GB",
-        "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
         "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
@@ -771,23 +771,25 @@
       ],
       "homepage_reference": {
         "external_id": "O01",
-        "homepage_id": "H01",
-        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
-        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
-        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
-        "homepage_publish_date": "2026-10-31",
-        "homepage_current_state": "scheduled",
+        "homepage_id": "PUBLIC-GOOGLE-MAPS-INQUIRY",
+        "homepage_title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+        "base_url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+        "url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "homepage_publish_date": null,
+        "homepage_current_state": "published",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
         "actual_body_applied": true,
-        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+        "publication_gate": "2026-10-27 실제 HTTP200·제목/본문 확인. 10/28 발행에 맞춰 공개된 관련 참고글로 연결.",
+        "reference_http_verified_at": "2026-10-27T21:09:55.325162+09:00",
+        "reference_http_status": 200
       },
       "publication_gate": {
-        "not_before": "2026-10-31",
-        "reason": "참고글 H01이10/31예약으로현재404. 링크는초안에사전배치.",
+        "not_before": "2026-10-28",
+        "reason": "참고글을 현재 공개된 관련 구글맵 글로 연결·실200확인. 예약10/28 가능.",
         "checks": [
-          "H01 실제공개 HTTP200",
-          "H01 제목/본문/연결내용 일치",
-          "모바일 링크 접근 확인"
+          "현재 참고글 HTTP200",
+          "현재 참고글 제목·본문과 링크 문맥 일치",
+          "모바일 접근 확인"
         ],
         "platform_posting_authorized_this_turn": false,
         "platform_posted": false
@@ -802,7 +804,28 @@
           "3. 매장이 늘수록 본사 요청과 실제 지점 정보가 어긋날 때",
           "필요한 업무부터 나눠 맡기시면 됩니다"
         ]
-      }
+      },
+      "previous_homepage_reference_for_schedule": {
+        "external_id": "O01",
+        "homepage_id": "H01",
+        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "homepage_publish_date": "2026-10-31",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_preparation_edits": [
+        {
+          "at": "2026-10-27T21:09:55.325162+09:00",
+          "reason": "사용자10/28예약시작에맞춰기존10/31공개예정참고글을현재공개된관련글로최소교체. 10/27선호질문60초이상답변없어10/28시작지시우선하여진행.",
+          "previous_paragraph": "여러 매장을 함께 맡길 계획이라면 [프랜차이즈 구글맵 관리 대행사를 고르는 기준](https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body)도 함께 살펴보세요. 매장별 업무 범위와 수행 자료, 견적·인계 조건을 비교할 때 참고하실 수 있습니다.",
+          "current_paragraph": "직접 관리할 부분과 맡길 부분을 정하기 전에는 [Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?](https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body)도 참고해보세요. 프로필 정보와 리뷰, 외국어 안내와 문의 경로를 점검할 때 참고하실 수 있습니다.",
+          "source_verified": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka"
+        }
+      ]
     },
     {
       "id": "N01",
@@ -1585,7 +1608,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T20:43:05.240659+09:00",
+  "updated_at": "2026-10-27T21:09:55.325162+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1599,7 +1622,7 @@
     "오픈애즈": 5
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
-  "external_current_links": 13,
+  "external_current_links": 14,
   "external_planned_h06_links": 1,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
@@ -1812,15 +1835,17 @@
       },
       {
         "external_id": "O01",
-        "homepage_id": "H01",
-        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
-        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
-        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
-        "homepage_publish_date": "2026-10-31",
-        "homepage_current_state": "scheduled",
+        "homepage_id": "PUBLIC-GOOGLE-MAPS-INQUIRY",
+        "homepage_title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+        "base_url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+        "url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "homepage_publish_date": null,
+        "homepage_current_state": "published",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
         "actual_body_applied": true,
-        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+        "publication_gate": "2026-10-27 실제 HTTP200·제목/본문 확인. 10/28 발행에 맞춰 공개된 관련 참고글로 연결.",
+        "reference_http_verified_at": "2026-10-27T21:09:55.325162+09:00",
+        "reference_http_status": 200
       },
       {
         "external_id": "O03",
@@ -1897,12 +1922,12 @@
   },
   "external_link_inventory": {
     "placed_links_in_drafts": 18,
-    "placed_scheduled_homepage_links": 5,
+    "placed_scheduled_homepage_links": 4,
     "new_reference_plan_count": 11,
     "actual_rewrite_count": 5,
     "remaining_rewrite_count": 6,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 5
+  "external_scheduled_reference_links_in_drafts": 4
 }

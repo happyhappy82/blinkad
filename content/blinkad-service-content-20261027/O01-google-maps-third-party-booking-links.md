@@ -36,7 +36,7 @@ Google 비즈니스 프로필에서는 주소·영업시간·연락처·웹사�
 
 프로필 접근 권한도 매장별로 확인해야 합니다. Google은 소유자와 관리자 역할을 구분하며 관리자는 정보 수정·리뷰 응답 등 운영 작업을 할 수 있습니다. 본사가 대행 계약을 했다는 이유만으로 모든 가맹점의 프로필에 자동으로 접근할 수 있는 것은 아닙니다. [Google 소유자·관리자 안내](https://support.google.com/business/answer/3403100?hl=en-GB)
 
-여러 매장을 함께 맡길 계획이라면 [프랜차이즈 구글맵 관리 대행사를 고르는 기준](https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body)도 함께 살펴보세요. 매장별 업무 범위와 수행 자료, 견적·인계 조건을 비교할 때 참고하실 수 있습니다.
+직접 관리할 부분과 맡길 부분을 정하기 전에는 [Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?](https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body)도 참고해보세요. 프로필 정보와 리뷰, 외국어 안내와 문의 경로를 점검할 때 참고하실 수 있습니다.
 
 ## 필요한 업무부터 나눠 맡기시면 됩니다
 
