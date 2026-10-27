@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지1공개·5예약/오픈애즈5예약보존. 네이버6편 최신제목본문작성·독립검토완료·미발행.",
+  "stage": "NV사용자타깃피드백3편수정 1/3 · 기존홈페이지/OA예약보존",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -859,35 +859,34 @@
       "channel": "네이버 프리미엄콘텐츠",
       "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
       "seo_title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
-      "excerpt": "본사 공통업무와 매장별 확인을 나누고 변경 요청·실제 반영·오류 우선순위·다음 작업을 연결하는 프랜차이즈 구글맵 운영 방법을 설명합니다.",
-      "meta_description": "본사 공통업무와 매장별 확인을 나누고 변경 요청·실제 반영·오류 우선순위·다음 작업을 연결하는 프랜차이즈 구글맵 운영 방법을 설명합니다.",
+      "excerpt": "구글맵 프로필이 지점 발견·방문 판단과 브랜드 경험에 중요한 이유를 설명하고, 프랜차이즈 차원의 지속 관리가 필요한 상황을 안내합니다.",
+      "meta_description": "구글맵 프로필이 지점 발견·방문 판단과 브랜드 경험에 중요한 이유를 설명하고, 프랜차이즈 차원의 지속 관리가 필요한 상황을 안내합니다.",
       "primary_keyword": "프랜차이즈 구글맵 관리",
       "parent_keyword": "구글맵 마케팅 대행",
-      "target_audience": "프랜차이즈 본사 마케팅 담당자와 직영점·가맹점 운영 담당자",
+      "target_audience": "프랜차이즈 차원에서 구글맵 프로필 관리를 맡길지 고민하는 대표·본사 마케팅 책임자",
       "proposed_slug": "franchise-google-maps-efficient-management",
       "public_url": null,
       "body_file": "N01-franchise-google-maps-performance-comparison.md",
-      "body_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
-      "body_chars": 3757,
+      "body_sha256": "a2c91ef6fb8db912312b685ef41ed27b6d591673e02fee72e5e6c1d48bafa958",
+      "body_chars": 3129,
       "writing_order": 8,
       "writing_batch": 4,
-      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
+      "internal_editorial_review": "사용자타깃피드백반영·도입고민대표적합성독립검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T21:52:03.243658+09:00",
+      "last_substantive_edit_at": "2026-10-27T23:00:53.616010+09:00",
       "published_at": null,
       "links": [
-        "https://support.google.com/business/answer/6085339?hl=en",
-        "https://support.google.com/business/answer/3403100?hl=en",
-        "https://support.google.com/business/answer/9918094?hl=en",
+        "https://support.google.com/business/answer/7091?hl=en",
+        "https://support.google.com/business/answer/3038177?hl=en",
         "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
       "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "필수오류0. 공통/지점별업무→변경수집/실반영→고객불편우선→다음관리업무라는답명확. 그룹접근/개별프로필권한·전화클릭/길찾기요청/Ads포함범위정확. H01선정·O01외주필요·옛N01지표비교를상세반복하지않음. 담당자설명어투자연스러움."
+        "구매자단계독립검토: 운영보고/절차대신매장발견·방문판단·브랜드경험·지속관리필요를답하고대표의대행검토로연결. 필수보완1곳반영: 브랜드를모르는고객도지역·업종/서비스검색에서지점프로필을처음접할수있다는신규고객발견이유추가. 보완후핵심타깃/근거/문체필수문제0."
       ],
       "pre_naver_search_intent_revision": {
         "id": "N01",
@@ -953,32 +952,170 @@
         "platform_posted": false
       },
       "search_intent_revision": {
-        "at": "2026-10-27T21:52:03.243658+09:00",
-        "status": "최신제목 본문재작성·독립검토완료·미발행",
-        "direct_answer": "본사 공통업무를 묶고 지점별 정보를 모아 반영한 뒤, 잘못된 안내와 문의 경로부터 고칩니다. 매장별 완료·미완료 작업과 실적을 보고 다음 관리 순서를 조정합니다.",
+        "at": "2026-10-27T23:00:53.616010+09:00",
+        "status": "사용자타깃피드백반영·미발행",
+        "direct_answer": "각 지점의 프로필은 고객이 매장을 발견하고 사진·리뷰·영업정보·문의 경로로 방문 여부를 판단하는 화면입니다. 지점별 정보가 뒤처지면 고객이 불편을 겪을 수 있으므로, 브랜드 차원의 지속 관리가 필요합니다.",
         "outline": [
-          "모든 매장에서 함께 할 일과 지점마다 다른 일을 나눕니다",
-          "변경 요청은 한곳에 모으고 실제 반영까지 확인합니다",
-          "먼저 고칠 매장은 고객이 불편을 겪는 곳부터 고릅니다",
-          "월간 보고에는 다음에 고칠 내용까지 담겨야 합니다"
+          "구글맵은 고객이 방문할 매장을 고르는 화면입니다",
+          "한 지점의 부정확한 안내도 브랜드에 대한 인상으로 남을 수 있습니다",
+          "프랜차이즈의 장점을 지점별 프로필에서도 보여줘야 합니다",
+          "꾸준히 관리할 수 있는 방법까지 함께 선택하시면 됩니다"
         ]
       },
       "claim_ledger": [
         {
-          "type": "편집상실무권고·명시한예시",
-          "claim": "본사 공통업무를 묶고 지점별 정보를 모아 반영한 뒤, 잘못된 안내와 문의 경로부터 고칩니다. 매장별 완료·미완료 작업과 실적을 보고 다음 관리 순서를 조정합니다.",
-          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+          "type": "편집상채널채택권고",
+          "claim": "각 지점의 프로필은 고객이 매장을 발견하고 사진·리뷰·영업정보·문의 경로로 방문 여부를 판단하는 화면입니다. 지점별 정보가 뒤처지면 고객이 불편을 겪을 수 있으므로, 브랜드 차원의 지속 관리가 필요합니다.",
+          "scope": "대표의도입고민을답하는권고. 보편외국인행동·계정/고객성과·순위/매출증가보장아님"
         },
         {
-          "type": "공식자료의기능·공개안내",
+          "type": "공식기능/공개대화근거",
           "sources": [
-            "https://support.google.com/business/answer/6085339?hl=en",
-            "https://support.google.com/business/answer/3403100?hl=en",
-            "https://support.google.com/business/answer/9918094?hl=en"
+            "https://support.google.com/business/answer/7091?hl=en",
+            "https://support.google.com/business/answer/3038177?hl=en"
           ],
-          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+          "scope": "각자료가직접뒷받침하는공개기능/대화/조사범위에한정"
         }
-      ]
+      ],
+      "pre_buyer_stage_revision_20261027": {
+        "id": "N01",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+        "seo_title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+        "excerpt": "본사 공통업무와 매장별 확인을 나누고 변경 요청·실제 반영·오류 우선순위·다음 작업을 연결하는 프랜차이즈 구글맵 운영 방법을 설명합니다.",
+        "meta_description": "본사 공통업무와 매장별 확인을 나누고 변경 요청·실제 반영·오류 우선순위·다음 작업을 연결하는 프랜차이즈 구글맵 운영 방법을 설명합니다.",
+        "primary_keyword": "프랜차이즈 구글맵 관리",
+        "parent_keyword": "구글맵 마케팅 대행",
+        "target_audience": "프랜차이즈 본사 마케팅 담당자와 직영점·가맹점 운영 담당자",
+        "proposed_slug": "franchise-google-maps-efficient-management",
+        "public_url": null,
+        "body_file": "N01-franchise-google-maps-performance-comparison.md",
+        "body_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
+        "body_chars": 3757,
+        "writing_order": 8,
+        "writing_batch": 4,
+        "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T21:52:03.243658+09:00",
+        "published_at": null,
+        "links": [
+          "https://support.google.com/business/answer/6085339?hl=en",
+          "https://support.google.com/business/answer/3403100?hl=en",
+          "https://support.google.com/business/answer/9918094?hl=en",
+          "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+          "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
+        "review_notes": [
+          "필수오류0. 공통/지점별업무→변경수집/실반영→고객불편우선→다음관리업무라는답명확. 그룹접근/개별프로필권한·전화클릭/길찾기요청/Ads포함범위정확. H01선정·O01외주필요·옛N01지표비교를상세반복하지않음. 담당자설명어투자연스러움."
+        ],
+        "pre_naver_search_intent_revision": {
+          "id": "N01",
+          "type": "신규 인사이트",
+          "channel": "네이버 프리미엄콘텐츠",
+          "title": "프랜차이즈 구글맵 성과, 매장별 수치를 같은 조건으로 비교하세요",
+          "seo_title": "프랜차이즈 구글맵 성과, 매장별 수치를 같은 조건으로 비교하세요",
+          "excerpt": "프랜차이즈 구글맵 성과를 비교하실 때는 매장별 조회수 순위보다 기간과 지표 정의부터 맞추는 게 좋습니다.",
+          "meta_description": "프랜차이즈 구글맵 성과를 비교하실 때는 매장별 조회수 순위보다 기간과 지표 정의부터 맞추는 게 좋습니다.",
+          "primary_keyword": "프랜차이즈 매장별 구글맵 성과 비교",
+          "parent_keyword": "구글맵 마케팅 대행",
+          "target_audience": "프랜차이즈 본사 마케팅 담당자와 직영점·가맹점 운영 담당자",
+          "proposed_slug": "franchise-google-maps-performance-comparison",
+          "public_url": null,
+          "body_file": "N01-franchise-google-maps-performance-comparison.md",
+          "body_sha256": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+          "body_chars": 3882,
+          "writing_order": 8,
+          "writing_batch": 4,
+          "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+          "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+          "public_byline_proposal": "블링크애드",
+          "fact_checked_at": "2026-10-27",
+          "last_substantive_edit_at": "2026-10-27T14:56:37.933093+09:00",
+          "published_at": null,
+          "links": [
+            "https://support.google.com/business/answer/9918094?hl=en",
+            "https://support.google.com/business/answer/9918094?hl=en",
+            "https://support.google.com/business/answer/7475773?hl=en",
+            "https://www.blinkad.kr/google-map-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+            "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
+          ],
+          "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+          "evidence_file": "../../docs/blinkad-service-content-20261027/batch04-evidence.md",
+          "review_notes": [
+            "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+            "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+            "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+          ]
+        },
+        "homepage_reference": {
+          "external_id": "N01",
+          "homepage_id": "H01",
+          "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+          "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+          "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+          "homepage_publish_date": "2026-10-31",
+          "homepage_current_state": "scheduled",
+          "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+          "actual_body_applied": true,
+          "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+        },
+        "publication_gate": {
+          "not_before": "2026-10-31",
+          "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+          "checks": [
+            "참고글HTTP200",
+            "제목·본문과링크문맥일치",
+            "모바일접근확인"
+          ],
+          "platform_posting_authorized_this_turn": false,
+          "platform_registered": false,
+          "platform_posted": false
+        },
+        "search_intent_revision": {
+          "at": "2026-10-27T21:52:03.243658+09:00",
+          "status": "최신제목 본문재작성·독립검토완료·미발행",
+          "direct_answer": "본사 공통업무를 묶고 지점별 정보를 모아 반영한 뒤, 잘못된 안내와 문의 경로부터 고칩니다. 매장별 완료·미완료 작업과 실적을 보고 다음 관리 순서를 조정합니다.",
+          "outline": [
+            "모든 매장에서 함께 할 일과 지점마다 다른 일을 나눕니다",
+            "변경 요청은 한곳에 모으고 실제 반영까지 확인합니다",
+            "먼저 고칠 매장은 고객이 불편을 겪는 곳부터 고릅니다",
+            "월간 보고에는 다음에 고칠 내용까지 담겨야 합니다"
+          ]
+        },
+        "claim_ledger": [
+          {
+            "type": "편집상실무권고·명시한예시",
+            "claim": "본사 공통업무를 묶고 지점별 정보를 모아 반영한 뒤, 잘못된 안내와 문의 경로부터 고칩니다. 매장별 완료·미완료 작업과 실적을 보고 다음 관리 순서를 조정합니다.",
+            "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+          },
+          {
+            "type": "공식자료의기능·공개안내",
+            "sources": [
+              "https://support.google.com/business/answer/6085339?hl=en",
+              "https://support.google.com/business/answer/3403100?hl=en",
+              "https://support.google.com/business/answer/9918094?hl=en"
+            ],
+            "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+          }
+        ]
+      },
+      "buyer_stage_feedback": {
+        "decision": "프로필 관리의 중요성을 이해하고 프랜차이즈 차원의 지속 관리를 검토한다.",
+        "question": "여러 지점의 구글맵을 왜 브랜드 차원에서 관리해야 하는가?",
+        "excluded_operating_focus": [
+          "보고서 읽는 법",
+          "실적 지표 비교",
+          "점주 승인·변경 요청 접수 절차",
+          "운영 담당자의 월별 업무 설명"
+        ],
+        "title_origin": "N01사용자기존제목유지. N05/N06표현은작업자가현재/기존사용자방향에맞춰작성·사용자최종확인전.",
+        "review_notes": "구매자단계독립검토: 운영보고/절차대신매장발견·방문판단·브랜드경험·지속관리필요를답하고대표의대행검토로연결. 필수보완1곳반영: 브랜드를모르는고객도지역·업종/서비스검색에서지점프로필을처음접할수있다는신규고객발견이유추가. 보완후핵심타깃/근거/문체필수문제0."
+      }
     },
     {
       "id": "N03",
@@ -2270,7 +2407,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T22:05:53.431214+09:00",
+  "updated_at": "2026-10-27T23:00:53.616010+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2637,5 +2774,20 @@
     "next_id": null,
     "state": "네이버6편 순차집필·독립검토완료·미발행",
     "completed_at": "2026-10-27T22:09:15.521417+09:00"
-  }
+  },
+  "buyer_stage_revision_20261027": {
+    "order": [
+      "N01",
+      "N05",
+      "N06"
+    ],
+    "completed_ids": [
+      "N01"
+    ],
+    "started_at": "2026-10-27T23:00:53.616010+09:00",
+    "reason": "사용자피드백:채널채택을고민하는대표대상필요성/중요성으로교정",
+    "next_id": "N05",
+    "state": "도입고민타깃교정 1/3 · 미발행"
+  },
+  "buyer_stage_editorial_rule": "독자가 이미 운영 중인 실무자라고 전제하지 않는다. 운영·보고·설정은 필요성을 설명하는 짧은 예시로만 사용한다. 중복 회피 때문에 도입 고민을 다른 단계로 바꾸지 않는다."
 }

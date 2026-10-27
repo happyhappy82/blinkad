@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-27T23:00:53.616010+09:00",
+  "id": "N01",
+  "before_git_commit": "31d7dbf",
+  "before_title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+  "after_title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+  "before_sha256": "a1645da319d3e342031ed99fcab0e6719a79526fe4f3cf9a89ff6c8b9553ae77",
+  "after_sha256": "a2c91ef6fb8db912312b685ef41ed27b6d591673e02fee72e5e6c1d48bafa958",
+  "reviewer": "inventory_homepage_topics",
+  "review_focus": "서비스도입을고민하는대표/마케팅담당자의첫고민에답하는지우선",
+  "review_notes": "구매자단계독립검토: 운영보고/절차대신매장발견·방문판단·브랜드경험·지속관리필요를답하고대표의대행검토로연결. 필수보완1곳반영: 브랜드를모르는고객도지역·업종/서비스검색에서지점프로필을처음접할수있다는신규고객발견이유추가. 보완후핵심타깃/근거/문체필수문제0.",
+  "other16_item_metadata_unchanged_this_checkpoint": true,
+  "platform_writes": 0,
+  "previous_completed_ids": []
+}
