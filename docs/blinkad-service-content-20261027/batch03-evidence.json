@@ -1,0 +1,82 @@
+{
+  "checked_at": "2026-10-27T14:46:59.352527+09:00",
+  "batch": 3,
+  "article_ids": [
+    "H06",
+    "H04"
+  ],
+  "stage": "집필근거·원고미작성",
+  "brief_read": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/topic-plan.json",
+  "sources": [
+    {
+      "id": "B1",
+      "url": "https://www.pewresearch.org/internet/fact-sheet/social-media/",
+      "scope": "미국성인2026 ever-use 독립조사",
+      "verified": "official_body_reread"
+    },
+    {
+      "id": "B2",
+      "url": "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+      "scope": "미국·영국월간social/LLM/ecommerce이용자18~65세공급사구매조사",
+      "verified": "official_body_reread"
+    },
+    {
+      "id": "B3",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "scope": "Google검색AI기능자격과접근·미리보기제어",
+      "verified": "official_body_reread"
+    },
+    {
+      "id": "B4",
+      "url": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers#google-extended",
+      "scope": "Googlebot vs Google-Extended의제품별적용범위",
+      "verified": "official_body_reread"
+    },
+    {
+      "id": "B5",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag",
+      "scope": "noindex/미리보기규칙·크롤러가읽을수있어야함",
+      "verified": "official_body_reread"
+    }
+  ],
+  "h06": {
+    "source_ids": [
+      "B1",
+      "B2"
+    ],
+    "normative_recommendation": "질문·후기를초기계획에서확인하라는강한행동권고",
+    "not_inferred": [
+      "모든영어권이용",
+      "모든업종게시필수",
+      "한국방문전환효과"
+    ],
+    "industry_discussion_sample_verified_in_this_research": false,
+    "existing_reddit_evidence_file": "/tmp/blinkad-six-keywords-20261027/reddit-importance-evidence.md",
+    "service_cta_allowed_by_brief": false
+  },
+  "h04": {
+    "source_ids": [
+      "B3",
+      "B4",
+      "B5"
+    ],
+    "separate_controls": [
+      "검색크롤링/검색자격",
+      "검색미리보기/일부AI검색직접입력",
+      "일부Gemini학습·grounding"
+    ],
+    "google_extended_scope": "GeminiApps/VertexAI의공식설명된일부향후학습및grounding제품사용",
+    "google_extended_search_ranking_effect": "공식문서는검색게재·순위에영향없음으로설명",
+    "noindex_requires_crawl_access": true,
+    "all_ai_control_claim_allowed": false,
+    "copy_paste_server_commands_provided": false
+  },
+  "not_performed": [
+    "기사본문작성",
+    "플랫폼조작",
+    "고객/광고계정조회",
+    "현재사이트설정조사",
+    "설정·광고변경",
+    "Git변경"
+  ]
+}

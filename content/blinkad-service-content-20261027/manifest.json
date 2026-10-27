@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고4건 작성·내부 검토 완료·사용자 문체방향 확인·미발행",
+  "stage": "원고6건 작성·내부 검토 완료·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -289,15 +289,92 @@
           "scope": "기존 비용글의 CPC/전환율/과금 일반론·수치를 새 원고의 검증 근거로 승계하지 않음"
         }
       ]
+    },
+    {
+      "id": "H06",
+      "type": "신규 인사이트",
+      "channel": "공식홈페이지",
+      "title": "영어권 외국인 마케팅, 레딧도 처음부터 준비하세요",
+      "seo_title": "영어권 외국인 마케팅, 레딧도 처음부터 준비하세요",
+      "excerpt": "영어권 고객을 대상으로 마케팅을 준비하신다면, 레딧에서 우리 업종의 질문과 후기를 확인하는 일은 처음부터 함께 하시는 게 좋습니다.",
+      "meta_description": "영어권 고객을 대상으로 마케팅을 준비하신다면, 레딧에서 우리 업종의 질문과 후기를 확인하는 일은 처음부터 함께 하시는 게 좋습니다.",
+      "primary_keyword": "영어권 외국인 마케팅 레딧",
+      "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+      "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+      "proposed_slug": "english-inbound-marketing-reddit",
+      "public_url": null,
+      "body_file": "H06-english-inbound-marketing-reddit.md",
+      "body_sha256": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
+      "body_chars": 2719,
+      "writing_order": 5,
+      "writing_batch": 3,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:51:50.711860+09:00",
+      "published_at": null,
+      "links": [
+        "https://www.reddit.com/r/koreatravel/comments/16xz28j/smile_lasik_clinic_recommendation/",
+        "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/",
+        "https://www.blinkad.kr/blog/oigug-in-goangoanggaeg-sonnim-eun-neibeoeseo-uli-maejang-eul-chaj-ji-anhseubnida"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch03-evidence.md",
+      "review_notes": [
+        "H04 Googlebot/Extended·검색/학습/일부grounding·미리보기/noindex 범위 공식대조 완료, 실제anchor #control 수정",
+        "H06 초기채널검토 중심·공개영어토론2표본 확인, 보편이용·성과·병원우열로 일반화하지 않음",
+        "독립기능검토·독자/문체검토 완료, 제목 직접답과 검색제외 설명 보완, 첫4편 본문 불변"
+      ]
+    },
+    {
+      "id": "H04",
+      "type": "신규 인사이트",
+      "channel": "공식홈페이지",
+      "title": "Google AI 검색에 노출되려면 AI 학습도 허용해야 하나요?",
+      "seo_title": "Google AI 검색에 노출되려면 AI 학습도 허용해야 하나요?",
+      "excerpt": "Google 검색의 AI 기능에 노출되도록 준비하면서, Google-Extended가 관리하는 학습·일부 그라운딩 사용은 제한할 수 있습니다.",
+      "meta_description": "Google 검색의 AI 기능에 노출되도록 준비하면서, Google-Extended가 관리하는 학습·일부 그라운딩 사용은 제한할 수 있습니다.",
+      "primary_keyword": "AI 검색 크롤링과 학습 허용 설정",
+      "parent_keyword": "GEO 마케팅 대행사 / AEO 마케팅 대행사",
+      "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+      "proposed_slug": "google-ai-search-training-controls",
+      "public_url": null,
+      "body_file": "H04-google-ai-search-training-controls.md",
+      "body_sha256": "49496130d86d55b4e95cc131bfd5ff5f6a40820f18362813de196c0abc84f790",
+      "body_chars": 2896,
+      "writing_order": 6,
+      "writing_batch": 3,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:51:50.711860+09:00",
+      "published_at": null,
+      "links": [
+        "https://developers.google.com/search/docs/appearance/ai-features",
+        "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers",
+        "https://developers.google.com/search/docs/appearance/ai-features#control",
+        "https://developers.google.com/search/docs/crawling-indexing/block-indexing",
+        "https://www.blinkad.kr/aeo",
+        "https://www.blinkad.kr/contact"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch03-evidence.md",
+      "review_notes": [
+        "H04 Googlebot/Extended·검색/학습/일부grounding·미리보기/noindex 범위 공식대조 완료, 실제anchor #control 수정",
+        "H06 초기채널검토 중심·공개영어토론2표본 확인, 보편이용·성과·병원우열로 일반화하지 않음",
+        "독립기능검토·독자/문체검토 완료, 제목 직접답과 검색제외 설명 보완, 첫4편 본문 불변"
+      ]
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T14:41:28.646524+09:00",
-  "draft_count": 4,
-  "unwritten_total": 13,
-  "homepage_draft_count": 4,
+  "updated_at": "2026-10-27T14:51:50.711860+09:00",
+  "draft_count": 6,
+  "unwritten_total": 11,
+  "homepage_draft_count": 6,
   "homepage_total": 6,
   "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
-  "latest_batch": 2
+  "latest_batch": 3
 }

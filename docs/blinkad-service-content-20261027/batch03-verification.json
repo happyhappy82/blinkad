@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-27T14:51:50.711860+09:00",
+  "batch": 3,
+  "ids": [
+    "H06",
+    "H04"
+  ],
+  "draft_count": 6,
+  "remaining": 11,
+  "body_hashes": {
+    "H02": "d9dcba6eaf4d492ecb889d0137a4451d1616a854eaf0b6dc4d0d2b60f4a230e3",
+    "H03": "034a8eb8c9650ae2511b20de8cc1145f99fe28a220d553f2481ceb8b4cbceae0",
+    "H01": "beec8723b49c6249b99a26a41370b062d5570337c3cce2fc4faf5a180b439aae",
+    "H05": "666c52e090c5909f6c093f0db7f4f5a08449ddad245aa7061cce9f8b5388bb2b",
+    "H06": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
+    "H04": "49496130d86d55b4e95cc131bfd5ff5f6a40820f18362813de196c0abc84f790"
+  },
+  "previous_articles_unchanged": true,
+  "required_traffic_links_present": true,
+  "future_links_not_fabricated": true,
+  "preview_articles": 6,
+  "review": {
+    "review_complete": true,
+    "mandatory_errors_remaining": 0,
+    "notes": [
+      "H04 Googlebot/Extended·검색/학습/일부grounding·미리보기/noindex 범위 공식대조 완료, 실제anchor #control 수정",
+      "H06 초기채널검토 중심·공개영어토론2표본 확인, 보편이용·성과·병원우열로 일반화하지 않음",
+      "독립기능검토·독자/문체검토 완료, 제목 직접답과 검색제외 설명 보완, 첫4편 본문 불변"
+    ],
+    "reviewers": [
+      "planning_evidence 기능/근거",
+      "inventory_homepage_topics 독자/문체",
+      "root 최종반영/실제토론범위"
+    ]
+  },
+  "production_publication_or_reservation": false
+}
