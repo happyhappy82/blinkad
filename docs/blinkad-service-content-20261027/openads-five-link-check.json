@@ -1,0 +1,145 @@
+{
+  "checked_date": "2026-10-27",
+  "results": [
+    {
+      "url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/ai-features",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/snippet",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/snippet",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/title-link",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/appearance/title-link",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/essentials/technical",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/essentials/technical",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+      "status": 200,
+      "final_url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+      "status": 200,
+      "final_url": "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/adspolicy/answer/176031?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/adspolicy/answer/176031?hl=en",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/business/answer/3039617?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/3039617?hl=en",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/business/answer/3403100?hl=en-GB",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/3403100?hl=en-GB",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/business/answer/7353941?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/business/answer/7353941?hl=en",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/11459091?hl=en-IN",
+      "status": 200,
+      "final_url": "https://support.google.com/google-ads/answer/11459091?hl=en-IN",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/1722038?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/google-ads/answer/1722038?hl=en",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.google.com/google-ads/answer/1722078?hl=en",
+      "status": 200,
+      "final_url": "https://support.google.com/google-ads/answer/1722078?hl=en",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro",
+      "status": 403,
+      "final_url": "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+      "expected_state": "scheduled_reference_not_public"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body",
+      "expected_state": "scheduled_reference_not_public"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+      "expected_state": "scheduled_reference_not_public"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+      "expected_state": "scheduled_reference_not_public"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+      "status": 404,
+      "final_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+      "expected_state": "scheduled_reference_not_public"
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta",
+      "expected_state": "public_destination"
+    },
+    {
+      "url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta",
+      "status": 200,
+      "final_url": "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta",
+      "expected_state": "public_destination"
+    }
+  ],
+  "new_platform_posts": 0,
+  "notes": "홈페이지5참고주소는예약상태로404. Reddit Pro문서는자동HTTP요청403이나web도구에서공식본문을직접열람확인. 나머지확인URL은200."
+}

@@ -1,0 +1,57 @@
+{
+  "at": "2026-10-27T19:03:38.256107+09:00",
+  "sequential_order": [
+    "O03",
+    "O05",
+    "O06",
+    "O04"
+  ],
+  "items": [
+    {
+      "id": "O03",
+      "title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+      "before_sha256": "d2a3df225718f2206eedcb45310d1f4b786b589833ad67aec9f494714c42a24c",
+      "after_sha256": "cfaa8307e0cb94978f15b7f65038b3068fc5cbbf0eccfd7980ac01f86c722173",
+      "body_chars": 2833,
+      "reference_homepage_id": "H03",
+      "not_before": "2026-10-29"
+    },
+    {
+      "id": "O05",
+      "title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+      "before_sha256": "8293c925db40bb4b857449abc5519af807967ae61250671c6850383f5a597418",
+      "after_sha256": "183806cf90ad33ebe759e98a4bd5ff5d0b27711b572d65f4f49b59f2fffc25ee",
+      "body_chars": 3273,
+      "reference_homepage_id": "H05",
+      "not_before": "2026-11-02"
+    },
+    {
+      "id": "O06",
+      "title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+      "before_sha256": "f94054ea024def820ff5fd48182ad0bde1b61f82ffc14514a744fc6f5ff41d87",
+      "after_sha256": "f38ef05d411081f90106bcc74e947a9efc7646071d907fc6a8f18f4097b36064",
+      "body_chars": 2793,
+      "reference_homepage_id": "H06",
+      "not_before": "2026-11-04"
+    },
+    {
+      "id": "O04",
+      "title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+      "before_sha256": "cff85c7d4aa899a9612d6dbca37ef01bb0a86173a239cd4523a27f3c75aa88a2",
+      "after_sha256": "30ab9c081dbe96d38eaff3d711903c2dc42fd733cb2d727edd0d93bc394b986c",
+      "body_chars": 3188,
+      "reference_homepage_id": "H04",
+      "not_before": "2026-11-06"
+    }
+  ],
+  "openads_total": 5,
+  "openads_unpublished": 5,
+  "unchanged_other13_body_and_item_metadata_equal_to_1dece64": true,
+  "includes_original_O01_unchanged": true,
+  "all_readers_full_text_and_links_match_markdown": true,
+  "reference_plan_applied_openads": 5,
+  "naver_drafts_rewrite_pending": 6,
+  "external_platform_posts_or_schedules_created": 0,
+  "homepage_content_or_schedules_changed": false,
+  "browser_visual_screenshot_review": false
+}

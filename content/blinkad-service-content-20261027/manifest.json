@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "홈페이지1공개·5예약 유지. 외부콘텐츠 O01 첫 원고 재작성 완료·나머지10편 재작성 대기·외부발행 없음.",
+  "stage": "홈페이지1편공개·5편예약 유지. 오픈애즈5편 재작성·검토완료·미발행. 네이버6편 재작성대기.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -885,38 +885,123 @@
       "id": "O03",
       "type": "신규 인사이트",
       "channel": "오픈애즈",
-      "title": "병원 다국어 홈페이지, 해외에서 영상·지도까지 열어보세요",
-      "seo_title": "병원 다국어 홈페이지, 해외에서 영상·지도까지 열어보세요",
-      "excerpt": "병원 다국어 홈페이지가 국내에서 잘 열리더라도, 목표 국가에서 영상과 지도까지 이용할 수 있는지는 따로 확인하는 게 좋습니다.",
-      "meta_description": "병원 다국어 홈페이지가 국내에서 잘 열리더라도, 목표 국가에서 영상과 지도까지 이용할 수 있는지는 따로 확인하는 게 좋습니다.",
-      "primary_keyword": "병원 다국어 홈페이지 해외 접속 점검",
+      "title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+      "seo_title": "병원 다국어 홈페이지, 해외 외국인 마케팅에 중요할까?",
+      "excerpt": "해외 외국인 마케팅에서 다국어 홈페이지가 중요한 이유를 진료·이용 정보 확인과 문의 판단으로 설명하고 필요한 안내와 제작 범위를 정리합니다.",
+      "meta_description": "해외 외국인 마케팅에서 다국어 홈페이지가 중요한 이유를 진료·이용 정보 확인과 문의 판단으로 설명하고 필요한 안내와 제작 범위를 정리합니다.",
+      "primary_keyword": "병원 다국어 홈페이지",
       "parent_keyword": "병원 다국어 홈페이지 제작",
       "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
-      "proposed_slug": "hospital-overseas-assets-access",
+      "proposed_slug": "hospital-multilingual-website-international-marketing",
       "public_url": null,
       "body_file": "O03-hospital-overseas-assets-access.md",
-      "body_sha256": "d2a3df225718f2206eedcb45310d1f4b786b589833ad67aec9f494714c42a24c",
-      "body_chars": 2732,
+      "body_sha256": "cfaa8307e0cb94978f15b7f65038b3068fc5cbbf0eccfd7980ac01f86c722173",
+      "body_chars": 2833,
       "writing_order": 10,
       "writing_batch": 5,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "독립 전체원고·근거·중복경계·문체 검토 및 교정 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T14:59:32.865612+09:00",
+      "last_substantive_edit_at": "2026-10-27T19:03:38.256107+09:00",
       "published_at": null,
       "links": [
-        "https://developer.chrome.com/docs/devtools/network/",
-        "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
-        "https://www.blinkad.kr/blog/hospital-website-launch-maintenance?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+        "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
         "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch05-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/openads-remaining-evidence.md",
       "review_notes": [
-        "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
-        "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
-        "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+        "필수오류0. 필요성·공식안내·문의판단중심, H03/N03와경계유지. 부정형메타문장과검색접근표현2곳교정."
+      ],
+      "pre_openads_search_intent_revision": {
+        "id": "O03",
+        "type": "신규 인사이트",
+        "channel": "오픈애즈",
+        "title": "병원 다국어 홈페이지, 해외에서 영상·지도까지 열어보세요",
+        "seo_title": "병원 다국어 홈페이지, 해외에서 영상·지도까지 열어보세요",
+        "excerpt": "병원 다국어 홈페이지가 국내에서 잘 열리더라도, 목표 국가에서 영상과 지도까지 이용할 수 있는지는 따로 확인하는 게 좋습니다.",
+        "meta_description": "병원 다국어 홈페이지가 국내에서 잘 열리더라도, 목표 국가에서 영상과 지도까지 이용할 수 있는지는 따로 확인하는 게 좋습니다.",
+        "primary_keyword": "병원 다국어 홈페이지 해외 접속 점검",
+        "parent_keyword": "병원 다국어 홈페이지 제작",
+        "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
+        "proposed_slug": "hospital-overseas-assets-access",
+        "public_url": null,
+        "body_file": "O03-hospital-overseas-assets-access.md",
+        "body_sha256": "d2a3df225718f2206eedcb45310d1f4b786b589833ad67aec9f494714c42a24c",
+        "body_chars": 2732,
+        "writing_order": 10,
+        "writing_batch": 5,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T14:59:32.865612+09:00",
+        "published_at": null,
+        "links": [
+          "https://developer.chrome.com/docs/devtools/network/",
+          "https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html",
+          "https://www.blinkad.kr/blog/hospital-website-launch-maintenance?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+          "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch05-evidence.md",
+        "review_notes": [
+          "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
+          "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
+          "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+        ]
+      },
+      "homepage_reference": {
+        "external_id": "O03",
+        "homepage_id": "H03",
+        "homepage_title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "base_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+        "homepage_publish_date": "2026-10-29",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-10-29",
+        "reason": "참고 홈페이지 글이 예약 상태. 원고에 사전 배치하며 실제 공개 확인 뒤 외부 발행.",
+        "checks": [
+          "참고글 HTTP200",
+          "제목·본문과 링크 문맥 일치",
+          "모바일 접근 확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T19:03:38.256107+09:00",
+        "status": "최신 제목의 본문 재작성·검토 완료·미발행",
+        "direct_answer": "다국어 홈페이지는 광고·SNS에서 전한 내용을 고객이 이해할 언어의 공식 진료·이용 안내로 이어주는 역할을 합니다. 실제 응대와 연결 가능한 범위부터 준비합니다.",
+        "outline": [
+          "광고에서 전한 내용을 홈페이지에서 이어서 설명합니다",
+          "문의를 결정하는 데 필요한 내용을 준비합니다",
+          "외국어 페이지를 만드는 것과 검색·접속 확인은 함께 봅니다",
+          "기존 한국어 홈페이지가 있다면 필요한 부분부터 추가할 수 있습니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상 실무 권고·명시한 예시",
+          "claim": "다국어 홈페이지는 광고·SNS에서 전한 내용을 고객이 이해할 언어의 공식 진료·이용 안내로 이어주는 역할을 합니다. 실제 응대와 연결 가능한 범위부터 준비합니다.",
+          "scope": "실제 특정 고객 사례·수요·전환/문의/노출 성과 실측을 제시하지 않음"
+        },
+        {
+          "type": "공식 플랫폼 기능·정책",
+          "sources": [
+            "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+            "https://developers.google.com/search/docs/essentials/technical"
+          ],
+          "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
+        }
       ]
     },
     {
@@ -961,38 +1046,127 @@
       "id": "O05",
       "type": "신규 인사이트",
       "channel": "오픈애즈",
-      "title": "병원 구글광고 예산, 병원명 검색과 진료 검색을 나눠 보세요",
-      "seo_title": "병원 구글광고 예산, 병원명 검색과 진료 검색을 나눠 보세요",
-      "excerpt": "병원 구글광고 보고서를 보실 때는 병원 이름을 알고 검색한 경우와 진료를 찾다가 들어온 경우를 나눠보시는 게 좋습니다.",
-      "meta_description": "병원 구글광고 보고서를 보실 때는 병원 이름을 알고 검색한 경우와 진료를 찾다가 들어온 경우를 나눠보시는 게 좋습니다.",
-      "primary_keyword": "병원 구글광고 브랜드 비브랜드 예산",
+      "title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+      "seo_title": "병원 구글 광고, 어떻게 하는 게 가장 좋을까?",
+      "excerpt": "병원 구글 광고의 목표 진료와 고객, 연결 페이지를 맞추고 실제 문의 결과에 따라 지역·검색 범위·페이지·예산을 조정하는 방법을 설명합니다.",
+      "meta_description": "병원 구글 광고의 목표 진료와 고객, 연결 페이지를 맞추고 실제 문의 결과에 따라 지역·검색 범위·페이지·예산을 조정하는 방법을 설명합니다.",
+      "primary_keyword": "병원 구글 광고",
       "parent_keyword": "외국인 타겟 구글광고 대행",
       "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
-      "proposed_slug": "hospital-brand-nonbrand-ad-budget",
+      "proposed_slug": "hospital-google-ads-operations",
       "public_url": null,
       "body_file": "O05-hospital-brand-nonbrand-ad-budget.md",
-      "body_sha256": "8293c925db40bb4b857449abc5519af807967ae61250671c6850383f5a597418",
-      "body_chars": 2557,
+      "body_sha256": "183806cf90ad33ebe759e98a4bd5ff5d0b27711b572d65f4f49b59f2fffc25ee",
+      "body_chars": 3273,
       "writing_order": 12,
       "writing_batch": 6,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "독립 전체원고·근거·중복경계·문체 검토 및 교정 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:02:15.414902+09:00",
+      "last_substantive_edit_at": "2026-10-27T19:03:38.256107+09:00",
       "published_at": null,
       "links": [
-        "https://support.google.com/google-ads/answer/2472708?hl=en",
-        "https://support.google.com/google-ads/answer/6372655?hl=en",
-        "https://support.google.com/google-ads/answer/13721847?hl=en",
+        "https://support.google.com/google-ads/answer/1722038?hl=en",
+        "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "https://support.google.com/adspolicy/answer/176031?hl=en",
+        "https://support.google.com/google-ads/answer/11459091?hl=en-IN",
+        "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
         "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch06-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/openads-remaining-evidence.md",
       "review_notes": [
-        "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
-        "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
-        "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+        "공식기능·검색의도독립검토필수오류0. 운영중4상황과조정판단중심. 부정형메타2곳·추가확인문의정의1곳교정."
+      ],
+      "pre_openads_search_intent_revision": {
+        "id": "O05",
+        "type": "신규 인사이트",
+        "channel": "오픈애즈",
+        "title": "병원 구글광고 예산, 병원명 검색과 진료 검색을 나눠 보세요",
+        "seo_title": "병원 구글광고 예산, 병원명 검색과 진료 검색을 나눠 보세요",
+        "excerpt": "병원 구글광고 보고서를 보실 때는 병원 이름을 알고 검색한 경우와 진료를 찾다가 들어온 경우를 나눠보시는 게 좋습니다.",
+        "meta_description": "병원 구글광고 보고서를 보실 때는 병원 이름을 알고 검색한 경우와 진료를 찾다가 들어온 경우를 나눠보시는 게 좋습니다.",
+        "primary_keyword": "병원 구글광고 브랜드 비브랜드 예산",
+        "parent_keyword": "외국인 타겟 구글광고 대행",
+        "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
+        "proposed_slug": "hospital-brand-nonbrand-ad-budget",
+        "public_url": null,
+        "body_file": "O05-hospital-brand-nonbrand-ad-budget.md",
+        "body_sha256": "8293c925db40bb4b857449abc5519af807967ae61250671c6850383f5a597418",
+        "body_chars": 2557,
+        "writing_order": 12,
+        "writing_batch": 6,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:02:15.414902+09:00",
+        "published_at": null,
+        "links": [
+          "https://support.google.com/google-ads/answer/2472708?hl=en",
+          "https://support.google.com/google-ads/answer/6372655?hl=en",
+          "https://support.google.com/google-ads/answer/13721847?hl=en",
+          "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch06-evidence.md",
+        "review_notes": [
+          "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
+          "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
+          "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+        ]
+      },
+      "homepage_reference": {
+        "external_id": "O05",
+        "homepage_id": "H05",
+        "homepage_title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "base_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+        "homepage_publish_date": "2026-11-02",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-11-02",
+        "reason": "참고 홈페이지 글이 예약 상태. 원고에 사전 배치하며 실제 공개 확인 뒤 외부 발행.",
+        "checks": [
+          "참고글 HTTP200",
+          "제목·본문과 링크 문맥 일치",
+          "모바일 접근 확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T19:03:38.256107+09:00",
+        "status": "최신 제목의 본문 재작성·검토 완료·미발행",
+        "direct_answer": "알릴 진료와 실제 상담할 수 있는 고객을 정하고 광고에서 안내·문의까지 연결합니다. 운영 중 실제 문의와 측정 상태를 보고 지역·페이지·예산을 조정합니다.",
+        "outline": [
+          "먼저 알릴 진료와 실제로 상담할 수 있는 조건을 맞춥니다",
+          "광고에서 소개한 진료를 연결 페이지에서도 바로 설명합니다",
+          "운영 중에는 문의 결과를 보고 바꿀 부분을 정합니다",
+          "예산을 조정할 때는 무엇을 문의로 셌는지 함께 봅니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상 실무 권고·명시한 예시",
+          "claim": "알릴 진료와 실제 상담할 수 있는 고객을 정하고 광고에서 안내·문의까지 연결합니다. 운영 중 실제 문의와 측정 상태를 보고 지역·페이지·예산을 조정합니다.",
+          "scope": "실제 특정 고객 사례·수요·전환/문의/노출 성과 실측을 제시하지 않음"
+        },
+        {
+          "type": "공식 플랫폼 기능·정책",
+          "sources": [
+            "https://support.google.com/google-ads/answer/1722038?hl=en",
+            "https://support.google.com/google-ads/answer/1722078?hl=en",
+            "https://support.google.com/adspolicy/answer/176031?hl=en",
+            "https://support.google.com/google-ads/answer/11459091?hl=en-IN"
+          ],
+          "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
+        }
       ]
     },
     {
@@ -1048,36 +1222,35 @@
       "id": "O06",
       "type": "신규 인사이트",
       "channel": "오픈애즈",
-      "title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
-      "seo_title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
-      "excerpt": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
-      "meta_description": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
-      "primary_keyword": "영어권 고객 레딧 브랜드 검색",
+      "title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+      "seo_title": "영어권 고객이 우리 브랜드, 병원을 검색하길 원한다면 필수로 해야 하는 것",
+      "excerpt": "영어권 고객이 브랜드를 더 알아볼 수 있도록 레딧 마케팅의 답변·브랜드 프로필·영문 공식 안내를 함께 준비하는 방법을 설명합니다.",
+      "meta_description": "영어권 고객이 브랜드를 더 알아볼 수 있도록 레딧 마케팅의 답변·브랜드 프로필·영문 공식 안내를 함께 준비하는 방법을 설명합니다.",
+      "primary_keyword": "영어권 고객 레딧 마케팅",
       "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
       "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
-      "proposed_slug": "reddit-brand-search-english-customers",
+      "proposed_slug": "reddit-brand-discovery-english-customers",
       "public_url": null,
       "body_file": "O06-reddit-brand-search-english-customers.md",
-      "body_sha256": "f94054ea024def820ff5fd48182ad0bde1b61f82ffc14514a744fc6f5ff41d87",
-      "body_chars": 2380,
+      "body_sha256": "f38ef05d411081f90106bcc74e947a9efc7646071d907fc6a8f18f4097b36064",
+      "body_chars": 2793,
       "writing_order": 14,
       "writing_batch": 7,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "독립 전체원고·근거·중복경계·문체 검토 및 교정 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+      "last_substantive_edit_at": "2026-10-27T19:03:38.256107+09:00",
       "published_at": null,
       "links": [
-        "https://www.reddit.com/r/koreatravel/comments/16xz28j/smile_lasik_clinic_recommendation/",
-        "https://support.reddithelp.com/hc/en-us/articles/19695647891988-How-does-Reddit-search-work"
+        "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+        "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro",
+        "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/openads-remaining-evidence.md",
       "review_notes": [
-        "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
-        "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
-        "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+        "독립근거·중복/문체검토필수오류0. 관계공개·공식프로필/홈페이지준비중심. 문장2곳·참고글역할설명1곳교정. H0611/4공개후발행조건유지."
       ],
       "pending_public_link": {
         "planned_id": "H06",
@@ -1091,44 +1264,232 @@
           "utm_content": "o06_body"
         },
         "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
-      }
+      },
+      "pre_openads_search_intent_revision": {
+        "id": "O06",
+        "type": "신규 인사이트",
+        "channel": "오픈애즈",
+        "title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
+        "seo_title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
+        "excerpt": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
+        "meta_description": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
+        "primary_keyword": "영어권 고객 레딧 브랜드 검색",
+        "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+        "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+        "proposed_slug": "reddit-brand-search-english-customers",
+        "public_url": null,
+        "body_file": "O06-reddit-brand-search-english-customers.md",
+        "body_sha256": "f94054ea024def820ff5fd48182ad0bde1b61f82ffc14514a744fc6f5ff41d87",
+        "body_chars": 2380,
+        "writing_order": 14,
+        "writing_batch": 7,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+        "published_at": null,
+        "links": [
+          "https://www.reddit.com/r/koreatravel/comments/16xz28j/smile_lasik_clinic_recommendation/",
+          "https://support.reddithelp.com/hc/en-us/articles/19695647891988-How-does-Reddit-search-work"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+        "review_notes": [
+          "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+          "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+          "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+        ],
+        "pending_public_link": {
+          "planned_id": "H06",
+          "public_url": null,
+          "anchor_text": "영어권 고객 유치에서 레딧이 맡는 역할 살펴보기",
+          "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+          "utm_parameters": {
+            "utm_source": "openads",
+            "utm_medium": "referral",
+            "utm_campaign": "blinkad_service_content_20261027",
+            "utm_content": "o06_body"
+          },
+          "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+        }
+      },
+      "homepage_reference": {
+        "external_id": "O06",
+        "homepage_id": "H06",
+        "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body",
+        "homepage_publish_date": "2026-11-04",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-11-04",
+        "reason": "참고 홈페이지 글이 예약 상태. 원고에 사전 배치하며 실제 공개 확인 뒤 외부 발행.",
+        "checks": [
+          "참고글 HTTP200",
+          "제목·본문과 링크 문맥 일치",
+          "모바일 접근 확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T19:03:38.256107+09:00",
+        "status": "최신 제목의 본문 재작성·검토 완료·미발행",
+        "direct_answer": "관련 질문에 도움이 되는 정확한 답변을 준비하고 공식 관계와 영문 브랜드명·프로필·홈페이지 정보를 맞춥니다. 브랜드를 더 알아볼 이유와 확인 가능한 안내를 준비합니다.",
+        "outline": [
+          "우리 서비스와 관련 있는 질문에 어떤 도움을 줄 수 있을까요?",
+          "관심이 생긴 사람이 브랜드를 알아볼 수 있게 합니다",
+          "공식 홈페이지에도 더 확인할 내용을 준비합니다",
+          "운영 후에는 반응과 검색·문의 변화를 나눠 봅니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상 실무 권고·명시한 예시",
+          "claim": "관련 질문에 도움이 되는 정확한 답변을 준비하고 공식 관계와 영문 브랜드명·프로필·홈페이지 정보를 맞춥니다. 브랜드를 더 알아볼 이유와 확인 가능한 안내를 준비합니다.",
+          "scope": "실제 특정 고객 사례·수요·전환/문의/노출 성과 실측을 제시하지 않음"
+        },
+        {
+          "type": "공식 플랫폼 기능·정책",
+          "sources": [
+            "https://redditinc.com/news/introducing-reddit-pro-profile-tools-for-businesses",
+            "https://support.reddithelp.com/hc/en-us/articles/24368958859668-Sign-up-for-Reddit-Pro"
+          ],
+          "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
+        }
+      ]
     },
     {
       "id": "O04",
       "type": "신규 인사이트",
       "channel": "오픈애즈",
-      "title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
-      "seo_title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
-      "excerpt": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
-      "meta_description": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
-      "primary_keyword": "GEO 대행 llms.txt 작업 범위",
+      "title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+      "seo_title": "GEO 마케팅 대행, 맡긴 홈페이지 개선은 실제로 반영됐나요?",
+      "excerpt": "GEO 대행에서 합의한 홈페이지 개선을 실제 URL·공개 본문·링크와 대조하고, 파일 납품·페이지 반영·검색에서 관측한 결과를 구분해 확인합니다.",
+      "meta_description": "GEO 대행에서 합의한 홈페이지 개선을 실제 URL·공개 본문·링크와 대조하고, 파일 납품·페이지 반영·검색에서 관측한 결과를 구분해 확인합니다.",
+      "primary_keyword": "GEO 마케팅 대행",
       "parent_keyword": "GEO 마케팅 대행사 / AEO 마케팅 대행사",
       "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
-      "proposed_slug": "geo-llms-txt-delivery-review",
+      "proposed_slug": "geo-website-improvement-delivery-check",
       "public_url": null,
       "body_file": "O04-geo-llms-txt-delivery-review.md",
-      "body_sha256": "cff85c7d4aa899a9612d6dbca37ef01bb0a86173a239cd4523a27f3c75aa88a2",
-      "body_chars": 2494,
+      "body_sha256": "30ab9c081dbe96d38eaff3d711903c2dc42fd733cb2d727edd0d93bc394b986c",
+      "body_chars": 3188,
       "writing_order": 15,
       "writing_batch": 8,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "독립 전체원고·근거·중복경계·문체 검토 및 교정 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:11:40.754339+09:00",
+      "last_substantive_edit_at": "2026-10-27T19:03:38.256107+09:00",
       "published_at": null,
       "links": [
+        "https://developers.google.com/search/docs/appearance/title-link",
+        "https://developers.google.com/search/docs/appearance/snippet",
         "https://developers.google.com/search/docs/appearance/ai-features",
         "https://developers.google.com/search/docs/essentials/technical",
-        "https://www.blinkad.kr/aeo?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
         "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch08-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/openads-remaining-evidence.md",
       "review_notes": [
-        "O04 Google검색AI의추가파일요건과다른AI범위·계약파일/실제페이지/관측성과를 구분, 공식근거 독립대조",
-        "N04 기존예약9와직접중복을피해 보고서행→질문/답변문장→출처지지→수용/수정/확인불가를 직접 제공",
-        "가상예시를실측/공식등급/의료추천으로확대하지않음, 주소내용일치뿐아니라실제출처연결도있는예시로정밀화·부정형메타문장교정"
+        "독립내용검토필수오류0. 제목뿐아니라설명문재구성주장에snippet공식출처추가. 직접표현·부정형메타2곳교정. H04/N04와경계유지."
+      ],
+      "pre_openads_search_intent_revision": {
+        "id": "O04",
+        "type": "신규 인사이트",
+        "channel": "오픈애즈",
+        "title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
+        "seo_title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
+        "excerpt": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
+        "meta_description": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
+        "primary_keyword": "GEO 대행 llms.txt 작업 범위",
+        "parent_keyword": "GEO 마케팅 대행사 / AEO 마케팅 대행사",
+        "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+        "proposed_slug": "geo-llms-txt-delivery-review",
+        "public_url": null,
+        "body_file": "O04-geo-llms-txt-delivery-review.md",
+        "body_sha256": "cff85c7d4aa899a9612d6dbca37ef01bb0a86173a239cd4523a27f3c75aa88a2",
+        "body_chars": 2494,
+        "writing_order": 15,
+        "writing_batch": 8,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:11:40.754339+09:00",
+        "published_at": null,
+        "links": [
+          "https://developers.google.com/search/docs/appearance/ai-features",
+          "https://developers.google.com/search/docs/essentials/technical",
+          "https://www.blinkad.kr/aeo?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+          "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch08-evidence.md",
+        "review_notes": [
+          "O04 Google검색AI의추가파일요건과다른AI범위·계약파일/실제페이지/관측성과를 구분, 공식근거 독립대조",
+          "N04 기존예약9와직접중복을피해 보고서행→질문/답변문장→출처지지→수용/수정/확인불가를 직접 제공",
+          "가상예시를실측/공식등급/의료추천으로확대하지않음, 주소내용일치뿐아니라실제출처연결도있는예시로정밀화·부정형메타문장교정"
+        ]
+      },
+      "homepage_reference": {
+        "external_id": "O04",
+        "homepage_id": "H04",
+        "homepage_title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
+        "base_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "homepage_publish_date": "2026-11-06",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-11-06",
+        "reason": "참고 홈페이지 글이 예약 상태. 원고에 사전 배치하며 실제 공개 확인 뒤 외부 발행.",
+        "checks": [
+          "참고글 HTTP200",
+          "제목·본문과 링크 문맥 일치",
+          "모바일 접근 확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T19:03:38.256107+09:00",
+        "status": "최신 제목의 본문 재작성·검토 완료·미발행",
+        "direct_answer": "계약한 페이지 작업에 맞춰 공개 URL의 실제 본문·링크와 수정 전후 확인 자료를 대조합니다. 파일 납품, 공개 반영, 색인·검색 관측 결과를 나눠 봅니다.",
+        "outline": [
+          "고치기로 한 페이지 주소와 수정 내용을 확인합니다",
+          "보고서와 고객이 보는 공개 화면을 나란히 봅니다",
+          "파일 납품과 페이지 개선을 구분합니다",
+          "수정 완료와 검색 결과의 변화는 나눠 봅니다",
+          "남은 수정은 위치와 확인 기준을 적어 요청합니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상 실무 권고·명시한 예시",
+          "claim": "계약한 페이지 작업에 맞춰 공개 URL의 실제 본문·링크와 수정 전후 확인 자료를 대조합니다. 파일 납품, 공개 반영, 색인·검색 관측 결과를 나눠 봅니다.",
+          "scope": "실제 특정 고객 사례·수요·전환/문의/노출 성과 실측을 제시하지 않음"
+        },
+        {
+          "type": "공식 플랫폼 기능·정책",
+          "sources": [
+            "https://developers.google.com/search/docs/appearance/title-link",
+            "https://developers.google.com/search/docs/appearance/snippet",
+            "https://developers.google.com/search/docs/appearance/ai-features",
+            "https://developers.google.com/search/docs/essentials/technical"
+          ],
+          "scope": "본문 해당 Google/Reddit 기능·정책에 한정. 광고계정·실제 운영성과를 새로 조회한 것이 아님"
+        }
       ]
     },
     {
@@ -1216,7 +1577,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T18:38:24.228900+09:00",
+  "updated_at": "2026-10-27T19:03:38.256107+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1230,8 +1591,8 @@
     "오픈애즈": 5
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
-  "external_current_links": 15,
-  "external_planned_h06_links": 2,
+  "external_current_links": 13,
+  "external_planned_h06_links": 1,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
     "at": "2026-10-27T16:55:24.987361+09:00",
@@ -1357,9 +1718,13 @@
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
     "external11_rewrite_pending": true,
-    "external_rewrite_pending_count": 10,
+    "external_rewrite_pending_count": 6,
     "external_draft_revised_ids": [
-      "O01"
+      "O01",
+      "O03",
+      "O05",
+      "O06",
+      "O04"
     ]
   },
   "external_reference_policy": {
@@ -1458,7 +1823,7 @@
         "homepage_publish_date": "2026-10-29",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -1470,7 +1835,7 @@
         "homepage_publish_date": "2026-11-02",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -1482,7 +1847,7 @@
         "homepage_publish_date": "2026-11-04",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -1494,12 +1859,16 @@
         "homepage_publish_date": "2026-11-06",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       }
     ],
     "current_body_application": [
-      "O01"
+      "O01",
+      "O03",
+      "O05",
+      "O06",
+      "O04"
     ],
     "other_bodies_unchanged": true
   },
@@ -1512,20 +1881,20 @@
       "O06",
       "O04"
     ],
-    "current_id": "O01",
-    "current_position": 1,
-    "next_id": "O03",
-    "state": "첫 원고 작성·검토 완료·발행 전",
-    "external_rewrite_pending": 10
+    "current_id": null,
+    "current_position": 5,
+    "next_id": null,
+    "state": "오픈애즈5편 순차작성·검토완료·미발행",
+    "external_rewrite_pending": 6
   },
   "external_link_inventory": {
-    "placed_links_in_drafts": 16,
-    "placed_scheduled_homepage_links": 1,
+    "placed_links_in_drafts": 18,
+    "placed_scheduled_homepage_links": 5,
     "new_reference_plan_count": 11,
-    "actual_rewrite_count": 1,
-    "remaining_rewrite_count": 10,
+    "actual_rewrite_count": 5,
+    "remaining_rewrite_count": 6,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 1
+  "external_scheduled_reference_links_in_drafts": 5
 }
