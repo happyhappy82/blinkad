@@ -1,0 +1,74 @@
+{
+  "verified_at": "2026-10-27T14:41:28.646524+09:00",
+  "batch": 2,
+  "new_draft_ids": [
+    "H01",
+    "H05"
+  ],
+  "all_draft_ids": [
+    "H02",
+    "H03",
+    "H01",
+    "H05"
+  ],
+  "draft_count": 4,
+  "homepage_total": 6,
+  "all_total": 17,
+  "unwritten_total": 13,
+  "new_drafts": {
+    "H01": {
+      "title": "프랜차이즈 구글맵 관리 대행, 수정·승인 담당부터 정하세요",
+      "sha256": "beec8723b49c6249b99a26a41370b062d5570337c3cce2fc4faf5a180b439aae",
+      "chars": 3020,
+      "links": 5,
+      "h2": 4
+    },
+    "H05": {
+      "title": "외국인 구글광고, 방한 전 고객과 국내 체류 고객을 나눠야 하나요?",
+      "sha256": "666c52e090c5909f6c093f0db7f4f5a08449ddad245aa7061cce9f8b5388bb2b",
+      "chars": 3719,
+      "links": 6,
+      "h2": 5
+    }
+  },
+  "previous_pair_bodies_and_metadata": "unchanged",
+  "official_sources_read": {
+    "H01": 5,
+    "H05": 5
+  },
+  "public_overlap_pages_get200": 4,
+  "contact_link": "HEAD200·실제 문의 제출 미실행",
+  "independent_review_views": [
+    "H01 GBP기능/권한/정책",
+    "H05 Ads기능/최신변경/분리조건",
+    "두편 한국어/독자/기존글 중복"
+  ],
+  "mandatory_errors_found": 0,
+  "refinements": [
+    "직영/가맹의 본사 확인 범위를 합의 조건으로 교정",
+    "위치 옵션의 정기 체류 추정 표현 정밀화",
+    "유입/구조 등 표현을 문의 화면/캠페인·예산으로 풀어 설명",
+    "캠페인 구성 공식 근거 연결"
+  ],
+  "manifest_body_hashes": "PASS",
+  "preview_structure": "4 articles / 4 h1 / 4 tables / 4 nav links",
+  "preview_visual_screenshot": "미실행",
+  "writing_order_and_nine_batches": "preserved",
+  "external_link_policy": "현재16+H06공개후2=18 예정 불변",
+  "voice_direction": "사용자 확인·원고 전부 게시 승인이라는 뜻 아님",
+  "public_urls": [
+    null,
+    null,
+    null,
+    null
+  ],
+  "account_or_permission_changes": false,
+  "publication_or_production_deployment": false,
+  "existing_reservations_modified": false,
+  "outcomes_measured": false,
+  "limits": [
+    "실제 광고계정·GBP권한·프랜차이즈 계약 미조회",
+    "기존NV비공개예약9 추가대조 미완료",
+    "새 글 검색노출/인용/유입·문의/예약 효과 미측정"
+  ]
+}

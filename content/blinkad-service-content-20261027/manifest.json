@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고2건 작성·내부 검토 완료·사용자 미확인·미발행",
+  "stage": "원고4건 작성·내부 검토 완료·사용자 문체방향 확인·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -140,8 +140,164 @@
         }
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다."
+    },
+    {
+      "id": "H01",
+      "type": "신규 인사이트",
+      "title": "프랜차이즈 구글맵 관리 대행, 수정·승인 담당부터 정하세요",
+      "seo_title": "프랜차이즈 구글맵 관리 대행, 수정·승인 담당부터 정하세요",
+      "excerpt": "프랜차이즈 구글맵을 관리할 때 본사·직영점·가맹점·대행사가 나눌 수정·확인·승인 업무와 Google 권한, 반영 확인, 담당자 인계를 설명합니다.",
+      "meta_description": "프랜차이즈 구글맵을 관리할 때 본사·직영점·가맹점·대행사가 나눌 수정·확인·승인 업무와 Google 권한, 반영 확인, 담당자 인계를 설명합니다.",
+      "primary_keyword": "프랜차이즈 구글맵 관리 대행",
+      "parent_keyword": "구글맵 마케팅 대행",
+      "target_audience": "프랜차이즈 본사 마케팅 담당자, 직영점 담당자, 가맹점주·가맹점 담당자",
+      "proposed_slug": "franchise-google-maps-management-approval",
+      "public_url": null,
+      "body_file": "H01-franchise-google-maps-approval.md",
+      "body_sha256": "beec8723b49c6249b99a26a41370b062d5570337c3cce2fc4faf5a180b439aae",
+      "body_chars": 3020,
+      "writing_order": 3,
+      "writing_batch": 2,
+      "internal_editorial_review": "완료·실제 독자 조사/사용자 승인 아님",
+      "authoring": "Codex 작성·블링크애드 공식 화자",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:41:28.646524+09:00",
+      "published_at": null,
+      "links": [
+        "https://support.google.com/business/answer/3403100",
+        "https://support.google.com/business/answer/7353941",
+        "https://www.blinkad.kr/google-map-marketing",
+        "https://support.google.com/business/answer/3038311",
+        "https://www.blinkad.kr/contact"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "claim_ledger": [
+        {
+          "claim": "개별 Google 프로필 소유자·관리자의 수정·리뷰·게시물 역할",
+          "type": "Google 공식 기능",
+          "sources": [
+            "https://support.google.com/business/answer/3403100?hl=en-GB"
+          ]
+        },
+        {
+          "claim": "제3자 운영 동의·변경 안내·사업주의 소유/공동소유 유지",
+          "type": "Google 공식 플랫폼 정책",
+          "sources": [
+            "https://support.google.com/business/answer/7353941?hl=en"
+          ],
+          "scope": "본사/가맹점의 계약상 권한·법적 소유권을 판정하지 않음"
+        },
+        {
+          "claim": "Google 정보수정 검토와 표시 상태",
+          "type": "Google 공식 기능",
+          "sources": [
+            "https://support.google.com/business/answer/3038311?hl=en-GB"
+          ]
+        },
+        {
+          "claim": "수정·내용 확인·내부 승인·반영 확인 담당표와 인계",
+          "type": "편집상 실무 권고·명시한 예시",
+          "sources": [],
+          "scope": "Google 내장 결재 기능·자사 전용 시스템·모든 매장에 같은 권한을 뜻하지 않음"
+        },
+        {
+          "claim": "블링크애드의 프로필·리뷰·사진/게시물 운영 안내",
+          "type": "현재 자사 제공범위",
+          "sources": [
+            "https://www.blinkad.kr/google-map-marketing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "H05",
+      "type": "신규 인사이트",
+      "title": "외국인 구글광고, 방한 전 고객과 국내 체류 고객을 나눠야 하나요?",
+      "seo_title": "외국인 구글광고, 방한 전 고객과 국내 체류 고객을 나눠야 하나요?",
+      "excerpt": "방한 전 고객과 국내 체류 고객의 구글광고를 나눌지 판단할 위치 옵션·예산·문안·연결 페이지와 문의 비교 기준을 안내합니다.",
+      "meta_description": "방한 전 고객과 국내 체류 고객의 구글광고를 나눌지 판단할 위치 옵션·예산·문안·연결 페이지와 문의 비교 기준을 안내합니다.",
+      "primary_keyword": "외국인 구글광고 방한 전 국내 체류 타기팅",
+      "parent_keyword": "외국인 타겟 구글광고 대행",
+      "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+      "proposed_slug": "foreign-google-ads-before-during-korea-trip",
+      "public_url": null,
+      "body_file": "H05-foreign-google-ads-before-during-korea-trip.md",
+      "body_sha256": "666c52e090c5909f6c093f0db7f4f5a08449ddad245aa7061cce9f8b5388bb2b",
+      "body_chars": 3719,
+      "writing_order": 4,
+      "writing_batch": 2,
+      "internal_editorial_review": "완료·실제 독자 조사/사용자 승인 아님",
+      "authoring": "Codex 작성·블링크애드 공식 화자",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:41:28.646524+09:00",
+      "published_at": null,
+      "links": [
+        "https://support.google.com/google-ads/answer/1722038",
+        "https://support.google.com/google-ads/answer/1722078?hl=en",
+        "https://support.google.com/google-ads/answer/6372655?hl=en",
+        "https://www.blinkad.kr/blog/gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli",
+        "https://support.google.com/google-ads/answer/2472708",
+        "https://www.blinkad.kr/contact"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "claim_ledger": [
+        {
+          "claim": "위치/위치 또는 관심도와 위치 추정 한계",
+          "type": "Google 공식 기능",
+          "sources": [
+            "https://support.google.com/google-ads/answer/1722038?hl=en"
+          ],
+          "scope": "국적·입국·여행 일정·실제 방한 단계를 확정하지 않음"
+        },
+        {
+          "claim": "Search 캠페인 언어 타기팅의 2026년9월 변경 안내",
+          "type": "Google 공식 현행 변경 안내",
+          "sources": [
+            "https://support.google.com/google-ads/answer/1722078?hl=en"
+          ],
+          "scope": "현재 특정 운영 계정의 적용 상태는 미조회. 모든 광고 채널에 확대하지 않음"
+        },
+        {
+          "claim": "다른 예산·위치 설정의 캠페인 분리와 같은 설정의 광고그룹 활용",
+          "type": "Google 공식 계정 구성 원칙과 실무 적용",
+          "sources": [
+            "https://support.google.com/google-ads/answer/6372655?hl=en"
+          ]
+        },
+        {
+          "claim": "검색어 보고의 실제 검색어·일부 생략 범위",
+          "type": "Google 공식 기능",
+          "sources": [
+            "https://support.google.com/google-ads/answer/2472708?hl=en"
+          ]
+        },
+        {
+          "claim": "상황별 안내 비교표·문의/예약 집계 구분",
+          "type": "편집상 실무 권고·예시",
+          "sources": [],
+          "scope": "실제 캠페인이나 고객 성과 측정 자료 아님"
+        },
+        {
+          "claim": "블링크애드 광고운영 문의·기존 비용 관련 읽기",
+          "type": "현재 자사 제공범위·관련 페이지",
+          "sources": [
+            "https://www.blinkad.kr/google-map-marketing",
+            "https://www.blinkad.kr/contact"
+          ],
+          "scope": "기존 비용글의 CPC/전환율/과금 일반론·수치를 새 원고의 검증 근거로 승계하지 않음"
+        }
+      ]
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
-  "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다."
+  "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+  "updated_at": "2026-10-27T14:41:28.646524+09:00",
+  "draft_count": 4,
+  "unwritten_total": 13,
+  "homepage_draft_count": 4,
+  "homepage_total": 6,
+  "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
+  "latest_batch": 2
 }
