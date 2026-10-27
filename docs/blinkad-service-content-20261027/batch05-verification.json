@@ -1,0 +1,41 @@
+{
+  "verified_at": "2026-10-27T14:59:32.865612+09:00",
+  "batch": 5,
+  "ids": [
+    "N03",
+    "O03"
+  ],
+  "draft_count": 10,
+  "remaining": 7,
+  "body_hashes": {
+    "H02": "d9dcba6eaf4d492ecb889d0137a4451d1616a854eaf0b6dc4d0d2b60f4a230e3",
+    "H03": "034a8eb8c9650ae2511b20de8cc1145f99fe28a220d553f2481ceb8b4cbceae0",
+    "H01": "beec8723b49c6249b99a26a41370b062d5570337c3cce2fc4faf5a180b439aae",
+    "H05": "666c52e090c5909f6c093f0db7f4f5a08449ddad245aa7061cce9f8b5388bb2b",
+    "H06": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
+    "H04": "49496130d86d55b4e95cc131bfd5ff5f6a40820f18362813de196c0abc84f790",
+    "O01": "70595704349c99839adc853459fab3a2311e13981a0acf1da69ff375b01e05ab",
+    "N01": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+    "N03": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
+    "O03": "d2a3df225718f2206eedcb45310d1f4b786b589833ad67aec9f494714c42a24c"
+  },
+  "previous_articles_unchanged": true,
+  "required_traffic_links_present": true,
+  "future_links_not_fabricated": true,
+  "preview_articles": 10,
+  "review": {
+    "review_complete": true,
+    "mandatory_errors_remaining": 0,
+    "notes": [
+      "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
+      "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
+      "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+    ],
+    "reviewers": [
+      "inventory_homepage_topics 기능/근거",
+      "inventory_external_topics 독자/중복",
+      "root 반영·본문/UTM 검토"
+    ]
+  },
+  "production_publication_or_reservation": false
+}

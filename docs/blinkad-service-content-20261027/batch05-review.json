@@ -1,0 +1,10 @@
+{
+  "review_complete": true,
+  "mandatory_errors_remaining": 0,
+  "notes": [
+    "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
+    "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
+    "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+  ],
+  "reviewers": ["inventory_homepage_topics 기능/근거", "inventory_external_topics 독자/중복", "root 반영·본문/UTM 검토"]
+}
