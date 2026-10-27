@@ -8,14 +8,15 @@
       "id": "H02",
       "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
       "before_sha256": "d9dcba6eaf4d492ecb889d0137a4451d1616a854eaf0b6dc4d0d2b60f4a230e3",
-      "after_sha256": "8ed59b180ce4e61a9448491652b63026e562d59efdcae10933c80a3784cda32f",
-      "chars": 3024,
+      "after_sha256": "c98f54a33ae37262256eeb9ace2475e4221f63636d2db98defa8705cf9c796a5",
+      "chars": 2984,
       "outline": [
         "지금 막혀 있는 부분에 맞춰 맡기시면 됩니다",
         "견적에는 실제로 바뀔 내용이 보여야 합니다",
         "병원에서는 공식 정보와 응대 가능한 범위를 알려주세요",
         "맡긴 뒤에는 노출과 실제 문의를 나눠 봅니다"
-      ]
+      ],
+      "before_terminology_edit_sha256": "8ed59b180ce4e61a9448491652b63026e562d59efdcae10933c80a3784cda32f"
     },
     {
       "id": "H03",
@@ -61,14 +62,15 @@
       "id": "H06",
       "title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
       "before_sha256": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
-      "after_sha256": "7ba387b12c9fd1729cb361c42cd2c152a43bac97a5ac1c0d97dfc4b1c4e88be6",
-      "chars": 2981,
+      "after_sha256": "e15d15cce730cde96c1dff1f33bba1fd89a7adad5918b8df01fac95e67979235",
+      "chars": 2973,
       "outline": [
         "1. 고객이 구매 전에 묻는 질문을 구체적으로 알 수 있습니다",
         "2. 경험담을 보면 고객이 만족하거나 불편했던 조건을 읽을 수 있습니다",
         "3. 여러 후보 중 무엇을 비교하는지 확인할 수 있습니다",
         "영어권 마케팅을 시작한다면, 관련 대화부터 읽어보세요"
-      ]
+      ],
+      "before_terminology_edit_sha256": "7ba387b12c9fd1729cb361c42cd2c152a43bac97a5ac1c0d97dfc4b1c4e88be6"
     },
     {
       "id": "H04",
@@ -90,5 +92,6 @@
   "html_full_text_and_links_match_markdown": true,
   "published_urls_all_null": true,
   "publication_or_deployment": false,
-  "visual_screenshot_review": false
+  "visual_screenshot_review": false,
+  "terminology_edit_at": "2026-10-27T17:46:28.819505+09:00"
 }

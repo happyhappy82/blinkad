@@ -13,16 +13,16 @@
       "type": "신규 병원 서비스 안내 페이지",
       "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
       "seo_title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
-      "excerpt": "병원 외국인 마케팅을 위해 맡길 검색·구글맵·다국어 홈페이지·광고·콘텐츠 업무와 결과 확인 방법, 병원 준비자료를 안내합니다.",
-      "meta_description": "병원 외국인 마케팅을 위해 맡길 검색·구글맵·다국어 홈페이지·광고·콘텐츠 업무와 결과 확인 방법, 병원 준비자료를 안내합니다.",
+      "excerpt": "병원 외국인 마케팅을 위해 맡길 구글맵·다국어 홈페이지·구글광고·AI 검색 최적화·레딧 마케팅 업무와 결과 확인 방법, 병원 준비자료를 안내합니다.",
+      "meta_description": "병원 외국인 마케팅을 위해 맡길 구글맵·다국어 홈페이지·구글광고·AI 검색 최적화·레딧 마케팅 업무와 결과 확인 방법, 병원 준비자료를 안내합니다.",
       "primary_keyword": "병원 외국인 마케팅 대행",
       "parent_keyword": "병원 외국인 마케팅 대행",
       "target_audience": "병원 원장·경영 책임자·마케팅 담당자",
       "proposed_slug": "hospital-foreign-marketing",
       "public_url": null,
       "body_file": "H02-hospital-inbound-marketing-services.md",
-      "body_sha256": "8ed59b180ce4e61a9448491652b63026e562d59efdcae10933c80a3784cda32f",
-      "body_chars": 3024,
+      "body_sha256": "c98f54a33ae37262256eeb9ace2475e4221f63636d2db98defa8705cf9c796a5",
+      "body_chars": 2984,
       "writing_order": 1,
       "writing_batch": 1,
       "internal_editorial_review": "검색의도·근거·담당자 문체 독립 검토 완료·사용자 승인 아님",
@@ -42,7 +42,7 @@
       "claim_ledger": [
         {
           "type": "편집상 판단 기준·권고·명시한 예시",
-          "claim": "블링크애드에는 검색·구글맵 진단, 다국어 페이지·콘텐츠 제작, 구글광고, AI 검색 점검과 레딧 관련 업무를 상담할 수 있습니다. 현재 문제에 맞춰 실제 작업·결과물·협조 범위를 정합니다.",
+          "claim": "블링크애드에는 검색·구글맵 진단, 다국어 페이지·콘텐츠 제작, 구글광고, AI 검색 점검과 레딧 마케팅을 상담할 수 있습니다. 현재 문제에 맞춰 실제 작업·결과물·협조 범위를 정합니다.",
           "scope": "고객 성과·수요·실제 특정 업체 경험으로 제시하지 않음"
         },
         {
@@ -100,9 +100,14 @@
         "at": "2026-10-27T16:55:24.987361+09:00",
         "status": "재작성·내부검토 완료·미발행",
         "reader_question": "검색·지도·홈페이지·콘텐츠 중 실제로 맡길 일은 무엇인가",
-        "direct_answer": "블링크애드에는 검색·구글맵 진단, 다국어 페이지·콘텐츠 제작, 구글광고, AI 검색 점검과 레딧 관련 업무를 상담할 수 있습니다. 현재 문제에 맞춰 실제 작업·결과물·협조 범위를 정합니다.",
+        "direct_answer": "블링크애드에는 검색·구글맵 진단, 다국어 페이지·콘텐츠 제작, 구글광고, AI 검색 점검과 레딧 마케팅을 상담할 수 있습니다. 현재 문제에 맞춰 실제 작업·결과물·협조 범위를 정합니다.",
         "previous_commit": "95f00a0",
         "pair": 1
+      },
+      "last_copy_edit_at": "2026-10-27T17:46:28.819505+09:00",
+      "copy_edit": {
+        "at": "2026-10-27T17:46:28.819505+09:00",
+        "instruction": "서비스 표기는 레딧 마케팅으로 통일. 실제 질문·후기·경험의 근거 설명은 유지."
       }
     },
     {
@@ -465,8 +470,8 @@
       "proposed_slug": "english-inbound-marketing-reddit",
       "public_url": null,
       "body_file": "H06-english-inbound-marketing-reddit.md",
-      "body_sha256": "7ba387b12c9fd1729cb361c42cd2c152a43bac97a5ac1c0d97dfc4b1c4e88be6",
-      "body_chars": 2981,
+      "body_sha256": "e15d15cce730cde96c1dff1f33bba1fd89a7adad5918b8df01fac95e67979235",
+      "body_chars": 2973,
       "writing_order": 5,
       "writing_batch": 3,
       "internal_editorial_review": "검색의도·근거·담당자 문체 독립 검토 완료·사용자 승인 아님",
@@ -528,7 +533,12 @@
           ],
           "scope": "고정 지원 언어·가격·기간·계약 물량·성과를 추가 약속하지 않음"
         }
-      ]
+      ],
+      "last_copy_edit_at": "2026-10-27T17:46:28.819505+09:00",
+      "copy_edit": {
+        "at": "2026-10-27T17:46:28.819505+09:00",
+        "instruction": "서비스 표기는 레딧 마케팅으로 통일. 실제 질문·후기·경험의 근거 설명은 유지."
+      }
     },
     {
       "id": "H04",
@@ -1059,7 +1069,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T16:55:24.987361+09:00",
+  "updated_at": "2026-10-27T17:46:28.819505+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1091,5 +1101,10 @@
     "title_plan": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/search-intent-title-revision-proposal.json",
     "old_external_bodies_unchanged": true,
     "publication_or_deployment": false
+  },
+  "wording_policy": {
+    "at": "2026-10-27T17:46:28.819505+09:00",
+    "user_instruction": "고객에게 설명하는 서비스명은 레딧 마케팅으로 통일",
+    "scope": "현재 원고·메타·기획·로컬보기. 과거 근거/수정 이력은 보존."
   }
 }

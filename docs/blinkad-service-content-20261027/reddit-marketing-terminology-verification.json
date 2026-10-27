@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-27T17:46:28.819505+09:00",
+  "modified_draft_ids": [
+    "H02",
+    "H06"
+  ],
+  "unchanged_other_drafts": 15,
+  "other_item_metadata_equal_to_98f0bb6": true,
+  "items": [
+    {
+      "id": "H02",
+      "before_sha256": "8ed59b180ce4e61a9448491652b63026e562d59efdcae10933c80a3784cda32f",
+      "after_sha256": "c98f54a33ae37262256eeb9ace2475e4221f63636d2db98defa8705cf9c796a5",
+      "chars": 2984,
+      "links_unchanged": true
+    },
+    {
+      "id": "H06",
+      "before_sha256": "7ba387b12c9fd1729cb361c42cd2c152a43bac97a5ac1c0d97dfc4b1c4e88be6",
+      "after_sha256": "e15d15cce730cde96c1dff1f33bba1fd89a7adad5918b8df01fac95e67979235",
+      "chars": 2973,
+      "links_unchanged": true
+    }
+  ],
+  "html_article_replacements": 8,
+  "all_reader_text_and_links_match_markdown": true,
+  "service_phrases_absent_in_current_drafts_and_readers": true,
+  "published_or_deployed": false
+}
