@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "홈페이지6편순차확인·사전등록완료:10/27 H02공개·나머지5편미래날짜예약. 외부11편본문재작성대기.",
+  "stage": "홈페이지1공개·5예약 유지. 외부콘텐츠 O01 첫 원고 재작성 완료·나머지10편 재작성 대기·외부발행 없음.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -672,39 +672,137 @@
       "id": "O01",
       "type": "신규 인사이트",
       "channel": "오픈애즈",
-      "title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
-      "seo_title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
-      "excerpt": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
-      "meta_description": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
-      "primary_keyword": "구글맵 외부 예약 링크 관리",
+      "title": "구글맵 관리 대행이 필요한 3가지 상황",
+      "seo_title": "구글맵 관리 대행이 필요한 3가지 상황",
+      "excerpt": "구글맵 관리가 밀리거나 외국인에게 보이는 정보·문의 연결이 어긋날 때, 여러 매장 관리가 어려울 때 외부에 맡길 업무를 세 상황으로 설명합니다.",
+      "meta_description": "구글맵 관리가 밀리거나 외국인에게 보이는 정보·문의 연결이 어긋날 때, 여러 매장 관리가 어려울 때 외부에 맡길 업무를 세 상황으로 설명합니다.",
+      "primary_keyword": "구글맵 관리 대행",
       "parent_keyword": "구글맵 마케팅 대행",
       "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
-      "proposed_slug": "google-maps-third-party-booking-links",
+      "proposed_slug": "when-google-maps-management-agency-is-needed",
       "public_url": null,
       "body_file": "O01-google-maps-third-party-booking-links.md",
-      "body_sha256": "70595704349c99839adc853459fab3a2311e13981a0acf1da69ff375b01e05ab",
-      "body_chars": 3147,
+      "body_sha256": "88a856de7d0f78c282585e5881878fb59fd3aa5bfbfb6ac3dbf58a1a7d62003f",
+      "body_chars": 3049,
       "writing_order": 7,
       "writing_batch": 4,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "독립 검색의도·중복 경계·공식 근거·문체 검토 완료·사용자 확인 전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T14:56:37.933093+09:00",
+      "last_substantive_edit_at": "2026-10-27T18:38:24.228900+09:00",
       "published_at": null,
       "links": [
-        "https://support.google.com/business/answer/6218037?hl=en",
-        "https://www.blinkad.kr/google-map-marketing?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
-        "https://support.google.com/business/answer/7475773?hl=en",
+        "https://support.google.com/business/answer/7353941?hl=en",
+        "https://support.google.com/business/answer/3039617?hl=en",
+        "https://support.google.com/business/answer/3403100?hl=en-GB",
+        "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
         "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch04-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/openads-O01-evidence.md",
       "review_notes": [
-        "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
-        "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
-        "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
-      ]
+        "확정3상황과 각각 맡길 업무를 직접 답함.",
+        "기존 Notion78 직접vs대행 글과 질문은 인접. 구체적 정보누락·외국어연결·다매장불일치 사례 및 의뢰업무로 새 가치를 주고 개념비교·소유권 중심 반복을 줄임. 중복전무를 주장하지 않음.",
+        "독립 근거·의도 검토 필수오류0. 담당자 없는 경우를 설명하는 문장1곳을 자연스럽게 교정."
+      ],
+      "pre_openads_search_intent_revision": {
+        "id": "O01",
+        "type": "신규 인사이트",
+        "channel": "오픈애즈",
+        "title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
+        "seo_title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
+        "excerpt": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
+        "meta_description": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
+        "primary_keyword": "구글맵 외부 예약 링크 관리",
+        "parent_keyword": "구글맵 마케팅 대행",
+        "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+        "proposed_slug": "google-maps-third-party-booking-links",
+        "public_url": null,
+        "body_file": "O01-google-maps-third-party-booking-links.md",
+        "body_sha256": "70595704349c99839adc853459fab3a2311e13981a0acf1da69ff375b01e05ab",
+        "body_chars": 3147,
+        "writing_order": 7,
+        "writing_batch": 4,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T14:56:37.933093+09:00",
+        "published_at": null,
+        "links": [
+          "https://support.google.com/business/answer/6218037?hl=en",
+          "https://www.blinkad.kr/google-map-marketing?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+          "https://support.google.com/business/answer/7475773?hl=en",
+          "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch04-evidence.md",
+        "review_notes": [
+          "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+          "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+          "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "claim": "세 가지 외주 검토 상황과 예시",
+          "type": "편집상 실무 권고·가상 예시",
+          "scope": "Google 공식 대행 필수조건·실제 고객 사례·효율/성과 실측 아님"
+        },
+        {
+          "claim": "프로필 수정·예약 링크 조건",
+          "sources": [
+            "https://support.google.com/business/answer/3039617?hl=en"
+          ]
+        },
+        {
+          "claim": "관리자 기능·프로필별 권한",
+          "sources": [
+            "https://support.google.com/business/answer/3403100?hl=en-GB"
+          ]
+        },
+        {
+          "claim": "제3자 운영 및 리뷰 응답 동의",
+          "sources": [
+            "https://support.google.com/business/answer/7353941?hl=en"
+          ]
+        }
+      ],
+      "homepage_reference": {
+        "external_id": "O01",
+        "homepage_id": "H01",
+        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "homepage_publish_date": "2026-10-31",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-10-31",
+        "reason": "참고글 H01이10/31예약으로현재404. 링크는초안에사전배치.",
+        "checks": [
+          "H01 실제공개 HTTP200",
+          "H01 제목/본문/연결내용 일치",
+          "모바일 링크 접근 확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T18:38:24.228900+09:00",
+        "status": "재작성·내부검토 완료·사용자 확인 전·미발행",
+        "direct_answer": "지속관리 담당 부족, 외국인 정보와 문의 연결 정비, 다매장 공통·예외 정보 관리가 필요할 때 맡길 업무를 검토한다.",
+        "outline": [
+          "1. 수정할 일은 생기는데, 처리됐는지 확인할 사람이 없을 때",
+          "2. 외국인에게 보이는 정보와 문의 화면이 서로 맞지 않을 때",
+          "3. 매장이 늘수록 본사 요청과 실제 지점 정보가 어긋날 때",
+          "필요한 업무부터 나눠 맡기시면 됩니다"
+        ]
+      }
     },
     {
       "id": "N01",
@@ -1118,7 +1216,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T18:22:19.323422+09:00",
+  "updated_at": "2026-10-27T18:38:24.228900+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1132,7 +1230,7 @@
     "오픈애즈": 5
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
-  "external_current_links": 16,
+  "external_current_links": 15,
   "external_planned_h06_links": 2,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
@@ -1258,6 +1356,176 @@
     "deployment_id": "dpl_ARfj5YDhfULj81KmpMRLdF1kW4RN",
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
-    "external11_rewrite_pending": true
-  }
+    "external11_rewrite_pending": true,
+    "external_rewrite_pending_count": 10,
+    "external_draft_revised_ids": [
+      "O01"
+    ]
+  },
+  "external_reference_policy": {
+    "user_instruction": "홈페이지6편 주소를 앞으로 네이버프리미엄콘텐츠·오픈애즈 본문에 관련 참고글 하이퍼링크로 사용한다.",
+    "references": [
+      {
+        "external_id": "N01",
+        "homepage_id": "H01",
+        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+        "homepage_publish_date": "2026-10-31",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "N03",
+        "homepage_id": "H03",
+        "homepage_title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "base_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+        "homepage_publish_date": "2026-10-29",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "N05",
+        "homepage_id": "H05",
+        "homepage_title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "base_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
+        "homepage_publish_date": "2026-11-02",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "N06",
+        "homepage_id": "H06",
+        "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+        "homepage_publish_date": "2026-11-04",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "N04",
+        "homepage_id": "H04",
+        "homepage_title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
+        "base_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
+        "homepage_publish_date": "2026-11-06",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "N02",
+        "homepage_id": "H02",
+        "homepage_title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
+        "base_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+        "homepage_publish_date": "2026-10-27",
+        "homepage_current_state": "published",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "O01",
+        "homepage_id": "H01",
+        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "homepage_publish_date": "2026-10-31",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "O03",
+        "homepage_id": "H03",
+        "homepage_title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "base_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o03_body",
+        "homepage_publish_date": "2026-10-29",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "O05",
+        "homepage_id": "H05",
+        "homepage_title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "base_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o05_body",
+        "homepage_publish_date": "2026-11-02",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "O06",
+        "homepage_id": "H06",
+        "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o06_body",
+        "homepage_publish_date": "2026-11-04",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      {
+        "external_id": "O04",
+        "homepage_id": "H04",
+        "homepage_title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
+        "base_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "homepage_publish_date": "2026-11-06",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": false,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      }
+    ],
+    "current_body_application": [
+      "O01"
+    ],
+    "other_bodies_unchanged": true
+  },
+  "external_one_by_one_workflow": {
+    "current_channel": "오픈애즈",
+    "order": [
+      "O01",
+      "O03",
+      "O05",
+      "O06",
+      "O04"
+    ],
+    "current_id": "O01",
+    "current_position": 1,
+    "next_id": "O03",
+    "state": "첫 원고 작성·검토 완료·발행 전",
+    "external_rewrite_pending": 10
+  },
+  "external_link_inventory": {
+    "placed_links_in_drafts": 16,
+    "placed_scheduled_homepage_links": 1,
+    "new_reference_plan_count": 11,
+    "actual_rewrite_count": 1,
+    "remaining_rewrite_count": 10,
+    "links_are_draft_copy_not_platform_posts": true
+  },
+  "external_current_links_at_previous_completion": 16,
+  "external_scheduled_reference_links_in_drafts": 1
 }
