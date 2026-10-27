@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-27T23:07:43.475580+09:00",
+  "id": "N06",
+  "before_git_commit": "31d7dbf",
+  "before_title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+  "after_title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+  "before_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+  "after_sha256": "ab2f3872c63cb2989d27abe06673b7e04bd54287617bae8c893fb9933929ad08",
+  "reviewer": "inventory_homepage_topics",
+  "review_focus": "서비스도입을고민하는대표/마케팅담당자의첫고민에답하는지우선",
+  "review_notes": "도입고민대표적합성독립검토통과: 브랜드인지전서비스질문→비교/경험정보→브랜드알아볼계기로레딧중요성을답함. 광고후점검/대행상품소개로내려가지않음. 공개질문/특정조사를현재병원운영·의료질·전체영어권/예약효과로확대없음. 자사상담CTA0·말투자연스러움,필수수정0.",
+  "other16_item_metadata_unchanged_this_checkpoint": true,
+  "platform_writes": 0,
+  "previous_completed_ids": [
+    "N01",
+    "N05"
+  ]
+}

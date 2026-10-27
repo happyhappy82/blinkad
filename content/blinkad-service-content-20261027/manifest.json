@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "NV사용자타깃피드백3편수정 2/3 · 기존홈페이지/OA예약보존",
+  "stage": "NV사용자타깃피드백3편수정 3/3 · 기존홈페이지/OA예약보존",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -1815,34 +1815,35 @@
       "id": "N06",
       "type": "신규 인사이트",
       "channel": "네이버 프리미엄콘텐츠",
-      "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
-      "seo_title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
-      "excerpt": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
-      "meta_description": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
-      "primary_keyword": "영어권 고객 레딧 후기",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "seo_title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "excerpt": "영어권 고객이 서비스 질문과 비교 정보를 찾는 레딧의 역할을 설명하고, 영어권 고객 유치에 레딧 마케팅이 중요한 이유를 안내합니다.",
+      "meta_description": "영어권 고객이 서비스 질문과 비교 정보를 찾는 레딧의 역할을 설명하고, 영어권 고객 유치에 레딧 마케팅이 중요한 이유를 안내합니다.",
+      "primary_keyword": "영어권 고객 레딧 마케팅",
       "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
-      "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
-      "proposed_slug": "reddit-reviews-after-ad-exposure",
+      "target_audience": "영어권 고객을 유치하려고 하며 레딧 마케팅을 해야 할지 고민하는 대표·마케팅 담당자",
+      "proposed_slug": "english-customer-reddit-marketing-importance",
       "public_url": null,
       "body_file": "N06-reddit-reviews-after-ad-exposure.md",
-      "body_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
-      "body_chars": 3227,
+      "body_sha256": "ab2f3872c63cb2989d27abe06673b7e04bd54287617bae8c893fb9933929ad08",
+      "body_chars": 2745,
       "writing_order": 13,
       "writing_batch": 7,
-      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
+      "internal_editorial_review": "사용자타깃피드백반영·도입고민대표적합성독립검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T22:00:42.588014+09:00",
+      "last_substantive_edit_at": "2026-10-27T23:07:43.475580+09:00",
       "published_at": null,
       "links": [
+        "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/",
         "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
         "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
       "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움."
+        "도입고민대표적합성독립검토통과: 브랜드인지전서비스질문→비교/경험정보→브랜드알아볼계기로레딧중요성을답함. 광고후점검/대행상품소개로내려가지않음. 공개질문/특정조사를현재병원운영·의료질·전체영어권/예약효과로확대없음. 자사상담CTA0·말투자연스러움,필수수정0."
       ],
       "pending_public_link": {
         "planned_id": "H06",
@@ -1931,30 +1932,188 @@
         "platform_posted": false
       },
       "search_intent_revision": {
-        "at": "2026-10-27T22:00:42.588014+09:00",
-        "status": "최신제목 본문재작성·독립검토완료·미발행",
-        "direct_answer": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
+        "at": "2026-10-27T23:07:43.475580+09:00",
+        "status": "사용자타깃피드백반영·미발행",
+        "direct_answer": "관련 서비스에 대한 질문과 비교가 있는 커뮤니티에서는 공식 소개만으로 채우기 어려운 이용자의 궁금증을 볼 수 있습니다. 영어권 고객에게 알리려면 이런 질문에 도움이 되는 정확한 정보와 확인 가능한 공식 안내도 준비해야 합니다.",
         "outline": [
-          "광고에서 강조한 조건 하나부터 골라봅니다",
-          "후기를 읽을 때는 이용한 상황과 시점을 확인합니다",
-          "광고 문구를 고칠지, 공식 설명을 보탤지 정합니다",
-          "바꾼 설명이 광고와 실제 응대에서도 맞는지 봅니다"
+          "1. 브랜드를 모르는 고객도 필요한 서비스를 질문합니다",
+          "2. 고객이 선택 전에 궁금해하는 비교 내용을 볼 수 있습니다",
+          "3. 고객이 브랜드를 더 알아볼 이유를 준비할 수 있습니다",
+          "영어권 고객 유치 계획에 관련 커뮤니티도 포함해보세요"
         ]
       },
       "claim_ledger": [
         {
-          "type": "편집상실무권고·명시한예시",
-          "claim": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
-          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+          "type": "편집상채널채택권고",
+          "claim": "관련 서비스에 대한 질문과 비교가 있는 커뮤니티에서는 공식 소개만으로 채우기 어려운 이용자의 궁금증을 볼 수 있습니다. 영어권 고객에게 알리려면 이런 질문에 도움이 되는 정확한 정보와 확인 가능한 공식 안내도 준비해야 합니다.",
+          "scope": "대표의도입고민을답하는권고. 보편외국인행동·계정/고객성과·순위/매출증가보장아님"
         },
         {
-          "type": "공식자료의기능·공개안내",
+          "type": "공식기능/공개대화근거",
           "sources": [
+            "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/",
             "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy"
           ],
-          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+          "scope": "각자료가직접뒷받침하는공개기능/대화/조사범위에한정"
         }
-      ]
+      ],
+      "pre_buyer_stage_revision_20261027": {
+        "id": "N06",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+        "seo_title": "영어권 고객에게 광고한 뒤, 레딧 후기도 확인해야 하는 이유",
+        "excerpt": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
+        "meta_description": "영어권 고객 대상 광고에서 안내한 조건을 레딧 후기·비교 글의 이용 조건과 대조해 문구 수정이나 공식 설명 보완으로 연결하는 방법을 설명합니다.",
+        "primary_keyword": "영어권 고객 레딧 후기",
+        "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+        "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+        "proposed_slug": "reddit-reviews-after-ad-exposure",
+        "public_url": null,
+        "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+        "body_sha256": "7d8c272375c14a7f45e637df41ec7e09d5cb8f641b1c47e5c7caa55bdf7a1dc2",
+        "body_chars": 3227,
+        "writing_order": 13,
+        "writing_batch": 7,
+        "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T22:00:42.588014+09:00",
+        "published_at": null,
+        "links": [
+          "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+          "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
+        "review_notes": [
+          "필수오류0. 광고조건→후기상황/시점·현재공식안내대조→문구수정/설명보완/확인결정명확. Reddit조사는AI추천검증표본응답범위유지,광고후전체이동/한국예약성과확대없음. 가상예시와실경험구분. H06/O06상세반복·자사상담CTA없음,담당자어투자연스러움."
+        ],
+        "pending_public_link": {
+          "planned_id": "H06",
+          "public_url": null,
+          "anchor_text": "영어권 외국인 마케팅에서 레딧을 함께 볼 이유",
+          "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+          "utm_parameters": {
+            "utm_source": "naver_premium",
+            "utm_medium": "referral",
+            "utm_campaign": "blinkad_service_content_20261027",
+            "utm_content": "n06_body"
+          },
+          "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+        },
+        "pre_naver_search_intent_revision": {
+          "id": "N06",
+          "type": "신규 인사이트",
+          "channel": "네이버 프리미엄콘텐츠",
+          "title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+          "seo_title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+          "excerpt": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+          "meta_description": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+          "primary_keyword": "영어권 고객 레딧 후기 비교",
+          "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+          "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+          "proposed_slug": "reddit-reviews-after-ad-exposure",
+          "public_url": null,
+          "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+          "body_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
+          "body_chars": 2554,
+          "writing_order": 13,
+          "writing_batch": 7,
+          "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+          "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+          "public_byline_proposal": "블링크애드",
+          "fact_checked_at": "2026-10-27",
+          "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+          "published_at": null,
+          "links": [
+            "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+            "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/"
+          ],
+          "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+          "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+          "review_notes": [
+            "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+            "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+            "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+          ],
+          "pending_public_link": {
+            "planned_id": "H06",
+            "public_url": null,
+            "anchor_text": "영어권 외국인 마케팅에서 레딧을 함께 볼 이유",
+            "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+            "utm_parameters": {
+              "utm_source": "naver_premium",
+              "utm_medium": "referral",
+              "utm_campaign": "blinkad_service_content_20261027",
+              "utm_content": "n06_body"
+            },
+            "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+          }
+        },
+        "homepage_reference": {
+          "external_id": "N06",
+          "homepage_id": "H06",
+          "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+          "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+          "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+          "homepage_publish_date": "2026-11-04",
+          "homepage_current_state": "scheduled",
+          "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+          "actual_body_applied": true,
+          "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+        },
+        "publication_gate": {
+          "not_before": "2026-11-04",
+          "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+          "checks": [
+            "참고글HTTP200",
+            "제목·본문과링크문맥일치",
+            "모바일접근확인"
+          ],
+          "platform_posting_authorized_this_turn": false,
+          "platform_registered": false,
+          "platform_posted": false
+        },
+        "search_intent_revision": {
+          "at": "2026-10-27T22:00:42.588014+09:00",
+          "status": "최신제목 본문재작성·독립검토완료·미발행",
+          "direct_answer": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
+          "outline": [
+            "광고에서 강조한 조건 하나부터 골라봅니다",
+            "후기를 읽을 때는 이용한 상황과 시점을 확인합니다",
+            "광고 문구를 고칠지, 공식 설명을 보탤지 정합니다",
+            "바꾼 설명이 광고와 실제 응대에서도 맞는지 봅니다"
+          ]
+        },
+        "claim_ledger": [
+          {
+            "type": "편집상실무권고·명시한예시",
+            "claim": "광고에서 강조한 조건 하나를 골라 후기의 이용 상황과 공식 안내를 대조합니다. 실제 제공 범위보다 넓은 문구는 고치고, 시간·비용·절차가 빠졌다면 공식 설명을 보완합니다.",
+            "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+          },
+          {
+            "type": "공식자료의기능·공개안내",
+            "sources": [
+              "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy"
+            ],
+            "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+          }
+        ]
+      },
+      "buyer_stage_feedback": {
+        "decision": "영어권 고객의 서비스 질문과 비교가 있는 레딧을 마케팅에 포함할 필요를 이해한다.",
+        "question": "영어권 고객을 유치할 때 레딧 마케팅은 왜 중요한가?",
+        "excluded_operating_focus": [
+          "광고 후 후기 대조를 독자의 출발 상황으로 가정",
+          "광고 문구 수정 매뉴얼",
+          "자사 서비스 상품·상담 CTA",
+          "광고→레딧 이동률·예약 성과의 미측정 단정"
+        ],
+        "title_origin": "N01사용자기존제목유지. N05/N06표현은작업자가현재/기존사용자방향에맞춰작성·사용자최종확인전.",
+        "review_notes": "도입고민대표적합성독립검토통과: 브랜드인지전서비스질문→비교/경험정보→브랜드알아볼계기로레딧중요성을답함. 광고후점검/대행상품소개로내려가지않음. 공개질문/특정조사를현재병원운영·의료질·전체영어권/예약효과로확대없음. 자사상담CTA0·말투자연스러움,필수수정0."
+      }
     },
     {
       "id": "O06",
@@ -2545,7 +2704,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T23:04:12.073932+09:00",
+  "updated_at": "2026-10-27T23:07:43.475580+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2921,12 +3080,13 @@
     ],
     "completed_ids": [
       "N01",
-      "N05"
+      "N05",
+      "N06"
     ],
     "started_at": "2026-10-27T23:00:53.616010+09:00",
     "reason": "사용자피드백:채널채택을고민하는대표대상필요성/중요성으로교정",
-    "next_id": "N06",
-    "state": "도입고민타깃교정 2/3 · 미발행"
+    "next_id": null,
+    "state": "도입고민타깃교정 3/3 · 미발행"
   },
   "buyer_stage_editorial_rule": "독자가 이미 운영 중인 실무자라고 전제하지 않는다. 운영·보고·설정은 필요성을 설명하는 짧은 예시로만 사용한다. 중복 회피 때문에 도입 고민을 다른 단계로 바꾸지 않는다."
 }
