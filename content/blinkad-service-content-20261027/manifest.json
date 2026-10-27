@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 1/6 · 미발행",
+  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 2/6 · 미발행",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -984,38 +984,122 @@
       "id": "N03",
       "type": "신규 인사이트",
       "channel": "네이버 프리미엄콘텐츠",
-      "title": "병원 다국어 홈페이지, 진료별 언어 연결을 확인하세요",
-      "seo_title": "병원 다국어 홈페이지, 진료별 언어 연결을 확인하세요",
-      "excerpt": "병원 다국어 홈페이지를 검수하실 때는 언어 버튼이 보이는지와 함께, 그 버튼을 누르면 어느 페이지로 가는지도 살펴보시면 좋습니다.",
-      "meta_description": "병원 다국어 홈페이지를 검수하실 때는 언어 버튼이 보이는지와 함께, 그 버튼을 누르면 어느 페이지로 가는지도 살펴보시면 좋습니다.",
-      "primary_keyword": "병원 다국어 홈페이지 언어 전환",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "seo_title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "excerpt": "주력 진료와 확인된 문의, 실제 응대 언어를 바탕으로 병원 다국어 홈페이지의 첫 제작 범위와 확장 순서를 정하는 방법을 설명합니다.",
+      "meta_description": "주력 진료와 확인된 문의, 실제 응대 언어를 바탕으로 병원 다국어 홈페이지의 첫 제작 범위와 확장 순서를 정하는 방법을 설명합니다.",
+      "primary_keyword": "병원 다국어 홈페이지 제작",
       "parent_keyword": "병원 다국어 홈페이지 제작",
       "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
-      "proposed_slug": "hospital-language-page-links",
+      "proposed_slug": "hospital-multilingual-website-priorities",
       "public_url": null,
       "body_file": "N03-hospital-language-page-links.md",
-      "body_sha256": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
-      "body_chars": 2921,
+      "body_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+      "body_chars": 3515,
       "writing_order": 9,
       "writing_batch": 5,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T14:59:32.865612+09:00",
+      "last_substantive_edit_at": "2026-10-27T21:55:00.052856+09:00",
       "published_at": null,
       "links": [
         "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
-        "https://developers.google.com/search/docs/specialty/international/localized-versions",
-        "https://www.blinkad.kr/blog/hospital-website-content-structure?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+        "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch05-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
-        "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
-        "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+        "필수오류0. 주력진료/문의/원문/실제응대조건으로첫진료·언어범위결정→한묶음안내→공개후확장이라는답명확. 국적과언어·영문페이지와영어상담구분,효과/경험창작없음. H03기술/O03필요성/옛N03언어버튼검수상세반복없음. Google설명·담당자어투적절."
+      ],
+      "pre_naver_search_intent_revision": {
+        "id": "N03",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "병원 다국어 홈페이지, 진료별 언어 연결을 확인하세요",
+        "seo_title": "병원 다국어 홈페이지, 진료별 언어 연결을 확인하세요",
+        "excerpt": "병원 다국어 홈페이지를 검수하실 때는 언어 버튼이 보이는지와 함께, 그 버튼을 누르면 어느 페이지로 가는지도 살펴보시면 좋습니다.",
+        "meta_description": "병원 다국어 홈페이지를 검수하실 때는 언어 버튼이 보이는지와 함께, 그 버튼을 누르면 어느 페이지로 가는지도 살펴보시면 좋습니다.",
+        "primary_keyword": "병원 다국어 홈페이지 언어 전환",
+        "parent_keyword": "병원 다국어 홈페이지 제작",
+        "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
+        "proposed_slug": "hospital-language-page-links",
+        "public_url": null,
+        "body_file": "N03-hospital-language-page-links.md",
+        "body_sha256": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
+        "body_chars": 2921,
+        "writing_order": 9,
+        "writing_batch": 5,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T14:59:32.865612+09:00",
+        "published_at": null,
+        "links": [
+          "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites",
+          "https://developers.google.com/search/docs/specialty/international/localized-versions",
+          "https://www.blinkad.kr/blog/hospital-website-content-structure?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+          "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch05-evidence.md",
+        "review_notes": [
+          "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
+          "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
+          "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+        ]
+      },
+      "homepage_reference": {
+        "external_id": "N03",
+        "homepage_id": "H03",
+        "homepage_title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "base_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+        "homepage_publish_date": "2026-10-29",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-10-29",
+        "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+        "checks": [
+          "참고글HTTP200",
+          "제목·본문과링크문맥일치",
+          "모바일접근확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_registered": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T21:55:00.052856+09:00",
+        "status": "최신제목 본문재작성·독립검토완료·미발행",
+        "direct_answer": "먼저 알릴 진료와 실제 상담 가능한 언어를 정하고, 확인된 문의와 공개할 원문을 대조해 첫 페이지 묶음을 고릅니다. 진료·이용 조건·문의 안내까지 함께 준비합니다.",
+        "outline": [
+          "첫 홈페이지에서 어떤 진료의 문의를 받을지 정합니다",
+          "언어는 고객이 읽는 단계와 병원이 답하는 단계까지 함께 봅니다",
+          "진료 설명과 이용 안내를 한 묶음으로 만듭니다",
+          "첫 안내를 완성한 뒤 진료와 언어를 넓혀갑니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상실무권고·명시한예시",
+          "claim": "먼저 알릴 진료와 실제 상담 가능한 언어를 정하고, 확인된 문의와 공개할 원문을 대조해 첫 페이지 묶음을 고릅니다. 진료·이용 조건·문의 안내까지 함께 준비합니다.",
+          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+        },
+        {
+          "type": "공식자료의기능·공개안내",
+          "sources": [
+            "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+          ],
+          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+        }
       ]
     },
     {
@@ -1826,7 +1910,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T21:52:03.243658+09:00",
+  "updated_at": "2026-10-27T21:55:00.052856+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1840,7 +1924,7 @@
     "오픈애즈": 5
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
-  "external_current_links": 13,
+  "external_current_links": 12,
   "external_planned_h06_links": 1,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
@@ -1967,14 +2051,15 @@
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
     "external11_rewrite_pending": true,
-    "external_rewrite_pending_count": 5,
+    "external_rewrite_pending_count": 4,
     "external_draft_revised_ids": [
       "O01",
       "O03",
       "O05",
       "O06",
       "O04",
-      "N01"
+      "N01",
+      "N03"
     ],
     "external_reserved_count": 5
   },
@@ -2002,7 +2087,7 @@
         "homepage_publish_date": "2026-10-29",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -2122,7 +2207,8 @@
       "O05",
       "O06",
       "O04",
-      "N01"
+      "N01",
+      "N03"
     ],
     "other_bodies_unchanged": true
   },
@@ -2139,18 +2225,18 @@
     "current_position": 5,
     "next_id": null,
     "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
-    "external_rewrite_pending": 5
+    "external_rewrite_pending": 4
   },
   "external_link_inventory": {
     "placed_links_in_drafts": 18,
-    "placed_scheduled_homepage_links": 5,
+    "placed_scheduled_homepage_links": 6,
     "new_reference_plan_count": 11,
-    "actual_rewrite_count": 6,
-    "remaining_rewrite_count": 5,
+    "actual_rewrite_count": 7,
+    "remaining_rewrite_count": 4,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 5,
+  "external_scheduled_reference_links_in_drafts": 6,
   "openads_reservation_count": 5,
   "openads_reservation_result": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json",
   "naver_sequential_rewrite": {
@@ -2164,9 +2250,10 @@
       "N02"
     ],
     "completed_ids": [
-      "N01"
+      "N01",
+      "N03"
     ],
-    "next_id": "N03",
-    "state": "순차집필·독립검토 1/6 · 미발행"
+    "next_id": "N05",
+    "state": "순차집필·독립검토 2/6 · 미발행"
   }
 }

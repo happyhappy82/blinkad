@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-27T21:55:00.052856+09:00",
+  "id": "N03",
+  "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+  "before_git_commit": "93ed856",
+  "before_sha256": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
+  "after_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+  "body_chars": 3515,
+  "independent_review": {
+    "reviewer": "inventory_homepage_topics",
+    "blocking_errors_after_correction": 0,
+    "notes": "필수오류0. 주력진료/문의/원문/실제응대조건으로첫진료·언어범위결정→한묶음안내→공개후확장이라는답명확. 국적과언어·영문페이지와영어상담구분,효과/경험창작없음. H03기술/O03필요성/옛N03언어버튼검수상세반복없음. Google설명·담당자어투적절."
+  },
+  "sequential_position": 2,
+  "previous_ids_committed": [
+    "N01"
+  ],
+  "next_id": "N05",
+  "platform_writes": 0,
+  "homepage_or_openads_reservations_changed": false
+}
