@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-27T17:53:18.103769+09:00",
+  "current_id": "H02",
+  "before_sha256": "c98f54a33ae37262256eeb9ace2475e4221f63636d2db98defa8705cf9c796a5",
+  "after_sha256": "3b8dc85d547fff706e10d21ff6812572b2f1a7230588099844bde3ea973a8690",
+  "other16_body_and_item_metadata_unchanged": true,
+  "updated_existing_readers": 4,
+  "single_article_reader": "H02-first-homepage-article.html",
+  "markdown_html_text_and_links_match": true,
+  "new_factual_claims": false,
+  "published_or_deployed": false
+}

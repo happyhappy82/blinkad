@@ -21,8 +21,8 @@
       "proposed_slug": "hospital-foreign-marketing",
       "public_url": null,
       "body_file": "H02-hospital-inbound-marketing-services.md",
-      "body_sha256": "c98f54a33ae37262256eeb9ace2475e4221f63636d2db98defa8705cf9c796a5",
-      "body_chars": 2984,
+      "body_sha256": "3b8dc85d547fff706e10d21ff6812572b2f1a7230588099844bde3ea973a8690",
+      "body_chars": 2968,
       "writing_order": 1,
       "writing_batch": 1,
       "internal_editorial_review": "검색의도·근거·담당자 문체 독립 검토 완료·사용자 승인 아님",
@@ -104,7 +104,7 @@
         "previous_commit": "95f00a0",
         "pair": 1
       },
-      "last_copy_edit_at": "2026-10-27T17:46:28.819505+09:00",
+      "last_copy_edit_at": "2026-10-27T17:53:18.103769+09:00",
       "copy_edit": {
         "at": "2026-10-27T17:46:28.819505+09:00",
         "instruction": "서비스 표기는 레딧 마케팅으로 통일. 실제 질문·후기·경험의 근거 설명은 유지."
@@ -1069,7 +1069,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T17:46:28.819505+09:00",
+  "updated_at": "2026-10-27T17:53:18.103769+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -1106,5 +1106,23 @@
     "at": "2026-10-27T17:46:28.819505+09:00",
     "user_instruction": "고객에게 설명하는 서비스명은 레딧 마케팅으로 통일",
     "scope": "현재 원고·메타·기획·로컬보기. 과거 근거/수정 이력은 보존."
+  },
+  "sequential_homepage_workflow": {
+    "at": "2026-10-27T17:53:18.103769+09:00",
+    "user_instruction": "공식홈페이지 글부터 한 편씩 순차 작성·제시. 현재 한 편 피드백 후 다음 글 진행.",
+    "current_id": "H02",
+    "current_position": 1,
+    "homepage_order": [
+      "H02",
+      "H03",
+      "H01",
+      "H05",
+      "H06",
+      "H04"
+    ],
+    "next_id": "H03",
+    "current_state": "첫 원고 정리·내용검토 완료·사용자 피드백 대기·미발행",
+    "automatic_next_article": false,
+    "prior_six_drafts": "이전6편 초안은 보존하며 이번부터 한 편씩 진행한다."
   }
 }
