@@ -35,3 +35,12 @@
 - 자료: https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy
 - 홈페이지참고: H06 · https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body · scheduled
 - 실제고객/성과/수요실측·외부게시미실행.
+
+
+## N04 · GEO 대행사의 AI 추천·인용 성과, 근거는 어떻게 확인할까요?
+
+- 독립검토: 독립검토필수교정1곳반영: 실제고객의열람/선택처럼읽히던문장을 AI가어떤질문과조건에서후보로제시했는지로교정·대조확인. 나머지한주장→답변→출처근거→판단흐름·Gemini범위·가상예시·중복경계·어투필수문제없음. 교정후필수오류0.
+- 편집상핵심답: 보고서의 한 주장을 골라 질문 원문, 답변의 해당 문장, 표시된 출처와 근거 문장을 순서대로 대조합니다. 일치하면 수용하고 과장된 표현은 고치며 자료가 부족하면 확인 필요로 남깁니다.
+- 자료: https://support.google.com/gemini/answer/14143489?co=GENIE.Platform%3DDesktop&hl=en
+- 홈페이지참고: H04 · https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body · scheduled
+- 실제고객/성과/수요실측·외부게시미실행.

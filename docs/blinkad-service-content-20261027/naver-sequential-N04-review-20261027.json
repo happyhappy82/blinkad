@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-27T22:03:23.981108+09:00",
+  "id": "N04",
+  "title": "GEO 대행사의 AI 추천·인용 성과, 근거는 어떻게 확인할까요?",
+  "before_git_commit": "93ed856",
+  "before_sha256": "f5359380b99aaf0231ca2117d849d2faae829f8e25e12a7f365acff564a12bf9",
+  "after_sha256": "660b53d872ecaf365a97f6706e92cedc3f5a86a245bbf6641decabf44ff47713",
+  "body_chars": 3502,
+  "independent_review": {
+    "reviewer": "inventory_homepage_topics",
+    "blocking_errors_after_correction": 0,
+    "notes": "독립검토필수교정1곳반영: 실제고객의열람/선택처럼읽히던문장을 AI가어떤질문과조건에서후보로제시했는지로교정·대조확인. 나머지한주장→답변→출처근거→판단흐름·Gemini범위·가상예시·중복경계·어투필수문제없음. 교정후필수오류0."
+  },
+  "sequential_position": 5,
+  "previous_ids_committed": [
+    "N01",
+    "N03",
+    "N05",
+    "N06"
+  ],
+  "next_id": "N02",
+  "platform_writes": 0,
+  "homepage_or_openads_reservations_changed": false
+}
