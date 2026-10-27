@@ -1,0 +1,67 @@
+{
+  "checked_date": "2026-10-27",
+  "items": [
+    {
+      "id": "H02",
+      "date": "2026-10-27",
+      "source_sha256": "3b8dc85d547fff706e10d21ff6812572b2f1a7230588099844bde3ea973a8690",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "hospital-foreign-marketing"
+    },
+    {
+      "id": "H03",
+      "date": "2026-10-29",
+      "source_sha256": "068227687c835794b63ae36be5fb19475c9a85fcf6860fad81bf495952182efe",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "add-multilingual-pages-existing-hospital-website"
+    },
+    {
+      "id": "H01",
+      "date": "2026-10-31",
+      "source_sha256": "702c730c156d821fda277276870b59fd6f006f7da95d952241828881fd87282c",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "franchise-google-maps-agency-selection"
+    },
+    {
+      "id": "H05",
+      "date": "2026-11-02",
+      "source_sha256": "76b7aacb5f57e5ce13baca89a67ed5cf0e47f32edda4d915132a93456a284296",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "foreign-google-ads-agency-selection"
+    },
+    {
+      "id": "H06",
+      "date": "2026-11-04",
+      "source_sha256": "e15d15cce730cde96c1dff1f33bba1fd89a7adad5918b8df01fac95e67979235",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "english-inbound-marketing-reddit"
+    },
+    {
+      "id": "H04",
+      "date": "2026-11-06",
+      "source_sha256": "d6fa1a8a84ae3a60b99c67b72a31a3a56a4a84633db943e10e38b54dad817f76",
+      "saved_body_matches": true,
+      "links_match": true,
+      "slug": "geo-marketing-outsourcing-decision"
+    }
+  ],
+  "count": 6,
+  "today_eligible": [
+    "H02"
+  ],
+  "future_date_excluded": [
+    "H03",
+    "H01",
+    "H05",
+    "H06",
+    "H04"
+  ],
+  "comparison": "Markdown rendered visible text ignoring whitespace; H2 and full link arrays exact",
+  "schedule_basis": "기존2일간격을기준으로한편씩등록, 사용자에게가정공지·간격변경가능",
+  "live_publication_status": "pending workflow and production verification"
+}
