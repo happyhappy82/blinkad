@@ -1,0 +1,10 @@
+{
+  "review_complete": true,
+  "mandatory_errors_remaining": 0,
+  "notes": [
+    "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
+    "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
+    "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+  ],
+  "reviewers": ["inventory_homepage_topics 기술/공식근거", "inventory_external_topics 독자/중복", "root 사실·반영·UTM 검토"]
+}

@@ -1,0 +1,43 @@
+{
+  "verified_at": "2026-10-27T15:02:15.414902+09:00",
+  "batch": 6,
+  "ids": [
+    "N05",
+    "O05"
+  ],
+  "draft_count": 12,
+  "remaining": 5,
+  "body_hashes": {
+    "H02": "d9dcba6eaf4d492ecb889d0137a4451d1616a854eaf0b6dc4d0d2b60f4a230e3",
+    "H03": "034a8eb8c9650ae2511b20de8cc1145f99fe28a220d553f2481ceb8b4cbceae0",
+    "H01": "beec8723b49c6249b99a26a41370b062d5570337c3cce2fc4faf5a180b439aae",
+    "H05": "666c52e090c5909f6c093f0db7f4f5a08449ddad245aa7061cce9f8b5388bb2b",
+    "H06": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
+    "H04": "49496130d86d55b4e95cc131bfd5ff5f6a40820f18362813de196c0abc84f790",
+    "O01": "70595704349c99839adc853459fab3a2311e13981a0acf1da69ff375b01e05ab",
+    "N01": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+    "N03": "86e33626b20eda297d1ef642316aae4132da2945a76d668e4b7f0439e5c33e0b",
+    "O03": "d2a3df225718f2206eedcb45310d1f4b786b589833ad67aec9f494714c42a24c",
+    "N05": "5e6e368b40960b313c41c3c3e3e1d59ca5a2692288633e9df4dd4fe78556b866",
+    "O05": "8293c925db40bb4b857449abc5519af807967ae61250671c6850383f5a597418"
+  },
+  "previous_articles_unchanged": true,
+  "required_traffic_links_present": true,
+  "future_links_not_fabricated": true,
+  "preview_articles": 12,
+  "review": {
+    "review_complete": true,
+    "mandatory_errors_remaining": 0,
+    "notes": [
+      "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
+      "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
+      "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+    ],
+    "reviewers": [
+      "inventory_homepage_topics 기술/공식근거",
+      "inventory_external_topics 독자/중복",
+      "root 사실·반영·UTM 검토"
+    ]
+  },
+  "production_publication_or_reservation": false
+}
