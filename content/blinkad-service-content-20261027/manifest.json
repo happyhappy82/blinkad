@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고17건 작성·내부 검토 완료·미발행",
+  "stage": "전체17건 작성·내부 검토 완료·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -823,5 +823,15 @@
   "homepage_draft_count": 6,
   "homepage_total": 6,
   "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
-  "latest_batch": 9
+  "latest_batch": 9,
+  "completed_at": "2026-10-27T15:14:22.996234+09:00",
+  "channel_counts": {
+    "공식홈페이지": 6,
+    "네이버 프리미엄콘텐츠": 6,
+    "오픈애즈": 5
+  },
+  "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
+  "external_current_links": 16,
+  "external_planned_h06_links": 2,
+  "production_publication_or_reservation": false
 }

@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-10-27T14:55:11.372504+09:00",
+  "read_only": true,
+  "brief_path": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/topic-plan.json",
+  "brief_sha256": "945b8ad6570ef215289ba5f10723bbaaeeb205cb5809d2ef6596b1c59c410656",
+  "brief_file_written": false,
+  "manuscripts_written": 0,
+  "platform_mutations": 0,
+  "current_nv_reservation_state_verified": false,
+  "source_receipt": "historical-nv9-recovered.json",
+  "historical_nv9_count": 9,
+  "recovered_titles": [
+    "영문 홈페이지까지 만들었는데 외국인 문의가 늘지 않는 이유",
+    "한국어 검색에는 나오는데 영어 질문에는 우리 병원이 사라지는 이유",
+    "외국인 문의가 예약으로 이어지지 않는 순간은 어디일까?",
+    "GEO 마케팅을 대행사에 맡기기 전 병원이 먼저 정해야 할 것",
+    "종합병원 GEO 성과를 검색 순위만으로 판단하면 안 되는 이유",
+    "대형병원 외국인 마케팅, 광고부터 시작하면 놓치는 것",
+    "국내 거주 외국인과 의료관광 환자는 같은 방식으로 찾으면 안 됩니다",
+    "대형병원 외국인 마케팅에서 광고·SEO·GEO는 어떻게 나눠야 할까?",
+    "‘AI 검색 노출 보장’이라는 GEO 제안서를 믿어도 될까?"
+  ],
+  "n04_original_direct_overlap": [
+    6,
+    7,
+    11
+  ],
+  "n04_root_selected_revision": "GEO 보고서의 추천·인용, 원문에서도 그렇게 확인되나요?",
+  "distinct_new_decision": "보고서의 특정 주장과 질문·답변 문장·출처 페이지의 지지 문장을 대응해 그대로 인정/표현 수정/확인 불가를 정한다.",
+  "existing_nine_row_level_claim_to_source_audit_found": false,
+  "limits": [
+    "These are historical saved specifications plus settings verification records, not a current platform query.",
+    "The10/26 preparation record counted9 existing reservations. Historical orders1-2 have already been observed public in the80-item list; orders3-11 supply9 stored titles and body outlines.",
+    "The current set/state after automatic scheduled publication or user edits is unverified.",
+    "No saved body is assumed to prove the final live body byte-for-byte."
+  ]
+}

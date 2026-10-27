@@ -1,0 +1,237 @@
+{
+  "verified_at": "2026-10-27T15:14:22.996234+09:00",
+  "total": 17,
+  "newly_written_this_request": 13,
+  "channel_counts": {
+    "공식홈페이지": 6,
+    "네이버 프리미엄콘텐츠": 6,
+    "오픈애즈": 5
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "ids": [
+        "H02",
+        "H03"
+      ]
+    },
+    {
+      "batch": 2,
+      "ids": [
+        "H01",
+        "H05"
+      ]
+    },
+    {
+      "batch": 3,
+      "ids": [
+        "H06",
+        "H04"
+      ]
+    },
+    {
+      "batch": 4,
+      "ids": [
+        "O01",
+        "N01"
+      ]
+    },
+    {
+      "batch": 5,
+      "ids": [
+        "N03",
+        "O03"
+      ]
+    },
+    {
+      "batch": 6,
+      "ids": [
+        "N05",
+        "O05"
+      ]
+    },
+    {
+      "batch": 7,
+      "ids": [
+        "N06",
+        "O06"
+      ]
+    },
+    {
+      "batch": 8,
+      "ids": [
+        "O04",
+        "N04"
+      ]
+    },
+    {
+      "batch": 9,
+      "ids": [
+        "N02"
+      ]
+    }
+  ],
+  "all_titles_hashes_order_and_files": "PASS",
+  "first_four_bodies_unchanged": "PASS",
+  "all_batch_reviews": [
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "H04 Googlebot/Extended·검색/학습/일부grounding·미리보기/noindex 범위 공식대조 완료, 실제anchor #control 수정",
+        "H06 초기채널검토 중심·공개영어토론2표본 확인, 보편이용·성과·병원우열로 일반화하지 않음",
+        "독립기능검토·독자/문체검토 완료, 제목 직접답과 검색제외 설명 보완, 첫4편 본문 불변"
+      ],
+      "reviewers": [
+        "planning_evidence 기능/근거",
+        "inventory_homepage_topics 독자/문체",
+        "root 최종반영/실제토론범위"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+        "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+        "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+      ],
+      "reviewers": [
+        "inventory_homepage_topics 독립 기능/문체",
+        "root 전체본문·브리프·링크 검토"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "N03 실제진료페이지·언어버튼·hreflang 구분과 미제공안내를 공식자료에 대조, H03/기존예약과 중심질문 구분",
+        "O03 해외실접속·브라우저언어·속도제한을 구분하고 지도/영상 대체본문을 제안, 실제차단/장애/접근성준수 사례 창작0",
+        "독립기술검토·독자/중복검토 필수오류0, O03부정형메타문장과 N03추상문장을 설명하는 말투로 교정"
+      ],
+      "reviewers": [
+        "inventory_homepage_topics 기능/근거",
+        "inventory_external_topics 독자/중복",
+        "root 반영·본문/UTM 검토"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "N05 현재공식 제외일치·동의어/단복수·대소문자/철자오류·계정범위·검색어누락을 독립 대조, 번역만으로 오제외하지 않는 판단표 제공",
+        "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
+        "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
+      ],
+      "reviewers": [
+        "inventory_homepage_topics 기술/공식근거",
+        "inventory_external_topics 독자/중복",
+        "root 사실·반영·UTM 검토"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+        "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+        "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+      ],
+      "reviewers": [
+        "planning_evidence N06공식/토론근거",
+        "inventory_homepage_topics 두본문 독자/근거/중복",
+        "root 두본문·수정반영·링크검토"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "O04 Google검색AI의추가파일요건과다른AI범위·계약파일/실제페이지/관측성과를 구분, 공식근거 독립대조",
+        "N04 기존예약9와직접중복을피해 보고서행→질문/답변문장→출처지지→수용/수정/확인불가를 직접 제공",
+        "가상예시를실측/공식등급/의료추천으로확대하지않음, 주소내용일치뿐아니라실제출처연결도있는예시로정밀화·부정형메타문장교정"
+      ],
+      "reviewers": [
+        "planning_evidence 기능/근거",
+        "inventory_external_topics 기존9중복/독자/문체",
+        "root 반영·본문·UTM 검토"
+      ]
+    },
+    {
+      "review_complete": true,
+      "mandatory_errors_remaining": 0,
+      "notes": [
+        "실제영어검색식/날짜·공개웹검색·국가/Google실순위미통제·공식영문병원2표본의공개내용 범위를 독립 대조",
+        "후보포함이유를진료/언어/방문조건과공식안내로정하는실무답, 실제환자선택·의료우열·검색수요/성과로일반화하지 않음",
+        "제목/정확UTM2개/4공개URL 정상확인, 부정형비교문2곳을 행동과확인범위가보이는설명문으로 교정"
+      ],
+      "reviewers": [
+        "planning_evidence 실검색/공식페이지/링크",
+        "inventory_homepage_topics 독자/문체/중복",
+        "root 반영·본문·메타검토"
+      ]
+    }
+  ],
+  "current_external_utm_links": 16,
+  "pending_h06_readmore_links": 2,
+  "n04_revision": "기존 예약9 원문 직접중복을 피하고 행별 추천/인용 증거판독으로 교체",
+  "historical_nv9": "과거검증/원고정본 추가확보·현재예약서버목록재조회아님",
+  "reader_pages": {
+    "all": 17,
+    "homepage": 6,
+    "naver_premium": 6,
+    "openads": 5
+  },
+  "visual_screenshots": "미실행·정적HTML구조/본문일치검증",
+  "public_urls": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "external_or_homepage_publication": false,
+  "ad_or_gbp_account_changes": false,
+  "new_performance_measurement": false,
+  "remaining_publication_notes": [
+    "H06 실제공개후N06/O06관련읽기 URL확정",
+    "N02는기존공개허브사용·H02공개후교체는선택",
+    "실제등록/예약/색인/GA4·문의수신은이번작성범위아님"
+  ],
+  "independent_final_audits": [
+    {
+      "reviewer": "planning_evidence",
+      "result": "필수불일치0",
+      "checks": [
+        "17본문ID/제목/해시/채널6·6·5·순서",
+        "최초4편 d67a56d 바이트불변",
+        "UTM16·내부UTM0·추측공개주소0",
+        "전체/채널별HTML 34회분본문의텍스트/링크/태그순서",
+        "사용자승인/의료진감수/실제성과로과대표시없음"
+      ]
+    },
+    {
+      "reviewer": "inventory_external_topics",
+      "result": "필수불일치0",
+      "checks": [
+        "17목록·제목·채널·순서·본문해시",
+        "신규13/총17·9묶음",
+        "N04교체와기존9로컬정본/현재서버미조회구분",
+        "현재16UTM+H06공개후2링크·미발행상태일치"
+      ]
+    }
+  ],
+  "zip_validation": "24files·17Markdown·CRC PASS·검토자료/인증정보는클린원고ZIP에포함하지않음"
+}
