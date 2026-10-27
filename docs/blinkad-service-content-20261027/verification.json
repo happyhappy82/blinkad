@@ -1,0 +1,48 @@
+{
+  "verified_at": "2026-10-27T13:47:06.052386+09:00",
+  "draft_ids": [
+    "H02",
+    "H03"
+  ],
+  "drafts": {
+    "H02": {
+      "title": "병원 외국인 마케팅 대행, 블링크애드에 맡길 수 있는 일",
+      "sha256": "bfe62d9d8be654271c24eb768b3719fd67bf96b0d4121b01ad434ca5b1a7df07",
+      "chars": 2737,
+      "links": 5,
+      "h2": 4
+    },
+    "H03": {
+      "title": "병원 다국어 홈페이지, 기존 한국어 사이트에 추가하려면",
+      "sha256": "2f9871f800a5c3ff2f2c3b7a539496f72bdfea99aff4ee9630c75c9fb81ee4fd",
+      "chars": 4021,
+      "links": 7,
+      "h2": 5
+    }
+  },
+  "draft_count": 2,
+  "unwritten_count": 15,
+  "homepage_total": 6,
+  "all_total": 17,
+  "writing_order_and_nine_batches": "PASS",
+  "franchise_scope": "H01/N01 · 본사·직영점·가맹점 구분",
+  "source_page_http200": 9,
+  "contact_page_http200": "source audit confirmed",
+  "google_documents_read": 4,
+  "independent_review_views": 3,
+  "mandatory_errors_found_in_independent_reviews": 0,
+  "final_root_read": "두 원고의 핵심 답·조건·다음 행동·반영 문장 재확인",
+  "preview_structure": "2 articles / 2 h1 / 2 tables / links checked; visual screenshot not performed",
+  "metadata_and_body_hashes": "PASS",
+  "published_urls": [
+    null,
+    null
+  ],
+  "publication_or_deployment": false,
+  "existing_reservations_modified": false,
+  "tracking_or_ranking_outcome_measured": false,
+  "limits": [
+    "기존NV 비공개예약9 제목/본문요지 미확인",
+    "색인·AI 인용·GA4/문의수신·실제 성과 미측정"
+  ]
+}
