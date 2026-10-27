@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-27T14:55:11.372504+09:00",
+  "read_only": true,
+  "brief_path": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/topic-plan.json",
+  "brief_sha256": "945b8ad6570ef215289ba5f10723bbaaeeb205cb5809d2ef6596b1c59c410656",
+  "brief_file_written": false,
+  "manuscripts_written": 0,
+  "platform_mutations": 0,
+  "current_nv_reservation_state_verified": false,
+  "items": [
+    "O04",
+    "N04"
+  ],
+  "evidence_file": "batch08-evidence.md",
+  "google_source": {
+    "url": "https://developers.google.com/search/docs/appearance/ai-features",
+    "status": 200,
+    "checked_at": "2026-10-27T14:50:35.884060+09:00"
+  },
+  "official_scope": "Google Search AI Overviews/AI Mode only",
+  "official_supported": [
+    "기본SEO·색인/스니펫자격",
+    "추가AI텍스트파일·특수마크업필수아님",
+    "노출보장없음"
+  ],
+  "unjustified": [
+    "llms.txt는모든AI에무효",
+    "llms.txt납품=업체사기",
+    "설정수정=인용보장"
+  ],
+  "owned_aeo_source": {
+    "url": "https://www.blinkad.kr/aeo",
+    "status": 200,
+    "checked_at": "2026-10-27T14:50:35.441436+09:00"
+  },
+  "n04_overlap": "remaining-dedup-audit.md",
+  "n04_new_title": "GEO 보고서의 추천·인용, 원문에서도 그렇게 확인되나요?",
+  "n04_new_decision": "보고서의 특정 주장과 질문·답변 문장·출처 페이지의 지지 문장을 대응해 그대로 인정/표현 수정/확인 불가를 정한다.",
+  "ai_measurement_performed": false,
+  "sample_audit_type": "편집상 제안한 증거 검수 예시; 실제 신규 실측 아님"
+}

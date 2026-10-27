@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고14건 작성·내부 검토 완료·미발행",
+  "stage": "원고16건 작성·내부 검토 완료·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -693,15 +693,89 @@
         },
         "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
       }
+    },
+    {
+      "id": "O04",
+      "type": "신규 인사이트",
+      "channel": "오픈애즈",
+      "title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
+      "seo_title": "GEO 마케팅 대행 결과, llms.txt와 실제 페이지를 함께 확인하세요",
+      "excerpt": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
+      "meta_description": "GEO 마케팅을 맡기고 `llms.txt` 파일을 받으셨다면, 파일의 목적과 함께 실제로 어떤 페이지가 바뀌었는지도 확인해보시면 좋습니다.",
+      "primary_keyword": "GEO 대행 llms.txt 작업 범위",
+      "parent_keyword": "GEO 마케팅 대행사 / AEO 마케팅 대행사",
+      "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+      "proposed_slug": "geo-llms-txt-delivery-review",
+      "public_url": null,
+      "body_file": "O04-geo-llms-txt-delivery-review.md",
+      "body_sha256": "cff85c7d4aa899a9612d6dbca37ef01bb0a86173a239cd4523a27f3c75aa88a2",
+      "body_chars": 2494,
+      "writing_order": 15,
+      "writing_batch": 8,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T15:11:40.754339+09:00",
+      "published_at": null,
+      "links": [
+        "https://developers.google.com/search/docs/appearance/ai-features",
+        "https://developers.google.com/search/docs/essentials/technical",
+        "https://www.blinkad.kr/aeo?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_body",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o04_cta"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch08-evidence.md",
+      "review_notes": [
+        "O04 Google검색AI의추가파일요건과다른AI범위·계약파일/실제페이지/관측성과를 구분, 공식근거 독립대조",
+        "N04 기존예약9와직접중복을피해 보고서행→질문/답변문장→출처지지→수용/수정/확인불가를 직접 제공",
+        "가상예시를실측/공식등급/의료추천으로확대하지않음, 주소내용일치뿐아니라실제출처연결도있는예시로정밀화·부정형메타문장교정"
+      ]
+    },
+    {
+      "id": "N04",
+      "type": "신규 인사이트",
+      "channel": "네이버 프리미엄콘텐츠",
+      "title": "GEO 보고서의 추천·인용, 원문에서도 그렇게 확인되나요?",
+      "seo_title": "GEO 보고서의 추천·인용, 원문에서도 그렇게 확인되나요?",
+      "excerpt": "GEO 보고서에 ‘추천’이나 ‘인용’이 표시되어 있다면, 그 한 줄을 실제 질문·답변·출처와 맞춰보시는 게 좋습니다.",
+      "meta_description": "GEO 보고서에 ‘추천’이나 ‘인용’이 표시되어 있다면, 그 한 줄을 실제 질문·답변·출처와 맞춰보시는 게 좋습니다.",
+      "primary_keyword": "GEO 성과 보고서 추천 인용 근거 검수",
+      "parent_keyword": "GEO 마케팅 대행사 / AEO 마케팅 대행사",
+      "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+      "proposed_slug": "geo-report-recommendation-citation-evidence",
+      "public_url": null,
+      "body_file": "N04-geo-report-recommendation-citation-evidence.md",
+      "body_sha256": "f5359380b99aaf0231ca2117d849d2faae829f8e25e12a7f365acff564a12bf9",
+      "body_chars": 2516,
+      "writing_order": 16,
+      "writing_batch": 8,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T15:11:40.754339+09:00",
+      "published_at": null,
+      "links": [
+        "https://www.blinkad.kr/aeo?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
+        "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_cta"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch08-evidence.md",
+      "review_notes": [
+        "O04 Google검색AI의추가파일요건과다른AI범위·계약파일/실제페이지/관측성과를 구분, 공식근거 독립대조",
+        "N04 기존예약9와직접중복을피해 보고서행→질문/답변문장→출처지지→수용/수정/확인불가를 직접 제공",
+        "가상예시를실측/공식등급/의료추천으로확대하지않음, 주소내용일치뿐아니라실제출처연결도있는예시로정밀화·부정형메타문장교정"
+      ]
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T15:09:13.358383+09:00",
-  "draft_count": 14,
-  "unwritten_total": 3,
+  "updated_at": "2026-10-27T15:11:40.754339+09:00",
+  "draft_count": 16,
+  "unwritten_total": 1,
   "homepage_draft_count": 6,
   "homepage_total": 6,
   "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
-  "latest_batch": 7
+  "latest_batch": 8
 }
