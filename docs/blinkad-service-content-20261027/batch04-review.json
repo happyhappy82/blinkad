@@ -1,0 +1,10 @@
+{
+  "review_complete": true,
+  "mandatory_errors_remaining": 0,
+  "notes": [
+    "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+    "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+    "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+  ],
+  "reviewers": ["inventory_homepage_topics 독립 기능/문체", "root 전체본문·브리프·링크 검토"]
+}

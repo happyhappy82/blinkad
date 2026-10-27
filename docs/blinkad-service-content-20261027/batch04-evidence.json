@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-10-27T14:48:14.448762+09:00",
+  "batch": 4,
+  "article_ids": [
+    "O01",
+    "N01"
+  ],
+  "stage": "집필전근거준비·원고미작성",
+  "sources": [
+    {
+      "id": "C1",
+      "url": "https://support.google.com/business/answer/6218037?hl=en",
+      "scope": "직접/외부공급링크·선호링크·제거요청",
+      "verified": "official_body_read"
+    },
+    {
+      "id": "C2",
+      "url": "https://support.google.com/business/answer/9918094?hl=en",
+      "scope": "GBP실적정의·제공조건·기간/여러프로필·organic와Ads포함",
+      "verified": "official_body_read"
+    },
+    {
+      "id": "C3",
+      "url": "https://support.google.com/business/answer/7475773?hl=en",
+      "scope": "공급자예약·국가별공급자·custom링크실적차이",
+      "verified": "official_body_read"
+    },
+    {
+      "id": "C4",
+      "url": "https://support.google.com/business/answer/7353941?hl=en",
+      "scope": "소유/관리·변경고지·보고/자료범위",
+      "verified": "official_body_read"
+    }
+  ],
+  "o01_limits": [
+    "일부링크자동표시가능",
+    "선호링크선택과다른링크제거는별개",
+    "제거요청과실제현재표시분리",
+    "즉시/영구제거·모든업종동일기능보장금지"
+  ],
+  "n01_limits": [
+    "프랜차이즈본사자동접근권한아님",
+    "모든프로필모든지표제공아님",
+    "미제공/미확인과0구분",
+    "조회/길찾기/전화버튼/웹클릭과실방문/통화/문의구분",
+    "프로필실적의organic+Ads포함주의",
+    "직영/가맹구분을원인으로단정금지"
+  ],
+  "live_store_data_read": false,
+  "manuscript_written": false,
+  "platform_changes": false,
+  "git_changes": false
+}

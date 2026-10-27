@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고6건 작성·내부 검토 완료·미발행",
+  "stage": "원고8건 작성·내부 검토 완료·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -366,15 +366,92 @@
         "H06 초기채널검토 중심·공개영어토론2표본 확인, 보편이용·성과·병원우열로 일반화하지 않음",
         "독립기능검토·독자/문체검토 완료, 제목 직접답과 검색제외 설명 보완, 첫4편 본문 불변"
       ]
+    },
+    {
+      "id": "O01",
+      "type": "신규 인사이트",
+      "channel": "오픈애즈",
+      "title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
+      "seo_title": "구글맵 예약 링크, 연결된 업체부터 확인하세요",
+      "excerpt": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
+      "meta_description": "구글맵의 예약 버튼을 눌렀는데 익숙하지 않은 업체 이름이 보인다면, 실제로 어느 매장의 어떤 예약 페이지로 연결되는지부터 확인해보세요.",
+      "primary_keyword": "구글맵 외부 예약 링크 관리",
+      "parent_keyword": "구글맵 마케팅 대행",
+      "target_audience": "외국인 고객 유입을 늘릴 마케팅 업무를 의뢰·검토하려는 대표와 기업 마케팅 담당자",
+      "proposed_slug": "google-maps-third-party-booking-links",
+      "public_url": null,
+      "body_file": "O01-google-maps-third-party-booking-links.md",
+      "body_sha256": "70595704349c99839adc853459fab3a2311e13981a0acf1da69ff375b01e05ab",
+      "body_chars": 3147,
+      "writing_order": 7,
+      "writing_batch": 4,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:56:37.933093+09:00",
+      "published_at": null,
+      "links": [
+        "https://support.google.com/business/answer/6218037?hl=en",
+        "https://www.blinkad.kr/google-map-marketing?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_body",
+        "https://support.google.com/business/answer/7475773?hl=en",
+        "https://www.blinkad.kr/contact?utm_source=openads&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=o01_cta"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch04-evidence.md",
+      "review_notes": [
+        "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+        "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+        "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+      ]
+    },
+    {
+      "id": "N01",
+      "type": "신규 인사이트",
+      "channel": "네이버 프리미엄콘텐츠",
+      "title": "프랜차이즈 구글맵 성과, 매장별 수치를 같은 조건으로 비교하세요",
+      "seo_title": "프랜차이즈 구글맵 성과, 매장별 수치를 같은 조건으로 비교하세요",
+      "excerpt": "프랜차이즈 구글맵 성과를 비교하실 때는 매장별 조회수 순위보다 기간과 지표 정의부터 맞추는 게 좋습니다.",
+      "meta_description": "프랜차이즈 구글맵 성과를 비교하실 때는 매장별 조회수 순위보다 기간과 지표 정의부터 맞추는 게 좋습니다.",
+      "primary_keyword": "프랜차이즈 매장별 구글맵 성과 비교",
+      "parent_keyword": "구글맵 마케팅 대행",
+      "target_audience": "프랜차이즈 본사 마케팅 담당자와 직영점·가맹점 운영 담당자",
+      "proposed_slug": "franchise-google-maps-performance-comparison",
+      "public_url": null,
+      "body_file": "N01-franchise-google-maps-performance-comparison.md",
+      "body_sha256": "228bb6910d71e71f8a6013f4d53e64aa58bcc65011612003088139fd986dc47d",
+      "body_chars": 3882,
+      "writing_order": 8,
+      "writing_batch": 4,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T14:56:37.933093+09:00",
+      "published_at": null,
+      "links": [
+        "https://support.google.com/business/answer/9918094?hl=en",
+        "https://support.google.com/business/answer/9918094?hl=en",
+        "https://support.google.com/business/answer/7475773?hl=en",
+        "https://www.blinkad.kr/google-map-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+        "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch04-evidence.md",
+      "review_notes": [
+        "O01 직접/공급자 링크·선호/제거 요청·반영 확인·예약 측정 범위를 공식자료와 독립 대조, 필수오류0",
+        "N01 권한·기간·운영조건·미제공과0·organic/Ads·프로필행동과실방문 구분 독립 대조, 필수오류0",
+        "root 두본문 전체읽기와 기존질문 구분·정확UTM 확인, N01의 불필요 대조문1곳을 설명문으로 교정"
+      ]
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T14:51:50.711860+09:00",
-  "draft_count": 6,
-  "unwritten_total": 11,
+  "updated_at": "2026-10-27T14:56:37.933093+09:00",
+  "draft_count": 8,
+  "unwritten_total": 9,
   "homepage_draft_count": 6,
   "homepage_total": 6,
   "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
-  "latest_batch": 3
+  "latest_batch": 4
 }
