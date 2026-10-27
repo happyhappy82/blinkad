@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "NV사용자타깃피드백3편수정 3/3 · 기존홈페이지/OA예약보존",
+  "stage": "NV6작성완료중N01/N05/N06은사용자타깃피드백교정완료·전체미발행. 홈페이지/OA기존예약보존.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -884,7 +884,7 @@
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-buyer-stage-correction-evidence-20261027.md",
       "review_notes": [
         "구매자단계독립검토: 운영보고/절차대신매장발견·방문판단·브랜드경험·지속관리필요를답하고대표의대행검토로연결. 필수보완1곳반영: 브랜드를모르는고객도지역·업종/서비스검색에서지점프로필을처음접할수있다는신규고객발견이유추가. 보완후핵심타깃/근거/문체필수문제0."
       ],
@@ -1420,7 +1420,7 @@
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-buyer-stage-correction-evidence-20261027.md",
       "review_notes": [
         "구매자단계독립검토통과: 서비스를검색하는신규고객에게알릴기회·지도/홈페이지·외국어설명역할이중심이며집행중보고/제외키워드점검으로내려가지않음. 필수사실오류0. 어색한 검색에서발견한관심을 검색을통해생긴관심 으로교정."
       ],
@@ -1841,7 +1841,7 @@
         "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-buyer-stage-correction-evidence-20261027.md",
       "review_notes": [
         "도입고민대표적합성독립검토통과: 브랜드인지전서비스질문→비교/경험정보→브랜드알아볼계기로레딧중요성을답함. 광고후점검/대행상품소개로내려가지않음. 공개질문/특정조사를현재병원운영·의료질·전체영어권/예약효과로확대없음. 자사상담CTA0·말투자연스러움,필수수정0."
       ],
@@ -2704,7 +2704,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T23:07:43.475580+09:00",
+  "updated_at": "2026-10-27T23:11:18.685312+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -3086,7 +3086,9 @@
     "started_at": "2026-10-27T23:00:53.616010+09:00",
     "reason": "사용자피드백:채널채택을고민하는대표대상필요성/중요성으로교정",
     "next_id": null,
-    "state": "도입고민타깃교정 3/3 · 미발행"
+    "state": "N01/N05/N06 도입고민타깃교정·독립검토완료·미발행",
+    "completed_at": "2026-10-27T23:11:18.685312+09:00"
   },
-  "buyer_stage_editorial_rule": "독자가 이미 운영 중인 실무자라고 전제하지 않는다. 운영·보고·설정은 필요성을 설명하는 짧은 예시로만 사용한다. 중복 회피 때문에 도입 고민을 다른 단계로 바꾸지 않는다."
+  "buyer_stage_editorial_rule": "독자가 이미 운영 중인 실무자라고 전제하지 않는다. 운영·보고·설정은 필요성을 설명하는 짧은 예시로만 사용한다. 중복 회피 때문에 도입 고민을 다른 단계로 바꾸지 않는다.",
+  "latest_editorial_report": "BLINKAD_NAVER_BUYER_STAGE_CORRECTION_20261027.md"
 }

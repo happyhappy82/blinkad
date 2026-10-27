@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-27T23:15:09.410750+09:00",
+  "reviewer": "inventory_external_topics",
+  "status": "PASS",
+  "baseline_commit": "31d7dbf",
+  "comparisons": 419,
+  "required_mismatches": 0,
+  "target_ids": [
+    "N01",
+    "N05",
+    "N06"
+  ],
+  "target_title_h1_seo_sha_plan_outline_route_anchor_match": true,
+  "source_and_downloads_html_files_checked": 17,
+  "article_full_text_elements_and_links_checked": 64,
+  "six_combined_and_individual_md_html_manifest_match": true,
+  "other14_body_bytes_and_full_item_metadata_unchanged": true,
+  "openads_five_reservation_receipt_unchanged": true,
+  "naver_six_still_unpublished": true,
+  "auditor_file_external_ui_changes": 0,
+  "visual_note": "이번 교정의 새 UI 확인은 Chrome cgWindowNotFound로 미수행. 기존 미리보기 레이아웃을 유지했고 HTML 전문·링크·메타를 대조했다."
+}

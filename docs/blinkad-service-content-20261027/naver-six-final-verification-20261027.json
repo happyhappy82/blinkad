@@ -184,5 +184,7 @@
     "other11_body_and_item_metadata_preserved": true,
     "existing_openads5_reservation_receipt_unchanged": true,
     "scope": "source/delivery/metadata/body/link comparison, not new platform execution or campaign outcomes"
-  }
+  },
+  "superseded_for_current_N01_N05_N06_by": "naver-buyer-stage-final-verification-20261027.json",
+  "audience_fit_correction_note": "이전검증은당시기획과저장물의정합성검증이었으며사용자지적한3편의구매자단계오류를놓침. 최신3편은별도교정/검토."
 }
