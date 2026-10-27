@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-27T14:55:11.372504+09:00",
+  "read_only": true,
+  "brief_path": "/tmp/blinkad-six-keyword-content-plan-20261027/docs/blinkad-six-keyword-content-plan-20261027/topic-plan.json",
+  "brief_sha256": "945b8ad6570ef215289ba5f10723bbaaeeb205cb5809d2ef6596b1c59c410656",
+  "brief_file_written": false,
+  "manuscripts_written": 0,
+  "platform_mutations": 0,
+  "current_nv_reservation_state_verified": false,
+  "items": [
+    "H06",
+    "N06",
+    "O06"
+  ],
+  "evidence_file": "batch07-evidence.md",
+  "reddit_samples": [
+    {
+      "id": "R1",
+      "title": "SMILE LASIK Clinic Recommendation",
+      "url": "https://www.reddit.com/r/koreatravel/comments/16xz28j/smile_lasik_clinic_recommendation/",
+      "observed_question": "한국 방문을 준비하며 BGN과 BGSS를 비교하고 선택 경험을 묻는 영어 질문",
+      "factual_status": "질문의 존재와 작성자 진술 관측. 댓글의 비용·의료 경과·영어 지원은 독립 검증하지 않음.",
+      "date_display": "3y ago",
+      "retrieval_cache_display": "last month",
+      "direct_http_status": 200,
+      "direct_http_body_contains_thread_terms": {
+        "BGN": false,
+        "BGSS": false
+      }
+    },
+    {
+      "id": "R2",
+      "title": "Clinic recommendations in Seoul?",
+      "url": "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/",
+      "observed_question": "서울 방문을 준비하며 영어 직원/통역·상담·관심 시술·가격 조건을 적어 추천을 묻는 영어 질문",
+      "factual_status": "질문 및 후속 경험 진술의 존재. 실제 환자·진료 수준·대기시간·추천 대가 등은 독립 검증하지 않음.",
+      "date_display": "1y ago",
+      "retrieval_cache_display": "3 days ago",
+      "direct_http_status": 200,
+      "direct_http_body_contains_thread_terms": {
+        "English speaking staff": false,
+        "Clinic recommendations": false
+      }
+    }
+  ],
+  "source_character_distinctions": [
+    "독립 미국 인구조사",
+    "플랫폼 공급사 미국·영국 구매 조사",
+    "과거 제휴 공식발표",
+    "기능 안내",
+    "비확률 선택한 공개질문2건"
+  ],
+  "ad_to_reddit_journey_observed": false,
+  "nationality_inferred": false,
+  "live_full_threads_verified": false,
+  "publication_prerequisite": [
+    "H06 실제 공개",
+    "N06/O06 각1개 관련읽기 실제URL확인"
+  ],
+  "direct_service_or_consultation_cta": false
+}

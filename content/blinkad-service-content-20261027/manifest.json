@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "원고12건 작성·내부 검토 완료·미발행",
+  "stage": "원고14건 작성·내부 검토 완료·미발행",
   "published_at": null,
   "deployment": false,
   "items": [
@@ -595,15 +595,113 @@
         "O05 병원명/진료/혼합 분석과 캠페인 분리를 구분, 브랜드설정·예산 조건과 환자상태/증분매출 추정 한계 확인",
         "독립기술/문체/중복검토 필수오류0, 언어변경 설명을 구체화하고 부정형메타·환자구분반복·매장표현을 교정"
       ]
+    },
+    {
+      "id": "N06",
+      "type": "신규 인사이트",
+      "channel": "네이버 프리미엄콘텐츠",
+      "title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+      "seo_title": "광고를 본 영어권 고객, 레딧 후기에서 무엇을 확인할까요?",
+      "excerpt": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+      "meta_description": "영어 광고로 우리 브랜드를 알렸다면, 고객이 구매를 결정할 때 어떤 정보를 더 찾을지도 준비하셔야 합니다.",
+      "primary_keyword": "영어권 고객 레딧 후기 비교",
+      "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+      "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+      "proposed_slug": "reddit-reviews-after-ad-exposure",
+      "public_url": null,
+      "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+      "body_sha256": "70dcbd131df6228f94e34c2f6460c9c46dbc497aa51ec851228b0d969ed38ffc",
+      "body_chars": 2554,
+      "writing_order": 13,
+      "writing_batch": 7,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+      "published_at": null,
+      "links": [
+        "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy",
+        "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+      "review_notes": [
+        "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+        "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+        "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+      ],
+      "pending_public_link": {
+        "planned_id": "H06",
+        "public_url": null,
+        "anchor_text": "영어권 외국인 마케팅에서 레딧을 함께 볼 이유",
+        "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+        "utm_parameters": {
+          "utm_source": "naver_premium",
+          "utm_medium": "referral",
+          "utm_campaign": "blinkad_service_content_20261027",
+          "utm_content": "n06_body"
+        },
+        "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+      }
+    },
+    {
+      "id": "O06",
+      "type": "신규 인사이트",
+      "channel": "오픈애즈",
+      "title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
+      "seo_title": "영어권 고객을 늘리려면 레딧에서 우리 브랜드부터 검색하세요",
+      "excerpt": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
+      "meta_description": "영어권 고객 유치를 준비하신다면, 레딧에서 우리 브랜드를 영어로 검색하는 일도 꼭 포함하세요.",
+      "primary_keyword": "영어권 고객 레딧 브랜드 검색",
+      "parent_keyword": "레딧 마케팅 / 영어권 외국인 마케팅",
+      "target_audience": "영어권·서구권 고객 유치를 원하는 대표·기업 마케팅 담당자",
+      "proposed_slug": "reddit-brand-search-english-customers",
+      "public_url": null,
+      "body_file": "O06-reddit-brand-search-english-customers.md",
+      "body_sha256": "f94054ea024def820ff5fd48182ad0bde1b61f82ffc14514a744fc6f5ff41d87",
+      "body_chars": 2380,
+      "writing_order": 14,
+      "writing_batch": 7,
+      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+      "public_byline_proposal": "블링크애드",
+      "fact_checked_at": "2026-10-27",
+      "last_substantive_edit_at": "2026-10-27T15:09:13.358383+09:00",
+      "published_at": null,
+      "links": [
+        "https://www.reddit.com/r/koreatravel/comments/16xz28j/smile_lasik_clinic_recommendation/",
+        "https://support.reddithelp.com/hc/en-us/articles/19695647891988-How-does-Reddit-search-work"
+      ],
+      "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/batch07-evidence.md",
+      "review_notes": [
+        "N06 광고장점과후기조건의차이·설명보완판단, O06브랜드재검색·관측범위·언급없음해석으로 H06초기준비와 중심질문 구분",
+        "공개토론/공급사조사범위 독립재확인, 광고후이동·국적·예약효과·의료품질·현재운영을 실측했다는 주장0",
+        "N06 실제이용을검증한듯한표현을후기작성자로교정하고과거질문시점을명시, 서비스CTA/추측H06주소 없이 완성"
+      ],
+      "pending_public_link": {
+        "planned_id": "H06",
+        "public_url": null,
+        "anchor_text": "영어권 고객 유치에서 레딧이 맡는 역할 살펴보기",
+        "condition": "새 H06 해설 글의 실제 공개·내용 일치 확인 후 외부 글 말미의 관련 읽기로1회 연결한다.",
+        "utm_parameters": {
+          "utm_source": "openads",
+          "utm_medium": "referral",
+          "utm_campaign": "blinkad_service_content_20261027",
+          "utm_content": "o06_body"
+        },
+        "state": "H06 실제 URL 확정 대기·현재 클릭 가능한 링크 아님"
+      }
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T15:02:15.414902+09:00",
-  "draft_count": 12,
-  "unwritten_total": 5,
+  "updated_at": "2026-10-27T15:09:13.358383+09:00",
+  "draft_count": 14,
+  "unwritten_total": 3,
   "homepage_draft_count": 6,
   "homepage_total": 6,
   "voice_direction_confirmed_by_user_at": "2026-10-27T14:41:28.646524+09:00",
-  "latest_batch": 6
+  "latest_batch": 7
 }
