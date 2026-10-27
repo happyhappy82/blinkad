@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-27",
+  "batch": 3,
+  "ids": [
+    "H06",
+    "H04"
+  ],
+  "review": "독립 근거·검색의도·문체 전체 검토 필수 수정 없음. 표본 한정 문체와 담당자 표현·직접 댓글 근거 연결 반영. 사용자 승인 아님",
+  "items": [
+    {
+      "id": "H06",
+      "previous_sha256": "27a8b0c507848722ece81f7f6fd60ea30acfe4d806c99056cadf67fcc4ae4e90",
+      "revised_sha256": "7ba387b12c9fd1729cb361c42cd2c152a43bac97a5ac1c0d97dfc4b1c4e88be6",
+      "title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유"
+    },
+    {
+      "id": "H04",
+      "previous_sha256": "49496130d86d55b4e95cc131bfd5ff5f6a40820f18362813de196c0abc84f790",
+      "revised_sha256": "d6fa1a8a84ae3a60b99c67b72a31a3a56a4a84633db943e10e38b54dad817f76",
+      "title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요."
+    }
+  ]
+}
