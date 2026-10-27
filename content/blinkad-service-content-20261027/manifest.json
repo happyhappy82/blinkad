@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 5/6 · 미발행",
+  "stage": "공식홈페이지6·OA5예약보존. 네이버최신제목순차재작성 6/6 · 미발행",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -2131,38 +2131,36 @@
       "id": "N02",
       "type": "신규 인사이트",
       "channel": "네이버 프리미엄콘텐츠",
-      "title": "병원 외국인 마케팅 경쟁분석, 같은 지역 병원만 비교해도 될까요?",
-      "seo_title": "병원 외국인 마케팅 경쟁분석, 같은 지역 병원만 비교해도 될까요?",
-      "excerpt": "병원 외국인 마케팅 경쟁분석에서는 가까운 병원 목록과 함께, 목표 고객의 검색 질문에 맞는 비교 후보도 살펴보시는 게 좋습니다.",
-      "meta_description": "병원 외국인 마케팅 경쟁분석에서는 가까운 병원 목록과 함께, 목표 고객의 검색 질문에 맞는 비교 후보도 살펴보시는 게 좋습니다.",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "seo_title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "excerpt": "병원 외국인 마케팅 경쟁분석에서 목표 진료·언어·방문 조건에 맞는 비교 후보를 고르고 공식 안내로 포함 이유를 확인하는 방법을 설명합니다.",
+      "meta_description": "병원 외국인 마케팅 경쟁분석에서 목표 진료·언어·방문 조건에 맞는 비교 후보를 고르고 공식 안내로 포함 이유를 확인하는 방법을 설명합니다.",
       "primary_keyword": "병원 외국인 마케팅 경쟁분석",
       "parent_keyword": "병원 외국인 마케팅 대행",
       "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
       "proposed_slug": "hospital-inbound-competitor-selection",
       "public_url": null,
       "body_file": "N02-hospital-inbound-competitor-selection.md",
-      "body_sha256": "cbf68a8a56f3643c9c3255ffcc2d89dfa6524928f4a8a29f8471520724655cde",
-      "body_chars": 2912,
+      "body_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+      "body_chars": 3577,
       "writing_order": 17,
       "writing_batch": 9,
-      "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+      "internal_editorial_review": "최신제목 본문재작성·독립근거/문체/중복검토완료·사용자확인전·미발행",
       "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
       "public_byline_proposal": "블링크애드",
       "fact_checked_at": "2026-10-27",
-      "last_substantive_edit_at": "2026-10-27T15:14:01.433538+09:00",
+      "last_substantive_edit_at": "2026-10-27T22:05:53.431214+09:00",
       "published_at": null,
       "links": [
         "https://jin-eye.co.kr/en_us/international-patients/",
         "https://english.bnviit.com/",
-        "https://www.blinkad.kr/foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+        "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
         "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
       ],
       "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-      "evidence_file": "../../docs/blinkad-service-content-20261027/batch09-evidence.md",
+      "evidence_file": "../../docs/blinkad-service-content-20261027/naver-six-evidence-20261027.md",
       "review_notes": [
-        "실제영어검색식/날짜·공개웹검색·국가/Google실순위미통제·공식영문병원2표본의공개내용 범위를 독립 대조",
-        "후보포함이유를진료/언어/방문조건과공식안내로정하는실무답, 실제환자선택·의료우열·검색수요/성과로일반화하지 않음",
-        "제목/정확UTM2개/4공개URL 정상확인, 부정형비교문2곳을 행동과확인범위가보이는설명문으로 교정"
+        "사실/근거범위/중복필수오류0. 공개안내와실제언어지원·예약구분,특정병원경쟁사/순위/의료질단정없음. 어색한 소제목 우리병원의개선할업무를 비교한내용을바탕으로우리병원에서고칠일을정합니다 로교정·대조확인. 교정후필수오류0."
       ],
       "pending_public_link": {
         "planned_id": "H02",
@@ -2171,12 +2169,108 @@
         "condition": "H02 실제 서비스안내 공개·제공범위 확인 후 본문 목적지를 교체한다.",
         "utm_content": "n02_body",
         "url_resolution": "공개 후 실제 URL을 확인하고 같은 UTM 규칙을 적용한다. 미생성 URL이나 추측한 슬러그는 사용하지 않는다."
-      }
+      },
+      "pre_naver_search_intent_revision": {
+        "id": "N02",
+        "type": "신규 인사이트",
+        "channel": "네이버 프리미엄콘텐츠",
+        "title": "병원 외국인 마케팅 경쟁분석, 같은 지역 병원만 비교해도 될까요?",
+        "seo_title": "병원 외국인 마케팅 경쟁분석, 같은 지역 병원만 비교해도 될까요?",
+        "excerpt": "병원 외국인 마케팅 경쟁분석에서는 가까운 병원 목록과 함께, 목표 고객의 검색 질문에 맞는 비교 후보도 살펴보시는 게 좋습니다.",
+        "meta_description": "병원 외국인 마케팅 경쟁분석에서는 가까운 병원 목록과 함께, 목표 고객의 검색 질문에 맞는 비교 후보도 살펴보시는 게 좋습니다.",
+        "primary_keyword": "병원 외국인 마케팅 경쟁분석",
+        "parent_keyword": "병원 외국인 마케팅 대행",
+        "target_audience": "병원 분야에서는 원장·경영 책임자·병원 마케팅 담당자",
+        "proposed_slug": "hospital-inbound-competitor-selection",
+        "public_url": null,
+        "body_file": "N02-hospital-inbound-competitor-selection.md",
+        "body_sha256": "cbf68a8a56f3643c9c3255ffcc2d89dfa6524928f4a8a29f8471520724655cde",
+        "body_chars": 2912,
+        "writing_order": 17,
+        "writing_batch": 9,
+        "internal_editorial_review": "완료·사용자 승인/실제 독자 조사 아님",
+        "authoring": "Codex 작성·블링크애드 담당자 설명 어투",
+        "public_byline_proposal": "블링크애드",
+        "fact_checked_at": "2026-10-27",
+        "last_substantive_edit_at": "2026-10-27T15:14:01.433538+09:00",
+        "published_at": null,
+        "links": [
+          "https://jin-eye.co.kr/en_us/international-patients/",
+          "https://english.bnviit.com/",
+          "https://www.blinkad.kr/foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+          "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+        ],
+        "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
+        "evidence_file": "../../docs/blinkad-service-content-20261027/batch09-evidence.md",
+        "review_notes": [
+          "실제영어검색식/날짜·공개웹검색·국가/Google실순위미통제·공식영문병원2표본의공개내용 범위를 독립 대조",
+          "후보포함이유를진료/언어/방문조건과공식안내로정하는실무답, 실제환자선택·의료우열·검색수요/성과로일반화하지 않음",
+          "제목/정확UTM2개/4공개URL 정상확인, 부정형비교문2곳을 행동과확인범위가보이는설명문으로 교정"
+        ],
+        "pending_public_link": {
+          "planned_id": "H02",
+          "public_url": null,
+          "anchor_text": "병원 외국인 마케팅의 실제 작업 범위 확인하기",
+          "condition": "H02 실제 서비스안내 공개·제공범위 확인 후 본문 목적지를 교체한다.",
+          "utm_content": "n02_body",
+          "url_resolution": "공개 후 실제 URL을 확인하고 같은 UTM 규칙을 적용한다. 미생성 URL이나 추측한 슬러그는 사용하지 않는다."
+        }
+      },
+      "homepage_reference": {
+        "external_id": "N02",
+        "homepage_id": "H02",
+        "homepage_title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
+        "base_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+        "homepage_publish_date": "2026-10-27",
+        "homepage_current_state": "published",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "publication_gate": {
+        "not_before": "2026-10-27",
+        "reason": "홈페이지참고글을본문에사전배치. 외부발행전실공개/제목·내용/모바일접근확인. 현재원고작성만수행.",
+        "checks": [
+          "참고글HTTP200",
+          "제목·본문과링크문맥일치",
+          "모바일접근확인"
+        ],
+        "platform_posting_authorized_this_turn": false,
+        "platform_registered": false,
+        "platform_posted": false
+      },
+      "search_intent_revision": {
+        "at": "2026-10-27T22:05:53.431214+09:00",
+        "status": "최신제목 본문재작성·독립검토완료·미발행",
+        "direct_answer": "먼저 목표 고객의 진료·언어·방문 조건을 정하고, 관련 검색에서 발견한 후보의 공식 안내를 대조합니다. 비교표에 넣은 이유와 확인하지 못한 조건을 함께 남깁니다.",
+        "outline": [
+          "비교할 고객의 조건을 한 문장으로 정리합니다",
+          "검색에서 발견한 병원을 공식 안내로 다시 봅니다",
+          "비교표에는 포함한 이유와 부족한 자료를 적습니다",
+          "비교한 내용을 바탕으로 우리 병원에서 고칠 일을 정합니다"
+        ]
+      },
+      "claim_ledger": [
+        {
+          "type": "편집상실무권고·명시한예시",
+          "claim": "먼저 목표 고객의 진료·언어·방문 조건을 정하고, 관련 검색에서 발견한 후보의 공식 안내를 대조합니다. 비교표에 넣은 이유와 확인하지 못한 조건을 함께 남깁니다.",
+          "scope": "실제고객성과/효율비교실험/환자선택/광고·AI기여를측정한것으로주장하지않음"
+        },
+        {
+          "type": "공식자료의기능·공개안내",
+          "sources": [
+            "https://jin-eye.co.kr/en_us/international-patients/",
+            "https://english.bnviit.com/"
+          ],
+          "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
+        }
+      ]
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T22:03:23.981108+09:00",
+  "updated_at": "2026-10-27T22:05:53.431214+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2317,7 +2411,7 @@
     "workflow_run": "https://github.com/happyhappy82/blinkad/actions/runs/40478537710",
     "future_publication_verification": "현재미공개/예약저장·필터·자동운영배포경로검증. 미래일의실공개완료는아직아님.",
     "external11_rewrite_pending": true,
-    "external_rewrite_pending_count": 1,
+    "external_rewrite_pending_count": 0,
     "external_draft_revised_ids": [
       "O01",
       "O03",
@@ -2328,7 +2422,8 @@
       "N03",
       "N05",
       "N06",
-      "N04"
+      "N04",
+      "N02"
     ],
     "external_reserved_count": 5
   },
@@ -2404,7 +2499,7 @@
         "homepage_publish_date": "2026-10-27",
         "homepage_current_state": "published",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": false,
+        "actual_body_applied": true,
         "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
       },
       {
@@ -2480,7 +2575,8 @@
       "N03",
       "N05",
       "N06",
-      "N04"
+      "N04",
+      "N02"
     ],
     "other_bodies_unchanged": true
   },
@@ -2497,14 +2593,14 @@
     "current_position": 5,
     "next_id": null,
     "state": "오픈애즈5편 예약설정저장완료·플랫폼검수/공개대기",
-    "external_rewrite_pending": 1
+    "external_rewrite_pending": 0
   },
   "external_link_inventory": {
     "placed_links_in_drafts": 20,
     "placed_scheduled_homepage_links": 9,
     "new_reference_plan_count": 11,
-    "actual_rewrite_count": 10,
-    "remaining_rewrite_count": 1,
+    "actual_rewrite_count": 11,
+    "remaining_rewrite_count": 0,
     "links_are_draft_copy_not_platform_posts": true
   },
   "external_current_links_at_previous_completion": 16,
@@ -2526,9 +2622,10 @@
       "N03",
       "N05",
       "N06",
-      "N04"
+      "N04",
+      "N02"
     ],
-    "next_id": "N02",
-    "state": "순차집필·독립검토 5/6 · 미발행"
+    "next_id": null,
+    "state": "순차집필·독립검토 6/6 · 미발행"
   }
 }

@@ -44,3 +44,12 @@
 - 자료: https://support.google.com/gemini/answer/14143489?co=GENIE.Platform%3DDesktop&hl=en
 - 홈페이지참고: H04 · https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body · scheduled
 - 실제고객/성과/수요실측·외부게시미실행.
+
+
+## N02 · 병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?
+
+- 독립검토: 사실/근거범위/중복필수오류0. 공개안내와실제언어지원·예약구분,특정병원경쟁사/순위/의료질단정없음. 어색한 소제목 우리병원의개선할업무를 비교한내용을바탕으로우리병원에서고칠일을정합니다 로교정·대조확인. 교정후필수오류0.
+- 편집상핵심답: 먼저 목표 고객의 진료·언어·방문 조건을 정하고, 관련 검색에서 발견한 후보의 공식 안내를 대조합니다. 비교표에 넣은 이유와 확인하지 못한 조건을 함께 남깁니다.
+- 자료: https://jin-eye.co.kr/en_us/international-patients/ · https://english.bnviit.com/
+- 홈페이지참고: H02 · https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body · published
+- 실제고객/성과/수요실측·외부게시미실행.
