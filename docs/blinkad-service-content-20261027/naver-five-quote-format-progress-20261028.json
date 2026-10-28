@@ -1,0 +1,68 @@
+{
+  "at": "2026-10-28T13:26:24.713515+09:00",
+  "status": "in_progress",
+  "requested_articles": 5,
+  "requested_quote_headings": 20,
+  "reported_formatted_articles": 4,
+  "reported_saved_quotes": 16,
+  "items": [
+    {
+      "code": "N03",
+      "actual_id": "261028124221710gm",
+      "quotes_saved": 4,
+      "native_quote_type": "se-quotation se-l-quotation_line",
+      "quote_texts_match_requested": true,
+      "saved_and_reopened": true,
+      "reported_preservation_flags_pass": true,
+      "effective_tables_preserved": true,
+      "table_evidence": "N03-table-verification.json",
+      "capture": "N03-quote-preview.png",
+      "capture_sha256": "768bfe54bc85e2799af7d634f41e4814568b22c4067cc0a0c1478bc8e48f2b25",
+      "paragraph_spacing_visual_review": "N03 첫저장본 여백확인"
+    },
+    {
+      "code": "N01",
+      "actual_id": "261028124403773rx",
+      "quotes_saved": 4,
+      "native_quote_type": "se-quotation se-l-quotation_line",
+      "quote_texts_match_requested": true,
+      "saved_and_reopened": true,
+      "reported_preservation_flags_pass": true,
+      "effective_tables_preserved": true,
+      "table_evidence": "N01-table-verification.json",
+      "capture": "N01-quote-preview.png",
+      "capture_sha256": "7a232cd9606c1a658b6f9800fc1cc5b7367a8d766ce332d166e47eb7ff014f9e",
+      "paragraph_spacing_visual_review": "보완후 최종캡처 검토대기"
+    },
+    {
+      "code": "N05",
+      "actual_id": "261028124654504ui",
+      "quotes_saved": 4,
+      "native_quote_type": "se-quotation se-l-quotation_line",
+      "quote_texts_match_requested": true,
+      "saved_and_reopened": true,
+      "reported_preservation_flags_pass": true,
+      "effective_tables_preserved": true,
+      "table_evidence": null,
+      "capture": "N05-quote-preview.png",
+      "capture_sha256": "082becc58baf26a8ac432ab7431ad8bf37ef7c01f1536f60169166400837522b",
+      "paragraph_spacing_visual_review": "보완후 최종캡처 검토대기"
+    },
+    {
+      "code": "N06",
+      "actual_id": "261028124832817qi",
+      "quotes_saved": 4,
+      "native_quote_type": "se-quotation se-l-quotation_line",
+      "quote_texts_match_requested": true,
+      "saved_and_reopened": true,
+      "reported_preservation_flags_pass": true,
+      "effective_tables_preserved": true,
+      "table_evidence": null,
+      "capture": "N06-quote-preview.png",
+      "capture_sha256": "7b0b36dbf7604eb6ee5c148eface1cc576114e0a83ff58798268642b581e3a19",
+      "paragraph_spacing_visual_review": "보완후 최종캡처 검토대기"
+    }
+  ],
+  "scope": "인용저장·보존정보의부분대조;본문단락여백최종보완진행중이며완료아님",
+  "known_table_extraction_difference": "N03 textContent 앞뒤공백차이;실제 rendered innerText 15셀과5x3구조가before와정확일치"
+}

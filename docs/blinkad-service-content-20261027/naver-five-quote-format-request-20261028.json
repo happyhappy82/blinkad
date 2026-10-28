@@ -1,0 +1,110 @@
+{
+  "at": "2026-10-28T13:01:39.345281+09:00",
+  "status": "user authorized native Naver quote formatting and paragraph spacing",
+  "channel": "네이버 프리미엄콘텐츠 블링크애드",
+  "aside_conversation_id": "1H64o4UP8SpfD8Eq",
+  "scope": "최근신규5편소제목각4개총20개를네이버실제인용컴포넌트로표시;문단/소제목전후여백",
+  "quote_style": "간단한세로선/기본형인용·좌측정렬·5편같은스타일",
+  "preserve": [
+    "현재저장본문문장/순서",
+    "원고제목",
+    "표",
+    "하이퍼링크/UTM",
+    "썸네일",
+    "무료조건",
+    "작성자",
+    "기존contentId",
+    "예약/발행일시",
+    "비대상18글"
+  ],
+  "do_not_convert": "본문핵심답변/일반강조문장과H1제목은인용으로바꾸지않음",
+  "N02_lifecycle": "오늘13시자동발행될수있으므로현재상태확인후기존발행글의같은ID를수정;발행취소/새글재등록/날짜이동없음",
+  "items": [
+    {
+      "code": "N03",
+      "actual_id": "261028124221710gm",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "previous_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124221710gm?isConfig=true",
+      "previous_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm",
+      "original_scheduled_at": "2026-10-30T13:00:00+09:00",
+      "expected_native_quote_headings": [
+        "첫 홈페이지에서 어떤 진료의 문의를 받을지 정합니다",
+        "언어는 고객이 읽는 단계와 병원이 답하는 단계까지 함께 봅니다",
+        "진료 설명과 이용 안내를 한 묶음으로 만듭니다",
+        "첫 안내를 완성한 뒤 진료와 언어를 넓혀갑니다"
+      ],
+      "target_heading_count": 4,
+      "source_md_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+      "source_body_file": "N03-hospital-language-page-links.md"
+    },
+    {
+      "code": "N01",
+      "actual_id": "261028124403773rx",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "previous_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124403773rx?isConfig=true",
+      "previous_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124403773rx",
+      "original_scheduled_at": "2026-11-01T13:00:00+09:00",
+      "expected_native_quote_headings": [
+        "구글맵은 고객이 방문할 매장을 고르는 화면입니다",
+        "한 지점의 부정확한 안내도 브랜드에 대한 인상으로 남을 수 있습니다",
+        "프랜차이즈의 장점을 지점별 프로필에서도 보여줘야 합니다",
+        "꾸준히 관리할 수 있는 방법까지 함께 선택하시면 됩니다"
+      ],
+      "target_heading_count": 4,
+      "source_md_sha256": "a2c91ef6fb8db912312b685ef41ed27b6d591673e02fee72e5e6c1d48bafa958",
+      "source_body_file": "N01-franchise-google-maps-performance-comparison.md"
+    },
+    {
+      "code": "N05",
+      "actual_id": "261028124654504ui",
+      "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "previous_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124654504ui?isConfig=true",
+      "previous_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124654504ui",
+      "original_scheduled_at": "2026-11-03T13:00:00+09:00",
+      "expected_native_quote_headings": [
+        "서비스를 찾는 고객에게 검색 결과에서 알릴 수 있습니다",
+        "검색·지도·홈페이지와 함께 광고를 준비할 이유가 있습니다",
+        "외국어로 알리고 이해할 수 있는 페이지로 연결해야 합니다",
+        "외국인에게 알릴 계획이라면 검색광고의 역할도 함께 보세요"
+      ],
+      "target_heading_count": 4,
+      "source_md_sha256": "76c7af88fce23e7ea034c95651fecc1ff761386447b3c1f763adad4a75d3c456",
+      "source_body_file": "N05-foreign-search-terms-negative-keywords.md"
+    },
+    {
+      "code": "N06",
+      "actual_id": "261028124832817qi",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "previous_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124832817qi?isConfig=true",
+      "previous_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124832817qi",
+      "original_scheduled_at": "2026-11-05T13:00:00+09:00",
+      "expected_native_quote_headings": [
+        "1. 브랜드를 모르는 고객도 필요한 서비스를 질문합니다",
+        "2. 고객이 선택 전에 궁금해하는 비교 내용을 볼 수 있습니다",
+        "3. 고객이 브랜드를 더 알아볼 이유를 준비할 수 있습니다",
+        "영어권 고객 유치 계획에 관련 커뮤니티도 포함해보세요"
+      ],
+      "target_heading_count": 4,
+      "source_md_sha256": "ab2f3872c63cb2989d27abe06673b7e04bd54287617bae8c893fb9933929ad08",
+      "source_body_file": "N06-reddit-reviews-after-ad-exposure.md"
+    },
+    {
+      "code": "N02",
+      "actual_id": "261028123905601ev",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "previous_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028123905601ev?isConfig=true",
+      "previous_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028123905601ev",
+      "original_scheduled_at": "2026-10-28T13:00:00+09:00",
+      "expected_native_quote_headings": [
+        "비교할 고객의 조건을 한 문장으로 정리합니다",
+        "검색에서 발견한 병원을 공식 안내로 다시 봅니다",
+        "비교표에는 포함한 이유와 부족한 자료를 적습니다",
+        "비교한 내용을 바탕으로 우리 병원에서 고칠 일을 정합니다"
+      ],
+      "target_heading_count": 4,
+      "source_md_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+      "source_body_file": "N02-hospital-inbound-competitor-selection.md"
+    }
+  ],
+  "result_filename": "naver-five-quote-format-result.json"
+}

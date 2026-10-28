@@ -1,0 +1,730 @@
+{
+  "verification": "match",
+  "code": "N03",
+  "read_only": true,
+  "observed_at": "2026-10-28T04:17:39.809Z",
+  "baseline_path": "/Users/mcbookpro/.aside/u/0/sessions/2026-10-28_1H64o4UP8SpfD8Eq/artifacts/네이버_소제목인용_20261028/N03-before.json",
+  "preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm",
+  "scope": "Actual native .se-component.se-table only; no website/editor changes and no parent result edits.",
+  "extraction": {
+    "selector": ".se-component.se-table",
+    "row_method": "Array.from(table.rows)",
+    "cell_method": "Array.from(row.cells).map(cell => cell.textContent)",
+    "rendered_cell_method": "cell.innerText",
+    "quotation_exclusion": "Only native se-table components selected. All HTML tables were additionally inventoried with nearest .se-component ancestry."
+  },
+  "native_component_count": 1,
+  "total_html_table_count": 1,
+  "quotation_component_count": 4,
+  "decorative_tables_nested_in_quotation_count": 0,
+  "dimensions_before": [
+    {
+      "rows": 5,
+      "columns_per_row": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    }
+  ],
+  "dimensions_after": [
+    {
+      "rows": 5,
+      "columns_per_row": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ]
+    }
+  ],
+  "before_raw_tables": [
+    [
+      [
+        "준비할 안내",
+        "병원에서 확인할 내용",
+        "고객이 판단할 수 있어야 할 점"
+      ],
+      [
+        "진료 설명",
+        "확인된 진료명·제공 범위와 상담에서 정할 내용",
+        "어떤 고민으로 상담할 수 있는지"
+      ],
+      [
+        "방문 전 안내",
+        "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+        "방문 전에 무엇을 문의하고 준비할지"
+      ],
+      [
+        "언어 지원",
+        "지원 단계·시간·예약 조건·비용이 있는지",
+        "원하는 언어로 어떤 도움을 받을 수 있는지"
+      ],
+      [
+        "위치·문의",
+        "실제 주소와 문의 방법, 답변 가능한 범위",
+        "어느 지점으로 어떻게 연락할지"
+      ]
+    ]
+  ],
+  "after_raw_textContent_tables": [
+    [
+      [
+        "\n                                                준비할 안내\n\n                \n                                    ",
+        "\n                                                병원에서 확인할 내용\n\n                \n                                    ",
+        "\n                                                고객이 판단할 수 있어야 할 점\n\n                \n                                    "
+      ],
+      [
+        "\n                                                진료 설명\n\n                \n                                    ",
+        "\n                                                확인된 진료명·제공 범위와 상담에서 정할 내용\n\n                \n                                    ",
+        "\n                                                어떤 고민으로 상담할 수 있는지\n\n                \n                                    "
+      ],
+      [
+        "\n                                                방문 전 안내\n\n                \n                                    ",
+        "\n                                                상담·검사·방문 절차와 추가 확인이 필요한 일정\n\n                \n                                    ",
+        "\n                                                방문 전에 무엇을 문의하고 준비할지\n\n                \n                                    "
+      ],
+      [
+        "\n                                                언어 지원\n\n                \n                                    ",
+        "\n                                                지원 단계·시간·예약 조건·비용이 있는지\n\n                \n                                    ",
+        "\n                                                원하는 언어로 어떤 도움을 받을 수 있는지\n\n                \n                                    "
+      ],
+      [
+        "\n                                                위치·문의\n\n                \n                                    ",
+        "\n                                                실제 주소와 문의 방법, 답변 가능한 범위\n\n                \n                                    ",
+        "\n                                                어느 지점으로 어떻게 연락할지\n\n                \n                                    "
+      ]
+    ]
+  ],
+  "after_raw_rendered_innerText_tables": [
+    [
+      [
+        "준비할 안내",
+        "병원에서 확인할 내용",
+        "고객이 판단할 수 있어야 할 점"
+      ],
+      [
+        "진료 설명",
+        "확인된 진료명·제공 범위와 상담에서 정할 내용",
+        "어떤 고민으로 상담할 수 있는지"
+      ],
+      [
+        "방문 전 안내",
+        "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+        "방문 전에 무엇을 문의하고 준비할지"
+      ],
+      [
+        "언어 지원",
+        "지원 단계·시간·예약 조건·비용이 있는지",
+        "원하는 언어로 어떤 도움을 받을 수 있는지"
+      ],
+      [
+        "위치·문의",
+        "실제 주소와 문의 방법, 답변 가능한 범위",
+        "어느 지점으로 어떻게 연락할지"
+      ]
+    ]
+  ],
+  "normalization": {
+    "function": "s => s.trim()",
+    "description": "ECMAScript String.prototype.trim(): remove leading/trailing whitespace and line terminators only. No internal whitespace collapsing, Unicode normalization, punctuation replacement, or zero-width removal was applied or needed.",
+    "before_normalized_tables": [
+      [
+        [
+          "준비할 안내",
+          "병원에서 확인할 내용",
+          "고객이 판단할 수 있어야 할 점"
+        ],
+        [
+          "진료 설명",
+          "확인된 진료명·제공 범위와 상담에서 정할 내용",
+          "어떤 고민으로 상담할 수 있는지"
+        ],
+        [
+          "방문 전 안내",
+          "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+          "방문 전에 무엇을 문의하고 준비할지"
+        ],
+        [
+          "언어 지원",
+          "지원 단계·시간·예약 조건·비용이 있는지",
+          "원하는 언어로 어떤 도움을 받을 수 있는지"
+        ],
+        [
+          "위치·문의",
+          "실제 주소와 문의 방법, 답변 가능한 범위",
+          "어느 지점으로 어떻게 연락할지"
+        ]
+      ]
+    ],
+    "after_normalized_tables": [
+      [
+        [
+          "준비할 안내",
+          "병원에서 확인할 내용",
+          "고객이 판단할 수 있어야 할 점"
+        ],
+        [
+          "진료 설명",
+          "확인된 진료명·제공 범위와 상담에서 정할 내용",
+          "어떤 고민으로 상담할 수 있는지"
+        ],
+        [
+          "방문 전 안내",
+          "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+          "방문 전에 무엇을 문의하고 준비할지"
+        ],
+        [
+          "언어 지원",
+          "지원 단계·시간·예약 조건·비용이 있는지",
+          "원하는 언어로 어떤 도움을 받을 수 있는지"
+        ],
+        [
+          "위치·문의",
+          "실제 주소와 문의 방법, 답변 가능한 범위",
+          "어느 지점으로 어떻게 연락할지"
+        ]
+      ]
+    ]
+  },
+  "equality": {
+    "raw_textContent_equal": false,
+    "raw_rendered_innerText_equal": true,
+    "normalized_equal": true,
+    "compared_cell_count": 15,
+    "normalized_matched_cell_count": 15
+  },
+  "cell_comparisons": [
+    {
+      "table_index": 0,
+      "row_index": 0,
+      "column_index": 0,
+      "before_raw": "준비할 안내",
+      "after_raw": "\n                                                준비할 안내\n\n                \n                                    ",
+      "after_rendered": "준비할 안내",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 0,
+      "column_index": 1,
+      "before_raw": "병원에서 확인할 내용",
+      "after_raw": "\n                                                병원에서 확인할 내용\n\n                \n                                    ",
+      "after_rendered": "병원에서 확인할 내용",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 0,
+      "column_index": 2,
+      "before_raw": "고객이 판단할 수 있어야 할 점",
+      "after_raw": "\n                                                고객이 판단할 수 있어야 할 점\n\n                \n                                    ",
+      "after_rendered": "고객이 판단할 수 있어야 할 점",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 1,
+      "column_index": 0,
+      "before_raw": "진료 설명",
+      "after_raw": "\n                                                진료 설명\n\n                \n                                    ",
+      "after_rendered": "진료 설명",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 1,
+      "column_index": 1,
+      "before_raw": "확인된 진료명·제공 범위와 상담에서 정할 내용",
+      "after_raw": "\n                                                확인된 진료명·제공 범위와 상담에서 정할 내용\n\n                \n                                    ",
+      "after_rendered": "확인된 진료명·제공 범위와 상담에서 정할 내용",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 1,
+      "column_index": 2,
+      "before_raw": "어떤 고민으로 상담할 수 있는지",
+      "after_raw": "\n                                                어떤 고민으로 상담할 수 있는지\n\n                \n                                    ",
+      "after_rendered": "어떤 고민으로 상담할 수 있는지",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 2,
+      "column_index": 0,
+      "before_raw": "방문 전 안내",
+      "after_raw": "\n                                                방문 전 안내\n\n                \n                                    ",
+      "after_rendered": "방문 전 안내",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 2,
+      "column_index": 1,
+      "before_raw": "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+      "after_raw": "\n                                                상담·검사·방문 절차와 추가 확인이 필요한 일정\n\n                \n                                    ",
+      "after_rendered": "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 2,
+      "column_index": 2,
+      "before_raw": "방문 전에 무엇을 문의하고 준비할지",
+      "after_raw": "\n                                                방문 전에 무엇을 문의하고 준비할지\n\n                \n                                    ",
+      "after_rendered": "방문 전에 무엇을 문의하고 준비할지",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 3,
+      "column_index": 0,
+      "before_raw": "언어 지원",
+      "after_raw": "\n                                                언어 지원\n\n                \n                                    ",
+      "after_rendered": "언어 지원",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 3,
+      "column_index": 1,
+      "before_raw": "지원 단계·시간·예약 조건·비용이 있는지",
+      "after_raw": "\n                                                지원 단계·시간·예약 조건·비용이 있는지\n\n                \n                                    ",
+      "after_rendered": "지원 단계·시간·예약 조건·비용이 있는지",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 3,
+      "column_index": 2,
+      "before_raw": "원하는 언어로 어떤 도움을 받을 수 있는지",
+      "after_raw": "\n                                                원하는 언어로 어떤 도움을 받을 수 있는지\n\n                \n                                    ",
+      "after_rendered": "원하는 언어로 어떤 도움을 받을 수 있는지",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 4,
+      "column_index": 0,
+      "before_raw": "위치·문의",
+      "after_raw": "\n                                                위치·문의\n\n                \n                                    ",
+      "after_rendered": "위치·문의",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 4,
+      "column_index": 1,
+      "before_raw": "실제 주소와 문의 방법, 답변 가능한 범위",
+      "after_raw": "\n                                                실제 주소와 문의 방법, 답변 가능한 범위\n\n                \n                                    ",
+      "after_rendered": "실제 주소와 문의 방법, 답변 가능한 범위",
+      "raw_equal": false,
+      "trimmed_equal": true
+    },
+    {
+      "table_index": 0,
+      "row_index": 4,
+      "column_index": 2,
+      "before_raw": "어느 지점으로 어떻게 연락할지",
+      "after_raw": "\n                                                어느 지점으로 어떻게 연락할지\n\n                \n                                    ",
+      "after_rendered": "어느 지점으로 어떻게 연락할지",
+      "raw_equal": false,
+      "trimmed_equal": true
+    }
+  ],
+  "native_components": [
+    {
+      "index": 0,
+      "class_name": "se-component se-table se-l-default __se-component",
+      "id": "SE-fd88fda1-e090-4066-ae1d-81338003b340",
+      "table_count": 1,
+      "tables": [
+        {
+          "class_name": "se-table-content",
+          "rows": [
+            [
+              "\n                                                준비할 안내\n\n                \n                                    ",
+              "\n                                                병원에서 확인할 내용\n\n                \n                                    ",
+              "\n                                                고객이 판단할 수 있어야 할 점\n\n                \n                                    "
+            ],
+            [
+              "\n                                                진료 설명\n\n                \n                                    ",
+              "\n                                                확인된 진료명·제공 범위와 상담에서 정할 내용\n\n                \n                                    ",
+              "\n                                                어떤 고민으로 상담할 수 있는지\n\n                \n                                    "
+            ],
+            [
+              "\n                                                방문 전 안내\n\n                \n                                    ",
+              "\n                                                상담·검사·방문 절차와 추가 확인이 필요한 일정\n\n                \n                                    ",
+              "\n                                                방문 전에 무엇을 문의하고 준비할지\n\n                \n                                    "
+            ],
+            [
+              "\n                                                언어 지원\n\n                \n                                    ",
+              "\n                                                지원 단계·시간·예약 조건·비용이 있는지\n\n                \n                                    ",
+              "\n                                                원하는 언어로 어떤 도움을 받을 수 있는지\n\n                \n                                    "
+            ],
+            [
+              "\n                                                위치·문의\n\n                \n                                    ",
+              "\n                                                실제 주소와 문의 방법, 답변 가능한 범위\n\n                \n                                    ",
+              "\n                                                어느 지점으로 어떻게 연락할지\n\n                \n                                    "
+            ]
+          ],
+          "rendered_rows": [
+            [
+              "준비할 안내",
+              "병원에서 확인할 내용",
+              "고객이 판단할 수 있어야 할 점"
+            ],
+            [
+              "진료 설명",
+              "확인된 진료명·제공 범위와 상담에서 정할 내용",
+              "어떤 고민으로 상담할 수 있는지"
+            ],
+            [
+              "방문 전 안내",
+              "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+              "방문 전에 무엇을 문의하고 준비할지"
+            ],
+            [
+              "언어 지원",
+              "지원 단계·시간·예약 조건·비용이 있는지",
+              "원하는 언어로 어떤 도움을 받을 수 있는지"
+            ],
+            [
+              "위치·문의",
+              "실제 주소와 문의 방법, 답변 가능한 범위",
+              "어느 지점으로 어떻게 연락할지"
+            ]
+          ],
+          "spans": [
+            [
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              }
+            ],
+            [
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              }
+            ],
+            [
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              }
+            ],
+            [
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              }
+            ],
+            [
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              },
+              {
+                "rowSpan": 1,
+                "colSpan": 1
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "all_html_table_inventory": [
+    {
+      "index": 0,
+      "class_name": "se-table-content",
+      "nearest_component_class": "se-component se-table se-l-default __se-component",
+      "ancestors": [
+        {
+          "tag": "DIV",
+          "class_name": "se-table-container"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se-section se-section-table se-l-default se-section-align-"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se-component-content"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se-component se-table se-l-default __se-component"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se-main-container"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se-viewer se-theme-default"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "se_viewer_content _NIL_SEND _BA_SCROLL_SEND"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "container_content _GRID_TEMPLATE_COLUMN _STICKY_CONTENT"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "container_main"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "container_inner"
+        },
+        {
+          "tag": "DIV",
+          "class_name": "container"
+        },
+        {
+          "tag": "BODY",
+          "class_name": "is_dimmed"
+        },
+        {
+          "tag": "HTML",
+          "class_name": ""
+        }
+      ],
+      "rows": [
+        [
+          {
+            "textContent": "\n                                                준비할 안내\n\n                \n                                    ",
+            "innerText": "준비할 안내",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                병원에서 확인할 내용\n\n                \n                                    ",
+            "innerText": "병원에서 확인할 내용",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                고객이 판단할 수 있어야 할 점\n\n                \n                                    ",
+            "innerText": "고객이 판단할 수 있어야 할 점",
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        [
+          {
+            "textContent": "\n                                                진료 설명\n\n                \n                                    ",
+            "innerText": "진료 설명",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                확인된 진료명·제공 범위와 상담에서 정할 내용\n\n                \n                                    ",
+            "innerText": "확인된 진료명·제공 범위와 상담에서 정할 내용",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                어떤 고민으로 상담할 수 있는지\n\n                \n                                    ",
+            "innerText": "어떤 고민으로 상담할 수 있는지",
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        [
+          {
+            "textContent": "\n                                                방문 전 안내\n\n                \n                                    ",
+            "innerText": "방문 전 안내",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                상담·검사·방문 절차와 추가 확인이 필요한 일정\n\n                \n                                    ",
+            "innerText": "상담·검사·방문 절차와 추가 확인이 필요한 일정",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                방문 전에 무엇을 문의하고 준비할지\n\n                \n                                    ",
+            "innerText": "방문 전에 무엇을 문의하고 준비할지",
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        [
+          {
+            "textContent": "\n                                                언어 지원\n\n                \n                                    ",
+            "innerText": "언어 지원",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                지원 단계·시간·예약 조건·비용이 있는지\n\n                \n                                    ",
+            "innerText": "지원 단계·시간·예약 조건·비용이 있는지",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                원하는 언어로 어떤 도움을 받을 수 있는지\n\n                \n                                    ",
+            "innerText": "원하는 언어로 어떤 도움을 받을 수 있는지",
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ],
+        [
+          {
+            "textContent": "\n                                                위치·문의\n\n                \n                                    ",
+            "innerText": "위치·문의",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                실제 주소와 문의 방법, 답변 가능한 범위\n\n                \n                                    ",
+            "innerText": "실제 주소와 문의 방법, 답변 가능한 범위",
+            "rowSpan": 1,
+            "colSpan": 1
+          },
+          {
+            "textContent": "\n                                                어느 지점으로 어떻게 연락할지\n\n                \n                                    ",
+            "innerText": "어느 지점으로 어떻게 연락할지",
+            "rowSpan": 1,
+            "colSpan": 1
+          }
+        ]
+      ]
+    }
+  ],
+  "quotation_components": [
+    {
+      "class_name": "se-component se-quotation se-l-quotation_line",
+      "id": "SE-55d0fe1f-d35b-42d7-8bc3-c2d8f58aca14",
+      "table_count": 0,
+      "text": "\n                    \n                        \n                            \n                                첫 홈페이지에서 어떤 진료의 문의를 받을지 정합니다\n\n                            \n                        \n                    \n                "
+    },
+    {
+      "class_name": "se-component se-quotation se-l-quotation_line",
+      "id": "SE-daaf4a95-6cdc-4cf5-a752-49dde7deebf3",
+      "table_count": 0,
+      "text": "\n                    \n                        \n                            \n                                언어는 고객이 읽는 단계와 병원이 답하는 단계까지 함께 봅니다\n\n                            \n                        \n                    \n                "
+    },
+    {
+      "class_name": "se-component se-quotation se-l-quotation_line",
+      "id": "SE-16ec1e00-18ce-4b47-91ce-f576f4b971a9",
+      "table_count": 0,
+      "text": "\n                    \n                        \n                            \n                                진료 설명과 이용 안내를 한 묶음으로 만듭니다\n\n                            \n                        \n                    \n                "
+    },
+    {
+      "class_name": "se-component se-quotation se-l-quotation_line",
+      "id": "SE-e746e4ef-5e06-446f-9a4e-3e7873327709",
+      "table_count": 0,
+      "text": "\n                    \n                        \n                            \n                                첫 안내를 완성한 뒤 진료와 언어를 넓혀갑니다\n\n                            \n                        \n                    \n                "
+    }
+  ],
+  "snapshots": {
+    "full_page": {
+      "tree": "- title: \"네이버 프리미엄콘텐츠\" [url=https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm]\n- text: \"병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?\\n                \\n                \\n\t\\n\t\t2026.10.30. 오후 1:00\\n\t\\n\\n\\n            \\n        \\n    \\n    \\n    \\n    \\n                \\n  …[+3667 chars]\"\n- table: \"준비할 안내\\n\\n                \\n                                    \\n                                                 병원에서 확인할 내용\\n\\n                \\n                                    \\n                                                 고객이 판단할 수 있어야 할 점\\n\\n                \\n                                    \\n                                                 진료 설명\\n\\n                \\n                                    \\n                                                 확인된 진료명·제공 범위와 상담에서 정할 내용\\n\\n                \\n                                    \\n                                                 어떤 고민으로 상담할 수 있는지\\n\\n                \\n                                    \\n                                                 방문 전 안내\\n\\n                \\n                                    \\n                                                 상담·검사·방문 절차와 추가 확인이 필요한 일정\\n\\n                \\n                                    \\n                                                 방문 전에 무엇을 문의하고 준비할지\\n\\n                \\n                                    \\n                                                 언어 지원\\n\\n                \\n                                    \\n                                                 지원 단계·시간·예약 조건·비용이 있는지\\n\\n                \\n                                    \\n                                                 원하는 언어로 어떤 도움을 받을 수 있는지\\n\\n                \\n                                    \\n                                                 위치·문의\\n\\n                \\n                                    \\n                                                 실제 주소와 문의 방법, 답변 가능한 범위\\n\\n                \\n                                    \\n                                                 어느 지점으로 어떻게 연락할지\"\n- text: \"​\\n여기까지를 같은 언어로 읽을 수 있도록 구성하시면 됩니다. 다른 진료의 안내를 그대로 복사하기보다 각 진료에서 달라지는 절차와 조건을 확인해 반영해보세요. 상담 후에 정해야 할 진료 내용은 무엇인지도 함께 설명할 수 있습니다.\\n​\\n해외에서 페이지를 읽는 고객이 병원 이름과 위치, 연…[+844 chars]\"\n- paragraph:\n  - text: \"언어별 안내를 제작할 때는 각 언어의 주소와 실제 본문도 확인하셔야 합니다. Google은 언어별로 다른 URL을 사용하는 방식을 권장하고, 페이지에 보이는 본문으로 언어를 파악한다고 안내합니다. 언어 버튼을 누른 뒤 어떤 설명을 읽게 되는지까지 보시면 됩니다.\"\n  - link \"Google 다국어 사이트 안내\" [ref=e1]\n- text: \"​\"\n- paragraph:\n  - text: \"기존 사이트를 유지하면서 다국어 안내를 추가하려는 경우에는\"\n  - link \"병원 다국어 홈페이지를 추가로 제작할 때 확인할 조건\" [ref=e2]\n  - text: \"도 참고해보세요. 현재 홈페이지와 별도 언어 페이지를 어떻게 연결할지 검토하는 데 도움이 됩니다.\"\n- text: \"​\"\n- paragraph:\n  - text: \"저희 블링크애드에 제작을 상담하실 때는 먼저 알리고 싶은 진료, 목표 언어, 현재 홈페이지와 외국어 응대 범위를 알려주세요. 준비된 자료와 추가로 확인할 내용을 보고\"\n  - link \"첫 다국어 홈페이지 제작 범위\" [ref=e3]\n  - text: \"를 함께 정하실 수 있습니다.\"\n- text: \"해당 콘텐츠는 프리미엄 구독자 공개(유료) 콘텐츠로 무단 캡쳐 및 불법 공유시 법적 제재를 받을 수 있습니다.\"\n- list:\n  - listitem \"#병원다국어홈페이지\" [ref=e5]:\n    - link \"#병원다국어홈페이지\" [ref=e4]",
+      "refs": {
+        "e1": {
+          "role": "link",
+          "name": "Google 다국어 사이트 안내",
+          "tagName": "A",
+          "nthAmongSameSignature": 0
+        },
+        "e2": {
+          "role": "link",
+          "name": "병원 다국어 홈페이지를 추가로 제작할 때 확인할 조건",
+          "tagName": "A",
+          "nthAmongSameSignature": 0
+        },
+        "e3": {
+          "role": "link",
+          "name": "첫 다국어 홈페이지 제작 범위",
+          "tagName": "A",
+          "nthAmongSameSignature": 0
+        },
+        "e5": {
+          "role": "listitem",
+          "name": "#병원다국어홈페이지",
+          "tagName": "LI",
+          "nthAmongSameSignature": 0
+        },
+        "e4": {
+          "role": "link",
+          "name": "#병원다국어홈페이지",
+          "tagName": "A",
+          "nthAmongSameSignature": 0
+        }
+      },
+      "diff": "- title: \"네이버 프리미엄콘텐츠\" [url=https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm]\n- text: \"병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?\\n                \\n                \\n\t\\n\t\t2026.10.30. 오후 1:00\\n\t\\n\\n\\n            \\n        \\n    \\n    \\n    \\n    \\n                \\n  …[+3667 chars]\"\n- table: \"준비할 안내\\n\\n                \\n                                    \\n                                                 병원에서 확인할 내용\\n\\n                \\n                                    \\n                                                 고객이 판단할 수 있어야 할 점\\n\\n                \\n                                    \\n                                                 진료 설명\\n\\n                \\n                                    \\n                                                 확인된 진료명·제공 범위와 상담에서 정할 내용\\n\\n                \\n                                    \\n                                                 어떤 고민으로 상담할 수 있는지\\n\\n                \\n                                    \\n                                                 방문 전 안내\\n\\n                \\n                                    \\n                                                 상담·검사·방문 절차와 추가 확인이 필요한 일정\\n\\n                \\n                                    \\n                                                 방문 전에 무엇을 문의하고 준비할지\\n\\n                \\n                                    \\n                                                 언어 지원\\n\\n                \\n                                    \\n                                                 지원 단계·시간·예약 조건·비용이 있는지\\n\\n                \\n                                    \\n                                                 원하는 언어로 어떤 도움을 받을 수 있는지\\n\\n                \\n                                    \\n                                                 위치·문의\\n\\n                \\n                                    \\n                                                 실제 주소와 문의 방법, 답변 가능한 범위\\n\\n                \\n                                    \\n                                                 어느 지점으로 어떻게 연락할지\"\n- text: \"​\\n여기까지를 같은 언어로 읽을 수 있도록 구성하시면 됩니다. 다른 진료의 안내를 그대로 복사하기보다 각 진료에서 달라지는 절차와 조건을 확인해 반영해보세요. 상담 후에 정해야 할 진료 내용은 무엇인지도 함께 설명할 수 있습니다.\\n​\\n해외에서 페이지를 읽는 고객이 병원 이름과 위치, 연…[+844 chars]\"\n- paragraph:\n  - text: \"언어별 안내를 제작할 때는 각 언어의 주소와 실제 본문도 확인하셔야 합니다. Google은 언어별로 다른 URL을 사용하는 방식을 권장하고, 페이지에 보이는 본문으로 언어를 파악한다고 안내합니다. 언어 버튼을 누른 뒤 어떤 설명을 읽게 되는지까지 보시면 됩니다.\"\n  - link \"Google 다국어 사이트 안내\" [ref=e1]\n- text: \"​\"\n- paragraph:\n  - text: \"기존 사이트를 유지하면서 다국어 안내를 추가하려는 경우에는\"\n  - link \"병원 다국어 홈페이지를 추가로 제작할 때 확인할 조건\" [ref=e2]\n  - text: \"도 참고해보세요. 현재 홈페이지와 별도 언어 페이지를 어떻게 연결할지 검토하는 데 도움이 됩니다.\"\n- text: \"​\"\n- paragraph:\n  - text: \"저희 블링크애드에 제작을 상담하실 때는 먼저 알리고 싶은 진료, 목표 언어, 현재 홈페이지와 외국어 응대 범위를 알려주세요. 준비된 자료와 추가로 확인할 내용을 보고\"\n  - link \"첫 다국어 홈페이지 제작 범위\" [ref=e3]\n  - text: \"를 함께 정하실 수 있습니다.\"\n- text: \"해당 콘텐츠는 프리미엄 구독자 공개(유료) 콘텐츠로 무단 캡쳐 및 불법 공유시 법적 제재를 받을 수 있습니다.\"\n- list:\n  - listitem \"#병원다국어홈페이지\" [ref=e5]:\n    - link \"#병원다국어홈페이지\" [ref=e4]"
+    },
+    "actual_native_table": {
+      "tree": "- title: \"네이버 프리미엄콘텐츠\" [url=https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm]\n- table: \"준비할 안내\\n\\n                \\n                                    \\n                                                 병원에서 확인할 내용\\n\\n                \\n                                    \\n                                                 고객이 판단할 수 있어야 할 점\\n\\n                \\n                                    \\n                                                 진료 설명\\n\\n                \\n                                    \\n                                                 확인된 진료명·제공 범위와 상담에서 정할 내용\\n\\n                \\n                                    \\n                                                 어떤 고민으로 상담할 수 있는지\\n\\n                \\n                                    \\n                                                 방문 전 안내\\n\\n                \\n                                    \\n                                                 상담·검사·방문 절차와 추가 확인이 필요한 일정\\n\\n                \\n                                    \\n                                                 방문 전에 무엇을 문의하고 준비할지\\n\\n                \\n                                    \\n                                                 언어 지원\\n\\n                \\n                                    \\n                                                 지원 단계·시간·예약 조건·비용이 있는지\\n\\n                \\n                                    \\n                                                 원하는 언어로 어떤 도움을 받을 수 있는지\\n\\n                \\n                                    \\n                                                 위치·문의\\n\\n                \\n                                    \\n                                                 실제 주소와 문의 방법, 답변 가능한 범위\\n\\n                \\n                                    \\n                                                 어느 지점으로 어떻게 연락할지\"",
+      "refs": {},
+      "diff": "- title: \"네이버 프리미엄콘텐츠\" [url=https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm]\n- table: \"준비할 안내\\n\\n                \\n                                    \\n                                                 병원에서 확인할 내용\\n\\n                \\n                                    \\n                                                 고객이 판단할 수 있어야 할 점\\n\\n                \\n                                    \\n                                                 진료 설명\\n\\n                \\n                                    \\n                                                 확인된 진료명·제공 범위와 상담에서 정할 내용\\n\\n                \\n                                    \\n                                                 어떤 고민으로 상담할 수 있는지\\n\\n                \\n                                    \\n                                                 방문 전 안내\\n\\n                \\n                                    \\n                                                 상담·검사·방문 절차와 추가 확인이 필요한 일정\\n\\n                \\n                                    \\n                                                 방문 전에 무엇을 문의하고 준비할지\\n\\n                \\n                                    \\n                                                 언어 지원\\n\\n                \\n                                    \\n                                                 지원 단계·시간·예약 조건·비용이 있는지\\n\\n                \\n                                    \\n                                                 원하는 언어로 어떤 도움을 받을 수 있는지\\n\\n                \\n                                    \\n                                                 위치·문의\\n\\n                \\n                                    \\n                                                 실제 주소와 문의 방법, 답변 가능한 범위\\n\\n                \\n                                    \\n                                                 어느 지점으로 어떻게 연락할지\""
+    }
+  },
+  "previous_generic_extraction_difference": {
+    "observed": "In this independent current saved preview, there is exactly one HTML table and it is the actual 5x3 native data table. The four quotation components contain zero HTML tables. The baseline strings equal every rendered innerText cell exactly. Raw textContent differs only by leading/trailing HTML indentation whitespace; trim alone restores all 15 equalities.",
+    "reported_by_parent": "Parent reports its previous broad generic extraction could count quotation decoration tables in editor DOM.",
+    "limitation": "The earlier extraction code/raw after-array was not supplied or retained in the parent result inspected. Decoration-table contamination is not reproduced in this saved preview, so its exact historical contribution cannot independently be established. A broad HTML-table query is not a reliable native-table identity check across editor and preview DOM.",
+    "parent_result_tables_preserved_as_inspected": false,
+    "parent_result_modified": false
+  }
+}

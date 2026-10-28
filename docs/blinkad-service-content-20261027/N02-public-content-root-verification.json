@@ -1,0 +1,55 @@
+{
+  "verification": "match",
+  "code": "N02",
+  "observer": "Codex",
+  "read_only": true,
+  "observed_at": "2026-10-28T13:36:42.183282+09:00",
+  "public_url": "https://contents.premium.naver.com/blinkad/blink/contents/261028123905601ev",
+  "http_status": 200,
+  "source": "official public server-rendered .se-main-container HTML",
+  "normalization": "remove Unicode whitespace and U+200B empty paragraph placeholders only; no word/punctuation/order replacement",
+  "zero_width_placeholders_removed": 14,
+  "normalized_body_chars": 2304,
+  "normalized_body_sha256": "485453e07b7a81cf7bbab717ca3ce992405f387abcc4e664812d960ab47bafa7",
+  "source_md_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+  "source_body_matches_published_body": true,
+  "expected_links": [
+    {
+      "text": "St. Mary's Jin Eye Center의 국제환자 안내",
+      "url": "https://jin-eye.co.kr/en_us/international-patients/"
+    },
+    {
+      "text": "B&VIIT의 공식 영문 홈페이지",
+      "url": "https://english.bnviit.com/"
+    },
+    {
+      "text": "병원 외국인 마케팅에서 블링크애드에 맡길 수 있는 범위",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body"
+    },
+    {
+      "text": "병원 외국인 마케팅 경쟁분석·운영 범위",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+    }
+  ],
+  "actual_public_links": [
+    {
+      "text": "St. Mary's Jin Eye Center의 국제환자 안내",
+      "url": "https://jin-eye.co.kr/en_us/international-patients/"
+    },
+    {
+      "text": "B&VIIT의 공식 영문 홈페이지",
+      "url": "https://english.bnviit.com/"
+    },
+    {
+      "text": "병원 외국인 마케팅에서 블링크애드에 맡길 수 있는 범위",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body"
+    },
+    {
+      "text": "병원 외국인 마케팅 경쟁분석·운영 범위",
+      "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+    }
+  ],
+  "links_equal": true,
+  "native_quotation_components": 4,
+  "baseline_note": "N02-before.editor.links contained only subscription-widget label; use unchanged approved MD + originally saved content links as content baseline, not that invalid selector snapshot"
+}
