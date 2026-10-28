@@ -51,7 +51,9 @@
       "capture": "/Users/mcbookpro/.aside/u/0/sessions/2026-10-28_1H64o4UP8SpfD8Eq/artifacts/네이버_예약18편_서식통일_20261028/E01-verified.png",
       "verified_at": "2026-10-28T04:54:05.128Z",
       "before_evidence": "E01-before.json",
-      "after_evidence": "E01-after.json"
+      "after_evidence": "E01-after.json",
+      "capture_updated_at": "2026-10-28T05:21:33.781Z",
+      "capture_note": "Stored reader preview only; first native line quotation and following body visible in regular viewport screenshot. No body/settings edit or repeat comparison."
     },
     {
       "code": "E02",
@@ -1114,5 +1116,16 @@
     "status": "예약 콘텐츠 관리",
     "target18_match": true,
     "protected4_present": true
-  }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-28T05:22:25.934Z",
+  "total_quotes": 98,
+  "protected_reservations_untouched": [
+    "261028124654504ui",
+    "261028124832817qi",
+    "261028124403773rx",
+    "261028124221710gm"
+  ],
+  "published_n02_untouched": "261028123905601ev",
+  "e01_capture_refreshed": true
 }
