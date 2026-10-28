@@ -1158,7 +1158,6 @@
         "se-component se-quotation se-l-quotation_line",
         "se-component se-quotation se-l-quotation_line"
       ],
-      "citation_fields_blank": true,
       "quote_alignments": [
         "se-text-paragraph se-text-paragraph-align- ",
         "se-text-paragraph se-text-paragraph-align- ",
@@ -1237,11 +1236,21 @@
         ],
         "equal": true,
         "note": "편집기 원문 링크가 span 데이터 속성에 있어 초기 a[href] 추출에서 누락. 동일 SHA-256 승인원문과 공개 본문 링크 4개를 텍스트·URL·UTM 그대로 비교."
+      },
+      "quote_sources_blank": true,
+      "content_verification_file": "N02-public-content-root-verification.json",
+      "baseline_note": "N02-before.editor.links contained only subscription-widget label; use unchanged approved MD + originally saved content links as content baseline, not that invalid selector snapshot",
+      "public_content_verification": {
+        "normalized_body_chars": 2304,
+        "source_body_matches_published_body": true,
+        "zero_width_placeholders_removed": 14,
+        "links_compared": 4,
+        "links_text_url_exact": true
       }
     }
   ],
   "started_at": "2026-10-28T04:02:54.434Z",
-  "updated_at": "2026-10-28T04:36:32.525Z",
+  "updated_at": "2026-10-28T04:37:42.238Z",
   "final_notes": [
     "N02는 같은 ID의 기존 발행글을 수정, 발행일시·무료조건 유지.",
     "N02 실제 데이터표 5×3/15셀 trim 대조 일치. 원시 추출 공백으로 생긴 false를 true로 정정.",
@@ -1254,6 +1263,7 @@
     "exact_approved_quote_headings": true,
     "native_line_style_all": true,
     "all_saved_reopened": true,
-    "preservation_fields_all_true": true
+    "preservation_fields_all_true": true,
+    "quote_sources_blank_all": true
   }
 }
