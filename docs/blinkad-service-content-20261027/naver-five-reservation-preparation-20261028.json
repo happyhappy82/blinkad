@@ -1,0 +1,47 @@
+{
+  "at": "2026-10-28T12:22:23.196805+09:00",
+  "input_items": 5,
+  "input_files": 30,
+  "aside_interchange_copy_files": 30,
+  "all_copies_byte_equal": true,
+  "source_bodies_and_thumbnail_shas_match": true,
+  "compatible_html_text_and_links_preserved": true,
+  "homepage_reference_checks": [
+    {
+      "code": "N01",
+      "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+      "status": 404,
+      "h1": null,
+      "scheduled_homepage_date": "2026-10-31"
+    },
+    {
+      "code": "N03",
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "status": 404,
+      "h1": null,
+      "scheduled_homepage_date": "2026-10-29"
+    },
+    {
+      "code": "N05",
+      "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+      "status": 404,
+      "h1": null,
+      "scheduled_homepage_date": "2026-11-02"
+    },
+    {
+      "code": "N06",
+      "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+      "status": 404,
+      "h1": null,
+      "scheduled_homepage_date": "2026-11-04"
+    },
+    {
+      "code": "N02",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "status": 200,
+      "h1": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
+      "scheduled_homepage_date": "2026-10-27"
+    }
+  ],
+  "platform_writes": 0
+}

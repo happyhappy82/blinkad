@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-28T12:27:53.228660+09:00",
+  "status": "waiting_user_login",
+  "channel": "네이버 프리미엄콘텐츠 블링크애드",
+  "aside_profile": "메인",
+  "actual_ui_url": "https://nid.naver.com/nidlogin.login?mode=form&url=https://studio.premium.naver.com/home",
+  "observed": "네이버스튜디오가로그인화면으로연결,아이디/비밀번호입력란비어있음,아이디필드클릭후자동완성없음",
+  "credentials_recorded": false,
+  "aside_lookup_status": "5m26s interrupted after server fetch failed; no reservation writes",
+  "live_reservation_list_obtained": false,
+  "new_reservations_saved": 0,
+  "requested_ids": [
+    "N01",
+    "N03",
+    "N05",
+    "N06",
+    "N02"
+  ],
+  "excluded_id": "N04",
+  "input_items_ready": 5,
+  "input_files_ready": 30,
+  "planned_time": "13:00 Asia/Seoul",
+  "planned_price": "전체무료",
+  "next": "사용자로그인완료→현재예약목록/중복조회→참고글공개일과빈날짜에맞춰5편예약저장/재조회"
+}
