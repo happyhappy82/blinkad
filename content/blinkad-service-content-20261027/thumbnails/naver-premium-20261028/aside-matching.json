@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-10-28T02:52:34.442Z",
+  "channel": "네이버 프리미엄콘텐츠",
+  "png_count": 5,
+  "excluded_manuscript_ids": [
+    "N04"
+  ],
+  "final_directory": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일",
+  "used_artifacts_fallback": false,
+  "source_template_url": "https://www.canva.com/design/DAHZM-sX47Y/N8Bf8ndfYIYJJAzLQSh9HA/edit",
+  "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+  "hash_algorithm": "SHA-256",
+  "existing_png_files_preserved": 42,
+  "existing_png_preservation_check": "42 existing PNG files were compared byte-for-byte before and after this task; all unchanged.",
+  "external_publishing_performed": false,
+  "items": [
+    {
+      "number": 1,
+      "manuscript_id": "N01",
+      "manuscript_title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "thumbnail_lines": [
+        "프랜차이즈",
+        "구글맵 관리",
+        "왜 중요할까?"
+      ],
+      "thumbnail_text": "프랜차이즈\n구글맵 관리\n왜 중요할까?",
+      "line_count": 3,
+      "png_filename": "01_N01_프랜차이즈구글맵관리.png",
+      "file_path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일/01_N01_프랜차이즈구글맵관리.png",
+      "sha256": "2194e761a5b570601dfa805bbc65beabe4f3c1cfecf27783af05aec489e28533",
+      "byte_size": 421021,
+      "width_px": 1280,
+      "height_px": 600,
+      "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+      "saved_bytes_equal_canva_export": true,
+      "visual_review": {
+        "completed": true,
+        "review_passes": 1,
+        "copy_matches_confirmed_text": true,
+        "exactly_three_lines": true,
+        "center_aligned": true,
+        "text_clipping": false
+      }
+    },
+    {
+      "number": 2,
+      "manuscript_id": "N03",
+      "manuscript_title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "thumbnail_lines": [
+        "병원 다국어",
+        "홈페이지",
+        "제작 순서"
+      ],
+      "thumbnail_text": "병원 다국어\n홈페이지\n제작 순서",
+      "line_count": 3,
+      "png_filename": "02_N03_병원다국어홈페이지.png",
+      "file_path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일/02_N03_병원다국어홈페이지.png",
+      "sha256": "13019ceec1850f40b97c862aa81128dd3f5cae5106c6c41d6794420acbe77be9",
+      "byte_size": 420777,
+      "width_px": 1280,
+      "height_px": 600,
+      "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+      "saved_bytes_equal_canva_export": true,
+      "visual_review": {
+        "completed": true,
+        "review_passes": 1,
+        "copy_matches_confirmed_text": true,
+        "exactly_three_lines": true,
+        "center_aligned": true,
+        "text_clipping": false
+      }
+    },
+    {
+      "number": 3,
+      "manuscript_id": "N05",
+      "manuscript_title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "thumbnail_lines": [
+        "외국인 마케팅",
+        "구글광고도",
+        "해야 할까?"
+      ],
+      "thumbnail_text": "외국인 마케팅\n구글광고도\n해야 할까?",
+      "line_count": 3,
+      "png_filename": "03_N05_외국인구글광고.png",
+      "file_path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일/03_N05_외국인구글광고.png",
+      "sha256": "c9b766b91a2d26864ee0fcd5baf7f6d089ac9f1428d17cc7726acf936005d80d",
+      "byte_size": 420891,
+      "width_px": 1280,
+      "height_px": 600,
+      "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+      "saved_bytes_equal_canva_export": true,
+      "visual_review": {
+        "completed": true,
+        "review_passes": 1,
+        "copy_matches_confirmed_text": true,
+        "exactly_three_lines": true,
+        "center_aligned": true,
+        "text_clipping": false
+      }
+    },
+    {
+      "number": 4,
+      "manuscript_id": "N06",
+      "manuscript_title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "thumbnail_lines": [
+        "영어권 고객",
+        "레딧 마케팅",
+        "중요한 이유"
+      ],
+      "thumbnail_text": "영어권 고객\n레딧 마케팅\n중요한 이유",
+      "line_count": 3,
+      "png_filename": "04_N06_레딧마케팅.png",
+      "file_path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일/04_N06_레딧마케팅.png",
+      "sha256": "0f6b9dff3fe9efd02f50ff98f6880d9213eedf7bdf383c0d83479c71286fdd62",
+      "byte_size": 421483,
+      "width_px": 1280,
+      "height_px": 600,
+      "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+      "saved_bytes_equal_canva_export": true,
+      "visual_review": {
+        "completed": true,
+        "review_passes": 1,
+        "copy_matches_confirmed_text": true,
+        "exactly_three_lines": true,
+        "center_aligned": true,
+        "text_clipping": false
+      }
+    },
+    {
+      "number": 5,
+      "manuscript_id": "N02",
+      "manuscript_title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "thumbnail_lines": [
+        "병원 외국인",
+        "마케팅 경쟁사",
+        "비교 기준"
+      ],
+      "thumbnail_text": "병원 외국인\n마케팅 경쟁사\n비교 기준",
+      "line_count": 3,
+      "png_filename": "05_N02_병원외국인마케팅경쟁분석.png",
+      "file_path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일/05_N02_병원외국인마케팅경쟁분석.png",
+      "sha256": "10e260f0d8ec3441faf51c9dc6571420ad60a1c6f7f2360b36fbcd5ace8fa37f",
+      "byte_size": 420962,
+      "width_px": 1280,
+      "height_px": 600,
+      "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+      "saved_bytes_equal_canva_export": true,
+      "visual_review": {
+        "completed": true,
+        "review_passes": 1,
+        "copy_matches_confirmed_text": true,
+        "exactly_three_lines": true,
+        "center_aligned": true,
+        "text_clipping": false
+      }
+    }
+  ]
+}

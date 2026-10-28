@@ -1,0 +1,107 @@
+{
+  "created_at": "2026-10-28T11:53:01.074298+09:00",
+  "channel": "네이버 프리미엄콘텐츠",
+  "count": 5,
+  "excluded_id": "N04",
+  "production": "Aside 지정 대화에서 Canva 기존 양식의 새 사본으로 제작",
+  "aside_conversation_id": "P9n5eeGD0huS0f52",
+  "canva_edit_url": "https://www.canva.com/design/DAHZQr4e5dI/8qJ_KNvcO02QZWBsFtfMNA/edit",
+  "reference_template": "https://www.canva.com/design/DAHYuV_qP3M/ra4-9wWGV99EtUVmDZeT5w/edit",
+  "items": [
+    {
+      "id": "N01",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "copy_lines": [
+        "프랜차이즈",
+        "구글맵 관리",
+        "왜 중요할까?"
+      ],
+      "file": "01_N01_프랜차이즈구글맵관리.png",
+      "body_file": "N01-franchise-google-maps-performance-comparison.md",
+      "width": 1280,
+      "height": 600,
+      "bytes": 421021,
+      "sha256": "2194e761a5b570601dfa805bbc65beabe4f3c1cfecf27783af05aec489e28533",
+      "body_sha256": "a2c91ef6fb8db912312b685ef41ed27b6d591673e02fee72e5e6c1d48bafa958"
+    },
+    {
+      "id": "N03",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "copy_lines": [
+        "병원 다국어",
+        "홈페이지",
+        "제작 순서"
+      ],
+      "file": "02_N03_병원다국어홈페이지.png",
+      "body_file": "N03-hospital-language-page-links.md",
+      "width": 1280,
+      "height": 600,
+      "bytes": 420777,
+      "sha256": "13019ceec1850f40b97c862aa81128dd3f5cae5106c6c41d6794420acbe77be9",
+      "body_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c"
+    },
+    {
+      "id": "N05",
+      "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "copy_lines": [
+        "외국인 마케팅",
+        "구글광고도",
+        "해야 할까?"
+      ],
+      "file": "03_N05_외국인구글광고.png",
+      "body_file": "N05-foreign-search-terms-negative-keywords.md",
+      "width": 1280,
+      "height": 600,
+      "bytes": 420891,
+      "sha256": "c9b766b91a2d26864ee0fcd5baf7f6d089ac9f1428d17cc7726acf936005d80d",
+      "body_sha256": "76c7af88fce23e7ea034c95651fecc1ff761386447b3c1f763adad4a75d3c456"
+    },
+    {
+      "id": "N06",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "copy_lines": [
+        "영어권 고객",
+        "레딧 마케팅",
+        "중요한 이유"
+      ],
+      "file": "04_N06_레딧마케팅.png",
+      "body_file": "N06-reddit-reviews-after-ad-exposure.md",
+      "width": 1280,
+      "height": 600,
+      "bytes": 421483,
+      "sha256": "0f6b9dff3fe9efd02f50ff98f6880d9213eedf7bdf383c0d83479c71286fdd62",
+      "body_sha256": "ab2f3872c63cb2989d27abe06673b7e04bd54287617bae8c893fb9933929ad08"
+    },
+    {
+      "id": "N02",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "copy_lines": [
+        "병원 외국인",
+        "마케팅 경쟁사",
+        "비교 기준"
+      ],
+      "file": "05_N02_병원외국인마케팅경쟁분석.png",
+      "body_file": "N02-hospital-inbound-competitor-selection.md",
+      "width": 1280,
+      "height": 600,
+      "bytes": 420962,
+      "sha256": "10e260f0d8ec3441faf51c9dc6571420ad60a1c6f7f2360b36fbcd5ace8fa37f",
+      "body_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099"
+    }
+  ],
+  "existing42_images_unchanged": true,
+  "external_platform_posts_or_schedules": 0,
+  "visual_review": {
+    "completed": true,
+    "reviewer": "Codex",
+    "images_individually_opened": 5,
+    "copy_lines_matched": 15,
+    "three_centered_lines_each": true,
+    "text_clipping_detected": false,
+    "matches_existing_template": true,
+    "image_files_edited_by_codex": false
+  },
+  "aside_matching_receipt_checked": true,
+  "canva_zip_byte_match": true,
+  "local_preview_gallery_created": true
+}

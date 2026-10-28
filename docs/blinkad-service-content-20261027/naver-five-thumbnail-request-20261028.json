@@ -1,0 +1,291 @@
+{
+  "requested_at": "2026-10-28T11:44:29.441038+09:00",
+  "status": "Aside request sent; production in progress",
+  "channel": "네이버 프리미엄콘텐츠",
+  "excluded_id": "N04",
+  "excluded_title": "GEO 대행사의 AI 추천·인용 성과, 근거는 어떻게 확인할까요?",
+  "aside_account": "메인",
+  "aside_conversation_id": "P9n5eeGD0huS0f52",
+  "aside_conversation_title": "대형병원 GEO 마케팅 썸네일 문구 수정",
+  "aside_request_turn": 11,
+  "request_sent_and_working_observed": true,
+  "production": "Aside via existing Canva template, new copy",
+  "reference_template": "https://www.canva.com/design/DAHYuV_qP3M/ra4-9wWGV99EtUVmDZeT5w/edit",
+  "target_folder": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_최신원고5편_20261028/썸네일",
+  "dimensions": [
+    1280,
+    600
+  ],
+  "format": "PNG",
+  "copy_policy": "기존 배경·로고·점선·하단문구·폰트·색 유지, 중앙 노란 문구만 3줄 교체",
+  "items": [
+    {
+      "id": "N01",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "copy_lines": [
+        "프랜차이즈",
+        "구글맵 관리",
+        "왜 중요할까?"
+      ],
+      "file": "01_N01_프랜차이즈구글맵관리.png",
+      "body_file": "N01-franchise-google-maps-performance-comparison.md"
+    },
+    {
+      "id": "N03",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "copy_lines": [
+        "병원 다국어",
+        "홈페이지",
+        "제작 순서"
+      ],
+      "file": "02_N03_병원다국어홈페이지.png",
+      "body_file": "N03-hospital-language-page-links.md"
+    },
+    {
+      "id": "N05",
+      "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "copy_lines": [
+        "외국인 마케팅",
+        "구글광고도",
+        "해야 할까?"
+      ],
+      "file": "03_N05_외국인구글광고.png",
+      "body_file": "N05-foreign-search-terms-negative-keywords.md"
+    },
+    {
+      "id": "N06",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "copy_lines": [
+        "영어권 고객",
+        "레딧 마케팅",
+        "중요한 이유"
+      ],
+      "file": "04_N06_레딧마케팅.png",
+      "body_file": "N06-reddit-reviews-after-ad-exposure.md"
+    },
+    {
+      "id": "N02",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "copy_lines": [
+        "병원 외국인",
+        "마케팅 경쟁사",
+        "비교 기준"
+      ],
+      "file": "05_N02_병원외국인마케팅경쟁분석.png",
+      "body_file": "N02-hospital-inbound-competitor-selection.md"
+    }
+  ],
+  "existing42_baseline": [
+    {
+      "path": "/Users/mcbookpro/Downloads/01_대형병원 GEO 마케팅.png",
+      "sha256": "0de0adab996ff59f0defe7340cbffd1c7fdddb0aff1c88f533e5c770a45c21d7",
+      "bytes": 463728
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/02_외국인이 대형병원 찾는법.png",
+      "sha256": "f8f82f04d51e9323da7dd959c069d2b09e6b5e1847ad46a31f3b04cd91ebf646",
+      "bytes": 419314
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/03_외국인문의 안느는 이유.png",
+      "sha256": "b76bda27d3db0e01a2b9598e5b42e5d2228138684c969d2f879e82c3e364dc31",
+      "bytes": 418466
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/04_영어질문에 병원이 안뜬다면.png",
+      "sha256": "cf6c7d319985851ac3ee614f53589d5df0eca0f5a2a7d3fa0550ac2cc53d6ed0",
+      "bytes": 420059
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/05_외국인문의 예약으로 안이어지면.png",
+      "sha256": "183232930a8092e7d42a40c0ae2cc35cf89b7dee9dc61c36cf42ba7cee73a08f",
+      "bytes": 421278
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/06_GEO마케팅 대행사계약전 확인할것.png",
+      "sha256": "42ce953b3aab0a44132e3aedf2eed04b87192b6e47d2581c2b6e2cf5c195c582",
+      "bytes": 421696
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/07_GEO 성과 검색 순위가 전부일까.png",
+      "sha256": "2014e15b8b596219d6225540ce6dd4239f07fab39e1cfba8b3f62d221b7c6a7c",
+      "bytes": 421656
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/08_외국인 마케팅 광고가 먼저일까.png",
+      "sha256": "1c1bc830c743a1e87f677154e8d779e36dda9b501024de4420114f9fbc59ec84",
+      "bytes": 420844
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/09_거주 외국인 의료관광 환자 마케팅은 다르게.png",
+      "sha256": "aa17a48a424c63c9f58fa3b8689485beb66b611044b14b0b6ee022d94fee2a86",
+      "bytes": 421841
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/10_광고 SEO GEO 병원에 맞게 나누는 법.png",
+      "sha256": "9faba227f033c93e2e617c21a65193a94c1573b000c057f593c01971e81db3db",
+      "bytes": 420462
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/11_AI 검색 노출 보장 믿어도 될까.png",
+      "sha256": "4a369bde625983d0200dc76fd49628e07d059fce9c2ed9940e8f0f4ff2703d5c",
+      "bytes": 419688
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/12_피부과 레딧마케팅 영어로 소개하면 끝일까.png",
+      "sha256": "0a3bfdc2df69605301f36c074982d494bb65033cc31c54f248747e3d7f0279a7",
+      "bytes": 420769
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/13_피부과 레딧마케팅 댓글 쓰기 전 질문부터 읽으세요.png",
+      "sha256": "fb759c286aac688b15a49110aff3dcfce7c96fc7d63a5336ce43da1f4b525aab",
+      "bytes": 421188
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/14_성형외과 레딧마케팅 사진은 많은데 귀국 후 안내는.png",
+      "sha256": "4c4e13084fa37661b7e73378909772e926ced4e32cc8af761a1c593c4a007efd",
+      "bytes": 422785
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/15_성형외과 레딧마케팅 해외 고객 질문 상담으로 잇는 법.png",
+      "sha256": "53724b9b329b5f67dd8e060dc2a948c75c180568fae5915e0c1671244769d690",
+      "bytes": 422617
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/16_안과 레딧마케팅 라식 라섹 스마일 골라달라면.png",
+      "sha256": "1efb2794f8d5fa99f6e14c9eef8ca337c7220e3e61f491f08c464764b69c0001",
+      "bytes": 420629
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/17_안과 레딧마케팅 수술 후 귀국 안내는 어디까지.png",
+      "sha256": "63e7f08d0438849a29837b547ee936e0d21c0a7908c3d1c13e7fc889691d0626",
+      "bytes": 421739
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/01_병원 홈페이지 AI 검색 필요할까?.png",
+      "sha256": "2e92b3077e905059d017ae05e4aa77cf1baffb953d06a623de7e3f8e1884f524",
+      "bytes": 420614
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/01_AI 검색 무엇부터 확인할까?.png",
+      "sha256": "47dfc5361277b8d2d637c3251cc47f3f7e1529d0f964be4695083f3dad1abd2d",
+      "bytes": 420059
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/02_우리 병원 AI 검색엔 안 뜬다면?.png",
+      "sha256": "c39ca02c37450840a8811daa65fdcd588a3728724315658ed2c589ac58d84794",
+      "bytes": 420345
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/02_우리 병원 검색 상태 점검법.png",
+      "sha256": "c5c48a18e09f23a7f208e62c8b0f13850df21f6656bc552646fdc647282f1d3e",
+      "bytes": 419338
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/03_홈페이지 전부 바꿔야 할까?.png",
+      "sha256": "6af358edec8b93f565bd7648fd85b8dcb46592753fe00f5e1993a0162e153931",
+      "bytes": 420477
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/03_홈페이지 고칠까? 새로 만들까?.png",
+      "sha256": "28f57644697b7bb9f153fbb3db8d3c3a675e4da4fdc255552f5c814aac43e037",
+      "bytes": 420450
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/04_소개받은 업체 바로 계약할까?.png",
+      "sha256": "38d19eed5367b748e0e075aa3ab83dcd7f81aa896645e2379ee4f566c4012275",
+      "bytes": 419316
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/04_제작업체 계약 전 필수 질문.png",
+      "sha256": "6d1186e017beed82e58f72d4509ea609e51bfd3b752a60ff949e3792ebe94894",
+      "bytes": 419220
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/05_SEO 포함 어디까지 해줄까?.png",
+      "sha256": "842ce565c45bb042ae0d348cf2b036c17d80dce033d0d526836067b20df3792b",
+      "bytes": 420606
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/05_SEO 맡겼다면 꼭 받을 결과물.png",
+      "sha256": "0c05b290783f8be4c4b321314164d941b54cc254c22b35373a7f9dc8f9021be8",
+      "bytes": 418008
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/06_제작비 비싸면 더 좋을까?.png",
+      "sha256": "6b85a5efb5fd249da5aa8f17c71d5daec7f50c4ecde254681c9b4b534ce0b89f",
+      "bytes": 420117
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/06_홈페이지 견적 가격 말고 볼 것.png",
+      "sha256": "0c110716b91b1e8b8dddc77c436ae9d3b74183db3d09793c6005ac3c045edd24",
+      "bytes": 418748
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/07_새 홈페이지 병원 소개는 그대로?.png",
+      "sha256": "8d6496077195cf5dc3bc23ba5a8432309d2672ed45c95d9866aa29bef5e88df6",
+      "bytes": 419825
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/07_홈페이지 제작 전 준비물.png",
+      "sha256": "ec06da23720dd61c08841d1c64dcff6d3993c12a6650de0a2440a71fc4c133cb",
+      "bytes": 418574
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/08_광고로 온 환자 다음은 어디로?.png",
+      "sha256": "a0abf2932171b7a694232bc4aa70059c9608fd78e8c51c3d0d582f99f355c720",
+      "bytes": 419022
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/08_모바일 예약 끝까지 해봤나요?.png",
+      "sha256": "54da1aa99a8bb02c7dc56cba28f172db19edc1ac7de73b568c76e765342b0926",
+      "bytes": 420372
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/09_업체 바꾸는데 계정이 없다면?.png",
+      "sha256": "7ab2cd0c5101adf9af2689df7a9435938ea37c0898881c6197a8d5ca127f90d7",
+      "bytes": 419647
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/09_리뉴얼 전 계정·자료 챙겼나요?.png",
+      "sha256": "768e064de471c4a9780b24e5199c15dfac0d2d440d6ee8b93b41b162ed131777",
+      "bytes": 421361
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/오픈애즈/10_오픈 완료 확인 없이 끝낼까?.png",
+      "sha256": "c8d5cdd2021417e58f61a5dd68d532971fed242af5f1300e01e3cf796a960348",
+      "bytes": 420255
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/병원홈페이지_썸네일_20개/네이버프리미엄콘텐츠/10_홈페이지 잔금 전 체크리스트.png",
+      "sha256": "81cd4e043d90f5945a7c07a6cddb79e111bf662bec3bc2006592e6e48ff33025",
+      "bytes": 419274
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/오픈애즈_완성원고5편_20261027/썸네일/01_O01_구글맵관리.png",
+      "sha256": "f100acb6b82578d10dbfb89bf99caef1167275f9fd4143f62b2943943b72174e",
+      "bytes": 420714
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/오픈애즈_완성원고5편_20261027/썸네일/02_O03_병원다국어홈페이지.png",
+      "sha256": "17e2995c22e3d53c2306599166b6f7a9e9d8dd526c836505e9e7ef4a86e2c750",
+      "bytes": 421534
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/오픈애즈_완성원고5편_20261027/썸네일/03_O05_병원구글광고.png",
+      "sha256": "2221aa97c57219f0178a038aadfb6cc5f7de05ec3990a30009b69efd008677d9",
+      "bytes": 422357
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/오픈애즈_완성원고5편_20261027/썸네일/04_O06_레딧마케팅.png",
+      "sha256": "d2b1a896213b1522bc687dd6c7b1689727de1d1f0b5c584272a3485684bdef1e",
+      "bytes": 422066
+    },
+    {
+      "path": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/오픈애즈_완성원고5편_20261027/썸네일/05_O04_GEO마케팅.png",
+      "sha256": "e039cb7160d413012b6c5608daca887673a4997fd0f762e085264eac9035ca51",
+      "bytes": 423206
+    }
+  ],
+  "external_publication_or_scheduling_authorized_this_request": false
+}

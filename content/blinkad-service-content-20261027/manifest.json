@@ -4,7 +4,7 @@
   "purpose": "외국인 마케팅을 원하는 대표·기업 마케팅 담당자의 업무 의뢰와 운영 판단",
   "repository": "happyhappy82/blinkad",
   "branch": "codex/blinkad-official-content-first-pair-20261027",
-  "stage": "NV6작성완료중N01/N05/N06은사용자타깃피드백교정완료·전체미발행. 홈페이지/OA기존예약보존.",
+  "stage": "홈페이지6·오픈애즈5 기존공개/예약유지. 네이버 활성5편 미발행·N04 이번발행제외/원고보존.",
   "published_at": null,
   "deployment": {
     "actual_site": "https://www.blinkad.kr",
@@ -2533,7 +2533,9 @@
         ],
         "platform_posting_authorized_this_turn": false,
         "platform_registered": false,
-        "platform_posted": false
+        "platform_posted": false,
+        "blocked_by_current_publication_selection": true,
+        "exclusion_reason": "사용자 요청으로 이번 발행에서 제외. 새 지시 없이 등록·예약하지 않음."
       },
       "search_intent_revision": {
         "at": "2026-10-27T22:03:23.981108+09:00",
@@ -2559,7 +2561,17 @@
           ],
           "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
         }
-      ]
+      ],
+      "publication_selection": {
+        "active": false,
+        "state": "이번 발행대상 제외·원고와 이력 보존",
+        "excluded_at": "2026-10-28T11:46:27.321218+09:00",
+        "reason": "사용자 명시 지시",
+        "scope": "이번 네이버 프리미엄콘텐츠 발행대상",
+        "preserved_body_sha256": "660b53d872ecaf365a97f6706e92cedc3f5a86a245bbf6641decabf44ff47713",
+        "platform_registered": false,
+        "platform_posted": false
+      }
     },
     {
       "id": "N02",
@@ -2704,7 +2716,7 @@
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
   "voice": "블링크애드 담당자가 대표·마케팅 담당자에게 상담하듯 설명하는 정중한 존댓말. 확인할 이유와 방법을 풀어 설명하고 명령형 종결의 반복을 줄인다. 필요한 곳에서 저희·함께·알려주시면 같은 표현을 쓰되 실제 경험·지원 약속은 만들지 않는다.",
-  "updated_at": "2026-10-27T23:11:18.685312+09:00",
+  "updated_at": "2026-10-28T11:46:27.321218+09:00",
   "draft_count": 17,
   "unwritten_total": 0,
   "homepage_draft_count": 6,
@@ -2714,11 +2726,11 @@
   "completed_at": "2026-10-27T15:14:22.996234+09:00",
   "channel_counts": {
     "공식홈페이지": 6,
-    "네이버 프리미엄콘텐츠": 6,
+    "네이버 프리미엄콘텐츠": 5,
     "오픈애즈": 5
   },
   "dedup_revision": "N04 1편 · 기존예약9 추가대조로 행단위 추천/인용 근거감사 주제로 교체",
-  "external_current_links": 11,
+  "external_current_links": 10,
   "external_planned_h06_links": 0,
   "production_publication_or_reservation": true,
   "search_intent_revision": {
@@ -2859,7 +2871,22 @@
       "N04",
       "N02"
     ],
-    "external_reserved_count": 5
+    "external_reserved_count": 5,
+    "active_external_draft_revised_ids": [
+      "O01",
+      "O03",
+      "O05",
+      "O06",
+      "O04",
+      "N01",
+      "N03",
+      "N05",
+      "N06",
+      "N02"
+    ],
+    "excluded_external_ids": [
+      "N04"
+    ]
   },
   "external_reference_policy": {
     "user_instruction": "홈페이지6편 주소를 앞으로 네이버프리미엄콘텐츠·오픈애즈 본문에 관련 참고글 하이퍼링크로 사용한다.",
@@ -2907,18 +2934,6 @@
         "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
         "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
         "homepage_publish_date": "2026-11-04",
-        "homepage_current_state": "scheduled",
-        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
-        "actual_body_applied": true,
-        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
-      },
-      {
-        "external_id": "N04",
-        "homepage_id": "H04",
-        "homepage_title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
-        "base_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
-        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
-        "homepage_publish_date": "2026-11-06",
         "homepage_current_state": "scheduled",
         "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
         "actual_body_applied": true,
@@ -3009,11 +3024,44 @@
       "N03",
       "N05",
       "N06",
-      "N04",
       "N02"
     ],
     "other_bodies_unchanged": true,
-    "naver_body_application_completed_at": "2026-10-27T22:09:15.521417+09:00"
+    "naver_body_application_completed_at": "2026-10-27T22:09:15.521417+09:00",
+    "excluded_references": [
+      {
+        "external_id": "N04",
+        "homepage_id": "H04",
+        "homepage_title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요.",
+        "base_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n04_body",
+        "homepage_publish_date": "2026-11-06",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      }
+    ],
+    "preserved_body_application_before_exclusion": [
+      "O01",
+      "O03",
+      "O05",
+      "O06",
+      "O04",
+      "N01",
+      "N03",
+      "N05",
+      "N06",
+      "N04",
+      "N02"
+    ],
+    "active_naver_order": [
+      "N01",
+      "N03",
+      "N05",
+      "N06",
+      "N02"
+    ]
   },
   "external_one_by_one_workflow": {
     "current_channel": "오픈애즈",
@@ -3027,27 +3075,48 @@
     "current_id": null,
     "current_position": 5,
     "next_id": null,
-    "state": "오픈애즈5예약·네이버6원고작성완료",
+    "state": "오픈애즈5예약유지·네이버활성5원고미발행·N04발행제외",
     "external_rewrite_pending": 0,
-    "naver_completed_count": 6
+    "naver_completed_count": 6,
+    "naver_active_count": 5,
+    "naver_excluded_ids": [
+      "N04"
+    ]
   },
   "external_link_inventory": {
-    "placed_links_in_drafts": 20,
-    "placed_scheduled_homepage_links": 9,
-    "new_reference_plan_count": 11,
-    "actual_rewrite_count": 11,
+    "placed_links_in_drafts": 18,
+    "placed_scheduled_homepage_links": 8,
+    "new_reference_plan_count": 10,
+    "actual_rewrite_count": 10,
     "remaining_rewrite_count": 0,
     "links_are_draft_copy_not_platform_posts": false,
     "deployment_state": {
       "openads_reserved_articles": 5,
       "owned_utm_links_in_openads_reserved_bodies": 9,
-      "naver_unpublished_drafts": 6,
-      "owned_utm_links_in_naver_drafts": 11,
+      "naver_unpublished_drafts": 5,
+      "owned_utm_links_in_naver_drafts": 9,
       "new_external_public_publication_confirmed": 0
-    }
+    },
+    "preserved_totals_before_N04_exclusion": {
+      "placed_links_in_drafts": 20,
+      "placed_scheduled_homepage_links": 9,
+      "new_reference_plan_count": 11,
+      "actual_rewrite_count": 11,
+      "remaining_rewrite_count": 0,
+      "links_are_draft_copy_not_platform_posts": false,
+      "deployment_state": {
+        "openads_reserved_articles": 5,
+        "owned_utm_links_in_openads_reserved_bodies": 9,
+        "naver_unpublished_drafts": 6,
+        "owned_utm_links_in_naver_drafts": 11,
+        "new_external_public_publication_confirmed": 0
+      }
+    },
+    "excluded_written_article_count": 1,
+    "excluded_owned_link_count": 2
   },
   "external_current_links_at_previous_completion": 16,
-  "external_scheduled_reference_links_in_drafts": 9,
+  "external_scheduled_reference_links_in_drafts": 8,
   "openads_reservation_count": 5,
   "openads_reservation_result": "../../docs/blinkad-service-content-20261027/openads-five-schedule-result-20261027.json",
   "naver_sequential_rewrite": {
@@ -3069,8 +3138,18 @@
       "N02"
     ],
     "next_id": null,
-    "state": "네이버6편 순차집필·독립검토완료·미발행",
-    "completed_at": "2026-10-27T22:09:15.521417+09:00"
+    "state": "6편집필이력보존·이번발행대상5편미발행·N04제외",
+    "completed_at": "2026-10-27T22:09:15.521417+09:00",
+    "active_order": [
+      "N01",
+      "N03",
+      "N05",
+      "N06",
+      "N02"
+    ],
+    "excluded_ids": [
+      "N04"
+    ]
   },
   "buyer_stage_revision_20261027": {
     "order": [
@@ -3090,5 +3169,75 @@
     "completed_at": "2026-10-27T23:11:18.685312+09:00"
   },
   "buyer_stage_editorial_rule": "독자가 이미 운영 중인 실무자라고 전제하지 않는다. 운영·보고·설정은 필요성을 설명하는 짧은 예시로만 사용한다. 중복 회피 때문에 도입 고민을 다른 단계로 바꾸지 않는다.",
-  "latest_editorial_report": "BLINKAD_NAVER_BUYER_STAGE_CORRECTION_20261027.md"
+  "latest_editorial_report": "BLINKAD_NAVER_N04_PUBLICATION_EXCLUSION_20261028.md",
+  "publication_selection": {
+    "updated_at": "2026-10-28T11:46:27.321218+09:00",
+    "reason": "사용자 지시로 N04를 이번 발행대상에서 제외",
+    "active_ids": [
+      "H02",
+      "H03",
+      "H01",
+      "H05",
+      "H06",
+      "H04",
+      "O01",
+      "N01",
+      "N03",
+      "O03",
+      "N05",
+      "O05",
+      "N06",
+      "O06",
+      "O04",
+      "N02"
+    ],
+    "active_count": 16,
+    "active_channel_counts": {
+      "공식홈페이지": 6,
+      "네이버 프리미엄콘텐츠": 5,
+      "오픈애즈": 5
+    },
+    "naver_active_order": [
+      "N01",
+      "N03",
+      "N05",
+      "N06",
+      "N02"
+    ],
+    "excluded_ids": [
+      "N04"
+    ],
+    "excluded_count": 1,
+    "preserved_written_count": 17,
+    "excluded_body_preserved": true,
+    "exclusion_is_not_deletion_or_platform_status_change": true,
+    "new_naver_reservations": 0
+  },
+  "active_ids": [
+    "H02",
+    "H03",
+    "H01",
+    "H05",
+    "H06",
+    "H04",
+    "O01",
+    "N01",
+    "N03",
+    "O03",
+    "N05",
+    "O05",
+    "N06",
+    "O06",
+    "O04",
+    "N02"
+  ],
+  "active_draft_count": 16,
+  "excluded_draft_count": 1,
+  "preserved_channel_counts": {
+    "공식홈페이지": 6,
+    "네이버 프리미엄콘텐츠": 6,
+    "오픈애즈": 5
+  },
+  "naver_thumbnail_manifest": "thumbnails/naver-premium-20261028/manifest.json",
+  "naver_thumbnail_count": 5
 }
