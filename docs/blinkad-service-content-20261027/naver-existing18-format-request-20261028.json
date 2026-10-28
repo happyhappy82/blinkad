@@ -1,0 +1,162 @@
+{
+  "requested_at": "2026-10-28T13:45:05.169489+09:00",
+  "scope": "네이버 현재예약22개 중 최근수정4개 제외, 남은기존18개 실제서식수정",
+  "style": "native se-quotation / se-l-quotation_line, left aligned, no italic, quote source blank",
+  "preserve": [
+    "same contentId",
+    "title",
+    "nonempty paragraphs wording/punctuation/order",
+    "links text+href/UTM",
+    "native data table rows/cells",
+    "lists",
+    "body images",
+    "thumbnail",
+    "free unlimited",
+    "author",
+    "category/tags",
+    "reserved date/time"
+  ],
+  "main_heading_rule": "주요 본문 섹션제목(H2급), FAQ 구간 제목을 세로선 인용으로 통일. H1·핵심요약/참고자료 라벨·본문 강조·H3급 작은 질문·개별FAQ 질문은 제외하고 기존 계층 유지. 기존 큰따옴표형 주요인용은 세로선으로 변경. 실제저장본의계층을읽어원래제목문구를보존.",
+  "spacing_rule": "인용 기본 앞뒤 여백 유지. 일반본문의 원래 논리문단 사이 한줄 정도 여백, 중복빈줄추가금지. 표/리스트 각항목·인용내부·문장중간에 빈줄 삽입 금지. 안전한 문단시작 커서 위치 사용.",
+  "items": [
+    {
+      "code": "E01",
+      "actual_id": "261022192033410cx",
+      "title": "한국어 검색에는 나오는데 영어 질문에는 우리 병원이 사라지는 이유",
+      "scheduled_display": "2026.10.29. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E02",
+      "actual_id": "261022192218490ns",
+      "title": "외국인 문의가 예약으로 이어지지 않는 순간은 어디일까?",
+      "scheduled_display": "2026.10.31. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E03",
+      "actual_id": "261022192306764kj",
+      "title": "GEO 마케팅을 대행사에 맡기기 전 병원이 먼저 정해야 할 것",
+      "scheduled_display": "2026.11.02. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E04",
+      "actual_id": "261022200707649du",
+      "title": "종합병원 GEO 성과를 검색 순위만으로 판단하면 안 되는 이유",
+      "scheduled_display": "2026.11.04. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E05",
+      "actual_id": "261022200841648pa",
+      "title": "대형병원 외국인 마케팅, 광고부터 시작하면 놓치는 것",
+      "scheduled_display": "2026.11.06. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E06",
+      "actual_id": "261022201045373zj",
+      "title": "국내 거주 외국인과 의료관광 환자는 같은 방식으로 찾으면 안 됩니다",
+      "scheduled_display": "2026.11.08. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E07",
+      "actual_id": "261022201151040yj",
+      "title": "대형병원 외국인 마케팅에서 광고·SEO·GEO는 어떻게 나눠야 할까?",
+      "scheduled_display": "2026.11.10. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E08",
+      "actual_id": "261022201434458ni",
+      "title": "‘AI 검색 노출 보장’이라는 GEO 제안서를 믿어도 될까?",
+      "scheduled_display": "2026.11.12. 14:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E09",
+      "actual_id": "261026144906787pk",
+      "title": "AI 검색을 고려한 병원 홈페이지, 원장님은 무엇을 확인해야 할까?",
+      "scheduled_display": "2026.11.15. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E10",
+      "actual_id": "261026150726293uh",
+      "title": "우리 병원 홈페이지가 검색에 불리한지 직접 확인하는 법",
+      "scheduled_display": "2026.11.17. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E11",
+      "actual_id": "261026152307216pr",
+      "title": "우리 병원 홈페이지, 고쳐 쓸 부분과 새로 만들 부분",
+      "scheduled_display": "2026.11.19. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E12",
+      "actual_id": "261026152412620sb",
+      "title": "병원 홈페이지 업체를 고를 때 포트폴리오 다음에 물어볼 질문",
+      "scheduled_display": "2026.11.21. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E13",
+      "actual_id": "261026152429682na",
+      "title": "병원 홈페이지 SEO를 맡겼다면 어떤 결과물을 받아야 할까?",
+      "scheduled_display": "2026.11.23. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E14",
+      "actual_id": "261026152850512lr",
+      "title": "병원 홈페이지 견적 두 개, 금액 말고 무엇을 비교해야 할까?",
+      "scheduled_display": "2026.11.25. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E15",
+      "actual_id": "261026152906920rx",
+      "title": "병원 홈페이지 제작 전에 원장님과 담당자가 준비할 정보",
+      "scheduled_display": "2026.11.27. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E16",
+      "actual_id": "261026152935462tj",
+      "title": "모바일로 우리 병원 예약을 끝까지 해보셨나요?",
+      "scheduled_display": "2026.11.29. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E17",
+      "actual_id": "261026152950262bm",
+      "title": "병원 홈페이지 리뉴얼 전에 확보해둘 계정과 자료",
+      "scheduled_display": "2026.12.01. 13:00",
+      "free": "무기한 무료"
+    },
+    {
+      "code": "E18",
+      "actual_id": "261026153223048dr",
+      "title": "병원 홈페이지 잔금 보내기 전, 직접 확인해야 할 화면",
+      "scheduled_display": "2026.12.03. 13:00",
+      "free": "무기한 무료"
+    }
+  ],
+  "already_formatted_preserve_ids": [
+    "261028124654504ui",
+    "261028124832817qi",
+    "261028124403773rx",
+    "261028124221710gm",
+    "261028123905601ev"
+  ],
+  "current_reservation_count": 22,
+  "already_published_preserve_id": "261028123905601ev",
+  "output_folder": "/Users/mcbookpro/.aside/u/0/sessions/2026-10-28_1H64o4UP8SpfD8Eq/artifacts/네이버_예약18편_서식통일_20261028",
+  "delivery_folder": "/Users/mcbookpro/Downloads/블링크애드_6키워드_3채널_주제기획_20261027/네이버프리미엄_예약글전체_서식통일_20261028",
+  "result_filename": "naver-existing18-format-result.json",
+  "execution": "기존 UI로 동일 글마다 저장/재열람. 2편 단위 순차 진행하되 18편 모두까지 자동계속. 새연구/에이전트/자동화개발/전체본문붙여넣기 금지. 한편마다 before/after 근거와 한장캡처, 결과JSON누적. 완료된 글은 반복편집하지않음."
+}
