@@ -1,0 +1,285 @@
+{
+  "approved_at": "2026-10-28T12:30:59.996981+09:00",
+  "authorization": "사용자가신규5편을기존예약날짜와겹치지않는가장가까운날짜로예약지시;이전확정13:00/무료/2일간격유지",
+  "status": "authorized ready for actual reservation save; not yet saved",
+  "channel": "네이버 프리미엄콘텐츠 블링크애드",
+  "timezone": "Asia/Seoul",
+  "free": "무기한 무료",
+  "excluded_id": "N04",
+  "existing_reservation_count": 18,
+  "existing_reservation_dates_preserved": true,
+  "date_conflicts": 0,
+  "schedule_order": [
+    "N02",
+    "N03",
+    "N01",
+    "N05",
+    "N06"
+  ],
+  "order_reason": "가장빠른빈날짜와참고공식글공개일을함께맞춰발행가능원고부터배치;원고본문/링크변경없음",
+  "items": [
+    {
+      "code": "N02",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "excerpt": "병원 외국인 마케팅 경쟁분석에서 목표 진료·언어·방문 조건에 맞는 비교 후보를 고르고 공식 안내로 포함 이유를 확인하는 방법을 설명합니다.",
+      "primary_keyword": "병원 외국인 마케팅 경쟁분석",
+      "source_body_file": "N02-hospital-inbound-competitor-selection.md",
+      "source_body_sha256": "0293d4ab1a7292a2313fe52b41eebd67c9597baa48667008488df66812cc7099",
+      "body_html_sha256": "6b49e50146ba19b6827fb8e04c0e25e71027d2cbda90c41832c9f7e3398e4c58",
+      "body_markdown_sha256": "b5c107c0dcc1e25d76c7ac7cf7b5433bd83cc413480bfc308efdd844bf2de1ad",
+      "thumbnail_source_file": "05_N02_병원외국인마케팅경쟁분석.png",
+      "thumbnail_sha256": "10e260f0d8ec3441faf51c9dc6571420ad60a1c6f7f2360b36fbcd5ace8fa37f",
+      "thumbnail_dimensions": [
+        1280,
+        600
+      ],
+      "homepage_reference": {
+        "external_id": "N02",
+        "homepage_id": "H02",
+        "homepage_title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?",
+        "base_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body",
+        "homepage_publish_date": "2026-10-27",
+        "homepage_current_state": "published",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "links": [
+        {
+          "text": "St. Mary's Jin Eye Center의 국제환자 안내",
+          "url": "https://jin-eye.co.kr/en_us/international-patients/"
+        },
+        {
+          "text": "B&VIIT의 공식 영문 홈페이지",
+          "url": "https://english.bnviit.com/"
+        },
+        {
+          "text": "병원 외국인 마케팅에서 블링크애드에 맡길 수 있는 범위",
+          "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body"
+        },
+        {
+          "text": "병원 외국인 마케팅 경쟁분석·운영 범위",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+        }
+      ],
+      "planned_at": "2026-10-28T13:00:00+09:00",
+      "actual_id": null,
+      "public_url": null,
+      "free": true,
+      "free_duration": "unlimited",
+      "time_zone": "Asia/Seoul",
+      "input_directory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/네이버_신규5편_예약_20261028/input_package/N02"
+    },
+    {
+      "code": "N03",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "excerpt": "주력 진료와 확인된 문의, 실제 응대 언어를 바탕으로 병원 다국어 홈페이지의 첫 제작 범위와 확장 순서를 정하는 방법을 설명합니다.",
+      "primary_keyword": "병원 다국어 홈페이지 제작",
+      "source_body_file": "N03-hospital-language-page-links.md",
+      "source_body_sha256": "2541bb03740b0bb01e396e0b5e3d8c93891ff1f109e21cb3c52f00aa97aaee3c",
+      "body_html_sha256": "e661017be9a5f5a10243d7e0d15920e07210c7ed35a5500f880f7ad1a27d9624",
+      "body_markdown_sha256": "74a27f2a07d4491c463171eadc8bccff24d994c18f1d247ee4f256dfd8a72b29",
+      "thumbnail_source_file": "02_N03_병원다국어홈페이지.png",
+      "thumbnail_sha256": "13019ceec1850f40b97c862aa81128dd3f5cae5106c6c41d6794420acbe77be9",
+      "thumbnail_dimensions": [
+        1280,
+        600
+      ],
+      "homepage_reference": {
+        "external_id": "N03",
+        "homepage_id": "H03",
+        "homepage_title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+        "base_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body",
+        "homepage_publish_date": "2026-10-29",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "links": [
+        {
+          "text": "Google 다국어 사이트 안내",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "text": "병원 다국어 홈페이지를 추가로 제작할 때 확인할 조건",
+          "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_body"
+        },
+        {
+          "text": "첫 다국어 홈페이지 제작 범위",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n03_cta"
+        }
+      ],
+      "planned_at": "2026-10-30T13:00:00+09:00",
+      "actual_id": null,
+      "public_url": null,
+      "free": true,
+      "free_duration": "unlimited",
+      "time_zone": "Asia/Seoul",
+      "input_directory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/네이버_신규5편_예약_20261028/input_package/N03"
+    },
+    {
+      "code": "N01",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "excerpt": "구글맵 프로필이 지점 발견·방문 판단과 브랜드 경험에 중요한 이유를 설명하고, 프랜차이즈 차원의 지속 관리가 필요한 상황을 안내합니다.",
+      "primary_keyword": "프랜차이즈 구글맵 관리",
+      "source_body_file": "N01-franchise-google-maps-performance-comparison.md",
+      "source_body_sha256": "a2c91ef6fb8db912312b685ef41ed27b6d591673e02fee72e5e6c1d48bafa958",
+      "body_html_sha256": "4fb0f2605fbf41e506350088b27ad1da2e9d032c88172d6d35eb4fbb3908dec4",
+      "body_markdown_sha256": "df560d0cdfdf9e1422b184e25a956841082509923184154614783eff32ff8cf8",
+      "thumbnail_source_file": "01_N01_프랜차이즈구글맵관리.png",
+      "thumbnail_sha256": "2194e761a5b570601dfa805bbc65beabe4f3c1cfecf27783af05aec489e28533",
+      "thumbnail_dimensions": [
+        1280,
+        600
+      ],
+      "homepage_reference": {
+        "external_id": "N01",
+        "homepage_id": "H01",
+        "homepage_title": "프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요?",
+        "base_url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection",
+        "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body",
+        "homepage_publish_date": "2026-10-31",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "links": [
+        {
+          "text": "Google 로컬 검색·프로필 관리 안내",
+          "url": "https://support.google.com/business/answer/7091?hl=en"
+        },
+        {
+          "text": "Google 비즈니스 표시 가이드라인",
+          "url": "https://support.google.com/business/answer/3038177?hl=en"
+        },
+        {
+          "text": "프랜차이즈 구글맵 관리 대행사를 고르는 기준",
+          "url": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_body"
+        },
+        {
+          "text": "프랜차이즈에 필요한 구글맵 프로필 관리",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n01_cta"
+        }
+      ],
+      "planned_at": "2026-11-01T13:00:00+09:00",
+      "actual_id": null,
+      "public_url": null,
+      "free": true,
+      "free_duration": "unlimited",
+      "time_zone": "Asia/Seoul",
+      "input_directory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/네이버_신규5편_예약_20261028/input_package/N01"
+    },
+    {
+      "code": "N05",
+      "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "excerpt": "외국인 고객에게 알릴 때 구글 검색광고가 중요한 이유와 검색·지도·홈페이지를 함께 준비할 필요를 대표·마케팅 담당자의 관점에서 설명합니다.",
+      "primary_keyword": "외국인 마케팅 구글광고",
+      "source_body_file": "N05-foreign-search-terms-negative-keywords.md",
+      "source_body_sha256": "76c7af88fce23e7ea034c95651fecc1ff761386447b3c1f763adad4a75d3c456",
+      "body_html_sha256": "84b8688bf0136e55b2e04df6d7f70e1de5cfdd9475657ce638714121a656d73c",
+      "body_markdown_sha256": "860ff4a7d9b81e9b40f7fe2917cde8fcd3b1b011c9338acb035f56bb1d9dc3fe",
+      "thumbnail_source_file": "03_N05_외국인구글광고.png",
+      "thumbnail_sha256": "c9b766b91a2d26864ee0fcd5baf7f6d089ac9f1428d17cc7726acf936005d80d",
+      "thumbnail_dimensions": [
+        1280,
+        600
+      ],
+      "homepage_reference": {
+        "external_id": "N05",
+        "homepage_id": "H05",
+        "homepage_title": "외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지",
+        "base_url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection",
+        "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body",
+        "homepage_publish_date": "2026-11-02",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "links": [
+        {
+          "text": "Google 검색 캠페인 안내",
+          "url": "https://support.google.com/google-ads/answer/9510373?hl=en"
+        },
+        {
+          "text": "Google 위치 옵션 안내",
+          "url": "https://support.google.com/google-ads/answer/1722038?hl=en"
+        },
+        {
+          "text": "Google 광고 언어 안내",
+          "url": "https://support.google.com/google-ads/answer/1722078?hl=en"
+        },
+        {
+          "text": "외국인 구글광고 대행사 선택 전 확인할 세 가지",
+          "url": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_body"
+        },
+        {
+          "text": "구글광고를 포함한 외국인 마케팅 범위",
+          "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n05_cta"
+        }
+      ],
+      "planned_at": "2026-11-03T13:00:00+09:00",
+      "actual_id": null,
+      "public_url": null,
+      "free": true,
+      "free_duration": "unlimited",
+      "time_zone": "Asia/Seoul",
+      "input_directory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/네이버_신규5편_예약_20261028/input_package/N05"
+    },
+    {
+      "code": "N06",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "excerpt": "영어권 고객이 서비스 질문과 비교 정보를 찾는 레딧의 역할을 설명하고, 영어권 고객 유치에 레딧 마케팅이 중요한 이유를 안내합니다.",
+      "primary_keyword": "영어권 고객 레딧 마케팅",
+      "source_body_file": "N06-reddit-reviews-after-ad-exposure.md",
+      "source_body_sha256": "ab2f3872c63cb2989d27abe06673b7e04bd54287617bae8c893fb9933929ad08",
+      "body_html_sha256": "4e21ccef55fb661ac148dec650766e9e658aef561f87134694100512ae1091f7",
+      "body_markdown_sha256": "ac227b27c8b1675b3611bf092ee8ad2b0b5020426d61a5f4db5199fa304d7623",
+      "thumbnail_source_file": "04_N06_레딧마케팅.png",
+      "thumbnail_sha256": "0f6b9dff3fe9efd02f50ff98f6880d9213eedf7bdf383c0d83479c71286fdd62",
+      "thumbnail_dimensions": [
+        1280,
+        600
+      ],
+      "homepage_reference": {
+        "external_id": "N06",
+        "homepage_id": "H06",
+        "homepage_title": "레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유",
+        "base_url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit",
+        "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body",
+        "homepage_publish_date": "2026-11-04",
+        "homepage_current_state": "scheduled",
+        "placement": "핵심 답변 뒤 관련 내용이 이어지는 본문 참고글",
+        "actual_body_applied": true,
+        "publication_gate": "외부 글 발행 전 실제 HTTP200·제목/본문·모바일 연결 확인. 예약 주소는 현재 공개 주소로 주장하지 않음."
+      },
+      "links": [
+        {
+          "text": "서울 병원 정보를 묻는 공개 질문",
+          "url": "https://www.reddit.com/r/KoreanBeauty/comments/1nvvxa4/clinic_recommendations_in_seoul/"
+        },
+        {
+          "text": "Reddit 구매 과정 조사",
+          "url": "https://www.business.reddit.com/blog/research-2026-half-of-us-shoppers-verify-ai-recommendations-on-reddit-before-they-buy"
+        },
+        {
+          "text": "레딧 마케팅이 영어권 고객 유치에 중요한 세 가지 이유",
+          "url": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n06_body"
+        }
+      ],
+      "planned_at": "2026-11-05T13:00:00+09:00",
+      "actual_id": null,
+      "public_url": null,
+      "free": true,
+      "free_duration": "unlimited",
+      "time_zone": "Asia/Seoul",
+      "input_directory": "/Users/mcbookpro/.aside/u/0/sessions/2026-09-23_WYtDyVsizHR2D7FT/artifacts/네이버_신규5편_예약_20261028/input_package/N06"
+    }
+  ],
+  "late_first_item_policy": "10/28 13:00이이미지나거나저장전임박해불가능한경우즉시공개하지않고현재시각/진행상태보고후새빈날짜재선정",
+  "result_file": "naver-five-schedule-result.json"
+}

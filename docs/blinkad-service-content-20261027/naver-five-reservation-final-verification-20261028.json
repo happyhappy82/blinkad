@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-28T12:50:38.792871+09:00",
+  "status": "PASS",
+  "saved_verified_count": 5,
+  "unique_actual_ids": 5,
+  "exact_approved_schedule_match": true,
+  "existing_reserved_date_conflicts": 0,
+  "source_md_17_unchanged": true,
+  "other12_source_full_item_unchanged": true,
+  "html_readers_updated_without_body_text_or_href_changes": 23,
+  "verification_scope": "Aside actual saved-setting receipts + root approved-source metadata comparison",
+  "first_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028123905601ev",
+  "final_reservation_list_count": 23,
+  "final_unique_platform_ids": 23,
+  "existing18_title_datetime_free_unchanged": true,
+  "new5_id_title_datetime_free_thumbnail_list_match": true,
+  "aside_final_list_checked_at": "2026-10-28T03:51:48.728Z"
+}

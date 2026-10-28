@@ -1115,6 +1115,32 @@
         ],
         "title_origin": "N01사용자기존제목유지. N05/N06표현은작업자가현재/기존사용자방향에맞춰작성·사용자최종확인전.",
         "review_notes": "구매자단계독립검토: 운영보고/절차대신매장발견·방문판단·브랜드경험·지속관리필요를답하고대표의대행검토로연결. 필수보완1곳반영: 브랜드를모르는고객도지역·업종/서비스검색에서지점프로필을처음접할수있다는신규고객발견이유추가. 보완후핵심타깃/근거/문체필수문제0."
+      },
+      "platform_reservation": {
+        "code": "N01",
+        "actual_id": "261028124403773rx",
+        "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+        "scheduled_at": "2026-11-01T13:00:00+09:00",
+        "status": "reserved",
+        "reservation_verified": true,
+        "free_unlimited": true,
+        "thumbnail_verified": true,
+        "body_verified": true,
+        "links_verified": true,
+        "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124403773rx?isConfig=true",
+        "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124403773rx",
+        "public_url": null,
+        "thumbnail_urls": [
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjQ2/MDAxNzkzMTU5MDM3NTA1.bP68jGx77NgpwZaykzrMtd2HO6TSzTYK4kfEKAQSqmcg.g3gIVWeO0z-Fccn6PCynmdHbRvwkc_yyHVxOnSHlknQg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159037461.png?type=nfs200_200",
+            "loaded": true
+          },
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjQ2/MDAxNzkzMTU5MDM3NTA1.bP68jGx77NgpwZaykzrMtd2HO6TSzTYK4kfEKAQSqmcg.g3gIVWeO0z-Fccn6PCynmdHbRvwkc_yyHVxOnSHlknQg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159037461.png?type=nfs670_436",
+            "loaded": true
+          }
+        ],
+        "verified_at": "2026-10-28T03:44:41.160Z"
       }
     },
     {
@@ -1237,7 +1263,33 @@
           ],
           "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
         }
-      ]
+      ],
+      "platform_reservation": {
+        "code": "N03",
+        "actual_id": "261028124221710gm",
+        "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+        "scheduled_at": "2026-10-30T13:00:00+09:00",
+        "status": "reserved",
+        "reservation_verified": true,
+        "free_unlimited": true,
+        "thumbnail_verified": true,
+        "body_verified": true,
+        "links_verified": true,
+        "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124221710gm?isConfig=true",
+        "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm",
+        "public_url": null,
+        "thumbnail_urls": [
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjY4/MDAxNzkzMTU4OTM1OTc2.zH3ZRdQ3DwrOeRg0vwtuV8jc_gEfKeyG6jy1XqClbUQg.tPyOumzDC1EYgJfYgQn9CNWq6cTSm1jeN1L39fITwIYg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158935930.png?type=nfs200_200",
+            "loaded": true
+          },
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjY4/MDAxNzkzMTU4OTM1OTc2.zH3ZRdQ3DwrOeRg0vwtuV8jc_gEfKeyG6jy1XqClbUQg.tPyOumzDC1EYgJfYgQn9CNWq6cTSm1jeN1L39fITwIYg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158935930.png?type=nfs670_436",
+            "loaded": true
+          }
+        ],
+        "verified_at": "2026-10-28T03:43:00.498Z"
+      }
     },
     {
       "id": "O03",
@@ -1648,6 +1700,32 @@
         ],
         "title_origin": "N01사용자기존제목유지. N05/N06표현은작업자가현재/기존사용자방향에맞춰작성·사용자최종확인전.",
         "review_notes": "구매자단계독립검토통과: 서비스를검색하는신규고객에게알릴기회·지도/홈페이지·외국어설명역할이중심이며집행중보고/제외키워드점검으로내려가지않음. 필수사실오류0. 어색한 검색에서발견한관심을 검색을통해생긴관심 으로교정."
+      },
+      "platform_reservation": {
+        "code": "N05",
+        "actual_id": "261028124654504ui",
+        "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+        "scheduled_at": "2026-11-03T13:00:00+09:00",
+        "status": "reserved",
+        "reservation_verified": true,
+        "free_unlimited": true,
+        "thumbnail_verified": true,
+        "body_verified": true,
+        "links_verified": true,
+        "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124654504ui?isConfig=true",
+        "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124654504ui",
+        "public_url": null,
+        "thumbnail_urls": [
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfODUg/MDAxNzkzMTU5MjA4NTAz.mbHw4bEOPpoRqkrQXY9aT0ido5Y5wIiQro_ecSKlwVsg.iU5SyI1aX-0APaVCDspA7OU3ZjTnevimmNxW_enEr6kg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159208484.png?type=nfs200_200",
+            "loaded": true
+          },
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfODUg/MDAxNzkzMTU5MjA4NTAz.mbHw4bEOPpoRqkrQXY9aT0ido5Y5wIiQro_ecSKlwVsg.iU5SyI1aX-0APaVCDspA7OU3ZjTnevimmNxW_enEr6kg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159208484.png?type=nfs670_436",
+            "loaded": true
+          }
+        ],
+        "verified_at": "2026-10-28T03:47:40.163Z"
       }
     },
     {
@@ -2113,6 +2191,32 @@
         ],
         "title_origin": "N01사용자기존제목유지. N05/N06표현은작업자가현재/기존사용자방향에맞춰작성·사용자최종확인전.",
         "review_notes": "도입고민대표적합성독립검토통과: 브랜드인지전서비스질문→비교/경험정보→브랜드알아볼계기로레딧중요성을답함. 광고후점검/대행상품소개로내려가지않음. 공개질문/특정조사를현재병원운영·의료질·전체영어권/예약효과로확대없음. 자사상담CTA0·말투자연스러움,필수수정0."
+      },
+      "platform_reservation": {
+        "code": "N06",
+        "actual_id": "261028124832817qi",
+        "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+        "scheduled_at": "2026-11-05T13:00:00+09:00",
+        "status": "reserved",
+        "reservation_verified": true,
+        "free_unlimited": true,
+        "thumbnail_verified": true,
+        "body_verified": true,
+        "links_verified": true,
+        "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124832817qi?isConfig=true",
+        "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124832817qi",
+        "public_url": null,
+        "thumbnail_urls": [
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTU3/MDAxNzkzMTU5MzA2NzE0.LJ6kORGz47i09k9odBMJwo2tETzSzbzUMV1B9e597sog.KbSVqH3aRZFpI66bANWdg4Ua6EGuTSMudKM7kDGyRw8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159306695.png?type=nfs200_200",
+            "loaded": true
+          },
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTU3/MDAxNzkzMTU5MzA2NzE0.LJ6kORGz47i09k9odBMJwo2tETzSzbzUMV1B9e597sog.KbSVqH3aRZFpI66bANWdg4Ua6EGuTSMudKM7kDGyRw8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159306695.png?type=nfs670_436",
+            "loaded": true
+          }
+        ],
+        "verified_at": "2026-10-28T03:49:24.991Z"
       }
     },
     {
@@ -2711,7 +2815,66 @@
           ],
           "scope": "해당플랫폼/공식페이지에서확인한안내에한정·모든AI/고객의행동으로확대하지않음"
         }
-      ]
+      ],
+      "platform_reservation": {
+        "code": "N02",
+        "actual_id": "261028123905601ev",
+        "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+        "scheduled_at": "2026-10-28T13:00:00+09:00",
+        "status": "reserved",
+        "reservation_verified": true,
+        "free_unlimited": true,
+        "thumbnail_verified": true,
+        "body_verified": true,
+        "links_verified": true,
+        "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028123905601ev?isConfig=true",
+        "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028123905601ev",
+        "public_url": null,
+        "thumbnail_urls": [
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTIw/MDAxNzkzMTU4NzIwODc1.ly7aD0RUVljG4ifikx4GOsb7eqRjiywTjIm1P0ZCGBEg.13yhVtWCmfslh_tdY4W975qUoCSA7e5qaPsk2NXf8LMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158720827.png?type=nfs200_200",
+            "loaded": true
+          },
+          {
+            "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTIw/MDAxNzkzMTU4NzIwODc1.ly7aD0RUVljG4ifikx4GOsb7eqRjiywTjIm1P0ZCGBEg.13yhVtWCmfslh_tdY4W975qUoCSA7e5qaPsk2NXf8LMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158720827.png?type=nfs670_436",
+            "loaded": true
+          }
+        ],
+        "verification_details": {
+          "body_verified": true,
+          "actual_text_chars": 2330,
+          "expected_text_chars": 2304,
+          "links": [
+            {
+              "text": "본문 바로가기",
+              "url": "#ct"
+            },
+            {
+              "text": "St. Mary's Jin Eye Center의 국제환자 안내",
+              "url": "https://jin-eye.co.kr/en_us/international-patients/"
+            },
+            {
+              "text": "B&VIIT의 공식 영문 홈페이지",
+              "url": "https://english.bnviit.com/"
+            },
+            {
+              "text": "병원 외국인 마케팅에서 블링크애드에 맡길 수 있는 범위",
+              "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body"
+            },
+            {
+              "text": "병원 외국인 마케팅 경쟁분석·운영 범위",
+              "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+            },
+            {
+              "text": "블링크애드\n\t\t\t\n\t\t\t\t이 채널의 콘텐츠가 마음에 드셨나요? 채널을 구독하고 창작자의 콘텐츠를 응원해 주세요!",
+              "url": "#"
+            }
+          ],
+          "tables": 1,
+          "note": "미리보기 텍스트의 제목 26자를 분리하여 게시용 전문과 순서 대조"
+        },
+        "verified_at": "2026-10-28T03:40:13.838Z"
+      }
     }
   ],
   "voice_revision_at": "2026-10-27T14:31:08.403882+09:00",
@@ -3239,5 +3402,15 @@
     "오픈애즈": 5
   },
   "naver_thumbnail_manifest": "thumbnails/naver-premium-20261028/manifest.json",
-  "naver_thumbnail_count": 5
+  "naver_thumbnail_count": 5,
+  "naver_reservation_count": 5,
+  "naver_reservation_order": [
+    "N02",
+    "N03",
+    "N01",
+    "N05",
+    "N06"
+  ],
+  "naver_reservation_report": "../../BLINKAD_NAVER_FIVE_RESERVED_20261028.md",
+  "naver_reservation_completed_at": "2026-10-28T12:50:38.469216+09:00"
 }

@@ -1,0 +1,405 @@
+{
+  "title": "네이버 신규5편 예약등록·검증",
+  "channel": "블링크애드",
+  "updated_at": "2026-10-28T03:52:17.977Z",
+  "items": [
+    {
+      "code": "N02",
+      "actual_id": "261028123905601ev",
+      "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+      "scheduled_at": "2026-10-28T13:00:00+09:00",
+      "status": "reserved",
+      "reservation_verified": true,
+      "free_unlimited": true,
+      "thumbnail_verified": true,
+      "body_verified": true,
+      "links_verified": true,
+      "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028123905601ev?isConfig=true",
+      "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028123905601ev",
+      "public_url": null,
+      "thumbnail_urls": [
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTIw/MDAxNzkzMTU4NzIwODc1.ly7aD0RUVljG4ifikx4GOsb7eqRjiywTjIm1P0ZCGBEg.13yhVtWCmfslh_tdY4W975qUoCSA7e5qaPsk2NXf8LMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158720827.png?type=nfs200_200",
+          "loaded": true
+        },
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTIw/MDAxNzkzMTU4NzIwODc1.ly7aD0RUVljG4ifikx4GOsb7eqRjiywTjIm1P0ZCGBEg.13yhVtWCmfslh_tdY4W975qUoCSA7e5qaPsk2NXf8LMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158720827.png?type=nfs670_436",
+          "loaded": true
+        }
+      ],
+      "verification_details": {
+        "body_verified": true,
+        "actual_text_chars": 2330,
+        "expected_text_chars": 2304,
+        "links": [
+          {
+            "text": "본문 바로가기",
+            "url": "#ct"
+          },
+          {
+            "text": "St. Mary's Jin Eye Center의 국제환자 안내",
+            "url": "https://jin-eye.co.kr/en_us/international-patients/"
+          },
+          {
+            "text": "B&VIIT의 공식 영문 홈페이지",
+            "url": "https://english.bnviit.com/"
+          },
+          {
+            "text": "병원 외국인 마케팅에서 블링크애드에 맡길 수 있는 범위",
+            "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_body"
+          },
+          {
+            "text": "병원 외국인 마케팅 경쟁분석·운영 범위",
+            "url": "https://www.blinkad.kr/contact?utm_source=naver_premium&utm_medium=referral&utm_campaign=blinkad_service_content_20261027&utm_content=n02_cta"
+          },
+          {
+            "text": "블링크애드\n\t\t\t\n\t\t\t\t이 채널의 콘텐츠가 마음에 드셨나요? 채널을 구독하고 창작자의 콘텐츠를 응원해 주세요!",
+            "url": "#"
+          }
+        ],
+        "tables": 1,
+        "note": "미리보기 텍스트의 제목 26자를 분리하여 게시용 전문과 순서 대조"
+      },
+      "verified_at": "2026-10-28T03:40:13.838Z"
+    },
+    {
+      "code": "N03",
+      "actual_id": "261028124221710gm",
+      "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+      "scheduled_at": "2026-10-30T13:00:00+09:00",
+      "status": "reserved",
+      "reservation_verified": true,
+      "free_unlimited": true,
+      "thumbnail_verified": true,
+      "body_verified": true,
+      "links_verified": true,
+      "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124221710gm?isConfig=true",
+      "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124221710gm",
+      "public_url": null,
+      "thumbnail_urls": [
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjY4/MDAxNzkzMTU4OTM1OTc2.zH3ZRdQ3DwrOeRg0vwtuV8jc_gEfKeyG6jy1XqClbUQg.tPyOumzDC1EYgJfYgQn9CNWq6cTSm1jeN1L39fITwIYg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158935930.png?type=nfs200_200",
+          "loaded": true
+        },
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjY4/MDAxNzkzMTU4OTM1OTc2.zH3ZRdQ3DwrOeRg0vwtuV8jc_gEfKeyG6jy1XqClbUQg.tPyOumzDC1EYgJfYgQn9CNWq6cTSm1jeN1L39fITwIYg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158935930.png?type=nfs670_436",
+          "loaded": true
+        }
+      ],
+      "verified_at": "2026-10-28T03:43:00.498Z"
+    },
+    {
+      "code": "N01",
+      "actual_id": "261028124403773rx",
+      "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+      "scheduled_at": "2026-11-01T13:00:00+09:00",
+      "status": "reserved",
+      "reservation_verified": true,
+      "free_unlimited": true,
+      "thumbnail_verified": true,
+      "body_verified": true,
+      "links_verified": true,
+      "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124403773rx?isConfig=true",
+      "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124403773rx",
+      "public_url": null,
+      "thumbnail_urls": [
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjQ2/MDAxNzkzMTU5MDM3NTA1.bP68jGx77NgpwZaykzrMtd2HO6TSzTYK4kfEKAQSqmcg.g3gIVWeO0z-Fccn6PCynmdHbRvwkc_yyHVxOnSHlknQg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159037461.png?type=nfs200_200",
+          "loaded": true
+        },
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjQ2/MDAxNzkzMTU5MDM3NTA1.bP68jGx77NgpwZaykzrMtd2HO6TSzTYK4kfEKAQSqmcg.g3gIVWeO0z-Fccn6PCynmdHbRvwkc_yyHVxOnSHlknQg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159037461.png?type=nfs670_436",
+          "loaded": true
+        }
+      ],
+      "verified_at": "2026-10-28T03:51:19.928Z",
+      "subheading_bold_verified": true
+    },
+    {
+      "code": "N05",
+      "actual_id": "261028124654504ui",
+      "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+      "scheduled_at": "2026-11-03T13:00:00+09:00",
+      "status": "reserved",
+      "reservation_verified": true,
+      "free_unlimited": true,
+      "thumbnail_verified": true,
+      "body_verified": true,
+      "links_verified": true,
+      "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124654504ui?isConfig=true",
+      "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124654504ui",
+      "public_url": null,
+      "thumbnail_urls": [
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfODUg/MDAxNzkzMTU5MjA4NTAz.mbHw4bEOPpoRqkrQXY9aT0ido5Y5wIiQro_ecSKlwVsg.iU5SyI1aX-0APaVCDspA7OU3ZjTnevimmNxW_enEr6kg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159208484.png?type=nfs200_200",
+          "loaded": true
+        },
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfODUg/MDAxNzkzMTU5MjA4NTAz.mbHw4bEOPpoRqkrQXY9aT0ido5Y5wIiQro_ecSKlwVsg.iU5SyI1aX-0APaVCDspA7OU3ZjTnevimmNxW_enEr6kg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159208484.png?type=nfs670_436",
+          "loaded": true
+        }
+      ],
+      "verified_at": "2026-10-28T03:47:40.163Z"
+    },
+    {
+      "code": "N06",
+      "actual_id": "261028124832817qi",
+      "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+      "scheduled_at": "2026-11-05T13:00:00+09:00",
+      "status": "reserved",
+      "reservation_verified": true,
+      "free_unlimited": true,
+      "thumbnail_verified": true,
+      "body_verified": true,
+      "links_verified": true,
+      "observed_management_url": "https://studio.premium.naver.com/content/reservation/modify/261028124832817qi?isConfig=true",
+      "observed_preview_url": "https://contents.premium.naver.com/blinkad/blink/contents/preview_reserved/261028124832817qi",
+      "public_url": null,
+      "thumbnail_urls": [
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTU3/MDAxNzkzMTU5MzA2NzE0.LJ6kORGz47i09k9odBMJwo2tETzSzbzUMV1B9e597sog.KbSVqH3aRZFpI66bANWdg4Ua6EGuTSMudKM7kDGyRw8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159306695.png?type=nfs200_200",
+          "loaded": true
+        },
+        {
+          "url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTU3/MDAxNzkzMTU5MzA2NzE0.LJ6kORGz47i09k9odBMJwo2tETzSzbzUMV1B9e597sog.KbSVqH3aRZFpI66bANWdg4Ua6EGuTSMudKM7kDGyRw8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159306695.png?type=nfs670_436",
+          "loaded": true
+        }
+      ],
+      "verified_at": "2026-10-28T03:49:24.991Z"
+    }
+  ],
+  "final_audit": {
+    "checked_at": "2026-10-28T03:51:48.728Z",
+    "reservation_count": 23,
+    "unique_ids": 23,
+    "existing_preserved": true,
+    "new_five_exact": true,
+    "date_conflicts": 0,
+    "rows": [
+      {
+        "actual_id": "261028123905601ev",
+        "scheduled_display": "2026.10.28. 13:00",
+        "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTIw/MDAxNzkzMTU4NzIwODc1.ly7aD0RUVljG4ifikx4GOsb7eqRjiywTjIm1P0ZCGBEg.13yhVtWCmfslh_tdY4W975qUoCSA7e5qaPsk2NXf8LMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158720827.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022192033410cx",
+        "scheduled_display": "2026.10.29. 14:00",
+        "title": "한국어 검색에는 나오는데 영어 질문에는 우리 병원이 사라지는 이유",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMTEz/MDAxNzkyNjY0NDMwMDc3.mCF739ydg0yRKb0XBAOuZaQBRhZ_1PO_onPUlQHmJvog.c9f-TyHncSGbETTV6SlwKHndmFlLdscLbSoYcg0evmgg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792664430033.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261028124221710gm",
+        "scheduled_display": "2026.10.30. 13:00",
+        "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjY4/MDAxNzkzMTU4OTM1OTc2.zH3ZRdQ3DwrOeRg0vwtuV8jc_gEfKeyG6jy1XqClbUQg.tPyOumzDC1EYgJfYgQn9CNWq6cTSm1jeN1L39fITwIYg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793158935930.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022192218490ns",
+        "scheduled_display": "2026.10.31. 14:00",
+        "title": "외국인 문의가 예약으로 이어지지 않는 순간은 어디일까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMTE0/MDAxNzkyNjY0NTM0OTQz.Ris8Cm0ovOEMsBrHrSZPi0ByF4nRO2T7mofz9UZLs_Yg.IGFwmH-_mVafBNhpOGDFVRVaVB3yJY5PKqTvAFnNONAg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792664534903.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261028124403773rx",
+        "scheduled_display": "2026.11.01. 13:00",
+        "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMjQ2/MDAxNzkzMTU5MDM3NTA1.bP68jGx77NgpwZaykzrMtd2HO6TSzTYK4kfEKAQSqmcg.g3gIVWeO0z-Fccn6PCynmdHbRvwkc_yyHVxOnSHlknQg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159037461.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022192306764kj",
+        "scheduled_display": "2026.11.02. 14:00",
+        "title": "GEO 마케팅을 대행사에 맡기기 전 병원이 먼저 정해야 할 것",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMTQ3/MDAxNzkyNjY0NTgzNTYw.mSBMcECuVefJQISFYalwUXBAw1GMllyAOSp0SNWHZ7Ug.lAmnhZlfUwp9VT4CKPMimtk_LNfuOz52Qrmay1gdDWMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792664583511.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261028124654504ui",
+        "scheduled_display": "2026.11.03. 13:00",
+        "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfODUg/MDAxNzkzMTU5MjA4NTAz.mbHw4bEOPpoRqkrQXY9aT0ido5Y5wIiQro_ecSKlwVsg.iU5SyI1aX-0APaVCDspA7OU3ZjTnevimmNxW_enEr6kg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159208484.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022200707649du",
+        "scheduled_display": "2026.11.04. 14:00",
+        "title": "종합병원 GEO 성과를 검색 순위만으로 판단하면 안 되는 이유",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfODkg/MDAxNzkyNjY3MjA5NjUx.-5o0uDMn4TVRikLTdB85VZPwW79MaYUtm_pfQBSZ4Xsg.DoIqnON-od5efsWbiT6qe3OITrAj2GTtCO5SPZcMudgg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792667209631.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261028124832817qi",
+        "scheduled_display": "2026.11.05. 13:00",
+        "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjhfMTU3/MDAxNzkzMTU5MzA2NzE0.LJ6kORGz47i09k9odBMJwo2tETzSzbzUMV1B9e597sog.KbSVqH3aRZFpI66bANWdg4Ua6EGuTSMudKM7kDGyRw8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C28%7C1793159306695.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022200841648pa",
+        "scheduled_display": "2026.11.06. 14:00",
+        "title": "대형병원 외국인 마케팅, 광고부터 시작하면 놓치는 것",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMTk2/MDAxNzkyNjY3MzE4NjQz.I-BRjm8U7v77nUFnqI_rerix85WzO1yFLi7dVWPpvw8g.KlsMwSP8LdBPLUJh7QdK3kGMOJ5YsAEfzhTHa_ym7k8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792667318599.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022201045373zj",
+        "scheduled_display": "2026.11.08. 14:00",
+        "title": "국내 거주 외국인과 의료관광 환자는 같은 방식으로 찾으면 안 됩니다",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfODgg/MDAxNzkyNjY3NDQxOTA5.8iXdFgXacLY-IY-8mLrkOR5d01FWoczDeHYeRdlrG5gg.rXCOB-TA5PRGU0BvxXE5DYfPAO6oXH5mJRuqcnXOjsgg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792667441865.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022201151040yj",
+        "scheduled_display": "2026.11.10. 14:00",
+        "title": "대형병원 외국인 마케팅에서 광고·SEO·GEO는 어떻게 나눠야 할까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMjcx/MDAxNzkyNjY3NTA2ODkz.YV7-RMu4xqK04SUcdDO_cWrlMU6lKI5mVSA_g6nHuTog.MPOnib1uf3wUZrmBHi_T_E5eRjgDbHtzR_SenzpJOfkg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792667506843.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261022201434458ni",
+        "scheduled_display": "2026.11.12. 14:00",
+        "title": "‘AI 검색 노출 보장’이라는 GEO 제안서를 믿어도 될까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjJfMTMx/MDAxNzkyNjY3NjcwNzk5.BRuqJ-UW-gF3010lGVAIqGQlv9r9S6vfp2r8TtQr1cAg.yrs8ycmxcHL2glYbzgH-rj15dTbbzAQdTvwjREJ2_LAg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C22%7C1792667670749.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026144906787pk",
+        "scheduled_display": "2026.11.15. 13:00",
+        "title": "AI 검색을 고려한 병원 홈페이지, 원장님은 무엇을 확인해야 할까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfNzAg/MDAxNzkyOTkzNDkyMTQz.3iuEG2PLseO-eUcHPEzgVKiLFKy77e7pkHZrg2m1HeIg.PA2OZS_LiJzUNgEhnqHeNhevsG7O0O4w-fKEO0xe3q8g.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792993492092.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026150726293uh",
+        "scheduled_display": "2026.11.17. 13:00",
+        "title": "우리 병원 홈페이지가 검색에 불리한지 직접 확인하는 법",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMTcz/MDAxNzkyOTk0Nzc5NTM0.Yxpblpah2OPpLQWPduLeikvk7KUorf_SSetuGys-EuAg.vFksdMIoQjsnA8UswYH7iT7BEzpOWZkEoTUIrP6Wiukg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792994779493.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152307216pr",
+        "scheduled_display": "2026.11.19. 13:00",
+        "title": "우리 병원 홈페이지, 고쳐 쓸 부분과 새로 만들 부분",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMjcy/MDAxNzkyOTk1NzgzMjAz.bE-PFV_C_Ie4sHGcFBlBwzS-YUrxe8oKz2OcvqumAnMg.G0DV1NMubKV4kHcuKTbTANyvAlvpNqW2Hlb9F0JsJcAg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792995782938.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152412620sb",
+        "scheduled_display": "2026.11.21. 13:00",
+        "title": "병원 홈페이지 업체를 고를 때 포트폴리오 다음에 물어볼 질문",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMTQ5/MDAxNzkyOTk1ODQ3ODA0.FyXQMzVKc1PA4fkwF3IybiQbq2IOox5h9YqS-kwgVlUg.K-atQsTOdANFPz-DHVmyZw_eGrC98_LdUzquzqpjelkg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792995847781.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152429682na",
+        "scheduled_display": "2026.11.23. 13:00",
+        "title": "병원 홈페이지 SEO를 맡겼다면 어떤 결과물을 받아야 할까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMjM1/MDAxNzkyOTk1ODY0MDcx.8ViiMN11FY2rlv3uvuQ5oTq_19wdEk52jnfWfDCMuX4g.R19rfIjOWanPyQBJkCCkYjOxk7_xbZyMMb_sQZEPS-Mg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792995864023.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152850512lr",
+        "scheduled_display": "2026.11.25. 13:00",
+        "title": "병원 홈페이지 견적 두 개, 금액 말고 무엇을 비교해야 할까?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfNDQg/MDAxNzkyOTk2MTI2NjY2.LE0BktVpQjSSgdifDNHkekeWvkw6jrQrLZXRQxlGSbQg.pIa8jj32HXYECmcd3IadkzCRozbrRXZuCzxFZcUFbmsg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792996126620.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152906920rx",
+        "scheduled_display": "2026.11.27. 13:00",
+        "title": "병원 홈페이지 제작 전에 원장님과 담당자가 준비할 정보",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMjky/MDAxNzkyOTk2MTQyMTIw.NrevkoP8lCO3OnYQN3Ns_c8r3uFvFCeXpsMG5M4Nyqkg.onWdxP8i_eTHgW_EH3HfF3FoetwgaemZ0h9Ebz5922Ig.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792996142102.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152935462tj",
+        "scheduled_display": "2026.11.29. 13:00",
+        "title": "모바일로 우리 병원 예약을 끝까지 해보셨나요?",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMjE4/MDAxNzkyOTk2MTcxMzUz.3e7YNObfDJbbDh6F192MRLkzbvx6HrET-piTfsosSQ4g.bWdIrlY58MZ9VphjUA6intQc7RePVdVDL-5weP6SzCUg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792996171331.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026152950262bm",
+        "scheduled_display": "2026.12.01. 13:00",
+        "title": "병원 홈페이지 리뉴얼 전에 확보해둘 계정과 자료",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMTAy/MDAxNzkyOTk2MTg1NjQ3.vw_-YYdk3GlBe1Gl3zNEk-qLS_wuoNyfOBkM6jAAlTMg.nD8yudR0ldP6Gyy2UdP-lz3LLBFP6wr1fCS7I12x8dAg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792996185603.png?type=nf192_192",
+        "thumbnail_loaded": true
+      },
+      {
+        "actual_id": "261026153223048dr",
+        "scheduled_display": "2026.12.03. 13:00",
+        "title": "병원 홈페이지 잔금 보내기 전, 직접 확인해야 할 화면",
+        "free": "무기한 무료",
+        "thumbnail_url": "https://scs-phinf.pstatic.net/MjAyNjEwMjZfMTk0/MDAxNzkyOTk2MzM4NjUy.8INMOlR6T5HqEJY3Qz2cot90-QhHQWiBzI_hRtjteQkg.WwUHIDvdf24PxRaVlw5ehfsAs-9Rtfr1FLqcDjnzWhMg.PNG/image%7Cpremium%7Cthumbnail%7Cblinkad_blink%7C2026%7C10%7C26%7C1792996338593.png?type=nf192_192",
+        "thumbnail_loaded": true
+      }
+    ],
+    "new_five_all_verified": true
+  },
+  "duplicate_check": {
+    "published": [
+      {
+        "code": "N02",
+        "title": "병원 외국인 마케팅 경쟁분석, 어떤 병원과 비교해야 할까요?",
+        "result_count": 0
+      },
+      {
+        "code": "N03",
+        "title": "병원 다국어 홈페이지 제작, 어떤 진료·언어부터 준비해야 할까요?",
+        "result_count": 0
+      },
+      {
+        "code": "N01",
+        "title": "프랜차이즈 구글맵 관리, 이렇게 하는 게 가장 효율적입니다",
+        "result_count": 0
+      },
+      {
+        "code": "N05",
+        "title": "외국인 마케팅, 구글광고도 해야 할까요?",
+        "result_count": 0
+      },
+      {
+        "code": "N06",
+        "title": "영어권 고객 유치에 레딧 마케팅이 중요한 이유",
+        "result_count": 0
+      }
+    ],
+    "temporary": {
+      "total": 2,
+      "target_matches": 0,
+      "titles": [
+        "블링크애드 프리미엄 콘텐츠 시작합니다.",
+        "ㅇㅇ"
+      ]
+    }
+  },
+  "status": "completed",
+  "completed_at": "2026-10-28T03:52:17.976Z"
+}
