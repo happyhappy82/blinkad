@@ -1,0 +1,388 @@
+{
+  "pages": 75,
+  "termBodyPreserved": 64,
+  "redirects308": 3,
+  "unknown404": true,
+  "sitemap": 75,
+  "styles": {
+    "/_next/static/css/f2e5191835311ab7.css": 118637,
+    "/_next/static/css/c772893b52a57e87.css": 10922
+  },
+  "checks": [
+    {
+      "path": "/glossary",
+      "status": 200,
+      "title": "SEO·GEO 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/page/2",
+      "status": 200,
+      "title": "SEO·GEO 용어사전: 2페이지 | 블링크애드"
+    },
+    {
+      "path": "/glossary/page/3",
+      "status": 200,
+      "title": "SEO·GEO 용어사전: 3페이지 | 블링크애드"
+    },
+    {
+      "path": "/glossary/page/4",
+      "status": 200,
+      "title": "SEO·GEO 용어사전: 4페이지 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics",
+      "status": 200,
+      "title": "검색 기본 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing",
+      "status": 200,
+      "title": "발견과 색인 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust",
+      "status": 200,
+      "title": "콘텐츠와 신뢰 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo",
+      "status": 200,
+      "title": "기술과 경험 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search",
+      "status": 200,
+      "title": "AI 검색 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual",
+      "status": 200,
+      "title": "지도와 다국어 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement",
+      "status": 200,
+      "title": "성과 측정 용어사전 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/seo",
+      "status": 200,
+      "title": "SEO 뜻: 검색엔진 최적화의 원리와 실제 예시 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/geo",
+      "status": 200,
+      "title": "GEO 뜻: SEO와의 관계, AI 언급·인용·유입 이해하기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/aeo",
+      "status": 200,
+      "title": "AEO 뜻: 답변 중심의 최적화 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/search-intent",
+      "status": 200,
+      "title": "검색 의도 뜻: 그 말을 검색한 이유 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/query-keyword",
+      "status": 200,
+      "title": "검색어와 키워드 뜻: 손님의 표현과 운영자의 주제 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/long-tail-keyword",
+      "status": 200,
+      "title": "롱테일 키워드 뜻: 작고 구체적인 검색 수요 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/serp",
+      "status": 200,
+      "title": "SERP 뜻: 검색하고 나서 마주하는 화면 | 블링크애드"
+    },
+    {
+      "path": "/glossary/basics/organic-search",
+      "status": 200,
+      "title": "자연 검색 뜻: 광고비로 자리를 구매하지 않은 검색 결과 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/crawling",
+      "status": 200,
+      "title": "크롤링 뜻: 검색엔진이 페이지를 가져오는 일 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/googlebot",
+      "status": 200,
+      "title": "Googlebot 뜻: Google의 검색 크롤러 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/rendering",
+      "status": 200,
+      "title": "렌더링 뜻: 코드가 실제 화면과 내용이 되는 과정 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/indexing",
+      "status": 200,
+      "title": "색인 생성 뜻: 크롤링과의 차이, Google URL 검사 방법 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/url-inspection",
+      "status": 200,
+      "title": "URL 검사와 색인 요청 뜻: Google이 본 페이지를 확인하기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/xml-sitemap",
+      "status": 200,
+      "title": "XML 사이트맵 뜻: 중요한 주소를 모아놓은 목록 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/robots-txt",
+      "status": 200,
+      "title": "robots.txt 뜻: 크롤러에게 보내는 접근 안내 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/noindex",
+      "status": 200,
+      "title": "noindex 뜻: 검색 결과에서 제외해달라는 지시 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/canonical",
+      "status": 200,
+      "title": "canonical 뜻: 여러 주소 사이에서 알려주는 대표 URL | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/301-redirect",
+      "status": 200,
+      "title": "301 리디렉션 뜻: 주소가 영구적으로 옮겨졌다는 안내 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/404-not-found",
+      "status": 200,
+      "title": "404 뜻: 이 주소에서 페이지를 찾을 수 없다는 응답 | 블링크애드"
+    },
+    {
+      "path": "/glossary/crawling-indexing/hreflang",
+      "status": 200,
+      "title": "hreflang 뜻: 언어·지역별 페이지의 관계를 알려주기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/title-link",
+      "status": 200,
+      "title": "타이틀 링크 뜻: 검색 결과에서 클릭하는 제목 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/meta-description",
+      "status": 200,
+      "title": "메타 설명 뜻: 페이지를 짧게 소개하는 문장 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/snippet",
+      "status": 200,
+      "title": "스니펫 뜻: 검색 화면에 보이는 짧은 내용 소개 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/featured-snippet",
+      "status": 200,
+      "title": "추천 스니펫 뜻: 질문의 답이 먼저 보이는 검색 결과 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/headings",
+      "status": 200,
+      "title": "H1·H2·H3 뜻: 글의 제목과 소제목에 순서를 주기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/internal-link",
+      "status": 200,
+      "title": "내부 링크 뜻: 사이트 안에서 다음 질문으로 이어지는 길 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/backlink",
+      "status": 200,
+      "title": "백링크 뜻: 다른 사이트에서 우리 페이지로 오는 링크 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/anchor-text",
+      "status": 200,
+      "title": "앵커 텍스트 뜻: 링크를 누르기 전에 읽는 말 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/eeat",
+      "status": 200,
+      "title": "E-E-A-T 뜻: 이 정보를 믿을 만한 이유 | 블링크애드"
+    },
+    {
+      "path": "/glossary/content-trust/ymyl",
+      "status": 200,
+      "title": "YMYL 뜻: 사람의 삶에 큰 영향을 줄 수 있는 주제 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/structured-data",
+      "status": 200,
+      "title": "구조화 데이터 뜻: 정보의 종류와 관계를 정해진 형식으로 쓰기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/schema-org",
+      "status": 200,
+      "title": "Schema.org 뜻: 구조화 데이터에서 사용하는 공통 어휘 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/json-ld",
+      "status": 200,
+      "title": "JSON-LD 뜻: 연결된 데이터를 JSON으로 적는 방식 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/rich-result",
+      "status": 200,
+      "title": "리치 결과 뜻: 추가 정보가 함께 표시되는 검색 결과 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/core-web-vitals",
+      "status": 200,
+      "title": "Core Web Vitals 뜻: 실제로 쓰기 편한 페이지인지 보는 지표 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/lcp",
+      "status": 200,
+      "title": "LCP 뜻: 주요 내용이 나타나기까지 걸린 시간 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/inp",
+      "status": 200,
+      "title": "INP 뜻: 누른 뒤 화면이 반응하기까지의 기다림 | 블링크애드"
+    },
+    {
+      "path": "/glossary/technical-seo/cls",
+      "status": 200,
+      "title": "CLS 뜻: 읽는 도중 화면이 얼마나 흔들리는지 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/ai-overview",
+      "status": 200,
+      "title": "AI 개요 뜻: 검색 결과에서 먼저 만나는 AI 요약 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/ai-mode",
+      "status": 200,
+      "title": "AI 모드 뜻: 복잡한 질문을 이어서 탐색하는 검색 경험 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/query-fan-out",
+      "status": 200,
+      "title": "검색 확장 뜻: 한 질문에서 여러 관련 검색으로 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/llm",
+      "status": 200,
+      "title": "LLM 뜻: 언어의 패턴을 학습한 대규모 모델 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/grounding",
+      "status": 200,
+      "title": "그라운딩 뜻: 답변을 확인 가능한 자료에 연결하기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/rag",
+      "status": 200,
+      "title": "RAG 뜻: 필요한 자료를 찾아 생성에 보태는 방식 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/ai-citation",
+      "status": 200,
+      "title": "AI 인용 뜻: 답변에 우리 자료가 출처로 연결된 경우 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/brand-mention",
+      "status": 200,
+      "title": "브랜드 언급 뜻: AI 답변 안에 이름이 나타나는 일 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/ai-referral",
+      "status": 200,
+      "title": "AI 유입 뜻: AI 서비스에서 사이트로 건너온 방문 | 블링크애드"
+    },
+    {
+      "path": "/glossary/ai-search/llms-txt",
+      "status": 200,
+      "title": "llms.txt 뜻: AI를 위한 문서 안내 파일 제안 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/local-seo",
+      "status": 200,
+      "title": "로컬 SEO 뜻: 가까운 곳을 찾는 검색에 답하기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/google-business-profile",
+      "status": 200,
+      "title": "Google 비즈니스 프로필 뜻: 검색과 지도에 보이는 사업체 정보 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/local-ranking",
+      "status": 200,
+      "title": "로컬 검색 순위 기준 뜻: 관련성·거리·인지도 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/nap-citation",
+      "status": 200,
+      "title": "NAP와 로컬 사이테이션 뜻: 여러 곳에 적힌 같은 사업체 정보 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/google-reviews",
+      "status": 200,
+      "title": "Google 리뷰 뜻: 손님이 남기는 경험의 기록 | 블링크애드"
+    },
+    {
+      "path": "/glossary/local-multilingual/multilingual-seo",
+      "status": 200,
+      "title": "다국어 SEO 뜻: 다른 언어의 독자가 이해할 페이지 만들기 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/search-console",
+      "status": 200,
+      "title": "Search Console 뜻: Google 검색에서 우리 사이트를 살펴보는 도구 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/ga4",
+      "status": 200,
+      "title": "GA4 뜻: 사이트에 들어온 뒤의 행동을 살펴보는 도구 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/impressions",
+      "status": 200,
+      "title": "노출수 뜻: 검색 결과에 나타난 횟수 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/clicks-ctr",
+      "status": 200,
+      "title": "클릭수와 CTR 뜻: 나타난 결과가 얼마나 선택됐는지 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/average-position",
+      "status": 200,
+      "title": "평균 게재순위 뜻: 여러 검색 상황을 모아놓은 위치 지표 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/session",
+      "status": 200,
+      "title": "세션 뜻: 한 번 이어진 사이트 이용의 흐름 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/event",
+      "status": 200,
+      "title": "이벤트 뜻: 측정하도록 정해둔 행동이나 발생 사실 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/key-event-conversion",
+      "status": 200,
+      "title": "주요 이벤트와 전환 뜻: 사업에서 중요하게 보는 행동 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/utm",
+      "status": 200,
+      "title": "UTM 뜻: 링크에 붙여두는 유입 경로 표식 | 블링크애드"
+    },
+    {
+      "path": "/glossary/measurement/ai-mention-citation-rate",
+      "status": 200,
+      "title": "AI 언급률과 인용률 뜻: 어떤 질문에서 얼마나 나타났는지 | 블링크애드"
+    }
+  ]
+}

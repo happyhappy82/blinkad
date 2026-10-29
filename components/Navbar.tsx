@@ -19,6 +19,7 @@ const serviceLinks = [
 const primaryLinks = [
   { href: '/case-studies', label: '프로젝트 사례' },
   { href: '/blog', label: '인사이트' },
+  { href: '/glossary', label: '용어사전' },
   { href: '/news', label: '회사소식' },
 ];
 

@@ -4,6 +4,7 @@ import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { NEWS_POSTS } from '@/constants/news'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 import { LOCALIZED_PAGES, SITE_LANGUAGES, localizedPath, languageAlternates } from '@/lib/site-languages'
+import { GLOSSARY_PAGES, GLOSSARY_UPDATED_AT } from '@/lib/glossary'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.blinkad.kr'
@@ -101,5 +102,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const alternates = { languages: languageAlternates(path) }
     return SITE_LANGUAGES.map(language => ({ ...page, url: language === 'ko' ? page.url : `${baseUrl}${localizedPath(path, language)}`, alternates }))
   })
-  return [...localizedPages, ...blogPosts]
+  const glossaryPages: MetadataRoute.Sitemap = GLOSSARY_PAGES.map(page => ({
+    url: baseUrl + page.path,
+    lastModified: new Date(GLOSSARY_UPDATED_AT),
+    changeFrequency: 'monthly',
+    priority: page.kind === 'hub' ? 0.7 : 0.6,
+  }))
+  return [...localizedPages, ...blogPosts, ...glossaryPages]
 }
