@@ -12,4 +12,6 @@
 
 자료 원본: yjcentral-review 저장소의 `docs/blinkad-glossary-20261029/preview/` (기존 검토 시안). `scripts/import-glossary-preview.py <preview-folder>`가 사전 본문/메타/분류·검색 자료를 `content/glossary/pages.json`으로 가져오며 비공개 origin을 공식 주소로 바꾼다. 실행 환경의 BeautifulSoup를 쓰는 수동 가져오기이며 운영 빌드의 의존성은 아니다.
 
-현재 기록 시점: 배포 전 검증 완료. 운영 배포 결과는 후속 기록과 기존 Issue692에 추가한다. 실제 Google 색인이나 검색/AI 유입 성과는 측정하지 않았다.
+운영 배포 완료: https://www.blinkad.kr/glossary . Git main 커밋 `88f28549b822f471cc999354c1d01e987a274d50`, Vercel `dpl_69HLHgAcyyMGY7oWxvu4L4w6JV7P`의 READY/PROMOTED·공식도메인 연결을 확인했다. 기존 Git 자동 배포1건만 사용했고 중복 CLI 배포는 실행하지 않았다.
+
+공개 검증:75주소 모두200,64개 상세 본문 일치,75 canonical·검색 허용·사이트맵 일치,제목 끝 장식점0·비공개주소0,기존3상세308,apex공식주소200,기존6페이지200/사전메뉴,공개CSS/JS13개200. 실제 Chrome의공개주소390px화면도 확인했다. `production-verification.json`에기록했다. 실물휴대폰·실제Google색인·검색/AI유입성과는측정하지않았다.

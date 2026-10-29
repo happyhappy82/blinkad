@@ -1,0 +1,526 @@
+{
+  "checkedAt": "2026-10-29T14:43:08.993331+00:00",
+  "origin": "https://www.blinkad.kr",
+  "deployment": {
+    "id": "dpl_69HLHgAcyyMGY7oWxvu4L4w6JV7P",
+    "url": "blinkad-naihepjvr-aijeonginsight-1976s-projects.vercel.app",
+    "readyState": "READY",
+    "target": "production",
+    "alias": [
+      "www.blinkad.kr",
+      "blog.blinkad.kr",
+      "blinkad.vercel.app",
+      "blinkad.kr",
+      "blinkad-aijeonginsight-1976s-projects.vercel.app",
+      "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app"
+    ],
+    "createdAt": 1793284838181,
+    "ready": 1793284907403,
+    "errorCode": null,
+    "errorMessage": null,
+    "meta": {
+      "githubCommitAuthorName": "happyhappy82",
+      "githubCommitAuthorEmail": "aijeong.insight@gmail.com",
+      "githubCommitMessage": "feat: publish BlinkAd SEO and GEO glossary\n\nCo-Authored-By: Codex <codex@openai.com>",
+      "githubCommitOrg": "happyhappy82",
+      "githubCommitRef": "main",
+      "githubCommitRepo": "blinkad",
+      "githubCommitSha": "88f28549b822f471cc999354c1d01e987a274d50",
+      "githubDeployment": "1",
+      "githubOrg": "happyhappy82",
+      "githubRepo": "blinkad",
+      "githubRepoOwnerType": "User",
+      "githubCommitRepoId": "1136348793",
+      "githubRepoId": "1136348793",
+      "githubRepoVisibility": "public",
+      "githubHost": "github.com",
+      "githubCommitAuthorLogin": "happyhappy82",
+      "githubCommitVerification": "unverified",
+      "repoPushedAt": "1793284835000",
+      "branchAlias": "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app",
+      "lambdaRuntimeStats": "{\"nodejs\":5}"
+    }
+  },
+  "canonicalPages": 75,
+  "all75HTTP200": true,
+  "allHeadingEndDotsRemoved": true,
+  "technicalNameDotsPreserved": true,
+  "all64TermBodiesPreserved": true,
+  "all75CanonicalAndIndexAllowed": true,
+  "all75InSitemap": true,
+  "legacy308": 3,
+  "apexToWww200": true,
+  "otherPages": [
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/en",
+      "status": 200
+    },
+    {
+      "path": "/ja",
+      "status": 200
+    },
+    {
+      "path": "/zh",
+      "status": 200
+    },
+    {
+      "path": "/blog",
+      "status": 200
+    },
+    {
+      "path": "/news",
+      "status": 200
+    }
+  ],
+  "assets": [
+    {
+      "path": "/_next/static/chunks/1255-9494d7e861e97d68.js",
+      "status": 200,
+      "bytes": 172309
+    },
+    {
+      "path": "/_next/static/chunks/2619-3c9e02e22d10480a.js",
+      "status": 200,
+      "bytes": 8538
+    },
+    {
+      "path": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+      "status": 200,
+      "bytes": 173020
+    },
+    {
+      "path": "/_next/static/chunks/5392-4ec446cd124cfbbb.js",
+      "status": 200,
+      "bytes": 8362
+    },
+    {
+      "path": "/_next/static/chunks/6668-a0ef6b1a7fab0a7e.js",
+      "status": 200,
+      "bytes": 10712
+    },
+    {
+      "path": "/_next/static/chunks/app/(japanese)/layout-44432289c4051290.js",
+      "status": 200,
+      "bytes": 6233
+    },
+    {
+      "path": "/_next/static/chunks/app/(korean)/glossary/%5B%5B...slug%5D%5D/page-3e72372a6a47b9ce.js",
+      "status": 200,
+      "bytes": 5360
+    },
+    {
+      "path": "/_next/static/chunks/app/(korean)/not-found-f2291d5e93db1a6e.js",
+      "status": 200,
+      "bytes": 203
+    },
+    {
+      "path": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+      "status": 200,
+      "bytes": 560
+    },
+    {
+      "path": "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+      "status": 200,
+      "bytes": 112594
+    },
+    {
+      "path": "/_next/static/chunks/webpack-27082fb0a16ba04e.js",
+      "status": 200,
+      "bytes": 3883
+    },
+    {
+      "path": "/_next/static/css/c772893b52a57e87.css",
+      "status": 200,
+      "bytes": 10922
+    },
+    {
+      "path": "/_next/static/css/f2e5191835311ab7.css",
+      "status": 200,
+      "bytes": 118637
+    }
+  ],
+  "checks": [
+    {
+      "path": "/glossary",
+      "status": 200,
+      "h1": "SEO·GEO 용어사전"
+    },
+    {
+      "path": "/glossary/page/2",
+      "status": 200,
+      "h1": "SEO·GEO 용어사전"
+    },
+    {
+      "path": "/glossary/page/3",
+      "status": 200,
+      "h1": "SEO·GEO 용어사전"
+    },
+    {
+      "path": "/glossary/page/4",
+      "status": 200,
+      "h1": "SEO·GEO 용어사전"
+    },
+    {
+      "path": "/glossary/basics",
+      "status": 200,
+      "h1": "검색 기본"
+    },
+    {
+      "path": "/glossary/crawling-indexing",
+      "status": 200,
+      "h1": "발견과 색인"
+    },
+    {
+      "path": "/glossary/content-trust",
+      "status": 200,
+      "h1": "콘텐츠와 신뢰"
+    },
+    {
+      "path": "/glossary/technical-seo",
+      "status": 200,
+      "h1": "기술과 경험"
+    },
+    {
+      "path": "/glossary/ai-search",
+      "status": 200,
+      "h1": "AI 검색"
+    },
+    {
+      "path": "/glossary/local-multilingual",
+      "status": 200,
+      "h1": "지도와 다국어"
+    },
+    {
+      "path": "/glossary/measurement",
+      "status": 200,
+      "h1": "성과 측정"
+    },
+    {
+      "path": "/glossary/basics/seo",
+      "status": 200,
+      "h1": "SEO 뜻: 검색엔진 최적화란?"
+    },
+    {
+      "path": "/glossary/basics/geo",
+      "status": 200,
+      "h1": "GEO 뜻: 생성형 검색 최적화란?"
+    },
+    {
+      "path": "/glossary/basics/aeo",
+      "status": 200,
+      "h1": "AEO 뜻: 답변 중심의 최적화"
+    },
+    {
+      "path": "/glossary/basics/search-intent",
+      "status": 200,
+      "h1": "검색 의도 뜻: 그 말을 검색한 이유"
+    },
+    {
+      "path": "/glossary/basics/query-keyword",
+      "status": 200,
+      "h1": "검색어와 키워드 뜻: 손님의 표현과 운영자의 주제"
+    },
+    {
+      "path": "/glossary/basics/long-tail-keyword",
+      "status": 200,
+      "h1": "롱테일 키워드 뜻: 작고 구체적인 검색 수요"
+    },
+    {
+      "path": "/glossary/basics/serp",
+      "status": 200,
+      "h1": "SERP 뜻: 검색하고 나서 마주하는 화면"
+    },
+    {
+      "path": "/glossary/basics/organic-search",
+      "status": 200,
+      "h1": "자연 검색 뜻: 광고비로 자리를 구매하지 않은 검색 결과"
+    },
+    {
+      "path": "/glossary/crawling-indexing/crawling",
+      "status": 200,
+      "h1": "크롤링 뜻: 검색엔진이 페이지를 가져오는 일"
+    },
+    {
+      "path": "/glossary/crawling-indexing/googlebot",
+      "status": 200,
+      "h1": "Googlebot 뜻: Google의 검색 크롤러"
+    },
+    {
+      "path": "/glossary/crawling-indexing/rendering",
+      "status": 200,
+      "h1": "렌더링 뜻: 코드가 실제 화면과 내용이 되는 과정"
+    },
+    {
+      "path": "/glossary/crawling-indexing/indexing",
+      "status": 200,
+      "h1": "색인 생성 뜻: Google 검색에 사용할 정보로 정리되는 과정"
+    },
+    {
+      "path": "/glossary/crawling-indexing/url-inspection",
+      "status": 200,
+      "h1": "URL 검사와 색인 요청 뜻: Google이 본 페이지를 확인하기"
+    },
+    {
+      "path": "/glossary/crawling-indexing/xml-sitemap",
+      "status": 200,
+      "h1": "XML 사이트맵 뜻: 중요한 주소를 모아놓은 목록"
+    },
+    {
+      "path": "/glossary/crawling-indexing/robots-txt",
+      "status": 200,
+      "h1": "robots.txt 뜻: 크롤러에게 보내는 접근 안내"
+    },
+    {
+      "path": "/glossary/crawling-indexing/noindex",
+      "status": 200,
+      "h1": "noindex 뜻: 검색 결과에서 제외해달라는 지시"
+    },
+    {
+      "path": "/glossary/crawling-indexing/canonical",
+      "status": 200,
+      "h1": "canonical 뜻: 여러 주소 사이에서 알려주는 대표 URL"
+    },
+    {
+      "path": "/glossary/crawling-indexing/301-redirect",
+      "status": 200,
+      "h1": "301 리디렉션 뜻: 주소가 영구적으로 옮겨졌다는 안내"
+    },
+    {
+      "path": "/glossary/crawling-indexing/404-not-found",
+      "status": 200,
+      "h1": "404 뜻: 이 주소에서 페이지를 찾을 수 없다는 응답"
+    },
+    {
+      "path": "/glossary/crawling-indexing/hreflang",
+      "status": 200,
+      "h1": "hreflang 뜻: 언어·지역별 페이지의 관계를 알려주기"
+    },
+    {
+      "path": "/glossary/content-trust/title-link",
+      "status": 200,
+      "h1": "타이틀 링크 뜻: 검색 결과에서 클릭하는 제목"
+    },
+    {
+      "path": "/glossary/content-trust/meta-description",
+      "status": 200,
+      "h1": "메타 설명 뜻: 페이지를 짧게 소개하는 문장"
+    },
+    {
+      "path": "/glossary/content-trust/snippet",
+      "status": 200,
+      "h1": "스니펫 뜻: 검색 화면에 보이는 짧은 내용 소개"
+    },
+    {
+      "path": "/glossary/content-trust/featured-snippet",
+      "status": 200,
+      "h1": "추천 스니펫 뜻: 질문의 답이 먼저 보이는 검색 결과"
+    },
+    {
+      "path": "/glossary/content-trust/headings",
+      "status": 200,
+      "h1": "H1·H2·H3 뜻: 글의 제목과 소제목에 순서를 주기"
+    },
+    {
+      "path": "/glossary/content-trust/internal-link",
+      "status": 200,
+      "h1": "내부 링크 뜻: 사이트 안에서 다음 질문으로 이어지는 길"
+    },
+    {
+      "path": "/glossary/content-trust/backlink",
+      "status": 200,
+      "h1": "백링크 뜻: 다른 사이트에서 우리 페이지로 오는 링크"
+    },
+    {
+      "path": "/glossary/content-trust/anchor-text",
+      "status": 200,
+      "h1": "앵커 텍스트 뜻: 링크를 누르기 전에 읽는 말"
+    },
+    {
+      "path": "/glossary/content-trust/eeat",
+      "status": 200,
+      "h1": "E-E-A-T 뜻: 이 정보를 믿을 만한 이유"
+    },
+    {
+      "path": "/glossary/content-trust/ymyl",
+      "status": 200,
+      "h1": "YMYL 뜻: 사람의 삶에 큰 영향을 줄 수 있는 주제"
+    },
+    {
+      "path": "/glossary/technical-seo/structured-data",
+      "status": 200,
+      "h1": "구조화 데이터 뜻: 정보의 종류와 관계를 정해진 형식으로 쓰기"
+    },
+    {
+      "path": "/glossary/technical-seo/schema-org",
+      "status": 200,
+      "h1": "Schema.org 뜻: 구조화 데이터에서 사용하는 공통 어휘"
+    },
+    {
+      "path": "/glossary/technical-seo/json-ld",
+      "status": 200,
+      "h1": "JSON-LD 뜻: 연결된 데이터를 JSON으로 적는 방식"
+    },
+    {
+      "path": "/glossary/technical-seo/rich-result",
+      "status": 200,
+      "h1": "리치 결과 뜻: 추가 정보가 함께 표시되는 검색 결과"
+    },
+    {
+      "path": "/glossary/technical-seo/core-web-vitals",
+      "status": 200,
+      "h1": "Core Web Vitals 뜻: 실제로 쓰기 편한 페이지인지 보는 지표"
+    },
+    {
+      "path": "/glossary/technical-seo/lcp",
+      "status": 200,
+      "h1": "LCP 뜻: 주요 내용이 나타나기까지 걸린 시간"
+    },
+    {
+      "path": "/glossary/technical-seo/inp",
+      "status": 200,
+      "h1": "INP 뜻: 누른 뒤 화면이 반응하기까지의 기다림"
+    },
+    {
+      "path": "/glossary/technical-seo/cls",
+      "status": 200,
+      "h1": "CLS 뜻: 읽는 도중 화면이 얼마나 흔들리는지"
+    },
+    {
+      "path": "/glossary/ai-search/ai-overview",
+      "status": 200,
+      "h1": "AI 개요 뜻: 검색 결과에서 먼저 만나는 AI 요약"
+    },
+    {
+      "path": "/glossary/ai-search/ai-mode",
+      "status": 200,
+      "h1": "AI 모드 뜻: 복잡한 질문을 이어서 탐색하는 검색 경험"
+    },
+    {
+      "path": "/glossary/ai-search/query-fan-out",
+      "status": 200,
+      "h1": "검색 확장 뜻: 한 질문에서 여러 관련 검색으로"
+    },
+    {
+      "path": "/glossary/ai-search/llm",
+      "status": 200,
+      "h1": "LLM 뜻: 언어의 패턴을 학습한 대규모 모델"
+    },
+    {
+      "path": "/glossary/ai-search/grounding",
+      "status": 200,
+      "h1": "그라운딩 뜻: 답변을 확인 가능한 자료에 연결하기"
+    },
+    {
+      "path": "/glossary/ai-search/rag",
+      "status": 200,
+      "h1": "RAG 뜻: 필요한 자료를 찾아 생성에 보태는 방식"
+    },
+    {
+      "path": "/glossary/ai-search/ai-citation",
+      "status": 200,
+      "h1": "AI 인용 뜻: 답변에 우리 자료가 출처로 연결된 경우"
+    },
+    {
+      "path": "/glossary/ai-search/brand-mention",
+      "status": 200,
+      "h1": "브랜드 언급 뜻: AI 답변 안에 이름이 나타나는 일"
+    },
+    {
+      "path": "/glossary/ai-search/ai-referral",
+      "status": 200,
+      "h1": "AI 유입 뜻: AI 서비스에서 사이트로 건너온 방문"
+    },
+    {
+      "path": "/glossary/ai-search/llms-txt",
+      "status": 200,
+      "h1": "llms.txt 뜻: AI를 위한 문서 안내 파일 제안"
+    },
+    {
+      "path": "/glossary/local-multilingual/local-seo",
+      "status": 200,
+      "h1": "로컬 SEO 뜻: 가까운 곳을 찾는 검색에 답하기"
+    },
+    {
+      "path": "/glossary/local-multilingual/google-business-profile",
+      "status": 200,
+      "h1": "Google 비즈니스 프로필 뜻: 검색과 지도에 보이는 사업체 정보"
+    },
+    {
+      "path": "/glossary/local-multilingual/local-ranking",
+      "status": 200,
+      "h1": "로컬 검색 순위 기준 뜻: 관련성·거리·인지도"
+    },
+    {
+      "path": "/glossary/local-multilingual/nap-citation",
+      "status": 200,
+      "h1": "NAP와 로컬 사이테이션 뜻: 여러 곳에 적힌 같은 사업체 정보"
+    },
+    {
+      "path": "/glossary/local-multilingual/google-reviews",
+      "status": 200,
+      "h1": "Google 리뷰 뜻: 손님이 남기는 경험의 기록"
+    },
+    {
+      "path": "/glossary/local-multilingual/multilingual-seo",
+      "status": 200,
+      "h1": "다국어 SEO 뜻: 다른 언어의 독자가 이해할 페이지 만들기"
+    },
+    {
+      "path": "/glossary/measurement/search-console",
+      "status": 200,
+      "h1": "Search Console 뜻: Google 검색에서 우리 사이트를 살펴보는 도구"
+    },
+    {
+      "path": "/glossary/measurement/ga4",
+      "status": 200,
+      "h1": "GA4 뜻: 사이트에 들어온 뒤의 행동을 살펴보는 도구"
+    },
+    {
+      "path": "/glossary/measurement/impressions",
+      "status": 200,
+      "h1": "노출수 뜻: 검색 결과에 나타난 횟수"
+    },
+    {
+      "path": "/glossary/measurement/clicks-ctr",
+      "status": 200,
+      "h1": "클릭수와 CTR 뜻: 나타난 결과가 얼마나 선택됐는지"
+    },
+    {
+      "path": "/glossary/measurement/average-position",
+      "status": 200,
+      "h1": "평균 게재순위 뜻: 여러 검색 상황을 모아놓은 위치 지표"
+    },
+    {
+      "path": "/glossary/measurement/session",
+      "status": 200,
+      "h1": "세션 뜻: 한 번 이어진 사이트 이용의 흐름"
+    },
+    {
+      "path": "/glossary/measurement/event",
+      "status": 200,
+      "h1": "이벤트 뜻: 측정하도록 정해둔 행동이나 발생 사실"
+    },
+    {
+      "path": "/glossary/measurement/key-event-conversion",
+      "status": 200,
+      "h1": "주요 이벤트와 전환 뜻: 사업에서 중요하게 보는 행동"
+    },
+    {
+      "path": "/glossary/measurement/utm",
+      "status": 200,
+      "h1": "UTM 뜻: 링크에 붙여두는 유입 경로 표식"
+    },
+    {
+      "path": "/glossary/measurement/ai-mention-citation-rate",
+      "status": 200,
+      "h1": "AI 언급률과 인용률 뜻: 어떤 질문에서 얼마나 나타났는지"
+    }
+  ],
+  "nativeBrowserChecks": "Desktop and390px mobile Chrome: list/detail, search/initials, sorting, sorted pagination, mobile navigation. Final public hub checked separately after deployment.",
+  "actualHandset": false,
+  "searchPerformanceMeasured": false
+}
