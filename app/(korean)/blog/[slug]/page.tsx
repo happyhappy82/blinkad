@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
+import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
 import { NestArticleExperience } from '@/components/NestInquiry'
@@ -48,6 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
+  const rewriteDate = BLOG_REWRITE_DATES[post.id]
   const description = post.excerpt && post.excerpt.length > 50
     ? post.excerpt
     : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 구글 AEO·GEO 외국인 마케팅 전문 에이전시의 인사이트를 제공합니다.`
@@ -78,6 +80,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ],
       locale: 'ko_KR',
       type: 'article',
+      ...(rewriteDate && {
+        publishedTime: formatDateToISO(post.date),
+        modifiedTime: rewriteDate,
+      }),
     },
     twitter: {
       card: 'summary_large_image',
@@ -99,6 +105,7 @@ export default async function BlogPost({ params }: Props) {
   const nestArticle = NEST_ARTICLES.find(article => article.slug === post.id)
   const isoDate = formatDateToISO(post.date)
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
+  const rewriteDate = BLOG_REWRITE_DATES[post.id]
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
   const renderedContent = post.content.replace(
     '<p><a href="https://www.blinkad.kr/contact">우리 매장이 외국인 고객에게 지금 어떤 화면으로 보이는지, 광고를 시작하기 전에 무엇부터 고쳐야 하는지 점검받기</a></p>',
@@ -117,7 +124,7 @@ export default async function BlogPost({ params }: Props) {
     description: post.excerpt || post.title,
     ...(imageUrl && { image: imageUrl }),
     datePublished: isoDate,
-    dateModified: nestArticle ? NEST_UPDATED_AT : isoDate,
+    dateModified: rewriteDate || (nestArticle ? NEST_UPDATED_AT : isoDate),
     author: {
       '@type': 'Organization',
       name: SITE_NAME,
@@ -192,11 +199,18 @@ export default async function BlogPost({ params }: Props) {
 
           {/* Header */}
           <header className="mb-12">
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
               <span className="px-3 py-1 bg-brand-blue/20 text-brand-blue text-sm font-medium rounded-full">
                 {post.category}
               </span>
-              <time dateTime={isoDate} className="text-gray-400 text-sm">{post.date}</time>
+              {rewriteDate ? (
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-gray-400 text-sm">
+                  <time dateTime={isoDate}>최초 발행일 {post.date}</time>
+                  <time dateTime={rewriteDate}>리라이팅일 {rewriteDate.replace(/-/g, '.')}</time>
+                </div>
+              ) : (
+                <time dateTime={isoDate} className="text-gray-400 text-sm">{post.date}</time>
+              )}
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 keep-all leading-tight">
               {post.title}

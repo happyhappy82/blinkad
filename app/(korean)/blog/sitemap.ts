@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
+import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.blinkad.kr/blog'
@@ -17,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // 동적 블로그 포스트들
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/${post.id}`,
-    lastModified: new Date(post.date.replace(/\./g, '-')),
+    lastModified: new Date(BLOG_REWRITE_DATES[post.id] || post.date.replace(/\./g, '-')),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))
