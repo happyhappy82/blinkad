@@ -308,5 +308,55 @@
     "originalPublishedAt": "2026-08-17",
     "sourceContentSha256": "88946387f339c6dba2a9b295bfb02de1c772995c25aa68bfe15166ec8ef5a339",
     "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulo-oigug-in-sonnim-mun-eui-badneun-beob-linewhatsappinstagram",
+    "title": "Handling International Salon Inquiries with BeautyNest: LINE, WhatsApp and Instagram",
+    "excerpt": "Bring connected messaging channels together, prepare multilingual replies and out-of-hours acknowledgments, and distinguish online inquiries from service at the salon.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "fac0b277f7d0454a5244d72859683e5c3dab952a963fa685926370837fccd799",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteuleul-sseumyeon-an-doineun-byeong-ueon-doib-jeon-soljighan-chekeuliseuteu",
+    "title": "When DoctorNest Is Not the Right Fit for Your Clinic",
+    "excerpt": "Check whether your clinic needs inquiry management, a different medical record system, a mobile workflow or a tool focused on existing-patient follow-up.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "7d9d2edefeeeae61238b1585c4a1400bade47bb53d5cec74d34874235e433a42",
+    "imageUrl": ""
+  },
+  {
+    "id": "jaebangmun-jugi-hoanjaga-jeonghage-dumyeon-an-obnida",
+    "title": "Return-Visit Reminders: Help Patients Know When to Come Back",
+    "excerpt": "Record the timing recommended by the clinician or practitioner, send useful reminders through familiar channels, and look into missed return visits without pressuring patients.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "05b5fe379110e2a15711e3fa8614536aed5b3766c1f614cb3bd9a87b89f6efe4",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+    "title": "International Patient Inquiries: From Translation to a Clear Handover",
+    "excerpt": "Check original messages and translations together, distinguish a preferred date from a confirmed booking, and record what the next staff member still needs to answer.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "680d03b336c67e4d174e7428b995875d8d73349654359604cdf459b1b97be1d6",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+    "title": "Salon Customer Management: Keep Conversation Records and Follow-Up Together",
+    "excerpt": "Record what customers actually requested and received, help colleagues continue the conversation, and prepare timely follow-up alongside your existing booking and payment system.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "83062da49b0e6171df5204364ad9f484ccd312f785f1e2b98e2eeae787c808f5",
+    "imageUrl": ""
   }
 ]
