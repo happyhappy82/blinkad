@@ -58,5 +58,55 @@
     "originalPublishedAt": "2026-10-19",
     "sourceContentSha256": "9620365a049e488e8a35693b88721939cc78e3e11f362a3fff4c7774362ac15c",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-content-structure",
+    "title": "Organizing Hospital, Doctor and Service Information for Search",
+    "excerpt": "Plan hospital, medical team and service pages around patient questions, approved facts, readable text and clear links. Learn what to check before launch.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-17",
+    "sourceContentSha256": "7ef39c52591f3af14e7d1a29247ba5f9b66ea47d8e8e438ddf85293841ce64e8",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-cost-scope",
+    "title": "Hospital Website Costs: Scope, Extras and Ongoing Fees",
+    "excerpt": "Compare hospital website quotes by layouts, content, migration, search work and recurring fees. Clarify extras and responsibilities before choosing a total price.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-15",
+    "sourceContentSha256": "df9be8ee41d3109b4f05d2b577620c81091cbc7db8e6f94c3d3be21447e1b6bb",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-seo-review",
+    "title": "Hospital Website SEO Checks: What to Verify on Each Page",
+    "excerpt": "Review hospital website SEO through page URLs, rendered content, indexing records, titles and follow-up checks. Know what completion evidence to request.",
+    "category": "Website SEO",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-13",
+    "sourceContentSha256": "2b9cbcd7a25bb35d6badd0484d66628dafa3dd94b03ae492d8c9d4a28a85bdd3",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-agency-checklist",
+    "title": "Choosing a Hospital Web Agency: Search, Maintenance and Handover",
+    "excerpt": "Ask a hospital web agency about search work, editing permissions, ongoing support, source files and licenses before agreeing the contract.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-11",
+    "sourceContentSha256": "f5a561233e35139560662c5dbcad0faa6352ec97815e9842d4862a212d92b5f8",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-improvement-vs-rebuild",
+    "title": "Improve or Rebuild Your Hospital Website? Compare the Work Involved",
+    "excerpt": "Compare targeted improvements and a hospital website rebuild using the same requirements. Check editing limits, new features, migration and ongoing support.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-09",
+    "sourceContentSha256": "cc57b3574a2dc11ec9a39ea22fdd6cd807242906934e20adcd528ab91bf63958",
+    "imageUrl": ""
   }
 ]
