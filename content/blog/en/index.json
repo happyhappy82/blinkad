@@ -8,5 +8,55 @@
     "originalPublishedAt": "2026-10-29",
     "sourceContentSha256": "aa72b29d1edf4d79ea5015dd569a276fd01b638f4e980696b128d30d895ca96d",
     "imageUrl": ""
+  },
+  {
+    "id": "foreign-influencer-vs-google-marketing-budget",
+    "title": "Influencer Partnerships or Google Marketing: Which Comes First?",
+    "excerpt": "Planning a budget to attract international customers? Compare influencer partnerships and Google marketing around the product, audience and work you need first.",
+    "category": "International marketing",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-28",
+    "sourceContentSha256": "bc5bc5c101b7a10070e1a5e5cd27522a7cc29df9ca87a7b5d4048d1d6fe127f9",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-foreign-marketing",
+    "title": "What Can BlinkAd Handle for Your Hospital's International Marketing?",
+    "excerpt": "See which international marketing tasks BlinkAd can handle for your hospital, what a proposal should include and what your team needs to prepare.",
+    "category": "International patient marketing",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-27",
+    "sourceContentSha256": "511f7da32ca6b5e69142eda9a71f55aae86caf0621b05bedddbb67ae53272899",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-launch-maintenance",
+    "title": "Hospital Website Launch Checks and Ongoing Support: What Should Be Included?",
+    "excerpt": "Check inquiry delivery, search access, maintenance responsibilities and account handover before your hospital website launches.",
+    "category": "Website management",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-23",
+    "sourceContentSha256": "0b35f113bfa2aff9c5f2df64b549a374b1ed2202a62eedc925a57fc6e89f4d9a",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-renewal-url-migration",
+    "title": "Hospital Website Redesign: Managing URL Changes and Search Traffic",
+    "excerpt": "Plan old-to-new URL mapping, relevant redirects and post-launch checks when redesigning your hospital website. Learn what to ask your web agency.",
+    "category": "Website management",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-21",
+    "sourceContentSha256": "6a05de926f2e9d9d61ee2996796777f0da521d7f76931a98ee3b6addbfda4fc2",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-inquiry-booking",
+    "title": "Hospital Website Inquiries and Bookings: What to Check During Development",
+    "excerpt": "Review mobile forms, supported languages, staff receipt, booking confirmation and analytics data before launching your hospital website.",
+    "category": "Website management",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-19",
+    "sourceContentSha256": "9620365a049e488e8a35693b88721939cc78e3e11f362a3fff4c7774362ac15c",
+    "imageUrl": ""
   }
 ]
