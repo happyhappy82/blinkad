@@ -208,5 +208,55 @@
     "originalPublishedAt": "2026-09-18",
     "sourceContentSha256": "1cfb035c49ac7c8cf0d3c81069e178609ec324b8ca74f30a1e92a93a063d1b50",
     "imageUrl": ""
+  },
+  {
+    "id": "myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob",
+    "title": "Myeongdong Pharmacy Marketing: From Tourist Searches to Store Visits",
+    "excerpt": "Help international visitors find a Myeongdong pharmacy with accurate Maps details, entrance photographs, actual product information and separate visit measurements.",
+    "category": "AEO CONTENT",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-18",
+    "sourceContentSha256": "f48a048d277bcd9e93fe21a230e9c19ef00816156d59cc0f2d87f4f5a3c9543b",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-customers-find-and-book-korean-esthetics",
+    "title": "Korean Skincare Salon Marketing: How International Customers Find and Book",
+    "excerpt": "Explain non-medical skincare services clearly, keep prices and language information consistent, and connect Maps discovery with confirmed appointments.",
+    "category": "General",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "a636095ec3adcaf3c2bedeed21f03ae0b85d3f19cf5027bc1295455c6f7baccf",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-guests-search-and-compare-accommodations",
+    "title": "Accommodation Marketing in Korea: How International Guests Search and Compare",
+    "excerpt": "Help guests compare independent guesthouses and hanok stays with accurate room details, eligibility checks and separate booking and arrival instructions.",
+    "category": "General",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "37c3188de4fea10acd06644385391171fae7c2042e55d33252858613fbdee7bc",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-guests-choose-korean-hotels-on-agoda-and-tripcom",
+    "title": "Hotel Marketing in Korea: What Guests Compare on Agoda and Trip.com",
+    "excerpt": "Align room photos, bed configurations, breakfast, cancellation terms and arrival information across booking platforms, Google Maps and the official hotel website.",
+    "category": "General",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "e8f560f09ebb6b67d29e9d074620eeaaddb3b9987a2dca28352b2bf317982cb2",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-tourists-find-and-visit-korean-cafes",
+    "title": "Café Marketing in Korea: Turning Tourist Saves into Visits",
+    "excerpt": "Connect attractive café photographs with current menus, prices, hours, entrance details and Maps directions, while measuring interest and actual visits separately.",
+    "category": "General",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-04",
+    "sourceContentSha256": "80a38fcd232bc3728402ce03bc123e151a0061164e5ac10e0440adbdcff06518",
+    "imageUrl": ""
   }
 ]
