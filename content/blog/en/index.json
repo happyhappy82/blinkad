@@ -358,5 +358,55 @@
     "originalPublishedAt": "2026-08-14",
     "sourceContentSha256": "83062da49b0e6171df5204364ad9f484ccd312f785f1e2b98e2eeae787c808f5",
     "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+    "title": "Managing Clinic Inquiries Across KakaoTalk and Instagram DMs",
+    "excerpt": "Bring connected inquiries and conversation history together, record the next colleague’s tasks, and keep booking and medical record checks in their existing systems.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "5bde79d4ad0df16ba33ce1411d5956b8bcef41bb0af629cd7c114b46d2c93371",
+    "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+    "title": "From Ad Inquiry to Booking: What Your Clinic Should Record",
+    "excerpt": "Separate advertising metrics, customer-reported sources and verified bookings, while keeping conversation notes and agreed follow-up easy for staff to find.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "3e5766d1888305ac8ff832626977898bb6721fef7a32cdcb004675631b1d3c07",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteopalleteu-vs-aepeuteodag-bigyo-jeon-e-byeong-ueon-i-meonjeo-jeonghaeya-hal-geos",
+    "title": "Dr.palette vs Afterdoc: What Your Clinic Should Decide First",
+    "excerpt": "Identify whether the problem is clinical records, post-visit follow-up or incoming inquiries, then compare the current features and account support of the products you are considering.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-13",
+    "sourceContentSha256": "f5ad454ac2b048bc401ee54f458067ed9951d763fa913850795684baac52a5b8",
+    "imageUrl": ""
+  },
+  {
+    "id": "3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+    "title": "Keeping Track of Appointment Confirmations and Changes",
+    "excerpt": "Record change requests, verify the clinic’s booking records and review scheduled messages before confirming revised details or sending post-visit guidance.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "d74aa51225d1df5bd8ca557236fdeffe126dae201aa04c07afd0a78240a94e7b",
+    "imageUrl": ""
+  },
+  {
+    "id": "aiga-in-yonghaneun-laendingpeijineun-gujoga-daleubnida-aeo-geo-laendingpeiji-seolgyebeob",
+    "title": "How to Structure an AEO and GEO Landing Page for AI Citations",
+    "excerpt": "Build clear answers, readable comparisons and transparent source information, then check technical access and observe citations without promising inclusion.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "e29405df86a53b2fa76552cc04ad6fd46760dcfb3bb3f43e891ce3d1bf803772",
+    "imageUrl": ""
   }
 ]
