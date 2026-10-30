@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
+import { getEnglishBlogPost } from '@/lib/english-blog-index'
+import { languageAlternates } from '@/lib/site-languages'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
@@ -59,6 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     alternates: {
       canonical: canonicalUrl,
+      ...(getEnglishBlogPost(post.id) && { languages: languageAlternates(`/blog/${post.id}`) }),
     },
     openGraph: {
       title: `${post.title} - ${SITE_NAME} Blog`,

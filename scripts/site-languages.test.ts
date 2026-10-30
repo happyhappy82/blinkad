@@ -4,6 +4,7 @@ import fs from 'node:fs'
 import { hospitalSampleCopy } from '../app/(korean)/hospital-sample/HospitalSampleClient'
 import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/RestaurantSampleClient'
 import { englishHomeCopy, siteCopy } from '../i18n/site'
+import { ENGLISH_BLOG_POSTS } from '../lib/english-blog-index'
 import { ENGLISH_PAGES, SITE_LANGUAGES, LANGUAGE_INFO, englishPath, localizedPath, splitLanguagePath, languageAlternates, validInternationalPhone } from '../lib/site-languages'
 
 test('approved inbound-tourism wording is exact and separate from other page defaults', () => {
@@ -158,4 +159,22 @@ test('demo opacity utilities use supported arbitrary values and mobile clinic he
   }
   const hospital = fs.readFileSync('app/(korean)/hospital-sample/HospitalSampleClient.tsx', 'utf8')
   assert.match(hospital, /<header className="relative [^"]+ sm:absolute"/)
+})
+
+
+test('reviewed English articles have real equivalents without inventing other translations', () => {
+  const post = ENGLISH_BLOG_POSTS[0]
+  const original = `/blog/${post.id}`
+  assert.equal(localizedPath(original, 'en'), `/en${original}`)
+  assert.equal(localizedPath(original + '?ref=language#contact', 'en'), `/en${original}?ref=language#contact`)
+  assert.equal(localizedPath(original, 'ko'), original)
+  assert.equal(localizedPath(original, 'ja'), original)
+  assert.equal(localizedPath(original, 'zh'), original)
+  assert.deepEqual(languageAlternates(original), {
+    ko: `https://www.blinkad.kr${original}`,
+    en: `https://www.blinkad.kr/en${original}`,
+    'x-default': `https://www.blinkad.kr${original}`,
+  })
+  assert.ok(fs.existsSync(`content/blog/en/${post.id}.html`))
+  assert.equal(new Set(ENGLISH_BLOG_POSTS.map(post => post.id)).size, ENGLISH_BLOG_POSTS.length)
 })

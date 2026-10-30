@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
+import { ENGLISH_BLOG_POSTS, getEnglishBlogPost } from '@/lib/english-blog-index'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { NEWS_POSTS } from '@/constants/news'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
@@ -83,6 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const revisedNestSlugs: ReadonlySet<string> = new Set(NEST_ARTICLES.map((article) => article.slug))
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
+    ...(getEnglishBlogPost(post.id) && { alternates: { languages: languageAlternates(`/blog/${post.id}`) } }),
     lastModified: new Date(BLOG_REWRITE_DATES[post.id] || (revisedNestSlugs.has(post.id) ? NEST_UPDATED_AT : post.date.replace(/\./g, '-'))),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
@@ -108,5 +110,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly',
     priority: page.kind === 'hub' ? 0.7 : 0.6,
   }))
-  return [...localizedPages, ...blogPosts, ...glossaryPages]
+  const englishBlogPosts: MetadataRoute.Sitemap = ENGLISH_BLOG_POSTS.map((post) => ({
+    url: `https://www.blinkad.kr/en/blog/${post.id}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+    alternates: { languages: languageAlternates(`/blog/${post.id}`) },
+  }))
+
+  return [...localizedPages, ...blogPosts, ...englishBlogPosts, ...glossaryPages]
 }

@@ -30,7 +30,7 @@ export default function LanguageSwitch() {
         <Globe2 className="h-3.5 w-3.5" aria-hidden="true" />{LANGUAGE_INFO[language].short}<ChevronDown className="h-3 w-3" aria-hidden="true" />
       </summary>
       <div className="absolute right-0 top-12 w-40 rounded-lg border border-white/15 bg-[#111] p-1.5 shadow-xl">
-        {SITE_LANGUAGES.map(item => {
+        {SITE_LANGUAGES.filter(item => item === 'ko' || localizedPath(path, item) !== path).map(item => {
           const target = localizedPath(path, item);
           return <a key={item} href={target} hrefLang={LANGUAGE_INFO[item].html} lang={LANGUAGE_INFO[item].html}
             aria-current={item === language ? 'page' : undefined}
