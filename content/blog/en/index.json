@@ -108,5 +108,55 @@
     "originalPublishedAt": "2026-10-09",
     "sourceContentSha256": "cc57b3574a2dc11ec9a39ea22fdd6cd807242906934e20adcd528ab91bf63958",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-audit",
+    "title": "Hospital Website Audit: What Should It Check and Recommend?",
+    "excerpt": "Turn a hospital website audit into an action plan. Separate public-page checks, search records, AI answers and evidence for repairs or a rebuild.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-07",
+    "sourceContentSha256": "4d6eaefefd6051953d9e0bdd38544733e5a209c38e4299f91bb966f3fe8e521d",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-ai-search",
+    "title": "Planning a Hospital Website for AI Search: What to Ask Your Agency",
+    "excerpt": "Define search checks, readable pages, crawler settings and mobile inquiry tests before commissioning a hospital website with AI search in mind.",
+    "category": "Website planning",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-10-05",
+    "sourceContentSha256": "eaccd4d8211731178420ea2d45382b34d1ec961d02b26cc08517173600940960",
+    "imageUrl": ""
+  },
+  {
+    "id": "doctornest-consultation-manual-handover",
+    "title": "Keeping Price and Promotion Replies Consistent Across Your Team",
+    "excerpt": "Keep clinic price and promotion replies consistent with approved wording, individual conversation history and clear responsibility for updates in DoctorNest.",
+    "category": "DoctorNest",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "5330e0a4be70b935a41dd075d7c5a2a961fbaac597b006646b91f88bdc52eca9",
+    "imageUrl": ""
+  },
+  {
+    "id": "gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+    "title": "Gangnam Plastic Surgery Marketing: From Multilingual Search to Inquiries",
+    "excerpt": "Compare English, Japanese and Chinese search paths for Gangnam clinics. Keep medical facts aligned and connect language pages to inquiry channels your team supports.",
+    "category": "International patient marketing",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "e177ff4e9b0f4174e0df9aa84d4b98776b2e7528e5be54d8bb73cd607ec6aa7d",
+    "imageUrl": ""
+  },
+  {
+    "id": "hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob",
+    "title": "Hongdae Salon Marketing: From Google Maps and Instagram to Bookings",
+    "excerpt": "Help international clients move from Maps and Instagram to a Hongdae salon booking. Review branch links, service details, inquiry replies and confirmation records.",
+    "category": "Salon marketing",
+    "publishedAt": "2026-10-30",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "0893492f86a493606e13cad12f61a167ff1033e14cb33d1c773bfc653f9a2305",
+    "imageUrl": ""
   }
 ]
