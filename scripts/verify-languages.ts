@@ -98,7 +98,7 @@ async function main() {
     }
     const inquiry = await get(`/${language}/contact?service=doctornest&topic=h2`)
     assert.match(inquiry, /value="h2" selected/)
-    for (const path of ['/not-a-page', '/erp', '/api/erp/clients', `/blog/${BLOG_POSTS.find(post => !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))!.id}`, '/news/not-a-post']) {
+    for (const path of ['/not-a-page', '/erp', '/api/erp/clients', `/blog/${BLOG_POSTS.find(post => language !== 'en' || !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))?.id ?? 'not-a-post'}`, '/news/not-a-post']) {
       const response = await fetch(`${base}/${language}${path}`)
       assert.equal(response.status, 404, `no fake or private language pages: ${language}${path}`)
       assert.ok((await response.text()).includes(siteCopy[language].notFound))
@@ -114,8 +114,8 @@ async function main() {
   const sitemap = await get('/sitemap.xml')
   for (const language of languages) {
     for (const path of paths.filter(path => !path.includes('-sample'))) assert.ok(sitemap.includes(`https://www.blinkad.kr${localizedPath(path, language)}`))
-    const untranslated = BLOG_POSTS.find(post => !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))!
-    assert.ok(!sitemap.includes(`https://www.blinkad.kr/${language}/blog/${untranslated.id}`))
+    const untranslated = BLOG_POSTS.find(post => language !== 'en' || !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))
+    assert.ok(!sitemap.includes(`https://www.blinkad.kr/${language}/blog/${untranslated?.id ?? 'not-a-post'}`))
     if (language === 'en') for (const post of ENGLISH_BLOG_POSTS) assert.ok(sitemap.includes(`https://www.blinkad.kr/en/blog/${post.id}`))
   }
   for (const post of BLOG_POSTS) assert.ok(sitemap.includes(`https://www.blinkad.kr/blog/${post.id}`))
