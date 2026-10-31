@@ -248,5 +248,55 @@
     "originalPublishedAt": "2026-09-05",
     "sourceContentSha256": "e8f560f09ebb6b67d29e9d074620eeaaddb3b9987a2dca28352b2bf317982cb2",
     "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-tourists-find-and-visit-korean-cafes",
+    "title": "外国人旅行者はどんなカフェを保存して訪ねる？ カフェ集客の方法",
+    "excerpt": "写真を見て保存した方が、メニュー、料金、営業時間、入口を確認して来店するには。Google マップ、多言語案内、保存と来店を分ける記録を、店舗の点検順に説明します。",
+    "category": "業種別マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-09-04",
+    "sourceContentSha256": "80a38fcd232bc3728402ce03bc123e151a0061164e5ac10e0440adbdcff06518",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-customers-find-korean-restaurants",
+    "title": "外国人のお客様は韓国の飲食店をどう探す？ 飲食店集客の始め方",
+    "excerpt": "検索や地図で店を見つけ、料理、料金、写真、クチコミを比べて予約や来店を選ぶまで。プロフィール、外国語メニュー、写真、月ごとの記録を整える順序を説明します。",
+    "category": "業種別マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-09-03",
+    "sourceContentSha256": "dab9031465a9734a12b3363abe10378d73d9e2360aa848381001354d97e9f9b9",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-maketing-uli-eobjongdo-doilkkayo",
+    "title": "外国人集客は、うちの業種でもできるのでしょうか？",
+    "excerpt": "業種名だけで決めず、滞在中の利用、地図での検索、必要な会話、場所の四条件から考えます。短期旅行者と居住者の違いを踏まえ、店舗の準備状況を確認する方法を説明します。",
+    "category": "外国人集客",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-27",
+    "sourceContentSha256": "66b088b2960afdb91b930d5bb4d921045f7ee76fe97c9ce9f427a82f7eabae6c",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-goangoanggaeg-sonnim-eun-neibeoeseo-uli-maejang-eul-chaj-ji-anhseubnida",
+    "title": "外国人旅行者はNaverで私たちの店を探しません",
+    "excerpt": "Naverも使う外国人旅行者が、旅の前・滞在中・旅行後に情報を探す違いを、過去の調査から説明します。検索、地図、読めるクチコミ、AIの出典を確認する順序を整理します。",
+    "category": "外国人集客",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-27",
+    "sourceContentSha256": "065163205b88545d7fadd2934a2fe5458276f6ff075eab82504dc93503559645",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteu-yogeumgoa-sijag-bangbeob",
+    "title": "BeautyNestの料金と始め方",
+    "excerpt": "月額利用料と従量料金、導入費、見積もりに必要な問い合わせ・担当者数、接続する窓口、契約と履歴の確認を説明します。多い窓口から始め、設定を調整する方法を紹介します。",
+    "category": "BeautyNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-17",
+    "sourceContentSha256": "10d690a1c78b961c153048e2d8338c43cfc08d404345ac2f67db3ab594e0f273",
+    "imageUrl": ""
   }
 ]
