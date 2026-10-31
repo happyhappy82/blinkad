@@ -1,0 +1,52 @@
+[
+  {
+    "id": "add-multilingual-pages-existing-hospital-website",
+    "title": "病院サイトの多言語化、既存サイトを残したまま進められますか？",
+    "excerpt": "韓国語のホームページを残して多言語ページを追加するには、何を確認すればよいのでしょうか。既存の制作会社との協力、必要な権限、見積もりと公開前の確認を説明します。",
+    "category": "ウェブサイト制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-29",
+    "sourceContentSha256": "aa72b29d1edf4d79ea5015dd569a276fd01b638f4e980696b128d30d895ca96d",
+    "imageUrl": ""
+  },
+  {
+    "id": "foreign-influencer-vs-google-marketing-budget",
+    "title": "外国人集客の予算、インフルエンサーへのPR依頼とGoogle集客はどちらが先？",
+    "excerpt": "初めて商品を知る人に魅力を伝えるPRと、すでに探している人に店舗を案内するGoogle集客。商品・対象客・訪問先をそろえ、最初の予算を考える方法を説明します。",
+    "category": "外国人集客",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-28",
+    "sourceContentSha256": "bc5bc5c101b7a10070e1a5e5cd27522a7cc29df9ca87a7b5d4048d1d6fe127f9",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-foreign-marketing",
+    "title": "病院の外国人向けマーケティング、BlinkAdにはどこまで任せられますか？",
+    "excerpt": "Googleマップ、多言語サイト、広告、コンテンツ、AI検索の確認、Reddit。病院の課題に合わせた依頼範囲と、見積もりの比べ方、準備する資料、問い合わせの確認方法を説明します。",
+    "category": "医療機関のマーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-27",
+    "sourceContentSha256": "511f7da32ca6b5e69142eda9a71f55aae86caf0621b05bedddbb67ae53272899",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-launch-maintenance",
+    "title": "病院ホームページの公開前チェックと保守、どこまで依頼すればよい？",
+    "excerpt": "画面の確認だけでなく、問い合わせの受信、検索へのアクセス、更新担当、アカウントと資料の引き継ぎまで。病院サイトの公開前チェックと保守契約で決めたい範囲を説明します。",
+    "category": "ウェブサイトの運営",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-23",
+    "sourceContentSha256": "0b35f113bfa2aff9c5f2df64b549a374b1ed2202a62eedc925a57fc6e89f4d9a",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-renewal-url-migration",
+    "title": "病院ホームページのリニューアル、既存URLと検索流入を引き継ぐ移行作業",
+    "excerpt": "デザインを変える前に、旧URLの行き先を決めておきましょう。URL対応表、301・308リダイレクト、内部リンク、公開後の確認と維持費用まで、病院サイトの移行で確認したい作業を説明します。",
+    "category": "ウェブサイトの運営",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-21",
+    "sourceContentSha256": "6a05de926f2e9d9d61ee2996796777f0da521d7f76931a98ee3b6addbfda4fc2",
+    "imageUrl": ""
+  }
+]

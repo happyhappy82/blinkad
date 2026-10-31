@@ -1,4 +1,5 @@
 import { ENGLISH_BLOG_POSTS } from '../lib/english-blog-index'
+import { JAPANESE_BLOG_POSTS } from '../lib/japanese-blog-index'
 /** Read-only integration checks. No form submission or external data changes. */
 import assert from 'node:assert/strict'
 import { LOCALIZED_PAGES, LANGUAGE_INFO, localizedPath, languageAlternates } from '../lib/site-languages'
@@ -10,6 +11,7 @@ import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/Restaura
 
 const base = process.argv[2] || 'http://localhost:3152'
 const languages = ['en', 'ja', 'zh'] as const
+const postsByLanguage = { en: ENGLISH_BLOG_POSTS, ja: JAPANESE_BLOG_POSTS, zh: [] }
 const get = async (path: string) => {
   const response = await fetch(base + path)
   assert.equal(response.status, 200, path)
@@ -68,9 +70,9 @@ async function main() {
       if (!['/blog', '/case-studies', '/hospital-sample', '/restaurant-sample'].includes(path)) assert.doesNotMatch(visible, /[가-힣]/, `untranslated text ${url}`)
       if (path === '/blog') {
         assert.ok(html.includes(siteCopy[language].archive), `archive link/disclosure ${url}`)
-        if (language === 'en') {
-          for (const post of ENGLISH_BLOG_POSTS) assert.ok(html.includes(`href="/en/blog/${post.id}"`))
-          assert.doesNotMatch(visible, /[가-힣]/, `English article list ${url}`)
+        if (language === 'en' || language === 'ja') {
+          for (const post of postsByLanguage[language]) assert.ok(html.includes(`href="/${language}/blog/${post.id}"`))
+          assert.doesNotMatch(visible, /[가-힣]/, `localized article list ${url}`)
         } else {
           assert.ok(html.includes(`/blog/${BLOG_POSTS[0].id}`))
           assert.ok(!html.includes(`href="/${language}/blog/${BLOG_POSTS[0].id}"`))
@@ -98,7 +100,7 @@ async function main() {
     }
     const inquiry = await get(`/${language}/contact?service=doctornest&topic=h2`)
     assert.match(inquiry, /value="h2" selected/)
-    for (const path of ['/not-a-page', '/erp', '/api/erp/clients', `/blog/${BLOG_POSTS.find(post => language !== 'en' || !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))?.id ?? 'not-a-post'}`, '/news/not-a-post']) {
+    for (const path of ['/not-a-page', '/erp', '/api/erp/clients', `/blog/${BLOG_POSTS.find(post => !postsByLanguage[language].some(translated => translated.id === post.id))?.id ?? 'not-a-post'}`, '/news/not-a-post']) {
       const response = await fetch(`${base}/${language}${path}`)
       assert.equal(response.status, 404, `no fake or private language pages: ${language}${path}`)
       assert.ok((await response.text()).includes(siteCopy[language].notFound))
@@ -114,9 +116,9 @@ async function main() {
   const sitemap = await get('/sitemap.xml')
   for (const language of languages) {
     for (const path of paths.filter(path => !path.includes('-sample'))) assert.ok(sitemap.includes(`https://www.blinkad.kr${localizedPath(path, language)}`))
-    const untranslated = BLOG_POSTS.find(post => language !== 'en' || !ENGLISH_BLOG_POSTS.some(english => english.id === post.id))
+    const untranslated = BLOG_POSTS.find(post => !postsByLanguage[language].some(translated => translated.id === post.id))
     assert.ok(!sitemap.includes(`https://www.blinkad.kr/${language}/blog/${untranslated?.id ?? 'not-a-post'}`))
-    if (language === 'en') for (const post of ENGLISH_BLOG_POSTS) assert.ok(sitemap.includes(`https://www.blinkad.kr/en/blog/${post.id}`))
+    for (const post of postsByLanguage[language]) assert.ok(sitemap.includes(`https://www.blinkad.kr/${language}/blog/${post.id}`))
   }
   for (const post of BLOG_POSTS) assert.ok(sitemap.includes(`https://www.blinkad.kr/blog/${post.id}`))
   console.log(`PASS: ${checks} language pages, Korean reciprocal links, metadata/HTML/JSON-LD, ${checkedImages.size} shared news images, ${BLOG_POSTS.length} original articles preserved, query context, protected routes/404s and sitemap. No forms submitted.`)

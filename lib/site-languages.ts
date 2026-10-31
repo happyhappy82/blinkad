@@ -1,4 +1,5 @@
 import { getEnglishBlogPost } from './english-blog-index';
+import { getJapaneseBlogPost } from './japanese-blog-index';
 
 export const LOCALIZED_PAGES = [
   '/', '/services', '/foreign-marketing', '/google-map-marketing', '/blog-marketing',
@@ -27,8 +28,10 @@ export function splitLanguagePath(path: string): { language: SiteLanguage; path:
 export function localizedPath(path: string, language: SiteLanguage): string {
   const [pathname] = path.split(/[?#]/);
   const blogSlug = pathname.match(/^\/blog\/([^/.]+)$/)?.[1];
-  if (blogSlug && getEnglishBlogPost(blogSlug)) {
-    return language === 'en' ? `/en${path}` : path;
+  if (blogSlug) {
+    if (language === 'en' && getEnglishBlogPost(blogSlug)) return `/en${path}`;
+    if (language === 'ja' && getJapaneseBlogPost(blogSlug)) return `/ja${path}`;
+    return path;
   }
   if (!(LOCALIZED_PAGES as readonly string[]).includes(pathname) && !/^\/news\/[^/.]+$/.test(pathname)) return path;
   if (language === 'ko') return path;
@@ -43,8 +46,13 @@ export function englishPath(path: string): string {
 export function languageAlternates(path: string): Record<string, string> {
   const korean = `https://www.blinkad.kr${path === '/' ? '' : path}`;
   const blogSlug = path.match(/^\/blog\/([^/.]+)$/)?.[1];
-  if (blogSlug && getEnglishBlogPost(blogSlug)) {
-    return { ko: korean, en: `https://www.blinkad.kr/en${path}`, 'x-default': korean };
+  if (blogSlug) {
+    return {
+      ko: korean,
+      ...(getEnglishBlogPost(blogSlug) && { en: `https://www.blinkad.kr/en${path}` }),
+      ...(getJapaneseBlogPost(blogSlug) && { ja: `https://www.blinkad.kr/ja${path}` }),
+      'x-default': korean,
+    };
   }
   return {
     ko: korean,

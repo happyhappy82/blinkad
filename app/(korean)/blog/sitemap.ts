@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 import { ENGLISH_BLOG_POSTS, getEnglishBlogPost } from '@/lib/english-blog-index'
+import { JAPANESE_BLOG_POSTS } from '@/lib/japanese-blog-index'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { languageAlternates } from '@/lib/site-languages'
 
@@ -34,5 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages: languageAlternates(`/blog/${post.id}`) },
   }))
 
-  return [...blogMain, ...blogPosts, ...englishBlogPosts]
+  const japaneseBlogPosts: MetadataRoute.Sitemap = JAPANESE_BLOG_POSTS.map((post) => ({
+    url: `https://www.blinkad.kr/ja/blog/${post.id}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+    alternates: { languages: languageAlternates(`/blog/${post.id}`) },
+  }))
+
+  return [...blogMain, ...blogPosts, ...englishBlogPosts, ...japaneseBlogPosts]
 }

@@ -5,6 +5,7 @@ import { hospitalSampleCopy } from '../app/(korean)/hospital-sample/HospitalSamp
 import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/RestaurantSampleClient'
 import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { ENGLISH_BLOG_POSTS } from '../lib/english-blog-index'
+import { JAPANESE_BLOG_POSTS } from '../lib/japanese-blog-index'
 import { ENGLISH_PAGES, SITE_LANGUAGES, LANGUAGE_INFO, englishPath, localizedPath, splitLanguagePath, languageAlternates, validInternationalPhone } from '../lib/site-languages'
 
 test('approved inbound-tourism wording is exact and separate from other page defaults', () => {
@@ -163,7 +164,9 @@ test('demo opacity utilities use supported arbitrary values and mobile clinic he
 
 
 test('reviewed English articles have real equivalents without inventing other translations', () => {
-  const post = ENGLISH_BLOG_POSTS[0]
+  assert.equal(new Set(ENGLISH_BLOG_POSTS.map(post => post.id)).size, ENGLISH_BLOG_POSTS.length)
+  const post = ENGLISH_BLOG_POSTS.find(post => !JAPANESE_BLOG_POSTS.some(japanese => japanese.id === post.id))
+  if (!post) return // All English articles may eventually have Japanese editions.
   const original = `/blog/${post.id}`
   assert.equal(localizedPath(original, 'en'), `/en${original}`)
   assert.equal(localizedPath(original + '?ref=language#contact', 'en'), `/en${original}?ref=language#contact`)
@@ -177,4 +180,25 @@ test('reviewed English articles have real equivalents without inventing other tr
   })
   assert.ok(fs.existsSync(`content/blog/en/${post.id}.html`))
   assert.equal(new Set(ENGLISH_BLOG_POSTS.map(post => post.id)).size, ENGLISH_BLOG_POSTS.length)
+})
+
+test('Japanese articles link to real Korean and English versions without inventing Chinese pages', () => {
+  assert.ok(JAPANESE_BLOG_POSTS.length > 0)
+  for (const post of JAPANESE_BLOG_POSTS) {
+    const original = `/blog/${post.id}`
+    assert.equal(localizedPath(original, 'ja'), `/ja${original}`)
+    assert.equal(localizedPath(original + '?ref=language#contact', 'ja'), `/ja${original}?ref=language#contact`)
+    assert.equal(localizedPath(original, 'ko'), original)
+    assert.equal(localizedPath(original, 'en'), `/en${original}`)
+    assert.equal(localizedPath(original, 'zh'), original)
+    assert.deepEqual(languageAlternates(original), {
+      ko: `https://www.blinkad.kr${original}`,
+      en: `https://www.blinkad.kr/en${original}`,
+      ja: `https://www.blinkad.kr/ja${original}`,
+      'x-default': `https://www.blinkad.kr${original}`,
+    })
+    assert.ok(fs.existsSync(`content/blog/ja/${post.id}.html`))
+    assert.ok(ENGLISH_BLOG_POSTS.some(english => english.id === post.id))
+  }
+  assert.equal(new Set(JAPANESE_BLOG_POSTS.map(post => post.id)).size, JAPANESE_BLOG_POSTS.length)
 })
