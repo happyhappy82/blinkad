@@ -1108,5 +1108,55 @@
     "originalPublishedAt": "2026-01-30",
     "sourceContentSha256": "82d35312a3320ed943c534e30c01e750635c0cd50f4c54de5eba91207919b708",
     "imageUrl": ""
+  },
+  {
+    "id": "dodamdong-gbpdaehaeng",
+    "title": "Google Business Profile Management Services in Dodam-dong",
+    "excerpt": "Keep business information, photos, genuine feedback and contact routes useful for customers discovering your Dodam-dong business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-29",
+    "sourceContentSha256": "060bfd3d607433e973b29201d24676ea36469a47182fef73da8a17dcc2c76266",
+    "imageUrl": ""
+  },
+  {
+    "id": "daepyeongdong-eun-gbp-un-yeongdaehaeng",
+    "title": "Google Business Profile Management for Businesses in Daepyeong-dong",
+    "excerpt": "Keep essential business information accurate and agree on a workable routine for photos, genuine feedback and useful updates in Daepyeong-dong.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-28",
+    "sourceContentSha256": "fc516e7659472a74a9b68b09b3b8277bacb4d4f29c7172f20fa3f964773e6cdb",
+    "imageUrl": ""
+  },
+  {
+    "id": "dajeongdong-sanggueon-bunseog-mich-gbp",
+    "title": "Dajeong-dong Business Context and Google Business Profile Management",
+    "excerpt": "Use the original local category examples to explain actual services, maintain useful profile information and assess enquiries with the right measures.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-27",
+    "sourceContentSha256": "94280f7c0d0a42f2768ad771e57305af1d9b0c8ce6b2b58e245ad47a2d1dfb51",
+    "imageUrl": ""
+  },
+  {
+    "id": "naseongdong-sajangnim-igeoneun-pilsuibnida",
+    "title": "Google Business Profile Essentials for Business Owners in Naseong-dong",
+    "excerpt": "Prepare accurate information, useful photos and a workable maintenance routine for customers discovering your Naseong-dong business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-26",
+    "sourceContentSha256": "13aa6e22ee22a1264482669b0300c7a4d3432b5ad96ff7446b6eefa4ebc2391c",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbpgeumnammyeon",
+    "title": "Google Business Profile Management in Geumnam-myeon",
+    "excerpt": "Keep actual business details, service information and genuine feedback useful for customers considering a Geumnam-myeon business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-25",
+    "sourceContentSha256": "fcd1edd258671467059ca8a42634376695fbdd32f075be0d44352a6fcbe439a3",
+    "imageUrl": ""
   }
 ]
