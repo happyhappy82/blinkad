@@ -1008,5 +1008,55 @@
     "originalPublishedAt": "2026-02-09",
     "sourceContentSha256": "98a112552e4249254919854a25cdd416d06b2da383a3479ef9c2365a4a252ca9",
     "imageUrl": ""
+  },
+  {
+    "id": "yeondongmyeon-gbp-nochulchoijeoghoa",
+    "title": "Improving Google Business Profile Visibility in Yeondong-myeon",
+    "excerpt": "Make business details, photos, genuine feedback and contact routes useful for customers discovering your Yeondong-myeon business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-08",
+    "sourceContentSha256": "edaff689ac2440fc315e1339417d1dc3e7075f52f31ff557f9d3f853bacae9e2",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeongimyeon-gbp-liseutinggoanli",
+    "title": "Google Business Profile Listing Management in Yeongi-myeon",
+    "excerpt": "Keep your Yeongi-myeon listing accurate and organize services, photos, feedback and updates around the questions customers need answered.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-07",
+    "sourceContentSha256": "54359e15067c1e5fbeb331501924af22341cf57c051eecbd865bef6e0858f983",
+    "imageUrl": ""
+  },
+  {
+    "id": "eojindong-gbp-jag-eobdaehaeng",
+    "title": "Google Business Profile Management Services in Eojin-dong",
+    "excerpt": "Organize accurate business details, genuine customer feedback and useful content for people comparing businesses in Eojin-dong.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-06",
+    "sourceContentSha256": "35d521009e6eb454512423a9ede11df72655038b765d05850bd16a7d1ffbe332",
+    "imageUrl": ""
+  },
+  {
+    "id": "aleumdong-gbp-pyeongpan-goanli-daehaeng",
+    "title": "Google Business Profile Reputation Management in Areum-dong",
+    "excerpt": "Maintain accurate business information and handle genuine customer feedback with clear responsibilities for your Areum-dong profile.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-05",
+    "sourceContentSha256": "e1721919bcd39ece11e70018fa89a6ff6ad18001c4d2f48eb12f8c880e1b6c3b",
+    "imageUrl": ""
+  },
+  {
+    "id": "sojeongmyeon-gbp-keonseolting",
+    "title": "Google Business Profile Management Consulting in Sojeong-myeon",
+    "excerpt": "Review accurate service information, genuine feedback and practical maintenance priorities for your Sojeong-myeon business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-04",
+    "sourceContentSha256": "7890a1410f1f48aee284ba5cbb5f0b131f4ddb1da7d0e33d15de6ed2dffbbec7",
+    "imageUrl": ""
   }
 ]
