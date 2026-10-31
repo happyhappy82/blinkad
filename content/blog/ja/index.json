@@ -348,5 +348,55 @@
     "originalPublishedAt": "2026-08-15",
     "sourceContentSha256": "680d03b336c67e4d174e7428b995875d8d73349654359604cdf459b1b97be1d6",
     "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+    "title": "美容サロンの顧客管理。相談記録と次のご案内を一緒に確認するには",
+    "excerpt": "お客様の要望とスタッフの案内、実際に受けた施術を分けて記録し、次の担当者へ引き継ぐ方法を説明します。BeautyNestと今の予約・決済システムの使い分けも整理します。",
+    "category": "BeautyNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "83062da49b0e6171df5204364ad9f484ccd312f785f1e2b98e2eeae787c808f5",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+    "title": "KakaoTalkやDMに分かれた病院の問い合わせ、一か所で管理するには",
+    "excerpt": "複数の窓口の会話を確認し、回答済みの内容や次の担当者が行うことを相談メモに残す方法を説明します。実際の予約記録や電子カルテとの役割も分けます。",
+    "category": "DoctorNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "5bde79d4ad0df16ba33ce1411d5956b8bcef41bb0af629cd7c114b46d2c93371",
+    "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+    "title": "広告から届いた問い合わせ、予約までどこに記録すればよい？",
+    "excerpt": "広告のクリック、相談で確認した流入経路、実際の予約結果を分けて記録する方法を説明します。UTMで分かることと、DoctorNestに残す相談メモの役割を整理します。",
+    "category": "病院マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "3e5766d1888305ac8ff832626977898bb6721fef7a32cdcb004675631b1d3c07",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteopalleteu-vs-aepeuteodag-bigyo-jeon-e-byeong-ueon-i-meonjeo-jeonghaeya-hal-geos",
+    "title": "Dr.palette vs Afterdoc。比較する前に、病院で決めておきたいこと",
+    "excerpt": "診療記録、診療後の連絡、新規問い合わせのどこに課題があるかを整理します。原文の2026年8月の説明と現在の各社公式案内を区別し、必要な機能を比べる方法を説明します。",
+    "category": "病院システム",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-13",
+    "sourceContentSha256": "f5ad454ac2b048bc401ee54f458067ed9951d763fa913850795684baac52a5b8",
+    "imageUrl": ""
+  },
+  {
+    "id": "3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+    "title": "予約確認や変更の連絡を見落とさないために、何を整理すればよい？",
+    "excerpt": "予約の変更希望を受けてから、予約記録の更新、患者さんへの確認、送信予定の案内の見直しまで、誰が行うかを決める方法を説明します。",
+    "category": "DoctorNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "d74aa51225d1df5bd8ca557236fdeffe126dae201aa04c07afd0a78240a94e7b",
+    "imageUrl": ""
   }
 ]
