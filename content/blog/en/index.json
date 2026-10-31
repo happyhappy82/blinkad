@@ -658,5 +658,55 @@
     "originalPublishedAt": "2026-04-22",
     "sourceContentSha256": "d1fa342c5f67da6816a50922f6154f69c515d43377ba93d961bf22a98550fae1",
     "imageUrl": ""
+  },
+  {
+    "id": "sosanggong-in-onlain-maketing-gugeul-eseo-sonnim-badneun-3dangye",
+    "title": "Small Business Online Marketing: Three Steps to Help Customers Find You on Google",
+    "excerpt": "Start with an accurate Google Business Profile, invite honest reviews, and keep customers informed through a manageable update routine.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-08",
+    "sourceContentSha256": "4cba623c7d5ff8116569a74b60cbbac9833182b151a5f5a12f3686b474d767d9",
+    "imageUrl": ""
+  },
+  {
+    "id": "haipeolokeol-maketing-ilan-bangyeong-1km-an-eseo-maechul-mandeuneun-jeonlyag",
+    "title": "What Is Hyperlocal Marketing? Reaching Customers Within One Kilometer",
+    "excerpt": "A practical look at neighborhood marketing, local content, Google Maps, honest reviews and measuring customer actions around your business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-02",
+    "sourceContentSha256": "9841dda0e0105e0222a87b9224e11087c3069c41bdeaf71ab8854edfb65847ba",
+    "imageUrl": ""
+  },
+  {
+    "id": "lokeol-seolan-dongne-jangsahaneun-sajangnim-eul-uihan-suiun-seolmyeong",
+    "title": "What Is Local SEO? A Plain-English Guide for Neighborhood Business Owners",
+    "excerpt": "Understand local search, Google Business Profiles, reviews and accurate contact details, then work through five practical starting steps.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-30",
+    "sourceContentSha256": "103a1799d637c6454abbaed021a7199d890311831d6460af81d1f8db865130d6",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka",
+    "title": "Google Maps Reviews vs. Naver Place Reviews: Which Should Your Business Prioritize?",
+    "excerpt": "Compare review access, customer habits and management routines on Google and Naver, with current guidance on rewards and rating displays.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-27",
+    "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-maibijeuniseu-deunglogbuteo-goanlikkaji-2026nyeon-choisin-gaideu",
+    "title": "Google My Business Registration and Management: A 2026 Guide",
+    "excerpt": "A step-by-step guide to adding or claiming a Google Business Profile, following verification options and maintaining accurate customer information.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-24",
+    "sourceContentSha256": "cbb7f0cc85798426fe9ec35bff38d6fc02bd85f92326d351446b72d494544e8e",
+    "imageUrl": ""
   }
 ]
