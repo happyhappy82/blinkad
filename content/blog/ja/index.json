@@ -48,5 +48,55 @@
     "originalPublishedAt": "2026-10-21",
     "sourceContentSha256": "6a05de926f2e9d9d61ee2996796777f0da521d7f76931a98ee3b6addbfda4fc2",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-inquiry-booking",
+    "title": "病院ホームページの問い合わせ・予約、制作段階で確認しておきたいこと",
+    "excerpt": "送信ボタンの動作だけでなく、受付と予約確定の区別、スマートフォン・言語別の表示、職員の受信、個人情報と解析への送信範囲まで。制作時に決めたい確認項目を説明します。",
+    "category": "ウェブサイトの運営",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-19",
+    "sourceContentSha256": "9620365a049e488e8a35693b88721939cc78e3e11f362a3fff4c7774362ac15c",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-content-structure",
+    "title": "病院紹介・医療スタッフ・診療案内、検索を意識したページの作り方",
+    "excerpt": "病院紹介や診療案内を一枚の画像で終わらせず、訪問者が必要な情報を読めるページへ。承認資料、ページの役割、本文とリンク、公開前の照合と更新担当を説明します。",
+    "category": "ウェブサイト制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-17",
+    "sourceContentSha256": "7ef39c52591f3af14e7d1a29247ba5f9b66ea47d8e8e438ddf85293841ce64e8",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-cost-scope",
+    "title": "病院ホームページの制作費、作業範囲と追加費用はどこで変わる？",
+    "excerpt": "同じページ数でも、デザイン、原稿、撮影、移行、SEO、予約連携の範囲で依頼内容は変わります。制作費と継続費用、追加作業の承認、引き継ぎ条件を分けて見積もりを比べる方法を説明します。",
+    "category": "ウェブサイト制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-15",
+    "sourceContentSha256": "df9be8ee41d3109b4f05d2b577620c81091cbc7db8e6f94c3d3be21447e1b6bb",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-seo-review",
+    "title": "病院ホームページのSEOチェック、実際のページで確認したい項目",
+    "excerpt": "検索への登録という説明だけで終わらせず、URL、処理された本文、タイトル、構造化データと修正結果を確認するには。公開後の表示と問い合わせも分けて考えます。",
+    "category": "SEO・検索対応",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-13",
+    "sourceContentSha256": "2b9cbcd7a25bb35d6badd0484d66628dafa3dd94b03ae492d8c9d4a28a85bdd3",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-agency-checklist",
+    "title": "病院ホームページ制作会社に確認したい、検索対応・運営・引き継ぎの条件",
+    "excerpt": "制作実績と総額だけでは分からない、検索対応、管理画面での修正、保守、ソースコードと利用権、終了時の引き継ぎ。契約前と残金支払い前に確認したい条件を説明します。",
+    "category": "ウェブサイト制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-11",
+    "sourceContentSha256": "f5a561233e35139560662c5dbcad0faa6352ec97815e9842d4862a212d92b5f8",
+    "imageUrl": ""
   }
 ]
