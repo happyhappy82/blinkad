@@ -458,5 +458,55 @@
     "originalPublishedAt": "2026-08-05",
     "sourceContentSha256": "f043e9cd450932b18cfa0207304566825c33571dbab57acb2b557708bc008e82",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli",
+    "title": "Google Ads Costs: What Monthly Budget Makes Sense for Your Industry?",
+    "excerpt": "Understand click costs, compare the original industry examples and calculate a test budget with clear assumptions before committing to ongoing ad spend.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-06-17",
+    "sourceContentSha256": "1a63bdfcb82dd5cd7d60f396208001b18c14140194e8828507a2eadc391a68d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "uichaespei-hangug-gyeolje-junggug-in-goangoanggaeg-manh-eun-maejang-i-hoag-inhal-geos",
+    "title": "WeChat Pay in Korea: What Businesses Serving Chinese Visitors Should Check",
+    "excerpt": "Confirm your payment provider, test the supported wallet route and give customers consistent guidance before displaying a WeChat Pay acceptance sign.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-31",
+    "sourceContentSha256": "b1e383602c68c69c6e1cbe88d3ce0cb7d142e244bb87463471228cd5fd99e5a8",
+    "imageUrl": ""
+  },
+  {
+    "id": "allipei-hangug-gyeolje-oigug-in-sonnim-badneun-maejang-i-junbihal-geos",
+    "title": "Alipay Payments in Korea: What Businesses Serving International Customers Should Prepare",
+    "excerpt": "Distinguish Alipay from Alipay+, verify the wallets your business can accept and make checkout instructions consistent across staff and customer information.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-30",
+    "sourceContentSha256": "038d201159acff951e0abcd6229d78c2ab57741275717ca163a95f989a9ad0ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "taegseulipeondeu-maejang-oigug-in-goangoanggaeg-i-hesgalliji-anhge-annaehaneun-bangbeob",
+    "title": "Tax Refund Stores in Korea: How to Give International Visitors Clear Guidance",
+    "excerpt": "Check the store, goods and refund route first, then explain passport, receipt and checkout steps consistently in signs, staff guidance and profile photographs.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-29",
+    "sourceContentSha256": "55414803e02b9659597d749da29b30a1d1ddf30a6955cfaf56394d823888ce4d",
+    "imageUrl": ""
+  },
+  {
+    "id": "oaupaeseu-sseuneun-oigug-in-goangoanggaeg-sigdangkape-gyeolje-junbi-bangbeob",
+    "title": "WOWPASS Payments: How Restaurants and Cafés Can Prepare for International Visitors",
+    "excerpt": "Check the domestic-card payment route, distinguish retail chip payments from the transportation balance, and give visitors clear checkout guidance.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-28",
+    "sourceContentSha256": "4c1a510a62c27a478aebfac11e64fa996f70e2028f17dc981695394cb6610885",
+    "imageUrl": ""
   }
 ]
