@@ -98,5 +98,55 @@
     "originalPublishedAt": "2026-10-11",
     "sourceContentSha256": "f5a561233e35139560662c5dbcad0faa6352ec97815e9842d4862a212d92b5f8",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-improvement-vs-rebuild",
+    "title": "病院ホームページの改善と作り直し、作業範囲はどう変わる？",
+    "excerpt": "サイトの古さだけで作り直しを決める前に、必要な修正と開発を整理しましょう。現在の権限、同じ完了条件での見積もり比較、既存資料・URL・受付記録の引き継ぎまで説明します。",
+    "category": "ウェブサイト制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-09",
+    "sourceContentSha256": "cc57b3574a2dc11ec9a39ea22fdd6cd807242906934e20adcd528ab91bf63958",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-audit",
+    "title": "病院ホームページの診断、何を確認し、どんな改善案を受け取るべき？",
+    "excerpt": "点数だけでは次の作業は決められません。困っていること、公開画面と検索情報、AI回答の確認条件、ページ別の改善案、修正と作り直しの判断材料を説明します。",
+    "category": "ウェブサイトの診断",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-07",
+    "sourceContentSha256": "4d6eaefefd6051953d9e0bdd38544733e5a209c38e4299f91bb966f3fe8e521d",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-ai-search",
+    "title": "病院ホームページ制作、AI検索まで考えると何が変わる？",
+    "excerpt": "制作前に決めたい検索の確認、読み取れる本文、病院情報の検証、スマートフォンでの問い合わせテストを説明します。GoogleとOpenAIの条件、納品資料、部分修正と作り直しの比較も整理します。",
+    "category": "SEO・AI検索",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-10-05",
+    "sourceContentSha256": "eaccd4d8211731178420ea2d45382b34d1ec961d02b26cc08517173600940960",
+    "imageUrl": ""
+  },
+  {
+    "id": "doctornest-consultation-manual-handover",
+    "title": "スタッフによって料金やキャンペーンの説明が違うとき、相談対応の基準をそろえるには",
+    "excerpt": "現在の共通案内と、お客様にすでに送った回答は別に確認する必要があります。DoctorNestの定型文と相談履歴を使い、料金条件、例外の判断、変更後の引き継ぎを整理する方法を説明します。",
+    "category": "相談対応・DoctorNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "5330e0a4be70b935a41dd075d7c5a2a961fbaac597b006646b91f88bdc52eca9",
+    "imageUrl": ""
+  },
+  {
+    "id": "gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+    "title": "江南の美容外科の外国人集客、日本語・中国語・英語の検索を問い合わせにつなぐには",
+    "excerpt": "2026年9月17日の三言語のマップ検索と5院の公式サイトの比較をもとに、共通の医療情報、言語別ページ、相談窓口と韓国時間での応対、クリック・相談・予約の区別を説明します。",
+    "category": "医療機関の外国人集客",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "e177ff4e9b0f4174e0df9aa84d4b98776b2e7528e5be54d8bb73cd607ec6aa7d",
+    "imageUrl": ""
   }
 ]
