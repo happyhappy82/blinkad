@@ -908,5 +908,55 @@
     "originalPublishedAt": "2026-02-18",
     "sourceContentSha256": "7cf898287f38ac798bb1b72c21f0d1adc2936600f0ada6355f571fd714ee43d5",
     "imageUrl": ""
+  },
+  {
+    "id": "godeog1dong-gbp-un-yeong-jeonmun",
+    "title": "Google Business Profile Management for Businesses in Godeok 1-dong",
+    "excerpt": "Manage accurate business details, photos, reviews and local access information for customers planning a visit in Godeok 1-dong.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-18",
+    "sourceContentSha256": "856715c4cf3646e41d6398ca6218fb6d2c48f3054da9cda1ea0bc0d6bd38d2de",
+    "imageUrl": ""
+  },
+  {
+    "id": "gang-ildong-gbp-choijeoghoa-daehaeng",
+    "title": "Google Business Profile Optimization Services in Gangil-dong",
+    "excerpt": "Organize accurate details, useful photos, genuine reviews and clear visitor information for a business in Gangil-dong.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-17",
+    "sourceContentSha256": "98e8e512d2d502ed19e1def0c98463909e439111681a82a29c3bfef280dce003",
+    "imageUrl": ""
+  },
+  {
+    "id": "jochiueon-eub-gbp-seobiseu",
+    "title": "Google Business Profile Management Services in Jochiwon-eup",
+    "excerpt": "Plan accurate profile details, genuine feedback, useful posts and clear visitor information for a Jochiwon-eup business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-16",
+    "sourceContentSha256": "3bc6e32f8f60f15575805bc948a5df5cbfa7aa753222fedc5182b4f2e074677e",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeonseomyeon-gbp-maketing-goanli",
+    "title": "Google Business Profile Marketing and Management in Yeonseo-myeon",
+    "excerpt": "Organize profile information around the questions, named-place searches and next actions that matter to a Yeonseo-myeon customer.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-15",
+    "sourceContentSha256": "eefe6926538e291f4b1b2b3341031b5f00e06ed14ab7ba89d884057604777641",
+    "imageUrl": ""
+  },
+  {
+    "id": "haemildong-gbp-seumateugoanli",
+    "title": "Practical Google Business Profile Management in Haemil-dong",
+    "excerpt": "Keep service details, photos, feedback, updates and contact information useful for customers planning a visit in Haemil-dong.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-14",
+    "sourceContentSha256": "bca6b8263cfd6ff641982e824ec85c350f362c257a5cc88d04d34f39f9cd44cc",
+    "imageUrl": ""
   }
 ]
