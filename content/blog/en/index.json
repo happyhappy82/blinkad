@@ -608,5 +608,55 @@
     "originalPublishedAt": "2026-04-25",
     "sourceContentSha256": "8005a17b973b3f806e75801611d6ac6535990c108363da66d11f0c8c82b47c3f",
     "imageUrl": ""
+  },
+  {
+    "id": "hoanjaga-chatgpte-gangnam-chigoa-chucheon-mul-eobomyeon-uli-byeong-ueon-i-an-naoneun-iyu",
+    "title": "Why Your Clinic May Not Appear When Patients Ask ChatGPT for a Gangnam Dentist",
+    "excerpt": "How to investigate clinic visibility in AI answers, with the limits of overseas benchmarks, Korean survey data and medical-advertising requirements explained.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-24",
+    "sourceContentSha256": "41c389cf547f8fa6d17cfd031c0dedad5f436340ac980b7b4b8cd0bb0d183996",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-ai-obeobyu-sidae-byeong-ueon-goanggo-eotteohge-bakkuina-byeong-ueon-maketeo-pildog",
+    "title": "How Google AI Overviews Are Changing Clinic Advertising: A Guide for Marketers",
+    "excerpt": "How clinic marketers can assess changing Search layouts, advertising eligibility, historical CTR research and medical-advertising requirements.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-23",
+    "sourceContentSha256": "2f358fbc8d300e437700388cfe21645201edbe0befc0b530ad879127dcd3d231",
+    "imageUrl": ""
+  },
+  {
+    "id": "perplexity-chatgptga-hoanjaege-chucheonhaneun-byeong-ueon-eui-5gaji-gongtongjeom",
+    "title": "Five Information Checks for Clinics Seeking Visibility in ChatGPT and Perplexity",
+    "excerpt": "A practical clinic-content review covering authorship, clear answers, sources, real updates and relevant listings, without unsupported AI eligibility thresholds.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-23",
+    "sourceContentSha256": "ee74c87edb9e973677a078647c161a312a3d8645acea897ab3813f3ccbe9ecd9",
+    "imageUrl": ""
+  },
+  {
+    "id": "aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon",
+    "title": "AEO and GEO for Dermatology Marketing in 2026: Can Your Clinic Be Recommended First?",
+    "excerpt": "A six-step dermatology content plan covering patient questions, evidence, medical-advertising review, clinician explanations and useful English information.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-22",
+    "sourceContentSha256": "66ee2bf378bc5a0aa0ed78a979b5f93bcc96ed00e241bbbac0ff25a1b5e147b0",
+    "imageUrl": ""
+  },
+  {
+    "id": "ai-dabbyeon-hoagsan-eulo-byeong-ueon-uebsaiteu-teulaepig-i-jul-eodeuneun-iyu-2026",
+    "title": "Why Clinic Website Traffic May Fall as AI Answers Expand in 2026",
+    "excerpt": "How to assess AI summaries, clicks and clinic inquiries using correctly scoped research, Korean usage data and a practical search-performance review.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-22",
+    "sourceContentSha256": "d1fa342c5f67da6816a50922f6154f69c515d43377ba93d961bf22a98550fae1",
+    "imageUrl": ""
   }
 ]
