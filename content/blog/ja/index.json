@@ -448,5 +448,55 @@
     "originalPublishedAt": "2026-08-07",
     "sourceContentSha256": "bb66ffb7ccfa0023a7502c2ffa28dc6dc4fa7edfb3f96e268d04183e76d68daf",
     "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-tages-hompeiji-jejag-eobche-goleugi-jeon-chekeuliseuteu-6gaji",
+    "title": "外国人向けホームページの制作会社を選ぶ前に確認したい6項目",
+    "excerpt": "ドメインの名義、保守料金、スマートフォン対応、検索対策、制作実績、契約終了時の引き継ぎ。外国人向けサイトを依頼する前に、見積書と契約書で確かめたい点を説明します。",
+    "category": "ホームページ制作",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-05",
+    "sourceContentSha256": "f043e9cd450932b18cfa0207304566825c33571dbab57acb2b557708bc008e82",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli",
+    "title": "Google広告の費用は月いくら？業種別の目安と予算の考え方",
+    "excerpt": "Google広告の課金、業種別CPCの参考レンジ、月予算の試算、SEOとの費用比較を解説。韓国語原文の数値を残し、想定値・実測値・問い合わせや予約の違いを整理します。",
+    "category": "Google広告",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-06-17",
+    "sourceContentSha256": "1a63bdfcb82dd5cd7d60f396208001b18c14140194e8828507a2eadc391a68d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "uichaespei-hangug-gyeolje-junggug-in-goangoanggaeg-manh-eun-maejang-i-hoag-inhal-geos",
+    "title": "韓国の店舗でWeChat Payを使えるようにする前に確認したいこと",
+    "excerpt": "WeChat Pay・Weixin PayとZeroPayの関係、加盟契約、店頭案内、スタッフの応対、Google マップの写真を整理。利用可能な決済を正確に伝えるための確認事項を説明します。",
+    "category": "外国人向け決済案内",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-31",
+    "sourceContentSha256": "b1e383602c68c69c6e1cbe88d3ce0cb7d142e244bb87463471228cd5fd99e5a8",
+    "imageUrl": ""
+  },
+  {
+    "id": "allipei-hangug-gyeolje-oigug-in-sonnim-badneun-maejang-i-junbihal-geos",
+    "title": "韓国の店舗でAlipayを受け付けるなら、先に整えたい案内と接客",
+    "excerpt": "AlipayとAlipay+の違い、ZeroPayとの接続、実際に使えるアプリ、店頭とGoogle マップの案内を説明。契約確認から支払い時の応対まで、外国人のお客様を迎える準備を整理します。",
+    "category": "外国人向け決済案内",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-30",
+    "sourceContentSha256": "038d201159acff951e0abcd6229d78c2ab57741275717ca163a95f989a9ad0ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "taegseulipeondeu-maejang-oigug-in-goangoanggaeg-i-hesgalliji-anhge-annaehaneun-bangbeob",
+    "title": "韓国のタックスリファンド対応店が、外国人旅行者に分かりやすく案内する方法",
+    "excerpt": "Duty FreeとTax Refundの違い、韓国の免税販売店指定、即時還付の金額条件を確認。店内掲示、スタッフの応対、Google マップの写真で、実際の対象範囲を正確に伝える方法を説明します。",
+    "category": "外国人旅行者への店舗案内",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-29",
+    "sourceContentSha256": "55414803e02b9659597d749da29b30a1d1ddf30a6955cfaf56394d823888ce4d",
+    "imageUrl": ""
   }
 ]
