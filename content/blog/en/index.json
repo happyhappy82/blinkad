@@ -758,5 +758,55 @@
     "originalPublishedAt": "2026-03-09",
     "sourceContentSha256": "3c0209d4ed9bf5eb19611b142f82228e05b4f7f7fc052d605a3122bc33a7e3be",
     "imageUrl": ""
+  },
+  {
+    "id": "hompeiji-eobs-i-maketing-haneun-beob-gbpimyeon-chungbunhabnida",
+    "title": "Marketing Without a Website: When a Google Business Profile Is a Useful Start",
+    "excerpt": "Explore what an eligible local business can do with a Google Business Profile, when a website adds value, and three steps to begin.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-08",
+    "sourceContentSha256": "af862154a889409ce1d4f3f465c6130466da53ec7c913f73fc22c5c20dd8e94d",
+    "imageUrl": ""
+  },
+  {
+    "id": "agseong-libyu-daeeungbeob-sajangnim-i-jeoldae-hamyeon-an-doineun-dabgeul-yuhyeong-3gaji",
+    "title": "Responding to Negative Reviews: Three Reply Styles Business Owners Should Avoid",
+    "excerpt": "Avoid hostile replies, private details and sarcasm, then use truthful response templates and Google’s current reporting process.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-07",
+    "sourceContentSha256": "412b60dbd10321ddb09e09a9e3af67ffeecdb8d05d6b06d312f36735e4725ca3",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-libyu-neullineun-bangbeob-sonnim-ege-jayeonseuleobge-yocheonghaneun-menteu-5gaji",
+    "title": "How to Ask for Google Reviews: Five Natural Invitations for Customers",
+    "excerpt": "Adapt five optional review invitations for restaurants, cafés, salons, clinics and regular-use services, with message and QR-code examples.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-06",
+    "sourceContentSha256": "5c75dc472c5adb605801245d1a043483791b8c0309b93ed2d2ec9a46f6c94249",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-gesimul-jagseongbeob-mulyolo-goanggohaneun-bangbeob",
+    "title": "How to Write Google Business Profile Posts: Share Useful Updates Without a Media Budget",
+    "excerpt": "Choose an appropriate update, offer or event, write clear information and check publication status and the customer action it supports.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-05",
+    "sourceContentSha256": "3d31c34f32f2a2565aa4e1904cd89b52dfb913dedf6fa0340104a4911d81f321",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji",
+    "title": "Added Your Business to Google Maps but It Is Not Showing? Five Things to Check",
+    "excerpt": "Separate exact-name discovery, verification, pending changes and local ranking, then work through five practical checks.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-03-04",
+    "sourceContentSha256": "3b824ad2c2fd3a60369783c61cd43c3351ef231e6865c8fdca7aa065f286402f",
+    "imageUrl": ""
   }
 ]
