@@ -498,5 +498,55 @@
     "originalPublishedAt": "2026-05-29",
     "sourceContentSha256": "55414803e02b9659597d749da29b30a1d1ddf30a6955cfaf56394d823888ce4d",
     "imageUrl": ""
+  },
+  {
+    "id": "oaupaeseu-sseuneun-oigug-in-goangoanggaeg-sigdangkape-gyeolje-junbi-bangbeob",
+    "title": "WOWPASSを使う外国人旅行者を迎える飲食店・カフェの決済準備",
+    "excerpt": "WOWPASSの店頭決済と交通用Tmoneyの違い、端末・契約の確認、スタッフの英語、店内とGoogle マップの案内を説明。支払い時の行き違いを減らすための準備を整理します。",
+    "category": "外国人向け決済案内",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-28",
+    "sourceContentSha256": "4c1a510a62c27a478aebfac11e64fa996f70e2028f17dc981695394cb6610885",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-sonnim-eungdae-maenyueol-libyukkaji-joh-ajineun-gibon-munjang",
+    "title": "外国人のお客様への接客マニュアル：注文から会計、レビューまでの基本フレーズ",
+    "excerpt": "入店、待ち時間、料理、辛さ・食材、注文条件、会計、お礼の7場面を整理。スタッフが使いやすい英語と、店内・Google マップ・レビューの案内を揃える方法を説明します。",
+    "category": "外国人のお客様への接客",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-27",
+    "sourceContentSha256": "3289bb2bc03b4813e8bd3782c8e6757828d6eb26f3be7cdebc6fd2f7d470445a",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagug-eo-menyupan-yeong-eoilbon-eojunggug-eo-eodikkaji-junbihaeya-halkka",
+    "title": "多言語メニューは英語・日本語・中国語のどこまで用意すればよい？",
+    "excerpt": "英語を共通案内にしながら、実際のお客様に合わせて日本語や中国語を加える考え方を説明。料理、価格、食材、注文条件とGoogle マップの表示を揃える順序を紹介します。",
+    "category": "多言語メニュー",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-26",
+    "sourceContentSha256": "3a392d917af7eaacc3d45da9f2ee02360dbc180faa826b178efa22ece321c768",
+    "imageUrl": ""
+  },
+  {
+    "id": "menyupan-beon-yeog-matgigi-jeon-sigdang-sajangnim-i-hoag-inhaeya-hal-5gaji",
+    "title": "メニューの翻訳を頼む前に、飲食店の経営者が確認したい5つのこと",
+    "excerpt": "おすすめ料理、説明型の料理名、価格と注文単位、辛さ・食材、Google マップとの一致。翻訳会社に渡す資料と、翻訳後に自店で確認したい内容を説明します。",
+    "category": "メニュー翻訳",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-24",
+    "sourceContentSha256": "a2591f6731fb18fe36713abe8679693c21a42f904b75645308176aedfb2659ce",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeong-eo-menyupan-mandeuneun-beob-oigug-in-sonnim-i-gugeulmaeb-eseo-siljelo-boneungeos-eun",
+    "title": "英語メニューの作り方：外国人のお客様がGoogle マップで確認する情報とは",
+    "excerpt": "料理名、辛さ・食材、おすすめ料理、価格、写真、Google マップ、レビューの7項目を説明。紙の英語メニューと、来店前に見られる案内を揃える方法を紹介します。",
+    "category": "英語メニュー",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-24",
+    "sourceContentSha256": "6e92ba545d77980dfc6c96e756a4f244cd69c786c192ca9f441d2b536b7084e3",
+    "imageUrl": ""
   }
 ]
