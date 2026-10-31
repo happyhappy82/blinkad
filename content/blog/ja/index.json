@@ -398,5 +398,55 @@
     "originalPublishedAt": "2026-08-12",
     "sourceContentSha256": "d74aa51225d1df5bd8ca557236fdeffe126dae201aa04c07afd0a78240a94e7b",
     "imageUrl": ""
+  },
+  {
+    "id": "aiga-in-yonghaneun-laendingpeijineun-gujoga-daleubnida-aeo-geo-laendingpeiji-seolgyebeob",
+    "title": "AIに引用されるランディングページは構成が違う：AEO・GEOのページ設計",
+    "excerpt": "質問への答えを先に示し、条件や根拠を一緒に読めるページに整える六つの原則を説明します。読みやすい構成と、検索システムがアクセスできる技術設定を確認します。",
+    "category": "AEO・GEO",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "e29405df86a53b2fa76552cc04ad6fd46760dcfb3bb3f43e891ce3d1bf803772",
+    "imageUrl": ""
+  },
+  {
+    "id": "peulimieomkontencheu-euilyogoangoang-117man-myeong-sidae-oigug-in-hoanjaneun-eoneu-jinlyogoalo-mollyeoss-eulkka",
+    "title": "［プレミアムコンテンツ］医療観光117万人の時代、外国人患者はどの診療科に集まった？",
+    "excerpt": "2024年の外国人患者統計を診療科・国籍・地域から読み解きます。診療科別の重複集計と医療観光支出の範囲を区別し、外国語の案内を準備する理由を考えます。",
+    "category": "医療観光",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-11",
+    "sourceContentSha256": "4623c183b16807ca93e4f9b36f286958726be44a8bde7bcc46fe98c87869db7a",
+    "imageUrl": ""
+  },
+  {
+    "id": "yaggug-yeong-eo-hoihoaboda-jung-yohan-oigug-in-sonnim-i-uli-yaggug-eul-chaj-aoge-mandeuneun-beob",
+    "title": "薬局の英会話とともに考えたい、外国人のお客様に見つけてもらう方法",
+    "excerpt": "外国語の接客を準備するとき、来店前に薬局を見つけてもらう情報も確認しましょう。過去の検索語句を手掛かりに、Googleの情報、写真、クチコミを整える順番を説明します。",
+    "category": "薬局マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-08",
+    "sourceContentSha256": "efd265dbb2f2d8b658314d742f7fa08c83b4aeae5cbc1f0a6df464128ee957ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-yaggug-sobi-17bae-gakkai-neul-eossneunde-uli-yaggug-eun-oae-joyonghalkka",
+    "title": "外国人の薬局消費が17倍近くに増えたのに、自店に来ないのはなぜ？",
+    "excerpt": "2021年から2026年上半期の薬局消費として報道された数値を振り返り、検索での見つけやすさ、プロフィール、クチコミを確認する方法を説明します。",
+    "category": "薬局マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-08",
+    "sourceContentSha256": "f374f5f20897867fc7811c68aa4ef513bf686ff41f2e942385dfda651f3302d9",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-hoanja-yuchi-oae-goanggoboda-gugeul-jido-sun-ui-jindan-i-meonjeoilkka",
+    "title": "外国人患者の誘致で、広告より先にGoogle マップの順位を調べる理由",
+    "excerpt": "江南の皮膚科の過去の測定事例から、言語と検索場所で変わる見え方を説明します。評価と順位、地図とAI、問い合わせと予約を分けて確認する理由を整理します。",
+    "category": "病院マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-07",
+    "sourceContentSha256": "bb66ffb7ccfa0023a7502c2ffa28dc6dc4fa7edfb3f96e268d04183e76d68daf",
+    "imageUrl": ""
   }
 ]
