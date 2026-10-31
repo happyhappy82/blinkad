@@ -1,0 +1,120 @@
+<p>Imagine a clinic publishing two blog posts a week for five years, then seeing traffic fall by half. Before rewriting everything, find out what changed. An answer buried beneath a long introduction is worth reviewing, alongside changes in demand, rankings, indexing and the search experience. The scenario alone does not establish the cause.</p>
+<p>Clear answers help readers assess a page. Search and AI services may also use passages from a page, but there is no universal rule that a greeting makes content ineligible for citation.</p>
+<p>This guide presents a practical five-sentence answer format, with before-and-after examples. Treat it as an editing method rather than an AI ranking standard. The Korean original was published April 25, 2026; the source and feature checks in this English edition are dated October 31, 2026.</p>
+<hr/>
+<h2>1. The problem: making readers wait for the answer</h2>
+<blockquote>“Hello. Today we will take a look at LASIK. It is something many people are curious about…”</blockquote>
+<p>The introduction has not yet answered a question. A reader looking for recovery information has to continue before finding anything useful. We would shorten it and bring the relevant answer forward.</p>
+<p>The Korean article cited Kevin Indig's analysis, reporting that 44.2% of 18,012 verified ChatGPT citations came from the first 30% of page text. The publicly accessible primary preview describes research involving 1.2 million search results; the detailed article is subscription restricted. Those detailed figures were not independently reproduced for this edition and should not be treated as a universal citation rule or as proof that a greeting reduces the chance to zero.</p>
+<p>A welcome, patient story, procedure explanation and invitation to contact the clinic can each have a purpose. Ask whether they help the reader find the answer, and whether the story and claims are appropriate to publish.</p>
+<hr/>
+<h2>2. Three principles for a clearer answer</h2>
+<h3>First, give the answer before the supporting explanation</h3>
+<p>Begin a section with the answer a reader came for, then explain its basis and conditions. One or two opening sentences are a useful starting point. The original article's 30-word target is an editing suggestion, not a published Google or OpenAI eligibility threshold.</p>
+<p>For a medical topic, the first answer must retain important qualifications. If the information depends on an examination, say what needs assessment rather than offering a precise outcome for an unknown patient.</p>
+<h3>Second, keep each section focused without cutting necessary context</h3>
+<p>The original guide proposes sections of 60–180 words and cites a separate 134–167-word estimate. Those ranges can prompt an editing check, but they are not a requirement imposed by AI services.</p>
+<p>SE Ranking's November 2025 study analyzed 129,000 domains and 216,524 pages. It reported an average of 4.6 citations for pages with 120–180 words between headings. The same article also reports 5.7 for sections over 180 words, so the shorter range cannot simply be described as the highest-performing category. These observational associations do not establish that changing section length causes more citations.</p>
+<p>Use a heading to keep a section on one question. Let the answer's complexity determine the space it needs, especially where risks and exceptions matter.</p>
+<h3>Third, use relevant evidence that a reader can check</h3>
+<p>SE Ranking also reported 5.4 average citations for pages with 19 or more statistical data points, compared with 2.8 for minimal data. This is a study observation, not a reason to add 19 numbers to a clinic article.</p>
+<p>Potential sources of useful clinic information include:</p>
+<ul><li>Properly recorded procedure counts, recovery measures or adverse-event rates, with definitions and limitations.</li>
+<li>Actual examination steps and clinical protocols, reviewed for public explanation.</li>
+<li>Patient survey results, NPS or return-visit information, with the sample, period and meaning clear.</li></ul>
+<p>Name the source and date when they matter. A vague phrase such as “one study says” makes it harder for a reader to assess a claim; it does not trigger a known universal AI rejection rule. Clinical claims still require appropriate evidence, and internal statistics do not bypass medical-advertising restrictions.</p>
+<hr/>
+<h2>3. How to draft a five-sentence answer</h2>
+<p>Use these five roles when they fit the question. Add or remove sentences as necessary to give a complete, accurate answer.</p>
+<h3>The five-sentence template</h3>
+<pre><code>Sentence 1: Give the direct answer, with essential qualifications.
+Sentence 2: Explain the relevant evidence and its source.
+Sentence 3: Add the conditions or context that change the answer.
+Sentence 4: Explain what the reader should consider.
+Sentence 5: Give the next appropriate action.</code></pre>
+<h3>Step 1: write the answer first</h3>
+<p>Put a meaningful answer beneath the question heading. Remove an opening sentence if it simply announces that an answer will follow.</p>
+<p><strong>A delayed answer</strong></p>
+<blockquote>“Many people ask how long recovery after LASIK takes, and it does vary from person to person…”</blockquote>
+<p><strong>A more useful opening</strong></p>
+<blockquote>“Early recovery after LASIK and full visual stabilization are different stages, and the follow-up plan depends on the individual patient.”</blockquote>
+<p>The original example used 24–72 hours. A single early-recovery estimate should not imply fully stable vision: the FDA advises that stabilization may take up to three to six months. Use the treating clinician's actual guidance and a suitable source for the specific question.</p>
+<h3>Step 2: draft a short answer, then check what it leaves out</h3>
+<p>A 60–100-word draft can help remove repetition. It should not force the writer to omit material conditions, risks or follow-up advice.</p>
+<p><strong>Illustrative writing exercise — invented figures, not a clinic's results</strong></p>
+<blockquote>Early recovery after LASIK varies, and full visual stabilization can take longer. In a fictional teaching dataset of 1,500 procedures, 88% reached decimal visual acuity 1.0 at the next-day visit; these invented numbers must not be published as clinical evidence. Examination findings and the outcome being measured affect how recovery is explained. Patients need their clinician's instructions about work, eye protection and follow-up. Ask the treating team what progress to expect and which symptoms require prompt contact.</blockquote>
+<p>The exercise shows where a genuine, appropriately defined source would belong. Do not copy its 1,500 or 88% figures into clinic content, structured data or advertising. Replace them with supportable information, or omit them.</p>
+<h3>Step 3: add useful FAQs; assess markup separately</h3>
+<p>The original article cited a “3.2 times” AI Overview visibility claim for FAQPage markup. That claim was not independently substantiated here. Google says its AI features do not require special schema, and its documentation records that FAQ rich results stopped appearing on May 7, 2026.</p>
+<p>Relevant patient questions remain useful. The following is a descriptive JSON-LD example for an FAQ visible on a page, not a current Google rich-result recommendation or an instruction to publish the fictional data above:</p>
+<pre><code>{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "How should I plan recovery after LASIK?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Early recovery and full visual stabilization are different. Follow the treating clinician's examination-based advice and follow-up plan."
+    }
+  }]
+}</code></pre>
+<p>Use the question people actually need answered, such as when they can discuss returning to normal activities, rather than repeating a keyword fragment. Any markup must match the visible, accurate answer. Do not add medical claims simply to fill a schema field.</p>
+<h3>Step 4: make the source part of the explanation</h3>
+<p>A statistic is useful when readers can see what it measures and where it comes from. Write the source, period, population and denominator into the relevant passage or its supporting note.</p>
+<ul><li>“In the clinic's documented [procedure] series of [number], [defined outcome] was [value], over [period].”</li>
+<li>“According to [institution]'s [year] report, [defined measure] was [value].”</li>
+<li>“Among patients followed for [period], [defined measure] was [value], with [relevant limitation].”</li></ul>
+<p>These are templates with placeholders. They are not evidence that the clinic holds those records or has permission to publish them.</p>
+<hr/>
+<h2>4. Before and after: the same topic, a clearer answer</h2>
+<p>Consider a page about discomfort after dental-implant surgery. The examples illustrate writing choices; they do not provide a personal recovery plan.</p>
+<h3>Before: an introduction that postpones the question</h3>
+<blockquote><strong>Dental-implant discomfort: try not to worry</strong></blockquote>
+<blockquote>Hello. I am a dentist practicing in Gangnam. Today I would like to discuss something many patients worry about: discomfort after dental implants.</blockquote>
+<blockquote>Implants are often discussed as a way to replace missing teeth. Because placing one involves surgery, patients may have concerns about recovery.</blockquote>
+<blockquote>At our clinic, we make various efforts to reduce that burden. Please read on for more information…</blockquote>
+<p>The introduction has not yet explained what the reader should know about discomfort or follow-up. That is a reason to edit it; it does not prove that an AI service will discard the page.</p>
+<h3>After: an answer with evidence, conditions and a next step</h3>
+<blockquote><strong>What should I know about discomfort after a dental implant?</strong></blockquote>
+<blockquote>Discomfort after implant surgery varies with the procedure and should be discussed with the treating team. In a fictional teaching dataset of 1,200 cases, pain-relief use averaged 4.2 days; this is an invented example, not a real clinic result. The number of implants, any grafting and individual circumstances can change follow-up needs. Follow the team's written instructions about food, cleaning, medication and activity rather than copying a generic timetable. Ask the dentist what improvement to expect and when to contact the clinic about persistent or worsening symptoms.</blockquote>
+<p>The original 1,200-case and 4.2-day figures had no underlying clinic dataset supplied; they are explicitly fictional here. The NHS implant aftercare page illustrates why actual instructions should be linked: it provides specific pain-relief and wound-care advice for its own patients. A CT image alone should not be described as predicting a person's exact pain duration.</p>
+<h3>Comparison</h3>
+<table class="w-full border-collapse my-6 text-sm"><thead><tr><th>Element</th><th>Before</th><th>After</th></tr></thead><tbody>
+<tr><td>Heading</td><td>General reassurance</td><td>A specific recovery question</td></tr>
+<tr><td>First sentence</td><td>A greeting</td><td>A qualified direct answer</td></tr>
+<tr><td>Answer near the beginning</td><td>Deferred</td><td>Present, with necessary conditions</td></tr>
+<tr><td>Data</td><td>None</td><td>1,200 cases and 4.2 days are clearly labeled fictional teaching figures, not clinic evidence</td></tr>
+<tr><td>Source explanation</td><td>Unspecified</td><td>A real publication would need an actual source, definition and period</td></tr>
+<tr><td>Practical next step</td><td>Read on</td><td>Follow the treating team's advice and know when to contact them</td></tr>
+</tbody></table>
+<p>The revised version gives the reader a more complete answer sooner. Whether it earns more AI citations requires observation; the format alone cannot establish that result.</p>
+<hr/>
+<h2>5. Seven questions to ask before publication</h2>
+<p>Use the following as an editorial checklist. The original “rewrite if three checks fail” rule is a working convention, not a medical or search-engine standard. An unsupported clinical claim needs attention even if every other item passes.</p>
+<ul><li>Does the heading identify a question the patient actually needs answered?</li>
+<li>Does the opening answer it concisely, retaining essential qualifications rather than chasing a strict 30-word limit?</li>
+<li>Does each section stay focused, with enough space for relevant context rather than a compulsory 60–180 words?</li>
+<li>Is every statistic relevant and substantiated, without adding five internal figures merely to meet a quota?</li>
+<li>Are sources, dates, definitions and important limitations clear?</li>
+<li>Do FAQs add useful answers? Three can be a starting point, while FAQ markup is assessed separately and never treated as an AI inclusion requirement.</li>
+<li>Have unsupported superiority, safety or outcome guarantees and other applicable medical-advertising issues been reviewed?</li></ul>
+<hr/>
+<h2>6. Review the answers a post contains, as well as the number of posts</h2>
+<p>Improving 30 useful articles may be a better use of effort than producing 100 repetitive introductions. Those numbers are a planning comparison, not a measured promise that one approach will earn more citations.</p>
+<p>Try a small edit first:</p>
+<blockquote><strong>Choose a recently published post. Check whether each important heading identifies a real question and whether the opening gives a useful, supported answer. Bring that answer forward while retaining its conditions.</strong></blockquote>
+<p>Removing an empty introduction can help the reader reach the answer. Then observe the actual results: indexing, search visits, AI mentions or citations, and confirmed inquiries are separate measures.</p>
+<p><a href="/en/contact">Talk to BlinkAd about reviewing your clinic's existing articles.</a> We can discuss clearer answers, the appropriate role of FAQs and the claims that require further clinical or advertising review.</p>
+<hr/>
+<h3>Sources and reading notes</h3>
+<ul><li><a href="https://www.growth-memo.com/p/the-science-of-how-ai-pays-attention">Kevin Indig, “The science of how AI pays attention,” February 16, 2026</a>. The public primary preview was checked; detailed positional figures remain behind the subscription restriction.</li>
+<li><a href="https://seranking.com/blog/how-to-optimize-for-chatgpt/">SE Ranking, November 24, 2025 research</a>: 129,000 domains, 216,524 pages; observed associations, not clinic-specific causal results.</li>
+<li>The Korean original also cited Sellm's citation analysis. Its detailed findings were not used as an independently verified rule in this edition.</li>
+<li><a href="https://developers.google.com/search/docs/appearance/ai-features">Google's AI features guidance</a> and <a href="https://developers.google.com/search/updates#june-2026">2026 documentation updates</a>: no special AI schema requirement; FAQ rich-result feature ended.</li>
+<li>The original AI Mode Boost passage-length estimate is not treated as a verified eligibility threshold.</li>
+<li><a href="https://www.fda.gov/medical-devices/lasik/what-should-i-expect-during-and-after-surgery">FDA LASIK patient guidance</a> and <a href="https://www.guysandstthomas.nhs.uk/health-information/dental-implants/after-having-dental-implant">Guy's and St Thomas' NHS implant aftercare</a>, for the distinction between writing examples and actual clinical instructions.</li>
+<li><a href="https://arxiv.org/abs/2311.09735">Aggarwal and colleagues, “GEO: Generative Engine Optimization”</a>. Experimental findings do not establish a guaranteed citation or patient-acquisition improvement for an individual clinic.</li>
+<li>The original's 2026 AI-search trend report is background, not proof that a particular clinic's traffic decline was caused by article structure.</li></ul>
+<hr/>
+<p>BlinkAd is a Google and AI marketing agency helping businesses prepare for international customers' searches, visits and inquiries.</p>

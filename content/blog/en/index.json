@@ -558,5 +558,55 @@
     "originalPublishedAt": "2026-05-07",
     "sourceContentSha256": "f36c9afdbfc138ec8bbf701dbacb6cab3f50a6c6557e499a24bd914355ad6d26",
     "imageUrl": ""
+  },
+  {
+    "id": "angoa-aeo-chigoa-aeolo-singyu-hoanjaleul-neullil-su-iss-eulkka",
+    "title": "Can AEO Help Ophthalmology and Dental Clinics Attract New Patients?",
+    "excerpt": "How eye care and dental clinics can answer patient questions, improve local information and prepare useful English pages for international patients.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-05",
+    "sourceContentSha256": "b3c7ac9e2f0db524ba5ddae6aa9905a0cdb98909b70abcb38d21a234872f45d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "seonghyeong-oigoa-geo-pibugoa-geolo-jeongchedoin-maechul-eul-neullil-su-iss-eulkka",
+    "title": "Can GEO Help Plastic Surgery and Dermatology Clinics Address Flat Revenue?",
+    "excerpt": "A practical look at clinic discovery, comparison questions, local information and English pages, with patient inquiries and revenue measured separately.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-05-05",
+    "sourceContentSha256": "1834a9f8e27775db0fcb860851afc449cc381662a36e8af0169c33327c89f05c",
+    "imageUrl": ""
+  },
+  {
+    "id": "pibugoaseonghyeong-oigoa-oigug-in-hoanja-yuchi-aeolo-ganeunghalkka",
+    "title": "Can AEO Help Dermatology and Plastic Surgery Clinics Reach International Patients?",
+    "excerpt": "A five-step English content plan for international patient discovery, with historical 2024 statistics, current registration requirements and medical-advertising checks.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-27",
+    "sourceContentSha256": "505976055d1244fa541a4852fdfeb30421f13710f4b8a3621340a815b120dc54",
+    "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-euilyobeob-jaju-geollineun-8gaji-uiban-salyeneun",
+    "title": "Clinic Marketing in Korea: Eight Medical-Advertising Risks to Check",
+    "excerpt": "Eight medical-advertising risks for Korean clinics, with current rules on claims, testimonials, review requirements, consent and advertising approval.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-26",
+    "sourceContentSha256": "94164a2ef3807de6f9dec85c74e7d89b9075523ef22f6a6ca853bc41fe0bc870",
+    "imageUrl": ""
+  },
+  {
+    "id": "2026-byeong-ueon-beullogeu-jalsseuneunbeob-ai-geomsaeg-e-in-yongdoineun-5munjang-dabbyeon-gujo",
+    "title": "Writing a Clinic Blog in 2026: A Five-Sentence Answer Format for AI Search",
+    "excerpt": "A practical five-sentence editing method for clearer clinic articles, with evidence checks, illustrative examples and the limits of FAQ markup and citation claims.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-04-25",
+    "sourceContentSha256": "8005a17b973b3f806e75801611d6ac6535990c108363da66d11f0c8c82b47c3f",
+    "imageUrl": ""
   }
 ]
