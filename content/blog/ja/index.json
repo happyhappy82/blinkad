@@ -298,5 +298,55 @@
     "originalPublishedAt": "2026-08-17",
     "sourceContentSha256": "10d690a1c78b961c153048e2d8338c43cfc08d404345ac2f67db3ab594e0f273",
     "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+    "title": "病院マーケティング会社の選び方。広告の報告書だけでなく、相談から予約へのつながりを見ましょう",
+    "excerpt": "表示回数やクリック数が増えても予約につながらないとき、契約前に確認したい担当範囲、問い合わせ記録、アカウントの所有権を説明します。",
+    "category": "病院マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-17",
+    "sourceContentSha256": "88946387f339c6dba2a9b295bfb02de1c772995c25aa68bfe15166ec8ef5a339",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulo-oigug-in-sonnim-mun-eui-badneun-beob-linewhatsappinstagram",
+    "title": "BeautyNestで外国人のお客様からの問い合わせを受けるには？ LINE・WhatsApp・Instagramの対応方法",
+    "excerpt": "複数の窓口に届く問い合わせをまとめ、韓国語の返信を翻訳して届ける流れを紹介します。接続条件、写真で答える範囲、営業時間外の案内も整理します。",
+    "category": "BeautyNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "fac0b277f7d0454a5244d72859683e5c3dab952a963fa685926370837fccd799",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteuleul-sseumyeon-an-doineun-byeong-ueon-doib-jeon-soljighan-chekeuliseuteu",
+    "title": "DoctorNestが合わない病院とは？ 導入前の率直なチェックリスト",
+    "excerpt": "診療記録や請求の課題、電話だけの問い合わせ、PCを使わない対応など、DoctorNestを導入する前に確認したい六つの条件を説明します。",
+    "category": "DoctorNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "7d9d2edefeeeae61238b1585c4a1400bade47bb53d5cec74d34874235e433a42",
+    "imageUrl": ""
+  },
+  {
+    "id": "jaebangmun-jugi-hoanjaga-jeonghage-dumyeon-an-obnida",
+    "title": "再来院の時期、患者さん任せになっていませんか？",
+    "excerpt": "医療スタッフが勧める再来院の目安を記録し、必要な案内を本人の使う窓口から届ける方法を説明します。個別の診療判断と患者さんの選択を尊重した運用を考えます。",
+    "category": "病院マーケティング",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "05b5fe379110e2a15711e3fa8614536aed5b3766c1f614cb3bd9a87b89f6efe4",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+    "title": "外国人患者の問い合わせ、翻訳から次の相談対応へどうつなぐ？",
+    "excerpt": "原文と訳文を見比べ、未回答の質問を相談メモに残す方法を説明します。予約希望と予約確定、受付の基本案内と医療スタッフの判断を分けて引き継ぎます。",
+    "category": "DoctorNest",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "680d03b336c67e4d174e7428b995875d8d73349654359604cdf459b1b97be1d6",
+    "imageUrl": ""
   }
 ]
