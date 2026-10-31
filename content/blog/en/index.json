@@ -1058,5 +1058,55 @@
     "originalPublishedAt": "2026-02-04",
     "sourceContentSha256": "7890a1410f1f48aee284ba5cbb5f0b131f4ddb1da7d0e33d15de6ed2dffbbec7",
     "imageUrl": ""
+  },
+  {
+    "id": "sodamdong-gbp-gyejeonggoanli",
+    "title": "Google Business Profile Account Management in Sodam-dong",
+    "excerpt": "Keep your Sodam-dong profile accurate with practical checks of business details, photos, genuine feedback and useful updates.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-03",
+    "sourceContentSha256": "32474ab0fd2e0f4098e6fb360a5a751e4967ec1d2977088b354d7edf27fdb1e3",
+    "imageUrl": ""
+  },
+  {
+    "id": "saelomdong-gbp-yujigoanli",
+    "title": "Google Business Profile Maintenance in Saerom-dong",
+    "excerpt": "Keep hours, locations, photos, feedback and contact links dependable with a practical maintenance routine for your Saerom-dong business.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-02",
+    "sourceContentSha256": "d8de02ae8b9c007743b3f50e7d56b3b387a1e6036b147e75dccc931c481c664b",
+    "imageUrl": ""
+  },
+  {
+    "id": "bugangmyeon-gbp-deunglogun-yeong",
+    "title": "Google Business Profile Registration and Management in Bugang-myeon",
+    "excerpt": "Review eligibility and owner access, then maintain useful business details, genuine feedback and current content for your Bugang-myeon profile.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-02-01",
+    "sourceContentSha256": "bd480fde6cc2cde7cc77195d6b5d258c066f57c16ecdbda2dc2894a2fd2b3bcb",
+    "imageUrl": ""
+  },
+  {
+    "id": "bolamdong-gbp-setinggoanli",
+    "title": "Google Business Profile Setup and Management in Boram-dong",
+    "excerpt": "Set up accurate business details and maintain useful photos, genuine feedback and current contact routes for your Boram-dong profile.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-31",
+    "sourceContentSha256": "e50a77498bd24de0ec25f0e30fd0993da612f2adda59a91db5848a61a485a454",
+    "imageUrl": ""
+  },
+  {
+    "id": "bangogdong-gbp-sang-uinochul-goanli",
+    "title": "Improving Google Business Profile Visibility in Bangok-dong",
+    "excerpt": "Explain your actual services, location and contact route clearly, then assess profile actions separately from completed enquiries and visits.",
+    "category": "General",
+    "publishedAt": "2026-10-31",
+    "originalPublishedAt": "2026-01-30",
+    "sourceContentSha256": "82d35312a3320ed943c534e30c01e750635c0cd50f4c54de5eba91207919b708",
+    "imageUrl": ""
   }
 ]
