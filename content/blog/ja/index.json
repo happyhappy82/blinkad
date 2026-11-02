@@ -898,5 +898,55 @@
     "originalPublishedAt": "2026-02-19",
     "sourceContentSha256": "bc7b11c5af2deec75c54d2de5a63905e56269a92060b587261aa274b3ade2aa8",
     "imageUrl": ""
+  },
+  {
+    "id": "gbp-un-yeong-daehaeng-eotteon-eobchee-matgyeoya-halkka-2026",
+    "title": "Googleビジネスプロフィールの運用代行、どの会社に任せる？2026年版",
+    "excerpt": "GBP運用の依頼前に確認したい7つの基準。オーナー権限、同意、クチコミ、月次報告、契約終了と制作物の引き継ぎを整理します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-18",
+    "sourceContentSha256": "7cf898287f38ac798bb1b72c21f0d1adc2936600f0ada6355f571fd714ee43d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "godeog1dong-gbp-un-yeong-jeonmun",
+    "title": "コドク1洞のGoogleビジネスプロフィール運用サポート",
+    "excerpt": "コドク1洞のお店で見直す、営業時間、カテゴリ、写真、クチコミと投稿。商圏の参考集計と実際のお客様の行動を分けて、運用の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-18",
+    "sourceContentSha256": "856715c4cf3646e41d6398ca6218fb6d2c48f3054da9cda1ea0bc0d6bd38d2de",
+    "imageUrl": ""
+  },
+  {
+    "id": "gang-ildong-gbp-choijeoghoa-daehaeng",
+    "title": "カンイル洞のGoogleビジネスプロフィール最適化代行",
+    "excerpt": "カンイル洞でGBPを整えるときに確認したい、所在地、カテゴリ、写真、クチコミと投稿。原文の商圏集計を参考に、実際の営業に合う案内を考えます。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-17",
+    "sourceContentSha256": "98e8e512d2d502ed19e1def0c98463909e439111681a82a29c3bfef280dce003",
+    "imageUrl": ""
+  },
+  {
+    "id": "jochiueon-eub-gbp-seobiseu",
+    "title": "チョチウォン邑のGoogleビジネスプロフィール管理サービス",
+    "excerpt": "チョチウォン邑のお店で確認するGBPの基本情報、写真、クチコミ、投稿と予約先。商圏の参考集計を分けて読み、実際の営業に合う案内を整えます。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-16",
+    "sourceContentSha256": "3bc6e32f8f60f15575805bc948a5df5cbfa7aa753222fedc5182b4f2e074677e",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeonseomyeon-gbp-maketing-goanli",
+    "title": "ヨンソ面のGoogleビジネスプロフィール運用とマーケティング",
+    "excerpt": "ヨンソ面のお店で、検索する方に何を伝えるか。基本情報、カテゴリ、写真、クチコミ、投稿と、目的に合う案内の整え方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-15",
+    "sourceContentSha256": "eefe6926538e291f4b1b2b3341031b5f00e06ed14ab7ba89d884057604777641",
+    "imageUrl": ""
   }
 ]
