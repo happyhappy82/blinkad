@@ -698,5 +698,55 @@
     "originalPublishedAt": "2026-03-27",
     "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-maibijeuniseu-deunglogbuteo-goanlikkaji-2026nyeon-choisin-gaideu",
+    "title": "Google マイビジネスの登録から管理まで：2026年最新ガイド",
+    "category": "Google ビジネス プロフィール",
+    "excerpt": "Googleプロフィールの登録前の準備、7段階の手続き、初期設定と週・月の管理を説明。現在の名称や確認方法、費用と公開状況の見方も整理します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-24",
+    "sourceContentSha256": "cbb7f0cc85798426fe9ec35bff38d6fc02bd85f92326d351446b72d494544e8e",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-sajin-i-5jang-i-keulliglyul-eul-2baelo-mandeubnida",
+    "title": "Google ビジネス プロフィールの写真：クリック率2倍を目指す5枚",
+    "category": "Google ビジネス プロフィール",
+    "excerpt": "外観、店内、代表商品、作業、チーム。来店前に必要な情報を五つの写真で伝える方法と、現在の画像仕様、追加・削除できる範囲を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-21",
+    "sourceContentSha256": "355d98cc14f2692667d601f7b9890b2f9257e26804a1aa69580e6471347ef68c",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-libyu-goanli-byeoljeom-45jeom-yujihaneun-gagedeul-i-maeil-haneun-igeoseun",
+    "title": "Googleのクチコミ管理：評価4.5のお店が毎日していることは？",
+    "category": "クチコミマーケティング",
+    "excerpt": "読む時間を決め、内容に合う返信をし、運営改善へつなげる。Googleのクチコミ管理の習慣と返信文例、現在の通知設定、報酬なしの投稿案内を紹介します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-18",
+    "sourceContentSha256": "b173d7ac7a2e82cdd125713a62aed4b6c28e1b445e9a1d44adf7e20a452aafb6",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-injeung-an-doil-ttae-ileohge-haegyeolhaseyo",
+    "title": "Google ビジネス プロフィールのオーナー確認ができないときの対処法",
+    "category": "Google ビジネス プロフィール",
+    "excerpt": "郵送が届かない、動画で確認できない、他のユーザーが管理している。Googleのオーナー確認でつまずく七つの場面と、公式手順で見直す点を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-15",
+    "sourceContentSha256": "0b717bd72f3aae4d85aae427592606b3a00f54ad1adfc589cdd8f6993ada39e1",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-seo-chekeuliseuteu-2026-igeosman-ttalahaseyo",
+    "title": "Google SEOチェックリスト2026：まず確認したいこと",
+    "category": "SEO",
+    "excerpt": "基本設定、内容、ローカル検索、技術面を順に確認するSEOチェックリスト。現在のFAQ表示やAI機能の案内も踏まえ、先に直す箇所を整理します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-12",
+    "sourceContentSha256": "6d803a97a9386c0d5543b8299a523138ebd7cf8152c5a0b31dabc23dfb4228f7",
+    "imageUrl": ""
   }
 ]
