@@ -45,7 +45,7 @@ export default function DoctorNestFaqPage() {
         {/* 짧은 첫 줄 */}
         <section className="relative overflow-hidden">
           <div className="pointer-events-none absolute -right-40 -top-40 h-[24rem] w-[24rem] rounded-full bg-brand-blue/25 blur-3xl" aria-hidden="true" />
-          <div className="relative mx-auto max-w-3xl px-4 pb-6 pt-10 sm:px-6 md:pt-16">
+          <div className="relative mx-auto max-w-4xl px-4 pb-6 pt-10 sm:px-6 md:pt-16">
             <p className="inline-flex items-center gap-2 rounded-full border border-brand-blue/40 bg-brand-blue/10 px-3 py-1 text-xs font-semibold text-blue-300">닥터네스트 · 병원 · 의원 메신저 상담</p>
             <h1 className="mt-4 text-[1.7rem] font-bold leading-[1.3] tracking-tight keep-all sm:text-4xl">
               원장님들이 실제로 물어본 질문 {FAQS.length}가지
@@ -58,7 +58,7 @@ export default function DoctorNestFaqPage() {
 
         {/* 자주 묻는 질문 */}
         <section aria-label="자주 묻는 질문">
-          <div className="mx-auto max-w-3xl px-4 pb-10 sm:px-6">
+          <div className="mx-auto max-w-4xl px-4 pb-10 sm:px-6">
             <FaqAccordion faqs={FAQS} />
             <p className="mt-4 text-xs leading-relaxed text-gray-500 keep-all">
               영상 = 닥터네스트 데모 계정 화면을 블링크애드가 녹화({RECORDED}) · 고객 이름 · 연락처는 흐리게 처리 · 영상 속 대화 · 건수는 데모 값입니다.
