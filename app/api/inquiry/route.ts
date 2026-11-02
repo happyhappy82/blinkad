@@ -138,7 +138,45 @@ async function createPage(token: string, databaseId: string, properties: Record<
     signal: AbortSignal.timeout(15_000),
   })
   const body = await response.json().catch(() => ({}))
-  return { ok: response.ok, status: response.status, body: body as { id?: string; message?: string } }
+  return { ok: response.ok, status: response.status, body: body as { id?: unknown; url?: unknown; message?: string } }
+}
+
+// /doctornest(business_type=doctornest) 문의가 노션에 저장된 뒤 형님 텔레로 보내는 내부 알림.
+// 닥터네스트 줄은 /제안서 자동 실행 장치가 알림 없이 건너뛰므로 여기서 따로 알린다. 다른 폼은 이 알림을 보내지 않는다.
+// 알림이 실패해도(환경 변수 없음 · 텔레 오류 · 시간 초과) 문의 저장 결과는 그대로 둔다 — 이 함수는 예외를 밖으로 던지지 않는다.
+async function notifyDoctorNestInquiry(p: Payload, receivedAt: string, page: { id?: unknown; url?: unknown }): Promise<void> {
+  try {
+    if (businessType(p) !== '닥터네스트') return
+    const token = process.env.INQUIRY_TELEGRAM_BOT_TOKEN
+    const chatId = process.env.INQUIRY_TELEGRAM_CHAT_ID
+    if (!token || !chatId) {
+      console.error('[inquiry] doctornest notice skipped: telegram env missing')
+      return
+    }
+    const pageId = str(page.id, 100)
+    const notionUrl = url(page.url) || (pageId ? `https://www.notion.so/${pageId.replace(/-/g, '')}` : '')
+    const line = (label: string, value: string) => `${label}: ${value || '(없음)'}`
+    const text = [
+      '📥 닥터네스트 사용 사례 페이지 문의',
+      line('상호', str(p.business_name, 200)),
+      line('이름', str(p.name, 100)),
+      line('전화', str(p.phone, 50)),
+      line('이메일', str(p.email, 200)),
+      line('운영 업종', str(p.industry, 100)),
+      line('접수 시각', `${receivedAt.slice(0, 16).replace('T', ' ')} (KST)`),
+      ...(notionUrl ? [line('노션', notionUrl)] : []),
+    ].join('\n').slice(0, 4_000)
+    const response = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, disable_web_page_preview: true }),
+      // 3초만 기다린다 — 폼 쪽 전체 대기(20초) 안에 노션 저장(최대 15초)과 함께 끝나게.
+      signal: AbortSignal.timeout(3_000),
+    })
+    if (!response.ok) console.error('[inquiry] doctornest notice failed', response.status)
+  } catch (error) {
+    console.error('[inquiry] doctornest notice error', error instanceof Error ? error.message : String(error))
+  }
 }
 
 async function telegramFallback(p: Payload, reason: string): Promise<boolean> {
@@ -192,12 +230,18 @@ export async function POST(request: NextRequest) {
   if (token) {
     try {
       const first = await createPage(token, databaseId, buildProperties(payload, receivedAt))
-      if (first.ok) return NextResponse.json({ ok: true })
+      if (first.ok) {
+        await notifyDoctorNestInquiry(payload, receivedAt, first.body)
+        return NextResponse.json({ ok: true })
+      }
       reason = `${first.status} ${first.body.message || ''}`.trim()
       console.error('[inquiry] notion create failed', reason)
       if (first.status === 400) {
         const second = await createPage(token, databaseId, minimalProperties(payload, receivedAt, reason))
-        if (second.ok) return NextResponse.json({ ok: true, minimal: true })
+        if (second.ok) {
+          await notifyDoctorNestInquiry(payload, receivedAt, second.body)
+          return NextResponse.json({ ok: true, minimal: true })
+        }
         reason = `${second.status} ${second.body.message || ''}`.trim()
         console.error('[inquiry] notion minimal create failed', reason)
       }
