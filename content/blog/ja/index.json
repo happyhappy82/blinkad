@@ -598,5 +598,55 @@
     "originalPublishedAt": "2026-04-26",
     "sourceContentSha256": "94164a2ef3807de6f9dec85c74e7d89b9075523ef22f6a6ca853bc41fe0bc870",
     "imageUrl": ""
+  },
+  {
+    "id": "2026-byeong-ueon-beullogeu-jalsseuneunbeob-ai-geomsaeg-e-in-yongdoineun-5munjang-dabbyeon-gujo",
+    "title": "2026年、病院ブログの書き方：AI検索での引用を考える5文の回答構成",
+    "category": "病院マーケティング",
+    "excerpt": "患者さんの質問に、答え・根拠・条件・次の行動をつないで説明する5文の編集案。単語数やschemaの固定条件に頼らず、医療情報の根拠を確認する方法です。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-25",
+    "sourceContentSha256": "8005a17b973b3f806e75801611d6ac6535990c108363da66d11f0c8c82b47c3f",
+    "imageUrl": ""
+  },
+  {
+    "id": "hoanjaga-chatgpte-gangnam-chigoa-chucheon-mul-eobomyeon-uli-byeong-ueon-i-an-naoneun-iyu",
+    "title": "患者さんがChatGPTに「江南の歯科のおすすめ」と尋ねても、自院が出てこない理由",
+    "category": "病院マーケティング",
+    "excerpt": "SOCiの海外多店舗調査と韓国の検索利用調査を区別しながら、歯科・美容外科が自院の情報を確認する五つの観点を整理します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-24",
+    "sourceContentSha256": "41c389cf547f8fa6d17cfd031c0dedad5f436340ac980b7b4b8cd0bb0d183996",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-ai-obeobyu-sidae-byeong-ueon-goanggo-eotteohge-bakkuina-byeong-ueon-maketeo-pildog",
+    "title": "GoogleのAIオーバービュー時代、病院広告はどう変わるか（病院マーケター必読）",
+    "category": "病院マーケティング",
+    "excerpt": "AIOで変わる検索画面と広告CTR、医療分野の広告提供条件、韓国の医療広告規定を分けて確認し、広告と説明ページを一緒に見直す方法を考えます。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-23",
+    "sourceContentSha256": "2f358fbc8d300e437700388cfe21645201edbe0befc0b530ad879127dcd3d231",
+    "imageUrl": ""
+  },
+  {
+    "id": "perplexity-chatgptga-hoanjaege-chucheonhaneun-byeong-ueon-eui-5gaji-gongtongjeom",
+    "title": "Perplexity・ChatGPTが患者さんに薦める病院、その5つの共通点",
+    "category": "病院マーケティング",
+    "excerpt": "医師の情報、答えの順番、FAQと出典、実際の更新、外部の医院情報。原文の五つの観点を、AIの必須条件と混同せずに確認するための記事です。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-23",
+    "sourceContentSha256": "ee74c87edb9e973677a078647c161a312a3d8645acea897ab3813f3ccbe9ecd9",
+    "imageUrl": ""
+  },
+  {
+    "id": "aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon",
+    "title": "AEO・GEO皮膚科マーケティング戦略2026：AI回答で1位を目指すには？",
+    "category": "病院マーケティング",
+    "excerpt": "皮膚科の情報を見直す6段階の実行案。実際の質問、根拠のある説明、FAQ、動画、外国語案内、情報更新を、AIの順位保証や固定本数と区別して考えます。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-22",
+    "sourceContentSha256": "66ee2bf378bc5a0aa0ed78a979b5f93bcc96ed00e241bbbac0ff25a1b5e147b0",
+    "imageUrl": ""
   }
 ]

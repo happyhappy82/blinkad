@@ -1,0 +1,104 @@
+<p>検索では医院の情報を見つけられるのに、ChatGPTやPerplexityでは名前が出てこない。そんなときは、公式サイトと併せて、外部の紹介や質問への答え方も見直してみましょう。</p>
+<p>原文の1.2%という数字は、SOCiが調べた海外の多店舗ブランドの拠点に関するものです。Googleのローカル3パック35.9%との比は約30ですが、韓国の医院100院のうち1～2院しか選ばれない、という確率ではありません。小売分野のブランドの重なり45%も、医院の一致率には置き換えられません。</p>
+<p>ここでは原文の「5つの共通点」を、医院の情報を確認する五つの観点として説明します。推薦された医院だけを調べて実証した必須条件ではなく、五つを満たせばAIに載るという保証でもありません。日本語版の確認日は2026年11月2日です。</p>
+<hr/>
+<h2>一つ目：誰が書き、誰が内容を確認したかが分かる</h2>
+<h3>原文の主張と、公式の案内を分ける</h3>
+<blockquote>原文は「医師の著者名がなければGoogleは医療記事を引用しない」と紹介しています。ただし、Googleの公式案内で、そのような一律の除外条件は確認できませんでした。</blockquote>
+<p>健康に関する説明では、誰がどの範囲を確認したかを読者に伝える意味があります。実際に執筆・確認した人の名前と経歴を示し、存在しない専門家や監修実績を作らないことが先です。</p>
+<h3>医院で確認すること</h3>
+<p>ページの作成者、医学的内容の確認者、経歴へのリンクを、実際の担当範囲に合わせて示します。院長名や免許番号をすべてのページに置けば引用される、という条件ではありません。</p>
+<p><a href="https://schema.org/Person" target="_blank" rel="noopener noreferrer">Person</a>や<a href="https://schema.org/sameAs" target="_blank" rel="noopener noreferrer">sameAs</a>を使う場合も、実際に同一人物と確認できる公開情報に対応させます。次は説明用の形で、架空の医師の資格を示すものではありません。</p>
+<pre><code>{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "［実際に確認した医師名］",
+  "jobTitle": "［実際の役職］",
+  "sameAs": [
+    "https://example.com/verified-doctor-profile"
+  ]
+}</code></pre>
+<p>example.comは説明用のURLです。実装時は、本文と一致する確認済みの情報だけを使います。マークアップがないだけで、自動的に推薦対象から外れるとは言えません。</p>
+<hr/>
+<h2>二つ目：患者さんが知りたいことを、早い段階で読める</h2>
+<h3>60～100語は、すべてのAIの抽出範囲ではない</h3>
+<blockquote>原文は「最初の60～100語から抽出し、400語目の答えより10語目の答えが選ばれる」と紹介しています。今回はその普遍的な条件を確認できず、日本語の固定単語数の基準としては用いません。</blockquote>
+<h3>医院で書き直すとき</h3>
+<p>読み手が答えまで長く待たされないか、という観点で文章を見直します。医院紹介から始めると、次のようになる場合があります。</p>
+<pre><code>医院の紹介
+治療の種類
+費用
+最後の段落で、ようやく回復について説明
+※原文の200語ずつという並びは編集例</code></pre>
+<p>一方、回復について知りたい読者には、次の順番も考えられます。</p>
+<pre><code>LASIK後の回復では、何を確認しますか？
+見え方の変化と、仕事や運動を再開できる時期を分けて説明します。
+資料に基づく目安と、その対象・確認時点を示します。
+個別の予定は、検査結果と経過に合わせて医師に確認します。
+続いて、注意点と連絡方法を案内します。</code></pre>
+<p>原文の「5,000件、平均2日」「24～48時間で日常復帰」という例には、対応する自院の臨床資料がありません。確認済みの回復案内として使わず、説明の順序を示す例にしています。2～5文も、情報を整理するための目安です。</p>
+<hr/>
+<h2>三つ目：質問への答えと、その根拠を確認できる</h2>
+<h3>FAQ schemaと引用率を、直結させない</h3>
+<blockquote>原文の「FAQ schemaと本文内の出典で、引用の重みが約40%高い」という主張は、対応する一次実験と条件を確認できませんでした。schemaを付けるだけで得られる効果としては説明しません。</blockquote>
+<h3>医院で整えたい二つの内容</h3>
+<p><strong>質問と答え</strong>：患者さんが実際に尋ねることに答えます。FAQPage等を使うなら、画面に表示した内容と一致させます。<a href="https://developers.google.com/search/docs/appearance/ai-features?hl=ja" target="_blank" rel="noopener noreferrer">Googleの公式案内</a>はAI専用のschemaを求めておらず、FAQの特別表示にも対象等の条件があります。</p>
+<p><strong>本文内の出典</strong>：ガイドライン、論文、公式統計など、説明に対応する資料を近くに示します。名前だけを挙げず、何を調べた資料か、今回の説明にどこまで使えるかも確認します。</p>
+<pre><code>&lt;!-- 表示する質問・答えと一致させるための説明例 --&gt;
+&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "診療前の説明で何を確認しますか？",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "適応、選択肢、重要なリスクと受診の流れを、医療者の説明に沿って確認します。"
+    }
+  }]
+}
+&lt;/script&gt;</code></pre>
+<p>原文の「自院5,000件で副作用0.3%、学会推奨1%以内」という数字と基準は確認できていません。そのため、上の例に臨床成績や学会のお墨付きを作って入れていません。Perplexity78%・ChatGPT62%という原文の出典表示率も、対応する標本・条件を確認できず、医療分野の普遍的な差としては使いません。</p>
+<hr/>
+<h2>四つ目：変更があった情報を、正しく更新している</h2>
+<h3>更新に関する調査は、標本を分けて読む</h3>
+<ul><li>原文の76.4%は、Ahrefsの<strong>ChatGPT引用上位1,000ページの別分析</strong>で、日付を判定できた564 URLについての値です。約1,700万引用の分析全体が「30日以内」と示した数字ではありません。</li><li>原文が挙げる「AIO出典の85%が通常検索上位10件以外」というBrightEdgeの値は、今回、該当する一次表と条件を再確認できませんでした。通常のSEOが不要になる根拠にはしません。</li><li>同じく26.6%から44.4%というAIOのカバー率も、対象・時点・定義をそろえずに、現在の医院検索全体の比率とは扱いません。</li></ul>
+<p>Ahrefsの<a href="https://ahrefs.com/blog/chatgpts-most-cited-pages/" target="_blank" rel="noopener noreferrer">上位ページ分析</a>と、<a href="https://ahrefs.com/blog/do-ai-assistants-prefer-to-cite-fresh-content/" target="_blank" rel="noopener noreferrer">約1,700万引用の別分析</a>は分けて参照します。新しい情報が求められる場面はありますが、古い有用な記事が引用されないということではありません。</p>
+<h3>医院で更新するときに確認すること</h3>
+<ul><li><code>dateModified</code>は、実際に内容を変更した日と合わせる</li><li>本文にも、必要に応じて実質的な更新日や確認日を示す</li><li>料金、診療時間、説明の根拠などが変わったら、関係するページを見直す</li><li>症例や患者データを追加する場合も、実資料、適切な同意・プライバシー、広告規定を確認する</li></ul>
+<p>原文の「上位20記事を90日ごとに見直す」は運営案として使えます。ただし、日付だけを動かしたり、変化のない文章を新着に見せたりすることは勧めません。情報が変わったときや説明の不足に気づいたときに、必要な箇所を更新していきます。</p>
+<hr/>
+<h2>五つ目：外部の情報も、自院の事実と合っている</h2>
+<h3>ホテルの調査を、医院の必須条件に置き換えない</h3>
+<p>Cloudbedsの<a href="https://www.cloudbeds.com/articles/ai-hotel-recommendations-study/" target="_blank" rel="noopener noreferrer">ホテルのAI推薦調査</a>は、6都市・目的地の、継続的に上位に出る145施設を分析しています。引用元の55.3%がOTA、推薦されたホテルの72.4%がブランド・大規模グループと報告されています。</p>
+<ul><li>同標本の推薦施設はYouTube98%、旅行ブログ97%、Reddit95%で存在を確認したと報告。露出の観察であり、各サービスに掲載した効果を実験した値ではありません。</li></ul>
+<p>医療機関の場合にも、次のような掲載先が確認候補になります。</p>
+<ul><li>韓国：NAVERプレイス、Modoodoc、Gangnam Unni、Goodoc、Kakaoマップ等。業種や掲載条件に合うものを選ぶ</li><li>海外：Googleビジネスプロフィール、医療情報サービス等。HealthgradesやWebMDも、対象地域・資格・掲載条件を満たせるかを先に確認</li></ul>
+<h3>ホテルの数字から、何を考えるか</h3>
+<p>外部でどのように紹介されているかも見ておく、という視点は参考になります。ただし、独立系ホテルがほとんど推薦されない、同じ割合が医院にも当てはまる、という結論にはできません。</p>
+<p>「NAVERレビュー100件、Google評価4.5点がなければ信頼不足」という原文の境界値も、医院の選考条件としては確認されていません。自院が対応する掲載先の情報を、正確に保つところから始めます。</p>
+<h3>医院で確認する四つのこと</h3>
+<ul><li>実在する医院のGoogleビジネスプロフィールと基本情報を確認。レビュー50件・4.3点は合格ラインにしない</li><li>NAVERプレイスに必要な情報があるか確認。100件のレビューやAIブリーフィング表示を必須条件にしない</li><li>診療科に合う情報サービスを選び、掲載条件と内容を確認。各サービスへの一律登録を求めない</li><li>Kakaoマップなど、実際に患者さんが使う案内の住所や連絡先も確認</li></ul>
+<hr/>
+<h2>五つの観点を、医院の確認表にまとめる</h2>
+<div style="overflow-x: auto"><table class="w-full border-collapse my-6 text-sm">
+<thead><tr><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">番号</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">確認する観点</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">根拠の読み方</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">自院の確認</th></tr></thead>
+<tbody><tr><td class="border border-gray-700 px-4 py-2">①</td><td class="border border-gray-700 px-4 py-2">執筆者・医学的内容の確認者</td><td class="border border-gray-700 px-4 py-2">実際の担当と資格を表示。Person／sameAsや免許番号は一律の引用必須条件ではない</td><td class="border border-gray-700 px-4 py-2">□</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">②</td><td class="border border-gray-700 px-4 py-2">答えを見つけやすい順番</td><td class="border border-gray-700 px-4 py-2">60～100語は編集の目安。日本語の固定抽出範囲ではない</td><td class="border border-gray-700 px-4 py-2">□</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">③</td><td class="border border-gray-700 px-4 py-2">質問への答えと出典</td><td class="border border-gray-700 px-4 py-2">FAQPageが引用を40%増やすという共通効果は未確認</td><td class="border border-gray-700 px-4 py-2">□</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">④</td><td class="border border-gray-700 px-4 py-2">実際に変わった内容の更新</td><td class="border border-gray-700 px-4 py-2">76.4%は引用上位ページ中、日付判定564 URLの別標本。1,700万引用全体ではない</td><td class="border border-gray-700 px-4 py-2">□</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">⑤</td><td class="border border-gray-700 px-4 py-2">外部の正確な医院情報</td><td class="border border-gray-700 px-4 py-2">ホテル調査のOTA55.3%等を、医院の必須掲載数や評価点に移さない</td><td class="border border-gray-700 px-4 py-2">□</td></tr></tbody>
+</table></div>
+<hr/>
+<h2>五つを一度に満たすより、何が患者さんを迷わせるかを見る</h2>
+<p>原文は「AIが五つの信号を掛け算する」と説明していますが、そのような共通の採点式は公表されていません。また、医師名、統計、FAQ、症例を用いれば、医療広告の規定に必ず適合するわけでもありません。</p>
+<p>今週取り組む作業なら、次の三つを入口にしてみてください。</p>
+<ul><li>主なページの冒頭を読み、何の疑問に答えるか、答えの見通しが分かるか</li><li>GoogleやNAVER等の基本情報と、レビューで繰り返される困りごとを確認。50件を一律の目標にしない</li><li>上位10ページを見直し、変更が必要な料金・診療・案内がないか確認。90日という日付だけで判断しない</li></ul>
+<p>確認できていない項目があっても、それだけで広告費を減らすとは決めません。患者さんが情報を見つけ、理解し、問い合わせや予約を検討できるかを確認しながら、作業の順番を決めます。</p>
+<p><a href="/ja/contact">BlinkAdへのご相談</a>では、検索やAI回答での見え方と、今回の五つの観点を整理する範囲をご案内します。固定の1.2%枠への合格、引用、患者数の増加や広告審査の通過を保証するものではありません。</p>
+<hr/>
+<h3>参考資料</h3>
+<ul><li><a href="https://www.soci.ai/news/in-ai-driven-discovery-few-brands-are-chosen-most-disappear/" target="_blank" rel="noopener noreferrer">SOCiの2026 LVI発表</a>。海外の多店舗拠点の観測。韓国の医院の確率ではありません。</li><li>Rankvedの医院向け解説。原文の参考文献。著者名がなければ引用ゼロ、最初の60～100語だけ、という公式の条件は確認できず、<a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ja" target="_blank" rel="noopener noreferrer">Googleのコンテンツ案内</a>も参照。</li><li>Position DigitalのAI SEO統計。原文の参考文献。FAQと出典で40%という一次実験は未確認。</li><li>BrightEdgeのAIO分析。原文の参考文献。85%、26.6%→44.4%の該当する一次表・条件は今回未確認。</li><li><a href="https://ahrefs.com/blog/chatgpts-most-cited-pages/" target="_blank" rel="noopener noreferrer">AhrefsのChatGPT上位1,000ページ分析</a>と<a href="https://ahrefs.com/blog/do-ai-assistants-prefer-to-cite-fresh-content/" target="_blank" rel="noopener noreferrer">約1,700万引用の別分析</a>。76.4%の分母を区別。</li><li><a href="https://www.cloudbeds.com/articles/ai-hotel-recommendations-study/" target="_blank" rel="noopener noreferrer">CloudbedsのホテルAI推薦調査</a>。145施設の標本を、医院の選考条件へ転用しない。</li><li>Averi.aiのB2B SaaS引用ベンチマークとして原文に記載。78%／62%の対象と算定条件は今回未確認、医療の共通率には用いません。</li><li>Search Engine Journalの医療AIOとYouTubeに関する報道。原文の参考文献。医療の妥当性を動画引用率で判断しない。</li><li>ALM CorpのGEO解説。原文の参考文献。今回全文未確認。</li></ul>
+<hr/>
+<p>BlinkAdは、外国人のお客様が検索し、訪問先を検討する過程を支援するGoogle・AIマーケティングの専門エージェンシーです。</p>
