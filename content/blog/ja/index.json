@@ -998,5 +998,55 @@
     "originalPublishedAt": "2026-02-10",
     "sourceContentSha256": "c0aea4d686b894d945dbd30b0b66c8b5258d5cf17d2e3658b987dd242c3a4684",
     "imageUrl": ""
+  },
+  {
+    "id": "janggunmyeon-gbp-jindanhaedeulibnida",
+    "title": "チャングン面のGoogleビジネスプロフィール診断",
+    "excerpt": "チャングン面のお店で確認するGBPの基本情報、写真、クチコミ、投稿。原文の商圏参考値と現在の運用条件を分け、診断の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-09",
+    "sourceContentSha256": "98a112552e4249254919854a25cdd416d06b2da383a3479ef9c2365a4a252ca9",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeondongmyeon-gbp-nochulchoijeoghoa",
+    "title": "ヨンドン面のGoogleビジネスプロフィール表示の最適化",
+    "excerpt": "ヨンドン面のお店で見直すGBPの情報、写真、クチコミ、予約への案内。原文の商圏集計や写真の効果数値を、確認できた範囲と分けてご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-08",
+    "sourceContentSha256": "edaff689ac2440fc315e1339417d1dc3e7075f52f31ff557f9d3f853bacae9e2",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeongimyeon-gbp-liseutinggoanli",
+    "title": "ヨンギ面のGoogleビジネスプロフィール掲載情報管理",
+    "excerpt": "ヨンギ面のお店向けに、検索語の考え方、GBPの情報、写真、クチコミ、投稿を確認。チェックリストと原文の商圏参考値の読み方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-07",
+    "sourceContentSha256": "54359e15067c1e5fbeb331501924af22341cf57c051eecbd865bef6e0858f983",
+    "imageUrl": ""
+  },
+  {
+    "id": "eojindong-gbp-jag-eobdaehaeng",
+    "title": "オジン洞のGoogleビジネスプロフィール運用代行",
+    "excerpt": "オジン洞のお店で見直すGBPの情報、写真、クチコミ、投稿とカテゴリ。検索する目的と来店前に必要な案内を、原文の参考集計と分けてご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-06",
+    "sourceContentSha256": "35d521009e6eb454512423a9ede11df72655038b765d05850bd16a7d1ffbe332",
+    "imageUrl": ""
+  },
+  {
+    "id": "aleumdong-gbp-pyeongpan-goanli-daehaeng",
+    "title": "アルム洞のGoogleビジネスプロフィール評判・クチコミ管理代行",
+    "excerpt": "アルム洞のお店向けに、GBPの情報、クチコミ、投稿と質問への案内を確認。評価の数値や地域の参考集計と、実際の営業を分けてご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-05",
+    "sourceContentSha256": "e1721919bcd39ece11e70018fa89a6ff6ad18001c4d2f48eb12f8c880e1b6c3b",
+    "imageUrl": ""
   }
 ]
