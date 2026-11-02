@@ -3,8 +3,9 @@
 import React, { useState } from 'react';
 import { FadeIn } from './ui/FadeIn';
 import { getTrackingDataAsync } from '@/lib/tracker';
+import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 
-const WEBHOOK_URL = 'https://hook.us2.make.com/698zywep5g6bdl42x8y7vsx7y2455jhh';
+const WEBHOOK_URL = INQUIRY_ENDPOINT;
 
 const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
