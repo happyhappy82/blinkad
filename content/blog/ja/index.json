@@ -1098,5 +1098,55 @@
     "originalPublishedAt": "2026-01-31",
     "sourceContentSha256": "e50a77498bd24de0ec25f0e30fd0993da612f2adda59a91db5848a61a485a454",
     "imageUrl": ""
+  },
+  {
+    "id": "bangogdong-gbp-sang-uinochul-goanli",
+    "title": "パンゴク洞のGoogleビジネスプロフィール上位表示に向けた管理",
+    "excerpt": "パンゴク洞のお店で確認するGBPの情報、カテゴリ、写真、クチコミと投稿。原文の参考集計と検索表示・問い合わせを分け、管理方法をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-30",
+    "sourceContentSha256": "82d35312a3320ed943c534e30c01e750635c0cd50f4c54de5eba91207919b708",
+    "imageUrl": ""
+  },
+  {
+    "id": "dodamdong-gbpdaehaeng",
+    "title": "トダム洞のGoogleビジネスプロフィール管理代行",
+    "excerpt": "トダム洞のお店で確認するGBPの情報、写真、クチコミと所在地の案内。原文の業種・道路・建物の参考集計を分け、管理の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-29",
+    "sourceContentSha256": "060bfd3d607433e973b29201d24676ea36469a47182fef73da8a17dcc2c76266",
+    "imageUrl": ""
+  },
+  {
+    "id": "daepyeongdong-eun-gbp-un-yeongdaehaeng",
+    "title": "テピョン洞のGoogleビジネスプロフィール管理・運用代行",
+    "excerpt": "テピョン洞のお店で確認するGBPの掲載、基本情報、写真、クチコミと投稿。原文の商圏参考値を分け、管理・運用の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-28",
+    "sourceContentSha256": "fc516e7659472a74a9b68b09b3b8277bacb4d4f29c7172f20fa3f964773e6cdb",
+    "imageUrl": ""
+  },
+  {
+    "id": "dajeongdong-sanggueon-bunseog-mich-gbp",
+    "title": "タジョン洞の商圏分析とGoogleビジネスプロフィール管理",
+    "excerpt": "タジョン洞のお店で確認するGBPの情報、写真、クチコミと計測。原文の業種別参考集計と、実際の営業・問い合わせを分けてご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-27",
+    "sourceContentSha256": "94280f7c0d0a42f2768ad771e57305af1d9b0c8ce6b2b58e245ad47a2d1dfb51",
+    "imageUrl": ""
+  },
+  {
+    "id": "naseongdong-sajangnim-igeoneun-pilsuibnida",
+    "title": "ナソン洞の事業主の方へ、GBPで押さえておきたいこと",
+    "excerpt": "ナソン洞のお店で確認するGBPの情報、クチコミ、写真と投稿。原文の地域参考値と実際の営業を分け、確認表とともに管理方法をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-26",
+    "sourceContentSha256": "13aa6e22ee22a1264482669b0300c7a4d3432b5ad96ff7446b6eefa4ebc2391c",
+    "imageUrl": ""
   }
 ]
