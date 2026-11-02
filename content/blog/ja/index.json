@@ -748,5 +748,55 @@
     "originalPublishedAt": "2026-03-12",
     "sourceContentSha256": "6d803a97a9386c0d5543b8299a523138ebd7cf8152c5a0b31dabc23dfb4228f7",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-maibijeuniseu-vs-bijeuniseu-peulopil-mueoga-daleun-geongayo",
+    "title": "Google マイビジネスとビジネス プロフィール、何が違うのか？",
+    "category": "Google ビジネス プロフィール",
+    "excerpt": "二つの名前は別のサービスではありません。2021年の名称変更、現在の管理先、再登録をせずに確認したい情報と、よくある五つの混同を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-09",
+    "sourceContentSha256": "3c0209d4ed9bf5eb19611b142f82228e05b4f7f7fc052d605a3122bc33a7e3be",
+    "imageUrl": ""
+  },
+  {
+    "id": "hompeiji-eobs-i-maketing-haneun-beob-gbpimyeon-chungbunhabnida",
+    "title": "ホームページなしで集客する方法：Google ビジネス プロフィールで始める",
+    "category": "ローカルマーケティング",
+    "excerpt": "サイトを作る前からできる店舗情報の整備を紹介。Googleプロフィールの五つの役割と、追加ページが必要な場面、登録・情報整理・投稿の順番を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-08",
+    "sourceContentSha256": "af862154a889409ce1d4f3f465c6130466da53ec7c913f73fc22c5c20dd8e94d",
+    "imageUrl": ""
+  },
+  {
+    "id": "agseong-libyu-daeeungbeob-sajangnim-i-jeoldae-hamyeon-an-doineun-dabgeul-yuhyeong-3gaji",
+    "title": "悪質なクチコミへの対応：店主が避けたい返信の3つのタイプ",
+    "category": "クチコミマーケティング",
+    "excerpt": "感情的な反論、個人情報の持ち出し、からかう言葉を避け、事実と対応を伝えるには。返信の三つの文例と、Googleへの報告・再審査の範囲を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-07",
+    "sourceContentSha256": "412b60dbd10321ddb09e09a9e3af67ffeecdb8d05d6b06d312f36735e4725ca3",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-libyu-neullineun-bangbeob-sonnim-ege-jayeonseuleobge-yocheonghaneun-menteu-5gaji",
+    "title": "Googleのクチコミを増やすには？自然にお願いする五つの言葉",
+    "category": "クチコミマーケティング",
+    "excerpt": "飲食店、カフェ、美容室、クリニック、ジムや教室で使える案内文を紹介。報酬や高評価の指定をせず、本人が任意で投稿できるリンク・QRコードの伝え方を説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-06",
+    "sourceContentSha256": "5c75dc472c5adb605801245d1a043483791b8c0309b93ed2d2ec9a46f6c94249",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-gesimul-jagseongbeob-mulyolo-goanggohaneun-bangbeob",
+    "title": "Google ビジネス プロフィールの投稿の書き方：広告費をかけずに情報を届ける方法",
+    "category": "Google ビジネス プロフィール",
+    "excerpt": "最新情報・特典・イベントの選び方から、作成の五段階、業種別の文例、公開状態の確認まで。Google広告との違いと、現在の投稿の扱いも説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-05",
+    "sourceContentSha256": "3d31c34f32f2a2565aa4e1904cd89b52dfb913dedf6fa0340104a4911d81f321",
+    "imageUrl": ""
   }
 ]
