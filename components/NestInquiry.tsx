@@ -6,16 +6,21 @@ import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 import { NEST_ARTICLES, NEST_PRODUCTS, type NestArticle, type NestProduct } from '@/lib/nest-content';
 import { getTrackingDataAsync, markClarityInquiry, recordCtaClick } from '@/lib/tracker';
 
-function track(event: string, article: NestArticle, product: NestProduct, hasArticleContext = true) {
+// 문의 폼이 홈페이지 글이 아닌 다른 페이지(예: /doctornest 사용 사례)에 놓일 때 그 페이지를 노션 내용에 남긴다.
+export type NestInquiryOrigin = { id: string; label: string };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function track(event: string, article: NestArticle, product: NestProduct, hasArticleContext = true, originId?: string) {
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, nest_article: hasArticleContext ? article.id : 'direct', nest_product: product });
+  window.dataLayer.push({ event, nest_article: originId || (hasArticleContext ? article.id : 'direct'), nest_product: product });
 }
 
-function InquiryForm({ article, titleId, standalone = false, hasArticleContext = true }: { article: NestArticle; titleId: string; standalone?: boolean; hasArticleContext?: boolean }) {
+function InquiryForm({ article, titleId, standalone = false, hasArticleContext = true, requireEmail = false, origin }: { article: NestArticle; titleId: string; standalone?: boolean; hasArticleContext?: boolean; requireEmail?: boolean; origin?: NestInquiryOrigin }) {
   const Heading = standalone ? 'h1' : 'h2';
   const [product, setProduct] = useState<NestProduct>(article.product);
   const [topic, setTopic] = useState<string>(article.id);
-  const [data, setData] = useState({ business: '', name: '', phone: '', channels: '', message: '' });
+  const [data, setData] = useState({ business: '', name: '', phone: '', email: '', channels: '', message: '' });
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -34,6 +39,10 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
       setError('회신받을 전화번호를 확인해 주세요.');
       return;
     }
+    if (requireEmail && !EMAIL_PATTERN.test(data.email.trim())) {
+      setError('회신받을 이메일 주소를 확인해 주세요.');
+      return;
+    }
     busy.current = true;
     setPending(true);
     setError('');
@@ -45,9 +54,10 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
         `관심 제품: ${NEST_PRODUCTS[product]}`,
         `사업장: ${data.business.trim()}`,
         `관심 업무: ${selected.label}`,
+        ...(requireEmail ? [`이메일: ${data.email.trim()}`] : []),
         `현재 상담 채널: ${data.channels.trim() || '미입력'}`,
         `문의 내용: ${data.message.trim() || '미입력'}`,
-        hasArticleContext ? `읽은 홈페이지 글: ${article.id} / ${article.title}` : '홈페이지 글: 직접 문의 페이지 방문',
+        origin ? `유입 페이지: ${origin.label}` : hasArticleContext ? `읽은 홈페이지 글: ${article.id} / ${article.title}` : '홈페이지 글: 직접 문의 페이지 방문',
         `외부 유입: ${tracking.utm_source || '미확인'} / ${tracking.utm_content || '미확인'}`,
       ].join('\n');
       const response = await fetch(INQUIRY_ENDPOINT, {
@@ -57,17 +67,18 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
         body: JSON.stringify({
           ...tracking,
           name: data.name.trim(), phone: data.phone.trim(), message: context,
+          ...(requireEmail ? { email: data.email.trim() } : {}),
           source: 'nest_product_inquiry', submittedAt: new Date().toISOString(),
           business_name: data.business.trim(), product, concern: selected.concern,
-          homepage_article_id: hasArticleContext ? article.id : 'direct', external_article_id: tracking.utm_content,
+          homepage_article_id: origin ? origin.id : hasArticleContext ? article.id : 'direct', external_article_id: tracking.utm_content,
           current_channels: data.channels.trim(),
         }),
       });
       if (!response.ok) throw new Error('receiver rejected request');
       setSubmitted(true);
-      setData({ business: '', name: '', phone: '', channels: '', message: '' });
+      setData({ business: '', name: '', phone: '', email: '', channels: '', message: '' });
       markClarityInquiry();
-      track('nest_inquiry_accepted', article, product, hasArticleContext);
+      track('nest_inquiry_accepted', article, product, hasArticleContext, origin?.id);
     } catch {
       setError('전송 완료를 확인하지 못했습니다. 입력 내용은 남아 있으니 잠시 후 다시 시도해 주세요.');
     } finally {
@@ -86,11 +97,13 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
 
   return (
     <form onSubmit={submit} onFocus={() => {
-      if (!started.current) { started.current = true; track('nest_inquiry_started', article, product, hasArticleContext); }
+      if (!started.current) { started.current = true; track('nest_inquiry_started', article, product, hasArticleContext, origin?.id); }
     }} className="space-y-5">
       <div>
         <Heading id={titleId} className="pr-8 text-2xl font-bold text-white">{NEST_PRODUCTS[product]} 도입 상담</Heading>
-        <p className="mt-3 break-keep leading-relaxed text-gray-300">사업장명·담당자명·회신 연락처를 남겨주세요. 지금 불편한 일은 적지 않으셔도 됩니다.</p>
+        {requireEmail
+          ? <p className="mt-3 break-keep leading-relaxed text-gray-300">사업장명·담당자명·회신 연락처·이메일을 남겨주세요. 지금 불편한 일은 적지 않으셔도 됩니다.</p>
+          : <p className="mt-3 break-keep leading-relaxed text-gray-300">사업장명·담당자명·회신 연락처를 남겨주세요. 지금 불편한 일은 적지 않으셔도 됩니다.</p>}
       </div>
       <fieldset disabled={pending} className="space-y-4 disabled:opacity-70">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -121,6 +134,11 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
             <input required type="tel" maxLength={24} autoComplete="tel" placeholder="010-1234-5678" value={data.phone} onChange={event => setData({ ...data, phone: event.target.value })} className={inputClass} />
           </label>
         </div>
+        {requireEmail && (
+          <label className="block text-sm text-gray-200">회신 이메일 (필수)
+            <input required type="email" inputMode="email" maxLength={200} autoComplete="email" placeholder="name@hospital.com" value={data.email} onChange={event => setData({ ...data, email: event.target.value })} className={inputClass} />
+          </label>
+        )}
         <label className="block text-sm text-gray-200">현재 상담 채널 (선택)
           <input maxLength={200} placeholder="예: 카카오톡, 인스타그램 DM, 전화" value={data.channels} onChange={event => setData({ ...data, channels: event.target.value })} className={inputClass} />
         </label>
@@ -192,4 +210,9 @@ export function NestArticleExperience({ article, children }: { article?: NestArt
       </dialog>
     </>
   );
+}
+
+// 페이지 안에 바로 펼쳐 두는 문의 폼(창을 띄우지 않음). 이메일은 필수로 받는다.
+export function NestInlineInquiry({ article, origin, titleId = 'nest-inline-inquiry-title' }: { article: NestArticle; origin: NestInquiryOrigin; titleId?: string }) {
+  return <InquiryForm article={article} titleId={titleId} hasArticleContext={false} requireEmail origin={origin} />;
 }
