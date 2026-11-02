@@ -798,5 +798,55 @@
     "originalPublishedAt": "2026-03-05",
     "sourceContentSha256": "3d31c34f32f2a2565aa4e1904cd89b52dfb913dedf6fa0340104a4911d81f321",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji",
+    "title": "Googleマップにお店を登録したのに表示されない。5つの原因と対処法",
+    "excerpt": "オーナー確認、店舗情報、カテゴリ、住所とピン、登録後の審査。Googleマップでお店が見つからないときの確認手順を説明します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-04",
+    "sourceContentSha256": "3b824ad2c2fd3a60369783c61cd43c3351ef231e6865c8fdca7aa065f286402f",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-seo-sijag-bangbeob-ibmunjaleul-uihan-90il-siljeon-lodeumaeb-2026",
+    "title": "Google SEOの始め方：初心者向け90日実践ロードマップ2026",
+    "excerpt": "最初の30日は技術面、次の30日は検索意図と記事、最後の30日は測定と改善。SEOを始める際の作業と確認項目を整理します。",
+    "category": "SEO",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-27",
+    "sourceContentSha256": "e9eab46343637675cd0e0e7787dadd64ac483d9b4dbe6b796d9faed0e54df4dd",
+    "imageUrl": ""
+  },
+  {
+    "id": "myeong-il2dong-gbp-jeongbogoanli",
+    "title": "ミョンイル2洞のGoogleビジネスプロフィール情報管理",
+    "excerpt": "ソウル江東区ミョンイル2洞のお店へ。所在地、営業時間、カテゴリ、写真、クチコミなど、来店前に必要な情報の整え方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-24",
+    "sourceContentSha256": "9de8d7e54d4065a0953dc22c7497ac0bc47e2b7d0534f5404d421f7f51947e67",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-daehaeng-seobiseu-oanbyeog-gaideu-2026",
+    "title": "Googleビジネスプロフィール管理代行の完全ガイド2026",
+    "excerpt": "管理代行の業務範囲、費用の比較、オーナー権限、報告と引き継ぎ。GBPの運用を依頼する前に確認したい点を整理します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-23",
+    "sourceContentSha256": "8b720f4ee1224fb8cd62f98efa4754dd57db3f287675b21cd1b7b3d0ea13e297",
+    "imageUrl": ""
+  },
+  {
+    "id": "myeong-il1dong-gbp-libyugoanli-daehaeng",
+    "title": "ミョンイル1洞のGoogleビジネスプロフィール・クチコミ管理代行",
+    "excerpt": "ソウル江東区ミョンイル1洞のお店で見直す、クチコミ対応と店舗情報。写真、カテゴリ、来店案内を実際の営業に合わせて整えます。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-23",
+    "sourceContentSha256": "8882d5ef56d3b12ff0f8378b2f7412f7b8601c2b2de9e0aec07cbe7654ee500b",
+    "imageUrl": ""
   }
 ]
