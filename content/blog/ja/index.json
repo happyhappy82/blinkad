@@ -1048,5 +1048,55 @@
     "originalPublishedAt": "2026-02-05",
     "sourceContentSha256": "e1721919bcd39ece11e70018fa89a6ff6ad18001c4d2f48eb12f8c880e1b6c3b",
     "imageUrl": ""
+  },
+  {
+    "id": "sojeongmyeon-gbp-keonseolting",
+    "title": "ソジョン面のGoogleビジネスプロフィール管理コンサルティング",
+    "excerpt": "ソジョン面のお店で確認するGBPの情報、写真、クチコミ、投稿と属性。原文の商圏参考値や数値の確認範囲を分け、管理の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-04",
+    "sourceContentSha256": "7890a1410f1f48aee284ba5cbb5f0b131f4ddb1da7d0e33d15de6ed2dffbbec7",
+    "imageUrl": ""
+  },
+  {
+    "id": "sodamdong-gbp-gyejeonggoanli",
+    "title": "ソダム洞のGoogleビジネスプロフィールアカウント管理",
+    "excerpt": "ソダム洞のお店で確認するGBPの管理権限、基本情報、写真、クチコミと投稿。原文の商圏参考値と実際の営業を分け、管理方法をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-03",
+    "sourceContentSha256": "32474ab0fd2e0f4098e6fb360a5a751e4967ec1d2977088b354d7edf27fdb1e3",
+    "imageUrl": ""
+  },
+  {
+    "id": "saelomdong-gbp-yujigoanli",
+    "title": "セロム洞のGoogleビジネスプロフィール維持管理",
+    "excerpt": "セロム洞のお店で見直すGBPの掲載情報、写真、クチコミと投稿。営業の変更を反映する方法と、原文の業種別参考集計の読み方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-02",
+    "sourceContentSha256": "d8de02ae8b9c007743b3f50e7d56b3b387a1e6036b147e75dccc931c481c664b",
+    "imageUrl": ""
+  },
+  {
+    "id": "bugangmyeon-gbp-deunglogun-yeong",
+    "title": "プガン面のGoogleビジネスプロフィール登録・運用",
+    "excerpt": "プガン面のお店で確認するGBPの登録と運用。基本情報、写真、クチコミ、投稿を見直し、原文の商圏集計や効果数値の確認範囲をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-02-01",
+    "sourceContentSha256": "bd480fde6cc2cde7cc77195d6b5d258c066f57c16ecdbda2dc2894a2fd2b3bcb",
+    "imageUrl": ""
+  },
+  {
+    "id": "bolamdong-gbp-setinggoanli",
+    "title": "ポラム洞のGoogleビジネスプロフィール設定・管理",
+    "excerpt": "ポラム洞のお店で確認するGBPの基本情報、カテゴリ、写真、クチコミと投稿。原文の地域参考値と実際の営業を分け、設定・管理の進め方をご説明します。",
+    "category": "地域マーケティング",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-01-31",
+    "sourceContentSha256": "e50a77498bd24de0ec25f0e30fd0993da612f2adda59a91db5848a61a485a454",
+    "imageUrl": ""
   }
 ]
