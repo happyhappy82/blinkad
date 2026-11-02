@@ -59,12 +59,12 @@ const SCENES = [
     id: 'scene-inbox',
     no: '02',
     icon: Inbox,
-    title: '여러 메신저로 온 문의를 한 목록에서 받고 답합니다',
+    title: '메신저 6개로 온 문의를 한 목록에서 받고 답합니다',
     body: [
       '카카오톡 · 인스타그램 · 네이버 톡톡 · 라인 · 위챗 · 왓츠앱 문의가 한 목록에 쌓입니다. 줄마다 어느 메신저로 온 문의인지 아이콘으로 보이고, 답은 같은 화면에서 그 메신저로 보냅니다.',
       '새 문의를 직원 모두가 함께 볼지, 먼저 연 직원이 맡을지도 병원이 정합니다. 메신저 연결은 각 플랫폼의 심사와 사업자 인증을 마친 뒤 켜집니다.',
     ],
-    video: { src: `${ASSET}/v3_channels.mp4`, poster: `${ASSET}/v3_channels.jpg`, seconds: 53.6, label: '닥터네스트 데모 화면 녹화 — 여러 메신저 문의를 한 목록에서' },
+    video: { src: `${ASSET}/v3_channels.mp4`, poster: `${ASSET}/v3_channels.jpg`, seconds: 43.6, label: '닥터네스트 데모 화면 녹화 — 여러 메신저 문의를 한 목록에서' },
     steps: [
       '줄마다 어느 메신저로 온 문의인지 아이콘으로 표시합니다',
       '채널 필터로 메신저별로 골라 봅니다',
@@ -72,7 +72,6 @@ const SCENES = [
       'WhatsApp 문의에는 WhatsApp 입력창으로 답합니다',
       'WeChat 문의만 골라 보면 4건입니다',
       'WeChat 문의도 같은 화면에서 답합니다',
-      'Facebook Messenger 문의는 2건입니다',
       '전체 채널로 돌아오면 문의 43건이 한 목록입니다',
     ],
   },
@@ -167,10 +166,14 @@ function Bar({ label, value, max, strong = false }: { label: string; value: numb
   );
 }
 
+// Vercel 미리보기 배포에만 오른쪽 가장자리에 둥근 도구 버튼(vercel.live 피드백 도구)이 붙는다.
+// 미리보기에서만 휴대폰 · 태블릿 폭의 오른쪽 여백을 넓혀 그 버튼이 글을 가리지 않게 한다(운영 www.blinkad.kr 화면은 그대로).
+const PREVIEW_SAFE = process.env.VERCEL_ENV === 'preview' ? 'max-lg:[&_main>section>div]:pr-12' : '';
+
 export default function DoctorNestCasePage() {
   const inboxArticle = NEST_ARTICLES.find(article => article.id === 'h1')!;
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-brand-blue selection:text-white">
+    <div className={`min-h-screen bg-black text-white selection:bg-brand-blue selection:text-white ${PREVIEW_SAFE}`}>
       <Navbar />
       <main className="pb-24 pt-16 lg:pb-0">
         {/* ① 첫 화면 — 원장님이 겪는 문제 + 자동 답이 도는 대화 */}

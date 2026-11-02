@@ -23,6 +23,13 @@ const FORM_NAMES: Record<string, string> = {
   nest_product_inquiry: '네스트 제품 문의',
 }
 
+// 폼이 「사업 구분」을 직접 정해 보낼 때만 쓰는 목록(지금은 /doctornest 사용 사례 페이지만 business_type 을 보낸다).
+// 목록에 없는 값이거나 칸이 없으면 예전처럼 구글SEO — 기존 폼은 이 칸을 보내지 않으므로 그대로다.
+// 닥터네스트로 들어간 줄은 /제안서 문의 자동 실행(inquiry_autoproposal.py)이 건너뛴다.
+const BUSINESS_TYPES = new Map<string, string>([
+  ['doctornest', '닥터네스트'],
+])
+
 function str(value: unknown, max = MAX_TEXT): string {
   if (typeof value === 'string') return value.trim().slice(0, max)
   if (typeof value === 'number' || typeof value === 'boolean') return String(value)
@@ -67,10 +74,14 @@ function formName(p: Payload): string {
   return FORM_NAMES[source] || source || '홈페이지 폼'
 }
 
+function businessType(p: Payload): string {
+  return BUSINESS_TYPES.get(str(p.business_type, 40)) ?? '구글SEO'
+}
+
 function buildProperties(p: Payload, receivedAt: string) {
   const props: Record<string, unknown> = {
     고객명: { title: richText(customerName(p).slice(0, 200)) },
-    '사업 구분': { select: { name: '구글SEO' } },
+    '사업 구분': { select: { name: businessType(p) } },
     처리상태: { status: { name: '신규 문의' } },
     접수일시: { date: { start: receivedAt } },
   }
@@ -107,7 +118,7 @@ function minimalProperties(p: Payload, receivedAt: string, reason: string) {
     .join('\n')
   return {
     고객명: { title: richText(customerName(p).slice(0, 200)) },
-    '사업 구분': { select: { name: '구글SEO' } },
+    '사업 구분': { select: { name: businessType(p) } },
     처리상태: { status: { name: '신규 문의' } },
     접수일시: { date: { start: receivedAt } },
     내용: { rich_text: richText(dump) },

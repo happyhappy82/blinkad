@@ -11,16 +11,20 @@ export type NestInquiryOrigin = { id: string; label: string };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+// 메타 잠재 고객 양식에 넣기로 한 업종 질문과 같은 글자(2026-11-02 기본안). 페이지가 askIndustry 를 켤 때만 보인다.
+const INDUSTRY_OPTIONS = ['병원 · 의원', '치과 · 한의원', '피부관리 · 반영구 · 왁싱 등 뷰티샵', '그 외 업종'] as const;
+
 function track(event: string, article: NestArticle, product: NestProduct, hasArticleContext = true, originId?: string) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event, nest_article: originId || (hasArticleContext ? article.id : 'direct'), nest_product: product });
 }
 
-function InquiryForm({ article, titleId, standalone = false, hasArticleContext = true, requireEmail = false, origin }: { article: NestArticle; titleId: string; standalone?: boolean; hasArticleContext?: boolean; requireEmail?: boolean; origin?: NestInquiryOrigin }) {
+function InquiryForm({ article, titleId, standalone = false, hasArticleContext = true, requireEmail = false, askIndustry = false, businessType, origin }: { article: NestArticle; titleId: string; standalone?: boolean; hasArticleContext?: boolean; requireEmail?: boolean; askIndustry?: boolean; businessType?: 'doctornest'; origin?: NestInquiryOrigin }) {
   const Heading = standalone ? 'h1' : 'h2';
   const [product, setProduct] = useState<NestProduct>(article.product);
   const [topic, setTopic] = useState<string>(article.id);
   const [data, setData] = useState({ business: '', name: '', phone: '', email: '', channels: '', message: '' });
+  const [industry, setIndustry] = useState('');
   const [error, setError] = useState('');
   const [pending, setPending] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -31,6 +35,10 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (busy.current || submitted) return;
+    if (askIndustry && !industry) {
+      setError('운영하고 계신 곳을 골라 주세요.');
+      return;
+    }
     if (!data.business.trim() || !data.name.trim()) {
       setError('사업장명과 담당자명을 입력해 주세요.');
       return;
@@ -51,6 +59,7 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
       const tracking = await getTrackingDataAsync(false);
       const selected = NEST_ARTICLES.find(item => item.id === topic && item.product === product)!;
       const context = [
+        ...(askIndustry ? [`운영 업종: ${industry}`] : []),
         `관심 제품: ${NEST_PRODUCTS[product]}`,
         `사업장: ${data.business.trim()}`,
         `관심 업무: ${selected.label}`,
@@ -68,6 +77,8 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
           ...tracking,
           name: data.name.trim(), phone: data.phone.trim(), message: context,
           ...(requireEmail ? { email: data.email.trim() } : {}),
+          ...(askIndustry ? { industry } : {}),
+          ...(businessType ? { business_type: businessType } : {}),
           source: 'nest_product_inquiry', submittedAt: new Date().toISOString(),
           business_name: data.business.trim(), product, concern: selected.concern,
           homepage_article_id: origin ? origin.id : hasArticleContext ? article.id : 'direct', external_article_id: tracking.utm_content,
@@ -77,6 +88,7 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
       if (!response.ok) throw new Error('receiver rejected request');
       setSubmitted(true);
       setData({ business: '', name: '', phone: '', email: '', channels: '', message: '' });
+      setIndustry('');
       markClarityInquiry();
       track('nest_inquiry_accepted', article, product, hasArticleContext, origin?.id);
     } catch {
@@ -106,6 +118,19 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
           : <p className="mt-3 break-keep leading-relaxed text-gray-300">사업장명·담당자명·회신 연락처를 남겨주세요. 지금 불편한 일은 적지 않으셔도 됩니다.</p>}
       </div>
       <fieldset disabled={pending} className="space-y-4 disabled:opacity-70">
+        {askIndustry && (
+          <fieldset>
+            <legend className="text-sm text-gray-200">어떤 곳을 운영하고 계신가요? (필수)</legend>
+            <div className="mt-2 grid gap-2 sm:grid-cols-2">
+              {INDUSTRY_OPTIONS.map(option => (
+                <label key={option} className={`flex cursor-pointer items-center gap-3 rounded-xl border px-3 py-3 text-sm ${industry === option ? 'border-brand-blue bg-brand-blue/15 text-white' : 'border-white/20 bg-gray-900 text-gray-200'}`}>
+                  <input type="radio" name={`${prefix}-industry`} required value={option} checked={industry === option} onChange={() => setIndustry(option)} className="h-4 w-4 accent-[#0066FF]" />
+                  <span className="break-keep">{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        )}
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="block text-sm text-gray-200">관심 제품
             <select value={product} onChange={event => {
@@ -212,7 +237,7 @@ export function NestArticleExperience({ article, children }: { article?: NestArt
   );
 }
 
-// 페이지 안에 바로 펼쳐 두는 문의 폼(창을 띄우지 않음). 이메일은 필수로 받는다.
+// /doctornest 사용 사례 페이지 전용: 업종 질문(필수) · 이메일(필수) · 노션 사업 구분 = 닥터네스트.
 export function NestInlineInquiry({ article, origin, titleId = 'nest-inline-inquiry-title' }: { article: NestArticle; origin: NestInquiryOrigin; titleId?: string }) {
-  return <InquiryForm article={article} titleId={titleId} hasArticleContext={false} requireEmail origin={origin} />;
+  return <InquiryForm article={article} titleId={titleId} hasArticleContext={false} requireEmail askIndustry businessType="doctornest" origin={origin} />;
 }
