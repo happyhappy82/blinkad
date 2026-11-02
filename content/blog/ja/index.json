@@ -648,5 +648,55 @@
     "originalPublishedAt": "2026-04-22",
     "sourceContentSha256": "66ee2bf378bc5a0aa0ed78a979b5f93bcc96ed00e241bbbac0ff25a1b5e147b0",
     "imageUrl": ""
+  },
+  {
+    "id": "ai-dabbyeon-hoagsan-eulo-byeong-ueon-uebsaiteu-teulaepig-i-jul-eodeuneun-iyu-2026",
+    "title": "AI回答の広がりで病院サイトへのアクセスが減る理由（2026年）",
+    "category": "病院マーケティング",
+    "excerpt": "AIによる概要とクリック率の調査をもとに、韓国の病院サイトへの流入変化を読み解きます。数字の対象と限界、SEOとAEOで先に点検する箇所を整理しました。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-22",
+    "sourceContentSha256": "d1fa342c5f67da6816a50922f6154f69c515d43377ba93d961bf22a98550fae1",
+    "imageUrl": ""
+  },
+  {
+    "id": "sosanggong-in-onlain-maketing-gugeul-eseo-sonnim-badneun-3dangye",
+    "title": "小規模店舗のオンライン集客：Googleでお客様を迎える3つのステップ",
+    "category": "ローカルマーケティング",
+    "excerpt": "Google ビジネス プロフィールの登録、クチコミ対応、情報更新を3段階で説明。韓国の小規模店舗が、予算と運用時間に合わせて集客の入口を整える方法を紹介します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-08",
+    "sourceContentSha256": "4cba623c7d5ff8116569a74b60cbbac9833182b151a5f5a12f3686b474d767d9",
+    "imageUrl": ""
+  },
+  {
+    "id": "haipeolokeol-maketing-ilan-bangyeong-1km-an-eseo-maechul-mandeuneun-jeonlyag",
+    "title": "ハイパーローカルマーケティングとは？半径1kmで売上をつくる戦略",
+    "category": "ローカルマーケティング",
+    "excerpt": "近隣のお客様に見つけてもらうには何を整えるべきか。Googleの地図情報、地域に合う記事、コミュニティ、広告、クチコミの五つから考えます。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-04-02",
+    "sourceContentSha256": "9841dda0e0105e0222a87b9224e11087c3069c41bdeaf71ab8854edfb65847ba",
+    "imageUrl": ""
+  },
+  {
+    "id": "lokeol-seolan-dongne-jangsahaneun-sajangnim-eul-uihan-suiun-seolmyeong",
+    "title": "ローカルSEOとは？地域のお店の経営者に向けた、やさしい解説",
+    "category": "ローカルSEO",
+    "excerpt": "近所でお店を探している人に、正しい情報を届けるためのローカルSEO。プロフィール、クチコミ、店舗情報、地域の質問への答えを順に説明します。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-30",
+    "sourceContentSha256": "103a1799d637c6454abbaed021a7199d890311831d6460af81d1f8db865130d6",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka",
+    "title": "GoogleマップとNAVERプレイスのクチコミ、売上に役立つのはどちら？",
+    "category": "クチコミマーケティング",
+    "excerpt": "韓国の店舗でGoogleとNAVERのクチコミをどう運用するか。利用経路、訪問確認、2026年に再開したNAVERの星評価、報酬をつけない依頼方法から考えます。",
+    "publishedAt": "2026-11-02",
+    "originalPublishedAt": "2026-03-27",
+    "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
+    "imageUrl": ""
   }
 ]
