@@ -18,5 +18,45 @@
     "originalPublishedAt": "2026-10-28",
     "sourceContentSha256": "bc5bc5c101b7a10070e1a5e5cd27522a7cc29df9ca87a7b5d4048d1d6fe127f9",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-foreign-marketing",
+    "title": "医院国际患者营销：哪些工作可以委托BlinkAd？",
+    "excerpt": "从Google地图、多语言网站、Google广告到AI搜索检查与Reddit营销，说明医院可以委托哪些工作、如何确认成果，以及需要提前准备的信息。",
+    "category": "医院营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-27",
+    "sourceContentSha256": "511f7da32ca6b5e69142eda9a71f55aae86caf0621b05bedddbb67ae53272899",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-launch-maintenance",
+    "title": "医院网站上线验收与后续维护：哪些工作应该委托出去？",
+    "excerpt": "医院网站上线前后，如何确认页面公开、搜索索引、咨询收件与维护范围？从验收结果、支持责任到账户和资料交接，说明合同中应写清的内容。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-23",
+    "sourceContentSha256": "0b35f113bfa2aff9c5f2df64b549a374b1ed2202a62eedc925a57fc6e89f4d9a",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-renewal-url-migration",
+    "title": "医院网站改版：网址迁移时，如何保留旧链接并检查搜索访问？",
+    "excerpt": "医院网站改版不只涉及设计。旧网址对应、新页面重定向、内部链接与站点地图，以及上线后的检查期，都应在迁移范围中提前约定。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-21",
+    "sourceContentSha256": "6a05de926f2e9d9d61ee2996796777f0da521d7f76931a98ee3b6addbfda4fc2",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-inquiry-booking",
+    "title": "医院网站的咨询与预约流程：制作阶段需要检查什么？",
+    "excerpt": "从咨询受理与预约确认、手机和语言体验，到院内测试、个人信息审查与分析工具，说明医院网站制作时应约定的检查及交接内容。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-19",
+    "sourceContentSha256": "9620365a049e488e8a35693b88721939cc78e3e11f362a3fff4c7774362ac15c",
+    "imageUrl": ""
   }
 ]
