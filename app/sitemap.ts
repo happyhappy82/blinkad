@@ -3,6 +3,7 @@ import { BLOG_POSTS } from '@/constants'
 import { ENGLISH_BLOG_POSTS, getEnglishBlogPost } from '@/lib/english-blog-index'
 import { JAPANESE_BLOG_POSTS, getJapaneseBlogPost } from '@/lib/japanese-blog-index'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
+import { CHINESE_BLOG_POSTS, getChineseBlogPost } from '@/lib/chinese-blog-index'
 import { NEWS_POSTS } from '@/constants/news'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 import { LOCALIZED_PAGES, SITE_LANGUAGES, localizedPath, languageAlternates } from '@/lib/site-languages'
@@ -85,7 +86,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const revisedNestSlugs: ReadonlySet<string> = new Set(NEST_ARTICLES.map((article) => article.slug))
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
-    ...((getEnglishBlogPost(post.id) || getJapaneseBlogPost(post.id)) && { alternates: { languages: languageAlternates(`/blog/${post.id}`) } }),
+    ...((getEnglishBlogPost(post.id) || getJapaneseBlogPost(post.id) || getChineseBlogPost(post.id)) && { alternates: { languages: languageAlternates(`/blog/${post.id}`) } }),
     lastModified: new Date(BLOG_REWRITE_DATES[post.id] || (revisedNestSlugs.has(post.id) ? NEST_UPDATED_AT : post.date.replace(/\./g, '-'))),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
@@ -127,5 +128,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: { languages: languageAlternates(`/blog/${post.id}`) },
   }))
 
-  return [...localizedPages, ...blogPosts, ...englishBlogPosts, ...japaneseBlogPosts, ...glossaryPages]
+  const chineseBlogPosts: MetadataRoute.Sitemap = CHINESE_BLOG_POSTS.map((post) => ({
+    url: `https://www.blinkad.kr/zh/blog/${post.id}`,
+    lastModified: new Date(post.publishedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+    alternates: { languages: languageAlternates(`/blog/${post.id}`) },
+  }))
+
+  return [...localizedPages, ...blogPosts, ...englishBlogPosts, ...japaneseBlogPosts, ...chineseBlogPosts, ...glossaryPages]
 }

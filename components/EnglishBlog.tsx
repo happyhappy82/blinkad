@@ -3,17 +3,20 @@ import Image from 'next/image'
 import { BLOG_POSTS } from '@/constants'
 import { ENGLISH_BLOG_POSTS, formatEnglishArticleDate } from '@/lib/english-blog-index'
 import { JAPANESE_BLOG_POSTS, formatJapaneseArticleDate } from '@/lib/japanese-blog-index'
+import { CHINESE_BLOG_POSTS, formatChineseArticleDate } from '@/lib/chinese-blog-index'
 import { siteCopy } from '@/i18n/site'
 import type { ForeignLanguage } from '@/lib/site-languages'
 
 export default function LocalizedBlog({ language, Navbar, Footer }: { language: ForeignLanguage; Navbar: React.ComponentType; Footer: React.ComponentType }) {
   const copy = siteCopy[language]
-  const hasLocalArticles = language === 'en' || language === 'ja'
+  const translatedPosts = { en: ENGLISH_BLOG_POSTS, ja: JAPANESE_BLOG_POSTS, zh: CHINESE_BLOG_POSTS }[language]
+  const formatDate = { en: formatEnglishArticleDate, ja: formatJapaneseArticleDate, zh: formatChineseArticleDate }[language]
+  const hasLocalArticles = translatedPosts.length > 0
   const articleLanguage = hasLocalArticles ? language : 'ko'
   const posts = hasLocalArticles
-    ? (language === 'en' ? ENGLISH_BLOG_POSTS : JAPANESE_BLOG_POSTS).map(post => ({
+    ? translatedPosts.map(post => ({
       id: post.id, title: post.title, excerpt: post.excerpt, imageUrl: post.imageUrl,
-      date: post.publishedAt, displayDate: language === 'en' ? formatEnglishArticleDate(post.publishedAt) : formatJapaneseArticleDate(post.publishedAt), href: `/${language}/blog/${post.id}`,
+      date: post.publishedAt, displayDate: formatDate(post.publishedAt), href: `/${language}/blog/${post.id}`,
     }))
     : BLOG_POSTS.map(post => ({
       id: post.id, title: post.title, excerpt: post.excerpt, imageUrl: post.imageUrl,
@@ -39,7 +42,7 @@ export default function LocalizedBlog({ language, Navbar, Footer }: { language: 
                     <Image src={post.imageUrl} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" priority={index < 3} />
                   </div>}
                   <div className="flex-1 space-y-3">
-                    <div className="text-sm text-gray-400"><time dateTime={post.date}>{post.displayDate}</time> · {language === 'ja' ? 'BlinkAd編集部' : 'BlinkAd Team'}</div>
+                    <div className="text-sm text-gray-400"><time dateTime={post.date}>{post.displayDate}</time> · {{ en: 'BlinkAd Team', ja: 'BlinkAd編集部', zh: 'BlinkAd编辑部' }[language]}</div>
                     <h2 lang={articleLanguage} className="keep-all text-2xl font-bold leading-snug text-white transition-colors group-hover:text-brand-blue">{post.title}</h2>
                     {post.excerpt && <p lang={articleLanguage} className="keep-all line-clamp-3 text-sm leading-relaxed text-gray-400">{post.excerpt}</p>}
                   </div>

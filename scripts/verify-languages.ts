@@ -1,5 +1,6 @@
 import { ENGLISH_BLOG_POSTS } from '../lib/english-blog-index'
 import { JAPANESE_BLOG_POSTS } from '../lib/japanese-blog-index'
+import { CHINESE_BLOG_POSTS } from '../lib/chinese-blog-index'
 /** Read-only integration checks. No form submission or external data changes. */
 import assert from 'node:assert/strict'
 import { LOCALIZED_PAGES, LANGUAGE_INFO, localizedPath, languageAlternates } from '../lib/site-languages'
@@ -11,7 +12,7 @@ import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/Restaura
 
 const base = process.argv[2] || 'http://localhost:3152'
 const languages = ['en', 'ja', 'zh'] as const
-const postsByLanguage = { en: ENGLISH_BLOG_POSTS, ja: JAPANESE_BLOG_POSTS, zh: [] }
+const postsByLanguage = { en: ENGLISH_BLOG_POSTS, ja: JAPANESE_BLOG_POSTS, zh: CHINESE_BLOG_POSTS }
 const get = async (path: string) => {
   const response = await fetch(base + path)
   assert.equal(response.status, 200, path)
@@ -70,7 +71,7 @@ async function main() {
       if (!['/blog', '/case-studies', '/hospital-sample', '/restaurant-sample'].includes(path)) assert.doesNotMatch(visible, /[가-힣]/, `untranslated text ${url}`)
       if (path === '/blog') {
         assert.ok(html.includes(siteCopy[language].archive), `archive link/disclosure ${url}`)
-        if (language === 'en' || language === 'ja') {
+        if (postsByLanguage[language].length > 0) {
           for (const post of postsByLanguage[language]) assert.ok(html.includes(`href="/${language}/blog/${post.id}"`))
           assert.doesNotMatch(visible, /[가-힣]/, `localized article list ${url}`)
         } else {

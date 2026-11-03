@@ -5,6 +5,7 @@ import { hospitalSampleCopy } from '../app/(korean)/hospital-sample/HospitalSamp
 import { restaurantSampleCopy } from '../app/(korean)/restaurant-sample/RestaurantSampleClient'
 import { englishHomeCopy, siteCopy } from '../i18n/site'
 import { ENGLISH_BLOG_POSTS } from '../lib/english-blog-index'
+import { CHINESE_BLOG_POSTS } from '../lib/chinese-blog-index'
 import { JAPANESE_BLOG_POSTS } from '../lib/japanese-blog-index'
 import { ENGLISH_PAGES, SITE_LANGUAGES, LANGUAGE_INFO, englishPath, localizedPath, splitLanguagePath, languageAlternates, validInternationalPhone } from '../lib/site-languages'
 
@@ -182,24 +183,50 @@ test('reviewed English articles have real equivalents without inventing other tr
   assert.equal(new Set(ENGLISH_BLOG_POSTS.map(post => post.id)).size, ENGLISH_BLOG_POSTS.length)
 })
 
-test('Japanese articles link to available editions without inventing English or Chinese pages', () => {
+test('Japanese articles link only to available language editions', () => {
   assert.ok(JAPANESE_BLOG_POSTS.length > 0)
   for (const post of JAPANESE_BLOG_POSTS) {
     const original = `/blog/${post.id}`
     const hasEnglish = ENGLISH_BLOG_POSTS.some(english => english.id === post.id)
+    const hasChinese = CHINESE_BLOG_POSTS.some(chinese => chinese.id === post.id)
     assert.equal(localizedPath(original, 'ja'), `/ja${original}`)
     assert.equal(localizedPath(original + '?ref=language#contact', 'ja'), `/ja${original}?ref=language#contact`)
     assert.equal(localizedPath(original, 'ko'), original)
     assert.equal(localizedPath(original, 'en'), hasEnglish ? `/en${original}` : original)
-    assert.equal(localizedPath(original, 'zh'), original)
+    assert.equal(localizedPath(original, 'zh'), hasChinese ? `/zh${original}` : original)
     assert.deepEqual(languageAlternates(original), {
       ko: `https://www.blinkad.kr${original}`,
       ...(hasEnglish && { en: `https://www.blinkad.kr/en${original}` }),
       ja: `https://www.blinkad.kr/ja${original}`,
+      ...(hasChinese && { 'zh-Hans': `https://www.blinkad.kr/zh${original}` }),
       'x-default': `https://www.blinkad.kr${original}`,
     })
     assert.ok(fs.existsSync(`content/blog/ja/${post.id}.html`))
     if (hasEnglish) assert.ok(fs.existsSync(`content/blog/en/${post.id}.html`))
   }
   assert.equal(new Set(JAPANESE_BLOG_POSTS.map(post => post.id)).size, JAPANESE_BLOG_POSTS.length)
+})
+
+
+test('Chinese editions have real reciprocal paths and leave untranslated articles in Korean', () => {
+  assert.ok(CHINESE_BLOG_POSTS.length > 0)
+  assert.equal(new Set(CHINESE_BLOG_POSTS.map(post => post.id)).size, CHINESE_BLOG_POSTS.length)
+  for (const post of CHINESE_BLOG_POSTS) {
+    const original = `/blog/${post.id}`
+    assert.equal(localizedPath(original, 'zh'), `/zh${original}`)
+    assert.equal(localizedPath(original + '?ref=language#contact', 'zh'), `/zh${original}?ref=language#contact`)
+    assert.deepEqual(languageAlternates(original), {
+      ko: `https://www.blinkad.kr${original}`,
+      en: `https://www.blinkad.kr/en${original}`,
+      ja: `https://www.blinkad.kr/ja${original}`,
+      'zh-Hans': `https://www.blinkad.kr/zh${original}`,
+      'x-default': `https://www.blinkad.kr${original}`,
+    })
+    assert.ok(fs.existsSync(`content/blog/zh/${post.id}.html`))
+  }
+  const untranslated = JAPANESE_BLOG_POSTS.find(post => !CHINESE_BLOG_POSTS.some(chinese => chinese.id === post.id))
+  assert.ok(untranslated)
+  const original = `/blog/${untranslated.id}`
+  assert.equal(localizedPath(original + '?ref=language#contact', 'zh'), original + '?ref=language#contact')
+  assert.ok(!('zh-Hans' in languageAlternates(original)))
 })

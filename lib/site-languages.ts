@@ -1,5 +1,6 @@
 import { getEnglishBlogPost } from './english-blog-index';
 import { getJapaneseBlogPost } from './japanese-blog-index';
+import { getChineseBlogPost } from './chinese-blog-index';
 
 export const LOCALIZED_PAGES = [
   '/', '/services', '/foreign-marketing', '/google-map-marketing', '/blog-marketing',
@@ -31,6 +32,7 @@ export function localizedPath(path: string, language: SiteLanguage): string {
   if (blogSlug) {
     if (language === 'en' && getEnglishBlogPost(blogSlug)) return `/en${path}`;
     if (language === 'ja' && getJapaneseBlogPost(blogSlug)) return `/ja${path}`;
+    if (language === 'zh' && getChineseBlogPost(blogSlug)) return `/zh${path}`;
     return path;
   }
   if (!(LOCALIZED_PAGES as readonly string[]).includes(pathname) && !/^\/news\/[^/.]+$/.test(pathname)) return path;
@@ -51,6 +53,7 @@ export function languageAlternates(path: string): Record<string, string> {
       ko: korean,
       ...(getEnglishBlogPost(blogSlug) && { en: `https://www.blinkad.kr/en${path}` }),
       ...(getJapaneseBlogPost(blogSlug) && { ja: `https://www.blinkad.kr/ja${path}` }),
+      ...(getChineseBlogPost(blogSlug) && { 'zh-Hans': `https://www.blinkad.kr/zh${path}` }),
       'x-default': korean,
     };
   }
