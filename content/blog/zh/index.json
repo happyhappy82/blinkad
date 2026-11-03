@@ -58,5 +58,45 @@
     "originalPublishedAt": "2026-10-19",
     "sourceContentSha256": "9620365a049e488e8a35693b88721939cc78e3e11f362a3fff4c7774362ac15c",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-content-structure",
+    "title": "医院介绍、医生与诊疗信息：如何组织成便于搜索的页面？",
+    "excerpt": "医院网站的介绍、医生履历与诊疗说明，应按访客的问题组织页面。说明资料审核、正文文字、内部链接，以及上线前后的核对与更新安排。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-17",
+    "sourceContentSha256": "7ef39c52591f3af14e7d1a29247ba5f9b66ea47d8e8e438ddf85293841ce64e8",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-cost-scope",
+    "title": "医院网站制作费为何不同？先看工作范围与追加费用",
+    "excerpt": "同样的页面数量，文案、设计、拍摄、资料迁移与搜索检查范围也可能不同。比较医院网站报价时，还要分别确认持续运营费和追加工作的批准条件。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-15",
+    "sourceContentSha256": "df9be8ee41d3109b4f05d2b577620c81091cbc7db8e6f94c3d3be21447e1b6bb",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-seo-review",
+    "title": "医院网站SEO验收：实际页面需要检查哪些内容？",
+    "excerpt": "SEO完成记录应对应具体页面、修改内容与检查结果。说明医院如何核对网址、搜索服务读取的正文、标题描述、结构化数据及尚待确认的项目。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-13",
+    "sourceContentSha256": "2b9cbcd7a25bb35d6badd0484d66628dafa3dd94b03ae492d8c9d4a28a85bdd3",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-agency-checklist",
+    "title": "选择医院网站制作方：搜索、运营与交接条件要问清什么？",
+    "excerpt": "作品集和总价之外，还要确认搜索工作的交付与验收、医院后台修改权限、维护范围，以及源代码、资料和账户的交接条件。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-11",
+    "sourceContentSha256": "f5a561233e35139560662c5dbcad0faa6352ec97815e9842d4862a212d92b5f8",
+    "imageUrl": ""
   }
 ]
