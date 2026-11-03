@@ -138,5 +138,45 @@
     "originalPublishedAt": "2026-09-26",
     "sourceContentSha256": "5330e0a4be70b935a41dd075d7c5a2a961fbaac597b006646b91f88bdc52eca9",
     "imageUrl": ""
+  },
+  {
+    "id": "gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon",
+    "title": "江南整形医院国际患者营销：日语、中文和英语搜索后，如何引导咨询？",
+    "excerpt": "以2026年9月17日的江南地图与5家官网观察为基础，说明各语言的信息一致性、简繁中文、实际回复渠道与咨询测量。历史样本不代表当前排名或预约成果。",
+    "category": "国际患者营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "e177ff4e9b0f4174e0df9aa84d4b98776b2e7528e5be54d8bb73cd607ec6aa7d",
+    "imageUrl": ""
+  },
+  {
+    "id": "hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob",
+    "title": "弘大美发店国际客群营销：如何把Google Maps和Instagram咨询转为预约？",
+    "excerpt": "以2026年9月17日的弘大地图与预约页面观察为基础，说明地图、Instagram与官方预约页面如何分工，并区分咨询、预约开始、确认与到店。",
+    "category": "国际客群营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "0893492f86a493606e13cad12f61a167ff1033e14cb33d1c773bfc653f9a2305",
+    "imageUrl": ""
+  },
+  {
+    "id": "myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob",
+    "title": "明洞皮肤科国际患者营销：如何把短期访客的搜索引向预约？",
+    "excerpt": "沿用2026年9月18日的明洞地图与官网样本，说明短期访客预约前需要的行程、咨询与照护信息，并区分申请、确认、实际到院和诊疗。",
+    "category": "国际患者营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "42d646c7b74fc29c46e9b5bc3f306483607f9f019e5b5f0840ead5cc54fc5d74",
+    "imageUrl": ""
+  },
+  {
+    "id": "haeoi-maejang-goanggo-google-adsboda-meonjeo-sonboaya-hal-geos",
+    "title": "海外门店广告：投放Google Ads前，先改善哪些地方？",
+    "excerpt": "先确定客户与服务，再检查Google地图、落地页、咨询接收与转化记录。区分点击、咨询、预约和实际收入，判断海外门店是否准备好开始投放。",
+    "category": "Google广告",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-25",
+    "sourceContentSha256": "21bb4f7d71e3fafcd7adaf778f8f507a7c24486afade19fd9f6f7f6c17687d39",
+    "imageUrl": ""
   }
 ]
