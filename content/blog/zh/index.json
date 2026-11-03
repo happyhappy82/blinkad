@@ -378,5 +378,45 @@
     "originalPublishedAt": "2026-08-14",
     "sourceContentSha256": "3e5766d1888305ac8ff832626977898bb6721fef7a32cdcb004675631b1d3c07",
     "imageUrl": ""
+  },
+  {
+    "id": "dagteopalleteu-vs-aepeuteodag-bigyo-jeon-e-byeong-ueon-i-meonjeo-jeonghaeya-hal-geos",
+    "title": "Doctor Palette与Afterdoc怎么选？医院应先明确哪些需求",
+    "excerpt": "病历申报、就诊后随访，还是多渠道新询问？比较Doctor Palette与Afterdoc前，先梳理医院真正需要改善的工作，并核实当前功能、账号连接与记录交接。",
+    "category": "医院软件选择",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-13",
+    "sourceContentSha256": "f5ad454ac2b048bc401ee54f458067ed9951d763fa913850795684baac52a5b8",
+    "imageUrl": ""
+  },
+  {
+    "id": "3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka",
+    "title": "怎样避免漏掉预约确认与改期后的联系？先整理这些工作",
+    "excerpt": "改期请求收到后，实际预约和原定消息都需要分别核对。说明DoctorNest的对话与备注怎样配合现用预约系统，以及由谁确认新日期、取消和到院后的联系。",
+    "category": "预约变更与后续联系",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "d74aa51225d1df5bd8ca557236fdeffe126dae201aa04c07afd0a78240a94e7b",
+    "imageUrl": ""
+  },
+  {
+    "id": "aiga-in-yonghaneun-laendingpeijineun-gujoga-daleubnida-aeo-geo-laendingpeiji-seolgyebeob",
+    "title": "AI会引用怎样的落地页？AEO与GEO页面设计思路",
+    "excerpt": "先回答读者的问题，再说明条件、依据和下一步。整理AEO与GEO落地页的六项编辑建议，并区分易读结构、技术基础与无法保证的AI引用结果。",
+    "category": "AEO与GEO页面设计",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-12",
+    "sourceContentSha256": "e29405df86a53b2fa76552cc04ad6fd46760dcfb3bb3f43e891ce3d1bf803772",
+    "imageUrl": ""
+  },
+  {
+    "id": "peulimieomkontencheu-euilyogoangoang-117man-myeong-sidae-oigug-in-hoanjaneun-eoneu-jinlyogoalo-mollyeoss-eulkka",
+    "title": "【专栏】韩国医疗旅游超117万人，外国患者主要去了哪些科室？",
+    "excerpt": "以2024年官方统计看外国患者的科室与来源地分布。分清实际患者、跨科汇总及医疗旅游支出口径，再讨论医院的外语信息、联系入口与接待准备。",
+    "category": "外国患者市场数据",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-11",
+    "sourceContentSha256": "4623c183b16807ca93e4f9b36f286958726be44a8bde7bcc46fe98c87869db7a",
+    "imageUrl": ""
   }
 ]
