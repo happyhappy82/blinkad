@@ -338,5 +338,45 @@
     "originalPublishedAt": "2026-08-15",
     "sourceContentSha256": "05b5fe379110e2a15711e3fa8614536aed5b3766c1f614cb3bd9a87b89f6efe4",
     "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon",
+    "title": "外国患者来咨询后，怎样从翻译接到下一次沟通？",
+    "excerpt": "外语咨询不能只看译文。对照原文确认日期和费用，区分希望到院与预约确认，再把尚未答复的问题交给下一班。介绍DoctorNest的使用思路与医院需要准备的说明。",
+    "category": "外语患者咨询",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "680d03b336c67e4d174e7428b995875d8d73349654359604cdf459b1b97be1d6",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig",
+    "title": "美容门店怎样管理顾客记录？把咨询与下次提醒一起看",
+    "excerpt": "聊天记录、实际服务和下次联系分散在不同地方，换人接待就容易反复查找。介绍BeautyNest的顾客记录管理思路，区分询问与实际服务、预约付款与后续提醒。",
+    "category": "BeautyNest顾客管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "83062da49b0e6171df5204364ad9f484ccd312f785f1e2b98e2eeae787c808f5",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli",
+    "title": "医院询问散在KakaoTalk和私信里，怎样集中管理？",
+    "excerpt": "接待人员来回切换渠道，交班还要重读长对话。先整理常用渠道、已回复内容和待确认事项，再说明DoctorNest怎样配合现有预约与病历工作。",
+    "category": "医院多渠道咨询管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "5bde79d4ad0df16ba33ce1411d5956b8bcef41bb0af629cd7c114b46d2c93371",
+    "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob",
+    "title": "广告带来的询问，怎样记录到预约确认这一步？",
+    "excerpt": "点击增加不等于预约增加。区分广告数字、顾客自述来源、咨询备注与预约结果，说明DoctorNest如何配合医院现有记录，也解释UTM能够说明什么。",
+    "category": "广告询问与预约记录",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-14",
+    "sourceContentSha256": "3e5766d1888305ac8ff832626977898bb6721fef7a32cdcb004675631b1d3c07",
+    "imageUrl": ""
   }
 ]
