@@ -298,5 +298,45 @@
     "originalPublishedAt": "2026-08-17",
     "sourceContentSha256": "10d690a1c78b961c153048e2d8338c43cfc08d404345ac2f67db3ab594e0f273",
     "imageUrl": ""
+  },
+  {
+    "id": "byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+    "title": "医院营销代理怎么选？要看广告之后的咨询转化",
+    "excerpt": "曝光和点击增加，预约却没有相应变化，先确认代理与医院各负责到哪一步。签约前对齐账号权限、咨询接待、外语回复、报告指标与资料交接，才能比较服务范围。",
+    "category": "医院营销与咨询管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-17",
+    "sourceContentSha256": "88946387f339c6dba2a9b295bfb02de1c772995c25aa68bfe15166ec8ef5a339",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteulo-oigug-in-sonnim-mun-eui-badneun-beob-linewhatsappinstagram",
+    "title": "用BeautyNest接待外国顾客咨询：LINE、WhatsApp与Instagram",
+    "excerpt": "外国顾客从不同应用发来照片、价格或预约询问，怎样接收并继续回复？结合BeautyNest公开方案，说明渠道确认、翻译复核、非营业时间消息和真实评价邀请的准备。",
+    "category": "BeautyNest外语咨询",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "fac0b277f7d0454a5244d72859683e5c3dab952a963fa685926370837fccd799",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagteoneseuteuleul-sseumyeon-an-doineun-byeong-ueon-doib-jeon-soljighan-chekeuliseuteu",
+    "title": "哪些医院暂时不适合DoctorNest？导入前先看这份清单",
+    "excerpt": "病历申报、电话接待、只用手机，还是多渠道咨询？先分清医院真正需要改善的工作，再判断DoctorNest是否合适，并确认设备、人员、记录和停用安排。",
+    "category": "DoctorNest导入判断",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-16",
+    "sourceContentSha256": "7d9d2edefeeeae61238b1585c4a1400bade47bb53d5cec74d34874235e433a42",
+    "imageUrl": ""
+  },
+  {
+    "id": "jaebangmun-jugi-hoanjaga-jeonghage-dumyeon-an-obnida",
+    "title": "复诊安排，为什么不能只等患者自己记住？",
+    "excerpt": "不知道何时复查，可能让患者一再推迟。医院可以怎样说明医师建议、与患者共同确认安排，再通过同意的渠道提醒？同时分清运营观察、医疗随访与再次消费。",
+    "category": "复诊与再次到访管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-15",
+    "sourceContentSha256": "05b5fe379110e2a15711e3fa8614536aed5b3766c1f614cb3bd9a87b89f6efe4",
+    "imageUrl": ""
   }
 ]
