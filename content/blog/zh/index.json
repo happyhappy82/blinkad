@@ -258,5 +258,45 @@
     "originalPublishedAt": "2026-09-04",
     "sourceContentSha256": "80a38fcd232bc3728402ce03bc123e151a0061164e5ac10e0440adbdcff06518",
     "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-customers-find-korean-restaurants",
+    "title": "外国顾客怎样找到韩国餐厅？餐厅营销从哪里开始",
+    "excerpt": "让外国顾客发现餐厅后，看懂菜单、价格、照片与营业时间，再查询路线或预约。先检查地图资料、多语言菜单和联系入口，分别记录点击、预订与实际到店。",
+    "category": "餐厅外国顾客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-03",
+    "sourceContentSha256": "dab9031465a9734a12b3363abe10378d73d9e2360aa848381001354d97e9f9b9",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-maketing-uli-eobjongdo-doilkkayo",
+    "title": "外国顾客营销，也适合我们这个行业吗？",
+    "excerpt": "适不适合吸引外国顾客，不能只凭行业名称判断。从消费方式、地图搜索、沟通和位置看起，并区分短期游客与长期在韩生活的人，确定门店应先准备什么。",
+    "category": "外国顾客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-27",
+    "sourceContentSha256": "66b088b2960afdb91b930d5bb4d921045f7ee76fe97c9ce9f427a82f7eabae6c",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-goangoanggaeg-sonnim-eun-neibeoeseo-uli-maejang-eul-chaj-ji-anhseubnida",
+    "title": "外国游客找店，为什么不能只看Naver？",
+    "excerpt": "Naver地图与Google等工具，在旅行准备和现场找路时承担的作用可能不同。结合2023年旅行应用调查，检查门店如何进入游客候选名单，并分清调查结果、运营观察和AI回答。",
+    "category": "外国顾客搜索与地图",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-27",
+    "sourceContentSha256": "065163205b88545d7fadd2934a2fe5458276f6ff075eab82504dc93503559645",
+    "imageUrl": ""
+  },
+  {
+    "id": "byutineseuteu-yogeumgoa-sijag-bangbeob",
+    "title": "BeautyNest如何收费，怎样开始使用？",
+    "excerpt": "BeautyNest按月订阅费加使用量收费。先整理咨询量、实际对话、提醒发送量与人员配置，确认渠道、账单口径、合同及资料导出范围，再讨论适合门店的方案。",
+    "category": "BeautyNest咨询管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-08-17",
+    "sourceContentSha256": "10d690a1c78b961c153048e2d8338c43cfc08d404345ac2f67db3ab594e0f273",
+    "imageUrl": ""
   }
 ]
