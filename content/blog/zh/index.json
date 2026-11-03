@@ -98,5 +98,45 @@
     "originalPublishedAt": "2026-10-11",
     "sourceContentSha256": "f5a561233e35139560662c5dbcad0faa6352ec97815e9842d4862a212d92b5f8",
     "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-improvement-vs-rebuild",
+    "title": "医院网站局部改善还是重新制作：工作范围有什么不同？",
+    "excerpt": "决定医院网站是否重做前，先确认文案、链接与功能能否在原系统修改，再按相同完成标准比较局部改善、追加开发和重新制作的范围与费用。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-09",
+    "sourceContentSha256": "cc57b3574a2dc11ec9a39ea22fdd6cd807242906934e20adcd528ab91bf63958",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-audit",
+    "title": "医院网站诊断：应该检查什么，提出怎样的改善方案？",
+    "excerpt": "医院网站诊断应说明问题所在、目标页面、修改工作与核对方法。区分公开页面、搜索资料、AI回答与受理系统，再判断局部改善或重做的依据。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-07",
+    "sourceContentSha256": "4d6eaefefd6051953d9e0bdd38544733e5a209c38e4299f91bb966f3fe8e521d",
+    "imageUrl": ""
+  },
+  {
+    "id": "hospital-website-ai-search",
+    "title": "医院网站制作：考虑AI搜索时，需要多确认哪些事？",
+    "excerpt": "从患者需要的信息、公开页面的抓取与索引，到搜索和训练爬虫、正文结构与手机咨询流程，说明医院网站签约前应约定的检查与交付内容。",
+    "category": "医院网站",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-05",
+    "sourceContentSha256": "eaccd4d8211731178420ea2d45382b34d1ec961d02b26cc08517173600940960",
+    "imageUrl": ""
+  },
+  {
+    "id": "doctornest-consultation-manual-handover",
+    "title": "价格和活动说明不一致：如何让员工按同一标准回复？",
+    "excerpt": "用医院确认的常用回复说明价格与活动条件，同时保留每位客户实际收到的答复。介绍DoctorNest中的统一说明、咨询备注与变更后的核对方法。",
+    "category": "医院咨询管理",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-26",
+    "sourceContentSha256": "5330e0a4be70b935a41dd075d7c5a2a961fbaac597b006646b91f88bdc52eca9",
+    "imageUrl": ""
   }
 ]
