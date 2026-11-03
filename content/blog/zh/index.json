@@ -218,5 +218,45 @@
     "originalPublishedAt": "2026-09-18",
     "sourceContentSha256": "f48a048d277bcd9e93fe21a230e9c19ef00816156d59cc0f2d87f4f5a3c9543b",
     "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-customers-find-and-book-korean-esthetics",
+    "title": "外国顾客怎样寻找并预约韩国皮肤管理店？美容门店营销从哪里开始",
+    "excerpt": "让外国顾客看懂非医疗皮肤护理的内容、价格和所需时间，再顺利获得预约确认。逐项核对地图资料、外语服务页面、照片使用与实际接待流程。",
+    "category": "美容门店外国顾客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "a636095ec3adcaf3c2bedeed21f03ae0b85d3f19cf5027bc1295455c6f7baccf",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-guests-search-and-compare-accommodations",
+    "title": "外国客人去哪里搜索和比较住宿？旅舍与韩屋民宿的营销起点",
+    "excerpt": "从客房、浴室与楼梯，到入住后的到达指引，独立住宿需要把哪些信息告诉外国客人？区分预订前公开说明与确认后的专用信息，整理地图、官网和预订渠道。",
+    "category": "住宿外国客人营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "37c3188de4fea10acd06644385391171fae7c2042e55d33252858613fbdee7bc",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-guests-choose-korean-hotels-on-agoda-and-tripcom",
+    "title": "外国游客在Agoda和Trip.com上看什么才订酒店？酒店营销的起点",
+    "excerpt": "客房照片、床型、早餐、税费与取消条件，决定客人能否公平比较酒店。对照Agoda、Trip.com和Google官方说明，整理平台、地图及官网信息，并区分点击、预订与实际入住。",
+    "category": "酒店外国游客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-05",
+    "sourceContentSha256": "e8f560f09ebb6b67d29e9d074620eeaaddb3b9987a2dca28352b2bf317982cb2",
+    "imageUrl": ""
+  },
+  {
+    "id": "how-foreign-tourists-find-and-visit-korean-cafes",
+    "title": "外国游客会收藏并走进什么样的咖啡店？咖啡店营销怎么做",
+    "excerpt": "照片吸引收藏之后，顾客还要确认菜单、价格、营业时间和入口。把搜索、地图、照片与路线接好，并分别记录兴趣、点击和实际到店，才知道应先改善哪里。",
+    "category": "咖啡店外国顾客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-04",
+    "sourceContentSha256": "80a38fcd232bc3728402ce03bc123e151a0061164e5ac10e0440adbdcff06518",
+    "imageUrl": ""
   }
 ]
