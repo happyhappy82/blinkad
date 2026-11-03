@@ -178,5 +178,45 @@
     "originalPublishedAt": "2026-09-25",
     "sourceContentSha256": "21bb4f7d71e3fafcd7adaf778f8f507a7c24486afade19fd9f6f7f6c17687d39",
     "imageUrl": ""
+  },
+  {
+    "id": "google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+    "title": "Google地图能找到店铺，却没有咨询：先检查哪里？",
+    "excerpt": "区分店名搜索与新客户搜索，再查看浏览、点击、咨询和预约之间的变化。从资料信息、照片、评价与联系链接安排检查顺序。",
+    "category": "Google地图营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-25",
+    "sourceContentSha256": "84ef53e0ad4f8ea8ca53b166d1f080e8daf769c47299cb9637fa2d16ea5553f1",
+    "imageUrl": ""
+  },
+  {
+    "id": "haeoi-han-in-maejang-gyomin-sogaeman-gidalyeodo-doilkka",
+    "title": "海外韩裔商家，只等韩人社群介绍顾客够吗？",
+    "excerpt": "海外韩裔商家常靠熟人介绍迎来第一批顾客。若想让不认识店铺的本地人也找得到，应先整理Google搜索和地图中的营业信息、服务说明及咨询路径。",
+    "category": "海外门店营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-25",
+    "sourceContentSha256": "15e526f0eb27ad3ea2781eb2bc51c5c1c62ad01d793777dbef1aa5c1d85d677e",
+    "imageUrl": ""
+  },
+  {
+    "id": "gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo",
+    "title": "江南皮肤科外国患者营销：如何把Google地图搜索衔接到咨询预约",
+    "excerpt": "从Google地图被发现，到外语诊疗信息、咨询回复和预约确认，江南皮肤科需要接好哪些步骤？结合当时的五家搜索结果样本与官方统计，逐项说明。",
+    "category": "外国患者营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-18",
+    "sourceContentSha256": "1cfb035c49ac7c8cf0d3c81069e178609ec324b8ca74f30a1e92a93a063d1b50",
+    "imageUrl": ""
+  },
+  {
+    "id": "myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob",
+    "title": "明洞药店外国顾客营销：如何把游客的药店搜索变成到店机会",
+    "excerpt": "游客搜索明洞药店后，还会比较位置、营业时间、商品范围和入口。结合原调查的搜索词与地图记录，说明药店应先整理什么，以及如何区分点击、路线查询与实际到店。",
+    "category": "药店外国顾客营销",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-09-18",
+    "sourceContentSha256": "f48a048d277bcd9e93fe21a230e9c19ef00816156d59cc0f2d87f4f5a3c9543b",
+    "imageUrl": ""
   }
 ]
