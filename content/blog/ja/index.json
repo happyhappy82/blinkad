@@ -1198,5 +1198,45 @@
     "originalPublishedAt": "2026-01-21",
     "sourceContentSha256": "cb712854c9b1f0e60173feedbf7205a11247ba90c75afbce0824a94dc979f6c7",
     "imageUrl": ""
+  },
+  {
+    "id": "jeju-bonggaedong-sajangnim-gugeul-peulopil-goanlineun-pilsuibnida",
+    "title": "済州ボンゲ洞の事業者へ、Googleプロフィール管理が大切な理由",
+    "excerpt": "済州ボンゲ洞の原文商圏集計を参考に、Googleプロフィールの情報、写真、クチコミ、投稿の整え方を解説。店舗数と検索競争、実際の特徴と未確認の宣伝文句を区別します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-20",
+    "sourceContentSha256": "50027b6e1e090ce068701ac02e4640b16c61a78e5133d58929d55f07e359692e",
+    "imageUrl": ""
+  },
+  {
+    "id": "jeju-geon-ibdong-gbp",
+    "title": "済州コニプ洞のGoogleビジネスプロフィール管理",
+    "excerpt": "済州コニプ洞の店舗に向けて、基本情報、写真、営業時間、クチコミ、サービス説明の管理を紹介。原文の商圏数値と現在の検索競争を分け、無報酬でのクチコミ案内も解説します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-19",
+    "sourceContentSha256": "88d7ead2bcaca06a2b36750c1ed4ac0af92ba7abb037d1dc0c9e8ba8bac97323",
+    "imageUrl": ""
+  },
+  {
+    "id": "franchise-google-maps-agency-selection",
+    "title": "フランチャイズのGoogleマップ運用代行、複数店舗を任せる会社はどう選ぶ？",
+    "excerpt": "フランチャイズのGoogleマップ運用会社を選ぶ際に、業務範囲、直営店・加盟店の権限と協力、店舗別の報告、追加料金と契約終了時の引き継ぎを比べる方法を紹介します。",
+    "category": "Googleマップ運用",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-10-31",
+    "sourceContentSha256": "37f19b9b47b9b5bb9f58296d639bcdedf7080fb26bfab1286e4b68ee74b720b8",
+    "imageUrl": ""
+  },
+  {
+    "id": "foreign-google-ads-agency-selection",
+    "title": "外国人向けGoogle広告の運用代行、会社選びの前に確かめたい3つのこと",
+    "excerpt": "外国人向けGoogle広告の運用会社を選ぶ前に、対象の国・言語を決めた理由、広告と外国語ページ・問い合わせの一致、クリックと実際の相談を分ける報告方法を確認しましょう。",
+    "category": "外国人向けマーケティング",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-11-02",
+    "sourceContentSha256": "7fa2cb3435d97f33bea8ad492d54fe1f41516b1fe4b60135379ec204e7ba1c51",
+    "imageUrl": ""
   }
 ]

@@ -182,23 +182,24 @@ test('reviewed English articles have real equivalents without inventing other tr
   assert.equal(new Set(ENGLISH_BLOG_POSTS.map(post => post.id)).size, ENGLISH_BLOG_POSTS.length)
 })
 
-test('Japanese articles link to real Korean and English versions without inventing Chinese pages', () => {
+test('Japanese articles link to available editions without inventing English or Chinese pages', () => {
   assert.ok(JAPANESE_BLOG_POSTS.length > 0)
   for (const post of JAPANESE_BLOG_POSTS) {
     const original = `/blog/${post.id}`
+    const hasEnglish = ENGLISH_BLOG_POSTS.some(english => english.id === post.id)
     assert.equal(localizedPath(original, 'ja'), `/ja${original}`)
     assert.equal(localizedPath(original + '?ref=language#contact', 'ja'), `/ja${original}?ref=language#contact`)
     assert.equal(localizedPath(original, 'ko'), original)
-    assert.equal(localizedPath(original, 'en'), `/en${original}`)
+    assert.equal(localizedPath(original, 'en'), hasEnglish ? `/en${original}` : original)
     assert.equal(localizedPath(original, 'zh'), original)
     assert.deepEqual(languageAlternates(original), {
       ko: `https://www.blinkad.kr${original}`,
-      en: `https://www.blinkad.kr/en${original}`,
+      ...(hasEnglish && { en: `https://www.blinkad.kr/en${original}` }),
       ja: `https://www.blinkad.kr/ja${original}`,
       'x-default': `https://www.blinkad.kr${original}`,
     })
     assert.ok(fs.existsSync(`content/blog/ja/${post.id}.html`))
-    assert.ok(ENGLISH_BLOG_POSTS.some(english => english.id === post.id))
+    if (hasEnglish) assert.ok(fs.existsSync(`content/blog/en/${post.id}.html`))
   }
   assert.equal(new Set(JAPANESE_BLOG_POSTS.map(post => post.id)).size, JAPANESE_BLOG_POSTS.length)
 })
