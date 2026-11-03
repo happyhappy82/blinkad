@@ -1148,5 +1148,55 @@
     "originalPublishedAt": "2026-01-26",
     "sourceContentSha256": "13aa6e22ee22a1264482669b0300c7a4d3432b5ad96ff7446b6eefa4ebc2391c",
     "imageUrl": ""
+  },
+  {
+    "id": "gbpgeumnammyeon",
+    "title": "クムナム面のGoogleビジネスプロフィール管理",
+    "excerpt": "世宗クムナム面の地域店に向けて、基本情報、カテゴリ、写真、クチコミ、投稿の整え方を解説。原文の商圏集計と現在の運用条件を分けて紹介します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-25",
+    "sourceContentSha256": "fcd1edd258671467059ca8a42634376695fbdd32f075be0d44352a6fcbe439a3",
+    "imageUrl": ""
+  },
+  {
+    "id": "goundong-eseo-gbplan",
+    "title": "コウン洞でGoogleビジネスプロフィールを管理するには？",
+    "excerpt": "世宗コウン洞の事業者に向けて、地域検索、建物と階数の案内、写真、クチコミ、パフォーマンスの読み方を紹介。原文の商圏集計と実際の検索競争を区別して解説します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-24",
+    "sourceContentSha256": "99ec3137bd88c937b7d3f2f43946b197da08037996af23f1fd2f5cc4d435a1e7",
+    "imageUrl": ""
+  },
+  {
+    "id": "jeju-gujoaeub-gbp",
+    "title": "済州クジャ邑のGoogleビジネスプロフィール管理",
+    "excerpt": "済州クジャ邑の宿泊・飲食などの事業者へ、写真、店舗情報、クチコミ、連絡先の整え方を解説。原文の地域集計、ホテルの投稿制限、旧チャット機能終了も区別して説明します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-23",
+    "sourceContentSha256": "6646b0f496f1800146b34ba03c4ad67fcb4d4d2b28cc8eb0e3a8383fba6732db",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-peulopil-i-pil-yohan-jejudo-nohyeongdong-sanggueon-teugjing-eun",
+    "title": "済州ノヒョン洞の商圏でGoogleプロフィールが必要な理由",
+    "excerpt": "済州ノヒョン洞の原文商圏データを参考に、検索語、店舗説明、写真、クチコミ、管理手順を解説。店舗数と検索競争、来店型店舗と出張型事業者の設定を分けて説明します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-22",
+    "sourceContentSha256": "47ca4fa082d720b23141d9b3dfebcaab7d1effd5ebaa1a3ed1628cf956e38f26",
+    "imageUrl": ""
+  },
+  {
+    "id": "dodudong-eseo-gbpi-jung-yohan-iyu",
+    "title": "トドゥ洞でGoogleビジネスプロフィールが大切な理由",
+    "excerpt": "済州トドゥ洞の店舗情報、写真、クチコミ、投稿、パフォーマンスの管理を解説。原文の地域集計を残し、クチコミの文言指定やデータの読み違いを避けるポイントを紹介します。",
+    "category": "Googleビジネスプロフィール",
+    "publishedAt": "2026-11-03",
+    "originalPublishedAt": "2026-01-21",
+    "sourceContentSha256": "cb712854c9b1f0e60173feedbf7205a11247ba90c75afbce0824a94dc979f6c7",
+    "imageUrl": ""
   }
 ]
