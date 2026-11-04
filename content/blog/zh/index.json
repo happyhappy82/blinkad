@@ -782,5 +782,45 @@
     "originalPublishedAt": "2026-03-07",
     "sourceContentSha256": "412b60dbd10321ddb09e09a9e3af67ffeecdb8d05d6b06d312f36735e4725ca3",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-libyu-neullineun-bangbeob-sonnim-ege-jayeonseuleobge-yocheonghaneun-menteu-5gaji",
+    "title": "怎样自然邀请 Google 评价？五种门店情形的表达示例",
+    "excerpt": "餐厅、咖啡馆、美发店等怎样说明评价入口？BlinkAd 提供五种中立邀请示例、消息模板与二维码做法，并说明奖励、筛选和指定内容的限制。",
+    "category": "评价管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-06",
+    "sourceContentSha256": "5c75dc472c5adb605801245d1a043483791b8c0309b93ed2d2ec9a46f6c94249",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-gesimul-jagseongbeob-mulyolo-goanggohaneun-bangbeob",
+    "title": "Google 商家资料帖子怎么写？不购买广告也能发布门店动态",
+    "excerpt": "怎样选择更新、优惠或活动，准备照片与链接，并检查发布后的状态？BlinkAd 说明商家资料动态写法、现行类型、归档与效果数据的限制。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-05",
+    "sourceContentSha256": "3d31c34f32f2a2565aa4e1904cd89b52dfb913dedf6fa0340104a4911d81f321",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji",
+    "title": "已经注册门店，Google 地图还是找不到？五类情况与排查方向",
+    "excerpt": "先区分找不到店名与没有排在前面。BlinkAd 按验证、资料、类别、位置和处理状态，说明地图展示问题的检查方向与常见误区。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-04",
+    "sourceContentSha256": "3b824ad2c2fd3a60369783c61cd43c3351ef231e6865c8fdca7aa065f286402f",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-seo-sijag-bangbeob-ibmunjaleul-uihan-90il-siljeon-lodeumaeb-2026",
+    "title": "Google SEO 怎么开始？2026年新手九十天执行计划",
+    "excerpt": "从基础检查、内容与搜索意图，到数据复盘和咨询路径，BlinkAd按三个阶段说明SEO怎样开始，并区分九十天工作计划与实际效果。",
+    "category": "SEO",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-27",
+    "sourceContentSha256": "e9eab46343637675cd0e0e7787dadd64ac483d9b4dbe6b796d9faed0e54df4dd",
+    "imageUrl": ""
   }
 ]
