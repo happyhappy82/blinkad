@@ -658,5 +658,49 @@
     "originalPublishedAt": "2026-04-22",
     "sourceContentSha256": "d1fa342c5f67da6816a50922f6154f69c515d43377ba93d961bf22a98550fae1",
     "imageUrl": ""
+  },
+  {
+    "id": "sosanggong-in-onlain-maketing-gugeul-eseo-sonnim-badneun-3dangye",
+    "title": "小店线上营销：通过 Google 获客的三个步骤",
+    "excerpt": "预算有限的韩国小店，怎样从 Google 商家资料、真实评价和持续更新开始？BlinkAd 说明三个步骤、实际投入和常见误区。",
+    "category": "Google 营销",
+    "readTime": "8分钟",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-04-08",
+    "sourceContentSha256": "4cba623c7d5ff8116569a74b60cbbac9833182b151a5f5a12f3686b474d767d9",
+    "imageUrl": ""
+  },
+  {
+    "id": "haipeolokeol-maketing-ilan-bangyeong-1km-an-eseo-maechul-mandeuneun-jeonlyag",
+    "title": "什么是超本地营销？从方圆1公里思考门店营收",
+    "excerpt": "怎样让附近居民、上班族与游客找到门店？BlinkAd 从商圈范围、Google 商家资料、社区和广告定位，说明超本地营销的做法与衡量方法。",
+    "category": "本地营销",
+    "readTime": "8分钟",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-04-02",
+    "sourceContentSha256": "9841dda0e0105e0222a87b9224e11087c3069c41bdeaf71ab8854edfb65847ba",
+    "imageUrl": ""
+  },
+  {
+    "id": "lokeol-seolan-dongne-jangsahaneun-sajangnim-eul-uihan-suiun-seolmyeong",
+    "title": "什么是本地 SEO？写给社区小店经营者的入门说明",
+    "excerpt": "顾客搜索附近餐厅、美发店或其他服务时，怎样才能看清门店信息？BlinkAd 解释本地 SEO、商家资料、真实评价与五项基础工作。",
+    "category": "本地 SEO",
+    "readTime": "7分钟",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-30",
+    "sourceContentSha256": "103a1799d637c6454abbaed021a7199d890311831d6460af81d1f8db865130d6",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka",
+    "title": "Google 地图评价与 Naver Place 评价，哪一个更有助于营收？",
+    "excerpt": "韩国门店该先维护 Google 还是 Naver 评价？BlinkAd 从实际客源、业种、平台规则和日常管理，说明如何判断投入重点。",
+    "category": "评价管理",
+    "readTime": "9分钟",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-27",
+    "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
+    "imageUrl": ""
   }
 ]
