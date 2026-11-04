@@ -458,5 +458,45 @@
     "originalPublishedAt": "2026-08-05",
     "sourceContentSha256": "f043e9cd450932b18cfa0207304566825c33571dbab57acb2b557708bc008e82",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli",
+    "title": "Google广告每月花多少才合适？从行业费用示例算起",
+    "category": "Google广告",
+    "excerpt": "分清点击计费与目标CPA，再用韩元预算示例估算点击，了解测试、转化记录和SEO维护该怎样一起考虑。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-06-17",
+    "sourceContentSha256": "1a63bdfcb82dd5cd7d60f396208001b18c14140194e8828507a2eadc391a68d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "uichaespei-hangug-gyeolje-junggug-in-goangoanggaeg-manh-eun-maejang-i-hoag-inhal-geos",
+    "title": "韩国门店接待中国游客，微信支付要先确认什么？",
+    "category": "外国顾客接待",
+    "excerpt": "先核实微信支付与跨境二维码的实际受理范围，再统一地图照片、收银台提示、员工回答及付款异常处理。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-31",
+    "sourceContentSha256": "b1e383602c68c69c6e1cbe88d3ce0cb7d142e244bb87463471228cd5fd99e5a8",
+    "imageUrl": ""
+  },
+  {
+    "id": "allipei-hangug-gyeolje-oigug-in-sonnim-badneun-maejang-i-junbihal-geos",
+    "title": "韩国门店支持支付宝前，先把这些付款问题说清楚",
+    "category": "外国顾客接待",
+    "excerpt": "Alipay是钱包，Alipay+连接多种支付应用。了解韩国门店实际受理条件，再统一收银台说明、地图照片和付款异常处理。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-30",
+    "sourceContentSha256": "038d201159acff951e0abcd6229d78c2ab57741275717ca163a95f989a9ad0ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "taegseulipeondeu-maejang-oigug-in-goangoanggaeg-i-hesgalliji-anhge-annaehaneun-bangbeob",
+    "title": "韩国门店退税说明，怎样让外国游客看得懂？",
+    "category": "外国顾客接待",
+    "excerpt": "先核实门店资格、商品与旅客条件，再说明15,000韩元下限、即时退税门槛、护照和单据，让线上与收银台提示保持一致。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-29",
+    "sourceContentSha256": "55414803e02b9659597d749da29b30a1d1ddf30a6955cfaf56394d823888ce4d",
+    "imageUrl": ""
   }
 ]
