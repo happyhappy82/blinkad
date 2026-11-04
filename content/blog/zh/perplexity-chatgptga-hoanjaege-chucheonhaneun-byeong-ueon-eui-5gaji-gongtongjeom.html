@@ -1,0 +1,125 @@
+<p><a href="https://www.soci.ai/news/in-ai-driven-discovery-few-brands-are-chosen-most-disappear/" rel="noopener noreferrer" target="_blank">SOCi2026年LVI</a>在海外多地点品牌样本中记录，ChatGPT推荐地点比例为<strong>1.2%</strong>。它覆盖2,751个品牌、35万以上地点，不是“每一百家韩国医院只有一两家被推荐”的概率。</p>
+<p>同一资料的<strong>45%重合率属于零售品牌范围</strong>；另外，<strong>Google本地三结果包35.9%、ChatGPT1.2%</strong>是两项样本指标。它们相除约<strong>29.9</strong>，不能解释成同一批医院被淘汰三十分之二十九，也不能推断医院竞争难度。</p>
+<p>那么，医院能从哪些地方整理资料？BlinkAd把可以先看的内容整理成<strong>五个方向</strong>，作为负责人检查公开内容的方法。它们不是已经验证的“AI推荐医院必须同时满足”的五道门槛。</p>
+<hr/>
+<h2>方向一：让读者知道由谁撰写与审核</h2>
+<h3>先核对依据</h3>
+<blockquote>原稿引述Rankved，称“没有来源的医疗内容不会被Google引用，每页都必须有医生作者”。本篇未验证这一硬性规则；更合适的做法是按实际责任补充作者、审核和依据，不承诺引用结果。</blockquote>
+<p>医疗内容值得先说清<strong>谁撰写、谁审核以及依据是什么</strong>。<a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=zh-cn" rel="noopener noreferrer" target="_blank">Google的内容指南</a>重视可靠性与责任，但不能反过来说所有AI只引用有公开完整执照号码的页面，或没有某个字段就一定排除。</p>
+<h3>本院可以怎样整理</h3>
+<p>按真实情况说明<strong>作者与审核者</strong>，需要时附可核实经历。<a href="https://schema.org/Person" rel="noopener noreferrer" target="_blank"><strong>Schema.org</strong></a>可用<strong><code>Person</code></strong><strong>与</strong><strong><code>sameAs</code></strong><strong>描述真实人物及同一身份链接</strong>，但标记不等于资格认证，也不是必须公开完整执照号的AI规则。</p>
+<pre><code>{
+  "@type": "Person",
+  "name": "[真实作者姓名]",
+  "jobTitle": "[实际职务]",
+  "sameAs": ["https://example.com/verified-author-profile"]
+}
+仅作格式示例。替换前确认链接确实属于同一个人，不虚构协会主页或资格。</code></pre>
+<p>如果缺少作者说明，可以先补足真实责任信息，而不是认定医院已经在起点出局。下例只展示格式，example.com是占位域名，不是某位真实医生或协会的认证页面。</p>
+<hr/>
+<h2>方向二：让问题与答案容易找到</h2>
+<h3>先核对依据</h3>
+<blockquote>原稿引述“AI只抽取前60至100个英文单词”，未提供可复核的统一平台规则。尽早回答有助于阅读，但400词与10词的位置差，不足以判断哪一页必然获引用。</blockquote>
+<h3>本院可以怎样整理</h3>
+<p>可以先看看原稿所举的旧式写法。下列数量只是示意，不是对所有医院文章的调查。</p>
+<pre><code>旧式开场示意
+- 先写很长的医院介绍
+- 再介绍若干诊疗项目
+- 然后谈费用
+- 最后才回答读者的问题
+这不是对所有医院的调查结果。</code></pre>
+<p>再把读者的问题和回答放近一些。原稿的“5,000例、平均两天、24至48小时恢复”没有附可核实资料，不能当作本院实绩或统一术后安排；这里改成一般编辑示例。</p>
+<pre><code>回答在前的编辑示例：需经医疗人员审核
+问题：LASIK术后的恢复安排怎样确认？
+回答：应结合个人检查、术后变化和复诊，由负责医生说明。
+如需引用本院统计，补上真实样本、期间、指标与局限。
+随后解释适用条件、重要风险和下一步如何确认。
+不填写未经核实的成功率或恢复天数。</code></pre>
+<p>先简短回应，再解释条件和来源。<strong>两至五句</strong>可以是写作起点，不要求所有医疗问题都用固定长度回答，更不能为短而省略重要风险。</p>
+<hr/>
+<h2>方向三：把问答、依据与标记分开理解</h2>
+<h3>先核对依据</h3>
+<blockquote>原稿将FAQ标记加正文引文的“40%权重”归于Position Digital，本篇未确认对应原始实验与医疗适用条件，不把它作为医院效果预测。</blockquote>
+<h3>两个具体做法</h3>
+<p><strong>FAQ与页面标记</strong>：<a href="https://schema.org/FAQPage" rel="noopener noreferrer" target="_blank"><code>FAQPage</code>词汇</a>可以用于描述问答，但Google已在2026年5月7日停用FAQ富媒体搜索结果，并于6月15日移除相关文档，见<a href="https://developers.google.com/search/updates?hl=zh-cn#removing-faq-rich-result" rel="noopener noreferrer" target="_blank">官方更新记录</a>。写FAQ应先帮助读者，不把标记当成当前展示或AI引用保证。</p>
+<p><strong>正文中的来源</strong>：把论文、指南或政府资料放在它实际支持的说明旁边，读者更容易核对。来源链接不能替代临床审核，也不能让不符合依据的句子变可靠。</p>
+<pre><code>格式阅读示例，不是本页新增脚本，也不恢复已停用的Google FAQ富媒体结果
+&lt;script type="application/ld+json"&gt;
+{
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "LASIK咨询前，应怎样了解风险？",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "由负责医生结合检查说明适用条件与重要风险，不以通用数字替代个人评估。"
+    }
+  }]
+}
+&lt;/script&gt;</code></pre>
+<p>原稿列<strong>Perplexity78%、ChatGPT62%</strong>的来源显示比例，但未给出可复核的医疗样本和统一方法。本篇不据此判断医院在某个平台采用引文格式就一定更有效。</p>
+<hr/>
+<h2>方向四：资料需要更新时，说明改了什么</h2>
+<h3>关于日期的研究，应该怎样读？</h3>
+<ul><li><a href="https://ahrefs.com/blog/chatgpts-most-cited-pages/" rel="noopener noreferrer" target="_blank">Ahrefs的引用最多一千页分析</a>中，可识别日期的564个URL有<strong>76.4%在此前约一个月更新</strong>。这是2025年10月发布的特定子样本，不能改成全部ChatGPT引用的比例，也不同于同年七月约1,700万引用研究。</li>
+<li>原稿列<strong>85%的来源来自自然结果前十名以外</strong>，归于BrightEdge；本篇未确认对应时期与样本，不能当成当前全平台比例，也不能因此说新文章就必然获引用。</li>
+<li>原稿列<strong>覆盖率26.6%到44.4%</strong>：不同期间、查询和采样方式需先确认，本篇不将其作为韩国医院当前覆盖率。</li>
+</ul>
+<h3>本院可以怎样整理</h3>
+<p>旧文章是否需要改，可以从信息是否仍准确判断。不能仅因发表超过三年就断言AI几乎不引用，也不应只把日期改成今天。</p>
+<ul><li>仅在内容实际修改时，准确更新<code>dateModified</code>等日期。</li>
+<li>在正文中说明实际更新日期与重要改动，不随意写成“2026年4月已更新”。</li>
+<li>诊疗范围、费用和统计有变更时核实并更新；按需要安排，而非固定季度才可修改。</li>
+<li>只有确有必要、资料真实且允许公开时，才补充病例或数据，并落实隐私与医疗审核。</li>
+</ul>可以先选一批重要旧文，例如<strong>二十篇、每九十天回看一次</strong>，作为编辑安排示例；没有证据说这一数量或周期一定比重写一百篇更有效。<hr/>
+<h2>方向五：核对官网以外的公开信息</h2>
+<h3>酒店数据的范围</h3>
+<p><a href="https://www.cloudbeds.com/articles/ai-hotel-recommendations-study/" rel="noopener noreferrer" target="_blank">Cloudbeds酒店研究</a>覆盖六个目的地、145家持续排名靠前的酒店，记录<strong>OTA占引用来源55.3%</strong>，包括旅行平台如<a href="https://www.booking.com/" rel="noopener noreferrer" target="_blank"><strong>Booking.com</strong></a><strong>等</strong>；样本中<strong>品牌或大集团酒店占72.4%</strong>。这不是医院研究，也不能推断独立酒店或只有官网的医院不会被推荐。</p>
+<p>同一酒店样本，还记录了一些外部渠道的存在情况。可以把它作为观察线索，不能直接搬成医院的发布数量要求。</p>
+<ul><li>酒店样本记录<strong>YouTube存在率98%</strong>、旅行博客97%、<strong>Reddit95%</strong>。它们是观察值，不是医院必须发帖的配额，更不应伪造第三方讨论。</li>
+</ul>回到医院内容，可以把重点放在实际使用渠道的准确信息，而不是照搬酒店结果：<ul><li>韩国渠道可按实际使用情况核对：<strong>Naver Place、Modoodoc、Gangnam Unni、Goodoc、Kakao地图等</strong>，不要求每院全部注册。</li>
+<li>全球渠道示例包括<strong>Google商家资料、Healthgrades、WebMD</strong>；先确认地区、资格、对象与实际可刊登条件，不默认韩国医院都适合。</li>
+</ul>
+<h3>酒店研究不能直接变成医院规则</h3>
+<p>可以留意<strong>外部平台曝光</strong>，但这些观察还不能说明究竟是哪一步带来了推荐。官网和外部资料可一起检查，不必把两者看成只能选一个。</p>
+<p>因此，不应要求每家医院先有一百条Naver评价、某平台注册和Google4.5星才“值得信任”。这些并不是已经确认的所有AI门槛，星级也不能证明医疗质量与安全。</p>
+<h3>本院可以检查什么</h3>
+<ul><li>[ ] Google商家资料是否符合资格、真实准确，评价是否来自自愿的真实体验；五十条或4.3星不是固定AI门槛。</li>
+<li>[ ] Naver资料是否准确；一百条评价或AI摘要出现不等于服务质量，也不代表缺少就无法被找到。</li>
+<li>[ ] 按本院领域与实际需要，核对已使用目录的刊登内容、资格和费用。</li>
+<li>[ ] Kakao地图等实际使用渠道的地址、电话和回复是否准确，并保护个人信息。</li>
+</ul>
+<hr/>
+<h2>把五个方向整理成本院检查表</h2>
+<div style="overflow-x: auto"><table class="w-full border-collapse my-6 text-sm">
+<thead><tr><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">序号</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">检查方向</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">范围与限制</th><th class="border border-gray-700 px-4 py-2 text-left bg-gray-800 font-semibold">本院待确认</th></tr></thead>
+<tbody><tr><td class="border border-gray-700 px-4 py-2">①</td><td class="border border-gray-700 px-4 py-2">真实作者与审核责任</td><td class="border border-gray-700 px-4 py-2">Person/sameAs描述不等于资质认证，没有固定公开执照号门槛</td><td class="border border-gray-700 px-4 py-2">[ ]</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">②</td><td class="border border-gray-700 px-4 py-2">尽早回答实际问题</td><td class="border border-gray-700 px-4 py-2">60至100英文单词只是原稿建议，不是所有AI抽取规则</td><td class="border border-gray-700 px-4 py-2">[ ]</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">③</td><td class="border border-gray-700 px-4 py-2">有用的问答与可核对来源</td><td class="border border-gray-700 px-4 py-2">Google FAQ富结果已停用，标记不保证引用，也没有已验证40%医院加权</td><td class="border border-gray-700 px-4 py-2">[ ]</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">④</td><td class="border border-gray-700 px-4 py-2">实际信息更新</td><td class="border border-gray-700 px-4 py-2">日期子样本与全部引用不同，不只改日期、不套统一九十天门槛</td><td class="border border-gray-700 px-4 py-2">[ ]</td></tr>
+<tr><td class="border border-gray-700 px-4 py-2">⑤</td><td class="border border-gray-700 px-4 py-2">官网以外的真实资料</td><td class="border border-gray-700 px-4 py-2">酒店OTA/视频观察不能当成医院评价数量或平台注册配额</td><td class="border border-gray-700 px-4 py-2">[ ]</td></tr></tbody>
+</table></div>
+<p>五项表格用于帮助负责人逐项看资料，不是满足三项以下就自动退出候选名单的评分规则。</p>
+<hr/>
+<h2>从本院实际需要开始，不套用入选公式</h2>
+<p>我们建议把<strong>这五个方向按本院实际问题使用</strong>。没有证据表明所有AI会将五个分数相乘，或其中一项不足就一定不引用。</p>
+<p>这些工作仍需核对<strong>内容、隐私与医疗广告条件</strong>。作者说明、数据或FAQ并不天然属于“无需审查的安全区”；是否属于广告、媒介是否适用及相关例外，都要按具体情况看。</p>
+<p>院长这周可以先选三个地方读一遍。</p>
+<ul><li><strong>先看一篇重要页面的开头</strong>：患者的问题有没有尽早得到清楚回应，条件是否完整。</li>
+<li><strong>看看真实评价与回复</strong>：是否有帮助理解体验，是否遵守平台和医疗广告规则，不只追数量。</li>
+<li><strong>读几篇重要旧文</strong>：资料有没有过期，需要改什么，而不是只看是否在九十天以内。</li>
+</ul>三项都需要补充时，先核对重要信息和读者问题，再结合实际咨询与成本讨论预算，不预先承诺比广告有更高ROI。<p>如果想知道本院可以先补什么，可以<a href="/zh/contact">把公开页面与希望回答的问题告诉BlinkAd</a>。我们会一起看需要核对的事实、内容与渠道，再一起看看先整理哪里，不以1.2%当作本院的入选目标或保证。</p>
+<hr/>
+<h3>参考资料与核验范围</h3>
+<ul><li><a href="https://www.soci.ai/news/in-ai-driven-discovery-few-brands-are-chosen-most-disappear/" rel="noopener noreferrer" target="_blank">SOCi2026年LVI原始介绍</a>：多地点品牌样本、1.2%与35.9%、零售重合45%，不等于韩国医院推荐概率。</li>
+<li>原稿所引Rankved2026年医院指南：没有证实“无作者必不引用”或固定60至100词的硬门槛。</li>
+<li>原稿所引Position Digital统计汇总：未确认FAQ加引文提高40%的原始医疗实验。</li>
+<li>原稿所引BrightEdge数据：85%及覆盖率变化的原始条件未复核，不作本篇当前医院指标。</li>
+<li><a href="https://ahrefs.com/blog/chatgpts-most-cited-pages/" rel="noopener noreferrer" target="_blank">Ahrefs2025年10月的一千页分析</a>与<a href="https://ahrefs.com/blog/do-ai-assistants-prefer-to-cite-fresh-content/" rel="noopener noreferrer" target="_blank">2025年7月约一千七百万引用研究</a>是两组研究，不能混用76.4%的分母。</li>
+<li><a href="https://www.cloudbeds.com/articles/ai-hotel-recommendations-study/" rel="noopener noreferrer" target="_blank">Cloudbeds酒店推荐研究</a>：六个目的地145家持续靠前酒店的观察，不能直接变成医疗行业阈值。</li>
+<li><a href="https://www.averi.ai/" rel="noopener noreferrer" target="_blank">Averi.ai</a>：原稿所引B2B SaaS比较未核实完整方法，不将78%与62%当作医院适用规律。</li>
+<li>原稿所引医疗YouTube报道：平台引用份额不证明医疗质量或医院必须制作视频。</li>
+<li>原稿所引ALM的GEO指南：不作为五条件相乘、预算调整或ROI的实证依据。</li>
+</ul>
+<hr/>
+<p>BlinkAd是一家专注于Google与AI营销的代理机构，帮助企业规划外国顾客从搜索、了解信息到咨询和到访的过程。</p>
