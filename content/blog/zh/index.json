@@ -418,5 +418,45 @@
     "originalPublishedAt": "2026-08-11",
     "sourceContentSha256": "4623c183b16807ca93e4f9b36f286958726be44a8bde7bcc46fe98c87869db7a",
     "imageUrl": ""
+  },
+  {
+    "id": "yaggug-yeong-eo-hoihoaboda-jung-yohan-oigug-in-sonnim-i-uli-yaggug-eul-chaj-aoge-mandeuneun-beob",
+    "title": "药店接待外国顾客，除了学英语，还要让人找得到门店",
+    "excerpt": "准备外语接待时，也看看顾客怎样发现药店。结合原稿的历史查询词，说明Google资料、真实照片、评价与到店沟通可以怎样一起准备。",
+    "category": "药店外国顾客营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-08-08",
+    "sourceContentSha256": "efd265dbb2f2d8b658314d742f7fa08c83b4aeae5cbc1f0a6df464128ee957ef",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-yaggug-sobi-17bae-gakkai-neul-eossneunde-uli-yaggug-eun-oae-joyonghalkka",
+    "title": "外国人在韩药店消费接近2021年的17倍，门店为什么没感受到？",
+    "excerpt": "从当时报道的药店消费变化，回到门店能做的信息准备。分清信用卡消费金额、结算笔数和历史搜索量，再检查位置、营业时间、评价与外语接待。",
+    "category": "药店消费与外国顾客",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-08-08",
+    "sourceContentSha256": "f374f5f20897867fc7811c68aa4ef513bf686ff41f2e942385dfda651f3302d9",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-hoanja-yuchi-oae-goanggoboda-gugeul-jido-sun-ui-jindan-i-meonjeoilkka",
+    "title": "外国患者营销：投广告前，为什么先查Google地图排名？",
+    "category": "医院营销",
+    "excerpt": "从一家江南皮肤科的既有地图诊断案例，看多语言排名、评价与患者查询之间的关系，以及投放广告前值得检查的事项。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-08-07",
+    "sourceContentSha256": "bb66ffb7ccfa0023a7502c2ffa28dc6dc4fa7edfb3f96e268d04183e76d68daf",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-tages-hompeiji-jejag-eobche-goleugi-jeon-chekeuliseuteu-6gaji",
+    "title": "面向外国顾客做网站，选制作公司前先问清六件事",
+    "category": "网站制作",
+    "excerpt": "设计之外，域名权限、维护费用、手机版、多语言搜索设置和合作结束后的交接，也值得在签约前逐项确认。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-08-05",
+    "sourceContentSha256": "f043e9cd450932b18cfa0207304566825c33571dbab57acb2b557708bc008e82",
+    "imageUrl": ""
   }
 ]
