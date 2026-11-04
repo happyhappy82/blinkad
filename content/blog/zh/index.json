@@ -862,5 +862,45 @@
     "originalPublishedAt": "2026-02-22",
     "sourceContentSha256": "86a2f2d9797f966ca82b4ac98544f1fbd6f57a83e618b97c160b49b31d7376b8",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-peulopil-goanli-oae-gamanhi-iss-eumyeon-andoilkka",
+    "title": "Google 商家资料管理，为什么不能一直放着不管？",
+    "excerpt": "营业时间、电话和评价无人查看，会让顾客在联系门店时遇到问题。BlinkAd 提供日常、每周、每月的管理安排，并说明工作指标与真实经营结果怎样区分。",
+    "category": "商家资料管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-21",
+    "sourceContentSha256": "d3d250280fe821aa628edbe3dbb1d9fb60e8e16369b98f060838f8abc04e5391",
+    "imageUrl": ""
+  },
+  {
+    "id": "dunchon1dong-gbp-deungloggoanli-daehaeng",
+    "title": "遁村1洞 Google 商家资料注册与代运营",
+    "excerpt": "从遁村1洞的道路、建筑和业态例子出发，BlinkAd 说明商家资料注册、营业信息、照片与评价如何管理，以及委托协助前应确认的内容。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-21",
+    "sourceContentSha256": "dc40ef63319e686a62a062fbc3f44f5b01e7ceb68aaef16891ee453dc0c49f64",
+    "imageUrl": ""
+  },
+  {
+    "id": "gildong-gbp-sang-uinochul-choijeoghoa",
+    "title": "吉洞 Google 商家资料本地搜索优化",
+    "excerpt": "吉洞门店怎样整理名称、地址、类别、照片与评价？BlinkAd 结合原稿商圈例子说明管理顺序，并区分地区搜索优化与排名保证。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-20",
+    "sourceContentSha256": "616a7a604f2913f7084dbea9eeb7377d02e1f3cb70c2ca14b618a132d739c700",
+    "imageUrl": ""
+  },
+  {
+    "id": "godeog2dong-gbp-seobiseu",
+    "title": "高德2洞 Google 商家资料管理服务",
+    "excerpt": "从高德2洞的业态、道路与建筑例子出发，BlinkAd 说明商家资料的业务介绍、照片、评价和持续管理，并区分准确资料与 AI 展示、排名结果。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-19",
+    "sourceContentSha256": "bc7b11c5af2deec75c54d2de5a63905e56269a92060b587261aa274b3ade2aa8",
+    "imageUrl": ""
   }
 ]
