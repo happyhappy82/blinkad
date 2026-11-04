@@ -538,5 +538,45 @@
     "originalPublishedAt": "2026-05-24",
     "sourceContentSha256": "a2591f6731fb18fe36713abe8679693c21a42f904b75645308176aedfb2659ce",
     "imageUrl": ""
+  },
+  {
+    "id": "yeong-eo-menyupan-mandeuneun-beob-oigug-in-sonnim-i-gugeulmaeb-eseo-siljelo-boneungeos-eun",
+    "title": "怎样做英文菜单？先看顾客在Google地图上能读到什么",
+    "category": "多语言菜单",
+    "excerpt": "从菜名、配料与点餐单位，到线上照片、菜单入口和评价回复，七步整理顾客到店前后需要的信息。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-24",
+    "sourceContentSha256": "6e92ba545d77980dfc6c96e756a4f244cd69c786c192ca9f441d2b536b7084e3",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-goangoanggaeg-tonggyeoa-chui-2026nyeon-oigug-inmaketing-i-jung-yohan-iyu",
+    "title": "外国游客统计与趋势：为什么2026年值得准备外国顾客营销？",
+    "category": "市场趋势",
+    "excerpt": "沿用2026年10月28日核对的9月统计，区分历史季度、银行卡消费与外国患者口径，把全国变化转成门店可以检查的问题。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-07",
+    "sourceContentSha256": "f36c9afdbfc138ec8bbf701dbacb6cab3f50a6c6557e499a24bd914355ad6d26",
+    "imageUrl": ""
+  },
+  {
+    "id": "angoa-aeo-chigoa-aeolo-singyu-hoanjaleul-neullil-su-iss-eulkka",
+    "title": "眼科、牙科做AEO，能帮助更多新患者了解医院吗？",
+    "category": "AEO与GEO",
+    "excerpt": "从咨询前的问题、诊疗页面和基本信息一致性入手，解释眼科与牙科怎样准备AEO内容，并分清搜索曝光、咨询与实际就诊。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-05",
+    "sourceContentSha256": "b3c7ac9e2f0db524ba5ddae6aa9905a0cdb98909b70abcb38d21a234872f45d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "seonghyeong-oigoa-geo-pibugoa-geolo-jeongchedoin-maechul-eul-neullil-su-iss-eulkka",
+    "title": "整形外科、皮肤科做GEO，能改善停滞的收入吗？",
+    "category": "AEO与GEO",
+    "excerpt": "从比较问题、到院信息和渠道事实一致性入手，说明整形外科与皮肤科怎样整理GEO内容，并分开看AI提及、咨询、就诊和收入。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-05",
+    "sourceContentSha256": "1834a9f8e27775db0fcb860851afc449cc381662a36e8af0169c33327c89f05c",
+    "imageUrl": ""
   }
 ]
