@@ -498,5 +498,45 @@
     "originalPublishedAt": "2026-05-29",
     "sourceContentSha256": "55414803e02b9659597d749da29b30a1d1ddf30a6955cfaf56394d823888ce4d",
     "imageUrl": ""
+  },
+  {
+    "id": "oaupaeseu-sseuneun-oigug-in-goangoanggaeg-sigdangkape-gyeolje-junbi-bangbeob",
+    "title": "顾客用WOWPASS付款，餐厅和咖啡馆要准备什么？",
+    "category": "外国顾客接待",
+    "excerpt": "分清WOWPASS购物插卡与Tmoney交通感应，先确认终端受理，再统一付款提示、员工回答、地图照片及异常处理。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-28",
+    "sourceContentSha256": "4c1a510a62c27a478aebfac11e64fa996f70e2028f17dc981695394cb6610885",
+    "imageUrl": ""
+  },
+  {
+    "id": "oigug-in-sonnim-eungdae-maenyueol-libyukkaji-joh-ajineun-gibon-munjang",
+    "title": "外国顾客接待手册：从点餐到评价，常用句子怎样准备？",
+    "category": "外国顾客接待",
+    "excerpt": "用简短英语说明座位、等位、配料、点餐条件和付款，再以自愿、中立的方式邀请真实反馈，让员工与线上信息说法一致。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-27",
+    "sourceContentSha256": "3289bb2bc03b4813e8bd3782c8e6757828d6eb26f3be7cdebc6fd2f7d470445a",
+    "imageUrl": ""
+  },
+  {
+    "id": "dagug-eo-menyupan-yeong-eoilbon-eojunggug-eo-eodikkaji-junbihaeya-halkka",
+    "title": "多语言菜单：英语、日语、中文，要准备到什么程度？",
+    "category": "多语言菜单",
+    "excerpt": "先核对菜品、价格、配料和点餐条件，再按实际顾客需求选择英语、日语、简体或繁体，并同步更新线上菜单。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-26",
+    "sourceContentSha256": "3a392d917af7eaacc3d45da9f2ee02360dbc180faa826b178efa22ece321c768",
+    "imageUrl": ""
+  },
+  {
+    "id": "menyupan-beon-yeog-matgigi-jeon-sigdang-sajangnim-i-hoag-inhaeya-hal-5gaji",
+    "title": "委托翻译菜单前，餐厅经营者先确认这五件事",
+    "category": "多语言菜单",
+    "excerpt": "先整理招牌菜、真实配方、价格份量与点餐条件，再核对辣度、过敏信息和线上菜单，让译稿能用于实际接待。",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-05-24",
+    "sourceContentSha256": "a2591f6731fb18fe36713abe8679693c21a42f904b75645308176aedfb2659ce",
+    "imageUrl": ""
   }
 ]
