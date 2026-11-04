@@ -702,5 +702,45 @@
     "originalPublishedAt": "2026-03-27",
     "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-maibijeuniseu-deunglogbuteo-goanlikkaji-2026nyeon-choisin-gaideu",
+    "title": "Google My Business 从注册到管理：2026年指南",
+    "excerpt": "在韩国经营门店，怎样认领 Google 商家资料、完成验证并安排后续维护？BlinkAd 按七个步骤说明注册与管理中需要确认的条件。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-24",
+    "sourceContentSha256": "cbb7f0cc85798426fe9ec35bff38d6fc02bd85f92326d351446b72d494544e8e",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-sajin-i-5jang-i-keulliglyul-eul-2baelo-mandeubnida",
+    "title": "Google 商家资料照片：这五类照片能让点击率翻倍吗？",
+    "excerpt": "外观、室内、商品、制作过程与团队照片该怎么准备？BlinkAd 说明 Google 商家资料照片的选择、上传规格和点击效果数字的适用限制。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-21",
+    "sourceContentSha256": "355d98cc14f2692667d601f7b9890b2f9257e26804a1aa69580e6471347ef68c",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-libyu-goanli-byeoljeom-45jeom-yujihaneun-gagedeul-i-maeil-haneun-igeoseun",
+    "title": "Google 评价管理：保持4.5分的门店，每天在做什么？",
+    "excerpt": "怎样查看、回复并整理 Google 评价？BlinkAd 说明门店可采用的日常安排、回复示例、通知入口与自愿邀请评价的原则。",
+    "category": "评价管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-18",
+    "sourceContentSha256": "b173d7ac7a2e82cdd125713a62aed4b6c28e1b445e9a1d44adf7e20a452aafb6",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-injeung-an-doil-ttae-ileohge-haegyeolhaseyo",
+    "title": "Google 商家资料无法验证？按这些情况逐步排查",
+    "excerpt": "收不到明信片、没有电话选项、视频被退回，或资料已由他人管理时怎么办？BlinkAd 说明 Google 商家资料验证的常见情况与处理方向。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-15",
+    "sourceContentSha256": "0b717bd72f3aae4d85aae427592606b3a00f54ad1adfc589cdd8f6993ada39e1",
+    "imageUrl": ""
   }
 ]
