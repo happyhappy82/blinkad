@@ -742,5 +742,45 @@
     "originalPublishedAt": "2026-03-15",
     "sourceContentSha256": "0b717bd72f3aae4d85aae427592606b3a00f54ad1adfc589cdd8f6993ada39e1",
     "imageUrl": ""
+  },
+  {
+    "id": "gugeul-seo-chekeuliseuteu-2026-igeosman-ttalahaseyo",
+    "title": "Google SEO 检查清单2026：按这些步骤逐项核对",
+    "excerpt": "网站 SEO 从哪里开始？BlinkAd 按基础设置、内容、本地搜索、技术体验与 AI 搜索说明检查顺序，并区分官方要求、编辑建议与效果限制。",
+    "category": "SEO",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-12",
+    "sourceContentSha256": "6d803a97a9386c0d5543b8299a523138ebd7cf8152c5a0b31dabc23dfb4228f7",
+    "imageUrl": ""
+  },
+  {
+    "id": "gugeul-maibijeuniseu-vs-bijeuniseu-peulopil-mueoga-daleun-geongayo",
+    "title": "Google My Business 与 Google 商家资料，有什么不同？",
+    "excerpt": "旧应用不见了，需要重新注册门店吗？BlinkAd 说明 Google My Business 与 Google Business Profile 的名称、管理入口和现有资料该怎样处理。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-09",
+    "sourceContentSha256": "3c0209d4ed9bf5eb19611b142f82228e05b4f7f7fc052d605a3122bc33a7e3be",
+    "imageUrl": ""
+  },
+  {
+    "id": "hompeiji-eobs-i-maketing-haneun-beob-gbpimyeon-chungbunhabnida",
+    "title": "没有官网也能开始营销：先用 Google 商家资料整理门店信息",
+    "excerpt": "没有官网的韩国门店，可以从哪些线上工作开始？BlinkAd 说明商家资料能做什么、适用资格，以及什么时候仍需要官网或详细服务页面。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-08",
+    "sourceContentSha256": "af862154a889409ce1d4f3f465c6130466da53ec7c913f73fc22c5c20dd8e94d",
+    "imageUrl": ""
+  },
+  {
+    "id": "agseong-libyu-daeeungbeob-sajangnim-i-jeoldae-hamyeon-an-doineun-dabgeul-yuhyeong-3gaji",
+    "title": "面对恶意评价，店主应避免的三类回复",
+    "excerpt": "收到难以接受的 Google 评价时，怎样先核实事实、保护隐私再回复？BlinkAd 用三类反例、回复思路与官方举报流程说明处理方向。",
+    "category": "评价管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-03-07",
+    "sourceContentSha256": "412b60dbd10321ddb09e09a9e3af67ffeecdb8d05d6b06d312f36735e4725ca3",
+    "imageUrl": ""
   }
 ]
