@@ -822,5 +822,45 @@
     "originalPublishedAt": "2026-02-27",
     "sourceContentSha256": "e9eab46343637675cd0e0e7787dadd64ac483d9b4dbe6b796d9faed0e54df4dd",
     "imageUrl": ""
+  },
+  {
+    "id": "myeong-il2dong-gbp-jeongbogoanli",
+    "title": "明逸2洞 Google 商家资料信息管理",
+    "excerpt": "从地区搜索、营业时间、入口照片到中立的评价邀请，BlinkAd 说明明逸2洞门店如何整理 Google 商家资料，并交代原稿商圈数字的使用限制。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-24",
+    "sourceContentSha256": "9de8d7e54d4065a0953dc22c7497ac0bc47e2b7d0534f5404d421f7f51947e67",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbp-daehaeng-seobiseu-oanbyeog-gaideu-2026",
+    "title": "Google 商家资料管理代办服务指南 2026",
+    "excerpt": "委托管理 Google 商家资料前，先比较所有权、具体工作、报告指标与交接条件。BlinkAd 按七个选择标准说明如何咨询和比较报价。",
+    "category": "商家资料管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-23",
+    "sourceContentSha256": "8b720f4ee1224fb8cd62f98efa4754dd57db3f287675b21cd1b7b3d0ea13e297",
+    "imageUrl": ""
+  },
+  {
+    "id": "myeong-il1dong-gbp-libyugoanli-daehaeng",
+    "title": "明逸1洞 Google 商家资料评价管理代办",
+    "excerpt": "BlinkAd 从明逸1洞门店的评价回复、真实照片、服务介绍与楼层引导入手，说明如何管理 Google 商家资料，以及委托前应确认的事项。",
+    "category": "评价管理",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-23",
+    "sourceContentSha256": "8882d5ef56d3b12ff0f8378b2f7412f7b8601c2b2de9e0aec07cbe7654ee500b",
+    "imageUrl": ""
+  },
+  {
+    "id": "dunchon2dong-gbp-seting-daehaeng",
+    "title": "遁村2洞 Google 商家资料设置代办",
+    "excerpt": "BlinkAd 说明遁村2洞门店的类别、简介、照片、评价与帖子如何整理，并区分原稿商圈数字、工作安排与可核对的成效指标。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-04",
+    "originalPublishedAt": "2026-02-22",
+    "sourceContentSha256": "86a2f2d9797f966ca82b4ac98544f1fbd6f57a83e618b97c160b49b31d7376b8",
+    "imageUrl": ""
   }
 ]
