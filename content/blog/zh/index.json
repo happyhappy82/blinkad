@@ -942,5 +942,45 @@
     "originalPublishedAt": "2026-02-16",
     "sourceContentSha256": "3bc6e32f8f60f15575805bc948a5df5cbfa7aa753222fedc5182b4f2e074677e",
     "imageUrl": ""
+  },
+  {
+    "id": "yeonseomyeon-gbp-maketing-goanli",
+    "title": "Yeonseo-myeon Google 商家资料营销管理",
+    "excerpt": "从候选搜索词与顾客需要查的信息出发，BlinkAd 说明 Yeonseo-myeon 门店的营业资料、类别、照片、评价和帖子如何管理，并提供日常检查清单。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-15",
+    "sourceContentSha256": "eefe6926538e291f4b1b2b3341031b5f00e06ed14ab7ba89d884057604777641",
+    "imageUrl": ""
+  },
+  {
+    "id": "haemildong-gbp-seumateugoanli",
+    "title": "Haemil-dong Google 商家资料高效管理",
+    "excerpt": "BlinkAd 从 Haemil-dong 门店的营业信息、评价、照片、帖子和成效指标入手，说明怎样安排日常管理，并交代原稿业态与建筑数字的使用范围。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-14",
+    "sourceContentSha256": "bca6b8263cfd6ff641982e824ec85c350f362c257a5cc88d04d34f39f9cd44cc",
+    "imageUrl": ""
+  },
+  {
+    "id": "hansoldong-gbp-maejanggoanli-daehaeng",
+    "title": "Hansol-dong Google 商家资料门店代运营",
+    "excerpt": "BlinkAd 结合 Hansol-dong 的业态、楼层和门店例子，说明营业信息、入口照片、评价、帖子与代管分工怎样整理，并区分原稿数字与当前经营事实。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-13",
+    "sourceContentSha256": "37fee1d6d2d77621acdc50536d653132e8d8aa008d3e560fd2418ad4f8763012",
+    "imageUrl": ""
+  },
+  {
+    "id": "jongchondong-gbp-lokeolseo-goanli",
+    "title": "Jongchon-dong Google 商家资料本地 SEO 管理",
+    "excerpt": "BlinkAd 结合 Jongchon-dong 的搜索情形与业态例子，说明关键词、营业信息、照片、评价和预约入口如何整理，并区分工具估算与真实经营结果。",
+    "category": "本地 SEO",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-12",
+    "sourceContentSha256": "8903ab5e8b28253e5105bd25caabb63b95f6cff1eb4ee5caeea95c706a460194",
+    "imageUrl": ""
   }
 ]
