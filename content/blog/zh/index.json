@@ -1022,5 +1022,45 @@
     "originalPublishedAt": "2026-02-08",
     "sourceContentSha256": "edaff689ac2440fc315e1339417d1dc3e7075f52f31ff557f9d3f853bacae9e2",
     "imageUrl": ""
+  },
+  {
+    "id": "yeongimyeon-gbp-liseutinggoanli",
+    "title": "Yeongi-myeon Google 商家资料维护",
+    "excerpt": "BlinkAd 结合 Yeongi-myeon 原稿的业态与道路例子，说明名称、地址、照片、评价和帖子怎样整理，并区分检查计划与实际成效。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-07",
+    "sourceContentSha256": "54359e15067c1e5fbeb331501924af22341cf57c051eecbd865bef6e0858f983",
+    "imageUrl": ""
+  },
+  {
+    "id": "eojindong-gbp-jag-eobdaehaeng",
+    "title": "Eojin-dong Google 商家资料代运营",
+    "excerpt": "BlinkAd 结合 Eojin-dong 原稿的业态、道路与建筑例子，说明关键词、营业资料、照片、评价和帖子怎样维护，并整理店主可执行的检查顺序。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-06",
+    "sourceContentSha256": "35d521009e6eb454512423a9ede11df72655038b765d05850bd16a7d1ffbe332",
+    "imageUrl": ""
+  },
+  {
+    "id": "aleumdong-gbp-pyeongpan-goanli-daehaeng",
+    "title": "Areum-dong Google 商家资料口碑管理",
+    "excerpt": "BlinkAd 结合 Areum-dong 原稿的业态、楼层与道路例子，说明营业资料、照片、评价和帖子怎样维护，以及店主可以怎样安排日常工作。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-05",
+    "sourceContentSha256": "e1721919bcd39ece11e70018fa89a6ff6ad18001c4d2f48eb12f8c880e1b6c3b",
+    "imageUrl": ""
+  },
+  {
+    "id": "sojeongmyeon-gbp-keonseolting",
+    "title": "Sojeong-myeon Google 商家资料管理咨询",
+    "excerpt": "BlinkAd 结合 Sojeong-myeon 原稿的业态与道路例子，说明关键词、营业资料、照片、评价和帖子如何整理，并区分工作计划与实际效果。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-04",
+    "sourceContentSha256": "7890a1410f1f48aee284ba5cbb5f0b131f4ddb1da7d0e33d15de6ed2dffbbec7",
+    "imageUrl": ""
   }
 ]
