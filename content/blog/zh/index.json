@@ -1102,5 +1102,45 @@
     "originalPublishedAt": "2026-01-31",
     "sourceContentSha256": "e50a77498bd24de0ec25f0e30fd0993da612f2adda59a91db5848a61a485a454",
     "imageUrl": ""
+  },
+  {
+    "id": "bangogdong-gbp-sang-uinochul-goanli",
+    "title": "Bangok-dong Google 商家资料搜索排名管理",
+    "excerpt": "BlinkAd 结合 Bangok-dong 原稿的业态、道路与楼层例子，说明关键词、营业资料、照片、评价和帖子怎样维护，并区分备图建议与官方要求。",
+    "category": "本地 SEO",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-30",
+    "sourceContentSha256": "82d35312a3320ed943c534e30c01e750635c0cd50f4c54de5eba91207919b708",
+    "imageUrl": ""
+  },
+  {
+    "id": "dodamdong-gbpdaehaeng",
+    "title": "Dodam-dong Google 商家资料代运营",
+    "excerpt": "BlinkAd 结合 Dodam-dong 原稿的业态、道路与建筑资料，说明商家信息、照片、评价、类别和管理入口怎样检查，并区分参考数据与实际结果。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-29",
+    "sourceContentSha256": "060bfd3d607433e973b29201d24676ea36469a47182fef73da8a17dcc2c76266",
+    "imageUrl": ""
+  },
+  {
+    "id": "daepyeongdong-eun-gbp-un-yeongdaehaeng",
+    "title": "Daepyeong-dong Google 商家资料代运营",
+    "excerpt": "BlinkAd 结合 Daepyeong-dong 原稿的业态、道路与建筑例子，说明管理验证、营业信息、照片、评价和帖子怎样维护，并区分商户比例与实际搜索行为。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-28",
+    "sourceContentSha256": "fc516e7659472a74a9b68b09b3b8277bacb4d4f29c7172f20fa3f964773e6cdb",
+    "imageUrl": ""
+  },
+  {
+    "id": "dajeongdong-sanggueon-bunseog-mich-gbp",
+    "title": "Dajeong-dong 商圈分析与 Google 商家资料管理",
+    "excerpt": "BlinkAd 结合 Dajeong-dong 原稿的业态、道路与建筑例子，说明关键词、营业资料、照片、评价和帖子怎样整理，并说明网站来源分析的前提。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-27",
+    "sourceContentSha256": "94280f7c0d0a42f2768ad771e57305af1d9b0c8ce6b2b58e245ad47a2d1dfb51",
+    "imageUrl": ""
   }
 ]
