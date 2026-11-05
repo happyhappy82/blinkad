@@ -1238,5 +1238,25 @@
     "originalPublishedAt": "2026-11-02",
     "sourceContentSha256": "7fa2cb3435d97f33bea8ad492d54fe1f41516b1fe4b60135379ec204e7ba1c51",
     "imageUrl": ""
+  },
+  {
+    "id": "organic-marketing-budget-plan",
+    "title": "自然検索からの集客計画、予算と依頼範囲をどう決める？",
+    "category": "マーケティング計画",
+    "excerpt": "広告と並行して自然検索からの集客を準備するとき、費用を作業別に分け、今のサイトで始められる範囲と問い合わせの確認方法を考えます。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "8bce8ecc366d29a5fc2cf3e5503dbb07627ccd4f11290dc2c88b4f9bda2f7d01",
+    "imageUrl": ""
+  },
+  {
+    "id": "english-inbound-marketing-reddit",
+    "title": "Redditマーケティングが英語圏の集客で大切な三つの理由",
+    "category": "Redditマーケティング",
+    "excerpt": "公開された英語の会話から、購入前の質問、体験の条件、候補の比較基準を読み取り、サイトやお客様向けの説明に生かす考え方を紹介します。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "4606658bcacefc077fad37d9694d7363f38801b66aaac9c1253f7a1b5b083a09",
+    "imageUrl": ""
   }
 ]

@@ -1238,5 +1238,25 @@
     "originalPublishedAt": "2026-11-02",
     "sourceContentSha256": "7fa2cb3435d97f33bea8ad492d54fe1f41516b1fe4b60135379ec204e7ba1c51",
     "imageUrl": ""
+  },
+  {
+    "id": "organic-marketing-budget-plan",
+    "title": "Planning Organic Search Marketing: How to Set a Budget and Scope",
+    "category": "Marketing planning",
+    "excerpt": "How to plan organic search marketing alongside advertising, break costs down by task, and start with what your current website can support.",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "8bce8ecc366d29a5fc2cf3e5503dbb07627ccd4f11290dc2c88b4f9bda2f7d01",
+    "imageUrl": ""
+  },
+  {
+    "id": "english-inbound-marketing-reddit",
+    "title": "3 Reasons Reddit Matters for Reaching English-Speaking Customers",
+    "category": "Reddit marketing",
+    "excerpt": "How specific questions, accounts of experience and comparison criteria on Reddit can inform your English website and customer information.",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "4606658bcacefc077fad37d9694d7363f38801b66aaac9c1253f7a1b5b083a09",
+    "imageUrl": ""
   }
 ]
