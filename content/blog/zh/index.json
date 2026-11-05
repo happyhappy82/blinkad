@@ -1142,5 +1142,45 @@
     "originalPublishedAt": "2026-01-27",
     "sourceContentSha256": "94280f7c0d0a42f2768ad771e57305af1d9b0c8ce6b2b58e245ad47a2d1dfb51",
     "imageUrl": ""
+  },
+  {
+    "id": "naseongdong-sajangnim-igeoneun-pilsuibnida",
+    "title": "Naseong-dong 店主，别忽略 Google 商家资料",
+    "category": "Google 商家资料",
+    "excerpt": "结合 Naseong-dong 原文商圈数据，说明 Google 商家资料的基础信息、入口照片、评价与日常更新该如何整理。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-26",
+    "sourceContentSha256": "13aa6e22ee22a1264482669b0300c7a4d3432b5ad96ff7446b6eefa4ebc2391c",
+    "imageUrl": ""
+  },
+  {
+    "id": "gbpgeumnammyeon",
+    "title": "Geumnam-myeon Google 商家资料管理",
+    "category": "Google 商家资料",
+    "excerpt": "结合 Geumnam-myeon 原文商户分布，梳理 Google 商家资料的名称、地址、类别、照片、评价与验证流程。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-25",
+    "sourceContentSha256": "fcd1edd258671467059ca8a42634376695fbdd32f075be0d44352a6fcbe439a3",
+    "imageUrl": ""
+  },
+  {
+    "id": "goundong-eseo-gbplan",
+    "title": "在 Goun-dong，Google 商家资料该怎样管理？",
+    "category": "Google 商家资料",
+    "excerpt": "从 Goun-dong 原文商圈资料出发，说明 Google 商家资料的搜索意图、位置说明、服务内容、评价与表现数据。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-24",
+    "sourceContentSha256": "99ec3137bd88c937b7d3f2f43946b197da08037996af23f1fd2f5cc4d435a1e7",
+    "imageUrl": ""
+  },
+  {
+    "id": "jeju-gujoaeub-gbp",
+    "title": "济州 Gujwa-eup Google 商家资料管理",
+    "category": "Google 商家资料",
+    "excerpt": "结合济州 Gujwa-eup 原文商圈资料，说明住宿、餐饮等门店的照片、菜单、评价、帖子与当前联系渠道该如何管理。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-23",
+    "sourceContentSha256": "6646b0f496f1800146b34ba03c4ad67fcb4d4d2b28cc8eb0e3a8383fba6732db",
+    "imageUrl": ""
   }
 ]
