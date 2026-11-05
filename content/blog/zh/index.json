@@ -1062,5 +1062,45 @@
     "originalPublishedAt": "2026-02-04",
     "sourceContentSha256": "7890a1410f1f48aee284ba5cbb5f0b131f4ddb1da7d0e33d15de6ed2dffbbec7",
     "imageUrl": ""
+  },
+  {
+    "id": "sodamdong-gbp-gyejeonggoanli",
+    "title": "Sodam-dong Google 商家资料账号管理",
+    "excerpt": "BlinkAd 结合 Sodam-dong 原稿的业态、道路与楼层例子，说明管理权限、营业信息、照片、评价和帖子怎样维护，并区分工作安排与实际成效。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-03",
+    "sourceContentSha256": "32474ab0fd2e0f4098e6fb360a5a751e4967ec1d2977088b354d7edf27fdb1e3",
+    "imageUrl": ""
+  },
+  {
+    "id": "saelomdong-gbp-yujigoanli",
+    "title": "Saerom-dong Google 商家资料日常维护",
+    "excerpt": "BlinkAd 结合 Saerom-dong 原稿的业态、道路与建筑例子，说明管理验证、营业信息、照片、评价和帖子怎样安排，并区分点击与实际经营结果。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-02",
+    "sourceContentSha256": "d8de02ae8b9c007743b3f50e7d56b3b387a1e6036b147e75dccc931c481c664b",
+    "imageUrl": ""
+  },
+  {
+    "id": "bugangmyeon-gbp-deunglogun-yeong",
+    "title": "Bugang-myeon Google 商家资料注册与运营",
+    "excerpt": "BlinkAd 结合 Bugang-myeon 原稿的业态与道路例子，说明营业资料、关键词、照片、评价和帖子怎样整理，并区分原稿参考数据与实际成效。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-01",
+    "sourceContentSha256": "bd480fde6cc2cde7cc77195d6b5d258c066f57c16ecdbda2dc2894a2fd2b3bcb",
+    "imageUrl": ""
+  },
+  {
+    "id": "bolamdong-gbp-setinggoanli",
+    "title": "Boram-dong Google 商家资料设置与管理",
+    "excerpt": "BlinkAd 结合 Boram-dong 原稿的业态、道路、建筑与楼层例子，说明营业信息、类别、照片、评价和帖子怎样整理，并明确实际可用的联系入口。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-01-31",
+    "sourceContentSha256": "e50a77498bd24de0ec25f0e30fd0993da612f2adda59a91db5848a61a485a454",
+    "imageUrl": ""
   }
 ]
