@@ -213,20 +213,27 @@ test('Chinese editions have real reciprocal paths and leave untranslated article
   assert.equal(new Set(CHINESE_BLOG_POSTS.map(post => post.id)).size, CHINESE_BLOG_POSTS.length)
   for (const post of CHINESE_BLOG_POSTS) {
     const original = `/blog/${post.id}`
+    const hasEnglish = ENGLISH_BLOG_POSTS.some(english => english.id === post.id)
+    const hasJapanese = JAPANESE_BLOG_POSTS.some(japanese => japanese.id === post.id)
     assert.equal(localizedPath(original, 'zh'), `/zh${original}`)
     assert.equal(localizedPath(original + '?ref=language#contact', 'zh'), `/zh${original}?ref=language#contact`)
     assert.deepEqual(languageAlternates(original), {
       ko: `https://www.blinkad.kr${original}`,
-      en: `https://www.blinkad.kr/en${original}`,
-      ja: `https://www.blinkad.kr/ja${original}`,
+      ...(hasEnglish && { en: `https://www.blinkad.kr/en${original}` }),
+      ...(hasJapanese && { ja: `https://www.blinkad.kr/ja${original}` }),
       'zh-Hans': `https://www.blinkad.kr/zh${original}`,
       'x-default': `https://www.blinkad.kr${original}`,
     })
     assert.ok(fs.existsSync(`content/blog/zh/${post.id}.html`))
+    for (const [language, available] of [['en', hasEnglish], ['ja', hasJapanese]] as const) {
+      if (!available) {
+        assert.equal(localizedPath(original + '?ref=language#contact', language), original + '?ref=language#contact')
+        assert.ok(!fs.existsSync(`content/blog/${language}/${post.id}.html`))
+      }
+    }
   }
   const untranslated = JAPANESE_BLOG_POSTS.find(post => !CHINESE_BLOG_POSTS.some(chinese => chinese.id === post.id))
-  assert.ok(untranslated)
-  const original = `/blog/${untranslated.id}`
+  const original = `/blog/${untranslated?.id ?? 'untranslated-chinese-edition-control'}`
   assert.equal(localizedPath(original + '?ref=language#contact', 'zh'), original + '?ref=language#contact')
   assert.ok(!('zh-Hans' in languageAlternates(original)))
 })

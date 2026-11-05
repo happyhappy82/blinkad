@@ -1222,5 +1222,45 @@
     "originalPublishedAt": "2026-01-19",
     "sourceContentSha256": "88d7ead2bcaca06a2b36750c1ed4ac0af92ba7abb037d1dc0c9e8ba8bac97323",
     "imageUrl": ""
+  },
+  {
+    "id": "franchise-google-maps-agency-selection",
+    "title": "连锁品牌 Google 地图代运营，多家门店该怎样选择服务商？",
+    "category": "Google 商家资料",
+    "excerpt": "比较连锁品牌 Google 地图代运营服务时，如何确认门店范围、直营与加盟协作、逐店工作报告，以及增店和结束合作的安排。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-10-31",
+    "sourceContentSha256": "37f19b9b47b9b5bb9f58296d639bcdedf7080fb26bfab1286e4b68ee74b720b8",
+    "imageUrl": ""
+  },
+  {
+    "id": "foreign-google-ads-agency-selection",
+    "title": "面向外国客户的 Google 广告代运营，选服务商前要看的3件事",
+    "category": "Google 广告",
+    "excerpt": "比较面向外国客户的 Google 广告代运营服务时，如何确认目标客户依据、外语落地页与咨询流程，以及真实咨询的衡量方法。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-02",
+    "sourceContentSha256": "7fa2cb3435d97f33bea8ad492d54fe1f41516b1fe4b60135379ec204e7ba1c51",
+    "imageUrl": ""
+  },
+  {
+    "id": "organic-marketing-budget-plan",
+    "title": "自然搜索获客计划，预算和工作范围怎么定？",
+    "category": "营销规划",
+    "excerpt": "如何在现有广告与网站条件下规划自然搜索获客，拆分检查、开发、内容与维护费用，并区分交付工作和真实咨询。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "8bce8ecc366d29a5fc2cf3e5503dbb07627ccd4f11290dc2c88b4f9bda2f7d01",
+    "imageUrl": ""
+  },
+  {
+    "id": "english-inbound-marketing-reddit",
+    "title": "Reddit 营销为什么有助于理解和吸引英语客户？3个值得关注的理由",
+    "category": "Reddit 营销",
+    "excerpt": "从公开英语讨论中的具体问题、体验条件与比较标准出发，说明 Reddit 如何帮助准备面向英语客户的网站与服务说明。",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-11-04",
+    "sourceContentSha256": "4606658bcacefc077fad37d9694d7363f38801b66aaac9c1253f7a1b5b083a09",
+    "imageUrl": ""
   }
 ]
