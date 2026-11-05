@@ -902,5 +902,45 @@
     "originalPublishedAt": "2026-02-19",
     "sourceContentSha256": "bc7b11c5af2deec75c54d2de5a63905e56269a92060b587261aa274b3ade2aa8",
     "imageUrl": ""
+  },
+  {
+    "id": "gbp-un-yeong-daehaeng-eotteon-eobchee-matgyeoya-halkka-2026",
+    "title": "Google 商家资料代运营，该选择什么样的服务商？2026",
+    "excerpt": "选择 Google 商家资料代运营，先比较所有权、明确授权、评价政策、工作表、报告与交接。BlinkAd 用七项标准说明签约前该问什么。",
+    "category": "商家资料管理",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-18",
+    "sourceContentSha256": "7cf898287f38ac798bb1b72c21f0d1adc2936600f0ada6355f571fd714ee43d5",
+    "imageUrl": ""
+  },
+  {
+    "id": "godeog1dong-gbp-un-yeong-jeonmun",
+    "title": "高德1洞 Google 商家资料专业运营",
+    "excerpt": "从高德1洞的业态、楼层、道路和建筑例子出发，BlinkAd 说明营业信息、照片、评价与帖子如何维护，并交代原稿商圈数字的使用范围。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-18",
+    "sourceContentSha256": "856715c4cf3646e41d6398ca6218fb6d2c48f3054da9cda1ea0bc0d6bd38d2de",
+    "imageUrl": ""
+  },
+  {
+    "id": "gang-ildong-gbp-choijeoghoa-daehaeng",
+    "title": "江一洞 Google 商家资料优化代运营",
+    "excerpt": "BlinkAd 结合江一洞的业态、道路、建筑和楼层例子，说明怎样核对 Google 商家资料、准备照片、中立邀请评价，并按实际变化持续维护。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-17",
+    "sourceContentSha256": "98e8e512d2d502ed19e1def0c98463909e439111681a82a29c3bfef280dce003",
+    "imageUrl": ""
+  },
+  {
+    "id": "jochiueon-eub-gbp-seobiseu",
+    "title": "鸟致院邑 Google 商家资料管理服务",
+    "excerpt": "BlinkAd 说明鸟致院邑门店的营业信息、照片、评价、帖子和到店指引如何维护，并区分原稿商圈数字、可用预约功能与未经确认的地理标签排名效果。",
+    "category": "本地营销",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-16",
+    "sourceContentSha256": "3bc6e32f8f60f15575805bc948a5df5cbfa7aa753222fedc5182b4f2e074677e",
+    "imageUrl": ""
   }
 ]
