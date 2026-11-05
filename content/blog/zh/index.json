@@ -982,5 +982,45 @@
     "originalPublishedAt": "2026-02-12",
     "sourceContentSha256": "8903ab5e8b28253e5105bd25caabb63b95f6cff1eb4ee5caeea95c706a460194",
     "imageUrl": ""
+  },
+  {
+    "id": "jeon-euimyeon-gbp-tonghabgoanli-daehaeng",
+    "title": "Jeonui-myeon Google 商家资料整合代运营",
+    "excerpt": "BlinkAd 结合 Jeonui-myeon 原稿的业态与道路例子，说明营业信息、照片、评价和帖子怎样整理，以及店主与代运营人员可以怎样分担。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-11",
+    "sourceContentSha256": "058e65dfdd4e9aeae197c020c522d14e60c824e983808b6013b42e502dda0022",
+    "imageUrl": ""
+  },
+  {
+    "id": "jeondongmyeon-gbp-seonggoagoanlihaedeulibnida",
+    "title": "Jeondong-myeon Google 商家资料成效管理",
+    "excerpt": "BlinkAd 结合 Jeondong-myeon 原稿的业态与道路例子，说明如何核对关键词、营业资料、照片、评价和更新工作，并区分点击与实际咨询。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-10",
+    "sourceContentSha256": "c0aea4d686b894d945dbd30b0b66c8b5258d5cf17d2e3658b987dd242c3a4684",
+    "imageUrl": ""
+  },
+  {
+    "id": "janggunmyeon-gbp-jindanhaedeulibnida",
+    "title": "Janggun-myeon Google 商家资料诊断",
+    "excerpt": "BlinkAd 结合 Janggun-myeon 原稿的商圈例子，说明如何检查名称、地址、类别、照片、评价与帖子，并整理当前可用的管理入口。",
+    "category": "Google 商家资料",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-09",
+    "sourceContentSha256": "98a112552e4249254919854a25cdd416d06b2da383a3479ef9c2365a4a252ca9",
+    "imageUrl": ""
+  },
+  {
+    "id": "yeondongmyeon-gbp-nochulchoijeoghoa",
+    "title": "Yeondong-myeon Google 商家资料曝光优化",
+    "excerpt": "BlinkAd 结合 Yeondong-myeon 原稿的业态与道路例子，说明营业资料、照片、评价、帖子和预约入口怎样检查，并区分照片参考数据与实际效果。",
+    "category": "本地 SEO",
+    "publishedAt": "2026-11-05",
+    "originalPublishedAt": "2026-02-08",
+    "sourceContentSha256": "edaff689ac2440fc315e1339417d1dc3e7075f52f31ff557f9d3f853bacae9e2",
+    "imageUrl": ""
   }
 ]
