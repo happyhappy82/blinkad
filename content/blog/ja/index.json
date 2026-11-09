@@ -1,5 +1,25 @@
 [
   {
+    "id": "geo-marketing-outsourcing-decision",
+    "title": "GEOマーケティングは外注すべき？依頼するか迷ったときの考え方",
+    "excerpt": "社内対応、一部の外注、継続運用の違いを整理。解決したい問題と実行できる仕事を確認し、必要な依頼範囲を考えます。",
+    "category": "AEO・GEO",
+    "publishedAt": "2026-11-09",
+    "originalPublishedAt": "2026-11-06",
+    "sourceContentSha256": "6afd9e61395e0b7200f56be1a99270b16e3685c8aee824a1899f1f9140b57e4e",
+    "imageUrl": ""
+  },
+  {
+    "id": "homepage-seo-new-customer-keywords",
+    "title": "ホームページSEO、自社を知らない新規のお客様が使う検索語句はどう選ぶ？",
+    "excerpt": "架空の皮膚科を例に、医院名・診療名・地域の検索を分け、新規のお問い合わせにつながるサイトの内容を考えます。",
+    "category": "ホームページSEO",
+    "publishedAt": "2026-11-09",
+    "originalPublishedAt": "2026-11-06",
+    "sourceContentSha256": "2cee8db8b06baf7466740fcf8386740b3adac60e34031d5b3e0a9c253cd111dd",
+    "imageUrl": ""
+  },
+  {
     "id": "add-multilingual-pages-existing-hospital-website",
     "title": "病院サイトの多言語化、既存サイトを残したまま進められますか？",
     "excerpt": "韓国語のホームページを残して多言語ページを追加するには、何を確認すればよいのでしょうか。既存の制作会社との協力、必要な権限、見積もりと公開前の確認を説明します。",

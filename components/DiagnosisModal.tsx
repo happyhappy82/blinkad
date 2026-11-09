@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { X } from 'lucide-react';
-import { getTrackingDataAsync } from '@/lib/tracker';
+import { getTrackingDataAsync, recordAcceptedInquiry } from '@/lib/tracker';
 
 import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 
@@ -16,13 +16,18 @@ interface DiagnosisModalProps {
   isOpen: boolean;
   onClose: () => void;
   source?: string;
+  heading?: string;
+  description?: string;
+  submitLabel?: string;
 }
 
 export default function DiagnosisModal({
   isOpen,
   onClose,
   source = 'diagnosis_modal',
+  heading, description, submitLabel,
 }: DiagnosisModalProps) {
+  const submitting = useRef(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -76,9 +81,11 @@ export default function DiagnosisModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current || isSubmitted) return;
 
     if (!validateForm()) return;
 
+    submitting.current = true;
     setIsLoading(true);
     setSubmitError('');
 
@@ -100,7 +107,7 @@ export default function DiagnosisModal({
         }),
       });
 
-      if (response.ok) {
+      if (await recordAcceptedInquiry(response, tracking, source)) {
         setIsSubmitted(true);
         setFormData({ name: '', phone: '', message: '' });
       } else {
@@ -109,6 +116,7 @@ export default function DiagnosisModal({
     } catch {
       setSubmitError('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
     } finally {
+      submitting.current = false;
       setIsLoading(false);
     }
   };
@@ -151,9 +159,9 @@ export default function DiagnosisModal({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h4 className="text-2xl font-bold text-white mb-2">무료 업장 진단</h4>
-                <p className="text-gray-400 text-sm">
-                  간단한 정보만 입력해주세요.<br />24시간 내 연락드립니다.
+                <h4 className="text-2xl font-bold text-white mb-2 keep-all">{heading || '무료 업장 진단'}</h4>
+                <p className="text-gray-400 text-sm keep-all">
+                  {description || <>간단한 정보만 입력해주세요.<br />24시간 내 연락드립니다.</>}
                 </p>
               </div>
 
@@ -224,7 +232,7 @@ export default function DiagnosisModal({
                       </svg>
                       전송 중...
                     </span>
-                  ) : '진단 신청하기'}
+                  ) : (submitLabel || '진단 신청하기')}
                 </button>
               </form>
             </>
@@ -235,7 +243,7 @@ export default function DiagnosisModal({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h4 className="text-2xl font-bold text-white mb-2">신청 완료!</h4>
+              <h4 className="text-2xl font-bold text-white mb-2 keep-all">신청 완료!</h4>
               <p className="text-gray-400 mb-6">
                 24시간 내에 연락드리겠습니다.
               </p>

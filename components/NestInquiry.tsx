@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, type FormEvent, type MouseEvent, ty
 import { X } from 'lucide-react';
 import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 import { NEST_ARTICLES, NEST_PRODUCTS, type NestArticle, type NestProduct } from '@/lib/nest-content';
-import { getTrackingDataAsync, markClarityInquiry, recordCtaClick } from '@/lib/tracker';
+import { getTrackingDataAsync, recordAcceptedInquiry, recordCtaClick } from '@/lib/tracker';
 
 function track(event: string, article: NestArticle, product: NestProduct, hasArticleContext = true) {
   window.dataLayer = window.dataLayer || [];
@@ -63,10 +63,9 @@ function InquiryForm({ article, titleId, standalone = false, hasArticleContext =
           current_channels: data.channels.trim(),
         }),
       });
-      if (!response.ok) throw new Error('receiver rejected request');
+      if (!await recordAcceptedInquiry(response, tracking, 'nest_product_inquiry')) throw new Error('receiver rejected request');
       setSubmitted(true);
       setData({ business: '', name: '', phone: '', channels: '', message: '' });
-      markClarityInquiry();
       track('nest_inquiry_accepted', article, product, hasArticleContext);
     } catch {
       setError('전송 완료를 확인하지 못했습니다. 입력 내용은 남아 있으니 잠시 후 다시 시도해 주세요.');

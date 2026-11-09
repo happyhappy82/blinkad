@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FadeIn } from './ui/FadeIn';
-import { getTrackingDataAsync } from '@/lib/tracker';
+import { getTrackingDataAsync, recordAcceptedInquiry } from '@/lib/tracker';
 import { INQUIRY_ENDPOINT } from '@/lib/inquiry-endpoint';
 
 const WEBHOOK_URL = INQUIRY_ENDPOINT;
 
 const Contact: React.FC = () => {
+  const submitting = useRef(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -68,11 +69,13 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current || isSubmitted) return;
 
     if (!validateForm()) {
       return;
     }
 
+    submitting.current = true;
     setIsLoading(true);
     setSubmitError('');
 
@@ -96,7 +99,7 @@ const Contact: React.FC = () => {
         }),
       });
 
-      if (response.ok) {
+      if (await recordAcceptedInquiry(response, tracking, 'contact_form')) {
         setIsSubmitted(true);
         setFormData({
           companyName: '',
@@ -111,6 +114,7 @@ const Contact: React.FC = () => {
     } catch (error) {
       setSubmitError('네트워크 오류가 발생했습니다. 다시 시도해 주세요.');
     } finally {
+      submitting.current = false;
       setIsLoading(false);
     }
   };

@@ -10,6 +10,7 @@ import { languageAlternates } from '@/lib/site-languages'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
+import { getBlogConsultation } from '@/lib/blog-consultation'
 import { NestArticleExperience } from '@/components/NestInquiry'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 import Navbar from '@/components/Navbar'
@@ -263,7 +264,7 @@ export default async function BlogPost({ params }: Props) {
           />
 
           </NestArticleExperience>
-          {!nestArticle && <BlogCTA />}
+          {!nestArticle && <BlogCTA copy={getBlogConsultation(post)} />}
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (

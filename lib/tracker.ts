@@ -16,13 +16,14 @@
  */
 
 const SITE_ID = 'bl';
+const GA_MEASUREMENT_ID = 'G-0BVVKT1DZS';
 const CLARITY_PROJECT_ID = 'wj5kqq9kck';
 
 declare global {
   interface Window {
     clarity?: (...args: unknown[]) => void;
     gtag?: (...args: unknown[]) => void;
-    dataLayer?: Array<Record<string, unknown>>;
+    dataLayer?: Array<Record<string, unknown> | IArguments>;
   }
 }
 
@@ -41,6 +42,7 @@ function currentUrl(): string {
 
 // ── pathname 기반 페이지 카테고리 자동 분류
 export function inferPageType(pathname: string): 'main' | 'blog' | 'case' | 'lp' | 'service' {
+  pathname = pathname.replace(/^\/(en|ja|zh)(?=\/|$)/, '') || '/';
   // 기존 blog.blinkad.kr 호스트는 middleware에서 /blog/*로 영구 리다이렉트됨
   if (pathname === '/' || pathname === '') return 'main';
   if (pathname.startsWith('/blog')) return 'blog';
@@ -332,12 +334,25 @@ function attachAutoCtaListener(): void {
 }
 
 // ── 8) GA4 client_id 추출 (Promise + 1.5초 timeout)
-//    GTM이 GA4 로드 → window.gtag('get', ...) 사용 가능
+//    Existing GA cookie first, then the configured GA4 destination through GTM.
+function googleTag(...args: unknown[]): void {
+  if (typeof window === 'undefined') return;
+  if (typeof window.gtag === 'function') {
+    window.gtag(...args);
+  } else {
+    // GTM uses the same queue; no second Google tag or page_view is installed.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(arguments);
+  }
+}
+
 function getGaClientId(): Promise<string> {
   return new Promise((resolve) => {
-    if (typeof window === 'undefined' || typeof window.gtag !== 'function') {
+    if (typeof window === 'undefined') {
       return resolve('');
     }
+    const cookieId = ssGet('_ga').match(/^GA\d+\.\d+\.(\d+\.\d+)$/)?.[1] || '';
+    if (cookieId) return resolve(cookieId);
     let resolved = false;
     const finish = (id: string) => {
       if (resolved) return;
@@ -345,9 +360,7 @@ function getGaClientId(): Promise<string> {
       resolve(id || '');
     };
     try {
-      // GTM 환경에서 GA4 measurement ID는 dataLayer 또는 gtag get으로 가져옴
-      // 'GA_MEASUREMENT_ID'는 'default'로도 해석 시도됨
-      window.gtag('get', 'default', 'client_id', (id: string) => finish(id));
+      googleTag('get', GA_MEASUREMENT_ID, 'client_id', (id: string) => finish(id));
     } catch {
       finish('');
     }
@@ -392,7 +405,7 @@ export interface TrackingData {
   clarity_tag: string;
 }
 
-export function getTrackingData(markSubmitted = true): TrackingData {
+export function getTrackingData(markSubmitted = false): TrackingData {
   const meta = getPageMeta();
   const utm_source = ssGet('aj_utm_source');
   const utm_medium = ssGet('aj_utm_medium');
@@ -452,7 +465,7 @@ export interface TrackingDataWithGa extends TrackingData {
   ga_client_id: string;
 }
 
-export async function getTrackingDataAsync(markSubmitted = true): Promise<TrackingDataWithGa> {
+export async function getTrackingDataAsync(markSubmitted = false): Promise<TrackingDataWithGa> {
   const base = getTrackingData(markSubmitted);
   const [cid, directPlaybackUrl] = await Promise.all([
     getGaClientId(),
@@ -464,4 +477,34 @@ export async function getTrackingDataAsync(markSubmitted = true): Promise<Tracki
     clarity_session_url: directPlaybackUrl || base.clarity_session_url,
     ga_client_id: cid,
   };
+}
+
+function blogSlug(url: string): string {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== 'www.blinkad.kr' && parsed.hostname !== 'blinkad.kr'
+      && parsed.hostname !== 'localhost' && parsed.hostname !== '127.0.0.1') return '';
+    return parsed.pathname.match(/^\/(?:en\/|ja\/|zh\/)?blog\/([^/]+)\/?$/)?.[1] || '';
+  } catch { return ''; }
+}
+
+/** Call only after the receiver confirms durable acceptance. Never send form values to GA4. */
+export async function recordAcceptedInquiry(response: Response, tracking: TrackingData, form: string): Promise<boolean> {
+  if (!response.ok) return false;
+  const body = await response.json().catch(() => null);
+  if (body?.ok !== true) return false;
+  markClarityInquiry();
+  try {
+    googleTag('event', 'generate_lead', {
+      send_to: GA_MEASUREMENT_ID,
+      method: 'website',
+      inquiry_article: (blogSlug(tracking.origin_page) || blogSlug(tracking.source_page) || '(none)').slice(0, 100),
+      inquiry_landing: (blogSlug(tracking.landing_page) || '(none)').slice(0, 100),
+      inquiry_language: (typeof document !== 'undefined' ? document.documentElement.lang : 'ko').slice(0, 20),
+      inquiry_form: form.slice(0, 100),
+    });
+  } catch {
+    // A tracking blocker must not turn an accepted inquiry into a failed form.
+  }
+  return true;
 }
