@@ -10,6 +10,8 @@ import { languageAlternates } from '@/lib/site-languages'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
+import BlogRelatedArticles from '@/components/BlogRelatedArticles'
+import { getRelatedBlogArticles, hasCuratedRelatedArticles } from '@/lib/blog-related-articles'
 import { getBlogConsultation } from '@/lib/blog-consultation'
 import { NestArticleExperience } from '@/components/NestInquiry'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
@@ -118,7 +120,9 @@ export default async function BlogPost({ params }: Props) {
     '<p>우리 매장이 외국인 고객에게 지금 어떤 화면으로 보이는지, 광고를 시작하기 전에 무엇부터 고쳐야 하는지 점검받으시려면 블링크애드로 <a href="https://www.blinkad.kr/contact">문의</a>해 주세요.</p>',
   )
 
-  // 관련 글 추천 (같은 카테고리, 최대 3개)
+  const curatedRelatedPosts = getRelatedBlogArticles(post.id, BLOG_POSTS, 'ko')
+
+  // Keep the existing recommendations for articles without an editorial selection.
   const relatedPosts = BLOG_POSTS
     .filter((p) => p.id !== post.id && p.category === post.category)
     .slice(0, 3)
@@ -267,7 +271,9 @@ export default async function BlogPost({ params }: Props) {
           {!nestArticle && <BlogCTA copy={getBlogConsultation(post)} />}
 
           {/* Related Posts */}
-          {relatedPosts.length > 0 && (
+          {hasCuratedRelatedArticles(post.id) ? (
+            <BlogRelatedArticles articles={curatedRelatedPosts} language="ko" />
+          ) : relatedPosts.length > 0 && (
             <div className="mt-16 pt-16 border-t border-white/10">
               <h2 className="text-2xl font-bold text-white mb-8">관련 글</h2>
               <div className="grid gap-6 md:grid-cols-3">

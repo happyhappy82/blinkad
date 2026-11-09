@@ -1,4 +1,6 @@
 import BlogCTA from '@/components/BlogCTA'
+import BlogRelatedArticles from '@/components/BlogRelatedArticles'
+import { getRelatedBlogArticles } from '@/lib/blog-related-articles'
 import { getBlogConsultation } from '@/lib/blog-consultation'
 import { BLOG_POSTS } from '@/constants'
 import { NEST_ARTICLES } from '@/lib/nest-content'
@@ -59,6 +61,7 @@ export default async function ChineseBlogPost({ params }: Props) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': url }, url,
   }
   const original = BLOG_POSTS.find(item => item.id === post.id) || post
+  const relatedArticles = getRelatedBlogArticles(post.id, CHINESE_BLOG_POSTS, 'zh')
   const hasProductConsultation = NEST_ARTICLES.some(item => item.slug === post.id)
   return (
     <div className="min-h-screen bg-black">
@@ -82,6 +85,7 @@ export default async function ChineseBlogPost({ params }: Props) {
           <div className="prose prose-invert prose-lg max-w-none prose-headings:text-white prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-2xl prose-p:text-gray-300 prose-p:leading-relaxed prose-strong:text-white prose-a:text-brand-blue prose-blockquote:text-gray-300 prose-table:w-full prose-th:border prose-th:border-gray-700 prose-th:bg-gray-900 prose-th:p-3 prose-th:text-left prose-td:border prose-td:border-gray-700 prose-td:p-3"
             dangerouslySetInnerHTML={{ __html: content }} />
           {!hasProductConsultation && <BlogCTA language="zh" copy={getBlogConsultation(original, "zh")} />}
+          <BlogRelatedArticles articles={relatedArticles} language="zh" />
         </div>
       </article>
       <Footer />
