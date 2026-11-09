@@ -1,9 +1,10 @@
 export type ConsultationLanguage = 'ko' | 'en' | 'ja' | 'zh';
-type Topic = 'verification' | 'keywords' | 'website' | 'ads' | 'reviews' | 'international' | 'ai' | 'content' | 'local' | 'reddit' | 'product' | 'clinic';
+type Topic = 'verification' | 'keywords' | 'website' | 'ads' | 'reviews' | 'international' | 'ai' | 'content' | 'local' | 'reddit' | 'product' | 'clinic' | 'traffic';
 type Copy = [heading: string, description: string, button: string];
 
 const copy: Record<ConsultationLanguage, Record<Topic, Copy>> = {
   ko: {
+    traffic: ['검색 유입이 줄어든 페이지부터 함께 살펴볼까요?', '홈페이지 주소와 변화가 생긴 페이지를 남겨주세요. 검색 노출·클릭과 페이지 상태를 확인할 범위를 함께 논의하겠습니다.', '검색 유입 감소 점검 상담하기'],
     reddit: ['우리 서비스와 관련된 레딧 질문은 어떻게 찾을까요?', '대상 고객과 알리고 싶은 서비스를 알려주세요. 관련 질문을 찾고 답변 콘텐츠를 준비하는 범위를 함께 살펴보겠습니다.', '레딧 마케팅 운영 상담하기'],
     product: ['우리 사업장의 상담 업무에 맞는지 먼저 이야기해볼까요?', '현재 쓰는 상담 채널과 반복해서 불편한 일을 알려주세요. 필요한 기능과 도입 범위를 확인해 안내해드리겠습니다.', '상담 관리 제품 도입 문의하기'],
     clinic: ['우리 병원의 마케팅은 어떤 업무부터 맡기면 좋을까요?', '진료 분야와 대상 고객, 현재 운영 중인 채널을 알려주세요. Google 프로필과 홈페이지·콘텐츠 중 필요한 업무를 정리해보겠습니다.', '병원 마케팅 작업 범위 상담하기'],
@@ -18,6 +19,7 @@ const copy: Record<ConsultationLanguage, Record<Topic, Copy>> = {
     local: ['우리 매장의 Google 검색·지도 현황부터 살펴볼까요?', 'Google 프로필 주소와 운영 중 어려운 점을 알려주세요. 기본 정보와 콘텐츠, 문의 경로에서 필요한 작업을 안내해드리겠습니다.', 'Google 프로필 운영 상담하기'],
   },
   en: {
+    traffic: ['Which pages have lost search traffic?', 'Share your website and the pages affected. We can discuss which search metrics and page issues to investigate.', 'Discuss a search traffic review'],
     reddit: ['How can you find Reddit questions relevant to your service?', 'Tell us about your target customers and services. We can discuss finding relevant questions and preparing useful responses.', 'Discuss Reddit marketing'],
     product: ['Would the product fit the way your business handles inquiries?', 'Tell us which channels you use and which recurring tasks cause difficulty. We can discuss the functions and setup you need.', 'Ask about inquiry management products'],
     clinic: ['Which marketing tasks does your clinic need help with?', 'Share your clinical services, target patients and current channels. We can discuss Google profile, website and content work.', 'Discuss clinic marketing services'],
@@ -32,6 +34,7 @@ const copy: Record<ConsultationLanguage, Record<Topic, Copy>> = {
     local: ['Start with your visibility on Google Search and Maps', 'Share your Business Profile and what you need help managing. We can discuss profile information, content and inquiry paths.', 'Discuss Google Business Profile management'],
   },
   ja: {
+    traffic: ['検索流入が減ったページから、一緒に確認しませんか？', 'サイトのURLと変化があったページをお知らせください。表示回数・クリック数やページの状態について、確認する範囲をご相談いただけます。', '検索流入の減少について相談する'],
     reddit: ['自社のサービスに関連するRedditの質問を探しませんか？', '対象のお客様と紹介したいサービスをお知らせください。関連する質問を探し、回答コンテンツを準備する範囲をご相談いただけます。', 'Redditマーケティングを相談する'],
     product: ['自社の相談業務に合う製品か、まずお話ししませんか？', '現在の相談チャネルと、繰り返し手間がかかる業務をお知らせください。必要な機能と導入範囲を確認してご案内します。', '相談管理製品の導入について問い合わせる'],
     clinic: ['医院のマーケティングは、どの業務から依頼しましょうか？', '診療分野と対象の患者さん、現在の運用チャネルをお知らせください。Googleのプロフィール、サイト、コンテンツのうち必要な業務を整理します。', '医院のマーケティング業務を相談する'],
@@ -46,6 +49,7 @@ const copy: Record<ConsultationLanguage, Record<Topic, Copy>> = {
     local: ['Google検索・マップでの店舗の現状を確認しませんか？', 'ビジネスプロフィールと運用上のお悩みをお知らせください。基本情報、コンテンツ、お問い合わせの流れで必要な作業をご案内します。', 'ビジネスプロフィールの運用を相談する'],
   },
   zh: {
+    traffic: ['先一起看看哪些页面的搜索流量下降了', '请留下网站地址和出现变化的页面。我们可以讨论需要检查哪些搜索数据和页面问题。', '咨询搜索流量下降排查'],
     reddit: ['如何寻找与您的服务相关的Reddit问题？', '请告诉我们目标客户和希望推广的服务。我们可以讨论如何查找相关问题，以及准备回答内容的工作范围。', '咨询Reddit营销运营'],
     product: ['先聊聊产品是否适合您的咨询工作', '请告诉我们目前使用的咨询渠道，以及反复遇到的工作难题。我们会确认所需功能和导入范围，再作说明。', '咨询客户咨询管理产品'],
     clinic: ['医院营销该从哪些工作开始委托？', '请告诉我们诊疗领域、目标患者和正在运营的渠道。我们可以梳理Google商家资料、网站和内容方面需要的工作。', '咨询医院营销服务范围'],
@@ -64,6 +68,7 @@ const copy: Record<ConsultationLanguage, Record<Topic, Copy>> = {
 export function getBlogConsultation(post: { id: string; title: string }, language: ConsultationLanguage = 'ko') {
   const text = post.title;
   const topic: Topic = /인증|소유권/.test(text) ? 'verification'
+    : post.id === 'organic-marketing-search-traffic-drop' ? 'traffic'
     : post.id === 'homepage-seo-new-customer-keywords' ? 'keywords'
     : /레딧|Reddit/i.test(text) ? 'reddit'
     : /닥터네스트|뷰티네스트/.test(text) ? 'product'
