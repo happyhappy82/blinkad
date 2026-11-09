@@ -10,6 +10,7 @@ import path from 'node:path'
 import Navbar from '@/localized/ja/components/Navbar'
 import Footer from '@/localized/ja/components/Footer'
 import { JAPANESE_BLOG_POSTS, getJapaneseBlogPost, formatJapaneseArticleDate } from '@/lib/japanese-blog-index'
+import { getBlogUpdatedDate } from '@/lib/blog-editorial-dates'
 import { languageAlternates } from '@/lib/site-languages'
 
 const SITE_URL = 'https://www.blinkad.kr'
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const post = getJapaneseBlogPost(slug)
   if (!post) notFound()
+  const updatedAt = getBlogUpdatedDate(post.id, post.publishedAt)
   const url = `${SITE_URL}/ja/blog/${post.id}`
   const image = post.imageUrl ? new URL(post.imageUrl, SITE_URL).href : `${SITE_URL}/og-image.png`
   return {
@@ -34,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       type: 'article', locale: 'ja_JP', siteName: 'BlinkAd',
       title: post.title, description: post.excerpt, url, images: [image],
-      publishedTime: post.publishedAt, modifiedTime: post.publishedAt,
+      publishedTime: post.publishedAt, modifiedTime: updatedAt || post.publishedAt,
     },
     twitter: { card: 'summary_large_image', title: post.title, description: post.excerpt, images: [image] },
   }
@@ -44,13 +46,14 @@ export default async function JapaneseBlogPost({ params }: Props) {
   const { slug } = await params
   const post = getJapaneseBlogPost(slug)
   if (!post) notFound()
+  const updatedAt = getBlogUpdatedDate(post.id, post.publishedAt)
   const content = fs.readFileSync(path.join(process.cwd(), 'content/blog/ja', `${post.id}.html`), 'utf8')
   const url = `${SITE_URL}/ja/blog/${post.id}`
   const originalUrl = `${SITE_URL}/blog/${post.id}`
   const schema = {
     '@context': 'https://schema.org', '@type': 'Article',
     headline: post.title, description: post.excerpt, inLanguage: 'ja',
-    datePublished: post.publishedAt, dateModified: post.publishedAt,
+    datePublished: post.publishedAt, dateModified: updatedAt || post.publishedAt,
     author: { '@type': 'Organization', name: 'BlinkAd編集部', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'BlinkAd', url: SITE_URL },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url }, url,
@@ -70,6 +73,7 @@ export default async function JapaneseBlogPost({ params }: Props) {
             <div className="space-y-2 text-sm text-gray-400">
               <p>BlinkAd編集部</p>
               <p>日本語版公開日：<time dateTime={post.publishedAt}>{formatJapaneseArticleDate(post.publishedAt)}</time></p>
+              {updatedAt && <p>更新日：<time dateTime={updatedAt}>{formatJapaneseArticleDate(updatedAt)}</time></p>}
               <p>韓国語原文公開日：<time dateTime={post.originalPublishedAt}>{formatJapaneseArticleDate(post.originalPublishedAt)}</time>{' · '}
                 <a href={originalUrl} hrefLang="ko" className="underline underline-offset-4">韓国語の原文を読む</a>
               </p>
