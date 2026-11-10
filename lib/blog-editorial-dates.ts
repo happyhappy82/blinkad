@@ -4,6 +4,10 @@ export const BLOG_REWRITE_DATES: Readonly<Partial<Record<string, string>>> = {
   'oigug-in-goangoanggaeg-tonggyeoa-chui-2026nyeon-oigug-inmaketing-i-jung-yohan-iyu': '2026-10-28',
   'gbp-injeung-an-doil-ttae-ileohge-haegyeolhaseyo': '2026-11-09',
   'gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji': '2026-11-09',
+  'how-foreign-customers-find-korean-restaurants': '2026-11-10',
+  'google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka': '2026-11-10',
+  'gbp-un-yeong-daehaeng-eotteon-eobchee-matgyeoya-halkka-2026': '2026-11-10',
+  'gugeul-peulopil-goanli-oae-gamanhi-iss-eumyeon-andoilkka': '2026-11-10',
 };
 
 // An edition published after a Korean rewrite must not acquire an earlier update date.
