@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import DiagnosisModal from './DiagnosisModal';
-import { recordCtaClick } from '@/lib/tracker';
+import { recordBlogConsultationClick } from '@/lib/tracker';
 import EnglishModal from '@/localized/en/components/DiagnosisModal';
 import JapaneseModal from '@/localized/ja/components/DiagnosisModal';
 import ChineseModal from '@/localized/zh/components/DiagnosisModal';
@@ -14,7 +14,7 @@ const BlogCTA = ({ copy, language = 'ko' }: { copy: ReturnType<typeof getBlogCon
 
   const openModal = () => {
     // 모달 여는 시점에 CTA 클릭 추적 (현재 페이지=글이 origin으로 기록됨)
-    recordCtaClick({
+    recordBlogConsultationClick({
       cta_id: `bl_blog_${copy.topic}_v2`,
       cta_location: 'blog-inline',
       cta_label: copy.button,

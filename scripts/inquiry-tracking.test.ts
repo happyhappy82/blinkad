@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getTrackingData, getTrackingDataAsync, inferPageType, recordAcceptedInquiry, recordCtaClick } from '../lib/tracker';
+import { getTrackingData, getTrackingDataAsync, inferPageType, recordAcceptedInquiry, recordCtaClick, recordBlogConsultationClick } from '../lib/tracker';
 import { getBlogConsultation } from '../lib/blog-consultation';
 
 test('only confirmed receipts count; original and landing article attribution stay separate', async () => {
@@ -57,4 +57,28 @@ test('article questions choose relevant consultation topics and localized copy',
     assert.ok(copy.heading && copy.description && copy.button);
     assert.equal(/[가-힣]/.test(JSON.stringify(copy)), false);
   }
+});
+
+test('blog consultation clicks reach the GTM queue without counting a lead or exposing form values', () => {
+  const jar = new Map<string, string>();
+  const location = new URL('https://www.blinkad.kr/ja/blog/current-article');
+  const doc = { title: 'Article', documentElement: { lang: 'ja' } };
+  Object.defineProperty(doc, 'cookie', {
+    get: () => [...jar].map(([k, v]) => `${k}=${v}`).join('; '),
+    set: (value: string) => { const [pair] = value.split(';'); const i = pair.indexOf('='); jar.set(pair.slice(0, i), pair.slice(i + 1)); },
+  });
+  const win = { location, dataLayer: [] as unknown[], gtag: undefined as undefined | ((...args: unknown[]) => void) };
+  Object.assign(globalThis, { window: win, document: doc, location });
+  jar.set('aj_landing', encodeURIComponent('https://www.blinkad.kr/ja/blog/first-article'));
+  const info = { cta_id: 'bl_blog_keywords_v2', cta_location: 'blog-inline', cta_label: 'A label is not sent to Analytics' };
+  recordBlogConsultationClick(info);
+  assert.equal(win.dataLayer.length, 1);
+  const command = Array.from(win.dataLayer[0] as IArguments);
+  assert.deepEqual(command.slice(0, 2), ['event', 'inquiry_cta_click']);
+  assert.deepEqual(command[2], {
+    send_to: 'G-0BVVKT1DZS', inquiry_article: 'current-article', inquiry_landing: 'first-article', inquiry_language: 'ja', inquiry_form: 'blog_cta',
+  });
+  assert.equal(getTrackingData().origin_page, location.origin + location.pathname);
+  win.gtag = () => { throw new Error('blocked'); };
+  assert.doesNotThrow(() => recordBlogConsultationClick(info));
 });

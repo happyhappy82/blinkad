@@ -314,6 +314,23 @@ export function recordCtaClick(info: CtaClickInfo): void {
   ssSet('aj_origin_cta_label', (info.cta_label || '').slice(0, 80));
 }
 
+/** A blog consultation click is a funnel step, never a completed inquiry. */
+export function recordBlogConsultationClick(info: CtaClickInfo): void {
+  if (typeof window === 'undefined') return;
+  recordCtaClick(info);
+  try {
+    googleTag('event', 'inquiry_cta_click', {
+      send_to: GA_MEASUREMENT_ID,
+      inquiry_article: (blogSlug(currentUrl()) || '(none)').slice(0, 100),
+      inquiry_landing: (blogSlug(ssGet('aj_landing')) || '(none)').slice(0, 100),
+      inquiry_language: document.documentElement.lang.slice(0, 20),
+      inquiry_form: 'blog_cta',
+    });
+  } catch {
+    // Analytics must not prevent the consultation dialog from opening.
+  }
+}
+
 // .aj-cta 클래스 가진 anchor는 자동 클릭 추적
 function attachAutoCtaListener(): void {
   if (typeof document === 'undefined') return;
