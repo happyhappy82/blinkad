@@ -8,6 +8,10 @@ export const BLOG_REWRITE_DATES: Readonly<Partial<Record<string, string>>> = {
   'google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka': '2026-11-10',
   'gbp-un-yeong-daehaeng-eotteon-eobchee-matgyeoya-halkka-2026': '2026-11-10',
   'gugeul-peulopil-goanli-oae-gamanhi-iss-eumyeon-andoilkka': '2026-11-10',
+  'byeong-ueon-maketing-euilyobeob-jaju-geollineun-8gaji-uiban-salyeneun': '2026-11-11',
+  'gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli': '2026-11-11',
+  'gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka': '2026-11-11',
+  '2026-byeong-ueon-beullogeu-jalsseuneunbeob-ai-geomsaeg-e-in-yongdoineun-5munjang-dabbyeon-gujo': '2026-11-11',
 };
 
 // An edition published after a Korean rewrite must not acquire an earlier update date.

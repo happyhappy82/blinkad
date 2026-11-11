@@ -493,10 +493,10 @@
     "id": "gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli",
     "title": "Google广告每月花多少才合适？从行业费用示例算起",
     "category": "Google广告",
-    "excerpt": "分清点击计费与目标CPA，再用韩元预算示例估算点击，了解测试、转化记录和SEO维护该怎样一起考虑。",
+    "excerpt": "结合Google官方预算规则，区分目标CPA出价与付款方式。通过明确标注的韩元计算示例，分别核对媒体费、服务商费用和真实咨询。",
     "publishedAt": "2026-11-04",
     "originalPublishedAt": "2026-06-17",
-    "sourceContentSha256": "1a63bdfcb82dd5cd7d60f396208001b18c14140194e8828507a2eadc391a68d5",
+    "sourceContentSha256": "116effbf113c9e6bc13b539851083837a7781d3dd371d48d40e37a40c26030ec",
     "imageUrl": ""
   },
   {
@@ -623,20 +623,20 @@
     "id": "byeong-ueon-maketing-euilyobeob-jaju-geollineun-8gaji-uiban-salyeneun",
     "title": "医院营销常见的八类医疗广告违规问题，应该怎样检查？",
     "category": "医院营销",
-    "excerpt": "按韩国现行医疗法核对八类广告问题，分清历史监测分母、事前审查范围与表达修订条件，避免把同意书或换词当成合法保证。",
+    "excerpt": "依据韩国现行《医疗法》，梳理评价、价格、效果表述、照片和事前审议等八类检查事项。结合证据、适用条件与实际发布版本审查，而不只替换几个词。",
     "publishedAt": "2026-11-04",
     "originalPublishedAt": "2026-04-26",
-    "sourceContentSha256": "94164a2ef3807de6f9dec85c74e7d89b9075523ef22f6a6ca853bc41fe0bc870",
+    "sourceContentSha256": "d154fc4af2ef028a59fa35f24124e9505c55415da9ffec2bc20e7e16c12c3ca3",
     "imageUrl": ""
   },
   {
     "id": "2026-byeong-ueon-beullogeu-jalsseuneunbeob-ai-geomsaeg-e-in-yongdoineun-5munjang-dabbyeon-gujo",
     "title": "2026年医院博客怎样写？用五句话把患者问题回答清楚",
     "category": "AEO内容",
-    "excerpt": "保留五句回答方法与修改前后对照，区分编辑建议、观察研究和平台规则，说明怎样写出有条件、有来源、没有虚构临床数据的医院文章。",
+    "excerpt": "将医院博客的五句话结构用作初稿检查示例。结合Google官方说明，整理问题答案、可核实依据、适用条件和来源，不把句数当成引用保证。",
     "publishedAt": "2026-11-04",
     "originalPublishedAt": "2026-04-25",
-    "sourceContentSha256": "8005a17b973b3f806e75801611d6ac6535990c108363da66d11f0c8c82b47c3f",
+    "sourceContentSha256": "ad5b6e50a412d8040cc017b092e6b823207c2e54fbb75a10eb8d9e4565d3d08b",
     "imageUrl": ""
   },
   {
@@ -725,12 +725,12 @@
   {
     "id": "gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka",
     "title": "Google 地图评价与 Naver Place 评价，哪一个更有助于营收？",
-    "excerpt": "韩国门店该先维护 Google 还是 Naver 评价？BlinkAd 从实际客源、业种、平台规则和日常管理，说明如何判断投入重点。",
+    "excerpt": "通过真实顾客路径、官方评价政策和咨询记录，比较Google地图与NAVER Place。说明如何自愿邀请评价，并根据本店的信息缺口安排管理优先级。",
     "category": "评价管理",
     "readTime": "9分钟",
     "publishedAt": "2026-11-04",
     "originalPublishedAt": "2026-03-27",
-    "sourceContentSha256": "e9a992c13bfb911415eb583c96e26a9bd08f5eeb3fa498bc9a58d6f3a8976681",
+    "sourceContentSha256": "aa7df7270cf095bbacc7da8db0ae9f7a33169ffde6805f39a73aa34e1596841a",
     "imageUrl": ""
   },
   {
