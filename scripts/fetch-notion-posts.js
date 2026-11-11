@@ -80,6 +80,13 @@ function markdownToHtml(markdown) {
   html = html.replace(/^---$/gm, '<hr/>');
   html = html.replace(/^\*\*\*$/gm, '<hr/>');
 
+  // 링크·이미지 URL의 밑줄과 별표를 강조 문법으로 해석하지 않는다.
+  const linkDestinations = [];
+  html = html.replace(/(!?\[[^\]]*\]\()([^)]+)(\))/g, (_match, before, href, after) => {
+    linkDestinations.push(href);
+    return `${before}@@LINKDEST${linkDestinations.length - 1}@@${after}`;
+  });
+
   // 볼드 & 이탤릭 (순서 중요)
   html = html.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
@@ -88,6 +95,8 @@ function markdownToHtml(markdown) {
 
   // 취소선
   html = html.replace(/~~(.+?)~~/g, '<del>$1</del>');
+
+  html = html.replace(/@@LINKDEST(\d+)@@/g, (_match, index) => linkDestinations[Number(index)]);
 
   // 이미지 (링크보다 먼저 처리해야 ![..](..)가 링크로 잡히지 않음)
   html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="rounded-lg my-4"/>');
