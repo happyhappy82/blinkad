@@ -1,0 +1,147 @@
+{
+  "checked_date": "2026-11-23",
+  "scope": "previous fixed twenty entries",
+  "criterion": "public hospital-targeted marketing service AND AI search/recommendation optimization offering; not a proof of actual client count or results",
+  "entries": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "status": "confirmed",
+      "evidence": "병원 AEO/GEO 웹블로그·구조화·질문형 콘텐츠·AI 측정",
+      "source": "https://haroop.com/aeogeo"
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "status": "confirmed",
+      "evidence": "병원 AIO·AIRANK·다국어 AI 검색 대응",
+      "source": "https://adresult.kr/SEO"
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "status": "confirmed_functional",
+      "evidence": "병원 AI 추천 환경·콘텐츠·신뢰 정보 최적화",
+      "source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "status": "not_confirmed",
+      "evidence": "병원 광고·SEO는 확인, 별도 AI 검색 상품 명세 미확인",
+      "source": "https://www.10wol.com/product"
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "status": "details_unavailable",
+      "evidence": "병원 AI 서비스 제공 표시, 상세 링크 페이지 없음",
+      "source": "https://blog.oreun.net/"
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "status": "confirmed_functional",
+      "evidence": "병원 Search & AI Visibility·홈페이지 결합 AI 최적화",
+      "source": "https://www.reanmedi.com/"
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "status": "confirmed",
+      "evidence": "병원 AEO/GEO·질문형 콘텐츠·고정 질문 재측정",
+      "source": "https://winaid.co.kr/services/aeo-geo"
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "status": "confirmed",
+      "evidence": "병원 광고와 GEO·웹 개선·AI 측정 동시 제공",
+      "source": "https://krmkt.co.kr/geo/"
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "status": "confirmed_functional",
+      "evidence": "병원 ChatGPT·Gemini 추천용 웹 정보 정비",
+      "source": "https://golddoctors.co.kr/service"
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "status": "identity_unresolved",
+      "evidence": "후보 법인은 병원 포트폴리오·AI 검색/SEO 제공, 최초 광고 주체 연결 미확인",
+      "source": "https://www.nicecompany.kr/sub/online.html"
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "status": "confirmed",
+      "evidence": "병원 SEO/AEO/GEO·의료 콘텐츠·사이트 개선",
+      "source": "https://www.startdoctor.co.kr/sub/ai-seo.php"
+    },
+    {
+      "company_id": "C12",
+      "name": "애드라이크",
+      "status": "not_confirmed",
+      "evidence": "병원·해외 마케팅 확인, 별도 AI 검색 상품 명세 미확인",
+      "source": "https://adlike.kr/service"
+    },
+    {
+      "company_id": "C13",
+      "name": "청명마케팅",
+      "status": "not_confirmed",
+      "evidence": "병원 로컬/콘텐츠/전환 운영 확인, 별도 AI 검색 상품 명세 미확인",
+      "source": "https://cmad.kr/medical"
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "status": "confirmed",
+      "evidence": "병원 GEO/AEO/LLMO·웹·콘텐츠·지도 운영",
+      "source": "https://creanswer.com/"
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "status": "confirmed",
+      "evidence": "병원·치과 SEO/GEO·웹로그·영상·자가진단",
+      "source": "https://medmc.co.kr/"
+    },
+    {
+      "company_id": "C16",
+      "name": "라온하제코리아",
+      "status": "not_confirmed",
+      "evidence": "병원 해외/Reddit/리뷰·AI 활용 설명은 확인, 별도 AEO/GEO 업무 명세 미확인",
+      "source": "https://raonhajekorea.com/default/"
+    },
+    {
+      "company_id": "C17",
+      "name": "가주메디",
+      "status": "not_confirmed",
+      "evidence": "AI 쇼츠는 확인, 별도 AI 검색 최적화 상품 명세 미확인",
+      "source": "https://gajumedi.com/"
+    },
+    {
+      "company_id": "C18",
+      "name": "광고기획감각",
+      "status": "not_confirmed",
+      "evidence": "병원 대상 옥외광고, AEO/GEO 서비스 미확인",
+      "source": "https://gamgakad.com/"
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "status": "confirmed",
+      "evidence": "병원 AI 마케팅·SEO/GEO/AEO 구조 개선·다국어 웹",
+      "source": "https://recomkt.com/ai-hospital-marketing/"
+    },
+    {
+      "company_id": "C20",
+      "name": "로닥GEO(오픈타임)",
+      "status": "confirmed",
+      "evidence": "병원·의원·치과·한의원용 GEO/AEO 전용 서비스",
+      "source": "https://lodac.kr/industries/hospital/"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "checked_date": "2026-11-23",
+  "selection_basis": "previous four-query Google/Naver visibility composite, first ten fixed rows",
+  "basis_assumption_disclosed": true,
+  "engine_preference_response_received": false,
+  "not_exact_query_google_top10": true,
+  "original_observed_at": "2026-11-23 18:00-18:02 KST",
+  "cutoff_tie": "six entries tied at original rank8; retained prior ordering for first three of these",
+  "queue": [
+    {
+      "sequence": 1,
+      "company_id": "C01",
+      "name": "하룹",
+      "original_composite_rank": 1,
+      "observed_screen_count": 8,
+      "website": "https://haroop.com/price",
+      "content_sources": [
+        "https://haroop.com/blog",
+        "https://blog.naver.com/harmonysic",
+        "https://www.youtube.com/@haroop"
+      ],
+      "aeo_hospital_status": "confirmed",
+      "aeo_evidence": "병원 AEO/GEO 웹블로그·구조화·질문형 콘텐츠·AI 측정",
+      "aeo_source": "https://haroop.com/aeogeo",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 2,
+      "company_id": "C02",
+      "name": "애드리절트",
+      "original_composite_rank": 2,
+      "observed_screen_count": 5,
+      "website": "https://adresult.kr/",
+      "content_sources": [
+        "https://adresult.kr/93",
+        "https://www.youtube.com/@adresult"
+      ],
+      "aeo_hospital_status": "confirmed",
+      "aeo_evidence": "병원 AIO·AIRANK·다국어 AI 검색 대응",
+      "aeo_source": "https://adresult.kr/SEO",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 3,
+      "company_id": "C03",
+      "name": "상승기획",
+      "original_composite_rank": 3,
+      "observed_screen_count": 5,
+      "website": "https://sangseung.net/",
+      "content_sources": [
+        "https://blog.naver.com/qkrtjdgus97",
+        "https://blog.naver.com/dropyi65"
+      ],
+      "aeo_hospital_status": "confirmed_functional",
+      "aeo_evidence": "병원 AI 추천 환경·콘텐츠·신뢰 정보 최적화",
+      "aeo_source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 4,
+      "company_id": "C04",
+      "name": "시월기획",
+      "original_composite_rank": 4,
+      "observed_screen_count": 5,
+      "website": "https://www.10wol.com/",
+      "content_sources": [
+        "https://www.10wol.com/news",
+        "https://blog.naver.com/andonghyun2"
+      ],
+      "aeo_hospital_status": "not_confirmed",
+      "aeo_evidence": "병원 광고·SEO는 확인, 별도 AI 검색 상품 명세 미확인",
+      "aeo_source": "https://www.10wol.com/product",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 5,
+      "company_id": "C05",
+      "name": "오른기획",
+      "original_composite_rank": 5,
+      "observed_screen_count": 4,
+      "website": "https://blog.oreun.net/",
+      "content_sources": [
+        "https://blog.oreun.net/",
+        "https://blog.naver.com/charmark",
+        "https://www.youtube.com/@oreun-net"
+      ],
+      "aeo_hospital_status": "details_unavailable",
+      "aeo_evidence": "병원 AI 서비스 제공 표시, 상세 링크 페이지 없음",
+      "aeo_source": "https://blog.oreun.net/",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 6,
+      "company_id": "C06",
+      "name": "리앤메디",
+      "original_composite_rank": 6,
+      "observed_screen_count": 4,
+      "website": "https://www.reanmedi.com/",
+      "content_sources": [
+        "https://www.reanmedi.com/INSIGHT",
+        "https://www.youtube.com/@%EB%A6%AC%EC%95%A4%EB%A9%94%EB%94%94"
+      ],
+      "aeo_hospital_status": "confirmed_functional",
+      "aeo_evidence": "병원 Search & AI Visibility·홈페이지 결합 AI 최적화",
+      "aeo_source": "https://www.reanmedi.com/",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 7,
+      "company_id": "C07",
+      "name": "윈에이드",
+      "original_composite_rank": 7,
+      "observed_screen_count": 3,
+      "website": "https://winaid.co.kr/services",
+      "content_sources": [
+        "https://winaid.co.kr/insights",
+        "https://winaid.co.kr/blog",
+        "https://winaid.co.kr/guides",
+        "https://blog.naver.com/qaz030800"
+      ],
+      "aeo_hospital_status": "confirmed",
+      "aeo_evidence": "병원 AEO/GEO·질문형 콘텐츠·고정 질문 재측정",
+      "aeo_source": "https://winaid.co.kr/services/aeo-geo",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 8,
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "original_composite_rank": 8,
+      "observed_screen_count": 3,
+      "website": "https://krmkt.co.kr/media/",
+      "content_sources": [
+        "https://krmkt.co.kr/information/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/cases/"
+      ],
+      "aeo_hospital_status": "confirmed",
+      "aeo_evidence": "병원 광고와 GEO·웹 개선·AI 측정 동시 제공",
+      "aeo_source": "https://krmkt.co.kr/geo/",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 9,
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "original_composite_rank": 8,
+      "observed_screen_count": 3,
+      "website": "https://golddoctors.co.kr/service",
+      "content_sources": [
+        "https://golddoctors.co.kr/news",
+        "https://golddoctors.co.kr/review"
+      ],
+      "aeo_hospital_status": "confirmed_functional",
+      "aeo_evidence": "병원 ChatGPT·Gemini 추천용 웹 정보 정비",
+      "aeo_source": "https://golddoctors.co.kr/service",
+      "analysis_status": "not_started",
+      "precheck": "verify_current_site_and_content_ownership"
+    },
+    {
+      "sequence": 10,
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "original_composite_rank": 8,
+      "observed_screen_count": 3,
+      "website": "https://www.nicecompany.kr/sub/online.html",
+      "content_sources": [
+        "https://www.nicecompany.kr/"
+      ],
+      "aeo_hospital_status": "identity_unresolved",
+      "aeo_evidence": "후보 법인은 병원 포트폴리오·AI 검색/SEO 제공, 최초 광고 주체 연결 미확인",
+      "aeo_source": "https://www.nicecompany.kr/sub/online.html",
+      "analysis_status": "not_started",
+      "precheck": "verify_original_advertiser_identity"
+    }
+  ],
+  "confirmed_aeo_hospital_company_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "exact_query_evidence_file": "historical-exact-query.json"
+}

@@ -1,0 +1,398 @@
+{
+  "query": "병원마케팅",
+  "observed_at": "2026-11-23 18:00-18:02 KST",
+  "fresh_serp_observation_this_turn": false,
+  "google_organic": [
+    {
+      "rank": 1,
+      "name": "애드리절트",
+      "url": "https://adresult.kr",
+      "note": ""
+    },
+    {
+      "rank": 2,
+      "name": "상승기획",
+      "url": "https://sangseung.net",
+      "note": ""
+    },
+    {
+      "rank": 3,
+      "name": "애드라이크",
+      "url": "https://adlike.kr",
+      "note": ""
+    },
+    {
+      "rank": 4,
+      "name": "하룹",
+      "url": "https://haroop.com",
+      "note": ""
+    },
+    {
+      "rank": 5,
+      "name": "윈에이드",
+      "url": "https://winaid.co.kr/blog",
+      "note": ""
+    },
+    {
+      "rank": 6,
+      "name": "리앤메디",
+      "url": "https://www.reanmedi.com",
+      "note": ""
+    },
+    {
+      "rank": 7,
+      "name": "스타닥마케팅",
+      "url": "https://www.startdoctor.co.kr",
+      "note": ""
+    },
+    {
+      "rank": 8,
+      "name": "바름",
+      "url": "https://www.openads.co.kr/content/contentDetail?contsId=14924",
+      "note": "네이버 블로그 글의 바름 필자·오픈애즈 동일 제목 대조"
+    },
+    {
+      "rank": 9,
+      "name": "한국온라인광고연구소",
+      "url": "https://www.koal365.kr",
+      "note": ""
+    }
+  ],
+  "naver_powerlink": [
+    {
+      "rank": 1,
+      "name": "제이케이컨설팅",
+      "url": "https://no1.jkconsulting.co.kr/",
+      "note": ""
+    },
+    {
+      "rank": 2,
+      "name": "골드닥터스",
+      "url": "https://golddoctors.co.kr/",
+      "note": ""
+    },
+    {
+      "rank": 3,
+      "name": "임펙트미디어",
+      "url": "https://im-ad.co.kr/",
+      "note": "업종 인접 서비스"
+    },
+    {
+      "rank": 4,
+      "name": "하룹",
+      "url": "https://haroop.com/",
+      "note": ""
+    },
+    {
+      "rank": 5,
+      "name": "청명마케팅",
+      "url": "https://cmad.kr/",
+      "note": ""
+    },
+    {
+      "rank": 6,
+      "name": "광고기획감각",
+      "url": "https://gamgakad.com/",
+      "note": "업종 인접 서비스"
+    },
+    {
+      "rank": 7,
+      "name": "KR마케팅",
+      "url": "https://krmkt.co.kr/",
+      "note": ""
+    },
+    {
+      "rank": 8,
+      "name": "비즈뿌리오",
+      "url": "https://bizppurio.com/",
+      "note": "업종 인접 서비스"
+    },
+    {
+      "rank": 9,
+      "name": "눈커뮤니케이션",
+      "url": "https://adnoon.co.kr/",
+      "note": ""
+    },
+    {
+      "rank": 10,
+      "name": "케어랩스(우노CRM)",
+      "url": "https://unocrm.kr/",
+      "note": "업종 인접 서비스"
+    }
+  ],
+  "all_placements": [
+    [
+      "구글 자연검색",
+      1,
+      "애드리절트",
+      "https://adresult.kr",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      2,
+      "상승기획",
+      "https://sangseung.net",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      3,
+      "애드라이크",
+      "https://adlike.kr",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      4,
+      "하룹",
+      "https://haroop.com",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      5,
+      "윈에이드",
+      "https://winaid.co.kr/blog",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      6,
+      "리앤메디",
+      "https://www.reanmedi.com",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      7,
+      "스타닥마케팅",
+      "https://www.startdoctor.co.kr",
+      ""
+    ],
+    [
+      "구글 자연검색",
+      8,
+      "바름",
+      "https://www.openads.co.kr/content/contentDetail?contsId=14924",
+      "네이버 블로그 글의 바름 필자·오픈애즈 동일 제목 대조"
+    ],
+    [
+      "구글 자연검색",
+      9,
+      "한국온라인광고연구소",
+      "https://www.koal365.kr",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      1,
+      "제이케이컨설팅",
+      "https://no1.jkconsulting.co.kr/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      2,
+      "골드닥터스",
+      "https://golddoctors.co.kr/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      3,
+      "임펙트미디어",
+      "https://im-ad.co.kr/",
+      "업종 인접 서비스"
+    ],
+    [
+      "네이버 파워링크",
+      4,
+      "하룹",
+      "https://haroop.com/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      5,
+      "청명마케팅",
+      "https://cmad.kr/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      6,
+      "광고기획감각",
+      "https://gamgakad.com/",
+      "업종 인접 서비스"
+    ],
+    [
+      "네이버 파워링크",
+      7,
+      "KR마케팅",
+      "https://krmkt.co.kr/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      8,
+      "비즈뿌리오",
+      "https://bizppurio.com/",
+      "업종 인접 서비스"
+    ],
+    [
+      "네이버 파워링크",
+      9,
+      "눈커뮤니케이션",
+      "https://adnoon.co.kr/",
+      ""
+    ],
+    [
+      "네이버 파워링크",
+      10,
+      "케어랩스(우노CRM)",
+      "https://unocrm.kr/",
+      "업종 인접 서비스"
+    ],
+    [
+      "네이버 브랜드 콘텐츠 광고",
+      "—",
+      "하룹",
+      "https://haroop.com/",
+      "표시된 게시 주체"
+    ],
+    [
+      "네이버 브랜드 콘텐츠 광고",
+      "—",
+      "나이스컴퍼니",
+      "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+      "표시된 게시 주체·광고 도착지 미확인"
+    ],
+    [
+      "네이버 브랜드 콘텐츠 광고",
+      "—",
+      "상승기획",
+      "https://sangseung.net/",
+      "표시된 게시 주체"
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "제이스케이AD",
+      "https://blog.naver.com/health202/224479341350",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "비비드온",
+      "https://blog.naver.com/5dinarydays/224486048768",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "오른기획",
+      "https://blog.naver.com/rany_rany/224485190139",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "레코마케팅",
+      "https://blog.naver.com/punks000/224480721641",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "오른기획",
+      "https://blog.naver.com/charmark/224484662415",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "블러썸팩토리",
+      "https://blog.naver.com/blossomfactory_/224485175818",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "시월기획",
+      "https://blog.naver.com/jpxjr9ynfi/224483021252",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "크리앤서",
+      "https://blog.naver.com/zrcujkvbzul/224485197896",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "알리다마케팅",
+      "https://blog.naver.com/orangehuk1/224467876921",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "워니커넥트",
+      "https://blog.naver.com/cks9186/224482151716",
+      ""
+    ],
+    [
+      "네이버 블로그",
+      "—",
+      "쉬워마케팅",
+      "https://blog.naver.com/easy-company/224483621049",
+      ""
+    ],
+    [
+      "네이버 웹문서",
+      "—",
+      "애드리절트",
+      "https://adresult.kr/",
+      ""
+    ],
+    [
+      "네이버 웹문서",
+      "—",
+      "핫이슈메디컬",
+      "https://hotissuemedical.com/",
+      ""
+    ],
+    [
+      "구글 AI 개요",
+      "—",
+      "윈에이드",
+      "https://winaid.co.kr/",
+      "화면에 이름이 표시된 출처"
+    ],
+    [
+      "구글 AI 개요",
+      "—",
+      "하룹",
+      "https://haroop.com/",
+      "화면에 이름이 표시된 출처"
+    ],
+    [
+      "구글 AI 개요",
+      "—",
+      "상승기획",
+      "https://sangseung.net/",
+      "화면에 이름이 표시된 출처"
+    ],
+    [
+      "구글 AI 개요",
+      "—",
+      "애드리절트",
+      "https://adresult.kr/",
+      "화면에 이름이 표시된 출처"
+    ]
+  ]
+}
