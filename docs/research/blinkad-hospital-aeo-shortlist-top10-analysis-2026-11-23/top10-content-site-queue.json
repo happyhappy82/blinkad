@@ -22,8 +22,11 @@
       "aeo_hospital_status": "confirmed",
       "aeo_evidence": "병원 AEO/GEO 웹블로그·구조화·질문형 콘텐츠·AI 측정",
       "aeo_source": "https://haroop.com/aeogeo",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership"
+      "analysis_status": "completed_public_evidence",
+      "precheck": "official_site_and_linked_channels_verified_for_pilot_scope",
+      "analysis_report": "../blinkad-hospital-stage2-haroop-pilot-2026-11-23.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage2-haroop-pilot-2026-11-23/"
     },
     {
       "sequence": 2,

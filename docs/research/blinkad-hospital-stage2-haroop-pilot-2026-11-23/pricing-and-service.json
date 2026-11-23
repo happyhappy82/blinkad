@@ -1,0 +1,85 @@
+{
+  "company_id": "C01",
+  "checked_at": "2026-11-23T21:27:23+09:00",
+  "not_a_private_quotation": true,
+  "official_webblog": {
+    "source_ids": [
+      "H02",
+      "H04"
+    ],
+    "setup_krw": 500000,
+    "monthly_krw": 1000000,
+    "vat": "excluded",
+    "monthly_content_count": 16,
+    "infrastructure_included_months_explicit": 12,
+    "with_haroop_blog_management_monthly_krw": 800000,
+    "existing_blog_management_fee_is_additional": true,
+    "setup_variation": "design and extra features may change setup price",
+    "minimum_contract_months": null,
+    "minimum_contract_total": null,
+    "setup_plus_one_month_before_vat_krw": 1500000,
+    "setup_plus_one_month_vat_included_krw": 1650000,
+    "ongoing_month_vat_included_krw": 1100000
+  },
+  "other_official_tracks": [
+    {
+      "track": "홈페이지형",
+      "build_fee": "separate custom quotation",
+      "monthly_fee": "custom quotation",
+      "estimated_build_period": "about one month",
+      "source_id": "H02"
+    },
+    {
+      "track": "랜딩형",
+      "build_fee": "separate custom quotation",
+      "monthly_fee": "custom quotation",
+      "estimated_build_period": "about two weeks in AEO track page; general website page mentions 2-4 weeks",
+      "source_ids": [
+        "H02",
+        "H21"
+      ]
+    }
+  ],
+  "marketplace": {
+    "source_id": "X01",
+    "url": "https://kmong.com/gig/41329",
+    "period_display": "30-day work period; not proven minimum recurring contract",
+    "vat_treatment": "not independently resolved from captured package price display",
+    "checkout_fee_display": "4.5% (VAT included) additional; final checkout not performed",
+    "packages": [
+      {
+        "name": "STANDARD",
+        "display_price_krw": 1320000,
+        "webblog_content_count": 12,
+        "brand_blog_content_count": 8
+      },
+      {
+        "name": "DELUXE",
+        "display_price_krw": 1650000,
+        "webblog_content_count": 16,
+        "brand_blog_content_count": 12
+      },
+      {
+        "name": "PREMIUM",
+        "display_price_krw": 2420000,
+        "content_counts": null,
+        "scope": "VIP brand blog + webblog + GEO settings + viral + map reviews + press + map optimization + AI recommendation settings"
+      }
+    ],
+    "tax_invoice_display_conflict": "upper/body labels mention invoice provision/availability while lower checkout footer says seller cannot issue; unresolved"
+  },
+  "comparability": "Official standalone AEO webblog, combined monthly discount, and marketplace bundles have different channels, quantities, period labels and possible additional charges. Do not claim identical products or confirmed equal tax treatment.",
+  "general_service_categories": {
+    "블로그·카페·지식인": 8,
+    "영상·SNS": 6,
+    "채널 세팅·병원 플랫폼": 11,
+    "검색광고·퍼포먼스광고": 3,
+    "지역 커뮤니티": 4,
+    "AI 검색": 2,
+    "웹사이트·개발": 6,
+    "촬영·디자인": 5,
+    "평판·의료 리스크": 4,
+    "패키지·컨설팅": 5,
+    "검색 자산 구축": 3
+  }
+}

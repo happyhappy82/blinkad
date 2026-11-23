@@ -1,0 +1,20 @@
+{
+  "checked_date": "2026-11-23",
+  "completed_stage": 2,
+  "completed_company_ids": [
+    "C01"
+  ],
+  "aeo_done": 1,
+  "aeo_total": 12,
+  "site_done": 1,
+  "site_total": 10,
+  "remaining_aeo": 11,
+  "remaining_site": 9,
+  "next_stage": 3,
+  "next_aeo_company_id": "C02",
+  "next_aeo_company_name": "애드리절트",
+  "site_full_batch_stage": 4,
+  "immutable_step1_snapshot": "stage1/master-roster.json",
+  "current_queue": "analysis-selection/top10-content-site-queue.json",
+  "report": "09-stage2-haroop-pilot-analysis.md"
+}

@@ -1,0 +1,682 @@
+{
+  "checked_at": "2026-11-23T21:27:23+09:00",
+  "onsite_list_source": "H05",
+  "listed_blog_count": 10,
+  "reviewed_count": 10,
+  "scope": "all ten listed onsite posts; external Naver/YouTube catalog links are attributed but bodies/videos not exhaustively reviewed",
+  "categories": {
+    "콘텐츠·브랜딩": 3,
+    "병원마케팅 전략": 4,
+    "구글·AI 검색": 1,
+    "광고·데이터 분석": 1,
+    "홈페이지·랜딩페이지": 1
+  },
+  "posts": [
+    {
+      "source_id": "B01",
+      "url": "https://haroop.com/blog/hospital-marketing-needs-naver-blog",
+      "title": "병원마케팅 네이버 블로그가 필요한 6가지 이유 | 하룹",
+      "category": "콘텐츠·브랜딩",
+      "reader_decision": "블로그를 운영할 이유가 있는가",
+      "analysis_finding": "채널별 역할과 반론·직접운영 조건을 비교",
+      "published_at": "2026-08-19T09:00:00+09:00",
+      "modified_at": "2026-08-19T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원마케팅에서 네이버 블로그가 필요한 이유, 광고만으로 부족한 6가지",
+      "h2": [
+        "‘필수’라는 말을 검색 점유율 하나로 설명하면 안 됩니다",
+        "광고·플레이스·SNS·홈페이지와 블로그는 맡은 일이 다릅니다",
+        "네이버 검색은 같은 단어보다 질문의 의도를 나눠 봅니다",
+        "광고와 플레이스가 남긴 ‘왜?’를 블로그가 설명합니다",
+        "환자는 병원을 한 번에 결정하지 않고 여러 번 확인합니다",
+        "한 편의 글은 한 단어가 아니라 여러 관련 질문에서 발견될 수 있습니다",
+        "광고만, SNS만, 홈페이지면 충분하다는 반론도 살펴봐야 합니다",
+        "좋은 병원 블로그 관리는 발행 건수보다 여섯 가지를 남깁니다",
+        "직접 운영과 대행 중 어느 쪽이 맞는지도 기준이 있습니다",
+        "성과는 조회수 한 줄이 아니라 질문에서 행동까지 봅니다",
+        "병원 블로그는 신뢰를 만들 수도, 잘못 운영하면 깎을 수도 있습니다",
+        "10분이면 우리 병원에 블로그 관리가 필요한지 확인할 수 있습니다",
+        "병원 네이버 블로그 필요성에 자주 묻는 질문",
+        "블로그가 필요한 이유는 글을 더 많이 만들기 위해서가 아닙니다",
+        "공식 자료와 적용 범위",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 2,
+      "external_reference_links": [
+        {
+          "text": "StatCounter 한국 검색엔진 점유율",
+          "url": "https://gs.statcounter.com/search-engine-market-share/all/south-korea"
+        },
+        {
+          "text": "네이버 주제별 결과 노출 기준",
+          "url": "https://help.naver.com/service/5626/contents/19174?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "네이버 검색 노출 순서 공식 안내",
+          "url": "https://help.naver.com/service/5626/contents/22925?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "Creator Advisor 검색 노출 분석 안내",
+          "url": "https://help.naver.com/service/23038/contents/14624?lang=ko&osType=MOBILE"
+        },
+        {
+          "text": "국가법령정보센터 의료광고의 금지 기준",
+          "url": "https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1032849723"
+        },
+        {
+          "text": "주제별 결과 노출 기준",
+          "url": "https://help.naver.com/service/5626/contents/19174?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "검색 노출 순서 기준",
+          "url": "https://help.naver.com/service/5626/contents/22925?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "검색 노출 분석 안내",
+          "url": "https://help.naver.com/service/23038/contents/14624?lang=ko&osType=MOBILE"
+        },
+        {
+          "text": "의료법 제56조 의료광고의 금지 등",
+          "url": "https://www.law.go.kr/lsLinkCommonInfo.do?lsJoLnkSeq=1032849723"
+        },
+        {
+          "text": "2026년 7월 한국 검색엔진 점유율",
+          "url": "https://gs.statcounter.com/search-engine-market-share/all/south-korea"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/ai-era-hospital-marketing-content",
+        "https://haroop.com/blog/hospital-naver-blog-management",
+        "https://haroop.com/blog/hospital-naver-blog-search-to-consultation"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:36+09:00"
+    },
+    {
+      "source_id": "B02",
+      "url": "https://haroop.com/blog/hospital-naver-blog-search-to-consultation",
+      "title": "병원 네이버블로그 관리, 검색을 상담으로 잇는 법 | 하룹",
+      "category": "콘텐츠·브랜딩",
+      "reader_decision": "읽은 글에서 상담까지 왜 끊기는가",
+      "analysis_finding": "글의 역할과 다음 질문·운영정보·문의의 연결 점검",
+      "published_at": "2026-08-17T09:00:00+09:00",
+      "modified_at": "2026-08-17T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원 네이버블로그 관리, 검색을 상담으로 잇는 5개의 연결점",
+      "h2": [
+        "먼저 각 글이 환자의 어느 순간을 맡을지 정합니다",
+        "한 편에 모든 답을 넣으면 오히려 다음 행동이 흐려집니다",
+        "관련 글은 ‘더 보기’가 아니라 다음 질문으로 연결합니다",
+        "병원명 재검색 순간에 정보가 어긋나면 신뢰가 끊깁니다",
+        "상담 버튼 앞에서는 마지막 세 질문에 답해야 합니다",
+        "15분 연결 점검으로 끊긴 구간을 찾을 수 있습니다",
+        "월간 보고서에는 조회수 다음의 움직임이 보여야 합니다",
+        "연결을 잘해도 블로그 하나가 모든 역할을 맡을 수는 없습니다",
+        "병원 네이버블로그 연결 관리에 자주 묻는 질문",
+        "좋은 병원 블로그는 다음 질문을 잃어버리지 않습니다",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 1,
+      "external_reference_links": [
+        {
+          "text": "네이버 콘텐츠 작성 권장 사항",
+          "url": "https://searchadvisor.naver.com/guide/content-basic"
+        },
+        {
+          "text": "네이버 사이트 링크 관리 안내",
+          "url": "https://searchadvisor.naver.com/guide/report-seo"
+        },
+        {
+          "text": "네이버 콘텐츠 노출 및 클릭 리포트 안내",
+          "url": "https://searchadvisor.naver.com/guide/report-expose-ctr"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/hospital-naver-blog-management",
+        "https://haroop.com/blog/hospital-website-landing-page"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B03",
+      "url": "https://haroop.com/blog/hospital-naver-blog-management",
+      "title": "병원 네이버블로그 관리, 새 글보다 먼저 볼 기준 | 하룹",
+      "category": "콘텐츠·브랜딩",
+      "reader_decision": "새 글과 기존 글 관리 중 무엇이 먼저인가",
+      "analysis_finding": "유지·보강·통합·종료 판단과 인터뷰·검수 운영",
+      "published_at": "2026-08-12T09:00:00+09:00",
+      "modified_at": "2026-08-12T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원 네이버블로그 관리, 글보다 먼저 살펴볼 ‘답의 상태’",
+      "h2": [
+        "병원 네이버블로그 관리는 글을 계속 늘리는 일이 아닙니다",
+        "새 글이 없는 날에도, 병원의 설명은 검색에서 계속 읽힙니다",
+        "기존 글을 유지·보강·통합·종료로 나눠 보십시오",
+        "새 글은 ‘아직 답하지 않은 질문’이 있을 때 만듭니다",
+        "원장님이 직접 해야 할 일은 긴 원고 작성이 아닙니다",
+        "의료광고 점검은 마지막 문장 교정이 아니라 기획의 시작입니다",
+        "발행으로 끝내지 않는 다섯 단계가 필요합니다",
+        "매주·매월·분기, 관리 주기를 나누면 오래 갈 수 있습니다",
+        "월간 보고서에는 발행 건수보다 이 다섯 줄이 있어야 합니다",
+        "네이버 블로그만으로 모든 문제를 해결할 수는 없습니다",
+        "병원 네이버블로그 관리에 자주 묻는 질문",
+        "새 글을 주문하기 전, 기존 글을 30분만 점검해 보십시오",
+        "검색창에 남은 병원의 답도 계속 돌봐야 합니다",
+        "공식 자료와 적용 범위",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 1,
+      "external_reference_links": [
+        {
+          "text": "네이버의 D.I.A. 공식 안내",
+          "url": "https://help.naver.com/service/5626/contents/22926?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "네이버 블로그 검색 노출 순서 안내",
+          "url": "https://help.naver.com/service/5593/contents/10582?osType=COMMONOS"
+        },
+        {
+          "text": "네이버 블로그 검색 제한 공식 안내",
+          "url": "https://help.naver.com/service/5626/bookmark/22928?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "보건복지부의 온라인 불법 의료광고 점검 결과",
+          "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&list_no=1480602&mid=a10503010200"
+        },
+        {
+          "text": "D.I.A. 소개",
+          "url": "https://help.naver.com/service/5626/contents/22926?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "검색 결과 노출 순서",
+          "url": "https://help.naver.com/service/5593/contents/10582?osType=COMMONOS"
+        },
+        {
+          "text": "블로그 검색 제한 기준",
+          "url": "https://help.naver.com/service/5626/bookmark/22928?lang=ko&osType=COMMONOS"
+        },
+        {
+          "text": "온라인 불법 의료광고 점검 결과",
+          "url": "https://www.mohw.go.kr/board.es?act=view&bid=0027&list_no=1480602&mid=a10503010200"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/ai-era-hospital-marketing-content",
+        "https://haroop.com/blog/hospital-ad-efficiency-naver-blog"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B04",
+      "url": "https://haroop.com/blog/hospital-reels-threads-vs-search-assets",
+      "title": "병원 릴스·스레드 마케팅, 예산 배분 기준 | 하룹",
+      "category": "병원마케팅 전략",
+      "reader_decision": "릴스·스레드 예산을 먼저 늘려야 하는가",
+      "analysis_finding": "검색 원문·도착점·측정 준비에 따른 채널 배분",
+      "published_at": "2026-08-04T09:00:00+09:00",
+      "modified_at": "2026-08-04T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원 릴스·스레드, 해야 할까? 하룹의 채널 예산 배분 기준",
+      "h2": [
+        "릴스가 문제인 것이 아니라, 도착점 없는 릴스가 문제입니다",
+        "하룹의 4단계 채널 설계: 포착하고, 설득하고, 회수하고, 다시 퍼뜨립니다",
+        "예산은 채널별로 똑같이 나누지 않습니다",
+        "조회수를 문의로 착각하지 않으려면 성과표부터 바꿔야 합니다",
+        "검색 자산 두 개가 있어야 소셜 성과도 병원에 남습니다",
+        "릴스와 스레드부터 시작해도 되는 병원도 있습니다",
+        "의료광고는 짧게 만들수록 검수할 항목이 줄어드는 것이 아닙니다",
+        "4주 실행안: 검색 자산을 만들고, 검증된 질문만 소셜로 보냅니다",
+        "원장님이 자주 묻는 질문",
+        "하룹은 채널을 늘리기보다, 환자가 결정하는 순서를 설계합니다",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 3,
+      "external_reference_links": [
+        {
+          "text": "Meta 광고 목표 공식 안내",
+          "url": "https://www.facebook.com/business/ads/ad-objectives"
+        },
+        {
+          "text": "릴스 광고 공식 안내",
+          "url": "https://www.facebook.com/business/ads/facebook-instagram-reels-ads"
+        },
+        {
+          "text": "Google Analytics 주요 이벤트 공식 문서",
+          "url": "https://support.google.com/analytics/answer/9267568?hl=ko"
+        },
+        {
+          "text": "네이버 콘텐츠 작성 권장 사항",
+          "url": "https://searchadvisor.naver.com/guide/content-basic"
+        },
+        {
+          "text": "네이버 웹사이트 전환 추적 공식 안내",
+          "url": "https://ads.naver.com/help/faq/848"
+        },
+        {
+          "text": "Threads 링크·인사이트 공식 안내",
+          "url": "https://about.fb.com/news/2025/03/new-threads-features-more-personalized-experience-you-control/"
+        },
+        {
+          "text": "국가법령정보센터 의료법 제56조",
+          "url": "https://www.law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&lsJoLnkSeq=1032849787"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/hospital-ad-efficiency-naver-blog",
+        "https://haroop.com/blog/hospital-website-ai-search-visibility",
+        "https://haroop.com/blog/hospital-website-landing-page"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B05",
+      "url": "https://haroop.com/blog/hospital-website-ai-search-visibility",
+      "title": "병원 홈페이지 AI 검색 출처 조건, 하룹의 6단계 설계",
+      "category": "구글·AI 검색",
+      "reader_decision": "홈페이지가 AI 검색 출처가 되려면 무엇이 필요한가",
+      "analysis_finding": "발견·질문·원문·답변·연결·측정의 실행 단계",
+      "published_at": "2026-07-28T09:00:00+09:00",
+      "modified_at": "2026-08-04T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원 홈페이지가 AI 검색 출처가 될 조건, 하룹의 6단계 설계",
+      "h2": [
+        "AI 검색 시대에도 기존 SEO가 출발점인 이유",
+        "하룹 검색자산 6단계: 발견부터 유효 문의까지 한 흐름으로 설계합니다",
+        "1단계 발견: 검색로봇에게 ‘읽히는 홈페이지’부터 만듭니다",
+        "2단계 질문: 키워드가 아니라 환자의 판단 순간을 찾습니다",
+        "3단계 원문: 병원만 답할 수 있는 정보를 취재합니다",
+        "4단계 답변: 일부만 인용돼도 뜻이 흐려지지 않게 씁니다",
+        "5단계 연결: 좋은 정보가 병원 이해와 다음 행동으로 이어지게 합니다",
+        "6단계 측정: AI 인용을 최종 성과처럼 포장하지 않습니다",
+        "AI 검색 노출을 말할 때 하룹이 약속하지 않는 것",
+        "원장님들이 자주 묻는 질문",
+        "검색 방식이 바뀌어도 남는 것은 병원이 책임질 수 있는 원문입니다",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 2,
+      "external_reference_links": [
+        {
+          "text": "AI 기능과 웹사이트 공식 가이드",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "text": "ChatGPT Search 공식 안내",
+          "url": "https://help.openai.com/en/articles/9237897-chatgpt-search"
+        },
+        {
+          "text": "사람을 위한 유용한 콘텐츠 가이드",
+          "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        },
+        {
+          "text": "AI 검색 답변용 콘텐츠 공식 가이드",
+          "url": "https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers"
+        },
+        {
+          "text": "게시자 공식 안내",
+          "url": "https://help.openai.com/en/articles/12627856"
+        },
+        {
+          "text": "AI Performance 공식 안내",
+          "url": "https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview"
+        }
+      ],
+      "internal_article_links": [
+        "https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers",
+        "https://haroop.com/blog/ai-era-hospital-marketing-content",
+        "https://haroop.com/blog/hospital-website-landing-page"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B06",
+      "url": "https://haroop.com/blog/haroop-ai-hospital-marketing-history",
+      "title": "하룹 15년 병원마케팅 역사와 AI 전환 | 하룹",
+      "category": "병원마케팅 전략",
+      "reader_decision": "하룹의 업력과 AI 전환은 무엇으로 설명하는가",
+      "analysis_finding": "자사 연혁을 기술·조직·운영 체계의 이야기로 연결",
+      "published_at": "2026-07-24T09:00:00+09:00",
+      "modified_at": "2026-08-05T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "AI가 평준화될수록, 하룹의 15년은 더 선명해집니다",
+      "h2": [
+        "2011년부터 2025년까지, 하룹은 변화를 기다리지 않았습니다",
+        "2013년, 병원카페관리와 함께 책임의 범위를 넓혔습니다",
+        "한 사람의 감각을, 팀이 반복할 수 있는 기준으로",
+        "AI보다 먼저 필요했던 것은, 일이 사라지지 않는 시스템이었습니다",
+        "모든 업종을 잘하겠다는 욕심을 내려놓고, 병원을 더 깊게 봤습니다",
+        "300만+ 데이터보다 중요한 것은, 그 데이터가 무엇을 바꾸는가입니다",
+        "제품, 사람, 공간이 함께 움직일 때 AI는 운영체계가 됩니다",
+        "하룹의 기술은 원장님이 체감할 수 있어야 합니다",
+        "AI시대에도 하룹이 바꾸지 않을 다섯 가지",
+        "자주 묻는 질문",
+        "우리가 오래된 이유는, 계속 바뀌었기 때문입니다",
+        "작성 기준과 공개 자료",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 1,
+      "external_reference_links": [
+        {
+          "text": "OpenAI가 ChatGPT를 연구 프리뷰로 공개한 시점은 2022년 11월",
+          "url": "https://openai.com/index/chatgpt/"
+        },
+        {
+          "text": "ChatGPT 공개 발표문(2022년 11월 30일)",
+          "url": "https://openai.com/index/chatgpt/"
+        }
+      ],
+      "internal_article_links": [],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B07",
+      "url": "https://haroop.com/blog/ai-era-hospital-marketing-content",
+      "title": "AI 시대 병원마케팅, 병원이 소유할 검색 자산 | 하룹",
+      "category": "병원마케팅 전략",
+      "reader_decision": "병원에 어떤 콘텐츠 자산이 남아야 하는가",
+      "analysis_finding": "네이버·홈페이지·웹블로그의 역할과 콘텐츠 재편집",
+      "published_at": "2026-07-22T09:00:00+09:00",
+      "modified_at": "2026-08-05T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "AI 시대 병원마케팅, 병원이 소유해야 할 검색 자산은 무엇인가",
+      "h2": [
+        "AI가 글을 만드는 시대, 병원 콘텐츠는 왜 더 중요해졌을까?",
+        "병원이 소유해야 할 검색 자산은 글 한 편이 아닙니다",
+        "네이버 블로그·홈페이지·웹블로그·AI 답변의 역할은 다릅니다",
+        "하룹은 하나의 질문을 네 번 쓰지 않습니다",
+        "하룹의 검색 자산 운영 루프: 질문에서 다음 질문까지",
+        "좋은 주제는 검색량보다 병원의 답에서 시작합니다",
+        "이 네 가지가 없으면 검색 자산은 쌓이지 않습니다",
+        "AI 답변에 잘 보이기 위해 별도의 글을 써야 할까?",
+        "원장님이 매달 확인할 것은 ‘몇 건 발행했나’가 아닙니다",
+        "하룹이 콘텐츠를 맡을 때 원장님께 필요한 것은 많은 원고가 아닙니다",
+        "자주 묻는 질문",
+        "결론: 검색 화면이 바뀌어도 병원의 답은 남아야 합니다",
+        "조사 기준과 출처",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 3,
+      "external_reference_links": [
+        {
+          "text": "콘텐츠 작성 권장 사항",
+          "url": "https://searchadvisor.naver.com/guide/content-basic"
+        },
+        {
+          "text": "생성형 AI 검색 최적화 공식 가이드",
+          "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide"
+        },
+        {
+          "text": "Google 생성형 AI 검색 최적화 가이드",
+          "url": "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide"
+        },
+        {
+          "text": "Google AI 기능과 웹사이트 안내",
+          "url": "https://developers.google.com/search/docs/appearance/ai-features"
+        },
+        {
+          "text": "OpenAI 크롤러 안내",
+          "url": "https://developers.openai.com/api/docs/bots"
+        },
+        {
+          "text": "네이버 콘텐츠 작성 권장 사항",
+          "url": "https://searchadvisor.naver.com/guide/content-basic"
+        },
+        {
+          "text": "네이버 AI 브리핑 소개",
+          "url": "https://help.naver.com/service/5626/contents/24119?lang=ko&osType=COMMONOS"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/hospital-marketing-company-recommendation",
+        "https://haroop.com/blog/hospital-website-ai-search-visibility"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B08",
+      "url": "https://haroop.com/blog/hospital-marketing-company-recommendation",
+      "title": "병원마케팅 업체 추천, 하룹이 강한 6가지 이유 | 하룹",
+      "category": "병원마케팅 전략",
+      "reader_decision": "왜 하룹을 대행사 후보로 선택하는가",
+      "analysis_finding": "외부 후기·운영·제작·AI·책임 구조를 자사 추천에 연결",
+      "published_at": "2026-07-21T09:00:00+09:00",
+      "modified_at": "2026-08-05T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원마케팅 업체 추천, 하룹이 강한 선택인 6가지 이유",
+      "h2": [
+        "병원마케팅 업체의 실력은 세 가지 질문에서 드러납니다",
+        "1. 2013년부터 쌓인 경험은 ‘오래됨’보다 더 큰 자산입니다",
+        "2. 하룹이 고른 후기보다, 고객이 남긴 기록을 더 중요하게 봅니다",
+        "3. 글과 디자인을 따로 만들지 않아야 병원의 가치가 선명해집니다",
+        "4. 블로그 한 채널이 아니라, 환자의 선택 여정을 연결합니다",
+        "5. 하룹의 AI는 사람의 기준을 더 넓고 빠르게 실행합니다",
+        "6. 좋은 담당자 한 명보다, 흔들리지 않는 책임 구조가 오래갑니다",
+        "하룹과 잘 맞는 병원, 다른 선택이 더 나을 수 있는 병원",
+        "병원장님들이 자주 묻는 질문",
+        "병원마케팅 회사를 고르는 일은, 병원의 다음 인상을 고르는 일입니다",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 1,
+      "external_reference_links": [
+        {
+          "text": "크몽의 하룹 공개 프로필",
+          "url": "https://kmong.com/@%ED%95%98%EB%A3%B9"
+        },
+        {
+          "text": "크몽 하룹 프로필",
+          "url": "https://kmong.com/@%ED%95%98%EB%A3%B9"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/haroop-ai-hospital-marketing-history"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B09",
+      "url": "https://haroop.com/blog/hospital-ad-efficiency-naver-blog",
+      "title": "병원광고 효율, 클릭 이후 전환을 높이는 운영법 | 하룹",
+      "category": "광고·데이터 분석",
+      "reader_decision": "클릭은 생기는데 문의가 늘지 않을 때 무엇을 보는가",
+      "analysis_finding": "유입·설득·전환·학습과 유효문의·예약·내원 구분",
+      "published_at": "2026-07-20T09:00:00+09:00",
+      "modified_at": "2026-08-04T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원광고 효율, 클릭 이후를 설계하는 하룹의 4단계 기준",
+      "h2": [
+        "네이버 블로그를 붙이기 전에, 환자가 어디서 멈추는지부터 봅니다",
+        "네이버 블로그가 광고효율에 도움이 되는 병원은 따로 있습니다",
+        "반대로, 블로그보다 먼저 고쳐야 하는 구간도 분명합니다",
+        "하룹은 광고와 콘텐츠를 네 개의 운영으로 연결합니다",
+        "1. 유입: 클릭 수보다 어떤 질문을 데려왔는지 봅니다",
+        "2. 설득: 병원이 잘하는 일을 환자가 판단할 근거로 바꿉니다",
+        "3. 전환: 좋은 글의 끝을 전화와 예약까지 연결합니다",
+        "4. 학습: 유효 문의·예약·내원으로 다음 운영을 바꿉니다",
+        "하룹의 첫 4주는 글 개수보다 연결을 만드는 시간입니다",
+        "병원광고와 네이버 블로그에 자주 받는 질문",
+        "하룹이 하는 일은 광고를 사는 데서 끝나지 않습니다",
+        "공식 자료와 측정 범위",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 2,
+      "external_reference_links": [
+        {
+          "text": "네이버 검색광고 캠페인별 특징",
+          "url": "https://ads.naver.com/help/faq/45"
+        },
+        {
+          "text": "네이버 웹사이트 전환 추적 안내",
+          "url": "https://ads.naver.com/help/faq/848"
+        },
+        {
+          "text": "Google Ads 기여도 보고서",
+          "url": "https://support.google.com/google-ads/answer/1722023"
+        },
+        {
+          "text": "검색광고 캠페인별 특징",
+          "url": "https://ads.naver.com/help/faq/45"
+        },
+        {
+          "text": "웹사이트 전환 추적 설정",
+          "url": "https://ads.naver.com/help/faq/848"
+        },
+        {
+          "text": "기여도 보고서",
+          "url": "https://support.google.com/google-ads/answer/1722023"
+        },
+        {
+          "text": "전환 설정",
+          "url": "https://support.google.com/google-ads/answer/15464305"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/hospital-website-landing-page"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": true,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    },
+    {
+      "source_id": "B10",
+      "url": "https://haroop.com/blog/hospital-website-landing-page",
+      "title": "병원 홈페이지·랜딩페이지 전환 설계 기준 | 하룹",
+      "category": "홈페이지·랜딩페이지",
+      "reader_decision": "홈페이지와 광고 랜딩을 어떻게 나눠 만드는가",
+      "analysis_finding": "광고 약속·첫 화면·신뢰·상담·측정의 연결 설계",
+      "published_at": "2026-07-17T09:00:00+09:00",
+      "modified_at": "2026-08-05T09:00:00+09:00",
+      "author": {
+        "@type": "Organization",
+        "name": "하룹",
+        "url": "https://haroop.com/why-haroop"
+      },
+      "named_person_author_present_in_article_schema": false,
+      "h1": "병원 홈페이지·랜딩페이지, 광고 클릭을 상담으로 잇는 설계",
+      "h2": [
+        "병원 홈페이지와 랜딩페이지는 역할부터 달라야 합니다",
+        "하룹은 페이지보다 먼저 여섯 구간을 연결합니다",
+        "광고의 약속은 첫 화면에서 그대로 이어져야 합니다",
+        "모바일 첫 화면에는 네 가지가 선명해야 합니다",
+        "병원의 신뢰는 수식어가 아니라 확인 가능한 정보로 만듭니다",
+        "상담은 쉽게, 필요한 맥락은 충분히 제공합니다",
+        "속도와 안정성도 전환 설계의 일부입니다",
+        "성과는 상담 버튼 클릭에서 끝내지 않습니다",
+        "검색과 AI에도 같은 공식 정보가 이어져야 합니다",
+        "병원마다 전환 설계는 달라집니다",
+        "병원 홈페이지 제작에 자주 묻는 질문",
+        "좋은 병원 홈페이지는 광고의 약속을 운영의 결과로 이어 줍니다",
+        "이 글의 기준으로 우리 병원을 점검해 드립니다",
+        "다음에 읽을 글",
+        "하룹의 기준을 더 확인해 보세요."
+      ],
+      "html_table_count": 4,
+      "external_reference_links": [
+        {
+          "text": "Google Ads 랜딩페이지 최적화 가이드",
+          "url": "https://support.google.com/google-ads/answer/6238826/optimize-your-ads-and-landing-pages?hl=ko"
+        },
+        {
+          "text": "web.dev의 Web Vitals 안내",
+          "url": "https://web.dev/articles/vitals?hl=ko"
+        },
+        {
+          "text": "Google Analytics 주요 이벤트 안내",
+          "url": "https://support.google.com/analytics/answer/13128484?hl=ko"
+        }
+      ],
+      "internal_article_links": [
+        "https://haroop.com/blog/hospital-website-ai-search-visibility"
+      ],
+      "contact_link_present": true,
+      "contact_link_inside_article_element": false,
+      "review_depth": "all ten: topic, body structure, major explanations, sources, tables and CTA; not every legal/medical proposition independently verified",
+      "source_checked_at": "2026-11-23T21:21:37+09:00"
+    }
+  ]
+}

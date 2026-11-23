@@ -1,0 +1,812 @@
+{
+  "checked_at": "2026-11-23T21:27:23+09:00",
+  "scope": "selected 30 owned HTML pages, not exhaustive site crawl",
+  "pages": [
+    {
+      "source_id": "B01",
+      "url": "https://haroop.com/blog/hospital-marketing-needs-naver-blog",
+      "status": 200,
+      "title": "병원마케팅 네이버 블로그가 필요한 6가지 이유 | 하룹",
+      "meta_description": "병원마케팅에서 네이버 블로그가 필요한 이유를 광고·플레이스·SNS·홈페이지와 비교하고, 운영 전 확인할 기준과 반론까지 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-marketing-needs-naver-blog"
+      ],
+      "h1": [
+        "병원마케팅에서 네이버 블로그가 필요한 이유, 광고만으로 부족한 6가지"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B02",
+      "url": "https://haroop.com/blog/hospital-naver-blog-search-to-consultation",
+      "status": 200,
+      "title": "병원 네이버블로그 관리, 검색을 상담으로 잇는 법 | 하룹",
+      "meta_description": "병원 네이버블로그를 조회수에서 끝내지 않고 다음 질문, 병원 정보, 홈페이지와 상담까지 자연스럽게 연결하는 실무 기준을 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-naver-blog-search-to-consultation"
+      ],
+      "h1": [
+        "병원 네이버블로그 관리, 검색을 상담으로 잇는 5개의 연결점"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B03",
+      "url": "https://haroop.com/blog/hospital-naver-blog-management",
+      "status": 200,
+      "title": "병원 네이버블로그 관리, 새 글보다 먼저 볼 기준 | 하룹",
+      "meta_description": "병원 네이버블로그 관리는 글 수를 늘리는 일이 아닙니다. 기존 글을 유지·보강·통합·종료하는 기준과 새 글을 써야 할 순간을 병원장 관점에서 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-naver-blog-management"
+      ],
+      "h1": [
+        "병원 네이버블로그 관리, 글보다 먼저 살펴볼 ‘답의 상태’"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B04",
+      "url": "https://haroop.com/blog/hospital-reels-threads-vs-search-assets",
+      "status": 200,
+      "title": "병원 릴스·스레드 마케팅, 예산 배분 기준 | 하룹",
+      "meta_description": "릴스와 스레드를 끊으라는 이야기가 아닙니다. 병원 문의를 만드는 검색 자산, 홈페이지, 소셜 채널의 순서와 예산 배분 기준을 하룹의 실무 프레임으로 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-reels-threads-vs-search-assets"
+      ],
+      "h1": [
+        "병원 릴스·스레드, 해야 할까? 하룹의 채널 예산 배분 기준"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B05",
+      "url": "https://haroop.com/blog/hospital-website-ai-search-visibility",
+      "status": 200,
+      "title": "병원 홈페이지 AI 검색 출처 조건, 하룹의 6단계 설계",
+      "meta_description": "병원 홈페이지와 웹블로그가 검색·AI 답변의 출처가 될 조건을 만들기 위해 하룹이 설계하고 측정하는 여섯 단계를 공개합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-website-ai-search-visibility"
+      ],
+      "h1": [
+        "병원 홈페이지가 AI 검색 출처가 될 조건, 하룹의 6단계 설계"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B06",
+      "url": "https://haroop.com/blog/haroop-ai-hospital-marketing-history",
+      "status": 200,
+      "title": "하룹 15년 병원마케팅 역사와 AI 전환 | 하룹",
+      "meta_description": "2011년 온라인 바이럴 마케팅 1세대부터 병원블로그·카페·모바일·인프라를 거쳐 2025년 병원전문AI 사옥까지. 하룹이 먼저 만들어 온 병원마케팅의 변화를 기록했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/haroop-ai-hospital-marketing-history"
+      ],
+      "h1": [
+        "AI가 평준화될수록, 하룹의 15년은 더 선명해집니다"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B07",
+      "url": "https://haroop.com/blog/ai-era-hospital-marketing-content",
+      "status": 200,
+      "title": "AI 시대 병원마케팅, 병원이 소유할 검색 자산 | 하룹",
+      "meta_description": "AI 시대에도 병원마케팅의 핵심은 변하지 않습니다. 환자가 찾는 질문에 병원만의 답을 남기고, 네이버 블로그·홈페이지·웹블로그를 하나의 검색 자산으로 연결하는 하룹의 운영 기준을 설명합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/ai-era-hospital-marketing-content"
+      ],
+      "h1": [
+        "AI 시대 병원마케팅, 병원이 소유해야 할 검색 자산은 무엇인가"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B08",
+      "url": "https://haroop.com/blog/hospital-marketing-company-recommendation",
+      "status": 200,
+      "title": "병원마케팅 업체 추천, 하룹이 강한 6가지 이유 | 하룹",
+      "meta_description": "병원마케팅 회사를 오래 운영해 온 시간, 공개 후기, 콘텐츠와 디자인, 통합 운영, AI 기술, 책임 구조로 나눠 하룹이 왜 강한 선택인지 솔직하게 설명합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-marketing-company-recommendation"
+      ],
+      "h1": [
+        "병원마케팅 업체 추천, 하룹이 강한 선택인 6가지 이유"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B09",
+      "url": "https://haroop.com/blog/hospital-ad-efficiency-naver-blog",
+      "status": 200,
+      "title": "병원광고 효율, 클릭 이후 전환을 높이는 운영법 | 하룹",
+      "meta_description": "광고 클릭은 늘었는데 예약과 내원이 그대로라면 클릭 이후를 봐야 합니다. 하룹이 병원별로 네이버 블로그의 필요성을 판단하고 유입·설득·전환·학습을 연결하는 기준을 공개합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-ad-efficiency-naver-blog"
+      ],
+      "h1": [
+        "병원광고 효율, 클릭 이후를 설계하는 하룹의 4단계 기준"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "B10",
+      "url": "https://haroop.com/blog/hospital-website-landing-page",
+      "status": 200,
+      "title": "병원 홈페이지·랜딩페이지 전환 설계 기준 | 하룹",
+      "meta_description": "병원 광고의 문장을 모바일 첫 화면, 신뢰 정보, 상담 동선과 유효 문의 측정으로 연결하는 하룹의 전환 설계 기준입니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog/hospital-website-landing-page"
+      ],
+      "h1": [
+        "병원 홈페이지·랜딩페이지, 광고 클릭을 상담으로 잇는 설계"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BlogPosting",
+        "WebPage",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H01",
+      "url": "https://haroop.com/",
+      "status": 200,
+      "title": "병원마케팅 하룹 | 2,400개 병원이 선택한 병원광고·병원 AI 마케팅 회사",
+      "meta_description": "원장님은 진료에만 집중하세요. 15년간 2,400여 병원을 맡아 온 하룹이 블로그·플레이스·홈페이지·유튜브 병원광고부터 AI 검색까지, 의료광고 심의에 맞춰 신환 상담으로 이어지게 설계합니다. 병원마케팅 업체를 고르기 전, 무료 진단부터 받아보세요.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com"
+      ],
+      "h1": [
+        "병원마케팅, AI시대에도 원조의 혁신은 계속됩니다"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "WebPage",
+        "ImageObject",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H02",
+      "url": "https://haroop.com/aeogeo",
+      "status": 200,
+      "title": "병원 AEO/GEO 서비스 | AI검색에 인용되는 병원 만들기 - 하룹",
+      "meta_description": "광고 자리는 살 수 있어도 AI 답변은 살 수 없습니다. 하룹 AEO/GEO는 병원 홈페이지·랜딩·웹블로그를 AI가 인용하기 쉬운 구조로 만들고, 매달 같은 질문으로 AI검색 인용 결과를 측정해 기록합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/aeogeo"
+      ],
+      "h1": [
+        "광고 자리는 살 수 있어도, 답변은 살 수 없습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "Service",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H03",
+      "url": "https://haroop.com/ai-search-geo",
+      "status": 200,
+      "title": "AI검색·AEO/GEO 병원마케팅 | 병원 신뢰 인프라 - 하룹",
+      "meta_description": "환자는 이제 AI에게 병원을 묻습니다. AI추천 보장이 아니라 AI가 참고할 근거가 필요합니다. 하룹은 2018년부터 자체 AI를 개발해온 병원마케팅 회사로, 홈페이지·콘텐츠·SEO·플레이스·리뷰를 하나의 신뢰 구조로 설계해 AI검색에 강한 병원을 만듭니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/ai-search-geo"
+      ],
+      "h1": [
+        "환자는 AI에게 묻고, AI는 기록을 읽습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H04",
+      "url": "https://haroop.com/price",
+      "status": 200,
+      "title": "병원마케팅 비용 · 서비스 가격 안내 | 하룹 - 15년, 2,400+ 병원",
+      "meta_description": "하룹 병원마케팅 서비스 가격 안내. 블로그·카페·지식인, 플레이스·카카오톡·모두닥·굿닥 채널 세팅, 퍼포먼스광고, 유튜브·SNS, AEO·GEO, 홈페이지, 촬영, 평판관리, 패키지까지 금액과 포함 범위, 의료광고 검수, 보고 방식을 함께 공개합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/price"
+      ],
+      "h1": [
+        "가격 옆에, 그 가격에 들어 있는 일을 적었습니다"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "Service",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H05",
+      "url": "https://haroop.com/blog",
+      "status": 200,
+      "title": "하룹 블로그 | 병원마케팅 인사이트 · AEO/GEO · AI 검색 전략",
+      "meta_description": "2011년부터 2,400곳 넘는 병원과 일해 온 하룹이 전하는 인사이트. AEO/GEO, AI 검색 노출, 네이버 블로그 전략, 전환 설계까지 — 병원 성장의 기준을 만드는 글을 만나보세요.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/blog"
+      ],
+      "h1": [
+        "병원마케팅을 맡기기 전에, 판단 기준부터 읽어 보세요"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H08",
+      "url": "https://haroop.com/why-haroop",
+      "status": 200,
+      "title": "왜 하룹인가 | 병원마케팅 업체 선택 기준 - 하룹",
+      "meta_description": "병원마케팅 업체를 비교할수록 하룹이어야 하는 이유. 콘텐츠, 플레이스, 리뷰, 광고, 의료법, AI 검색 데이터, 보고 체계를 하나로 묶은 병원 성장 시스템.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/why-haroop"
+      ],
+      "h1": [
+        "모두가 AI를 말합니다. 하룹은 2018년부터 AI를 만들어왔습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H09",
+      "url": "https://haroop.com/haroop1",
+      "status": 200,
+      "title": "하룹 1세대 프로젝트 | 병원마케팅 하룹의 검색·콘텐츠 성장 시스템 원형",
+      "meta_description": "하룹 1세대 프로젝트는 2011년 검색·블로그·카페·이메일·쪽지 마케팅을 직접 검증하며 시작된 하룹 병원마케팅 시스템의 원형입니다. 창업 초기부터 노출, 콘텐츠, 상담 전환, 자동화, 자체 자본 운영을 축적했고, 이 기반이 오늘날 원장님과 병원이 신뢰할 수 있는 하룹의 체계성·기술력·성과 중심 운영으로 이어졌습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/haroop1"
+      ],
+      "h1": [
+        "노출보다 상담. 하룹은 2011년부터 실험했습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H10",
+      "url": "https://haroop.com/haroop3",
+      "status": 200,
+      "title": "하룹 3세대 프로젝트 (2018~2019) | 2018년 AI 개발팀 창설 · 기업부설연구소 · ADgo/Hgo",
+      "meta_description": "하룹은 2018년 머신러닝·딥러닝·보이스 AI를 다루는 AI 개발팀을 창설했습니다. AI 보이스 병원 안내방송을 개발해 병원에 납품했고, 기업부설연구소 인정을 받았으며, ADgo·Hgo 분리로 실행 기준을 정비했습니다. 9년째 이어진 하룹 병원 AI의 출발점입니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/haroop3"
+      ],
+      "h1": [
+        "2018년, 하룹은 AI 개발팀을 만들었습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "WebPage",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H11",
+      "url": "https://haroop.com/reviews",
+      "status": 200,
+      "title": "병원마케팅 고객후기 | 원장님들이 얼굴 걸고 말한 하룹의 결과",
+      "meta_description": "문의전화 5배, 월매출 1.5억에서 2.6억. 하룹 병원마케팅을 경험한 현직 원장님들이 카메라 앞에서 직접 말한 영상 후기와 실제 성장 사례를 확인하세요.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/reviews"
+      ],
+      "h1": [
+        "하룹이 어떤 곳인지, 원장님께 직접 들어 보세요."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H12",
+      "url": "https://haroop.com/channels",
+      "status": 200,
+      "title": "하룹 공식 채널 | 블로그 · 인스타그램 · 유튜브",
+      "meta_description": "하룹 공식 블로그, 인스타그램, 유튜브 채널을 한 곳에서 확인하세요. 병원마케팅 사례, 디자인 작업, 영상 후기와 최신 콘텐츠를 모았습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/channels"
+      ],
+      "h1": [
+        "계약 전에, 하룹의 실력을 미리 보세요."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H13",
+      "url": "https://haroop.com/contact",
+      "status": 200,
+      "title": "병원마케팅 무료상담 신청 | 하룹 - 15년 업력 병원마케팅 전문기업",
+      "meta_description": "병원마케팅 무료상담을 신청하세요. 15년 업력, 누적 2,400곳 이상 병원과 협업한 하룹이 맞춤 마케팅 전략을 제안합니다. 병원블로그마케팅, 병원홈페이지제작, 병원광고 견적 문의.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/contact"
+      ],
+      "h1": [
+        "계약 이야기는 그다음입니다. 먼저 우리 병원을 진단해 드립니다"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H14",
+      "url": "https://haroop.com/privacy",
+      "status": 200,
+      "title": "개인정보처리방침 | 하룹",
+      "meta_description": "주식회사 하룹의 개인정보처리방침 전문을 안내합니다.",
+      "meta_robots": "noindex, follow",
+      "canonical": [
+        "https://haroop.com/privacy"
+      ],
+      "h1": [
+        "개인정보처리방침"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H15",
+      "url": "https://haroop.com/terms",
+      "status": 200,
+      "title": "이용약관 | 하룹",
+      "meta_description": "주식회사 하룹 서비스 이용약관 전문을 안내합니다.",
+      "meta_robots": "noindex, follow",
+      "canonical": [
+        "https://haroop.com/terms"
+      ],
+      "h1": [
+        "이용약관"
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H16",
+      "url": "https://haroop.com/hospital-marketing-cost",
+      "status": 200,
+      "title": "병원마케팅 비용, 한 달에 얼마가 적정할까 | 서비스별 가격 · 예산별 조합 - 하룹",
+      "meta_description": "병원마케팅 비용은 블로그 같은 콘텐츠 채널 하나에 월 100만원 안팎, 여러 채널을 묶으면 월 300만원 안팎입니다. 블로그관리 월 100만원, AEO·GEO 월 100만원, 유튜브 월 300만원 등 하룹의 서비스별 금액과 포함 범위, 월 예산별 조합, 견적서 확인 기준을 공개합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/hospital-marketing-cost"
+      ],
+      "h1": [
+        "병원마케팅 비용, 얼마가 적정한지 숫자로 답합니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "Service",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H17",
+      "url": "https://haroop.com/hospital-marketing-checklist",
+      "status": 200,
+      "title": "병원마케팅 업체 선택 기준 | 계약 전 필수 질문 7가지 - 하룹",
+      "meta_description": "병원마케팅 업체와 계약하기 전, 원장님이 상담 자리에서 그대로 던질 수 있는 7가지 질문. 상위노출 보장, 저가 포스팅, AI 추천, 의료광고 리스크의 함정을 하룹 기준으로 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/hospital-marketing-checklist"
+      ],
+      "h1": [
+        "다음 업체 상담에 이 7가지를 들고 가세요."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H18",
+      "url": "https://haroop.com/market-intelligence",
+      "status": 200,
+      "title": "2026 하반기 병원마케팅 시장 리포트 | AI 검색 시대에 병원이 할 일 - 하룹",
+      "meta_description": "2026년 6월 네이버 AI탭이 모든 이용자에게 열린 뒤, 환자는 검색 대신 질문합니다. 시장의 여섯 갈래 흐름과 병원이 먼저 손댈 여섯 가지, 2018년부터 AI를 개발해 온 하룹의 기록을 리포트로 정리했습니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/market-intelligence"
+      ],
+      "h1": [
+        "환자는 이제 검색하지 않고 질문합니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H19",
+      "url": "https://haroop.com/medical-ad-compliance",
+      "status": 200,
+      "title": "의료광고 카피라이팅 | 선 넘지 않고 설득하는 병원마케팅 - 하룹",
+      "meta_description": "하룹은 무리한 후킹으로 병원을 위험하게 만들지 않습니다. 의료광고 기준을 지키면서도 환자가 납득하고 문의하게 만드는 적정 강도의 카피를 설계합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/medical-ad-compliance"
+      ],
+      "h1": [
+        "광고는 대행사가 만들어도, 책임은 병원에 남습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H20",
+      "url": "https://haroop.com/compare-haroop",
+      "status": 200,
+      "title": "병원마케팅 업체 비교 | 가격표만 보고 고르지 마세요 - 하룹",
+      "meta_description": "저가 포스팅, 환불보장, AI추천, 최적블로그, 브랜딩 제안까지 병원마케팅 업체 선택 전 원장님이 반드시 확인해야 할 하룹 기준을 정리합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/compare-haroop"
+      ],
+      "h1": [
+        "말은 모두 닮았습니다. 기록은 닮을 수 없습니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H21",
+      "url": "https://haroop.com/website",
+      "status": 200,
+      "title": "병원 홈페이지 제작 · 랜딩페이지 제작 | 상담이 오는 병원 홈페이지 - 하룹",
+      "meta_description": "예쁜 병원 홈페이지는 많지만 상담이 오는 홈페이지는 드뭅니다. 하룹은 환자가 묻는 질문과 상담 동선부터 설계합니다. 랜딩페이지 100만원~, 홈페이지 200만원~. 기획·카피라이팅·디자인·개발·서버까지 한 팀이 맡고, 오픈 이후 수정·서버 비용도 미리 공개합니다.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/website"
+      ],
+      "h1": [
+        "예쁜 병원 홈페이지는 많습니다. 상담이 오는 홈페이지는 드뭅니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "BreadcrumbList",
+        "Service",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    },
+    {
+      "source_id": "H22",
+      "url": "https://haroop.com/total-hospital-ad",
+      "status": 200,
+      "title": "병원마케팅 종합광고기획 | 15년 병원광고대행 · 2,400여 병원과 함께한 하룹",
+      "meta_description": "병원마케팅 종합광고기획은 하룹입니다. 2011년부터 2,400여 병원과 검증한 통합 광고 설계. 병원 블로그마케팅·검색광고·배너광고·브랜드 콘텐츠·스마트플레이스·내부 CRM 컨설팅까지 한 전략으로 운영. 종합광고 재진행률 80%, 대표 사례 연 매출 300% 이상 상승. 병원마케팅 무료 상담.",
+      "meta_robots": "index, follow",
+      "canonical": [
+        "https://haroop.com/total-hospital-ad"
+      ],
+      "h1": [
+        "환자는 일곱 곳을 거쳐 전화합니다. 하룹은 그 길 전체를 한 팀이 설계합니다."
+      ],
+      "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+      "schema_types": [
+        "WebSite",
+        "Organization",
+        "LocalBusiness",
+        "WebPage",
+        "BreadcrumbList",
+        "Service",
+        "FAQPage"
+      ],
+      "body_available_in_initial_html": true,
+      "page_speed_or_cwv_measured": false,
+      "visual_mobile_qa_performed": false
+    }
+  ],
+  "robots_source_id": "H06",
+  "sitemap_source_id": "H07",
+  "sitemap_urls": [
+    "https://haroop.com",
+    "https://haroop.com/total-hospital-ad",
+    "https://haroop.com/youtube",
+    "https://haroop.com/aeogeo",
+    "https://haroop.com/channel-setup",
+    "https://haroop.com/hospital-marketing-checklist",
+    "https://haroop.com/hospital-marketing-cost",
+    "https://haroop.com/paidad",
+    "https://haroop.com/price",
+    "https://haroop.com/real-model",
+    "https://haroop.com/reviews",
+    "https://haroop.com/website",
+    "https://haroop.com/why-haroop",
+    "https://haroop.com/blog",
+    "https://haroop.com/channels",
+    "https://haroop.com/sns",
+    "https://haroop.com/ai-search-geo",
+    "https://haroop.com/compare-haroop",
+    "https://haroop.com/film",
+    "https://haroop.com/market-intelligence",
+    "https://haroop.com/medical-ad-compliance",
+    "https://haroop.com/reputation",
+    "https://haroop.com/contact",
+    "https://haroop.com/blog/ai-era-hospital-marketing-content",
+    "https://haroop.com/blog/haroop-ai-hospital-marketing-history",
+    "https://haroop.com/blog/hospital-ad-efficiency-naver-blog",
+    "https://haroop.com/blog/hospital-marketing-company-recommendation",
+    "https://haroop.com/blog/hospital-marketing-needs-naver-blog",
+    "https://haroop.com/blog/hospital-naver-blog-management",
+    "https://haroop.com/blog/hospital-naver-blog-search-to-consultation",
+    "https://haroop.com/blog/hospital-reels-threads-vs-search-assets",
+    "https://haroop.com/blog/hospital-website-ai-search-visibility",
+    "https://haroop.com/blog/hospital-website-landing-page",
+    "https://haroop.com/web-price",
+    "https://haroop.com/haroop1",
+    "https://haroop.com/haroop2",
+    "https://haroop.com/haroop3",
+    "https://haroop.com/haroop4",
+    "https://haroop.com/haroop5",
+    "https://haroop.com/haroop6",
+    "https://haroop.com/haroop7",
+    "https://haroop.com/haroop8",
+    "https://haroop.com/haroop9"
+  ],
+  "sitemap_count": 43,
+  "visual_or_speed_measurements_performed": false,
+  "search_console_index_status_available": false
+}

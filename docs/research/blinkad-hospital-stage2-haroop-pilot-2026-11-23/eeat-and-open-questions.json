@@ -1,0 +1,328 @@
+{
+  "checked_at": "2026-11-23T21:27:23+09:00",
+  "eeat": [
+    {
+      "dimension": "Experience",
+      "observed": "공개 후기 페이지가 인터뷰 15편·영상 27편을 표시하고 수치를 원 영상 링크와 연결. 직접 마케팅 운영 과정·세대별 연혁도 공개.",
+      "limits": "인터뷰는 업체가 선정·게시한 증언. 환자/매출 CRM 원자료·대조군·AEO 전용 성과 감사는 미확보. 548 리뷰를 548 병원 또는 AEO 고객 수로 해석하지 않음.",
+      "sources": [
+        "H11",
+        "H09",
+        "H10",
+        "X01"
+      ]
+    },
+    {
+      "dimension": "Expertise",
+      "observed": "10편의 의사결정형 칼럼이 운영 표·질문·검수·측정·기술 조건을 설명하고 관련 공식 문서를 연결.",
+      "limits": "글 저자는 일관되게 Organization 하룹. 개인 실무자/검수자의 이름·경력·역할 추적은 제한. AI팀·300만 데이터·인증의 성능/현행성은 자사 주장과 분리.",
+      "sources": [
+        "B01",
+        "B03",
+        "B05",
+        "B09",
+        "H10"
+      ]
+    },
+    {
+      "dimension": "Authoritativeness",
+      "observed": "크몽이 발행한 대표 인터뷰와 판매 페이지의 별점/누적리뷰 표시를 외부 플랫폼에서 확인.",
+      "limits": "거래 플랫폼의 소개/고객 평가이며 독립적인 매출·GEO 성과 검증은 아님. 수상 이미지·자사 연혁을 현재 유효한 정부 인증으로 확정하지 않음.",
+      "sources": [
+        "X01",
+        "X02",
+        "H08",
+        "H10"
+      ]
+    },
+    {
+      "dimension": "Trust",
+      "observed": "대표·사업자번호·주소, 개인정보/환불 안내, 가격·제외범위·성과 고지·문의 이후 절차 공개.",
+      "limits": "공개 정책만으로 실제 계약의 최소기간/이관 조건을 확정할 수 없음. 예시 AI 리포트는 실적이 아니며 채널별 숫자/결제 조건은 범위 확인 필요.",
+      "sources": [
+        "H01",
+        "H02",
+        "H13",
+        "H14",
+        "H15",
+        "X01"
+      ]
+    }
+  ],
+  "open_questions": [
+    {
+      "topic": "AI 측정 실행 조건",
+      "question": "일반 설명의 네이버 포함 월간 측정과 웹블로그의 Claude 포함 주간 측정 중 계약별 실제 조합은 무엇인가? 모델·API/웹·검색 여부·지역·언어·반복수·100개 질문의 분모와 원자료 형식은?",
+      "sources": [
+        "H02"
+      ]
+    },
+    {
+      "topic": "계약·소유·종료",
+      "question": "최소 계약기간, 해지 정산, 병원 소유 도메인의 등록 명의, 콘텐츠·소스·DB·분석계정 반출/이관, 무료 인프라 1년 이후 요금은?",
+      "sources": [
+        "H02",
+        "H15",
+        "H21"
+      ]
+    },
+    {
+      "topic": "별도 비용",
+      "question": "의료진 인터뷰·촬영·이미지·다국어·예약 연동·의료광고 심의 대응의 옵션 금액과 책임은?",
+      "sources": [
+        "H02"
+      ]
+    },
+    {
+      "topic": "성과 근거",
+      "question": "전통 병원마케팅 인터뷰/상품 누적 후기와 분리되는 AEO 고객의 Before/After 질문 세트·기간·원자료·문의 성과를 볼 수 있는가?",
+      "sources": [
+        "H02",
+        "H11",
+        "X01"
+      ]
+    },
+    {
+      "topic": "채널별 견적",
+      "question": "공식 가격과 크몽 상품의 실제 범위·VAT·구축비·갱신·결제수수료·세금계산서 처리는 어떻게 다른가?",
+      "sources": [
+        "H02",
+        "H04",
+        "X01"
+      ]
+    },
+    {
+      "topic": "수정·리프레시",
+      "question": "상품의 12~18개월 리프레시와 월별 오류 수정·칼럼의 주/월/분기 관리가 실제 계약에서 어떻게 구분되는가?",
+      "sources": [
+        "H02",
+        "B03"
+      ]
+    }
+  ],
+  "historical_search_evidence": {
+    "company_id": "C01",
+    "name": "하룹",
+    "analysis_sequence": 1,
+    "group": "owned_site_organic_observed",
+    "group_label": "홈페이지 자연검색",
+    "not_single_query_google_rank": true,
+    "placements": [
+      {
+        "evidence_id": "S1-C01-01",
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 8,
+        "url": "https://haroop.com/ai-search-geo",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-02",
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-03",
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 클립",
+        "rank": "—",
+        "url": "https://clip.naver.com/@haroop_marketing",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-04",
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-05",
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 5,
+        "url": "https://haroop.com",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-06",
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-07",
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-08",
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-09",
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 7,
+        "url": "https://haroop.com",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-10",
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 1,
+        "url": "https://haroop.com/",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-11",
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-12",
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-13",
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 4,
+        "url": "https://haroop.com",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-14",
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": "",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-15",
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      },
+      {
+        "evidence_id": "S1-C01-16",
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처",
+        "observed_at": "2026-11-23 18:00-18:02 KST",
+        "record_kind": "historical_retained_observation",
+        "source_file": "data/serp-placements.json",
+        "advertiser_destination_verified": null
+      }
+    ],
+    "owned_site_organic_rank_causal_claim_allowed": false,
+    "external_blog_ownership_verified": null
+  },
+  "ranking_causality": "observed technical/content/trust characteristics are hypotheses for search contribution; no causal weights or ranking guarantee",
+  "external_stats_scope_notes": [
+    "site August self-count 2400+ partners differs from March Kmong interview 3000+; scopes not reconciled",
+    "blog snapshot product reviews 547 vs current marketplace 548 is date-sensitive; total-profile 791 is a different scope"
+  ]
+}
