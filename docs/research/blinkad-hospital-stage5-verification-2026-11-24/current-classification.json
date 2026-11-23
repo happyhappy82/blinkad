@@ -1,0 +1,98 @@
+{
+  "checked_at": "2026-11-24T08:52:41+09:00",
+  "original_locked_aeo_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "original_locked_count": 12,
+  "original_cohort_detailed_reports_done": 12,
+  "new_functional_overlap_ids": [
+    "C05",
+    "C10"
+  ],
+  "current_functional_overlap_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "current_functional_overlap_count": 14,
+  "new_entries_have_limited_public_specification": true,
+  "not_fourteen_fully_specified_quotes": true,
+  "site_analysis_confirmed_count": 10,
+  "site_analysis_conditional_count": 0,
+  "legacy_ad_exact_same_id_still_unverified": true,
+  "site_top10_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10"
+  ],
+  "current_overlap_with_site_ids": 9,
+  "current_union_company_slots": 15,
+  "records": [
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "status": "confirmed_functional_public_offer_detail_access_limited",
+      "basis": [
+        "공식 칼럼 홈의 AI 마케팅 서비스 카드와 공식 도메인 상세 링크",
+        "공식 연계 oreunplan의 병원 GEO 글과 진단 제안"
+      ],
+      "source_ids": [
+        "C05-V02",
+        "C05-V03"
+      ],
+      "detail_url": "https://oreun.net/hospital_marketing/ai/",
+      "detail_access": "HTTP403; public reader unavailable",
+      "price": "unverified",
+      "monthly_deliverables": "unverified",
+      "measurement_protocol": "unverified"
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "status": "confirmed_functional_public_offer_spec_limited",
+      "basis": [
+        "nice_company 이미지 버튼의 공식 사이트/전화 연결",
+        "공식 서비스의 ChatGPT·네이버 AI 검색 노출과 SEO",
+        "공식 병원 포트폴리오"
+      ],
+      "source_ids": [
+        "C10-V01",
+        "C10-V02",
+        "C10-V03",
+        "C10-V04"
+      ],
+      "price": "AI-specific unverified; blog general keyword service price is separate",
+      "monthly_deliverables": "unverified",
+      "measurement_protocol": "AI-specific unverified"
+    }
+  ]
+}

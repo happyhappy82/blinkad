@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-24T08:55:58+09:00",
+  "passed": true,
+  "errors": [],
+  "historical_snapshot_sha256": {
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/master-roster.json": "9aa821c328bc60b738662ff02cde8d1226a7147ee13098443a1e254d207b901d",
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/site-search-evidence.json": "e06b2e73ce3451e7616def8bf0762a7ab80fa89045ad2c611fe7018d121c24ce",
+    "analysis-selection/historical-exact-query.json": "6198ae907ac2590e0683b4a7929113f41c84025fdcbe051f0865aa6cc0b6f075"
+  },
+  "source_records": 32,
+  "verification_issues": 22,
+  "current_functional_overlap_count": 14,
+  "site_analysis_count": 10,
+  "original_aeo_cohort_count": 12,
+  "additional_limited_spec_count": 2,
+  "checks": [
+    "historical snapshots preserved",
+    "enabled image metadata+site phone+company profile linkage",
+    "current canonical recheck",
+    "current prices and quote-only scope",
+    "OpenAI country/approval policy and bot roles",
+    "financial security-page soft blocks excluded",
+    "wrong redirected FAQ excluded",
+    "source/link/JSON and cohort counts"
+  ],
+  "not_performed": [
+    "private contract/outcome audit",
+    "new live AI/rank measurement",
+    "inquiry/phone submission",
+    "site/ads/account/permission changes"
+  ]
+}

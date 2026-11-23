@@ -109,14 +109,18 @@
         "https://blog.naver.com/charmark",
         "https://www.youtube.com/@oreun-net"
       ],
-      "aeo_hospital_status": "details_unavailable",
-      "aeo_evidence": "병원 AI 서비스 제공 표시, 상세 링크 페이지 없음",
+      "aeo_hospital_status": "confirmed_functional",
+      "aeo_evidence": "공식AI마케팅카드+공식연계병원GEO글,상세명세접근제한",
       "aeo_source": "https://blog.oreun.net/",
       "analysis_status": "completed_public_evidence",
       "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C05-oreun.md",
       "analysis_checked_date": "2026-11-23",
-      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/",
+      "aeo_status_checked_date": "2026-11-24",
+      "product_analysis_status": "completed_public_evidence_limited_spec",
+      "product_analysis_report": "../blinkad-hospital-stage5-verification-2026-11-24/additional-products/C05.md",
+      "product_analysis_checked_date": "2026-11-24"
     },
     {
       "sequence": 6,
@@ -223,17 +227,44 @@
       "content_sources": [
         "https://www.nicecompany.kr/"
       ],
-      "aeo_hospital_status": "identity_unresolved",
-      "aeo_evidence": "후보 법인은 병원 포트폴리오·AI 검색/SEO 제공, 최초 광고 주체 연결 미확인",
+      "aeo_hospital_status": "confirmed_functional",
+      "aeo_evidence": "공식연계확인+ChatGPT/네이버AI검색노출/SEO+병원포트폴리오,AI단독명세미확인",
       "aeo_source": "https://www.nicecompany.kr/sub/online.html",
-      "analysis_status": "conditional_identity_unresolved",
-      "precheck": "advertiser_profile_and_candidate_site_still_not_legally_linked",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_blog_enabled_image_targets_and_phone_match_official_site_and_company_profile",
       "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C10-nice.md",
       "analysis_checked_date": "2026-11-23",
-      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/",
+      "aeo_status_checked_date": "2026-11-24",
+      "product_analysis_status": "completed_public_evidence_limited_spec",
+      "product_analysis_report": "../blinkad-hospital-stage5-verification-2026-11-24/additional-products/C10.md",
+      "product_analysis_checked_date": "2026-11-24",
+      "identity_checked_date": "2026-11-24",
+      "identity_resolution_report": "../blinkad-hospital-stage5-verification-2026-11-24/nice-identity-resolution.json",
+      "historical_original_ad_same_id_verified": false,
+      "analysis_reverified_date": "2026-11-24"
     }
   ],
   "confirmed_aeo_hospital_company_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C10",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "exact_query_evidence_file": "historical-exact-query.json",
+  "product_analysis_update": "original_twelve_preserved_plus_two_limited_public_scope_addenda",
+  "site_analysis_update": "stage5_ten_public_site_reports_linked_original_ad_exact_id_still_unverified",
+  "original_locked_aeo_hospital_company_ids": [
     "C01",
     "C02",
     "C03",
@@ -247,7 +278,6 @@
     "C19",
     "C20"
   ],
-  "exact_query_evidence_file": "historical-exact-query.json",
-  "product_analysis_update": "stage3_product_complete_site_analysis_status_preserved",
-  "site_analysis_update": "stage4_nine_confirmed_including_pilot_one_identity_conditional"
+  "aeo_selection_revalidation_file": "../blinkad-hospital-stage5-verification-2026-11-24/current-classification.json",
+  "current_classification_date": "2026-11-24"
 }

@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-11-24T08:52:41+09:00",
+  "stage5_public_verification_round_finished": true,
+  "original_aeo_cohort_done": 12,
+  "original_aeo_cohort_total": 12,
+  "current_functional_overlap_count": 14,
+  "additional_limited_spec_count": 2,
+  "site_done": 10,
+  "site_total": 10,
+  "site_conditional": 0,
+  "historical_exact_ad_id_unverified": true,
+  "resolved_scope_is_public_evidence_not_private_audit": true,
+  "next_stage": 6,
+  "report": "blinkad-hospital-stage5-verification-2026-11-24.md",
+  "new_rank_measurements": 0,
+  "new_ai_api_measurements": 0,
+  "outbound_inquiries": 0,
+  "settings_or_permissions_changed": 0,
+  "retained_unresolved_examples": [
+    "private prices/contracts",
+    "case outcome raw data",
+    "Haroop/Winaid revenue year",
+    "Rean current HTML/canonical",
+    "actual Google index selection",
+    "original exact ad ID"
+  ]
+}

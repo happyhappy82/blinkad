@@ -1,0 +1,51 @@
+{
+  "checked_at": "2026-11-24T08:52:41+09:00",
+  "blog_source_id": "C10-V01",
+  "blog_id": "nice_company",
+  "post_id": "224462553176",
+  "image_button_targets": [
+    {
+      "component_id": "SE-d94c7b96-b64b-4ad4-872c-a4039b0d233d",
+      "html_href": "#",
+      "link_use": "true",
+      "actual_target": "https://www.nicecompany.kr/sub/portfolio.html"
+    },
+    {
+      "component_id": "SE-59a09958-8e75-45d7-8200-16bc71384e39",
+      "html_href": "#",
+      "link_use": "true",
+      "actual_target": "https://www.nicecompany.kr/sub/kpi_list.html"
+    },
+    {
+      "component_id": "SE-3ee55d0c-3270-44e2-a2a1-fc7cf71d5941",
+      "html_href": "#",
+      "link_use": "true",
+      "actual_target": "https://www.nicecompany.kr/sub/inquiry/form.html"
+    },
+    {
+      "component_id": "SE-ad956ecc-526b-4cbd-b6a1-0bb1ad5bd57d",
+      "html_href": "#",
+      "link_use": "true",
+      "actual_target": "https://open.kakao.com/o/sTfb5Iyi"
+    },
+    {
+      "component_id": "SE-f85fe098-900e-4408-8aa3-8876fd5d025e",
+      "html_href": "#",
+      "link_use": "true",
+      "actual_target": "tel:1577-6702"
+    }
+  ],
+  "official_domain": "www.nicecompany.kr",
+  "official_home_source_id": "C10-V02",
+  "phone_in_blog_image_metadata": "1577-6702",
+  "phone_on_official_home": "1577-6702",
+  "representative_on_official_home": "김연태",
+  "address_on_official_home": "부산 금정구 금정로 94",
+  "independent_company_profile_source_id": "C10-WFIN",
+  "profile_director": "김연태",
+  "profile_homepage": "http://www.nicecompany.kr",
+  "public_blog_site_company_link_status": "confirmed_public_evidence",
+  "not_a_business_registration_original_audit": true,
+  "original_1800_ad_same_id_verified": false,
+  "correction_to_stage4": "The earlier extractor inspected ordinary href links and missed enabled image-button data-linkdata. The prior identity hold is superseded for blog/site/company linkage; preserve the historical report and unresolved original ad ID."
+}
