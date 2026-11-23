@@ -13,7 +13,36 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "가격·납품량 공개, 병원 통합 운영과 웹/AI 개발",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "direct_comparison_priority",
+        "overlap": "전용 AEO/GEO 웹블로그·구조 개선·AI 테스트",
+        "source": "https://haroop.com/aeogeo"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 30,
+        "month": "2026-09",
+        "nps_entity": "(주) 하룹",
+        "nps_location": "충청북도 청주시 흥덕구 원터로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 92,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/company/42006511"
+          },
+          {
+            "count": 30,
+            "source": "Jobplanet",
+            "as_of": null,
+            "url": "https://www.jobplanet.co.kr/companies/347332/landing/%ED%95%98%EB%A3%B9"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "애드리절트",
@@ -27,7 +56,31 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "진료과별 맞춤, 교육 콘텐츠와 AIRANK 추적",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "direct_comparison_priority",
+        "overlap": "AIO·AIRANK·다국어 AI 대응",
+        "source": "https://adresult.kr/SEO"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 27,
+        "month": "2026-09",
+        "nps_entity": "주식회사애드리절트",
+        "nps_location": "서울특별시 강남구 헌릉로618길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하",
+            "source": "JobKorea recruitment",
+            "as_of": "2026-10 posting",
+            "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50123393"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "상승기획",
@@ -41,7 +94,31 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "14일 사전 조사, 환자 심리와 스토리 원고",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "functional_overlap",
+        "overlap": "AI 추천환경 분석·콘텐츠·브랜드 신뢰 정보",
+        "source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+      },
+      "staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하 태그, 정확 인원 비공개",
+            "source": "Wanted",
+            "as_of": null,
+            "url": "https://www.wanted.co.kr/company/44948"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "시월기획",
@@ -55,7 +132,30 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "여러 업종의 제작·광고 종합 운영",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+        "overlap": "SEO·콘텐츠·해외마케팅 부분 중복",
+        "source": "https://www.10wol.com/product"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 49,
+        "month": "2026-09",
+        "nps_entity": "주식회사시월기획",
+        "nps_location": "세종특별자치시  한누리대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 49,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "오른기획",
@@ -69,7 +169,23 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "지역·진료과 독점, 직접 실행과 원장 중심 콘텐츠",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "displayed_detail_unavailable",
+        "overlap": "AI 상품 표시, 상세 링크 페이지 없음",
+        "source": "https://blog.oreun.net/"
+      },
+      "staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "리앤메디",
@@ -83,7 +199,30 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "성장 진단과 환자 선택 여정, 웹/콘텐츠 결합",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "functional_overlap",
+        "overlap": "Search & AI Visibility·홈페이지 결합 AI 최적화",
+        "source": "https://www.reanmedi.com/"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 7,
+        "month": "2026-09",
+        "nps_entity": "(주)리앤커뮤니케이션",
+        "nps_location": "서울특별시 서초구 강남대로8길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "JobKorea",
+            "as_of": "2026",
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "윈에이드",
@@ -97,7 +236,30 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "병원 소유 계정·자산, 고정 질문과 월별 측정",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "direct_comparison_priority",
+        "overlap": "질문형 콘텐츠·구조 개선·월별 AI 재측정",
+        "source": "https://winaid.co.kr/services/aeo-geo"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사윈에이드",
+        "nps_location": "서울특별시 영등포구 양평로20길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 23,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "KR마케팅",
@@ -111,7 +273,30 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "광고·영상·홈페이지 통합, 신환 기준 보고",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "direct_comparison_priority",
+        "overlap": "GEO 진단·웹 개선·칼럼·주간 AI 측정·지도 정보",
+        "source": "https://krmkt.co.kr/geo/"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사 케이알마케팅",
+        "nps_location": "서울특별시 금천구 두산로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "Gyeonggi employment portal",
+            "as_of": "2025-12",
+            "url": "https://job.gg.go.kr/empmn/desEntDtl.do?bizrno=8188600477&cntType=O"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "골드닥터스",
@@ -125,7 +310,23 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "광고와 민원·평판·심의 올케어",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "functional_overlap",
+        "overlap": "ChatGPT·Gemini 추천용 병원 웹 정보 정비",
+        "source": "https://golddoctors.co.kr/service"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 25,
+        "month": "2026-09",
+        "nps_entity": "(주)지디엠(GDMInc.)",
+        "nps_location": "인천광역시 남동구 인주대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "나이스컴퍼니",
@@ -139,7 +340,36 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "동명 후보: 업종별 TF·지역 독점·전환 데이터",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "candidate_entity_offer",
+        "overlap": "후보 법인의 AI 검색 노출·SEO",
+        "source": "https://www.nicecompany.kr/sub/online.html"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 15,
+        "month": "2026-09",
+        "nps_entity": "나이스컴퍼니주식회사",
+        "nps_location": "부산광역시 금정구 금정로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 15,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260"
+          },
+          {
+            "count": 29,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "스타닥마케팅",
@@ -153,7 +383,30 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "의사 출신 대표·상권 분석·원내 브랜딩",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "direct_comparison_priority",
+        "overlap": "SEO/AEO/GEO·질문 콘텐츠·사이트 개선·언급/문의 점검",
+        "source": "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 32,
+        "month": "2026-09",
+        "nps_entity": "스타닥(stardoc)",
+        "nps_location": "서울특별시 강남구 언주로108길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 35,
+            "source": "Saramin",
+            "as_of": null,
+            "url": "https://m.saramin.co.kr/job-search/company-info-view?csn=bTVOQVF3N3FQcEttdllFQTRnczRNdz09"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "애드라이크",
@@ -167,7 +420,31 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "소개 영업·블로그 투트랙·일본 SNS",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+        "overlap": "병원 블로그·웹·일본 SNS 부분 중복",
+        "source": "https://adlike.kr/service"
+      },
+      "staff": {
+        "nps_workplace_subscribers": 18,
+        "month": "2026-09",
+        "nps_entity": "주식회사 애드라이크",
+        "nps_location": "서울특별시 강서구 마곡중앙로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "entity_note": "과거 사업 이력, 현 법인 총인원으로 채택하지 않음",
+            "url": "https://www.incruit.com/company/1682002037/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     },
     {
       "name": "청명마케팅",
@@ -181,7 +458,23 @@
         "scope": "company_total_not_hospital_or_geo_segment"
       },
       "positioning_interpretation": "지역 인식과 병원 운영 데이터 협업",
-      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md",
+      "aeo_geo_overlap": {
+        "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+        "overlap": "지역 콘텐츠·전환/병원 데이터 부분 중복",
+        "source": "https://cmad.kr/medical"
+      },
+      "staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      }
     }
   ],
   "pricing": [

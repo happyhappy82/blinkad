@@ -1,0 +1,183 @@
+{
+  "checked_date": "2026-11-23",
+  "baseline_service_url": "https://www.blinkad.kr/services",
+  "priority_is_research_interpretation": true,
+  "rows": [
+    {
+      "name": "하룹",
+      "aeo_geo_status": "direct_comparison_priority",
+      "overlap": "전용 AEO/GEO 웹블로그·구조 개선·AI 테스트",
+      "source": "https://haroop.com/aeogeo",
+      "alternative_staff": [
+        {
+          "count": 92,
+          "source": "JobKorea",
+          "as_of": null,
+          "url": "https://www.jobkorea.co.kr/company/42006511"
+        },
+        {
+          "count": 30,
+          "source": "Jobplanet",
+          "as_of": null,
+          "url": "https://www.jobplanet.co.kr/companies/347332/landing/%ED%95%98%EB%A3%B9"
+        }
+      ]
+    },
+    {
+      "name": "애드리절트",
+      "aeo_geo_status": "direct_comparison_priority",
+      "overlap": "AIO·AIRANK·다국어 AI 대응",
+      "source": "https://adresult.kr/SEO",
+      "alternative_staff": [
+        {
+          "count": null,
+          "display": "50명 이하",
+          "source": "JobKorea recruitment",
+          "as_of": "2026-10 posting",
+          "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50123393"
+        }
+      ]
+    },
+    {
+      "name": "상승기획",
+      "aeo_geo_status": "functional_overlap",
+      "overlap": "AI 추천환경 분석·콘텐츠·브랜드 신뢰 정보",
+      "source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
+      "alternative_staff": [
+        {
+          "count": null,
+          "display": "50명 이하 태그, 정확 인원 비공개",
+          "source": "Wanted",
+          "as_of": null,
+          "url": "https://www.wanted.co.kr/company/44948"
+        }
+      ]
+    },
+    {
+      "name": "시월기획",
+      "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+      "overlap": "SEO·콘텐츠·해외마케팅 부분 중복",
+      "source": "https://www.10wol.com/product",
+      "alternative_staff": [
+        {
+          "count": 49,
+          "source": "Saramin",
+          "as_of": "2026",
+          "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764"
+        }
+      ]
+    },
+    {
+      "name": "오른기획",
+      "aeo_geo_status": "displayed_detail_unavailable",
+      "overlap": "AI 상품 표시, 상세 링크 페이지 없음",
+      "source": "https://blog.oreun.net/",
+      "alternative_staff": []
+    },
+    {
+      "name": "리앤메디",
+      "aeo_geo_status": "functional_overlap",
+      "overlap": "Search & AI Visibility·홈페이지 결합 AI 최적화",
+      "source": "https://www.reanmedi.com/",
+      "alternative_staff": [
+        {
+          "count": 12,
+          "source": "JobKorea",
+          "as_of": "2026",
+          "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364"
+        }
+      ]
+    },
+    {
+      "name": "윈에이드",
+      "aeo_geo_status": "direct_comparison_priority",
+      "overlap": "질문형 콘텐츠·구조 개선·월별 AI 재측정",
+      "source": "https://winaid.co.kr/services/aeo-geo",
+      "alternative_staff": [
+        {
+          "count": 23,
+          "source": "JobKorea",
+          "as_of": null,
+          "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C"
+        }
+      ]
+    },
+    {
+      "name": "KR마케팅",
+      "aeo_geo_status": "direct_comparison_priority",
+      "overlap": "GEO 진단·웹 개선·칼럼·주간 AI 측정·지도 정보",
+      "source": "https://krmkt.co.kr/geo/",
+      "alternative_staff": [
+        {
+          "count": 12,
+          "source": "Gyeonggi employment portal",
+          "as_of": "2025-12",
+          "url": "https://job.gg.go.kr/empmn/desEntDtl.do?bizrno=8188600477&cntType=O"
+        }
+      ]
+    },
+    {
+      "name": "골드닥터스",
+      "aeo_geo_status": "functional_overlap",
+      "overlap": "ChatGPT·Gemini 추천용 병원 웹 정보 정비",
+      "source": "https://golddoctors.co.kr/service",
+      "alternative_staff": []
+    },
+    {
+      "name": "나이스컴퍼니",
+      "aeo_geo_status": "candidate_entity_offer",
+      "overlap": "후보 법인의 AI 검색 노출·SEO",
+      "source": "https://www.nicecompany.kr/sub/online.html",
+      "alternative_staff": [
+        {
+          "count": 15,
+          "source": "Saramin",
+          "as_of": "2026",
+          "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260"
+        },
+        {
+          "count": 29,
+          "source": "JobKorea",
+          "as_of": null,
+          "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad"
+        }
+      ]
+    },
+    {
+      "name": "스타닥마케팅",
+      "aeo_geo_status": "direct_comparison_priority",
+      "overlap": "SEO/AEO/GEO·질문 콘텐츠·사이트 개선·언급/문의 점검",
+      "source": "https://www.startdoctor.co.kr/sub/ai-seo.php",
+      "alternative_staff": [
+        {
+          "count": 35,
+          "source": "Saramin",
+          "as_of": null,
+          "url": "https://m.saramin.co.kr/job-search/company-info-view?csn=bTVOQVF3N3FQcEttdllFQTRnczRNdz09"
+        }
+      ]
+    },
+    {
+      "name": "애드라이크",
+      "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+      "overlap": "병원 블로그·웹·일본 SNS 부분 중복",
+      "source": "https://adlike.kr/service",
+      "alternative_staff": [
+        {
+          "count": 11,
+          "source": "Incruit",
+          "as_of": null,
+          "entity_note": "과거 사업 이력, 현 법인 총인원으로 채택하지 않음",
+          "url": "https://www.incruit.com/company/1682002037/"
+        }
+      ]
+    },
+    {
+      "name": "청명마케팅",
+      "aeo_geo_status": "aeo_geo_offer_not_confirmed",
+      "overlap": "지역 콘텐츠·전환/병원 데이터 부분 중복",
+      "source": "https://cmad.kr/medical",
+      "alternative_staff": []
+    }
+  ]
+}

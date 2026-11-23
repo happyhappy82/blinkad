@@ -356,5 +356,50 @@
       "source": "https://cmad.kr/medical",
       "scope": "company_total_not_hospital_or_geo_segment"
     }
-  ]
+  ],
+  "followup_checked_date": "2026-11-23",
+  "followup_staff_sources": [
+    {
+      "file": "staff-evidence/blinkad-services.json",
+      "url": "https://www.blinkad.kr/services",
+      "title": "외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO·레딧 - BlinkAd",
+      "checked_at": "2026-11-23T10:15:26.612Z",
+      "text_sha256": "81ee6db033769dd19d068454303fcb847690859c436729964ecfae33bbcbdd2a",
+      "local_raw_only": true
+    },
+    {
+      "file": "staff-evidence/kr-geo.json",
+      "url": "https://krmkt.co.kr/geo/",
+      "title": "AI 검색 노출(GEO) 무료 진단 | 홈페이지 SEO·GEO KR마케팅",
+      "checked_at": "2026-11-23T10:15:29.643Z",
+      "text_sha256": "16e3df64f0f8d1790a47c999daaeed4a886baecf65d3aa5ab1e42584be5e5162",
+      "local_raw_only": true
+    },
+    {
+      "file": "staff-evidence/oreun-ai.json",
+      "url": "https://oreun.net/hospital_marketing/ai/",
+      "title": "페이지 없음",
+      "checked_at": "2026-11-23T10:15:29.379Z",
+      "text_sha256": "5cf3c73fa4682473a1dfc035dc2beea34a27010222dbf7312f3b14bb676e183e",
+      "local_raw_only": true
+    },
+    {
+      "file": "staff-evidence/sangseung-ai.json",
+      "url": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
+      "title": "병원 AI마케팅 | AI가 추천하는 병원을 만듭니다 - 상승기획",
+      "checked_at": "2026-11-23T10:15:29.087Z",
+      "text_sha256": "394405e5647c3ed5584cf150ef534efee597af6972edb79531677fe4ca640795",
+      "local_raw_only": true
+    },
+    {
+      "file": "staff-evidence/sangseung-wanted.json",
+      "url": "https://www.wanted.co.kr/company/44948",
+      "title": "상승기획 기업정보 - 채용 0건, 업력 4년, 서울 금천구 | 원티드",
+      "checked_at": "2026-11-23T10:15:32.051Z",
+      "text_sha256": "6f92c59f7c3303bd701236d7806824fd503bf30409a4d18b8777ddf4080c7763",
+      "local_raw_only": true
+    }
+  ],
+  "nps_extract": "staff-evidence/nps-top13-extract.json",
+  "browser_space_93_status": "delegated_to_user_after_notification_permission_prompt_no_permission_change"
 }

@@ -2,6 +2,8 @@
 
 - 기준일: 2026-11-23. 기존 검색 노출 상위 13개 항목(공동 8위 포함).
 - 상세 본문: `../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md`.
+- 직원 수·상품 중복 보강: `../blinkad-hospital-aeo-geo-overlap-staff-2026-11-23.md`, `aeo-geo-staff-top13.json`.
+- `staff-evidence/nps-top13-extract.json`: 국민연금 원본의 사업장명·사업자번호 앞자리·지역을 대조한 10개 공개 행. 현재 회사 전체 인원과 구분한다.
 - `comparison-top13.json`: 공개 재무·가격과 포지셔닝 해석.
 - `coverage.json`: 상세 13개, 기초 프로필 84개. 나이스컴퍼니는 동명 후보이며 최초 검색 광고 게시자 동일성 미확인.
 - `source-index.json`: 브라우저 확인 URL·제목·시각·로컬 원문 해시.
