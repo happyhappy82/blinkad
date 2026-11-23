@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-11-23T22:11:37+09:00",
+  "company_id": "C06",
+  "urls": [
+    "https://www.reanmedi.com/INSIGHT/?bmode=view&idx=175750500",
+    "https://www.reanmedi.com/INSIGHT/?bmode=view&idx=175863913"
+  ],
+  "segments": {
+    "175750500": {
+      "normalized_sha256": "7f2cf53595e0398f09786f2a9f4131b4575646f768a2b0414c1efdb187e2c38c",
+      "character_count": 1104
+    },
+    "175863913": {
+      "normalized_sha256": "7f2cf53595e0398f09786f2a9f4131b4575646f768a2b0414c1efdb187e2c38c",
+      "character_count": 1104
+    }
+  },
+  "comparison_range": "web reader lines88-141; title/answer/headings/example/FAQ/CTA segment; image link labels normalized; surrounding counters ignored",
+  "same_normalized_segment": true,
+  "full_html_or_google_canonical_verified": false,
+  "conclusion": "Same observed main content segment on different addresses; no penalty or index-exclusion conclusion"
+}

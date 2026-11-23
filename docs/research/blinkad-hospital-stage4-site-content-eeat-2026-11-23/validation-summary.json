@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-11-23T22:17:36+09:00",
+  "passed": true,
+  "errors": [],
+  "historical_snapshot_sha256": {
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/master-roster.json": "9aa821c328bc60b738662ff02cde8d1226a7147ee13098443a1e254d207b901d",
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/site-search-evidence.json": "e06b2e73ce3451e7616def8bf0762a7ab80fa89045ad2c611fe7018d121c24ce",
+    "analysis-selection/historical-exact-query.json": "6198ae907ac2590e0683b4a7929113f41c84025fdcbe051f0865aa6cc0b6f075"
+  },
+  "company_reports": 9,
+  "confirmed_total_including_pilot": 9,
+  "conditional": 1,
+  "body_sample_urls": 26,
+  "technical_html_samples": 50,
+  "checks": [
+    "fixed roster/scope and counts",
+    "source-ID/link coverage",
+    "historical snapshot hashes unchanged",
+    "product analysis states unchanged",
+    "Siwol three canonicals",
+    "Rean exact observed segment hash",
+    "Oreun exact historical post contact attribution",
+    "Gold XML header not generalized to HTML",
+    "SIDEX cached/current difference",
+    "JSON parse and links"
+  ],
+  "limits": [
+    "no rank-causality inference",
+    "no rendered mobile/CWV or internal analytics",
+    "no whole-video review",
+    "no independent outcome audit"
+  ]
+}

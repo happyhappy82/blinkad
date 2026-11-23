@@ -45,11 +45,14 @@
       "aeo_hospital_status": "confirmed",
       "aeo_evidence": "병원 AIO·AIRANK·다국어 AI 검색 대응",
       "aeo_source": "https://adresult.kr/SEO",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C02-adresult.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C02-adresult.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 3,
@@ -65,11 +68,14 @@
       "aeo_hospital_status": "confirmed_functional",
       "aeo_evidence": "병원 AI 추천 환경·콘텐츠·신뢰 정보 최적화",
       "aeo_source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C03-sangseung.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C03-sangseung.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 4,
@@ -85,8 +91,11 @@
       "aeo_hospital_status": "not_confirmed",
       "aeo_evidence": "병원 광고·SEO는 확인, 별도 AI 검색 상품 명세 미확인",
       "aeo_source": "https://www.10wol.com/product",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership"
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C04-siwol.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 5,
@@ -103,8 +112,11 @@
       "aeo_hospital_status": "details_unavailable",
       "aeo_evidence": "병원 AI 서비스 제공 표시, 상세 링크 페이지 없음",
       "aeo_source": "https://blog.oreun.net/",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership"
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C05-oreun.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 6,
@@ -120,11 +132,14 @@
       "aeo_hospital_status": "confirmed_functional",
       "aeo_evidence": "병원 Search & AI Visibility·홈페이지 결합 AI 최적화",
       "aeo_source": "https://www.reanmedi.com/",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C06-reanmedi.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C06-reanmedi.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 7,
@@ -142,11 +157,14 @@
       "aeo_hospital_status": "confirmed",
       "aeo_evidence": "병원 AEO/GEO·질문형 콘텐츠·고정 질문 재측정",
       "aeo_source": "https://winaid.co.kr/services/aeo-geo",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C07-winaid.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C07-winaid.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 8,
@@ -163,11 +181,14 @@
       "aeo_hospital_status": "confirmed",
       "aeo_evidence": "병원 광고와 GEO·웹 개선·AI 측정 동시 제공",
       "aeo_source": "https://krmkt.co.kr/geo/",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C08-krmarketing.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C08-krmarketing.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 9,
@@ -183,11 +204,14 @@
       "aeo_hospital_status": "confirmed_functional",
       "aeo_evidence": "병원 ChatGPT·Gemini 추천용 웹 정보 정비",
       "aeo_source": "https://golddoctors.co.kr/service",
-      "analysis_status": "not_started",
-      "precheck": "verify_current_site_and_content_ownership",
+      "analysis_status": "completed_public_evidence",
+      "precheck": "public_site_and_selected_content_reviewed_with_scope_limits",
       "product_analysis_status": "completed_public_evidence",
       "product_analysis_report": "../blinkad-hospital-stage3-aeo-products-2026-11-23/companies/C09-golddoctors.md",
-      "product_analysis_checked_date": "2026-11-23"
+      "product_analysis_checked_date": "2026-11-23",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C09-golddoctors.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     },
     {
       "sequence": 10,
@@ -202,8 +226,11 @@
       "aeo_hospital_status": "identity_unresolved",
       "aeo_evidence": "후보 법인은 병원 포트폴리오·AI 검색/SEO 제공, 최초 광고 주체 연결 미확인",
       "aeo_source": "https://www.nicecompany.kr/sub/online.html",
-      "analysis_status": "not_started",
-      "precheck": "verify_original_advertiser_identity"
+      "analysis_status": "conditional_identity_unresolved",
+      "precheck": "advertiser_profile_and_candidate_site_still_not_legally_linked",
+      "analysis_report": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/companies/C10-nice.md",
+      "analysis_checked_date": "2026-11-23",
+      "analysis_support_directory": "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/"
     }
   ],
   "confirmed_aeo_hospital_company_ids": [
@@ -221,5 +248,6 @@
     "C20"
   ],
   "exact_query_evidence_file": "historical-exact-query.json",
-  "product_analysis_update": "stage3_product_complete_site_analysis_status_preserved"
+  "product_analysis_update": "stage3_product_complete_site_analysis_status_preserved",
+  "site_analysis_update": "stage4_nine_confirmed_including_pilot_one_identity_conditional"
 }

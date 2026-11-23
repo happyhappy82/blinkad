@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-11-23T22:17:36+09:00",
+  "stage4_bounded_review_finished": true,
+  "aeo_done": 12,
+  "aeo_total": 12,
+  "site_confirmed_done": 9,
+  "site_total": 10,
+  "site_conditional": 1,
+  "site_addressed": 10,
+  "site_done": 9,
+  "confirmed_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C04",
+    "C05",
+    "C06",
+    "C07",
+    "C08",
+    "C09"
+  ],
+  "conditional_ids": [
+    "C10"
+  ],
+  "new_confirmed_reports": 8,
+  "new_conditional_reports": 1,
+  "body_sample_urls": 26,
+  "whole_video_reviews": 0,
+  "new_rank_measurements": 0,
+  "new_live_ai_measurements": 0,
+  "next_stage": 5,
+  "next_focus": [
+    "C10 advertiser/legal-entity attribution",
+    "C05 explicit AI/GEO service scope and candidate classification",
+    "C04 canonical and C06 duplicate-address relationship",
+    "case/award/measurement-condition gaps"
+  ],
+  "report": "blinkad-hospital-stage4-site-content-eeat-2026-11-23.md",
+  "not_full_10_confirmed": true,
+  "outbound_inquiries": 0,
+  "browser_settings_changes": 0
+}
