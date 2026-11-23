@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-23T22:00:32+09:00",
+  "passed": true,
+  "errors": [],
+  "new_company_count": 11,
+  "historical_snapshot_sha256": {
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/master-roster.json": "9aa821c328bc60b738662ff02cde8d1226a7147ee13098443a1e254d207b901d",
+    "stage1/site-search-evidence.json": "e06b2e73ce3451e7616def8bf0762a7ab80fa89045ad2c611fe7018d121c24ce",
+    "analysis-selection/historical-exact-query.json": "6198ae907ac2590e0683b4a7929113f41c84025fdcbe051f0865aa6cc0b6f075"
+  },
+  "checks": [
+    "fixed IDs and count",
+    "source IDs and link targets",
+    "54/48/6 source counts",
+    "current origin versus cached KR price",
+    "OpenTime current amount/effective date/VAT/quantity/repeats",
+    "ReCo monthly contract/event reporting/VAT/termination",
+    "WinAid ownership wording",
+    "MedMC weekly measurement",
+    "site statuses preserved",
+    "no new AI or outbound inquiry"
+  ],
+  "method": "manual primary-source review plus file/count/link/amount assertions; not an independent customer-outcome audit"
+}

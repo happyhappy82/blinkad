@@ -1,0 +1,74 @@
+[
+  {
+    "source_id": "C02-01",
+    "url": "https://adresult.kr/SEO",
+    "method": "public_web_search_reader",
+    "status": "substantive_content_available",
+    "note": "Direct HTTP 403 retained; public reader and search text confirmed AIRANK workflow. Later reader timeout retained as a separate limitation.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C02-02",
+    "url": "https://adresult.kr/",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "FAQ directly read: general contract three months; custom quote.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C02-03",
+    "url": "https://adresult.kr/137",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "Existing-site rebuild and FTP/feasibility workflow; advertised two-week period.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C02-04",
+    "url": "https://adresult.kr/departments",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "Department package scope read; no AIO fixed quote verified.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C06-01",
+    "url": "https://www.reanmedi.com/",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "FAQ/CRM/video and AI visibility read; direct HTTP 403 is not a site closure.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C06-02",
+    "url": "https://www.reanmedi.com/MARKETING",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "Explicit AEO/GEO, SEO and video categories confirmed.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C06-W03",
+    "url": "https://www.reanmedi.com/HOMEPAGE",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "Separate website service; no price term found in returned body.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "G01",
+    "url": "https://developers.google.com/search/docs/appearance/ai-features?hl=ko",
+    "method": "public_web_reader",
+    "status": "substantive_content_available",
+    "note": "Google AI features require no special AI file or extra schema; scope is Google Search.",
+    "checked_date": "2026-11-23"
+  },
+  {
+    "source_id": "C08-CACHE",
+    "url": "https://krmkt.co.kr/helper/basics-agency-fee-structures/",
+    "method": "web_search_cached_excerpt",
+    "status": "conflicts_with_current_origin_body",
+    "note": "Cached search excerpt says GEO KRW300000/month. Current direct HTTP body says scope-based quote and contains no GEO KRW300000; not adopted as current price.",
+    "checked_date": "2026-11-23"
+  }
+]

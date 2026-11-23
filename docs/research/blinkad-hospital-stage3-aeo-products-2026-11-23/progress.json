@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-23T21:58:58+09:00",
+  "completed_stage": 3,
+  "stage3_product_completed_ids": [
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "completed_aeo_company_ids": [
+    "C01",
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C11",
+    "C14",
+    "C15",
+    "C19",
+    "C20"
+  ],
+  "aeo_done": 12,
+  "aeo_total": 12,
+  "site_done": 1,
+  "site_total": 10,
+  "site_completed_ids": [
+    "C01"
+  ],
+  "remaining_site": 9,
+  "next_stage": 4,
+  "next_site_company_id": "C02",
+  "next_site_company_name": "애드리절트",
+  "report": "blinkad-hospital-stage3-aeo-products-2026-11-23.md",
+  "site_queue": "blinkad-hospital-aeo-shortlist-top10-analysis-2026-11-23/top10-content-site-queue.json",
+  "immutable_stage1_snapshot": "blinkad-hospital-competitor-stage1-scope-2026-11-23/master-roster.json",
+  "public_fixed_current_price_ids": [
+    "C01",
+    "C20"
+  ],
+  "current_price_unknown_ids": [
+    "C02",
+    "C03",
+    "C06",
+    "C07",
+    "C08",
+    "C09",
+    "C11",
+    "C14",
+    "C15",
+    "C19"
+  ],
+  "current_price_unknown_is_not_service_absence": true,
+  "new_live_ai_measurements": 0,
+  "outbound_inquiries": 0,
+  "stage3_scope": "products_only_no_full_site_eeat_completion"
+}
