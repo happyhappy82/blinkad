@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-23T21:07:33+09:00",
+  "stage": 1,
+  "status": "complete_with_explicit_identity_hold",
+  "aeo_targets": 12,
+  "site_slots": 10,
+  "overlap": 7,
+  "unique_slots": 15,
+  "site_evidence_groups": {
+    "owned_site_organic_observed": 6,
+    "blog_results_only": 1,
+    "paid_search_only": 2,
+    "advertiser_identity_pending": 1
+  },
+  "historical_placement_rows_checked": 65,
+  "current_public_urls_checked": 29,
+  "http_200_body_ok": 26,
+  "http_403": 3,
+  "source_inventory_saved_pages": 58,
+  "original_inputs_unchanged": true,
+  "new_deep_company_analysis_count": 0,
+  "paid_ad_clicks": 0,
+  "open_identity_hold": [
+    "C10"
+  ],
+  "next_stage": 2,
+  "next_company": "C01"
+}

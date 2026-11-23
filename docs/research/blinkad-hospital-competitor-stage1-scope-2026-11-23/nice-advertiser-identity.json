@@ -1,0 +1,31 @@
+{
+  "source_id": "S1-NICE-AD",
+  "query": "병원마케팅",
+  "source_url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+  "checked_at": "2026-11-23T21:04:50+09:00",
+  "method": "public_html_metadata_no_ad_click",
+  "publisher_name": "나이스컴퍼니",
+  "advertiser_profile_display_url": "https://blog.naver.com/nice_company",
+  "ad_id": "nad-a001-03-000000616461034",
+  "display_urls": [
+    {
+      "ad_id": "nad-a001-03-000000616461034",
+      "cr_rank_legacy": "2",
+      "display_url": "https://blog.naver.com/nice_company",
+      "gdid": "nad-a001-03-000000616461034"
+    }
+  ],
+  "advertiser_display_url_verified": true,
+  "historical_ad_same_id_verified": false,
+  "candidate_legal_entity_link_verified": false,
+  "paid_click_performed": false,
+  "company_profile_crosscheck": {
+    "url": "https://www.saramin.co.kr/zf_user/company-info/view?csn=U2I3L29rSGZYYStvc0tKZUxPSW50QT09&popup_yn=y",
+    "checked_at": "2026-11-23T21:05:02+09:00",
+    "status": 307,
+    "site_and_sns_links": [],
+    "representative": "김연태",
+    "address": "부산 금정구 금정로 94",
+    "homepage_and_sns_attribution": "company_entered_fields_per_profile"
+  }
+}

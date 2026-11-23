@@ -1,0 +1,632 @@
+{
+  "checked_at": "2026-11-23T21:07:33+09:00",
+  "authorized_stage": 1,
+  "stage1_status": "complete_with_explicit_identity_hold",
+  "selection_basis": "existing four-query Google/Naver composite visibility list; not a single-query natural top10",
+  "counts": {
+    "aeo_product_targets": 12,
+    "site_analysis_slots": 10,
+    "overlap": 7,
+    "unique_company_slots": 15,
+    "identified_brand_sites": 14,
+    "advertiser_candidate_identity_hold": 1
+  },
+  "scope_change_policy": "preserve company IDs and existing 10 slots; do not silently replace advertising-only entries with organic results",
+  "companies": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "entity_from_prior_primary_material": "주식회사 하룹",
+      "representative_from_prior_material": "이상민",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://haroop.com/",
+      "aeo_scope": {
+        "company_id": "C01",
+        "name": "하룹",
+        "status": "confirmed",
+        "evidence": "병원 AEO/GEO 웹블로그·구조화·질문형 콘텐츠·AI 측정",
+        "source": "https://haroop.com/aeogeo"
+      },
+      "site_analysis_sequence": 1,
+      "current_source_ids": [
+        "S1-P01",
+        "S1-P02",
+        "S1-P27"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://haroop.com/blog",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/harmonysic",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://www.youtube.com/@haroop",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "entity_from_prior_primary_material": "주식회사 애드리절트",
+      "representative_from_prior_material": "이승민",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://adresult.kr/",
+      "aeo_scope": {
+        "company_id": "C02",
+        "name": "애드리절트",
+        "status": "confirmed",
+        "evidence": "병원 AIO·AIRANK·다국어 AI 검색 대응",
+        "source": "https://adresult.kr/SEO"
+      },
+      "site_analysis_sequence": 2,
+      "current_source_ids": [
+        "S1-P03",
+        "S1-P04"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://adresult.kr/93",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://www.youtube.com/@adresult",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "entity_from_prior_primary_material": "상승기획",
+      "representative_from_prior_material": "유동현",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://sangseung.net/",
+      "aeo_scope": {
+        "company_id": "C03",
+        "name": "상승기획",
+        "status": "confirmed_functional",
+        "evidence": "병원 AI 추천 환경·콘텐츠·신뢰 정보 최적화",
+        "source": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+      },
+      "site_analysis_sequence": 3,
+      "current_source_ids": [
+        "S1-P05",
+        "S1-P06"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://blog.naver.com/qkrtjdgus97",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/dropyi65",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "entity_from_prior_primary_material": "주식회사 시월기획",
+      "representative_from_prior_material": "안동현",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "site_content_eeat"
+      ],
+      "website_entry": "https://www.10wol.com/",
+      "aeo_scope": null,
+      "site_analysis_sequence": 4,
+      "current_source_ids": [
+        "S1-P07"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://www.10wol.com/news",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/andonghyun2",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "entity_from_prior_primary_material": "오른기획",
+      "representative_from_prior_material": "정수우",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "site_content_eeat"
+      ],
+      "website_entry": "https://blog.oreun.net/",
+      "aeo_scope": null,
+      "site_analysis_sequence": 5,
+      "current_source_ids": [
+        "S1-P08"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://blog.oreun.net/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/charmark",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://www.youtube.com/@oreun-net",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "blog_results_only"
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "entity_from_prior_primary_material": "주식회사 리앤커뮤니케이션의 브랜드",
+      "representative_from_prior_material": "김태민",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://www.reanmedi.com/",
+      "aeo_scope": {
+        "company_id": "C06",
+        "name": "리앤메디",
+        "status": "confirmed_functional",
+        "evidence": "병원 Search & AI Visibility·홈페이지 결합 AI 최적화",
+        "source": "https://www.reanmedi.com/"
+      },
+      "site_analysis_sequence": 6,
+      "current_source_ids": [
+        "S1-P09"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://www.reanmedi.com/INSIGHT",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://www.youtube.com/@%EB%A6%AC%EC%95%A4%EB%A9%94%EB%94%94",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "entity_from_prior_primary_material": "주식회사 윈에이드",
+      "representative_from_prior_material": "이현승",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://winaid.co.kr/",
+      "aeo_scope": {
+        "company_id": "C07",
+        "name": "윈에이드",
+        "status": "confirmed",
+        "evidence": "병원 AEO/GEO·질문형 콘텐츠·고정 질문 재측정",
+        "source": "https://winaid.co.kr/services/aeo-geo"
+      },
+      "site_analysis_sequence": 7,
+      "current_source_ids": [
+        "S1-P10",
+        "S1-P11",
+        "S1-P28"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://winaid.co.kr/insights",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://winaid.co.kr/blog",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://winaid.co.kr/guides",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/qaz030800",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "owned_site_organic_observed"
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "entity_from_prior_primary_material": "주식회사 케이알마케팅",
+      "representative_from_prior_material": "이종남",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://krmkt.co.kr/",
+      "aeo_scope": {
+        "company_id": "C08",
+        "name": "KR마케팅",
+        "status": "confirmed",
+        "evidence": "병원 광고와 GEO·웹 개선·AI 측정 동시 제공",
+        "source": "https://krmkt.co.kr/geo/"
+      },
+      "site_analysis_sequence": 8,
+      "current_source_ids": [
+        "S1-P12",
+        "S1-P13"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://krmkt.co.kr/information/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://krmkt.co.kr/geo/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://krmkt.co.kr/cases/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "paid_search_only"
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "entity_from_prior_primary_material": "주식회사 지디엠(GDM)",
+      "representative_from_prior_material": "이국진",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product",
+        "site_content_eeat"
+      ],
+      "website_entry": "https://golddoctors.co.kr/",
+      "aeo_scope": {
+        "company_id": "C09",
+        "name": "골드닥터스",
+        "status": "confirmed_functional",
+        "evidence": "병원 ChatGPT·Gemini 추천용 웹 정보 정비",
+        "source": "https://golddoctors.co.kr/service"
+      },
+      "site_analysis_sequence": 9,
+      "current_source_ids": [
+        "S1-P14",
+        "S1-P15"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://golddoctors.co.kr/news",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://golddoctors.co.kr/review",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included",
+      "site_evidence_group": "paid_search_only"
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "entity_from_prior_primary_material": "나이스컴퍼니 주식회사 후보 법인",
+      "representative_from_prior_material": "김연태",
+      "identity_status": "candidate_website_not_yet_linked_to_original_ad",
+      "tracks": [
+        "site_content_eeat"
+      ],
+      "website_entry": "https://www.nicecompany.kr/",
+      "aeo_scope": null,
+      "site_analysis_sequence": 10,
+      "current_source_ids": [
+        "S1-P16",
+        "S1-P25",
+        "S1-P26",
+        "S1-P29"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://www.nicecompany.kr/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included_with_identity_hold",
+      "site_evidence_group": "advertiser_identity_pending"
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "entity_from_prior_primary_material": "스타닥(STARDOC)",
+      "representative_from_prior_material": "이승준",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product"
+      ],
+      "website_entry": "https://www.startdoctor.co.kr/",
+      "aeo_scope": {
+        "company_id": "C11",
+        "name": "스타닥마케팅",
+        "status": "confirmed",
+        "evidence": "병원 SEO/AEO/GEO·의료 콘텐츠·사이트 개선",
+        "source": "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      },
+      "site_analysis_sequence": null,
+      "current_source_ids": [
+        "S1-P17",
+        "S1-P18"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "04-competitor-deep-dive-top13.md",
+        "05-aeo-geo-overlap-and-staff.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://blog.naver.com/eszettsupp/222241135287",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included"
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "entity_from_prior_primary_material": "주식회사 크리앤서",
+      "representative_from_prior_material": "박성호",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product"
+      ],
+      "website_entry": "https://creanswer.com/",
+      "aeo_scope": {
+        "company_id": "C14",
+        "name": "크리앤서",
+        "status": "confirmed",
+        "evidence": "병원 GEO/AEO/LLMO·웹·콘텐츠·지도 운영",
+        "source": "https://creanswer.com/"
+      },
+      "site_analysis_sequence": null,
+      "current_source_ids": [
+        "S1-P19"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "06-top20-company-service-roster.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://creanswer.com/insight",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://creanswer.com/blog/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included"
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "entity_from_prior_primary_material": "메드엠씨(MedMC)",
+      "representative_from_prior_material": "이정훈",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product"
+      ],
+      "website_entry": "https://medmc.co.kr/",
+      "aeo_scope": {
+        "company_id": "C15",
+        "name": "메드엠씨",
+        "status": "confirmed",
+        "evidence": "병원·치과 SEO/GEO·웹로그·영상·자가진단",
+        "source": "https://medmc.co.kr/"
+      },
+      "site_analysis_sequence": null,
+      "current_source_ids": [
+        "S1-P20"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "06-top20-company-service-roster.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://medmc.co.kr/blog/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included"
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "entity_from_prior_primary_material": "레코마케팅",
+      "representative_from_prior_material": "송성철",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product"
+      ],
+      "website_entry": "https://recomkt.com/",
+      "aeo_scope": {
+        "company_id": "C19",
+        "name": "레코마케팅",
+        "status": "confirmed",
+        "evidence": "병원 AI 마케팅·SEO/GEO/AEO 구조 개선·다국어 웹",
+        "source": "https://recomkt.com/ai-hospital-marketing/"
+      },
+      "site_analysis_sequence": null,
+      "current_source_ids": [
+        "S1-P21",
+        "S1-P22"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "06-top20-company-service-roster.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://recomkt.com/faq/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://blog.naver.com/punks000",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included"
+    },
+    {
+      "company_id": "C20",
+      "name": "로닥GEO(오픈타임)",
+      "entity_from_prior_primary_material": "피케이커뮤니케이션의 브랜드(개인사업자)",
+      "representative_from_prior_material": "박정윤",
+      "identity_status": "brand_site_identified_in_primary_material",
+      "tracks": [
+        "hospital_aeo_geo_product"
+      ],
+      "website_entry": "https://lodac.kr/",
+      "aeo_scope": {
+        "company_id": "C20",
+        "name": "로닥GEO(오픈타임)",
+        "status": "confirmed",
+        "evidence": "병원·의원·치과·한의원용 GEO/AEO 전용 서비스",
+        "source": "https://lodac.kr/industries/hospital/"
+      },
+      "site_analysis_sequence": null,
+      "current_source_ids": [
+        "S1-P23",
+        "S1-P24"
+      ],
+      "reuse_documents": [
+        "06-top20-company-service-roster.md",
+        "06-top20-company-service-roster.md"
+      ],
+      "external_content_seeds": [
+        {
+          "url": "https://lodac.kr/geo-aeo/guide/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://lodac.kr/glossary/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://lodac.kr/blog/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ko",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        },
+        {
+          "url": "https://lodac.kr/industries/",
+          "ownership_status": "must_verify_before_counting_as_owned_content"
+        }
+      ],
+      "step2_or_later_analysis_status": "not_started",
+      "stage1_scope_status": "included"
+    }
+  ]
+}

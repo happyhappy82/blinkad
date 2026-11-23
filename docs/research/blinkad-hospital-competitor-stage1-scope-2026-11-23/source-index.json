@@ -1,0 +1,1486 @@
+{
+  "checked_at": "2026-11-23T21:07:33+09:00",
+  "historical_input_hashes": {
+    "02-first-page-competitors.md": "b4636158acfd9d6929cdf94f111ea39f50b0b9d9d577f49517dc865a9da69318",
+    "data/serp-placements.json": "8d6b91ddb2a4a5f5808b3314b3b33412dc51d0c67ceeb1cda655ba500eefaa02",
+    "data/company-rankings.json": "12c1015dfe5c313a9a070400a399f894238b1bc39905a81048c85c8648d7370f",
+    "top20/companies.json": "8f892559bba068d2b8a320b7ecb582c8f93291c2ba261d3ae95c5982009665d6",
+    "analysis-selection/aeo-hospital-candidates.json": "72153a1ca301e0883b472024f3bc5e76b4727d0daf856c261a72d2e938287365",
+    "analysis-selection/top10-content-site-queue.json": "39a8922b505a0a8c4c51f5ced14e170499f9792590fd5053865a25dd55b58b9c",
+    "07-aeo-hospital-shortlist-and-top10-analysis-queue.md": "a8497f600dbda0a8e624eeb938c755dfb504e425c4581ac97fa42673bc868ebc"
+  },
+  "current_primary_checks": [
+    {
+      "requested_url": "https://haroop.com/",
+      "company_ids": [
+        "C01"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P01",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://haroop.com/",
+      "title": "병원마케팅 하룹 | 2,400개 병원이 선택한 병원광고·병원 AI 마케팅 회사",
+      "text_sha256": "f87466b4a5bcb776210b282bcac3c26a6d041266b57a999716a43a3bfa1a95c5",
+      "text_length": 33038,
+      "redirects": [],
+      "identity_excerpt": [
+        "특히 홈페이지 제작 과정에서 “항문외과의 애플이 되겠다”는 제 목표를 위해 하룹 대표님은 “원장님이 원하는 방향으로 끝까지 가보자”며 집요하게 완성도를 끌어올려 주셨습니다. 실제로 병원 홈페이지를 이 정도 수준으로 집요하게 만드는 경우는 많지 않다고 생각합니다. 하룹은 충분히 고민해볼 가치가 있는 선택이라고 말씀드리고 싶습니다.",
+        "하룹 대표님, 1인 기업으로 서른살이전에 월수익 1억달성, 자수성가, 람보르기니구매, 4층건물 구매",
+        "하룹은 대표님 1인 기업으로 자수성가하여 시작한 회사입니다. 2015년에 창업했지만 준비하기까지는 2011년부터 약 2년의 시간동안 남들이 가지 않는 길을 걸었습니다. 대학졸업 후 서울로 상경하여 역삼동 고시원 휴게실 컴퓨터 하나로 창업하였죠. 이미 2011년부터 온라인마케팅이라는 당시로써는 매우 생소하고 직업이라고도 제대로 불리지 못하는 그런것이였습니다. 아무도 가지 않는길에 수많은 연구와 테스트를 통해, 다양한 로직을 정복하며, 이것이 다가올 미래라는것을 직감하고 온라인마케팅이라는 새로운 혁신을 준비하였습니다. 그리고 2015년 창업후 3개월만에 BMW를 구매하고, 다음해에는 포르쉐를 구매했죠. 그 후 람보르기니를 구매하게 됩니다. 쪽지,이메일부터 블로그,카페,웹문서등 대부분 흉내내지 못하는 수준의 퍼포먼스로 월수익1억을 달성하였죠. 그리고 고향인 청주로 슈퍼카와 두둑한 통장을 갖고 내려와서 다가구주택을 구매합니다. 그것이 저희 하룹의 첫사무실이였습니다.",
+        "(주)하룹 · 대표자 이상민 · 사업자등록번호 669-88-00845"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P01.json"
+    },
+    {
+      "requested_url": "https://haroop.com/aeogeo",
+      "company_ids": [
+        "C01"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P02",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://haroop.com/aeogeo",
+      "title": "병원 AEO/GEO 서비스 | AI검색에 인용되는 병원 만들기 - 하룹",
+      "text_sha256": "656ac94459280ce22582e4199bda89c0e7d81ae9a7c291c2c881e5c9be944f5e",
+      "text_length": 22208,
+      "redirects": [],
+      "identity_excerpt": [
+        "특히 홈페이지 제작 과정에서 “항문외과의 애플이 되겠다”는 제 목표를 위해 하룹 대표님은 “원장님이 원하는 방향으로 끝까지 가보자”며 집요하게 완성도를 끌어올려 주셨습니다. 실제로 병원 홈페이지를 이 정도 수준으로 집요하게 만드는 경우는 많지 않다고 생각합니다. 하룹은 충분히 고민해볼 가치가 있는 선택이라고 말씀드리고 싶습니다.",
+        "(주)하룹 · 대표자 이상민 · 사업자등록번호 669-88-00845"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P02.json"
+    },
+    {
+      "requested_url": "https://adresult.kr/",
+      "company_ids": [
+        "C02"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P03",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 403,
+      "final_url": "https://adresult.kr/",
+      "title": "접근 제한",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "text_length": 98,
+      "redirects": [],
+      "identity_excerpt": [],
+      "access_verified": false,
+      "local_evidence_file": "evidence/S1-P03.json"
+    },
+    {
+      "requested_url": "https://adresult.kr/SEO",
+      "company_ids": [
+        "C02"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P04",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 403,
+      "final_url": "https://adresult.kr/SEO",
+      "title": "접근 제한",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "text_length": 98,
+      "redirects": [],
+      "identity_excerpt": [],
+      "access_verified": false,
+      "local_evidence_file": "evidence/S1-P04.json"
+    },
+    {
+      "requested_url": "https://sangseung.net/",
+      "company_ids": [
+        "C03"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P05",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://sangseung.net/",
+      "title": "병원마케팅 상승기획 - 성과보장 | 병원온라인마케팅 | 병원광고 | 병원홍보",
+      "text_sha256": "f2014d36f041f3033d560bc9dd114dc1bfd6667061257ea9a17a72fa68857157",
+      "text_length": 9557,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표자 : 유동현",
+        "대표 이메일 : sangseungcompany@gmail.com",
+        "대표자 : 유동현",
+        "대표 이메일 : sangseungcompany@gmail.com",
+        "대표 전화 : 02-6674-4796",
+        "대표 전화 : 02-6674-4796",
+        "사업자등록번호: 296-32-00960",
+        "사업자등록번호: 296-32-00960"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P05.json"
+    },
+    {
+      "requested_url": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
+      "company_ids": [
+        "C03"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P06",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://sangseung.net/ai%EB%A7%88%EC%BC%80%ED%8C%85/",
+      "title": "병원 AI마케팅 | AI가 추천하는 병원을 만듭니다 - 상승기획",
+      "text_sha256": "4b0c72bfc4c9be85c2bb456262e1d2b9746baf47af38976b4b0f1c17358e627b",
+      "text_length": 1387,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표자 : 유동현",
+        "대표 이메일 : sangseungcompany@gmail.com",
+        "대표자 : 유동현",
+        "대표 이메일 : sangseungcompany@gmail.com",
+        "대표 전화 : 02-6674-4796",
+        "대표 전화 : 02-6674-4796",
+        "사업자등록번호: 296-32-00960",
+        "사업자등록번호: 296-32-00960"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P06.json"
+    },
+    {
+      "requested_url": "https://www.10wol.com/",
+      "company_ids": [
+        "C04"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P07",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.10wol.com/",
+      "title": "병원마케팅 종합광고대행사 시월기획 | 병원광고 | 법률마케팅 | 블로그광고대행업체",
+      "text_sha256": "faa5845d0af2d2c357e09c2bc946d28faf186b8196c9b211d2e978799208be98",
+      "text_length": 7642,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표자",
+        "사업자번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P07.json"
+    },
+    {
+      "requested_url": "https://blog.oreun.net/",
+      "company_ids": [
+        "C05"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P08",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://blog.oreun.net/",
+      "title": "오른기획 ㅣ 오직 병원'만'  병원마케팅 전문 오른기획",
+      "text_sha256": "cc383282342ffcdf2ae9103a952ba95e3238e0d53320f5acd012df628f86431b",
+      "text_length": 7287,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표번호",
+        "대표 정수우",
+        "사업자등록번호 440-72-00544",
+        "대표번호 050-6739-1033"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P08.json"
+    },
+    {
+      "requested_url": "https://www.reanmedi.com/",
+      "company_ids": [
+        "C06"
+      ],
+      "roles": [
+        "official_site_identity_entry",
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P09",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 403,
+      "final_url": "https://www.reanmedi.com/",
+      "title": "접근 제한",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "text_length": 98,
+      "redirects": [],
+      "identity_excerpt": [],
+      "access_verified": false,
+      "local_evidence_file": "evidence/S1-P09.json"
+    },
+    {
+      "requested_url": "https://winaid.co.kr/",
+      "company_ids": [
+        "C07"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P10",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://winaid.co.kr/",
+      "title": "병원마케팅 대행사 윈에이드 | 병원 AEO·GEO·숏폼·광고·CRM",
+      "text_sha256": "9e8a8a7c787ed3eec0e18f2a17956e64047d0103e546cfb6c65dd6be6ddfcd2c",
+      "text_length": 2896,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표자 병원마케팅 관련 경력",
+        "윈에이드 대표 이현승입니다.",
+        "(주)윈에이드 대표",
+        "대표 인스타그램",
+        "· 대표",
+        "· 사업자등록번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P10.json"
+    },
+    {
+      "requested_url": "https://winaid.co.kr/services/aeo-geo",
+      "company_ids": [
+        "C07"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P11",
+      "checked_at": "2026-11-23T21:03:56+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://winaid.co.kr/services/aeo-geo",
+      "title": "병원 AEO·GEO | 우리 병원, ChatGPT에 물어보면 나옵니까 | 병원마케팅 윈에이드",
+      "text_sha256": "98493248d9b4ee6ff60a7778bb78ecfe131bff7b20b01c01a4053b902a89927c",
+      "text_length": 6751,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표 인스타그램",
+        "· 대표",
+        "· 사업자등록번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P11.json"
+    },
+    {
+      "requested_url": "https://krmkt.co.kr/",
+      "company_ids": [
+        "C08"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P12",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://krmkt.co.kr/",
+      "title": "온라인광고대행사 KR마케팅 | 네이버·카카오·구글 광고 대행",
+      "text_sha256": "12110a1fc61f33ec642b599b8408210a6869372ac331f165a074d9c518556a39",
+      "text_length": 8957,
+      "redirects": [],
+      "identity_excerpt": [
+        "광고에서 반응이 확인된 질문으로 원장님·대표님 영상을 만듭니다. 사내 스튜디오에서 찍고, 6,000편을 올리며 익힌 제목과 첫 10초로 조회수를 만들고, 영상을 본 사람이 검색해 들어오는지까지 봅니다.",
+        "주식회사 케이알마케팅 · 대표 이종남 · 설립 2016년 6월 17일 · 사업자등록번호 818-86-00477 · 통신판매업 신고 2023-서울금천-0094"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P12.json"
+    },
+    {
+      "requested_url": "https://krmkt.co.kr/geo/",
+      "company_ids": [
+        "C08"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P13",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://krmkt.co.kr/geo/",
+      "title": "AI 검색 노출(GEO) 무료 진단 | 홈페이지 SEO·GEO KR마케팅",
+      "text_sha256": "409c9f45f69c439bbaed55d67cd4116039678f070796aaa8a36c9de84f4d73d3",
+      "text_length": 11574,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표 칼럼",
+        "대표 실명 · 시공 사례 연결",
+        "대표 칼럼",
+        "대표 실명 · 시공 사례 연결",
+        "대표 서비스",
+        "대표 칼럼 1편 게시",
+        "대표·전문가 칼럼을 홈페이지에 올립니다",
+        "대표나 담당 전문가의 인터뷰·메모로 칼럼을 써서 홈페이지에 게시합니다. 병의원은 의료광고 심의 기준을 확인한 뒤 올립니다.",
+        "칼럼은 대표님이 직접 써야 하나요?",
+        "주식회사 케이알마케팅 · 대표 이종남 · 설립 2016년 6월 17일 · 사업자등록번호 818-86-00477 · 통신판매업 신고 2023-서울금천-0094"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P13.json"
+    },
+    {
+      "requested_url": "https://golddoctors.co.kr/",
+      "company_ids": [
+        "C09"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P14",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://golddoctors.co.kr/",
+      "title": "골드닥터스 - 병원 마케팅 | 병원 마케팅 전문 회사 | 블로그 마케팅 | 병원 홈페이지 제작 | 병원\n\t광고",
+      "text_sha256": "c13c7d117b73aed9c359ea9af9cd297dd2cceb009d9149f1628110237bdaf6f9",
+      "text_length": 2593,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표원장 이선경",
+        "대표원장 이승엽",
+        "대표원장 윤수정",
+        "대표원장 김용은",
+        "대표원장 정민욱",
+        "대표원장 이현진",
+        "대표원장 박중현",
+        "대표원장 권순만",
+        "대표원장 한상철",
+        "대표원장 김지연",
+        "대표이사 :",
+        "사업자등록번호 :"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P14.json"
+    },
+    {
+      "requested_url": "https://golddoctors.co.kr/service",
+      "company_ids": [
+        "C09"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P15",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://golddoctors.co.kr/service",
+      "title": "서비스 소개 - 골드닥터스",
+      "text_sha256": "14f39c18195def5105dfe5a6182eae2bace555bb968af0ff25b8786f57814b01",
+      "text_length": 3068,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표이사 :",
+        "사업자등록번호 :"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P15.json"
+    },
+    {
+      "requested_url": "https://www.nicecompany.kr/",
+      "company_ids": [
+        "C10"
+      ],
+      "roles": [
+        "candidate_site_identity_entry"
+      ],
+      "source_id": "S1-P16",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.nicecompany.kr/",
+      "title": "나이스컴퍼니 | 데이터·프로그램 기반 종합 마케팅 솔루션",
+      "text_sha256": "0b2e582082a41422639d3f542102162398166737e254481850c7e928e17c8687",
+      "text_length": 1752,
+      "redirects": [],
+      "identity_excerpt": [
+        "나이스컴퍼니 | 데이터·프로그램 기반 종합 마케팅 솔루션",
+        "나이스컴퍼니는 오직 성과로 증명합니다.",
+        "나이스컴퍼니는 불확실한 설명 대신",
+        "다음은 대표님 차례입니다.",
+        "나이스컴퍼니의 가치를 증명합니다.",
+        "나이스컴퍼니의",
+        "나이스컴퍼니의",
+        "대표",
+        "김연태",
+        "대표번호",
+        "1577-6702",
+        "부산 금정구 금정로 94"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P16.json"
+    },
+    {
+      "requested_url": "https://www.startdoctor.co.kr/",
+      "company_ids": [
+        "C11"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P17",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.startdoctor.co.kr/",
+      "title": "병원마케팅 전문 | 의사가 대표인 스타닥마케팅 | 병원광고 | 병원온라인마케팅 | 병원블로그마케팅",
+      "text_sha256": "2e3c15de6d2ed7c87de8f69d5790370f83f2c401111d7598dff7700a44b29b9e",
+      "text_length": 7265,
+      "redirects": [],
+      "identity_excerpt": [
+        "현 스타닥 마케팅 대표",
+        "150명 규모의 자체 병원 마케팅 강의 대표 강사",
+        "\"나는 개원의다\" 브랜드 마케팅 강의 대표 강사",
+        "스타닥 마케팅은 이전에 병원 개원의 경험이 있는 의사 출신 대표가 시행하기 때문에 수준 높은 브랜드 마케팅이 가능합니다. 원장님이 쓰듯 작성하는 콘텐츠는 잠재고객의 마음을 움직이며, 이는 곧 충성고객 확보 및 매출 상승으로 이어집니다.",
+        "현 스타닥 마케팅 대표",
+        "150명 규모의 자체 병원 마케팅 강의 대표 강사",
+        "\"나는 개원의다\" 브랜드 마케팅 강의 대표 강사",
+        "병원 대표원장님 인터뷰 동영상",
+        "[JOB인터뷰] 스타닥마케팅 이승준 대표 \"비전은, 꿈을 이루고 싶은 사람들이 성공하도록 돕는 것\"",
+        "[인터뷰] 병원 브랜딩 마케팅 기업 스타닥 '이승준 대표'",
+        "대표",
+        "사업자등록번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P17.json"
+    },
+    {
+      "requested_url": "https://www.startdoctor.co.kr/sub/ai-seo.php",
+      "company_ids": [
+        "C11"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P18",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.startdoctor.co.kr/sub/ai-seo.php",
+      "title": "AI 검색 최적화 · 병원 SEO·AEO·GEO | 스타닥마케팅",
+      "text_sha256": "65bae4012538c33e43f3d0d2f9f885617fb1234955d6e35a1238841f2afd122a",
+      "text_length": 11343,
+      "redirects": [],
+      "identity_excerpt": [
+        "의사가 대표인 병원 마케팅 회사, 스타닥",
+        "Canonical로 대표 URL 지정 검토",
+        "대표",
+        "사업자등록번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P18.json"
+    },
+    {
+      "requested_url": "https://creanswer.com/",
+      "company_ids": [
+        "C14"
+      ],
+      "roles": [
+        "official_site_identity_entry",
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P19",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://creanswer.com/",
+      "title": "병원마케팅 | 병원광고·병원홈페이지제작·병원블로그·AI검색 대행사 크리앤서",
+      "text_sha256": "6dafc290184326d4f6c6533a159cf27bfa744c307d9e2eb1a90ea53f01978991",
+      "text_length": 8315,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표 박성호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P19.json"
+    },
+    {
+      "requested_url": "https://medmc.co.kr/",
+      "company_ids": [
+        "C15"
+      ],
+      "roles": [
+        "official_site_identity_entry",
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P20",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://medmc.co.kr/",
+      "title": "병원·치과마케팅 전문 메드엠씨 | 메드엠씨",
+      "text_sha256": "542b21c11357153b1ffba763d364072a647cc341d89c63240d0a0c4e4b329b69",
+      "text_length": 3316,
+      "redirects": [],
+      "identity_excerpt": [
+        "경기도 부천시 원미구 상일로 120, 4층 413호(상동, 송내리더스텔)   상호 : 메드엠씨   대표 : 이정훈   사업자등록번호 : 130-47-37889   대표전화 : 070.5030.1184"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P20.json"
+    },
+    {
+      "requested_url": "https://recomkt.com/",
+      "company_ids": [
+        "C19"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P21",
+      "checked_at": "2026-11-23T21:03:57+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://recomkt.com/",
+      "title": "부산·울산·창원 병원마케팅 전문 | 레코마케팅",
+      "text_sha256": "b28f9804c5a8dbb2429fbf649e1613de95bcd2445c6a06836f811ca8ad51e42a",
+      "text_length": 12237,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표가 빠진 구조",
+        "대표가 직접 관리하는 구조",
+        "대표의 방향성",
+        "대표 직접 관리",
+        "플랫폼은 많아질수록 강해지는 것이 아니라, 하나의 방향으로 연결될 때 힘을 냅니다. 대표의 방향성 없이 각 플랫폼이 따로 움직이면 사람에게는 메시지가 분절되고, AI에게는 병원을 하나의 일관된 실체로 인식시키는 연결 신호가 약해집니다.",
+        "분석은 분석대로, 제작은 제작대로, 검수는 검수대로 흩어지면 결과물은 생겨도 구조는 생기지 않습니다. 모든 단계의 맥락은 대표가 직접 관리합니다.",
+        "대표는 병원마케팅의 어떤 맥락을 직접 관리합니까?",
+        "대표가 직접 관리하는 것은 모든 실무를 혼자 처리한다는 뜻이 아닙니다. 병원의 진료 포지션, 환자 결정 언어, 플랫폼별 메시지, 의료법 리스크, 반응 데이터를 하나의 기준으로 연결해 병원마케팅이 분절되지 않도록 관리한다는 뜻입니다.",
+        "레코마케팅 대표",
+        "대표가 맥락을 직접 관리해야, 사람의 선택과 AI의 노출이 함께 강해집니다.",
+        "대표 직접 구조 진단 받기",
+        "레코마케팅 | 대표 송성철 | 사업자등록번호 309-21-03705 |"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P21.json"
+    },
+    {
+      "requested_url": "https://recomkt.com/ai-hospital-marketing/",
+      "company_ids": [
+        "C19"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P22",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://recomkt.com/ai-hospital-marketing/",
+      "title": "AI 병원마케팅 - 레코마케팅 | 부산·울산·경남 병원마케팅 전문",
+      "text_sha256": "128007b7855480a303120ee6fd9dc9f10dfdef85e8f99ce7689b68ba20191fc6",
+      "text_length": 10224,
+      "redirects": [],
+      "identity_excerpt": [
+        "AI 병원마케팅은 환자가 AI 답변을 포함한 검색·지도·블로그에서 병원을 비교할 수 있도록, 병원의 언어·신뢰와 정보의 구조·근거를 함께 설계하는 일입니다. 레코마케팅은 사람이 병원을 선택하는 방식과 기계가 병원 정보를 해석하는 방식을 나눠 진단하며, 홈페이지를 병원의 기준 문서로 삼습니다. 부산·울산·경남 병원은 대표 송성철이 직접 진단합니다.",
+        "대표 직접 진단 신청하기",
+        "대표가 직접 관리해야 합니다. 그렇기 때문에 대량으로 받을 수 없습니다.",
+        "AI 노출, 검색, 리뷰, 홈페이지, 블로그가 서로 다른 이야기를 하지 않도록 전체 접점을 함께 봐야 합니다. 레코마케팅은 부산·울산·경남 병원의 온라인 접점이 한 방향으로 연결되어 있는지 대표가 직접 점검합니다.",
+        "대표 직접 진단 신청",
+        "신청 후 대표가 직접 연락드립니다. 무리한 영업 전화가 아닙니다. 내부 정보는 대외비로 처리됩니다. 의료법 리스크 항목도 함께 점검합니다.",
+        "대표 직접 구조 진단 받기",
+        "레코마케팅 | 대표 송성철 | 사업자등록번호 309-21-03705 |"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P22.json"
+    },
+    {
+      "requested_url": "https://lodac.kr/",
+      "company_ids": [
+        "C20"
+      ],
+      "roles": [
+        "official_site_identity_entry"
+      ],
+      "source_id": "S1-P23",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://lodac.kr/",
+      "title": "GEO·AEO 업체 오픈타임 | AI 검색 추천·GEO 최적화",
+      "text_sha256": "f2756773973655e9cb2d1925009e7bd9766a8aba97849440e0a104d277200818",
+      "text_length": 9706,
+      "redirects": [],
+      "identity_excerpt": [
+        "사업자 정보·확인 방법·계약 절차",
+        "대표 소개",
+        "AI 회사가 인터넷의 글을 읽어 가려고 보내는 프로그램(로봇)입니다. OpenAI의 GPTBot이 대표적입니다.",
+        "2023년 SEO 에이전시로 시작한 뒤 직접 진행한 작업입니다. 누적 건수 원자료를 이번 점검에서 확인하지 못해 건수를 대표값으로 적지 않습니다.",
+        "평균 트래픽 증가율을 대표값으로 제시하지 않습니다. 공개에 동의한 사례의 질문·측정일·전후 수치는 성공사례에서 확인할 수 있습니다.",
+        "회사·대표",
+        "박정윤 — 오픈타임 대표",
+        "전국 서비스 · 사업자등록번호 559-03-03010 · 통신판매업 신고 2024-부산동구-1122",
+        "박정윤 대표 경력·보도 자세히 →",
+        "대표 소개",
+        "대표 박정윤",
+        "사업자등록번호 559-03-03010"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P23.json"
+    },
+    {
+      "requested_url": "https://lodac.kr/industries/hospital/",
+      "company_ids": [
+        "C20"
+      ],
+      "roles": [
+        "hospital_ai_service_scope_entry"
+      ],
+      "source_id": "S1-P24",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://lodac.kr/industries/hospital/",
+      "title": "병원 GEO·AEO — 의원·치과가 AI 답변에 정확히 나오도록 | 오픈타임",
+      "text_sha256": "f5d1e5e3ef28c72b1918e4fed30057a1fb31693fe39dd41fa2f1f37dd3a212db",
+      "text_length": 5753,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표 소개",
+        "박정윤 대표 경력·전문 분야",
+        "사업자 정보·확인 방법·계약 절차",
+        "대표 소개",
+        "대표 소개",
+        "대표 박정윤",
+        "사업자등록번호 559-03-03010"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P24.json"
+    },
+    {
+      "requested_url": "https://www.nicecompany.kr/sub/online.html",
+      "company_ids": [
+        "C10"
+      ],
+      "roles": [
+        "candidate_ai_service_identity_check"
+      ],
+      "source_id": "S1-P25",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.nicecompany.kr/sub/online.html",
+      "title": "나이스컴퍼니",
+      "text_sha256": "4d2a59b020ef02fe4e10b730eda294c38ee4295bd4110dac4c0fdd3c9a387df1",
+      "text_length": 1407,
+      "redirects": [],
+      "identity_excerpt": [
+        "나이스컴퍼니",
+        "나이스컴퍼니가 끊임없이",
+        "나이스컴퍼니의"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P25.json"
+    },
+    {
+      "requested_url": "https://www.nicecompany.kr/sub/contents.html",
+      "company_ids": [
+        "C10"
+      ],
+      "roles": [
+        "candidate_hospital_portfolio_identity_check"
+      ],
+      "source_id": "S1-P26",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://www.nicecompany.kr/sub/contents.html",
+      "title": "나이스컴퍼니",
+      "text_sha256": "c0be34c417edcc81c49690f5f4ddcb451e4b531152693acf4b63f96fac29a893",
+      "text_length": 1283,
+      "redirects": [],
+      "identity_excerpt": [
+        "나이스컴퍼니",
+        "나이스컴퍼니만의",
+        "나이스컴퍼니의"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P26.json"
+    },
+    {
+      "requested_url": "https://haroop.com/ai-search-geo",
+      "company_ids": [
+        "C01"
+      ],
+      "roles": [
+        "historically_observed_url_current_access_check"
+      ],
+      "source_id": "S1-P27",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://haroop.com/ai-search-geo",
+      "title": "AI검색·AEO/GEO 병원마케팅 | 병원 신뢰 인프라 - 하룹",
+      "text_sha256": "f479982c824cda2493949e0b2d94accc3aa54d23ce8bd080377f1b6b2432351d",
+      "text_length": 5336,
+      "redirects": [],
+      "identity_excerpt": [
+        "대표 원장",
+        "(주)하룹 · 대표자 이상민 · 사업자등록번호 669-88-00845"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P27.json"
+    },
+    {
+      "requested_url": "https://winaid.co.kr/hospital-marketing-agency",
+      "company_ids": [
+        "C07"
+      ],
+      "roles": [
+        "historically_observed_url_current_access_check"
+      ],
+      "source_id": "S1-P28",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://winaid.co.kr/hospital-marketing-agency",
+      "title": "병원마케팅 대행사 | 병원마케팅 윈에이드",
+      "text_sha256": "b6752723be993fdaa07103753225fa048a7d706ced3bf04a8c204e2d2b8d6a04",
+      "text_length": 5278,
+      "redirects": [],
+      "identity_excerpt": [
+        "스마트플레이스 대표 계정은 병원이 갖습니까?",
+        "대표자 병원마케팅 관련 경력",
+        "윈에이드 대표는 병원마케팅 한 분야만 13년째 이어 오고 있습니다. 진료과목과 지역, 환자가 들어오는 경로를 보고 운영 방향을 잡습니다.",
+        "대표 인스타그램",
+        "· 대표",
+        "· 사업자등록번호"
+      ],
+      "access_verified": true,
+      "local_evidence_file": "evidence/S1-P28.json"
+    },
+    {
+      "requested_url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+      "company_ids": [
+        "C10"
+      ],
+      "roles": [
+        "current_advertiser_destination_check_only_not_rank_measurement"
+      ],
+      "source_id": "S1-P29",
+      "checked_at": "2026-11-23T21:03:58+09:00",
+      "method": "public_read_only_http",
+      "ranking_observation": false,
+      "status": 200,
+      "final_url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+      "title": "병원마케팅 : 네이버 검색",
+      "text_sha256": "dc7dfdabca8848102d8ecdbae05f91b8dd53d06e308b89541264f4e9bff337b9",
+      "text_length": 13037,
+      "redirects": [],
+      "identity_excerpt": [
+        "나이스컴퍼니",
+        "쉬워마케팅 이대표 010-6666-4635"
+      ],
+      "access_verified": true,
+      "nice_company_name_present": true,
+      "links_to_candidate_domain": [],
+      "historical_advertiser_link_established": false,
+      "local_evidence_file": "evidence/S1-P29.json"
+    }
+  ],
+  "prior_saved_pages": [
+    {
+      "source_id": "S1-R01",
+      "url": "https://adlike.kr/about",
+      "title": "애드라이크_about",
+      "checked_at": "2026-11-23T09:39:27.686Z",
+      "file": "deep-dive/evidence/adlike-about.json",
+      "text_sha256": "f0c2eef22d1dfcff5dc3f4b40526e39ae4248ba4a87ab80c04a55801d1d46699",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R02",
+      "url": "https://adlike.kr/BrandBlog",
+      "title": "애드라이크_브랜드블로그",
+      "checked_at": "2026-11-23T09:43:47.875Z",
+      "file": "deep-dive/evidence/adlike-blog.json",
+      "text_sha256": "7d12baf49b576aa27171bbeea67da46aadfc78d6fa57840ed4c7177904e11aff",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R03",
+      "url": "https://adlike.kr/GlobalMarketing",
+      "title": "애드라이크_해외마케팅",
+      "checked_at": "2026-11-23T09:43:49.576Z",
+      "file": "deep-dive/evidence/adlike-global.json",
+      "text_sha256": "d710a4f7e18ab6c15e01a77f12ca79a772e67edfb59798dfc3e07236e98737c4",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R04",
+      "url": "https://adlike.kr/service",
+      "title": "애드라이크",
+      "checked_at": "2026-11-23T09:42:56.788Z",
+      "file": "deep-dive/evidence/adlike-service.json",
+      "text_sha256": "d7e9f191066de323ecd850bf5ef0408c3f07fec7a487242c1d9814c4f1c2fe84",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R05",
+      "url": "https://adresult.kr/",
+      "title": "병원마케팅 애드리절트 | 병원 AI 마케팅 전문·진료과별 전략·의료광고 심의 대응·신환 전환 관리",
+      "checked_at": "2026-11-23T09:38:10.787Z",
+      "file": "deep-dive/evidence/adresult-home.json",
+      "text_sha256": "3a6aa8ab95c89e4e631292080d29afd0f9d8aca757f7a702ced14c75b1125e8e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R06",
+      "url": "https://adresult.kr/departments",
+      "title": "분과별 병원마케팅 패키지 | 정형외과·피부과·치과·한의원 사례로 검증",
+      "checked_at": "2026-11-23T09:39:51.233Z",
+      "file": "deep-dive/evidence/adresult-marketing.json",
+      "text_sha256": "b92e7a8d65e9d4ac78e99da9e219355eb9782bbeaf3a56b29c65f8469a5f2fe5",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R07",
+      "url": "https://adresult.kr/SEO",
+      "title": "병원 AIO 마케팅·AI 검색 최적화 | 5개 AI 엔진 노출 추적 (애드리절트)",
+      "checked_at": "2026-11-23T09:43:45.703Z",
+      "file": "deep-dive/evidence/adresult-services.json",
+      "text_sha256": "39f104cdf4ff8f333242643e094b920788725f43fb2bfa13a6db9583e2f7d5ac",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R08",
+      "url": "https://cmad.kr/medical",
+      "title": "병원마케팅 전문 청명마케팅",
+      "checked_at": "2026-11-23T09:39:30.428Z",
+      "file": "deep-dive/evidence/cm-medical.json",
+      "text_sha256": "fefd3d026b5006c16f8edafc0b5b5cef5470048dbda8bff7b72c3848f0fa119e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R09",
+      "url": "https://golddoctors.co.kr/",
+      "title": "골드닥터스 - 병원 마케팅 | 병원 마케팅 전문 회사 | 블로그 마케팅 | 병원 홈페이지 제작 | 병원 광고",
+      "checked_at": "2026-11-23T09:38:54.318Z",
+      "file": "deep-dive/evidence/gold-home.json",
+      "text_sha256": "f3abb2fbe35a3e7b2bb471edf822e47a257f3bba7c7ce70d0bfb218939a43ce2",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R10",
+      "url": "https://golddoctors.co.kr/service",
+      "title": "서비스 소개 - 골드닥터스",
+      "checked_at": "2026-11-23T09:42:55.609Z",
+      "file": "deep-dive/evidence/gold-service.json",
+      "text_sha256": "939ec8a2869431e4c0052727ace6a77e7beaf44d7ab5b3610ea07ee320cc4b0e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R11",
+      "url": "https://www.jobkorea.co.kr/company/42006511",
+      "title": "하룹 2026년 기업정보 - 직원수, 근무환경, 복리후생 등 | 잡코리아",
+      "checked_at": "2026-11-23T09:45:13.470Z",
+      "file": "deep-dive/evidence/haroop-company-finance.json",
+      "text_sha256": "8edec10934f1f3d649255ed2cb54ddffd45d2d598f7fcc41736ea02250b420b8",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R12",
+      "url": "https://haroop.com/aeogeo",
+      "title": "병원 AEO/GEO 서비스 | AI검색에 인용되는 병원 만들기 - 하룹",
+      "checked_at": "2026-11-23T09:43:42.079Z",
+      "file": "deep-dive/evidence/haroop-geo.json",
+      "text_sha256": "f8e200020017bd9e419098e5ba300536b492f1518e88f124c7fe63818384be92",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R13",
+      "url": "https://haroop.com/",
+      "title": "병원마케팅 하룹 | 2,400개 병원이 선택한 병원광고·병원 AI 마케팅 회사",
+      "checked_at": "2026-11-23T09:37:47.801Z",
+      "file": "deep-dive/evidence/haroop-home.json",
+      "text_sha256": "dace68bf69ed2d17da488a6fec34eaf175bd20b2db600c4300aca026ea098c54",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R14",
+      "url": "https://haroop.com/price",
+      "title": "병원마케팅 비용 · 서비스 가격 안내 | 하룹 - 15년, 2,400+ 병원",
+      "checked_at": "2026-11-23T09:38:06.935Z",
+      "file": "deep-dive/evidence/haroop-price.json",
+      "text_sha256": "69869fca86046dbd895e2d3ce9eba634206d6bfa860064633fffd74d815d99aa",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R15",
+      "url": "https://krmkt.co.kr/",
+      "title": "온라인광고대행사 KR마케팅 | 네이버·카카오·구글 광고 대행",
+      "checked_at": "2026-11-23T09:38:42.275Z",
+      "file": "deep-dive/evidence/kr-home.json",
+      "text_sha256": "1f1e1d02ca1490ff8c9b1cb18ce2412694bda5b9811bc65e4f1235c3858e104b",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R16",
+      "url": "https://krmkt.co.kr/medical/",
+      "title": "병원마케팅 대행 | KR마케팅",
+      "checked_at": "2026-11-23T09:42:54.427Z",
+      "file": "deep-dive/evidence/kr-medical.json",
+      "text_sha256": "673a34d5661c4ab26246486ac1ffdc5b55d4aa51ef2305dda5ca94331b4f3ee7",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R17",
+      "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad",
+      "title": "나이스컴퍼니 주식회사 2026년 기업정보 - 직원수, 근무환경, 복리후생 등 | 잡코리아",
+      "checked_at": "2026-11-23T09:45:14.205Z",
+      "file": "deep-dive/evidence/nice-finance.json",
+      "text_sha256": "453b7d2cd3d40aba8381860419f2a135782eecbc514730cbebeb593067d96373",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R18",
+      "url": "https://www.nicecompany.kr/",
+      "title": "나이스컴퍼니 | 데이터·프로그램 기반 종합 마케팅 솔루션",
+      "checked_at": "2026-11-23T09:40:09.305Z",
+      "file": "deep-dive/evidence/nice-home.json",
+      "text_sha256": "8302e96c9ddec3b9ee04d0b54e74bc88eef60bff8a332a2ee64d49432012e1cd",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R19",
+      "url": "https://www.nicecompany.kr/sub/online.html",
+      "title": "나이스컴퍼니",
+      "checked_at": "2026-11-23T09:43:50.897Z",
+      "file": "deep-dive/evidence/nice-services.json",
+      "text_sha256": "047a7310675179509c99b28da0460e425f7828ec7a37578fc4288f7e53cc022f",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R20",
+      "url": "https://blog.oreun.net/",
+      "title": "오른기획 ㅣ 오직 병원'만' 병원마케팅 전문 오른기획",
+      "checked_at": "2026-11-23T09:38:15.433Z",
+      "file": "deep-dive/evidence/oreun-home.json",
+      "text_sha256": "19d10dba901e8c714f0e067062a2950f60ed7675d1956c60e1282960a7a667a4",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R21",
+      "url": "https://www.reanmedi.com/",
+      "title": "병원마케팅·개원마케팅·병원홈페이지제작·AEO·GEO·SEO·AI노출·gpt노출 | 리앤메디",
+      "checked_at": "2026-11-23T09:38:40.574Z",
+      "file": "deep-dive/evidence/rean-home.json",
+      "text_sha256": "80fe95adbd50b64f7639199d93ff96253b2ae96e64fa0067cef00c5aaba86e2f",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R22",
+      "url": "https://www.reanmedi.com/MARKETING",
+      "title": "병원마케팅 전략·광고 운영 전문 | 리앤메디",
+      "checked_at": "2026-11-23T09:42:53.243Z",
+      "file": "deep-dive/evidence/rean-marketing.json",
+      "text_sha256": "28df9ea6d4a55b2ef50b39ca49fde77906e52ea284dafe0b5dc805b1a05c1797",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R23",
+      "url": "https://sangseung.net/",
+      "title": "병원마케팅 상승기획 - 성과보장 | 병원온라인마케팅 | 병원광고 | 병원홍보",
+      "checked_at": "2026-11-23T09:38:13.472Z",
+      "file": "deep-dive/evidence/sangseung-home.json",
+      "text_sha256": "88dd7394aa3c4faaa9f5fad5f5abe111b5012f8dac65db10b472b86d3af91cf2",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R24",
+      "url": "https://sangseung.net/succeed/",
+      "title": "병원마케팅 상승기획 - 마케팅성공사례 I AI마케팅 I 병원유튜브 I 병원영상",
+      "checked_at": "2026-11-23T09:39:52.229Z",
+      "file": "deep-dive/evidence/sangseung-process.json",
+      "text_sha256": "a11da4e633294b6a74a1f3ddccb528c2ce805d7a5fdd8fc8d7292f8fa824a473",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R25",
+      "url": "https://www.10wol.com/",
+      "title": "병원마케팅 종합광고대행사 시월기획 | 병원광고 | 법률마케팅 | 블로그광고대행업체",
+      "checked_at": "2026-11-23T09:40:05.723Z",
+      "file": "deep-dive/evidence/siwol-home.json",
+      "text_sha256": "35aeb047b0dd83d3cf17a5e4e8dbac2d5333ca1a3d1c35b26573a4adb3417032",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R26",
+      "url": "https://www.10wol.com/product",
+      "title": "국내마케팅 광고대행사 | 검색광고·SEO·SNS | 시월기획",
+      "checked_at": "2026-11-23T09:43:01.673Z",
+      "file": "deep-dive/evidence/siwol-product.json",
+      "text_sha256": "9bc90e98bda0999bb7b002a088f3cd2c0331326c3bba34db0b3a8e8fb2fcf1f2",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R27",
+      "url": "https://www.startdoctor.co.kr/sub/ai-seo.php",
+      "title": "AI 검색 최적화 · 병원 SEO·AEO·GEO | 스타닥마케팅",
+      "checked_at": "2026-11-23T09:43:50.442Z",
+      "file": "deep-dive/evidence/stardoc-geo.json",
+      "text_sha256": "edea4a982c96d47b503930756244dfee421cb4409d7c1d4220fc2ee502ad4112",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R28",
+      "url": "https://www.startdoctor.co.kr/",
+      "title": "병원마케팅 전문 | 의사가 대표인 스타닥마케팅 | 병원광고 | 병원온라인마케팅 | 병원블로그마케팅",
+      "checked_at": "2026-11-23T09:39:23.092Z",
+      "file": "deep-dive/evidence/stardoc-home.json",
+      "text_sha256": "0fd53ca3ae86ec19b3cb829fd0eb411a15ade75403de31c579f8147c912f7f9e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R29",
+      "url": "https://winaid.co.kr/about",
+      "title": "회사소개 | 병원마케팅 대행사 윈에이드",
+      "checked_at": "2026-11-23T09:45:11.629Z",
+      "file": "deep-dive/evidence/winaid-about.json",
+      "text_sha256": "4c685a4418abaac029a5fdd10917cfd79650e49ab92031720c222f1e638ef045",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R30",
+      "url": "https://winaid.co.kr/services/aeo-geo",
+      "title": "병원 AEO·GEO | 우리 병원, ChatGPT에 물어보면 나옵니까 | 병원마케팅 윈에이드",
+      "checked_at": "2026-11-23T09:42:54.090Z",
+      "file": "deep-dive/evidence/winaid-geo.json",
+      "text_sha256": "eeb0b6829de3e5b452d1900741f5fb9e7f2531581393b406d07e2a1592457716",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R31",
+      "url": "https://winaid.co.kr/hospital-marketing-agency",
+      "title": "병원마케팅 대행사 | 병원마케팅 윈에이드",
+      "checked_at": "2026-11-23T09:38:41.382Z",
+      "file": "deep-dive/evidence/winaid-home.json",
+      "text_sha256": "2c6ea1ce67ef17250d39aaff118eb59284f3aac614e68c5b042956c161b3d3ca",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R32",
+      "url": "https://www.blinkad.kr/services",
+      "title": "외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO·레딧 - BlinkAd",
+      "checked_at": "2026-11-23T10:15:26.612Z",
+      "file": "deep-dive/staff-evidence/blinkad-services.json",
+      "text_sha256": "81ee6db033769dd19d068454303fcb847690859c436729964ecfae33bbcbdd2a",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R33",
+      "url": "https://krmkt.co.kr/geo/",
+      "title": "AI 검색 노출(GEO) 무료 진단 | 홈페이지 SEO·GEO KR마케팅",
+      "checked_at": "2026-11-23T10:15:29.643Z",
+      "file": "deep-dive/staff-evidence/kr-geo.json",
+      "text_sha256": "16e3df64f0f8d1790a47c999daaeed4a886baecf65d3aa5ab1e42584be5e5162",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R34",
+      "url": "https://oreun.net/hospital_marketing/ai/",
+      "title": "페이지 없음",
+      "checked_at": "2026-11-23T10:15:29.379Z",
+      "file": "deep-dive/staff-evidence/oreun-ai.json",
+      "text_sha256": "5cf3c73fa4682473a1dfc035dc2beea34a27010222dbf7312f3b14bb676e183e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R35",
+      "url": "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/",
+      "title": "병원 AI마케팅 | AI가 추천하는 병원을 만듭니다 - 상승기획",
+      "checked_at": "2026-11-23T10:15:29.087Z",
+      "file": "deep-dive/staff-evidence/sangseung-ai.json",
+      "text_sha256": "394405e5647c3ed5584cf150ef534efee597af6972edb79531677fe4ca640795",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R36",
+      "url": "https://www.wanted.co.kr/company/44948",
+      "title": "상승기획 기업정보 - 채용 0건, 업력 4년, 서울 금천구 | 원티드",
+      "checked_at": "2026-11-23T10:15:32.051Z",
+      "file": "deep-dive/staff-evidence/sangseung-wanted.json",
+      "text_sha256": "6f92c59f7c3303bd701236d7806824fd503bf30409a4d18b8777ddf4080c7763",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R37",
+      "url": "https://adlike.kr/service",
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.121927+00:00",
+      "file": "top20/evidence/adlike-services.json",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R38",
+      "url": "https://adresult.kr/",
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:00.487800+00:00",
+      "file": "top20/evidence/adresult-home.json",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R39",
+      "url": "https://cmad.kr/medical",
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.148812+00:00",
+      "file": "top20/evidence/cm-medical.json",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R40",
+      "url": "https://creanswer.com/",
+      "title": "병원마케팅 | 병원광고·병원홈페이지제작·병원블로그·AI검색 대행사 크리앤서",
+      "checked_at": "2026-11-23T10:32:01.161026+00:00",
+      "file": "top20/evidence/creanswer-home.json",
+      "text_sha256": "6dafc290184326d4f6c6533a159cf27bfa744c307d9e2eb1a90ea53f01978991",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R41",
+      "url": "https://gajumedi.com/",
+      "title": "원장님은 진료만 하세요 | 병원마케팅 가주",
+      "checked_at": "2026-11-23T10:32:01.369265+00:00",
+      "file": "top20/evidence/gaju-home.json",
+      "text_sha256": "f1fff2ca998cb3fe6c56554825a36a16b65c4a065a65a5512b7d8c38de1653d1",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R42",
+      "url": "https://gamgakad.com/",
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.407389+00:00",
+      "file": "top20/evidence/gamgak-home.json",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R43",
+      "url": "https://golddoctors.co.kr/service",
+      "title": "서비스 소개 - 골드닥터스",
+      "checked_at": "2026-11-23T10:32:00.882320+00:00",
+      "file": "top20/evidence/gold-service.json",
+      "text_sha256": "14f39c18195def5105dfe5a6182eae2bace555bb968af0ff25b8786f57814b01",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R44",
+      "url": "https://haroop.com/price",
+      "title": "병원마케팅 비용 · 서비스 가격 안내 | 하룹 - 15년, 2,400+ 병원",
+      "checked_at": "2026-11-23T10:32:00.487274+00:00",
+      "file": "top20/evidence/haroop-price.json",
+      "text_sha256": "3d3c2f4bc55485664aa7c7b0fcb9691c365460981c002342e0ecd5337f832a5f",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R45",
+      "url": "https://krmkt.co.kr/media/",
+      "title": "광고 상품 비교 | KR마케팅",
+      "checked_at": "2026-11-23T10:32:00.880141+00:00",
+      "file": "top20/evidence/kr-media.json",
+      "text_sha256": "22c4457a363e5da8350d588befc6e766a4874a0f7e93ce8439b4130a83abdde4",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R46",
+      "url": "https://lodac.kr/",
+      "title": "GEO·AEO 업체 오픈타임 | AI 검색 추천·GEO 최적화",
+      "checked_at": "2026-11-23T10:32:01.566397+00:00",
+      "file": "top20/evidence/lodac-home.json",
+      "text_sha256": "f2756773973655e9cb2d1925009e7bd9766a8aba97849440e0a104d277200818",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R47",
+      "url": "https://medmc.co.kr/",
+      "title": "병원·치과마케팅 전문 메드엠씨 | 메드엠씨",
+      "checked_at": "2026-11-23T10:32:01.293236+00:00",
+      "file": "top20/evidence/medmc-home.json",
+      "text_sha256": "542b21c11357153b1ffba763d364072a647cc341d89c63240d0a0c4e4b329b69",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R48",
+      "url": "https://www.nicecompany.kr/sub/contents.html",
+      "title": "나이스컴퍼니",
+      "checked_at": "2026-11-23T10:32:01.061658+00:00",
+      "file": "top20/evidence/nice-content.json",
+      "text_sha256": "c0be34c417edcc81c49690f5f4ddcb451e4b531152693acf4b63f96fac29a893",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R49",
+      "url": "https://www.nicecompany.kr/sub/online.html",
+      "title": "나이스컴퍼니",
+      "checked_at": "2026-11-23T10:32:00.982683+00:00",
+      "file": "top20/evidence/nice-services.json",
+      "text_sha256": "4d2a59b020ef02fe4e10b730eda294c38ee4295bd4110dac4c0fdd3c9a387df1",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R50",
+      "url": "https://global.oreun.net/",
+      "title": "오른기획 - 병원마케팅 | 중국마케팅 | 해외환자유치 | 해외마케팅 | 샤오홍슈 | 따종디엔핑",
+      "checked_at": "2026-11-23T10:32:00.628481+00:00",
+      "file": "top20/evidence/oreun-global.json",
+      "text_sha256": "79b3a0317005d8247cf92044ad4a55f7a4cea2f50168cb999a6d596385a68339",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R51",
+      "url": "https://raonhajekorea.com/default/",
+      "title": "580개 병원이 선택한 병원 마케팅 전문 회사 - 라온하제코리아",
+      "checked_at": "2026-11-23T10:32:01.306447+00:00",
+      "file": "top20/evidence/raon-home.json",
+      "text_sha256": "22d751616ae2bcb185b34a08ff19cf5d6d055255976051d5161c08e993a789b4",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R52",
+      "url": "https://www.reanmedi.com/",
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:00.782411+00:00",
+      "file": "top20/evidence/rean-home.json",
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R53",
+      "url": "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%84%9C%EB%B9%84%EC%8A%A4/",
+      "title": "병원마케팅 서비스 5개 영역 | 레코마케팅",
+      "checked_at": "2026-11-23T10:32:01.499214+00:00",
+      "file": "top20/evidence/reco-services.json",
+      "text_sha256": "8e7fa6176796ba9fecedf09f62c8c0694b587b5832ca9359f4e342c70921cc4b",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R54",
+      "url": "https://sangseung.net/",
+      "title": "병원마케팅 상승기획 - 성과보장 | 병원온라인마케팅 | 병원광고 | 병원홍보",
+      "checked_at": "2026-11-23T10:32:00.488039+00:00",
+      "file": "top20/evidence/sangseung-home.json",
+      "text_sha256": "f2014d36f041f3033d560bc9dd114dc1bfd6667061257ea9a17a72fa68857157",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R55",
+      "url": "https://www.10wol.com/overseas.html",
+      "title": "중국마케팅·샤오홍슈·해외환자 유치 마케팅 | 시월기획",
+      "checked_at": "2026-11-23T10:32:00.488398+00:00",
+      "file": "top20/evidence/siwol-overseas.json",
+      "text_sha256": "091e05cdf47f5e3549a4191910c37246db2746598082015643373ee0a67eb0a2",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R56",
+      "url": "https://www.10wol.com/product",
+      "title": "국내마케팅 광고대행사 | 검색광고·SEO·SNS | 시월기획",
+      "checked_at": "2026-11-23T10:32:00.488223+00:00",
+      "file": "top20/evidence/siwol-product.json",
+      "text_sha256": "2cfc75ec93e3abbd4456c431bee622edee18cfefc54ac048411dbd3d5fdaf55f",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R57",
+      "url": "https://www.startdoctor.co.kr/",
+      "title": "병원마케팅 전문 | 의사가 대표인 스타닥마케팅 | 병원광고 | 병원온라인마케팅 | 병원블로그마케팅",
+      "checked_at": "2026-11-23T10:32:01.090841+00:00",
+      "file": "top20/evidence/stardoc-home.json",
+      "text_sha256": "2e3c15de6d2ed7c87de8f69d5790370f83f2c401111d7598dff7700a44b29b9e",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    },
+    {
+      "source_id": "S1-R58",
+      "url": "https://winaid.co.kr/services",
+      "title": "병원마케팅 서비스 | 네이버 플레이스·AEO·숏폼·광고·CRM | 병원마케팅 윈에이드",
+      "checked_at": "2026-11-23T10:32:00.817947+00:00",
+      "file": "top20/evidence/winaid-services.json",
+      "text_sha256": "9367d9a7bad1a01967319f620a8d71e975f603ba74234d80fe897dce12a128f6",
+      "kind": "prior_same_day_saved_public_page",
+      "local_raw_only": true,
+      "scope": "source inventory for later reuse; not all pages reanalysed in stage1"
+    }
+  ],
+  "methodology_sources": [
+    {
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "checked_date": "2026-11-23",
+      "purpose": "E-E-A-T assessment and ranking-causality limits"
+    },
+    {
+      "url": "https://searchadvisor.naver.com/guide/seo-basic-intro",
+      "checked_date": "2026-11-23",
+      "purpose": "Naver crawl/index/content structure checks"
+    }
+  ],
+  "identity_check_file": "nice-advertiser-identity.json",
+  "raw_content_publishing_policy": "local evidence only; do not commit full third-party texts or ad tracking links"
+}
