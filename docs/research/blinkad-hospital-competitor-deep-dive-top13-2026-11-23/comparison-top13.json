@@ -1,0 +1,210 @@
+{
+  "checked_date": "2026-11-23",
+  "records": [
+    {
+      "name": "하룹",
+      "serp_rank": 1,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "가격·납품량 공개, 병원 통합 운영과 웹/AI 개발",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "애드리절트",
+      "serp_rank": 2,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1682969602/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "진료과별 맞춤, 교육 콘텐츠와 AIRANK 추적",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "상승기획",
+      "serp_rank": 3,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1691252195/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "14일 사전 조사, 환자 심리와 스토리 원고",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "시월기획",
+      "serp_rank": 4,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": 3949160000,
+        "year": 2025,
+        "status": "public_provider",
+        "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "여러 업종의 제작·광고 종합 운영",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "오른기획",
+      "serp_rank": 5,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1688585642",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "지역·진료과 독점, 직접 실행과 원장 중심 콘텐츠",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "리앤메디",
+      "serp_rank": 6,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "성장 진단과 환자 선택 여정, 웹/콘텐츠 결합",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "윈에이드",
+      "serp_rank": 7,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "병원 소유 계정·자산, 고정 질문과 월별 측정",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "KR마케팅",
+      "serp_rank": 8,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": 8426950000,
+        "year": 2025,
+        "status": "public_provider_with_company_rounded_statement",
+        "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "광고·영상·홈페이지 통합, 신환 기준 보고",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "골드닥터스",
+      "serp_rank": 8,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": 5529960000,
+        "year": 2024,
+        "status": "public_provider_operator_gdm",
+        "source": "https://www.incruit.com/company/1686261958/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "광고와 민원·평판·심의 올케어",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "나이스컴퍼니",
+      "serp_rank": 8,
+      "scope_status": "candidate_identity_unresolved",
+      "financial": {
+        "revenue_krw": 6758160000,
+        "year": 2025,
+        "status": "candidate_entity_only",
+        "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "동명 후보: 업종별 TF·지역 독점·전환 데이터",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "스타닥마케팅",
+      "serp_rank": 8,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "의사 출신 대표·상권 분석·원내 브랜딩",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "애드라이크",
+      "serp_rank": 8,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1682002037/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "소개 영업·블로그 투트랙·일본 SNS",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "청명마케팅",
+      "serp_rank": 8,
+      "scope_status": "phase1_public_source_reviewed",
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://cmad.kr/medical",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "positioning_interpretation": "지역 인식과 병원 운영 데이터 협업",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    }
+  ],
+  "pricing": [
+    {
+      "company": "하룹",
+      "product": "AEO/GEO 웹블로그",
+      "setup_krw": 500000,
+      "monthly_krw": 1000000,
+      "monthly_bundle_krw": 800000,
+      "vat_included": false,
+      "content_per_month": 16,
+      "platforms_claimed": 4,
+      "questions_claimed_per_week_min": 100,
+      "monitoring": "weekly",
+      "source": "https://haroop.com/aeogeo",
+      "note": "질문 수와 총 호출 수, 모델/반복 조건은 미확인"
+    },
+    {
+      "company": "애드리절트",
+      "product": "병원 맞춤 마케팅",
+      "price_krw": null,
+      "basic_contract_months": 3,
+      "source": "https://adresult.kr/"
+    }
+  ]
+}

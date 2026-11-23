@@ -1,0 +1,592 @@
+{
+  "checked_at": "2026-11-23T18:50:35+09:00",
+  "baseline_entities": 97,
+  "phase1_reviewed_entries": 13,
+  "phase1_identity_resolved": 12,
+  "phase1_identity_unresolved": 1,
+  "remaining_baseline_only": 84,
+  "entries": [
+    {
+      "name": "하룹",
+      "serp_rank": 1,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "애드리절트",
+      "serp_rank": 2,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "상승기획",
+      "serp_rank": 3,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "시월기획",
+      "serp_rank": 4,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "오른기획",
+      "serp_rank": 5,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "리앤메디",
+      "serp_rank": 6,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "윈에이드",
+      "serp_rank": 7,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "KR마케팅",
+      "serp_rank": 8,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "골드닥터스",
+      "serp_rank": 8,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "나이스컴퍼니",
+      "serp_rank": 8,
+      "status": "phase1_candidate_identity_unresolved",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "스타닥마케팅",
+      "serp_rank": 8,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "애드라이크",
+      "serp_rank": 8,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "청명마케팅",
+      "serp_rank": 8,
+      "status": "phase1_public_source_reviewed",
+      "report": "../blinkad-hospital-competitor-deep-dive-top13-2026-11-23.md"
+    },
+    {
+      "name": "크리앤서",
+      "serp_rank": 14,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "메드엠씨",
+      "serp_rank": 15,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "라온하제코리아",
+      "serp_rank": 16,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "가주메디",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "광고기획감각",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "레코마케팅",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "로닥GEO(오픈타임)",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "마놉시스마케팅",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "메세지 메디",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "브랜톡스",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "블러썸팩토리",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "비비드온",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "알리다마케팅",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "오로지마케팅",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "원모아파트너",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "제이케이컨설팅",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "핌(PIM)",
+      "serp_rank": 17,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "TBWA 데이터랩",
+      "serp_rank": 31,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "닥터세이프",
+      "serp_rank": 32,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "와이더뷰티",
+      "serp_rank": 32,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "21앤",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "ADFi",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "QON AI 마케팅 연구소",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "광고진정성",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "김명선 병원성장전략연구소",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "네오미디어메디컬",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "눈커뮤니케이션",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "뉴에떼 마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "닥핏",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "더블탭",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "도모퀸",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "디비투",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "루멕스",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "리뷰티",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "리비짓",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "마케팅티처",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "마크플랜(TOSTUDIO)",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "마키 마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "마하닥-GEO",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "매스티지",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "메디니티",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "메이크마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "무이코퍼레이션",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "바름",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "바이더플랜",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "방향컴퍼니",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "베놈컴퍼니",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "병원마케팅 쏙",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "병원마케팅연구소",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "비즈뿌리오",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "사바나미디어",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "쉬워마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "시그니처컴퍼니",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "써밋피드(클리닉GEO)",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "아테나 GEO",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "앤서루트",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "에이치트래커",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "에이프릴 병원마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "엠디마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "와커스",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "워니커넥트",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "위드온",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "위즈더플래닝",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "유어라운드",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "유위고",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "유픽컴퍼니",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "이노메디제이",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "이백프로컴퍼니",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "인블로그",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "인사메디AI",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "인터와이즈",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "임펙트미디어",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "제이스케이AD",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "조인스엠",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "지오로그 메디컬",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "짝지마케팅",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "캐스팅엔",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "케어랩스(우노CRM)",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "퀀텀점프랩",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "팀퍼포먼스",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "픽스업",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "한국온라인광고연구소",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "핫이슈메디컬",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    },
+    {
+      "name": "헬시위듀",
+      "serp_rank": 34,
+      "status": "baseline_only",
+      "report": "../blinkad-hospital-competitor-ranking-profiles-2026-11-23.md"
+    }
+  ]
+}
