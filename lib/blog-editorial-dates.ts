@@ -1,6 +1,7 @@
 // Substantive rewrite dates, kept outside the Notion-generated post array.
 // Do not replace these with build times or incidental CMS edit timestamps.
 export const BLOG_REWRITE_DATES: Readonly<Partial<Record<string, string>>> = {
+  'gbp-sajin-i-5jang-i-keulliglyul-eul-2baelo-mandeubnida': '2026-11-23',
   'oigug-in-goangoanggaeg-tonggyeoa-chui-2026nyeon-oigug-inmaketing-i-jung-yohan-iyu': '2026-10-28',
   'gbp-injeung-an-doil-ttae-ileohge-haegyeolhaseyo': '2026-11-09',
   'gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji': '2026-11-09',
