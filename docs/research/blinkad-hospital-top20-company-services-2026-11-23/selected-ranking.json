@@ -1,0 +1,966 @@
+[
+  {
+    "name": "하룹",
+    "score": [
+      8,
+      4,
+      16
+    ],
+    "refs": [
+      {
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 8,
+        "url": "https://haroop.com/ai-search-geo",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 클립",
+        "rank": "—",
+        "url": "https://clip.naver.com/@haroop_marketing",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 5,
+        "url": "https://haroop.com",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 7,
+        "url": "https://haroop.com",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 1,
+        "url": "https://haroop.com/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 4,
+        "url": "https://haroop.com",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://haroop.com/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://haroop.com/",
+        "note": "화면에 이름이 표시된 출처"
+      }
+    ],
+    "rank": 1
+  },
+  {
+    "name": "애드리절트",
+    "score": [
+      5,
+      3,
+      9
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 3,
+        "url": "https://adresult.kr",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/9fdc_8190/224481897315",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 동영상",
+        "rank": "—",
+        "url": "https://www.youtube.com/channel/UCrmK0tiaWRuZYlrm5CabtBA",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://adresult.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 3,
+        "url": "https://adresult.kr",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://adresult.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 1,
+        "url": "https://adresult.kr",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 웹문서",
+        "rank": "—",
+        "url": "https://adresult.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://adresult.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      }
+    ],
+    "rank": 2
+  },
+  {
+    "name": "상승기획",
+    "score": [
+      5,
+      3,
+      8
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 4,
+        "url": "https://sangseung.net",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://sangseung.net/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 4,
+        "url": "https://sangseung.net",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 광고",
+        "rank": 1,
+        "url": "https://sangseung.net/",
+        "note": "상단"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://sangseung.net/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 2,
+        "url": "https://sangseung.net",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://sangseung.net/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://sangseung.net/",
+        "note": "화면에 이름이 표시된 출처"
+      }
+    ],
+    "rank": 3
+  },
+  {
+    "name": "시월기획",
+    "score": [
+      5,
+      3,
+      6
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://www.10wol.com/",
+        "note": "표시된 게시 주체"
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://www.10wol.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 6,
+        "url": "https://www.10wol.com",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/jpxjr9ynfi/224478701032",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://www.10wol.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/jpxjr9ynfi/224483021252",
+        "note": ""
+      }
+    ],
+    "rank": 4
+  },
+  {
+    "name": "오른기획",
+    "score": [
+      4,
+      4,
+      4
+    ],
+    "refs": [
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/oreunplan/224478115501",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/rany_rany/224485190139",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/charmark/224485186286",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/oreunplan/224485188245",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/rany_rany/224485190139",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/charmark/224484662415",
+        "note": ""
+      }
+    ],
+    "rank": 5
+  },
+  {
+    "name": "리앤메디",
+    "score": [
+      4,
+      3,
+      5
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 6,
+        "url": "https://www.reanmedi.com",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 9,
+        "url": "https://reanmedi.com/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://reanmedi.com/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 5,
+        "url": "https://reanmedi.com/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 6,
+        "url": "https://www.reanmedi.com",
+        "note": ""
+      }
+    ],
+    "rank": 6
+  },
+  {
+    "name": "윈에이드",
+    "score": [
+      3,
+      3,
+      6
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 7,
+        "url": "https://winaid.co.kr/hospital-marketing-agency",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://winaid.co.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 8,
+        "url": "https://winaid.co.kr/hospital-marketing-agency",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://winaid.co.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 5,
+        "url": "https://winaid.co.kr/blog",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://winaid.co.kr/",
+        "note": "화면에 이름이 표시된 출처"
+      }
+    ],
+    "rank": 7
+  },
+  {
+    "name": "KR마케팅",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 8,
+        "url": "https://krmkt.co.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 8,
+        "url": "https://krmkt.co.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 7,
+        "url": "https://krmkt.co.kr/",
+        "note": ""
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "골드닥터스",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 2,
+        "url": "https://golddoctors.co.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 4,
+        "url": "https://golddoctors.co.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 2,
+        "url": "https://golddoctors.co.kr/",
+        "note": ""
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "나이스컴퍼니",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85%EB%8C%80%ED%96%89%EC%82%AC",
+        "note": "표시된 게시 주체·광고 도착지 미확인"
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%20%EA%B4%91%EA%B3%A0%EB%8C%80%ED%96%89%EC%82%AC",
+        "note": "표시된 게시 주체·광고 도착지 미확인"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 브랜드 콘텐츠 광고",
+        "rank": "—",
+        "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+        "note": "표시된 게시 주체·광고 도착지 미확인"
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "스타닥마케팅",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/stardoc_/224482353052",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 5,
+        "url": "https://www.startdoctor.co.kr",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 7,
+        "url": "https://www.startdoctor.co.kr",
+        "note": ""
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "애드라이크",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 2,
+        "url": "https://adlike.kr",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 2,
+        "url": "https://adlike.kr",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 3,
+        "url": "https://adlike.kr",
+        "note": ""
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "청명마케팅",
+    "score": [
+      3,
+      3,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 5,
+        "url": "https://cmad.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 2,
+        "url": "https://cmad.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 5,
+        "url": "https://cmad.kr/",
+        "note": ""
+      }
+    ],
+    "rank": 8
+  },
+  {
+    "name": "크리앤서",
+    "score": [
+      3,
+      2,
+      4
+    ],
+    "refs": [
+      {
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 2,
+        "url": "https://creanswer.com",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 1,
+        "url": "https://creanswer.com/",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/dlavmffksxm200/224485193836",
+        "note": ""
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/debkvlz9fqy/224462655604",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/zrcujkvbzul/224485197896",
+        "note": ""
+      }
+    ],
+    "rank": 14
+  },
+  {
+    "name": "메드엠씨",
+    "score": [
+      3,
+      2,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원geo",
+        "engine": "구글",
+        "section": "구글 광고",
+        "rank": 1,
+        "url": "https://medmc.co.kr/",
+        "note": "검색광고"
+      },
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 8,
+        "url": "https://medmc.co.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 광고",
+        "rank": 2,
+        "url": "https://medmc.co.kr/",
+        "note": "상단"
+      }
+    ],
+    "rank": 15
+  },
+  {
+    "name": "라온하제코리아",
+    "score": [
+      2,
+      2,
+      3
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 1,
+        "url": "https://raonhajekorea.com",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 자연검색",
+        "rank": 1,
+        "url": "https://raonhajekorea.com",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 AI 개요",
+        "rank": "—",
+        "url": "https://raonhajekorea.com/",
+        "note": "화면에 이름이 표시된 출처"
+      }
+    ],
+    "rank": 16
+  },
+  {
+    "name": "가주메디",
+    "score": [
+      2,
+      2,
+      2
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 7,
+        "url": "https://gajumedi.com/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 3,
+        "url": "https://gajumedi.com/",
+        "note": ""
+      }
+    ],
+    "rank": 17
+  },
+  {
+    "name": "광고기획감각",
+    "score": [
+      2,
+      2,
+      2
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 3,
+        "url": "https://gamgakad.com/",
+        "note": "업종 인접 서비스"
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 6,
+        "url": "https://gamgakad.com/",
+        "note": "업종 인접 서비스"
+      }
+    ],
+    "rank": 17
+  },
+  {
+    "name": "레코마케팅",
+    "score": [
+      2,
+      2,
+      2
+    ],
+    "refs": [
+      {
+        "q": "병원마케팅대행사",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/punks000/224480721641",
+        "note": ""
+      },
+      {
+        "q": "병원마케팅",
+        "engine": "네이버",
+        "section": "네이버 블로그",
+        "rank": "—",
+        "url": "https://blog.naver.com/punks000/224480721641",
+        "note": ""
+      }
+    ],
+    "rank": 17
+  },
+  {
+    "name": "로닥GEO(오픈타임)",
+    "score": [
+      2,
+      2,
+      2
+    ],
+    "refs": [
+      {
+        "q": "병원geo",
+        "engine": "네이버",
+        "section": "네이버 파워링크",
+        "rank": 5,
+        "url": "https://lodac.kr/",
+        "note": ""
+      },
+      {
+        "q": "병원 광고대행사",
+        "engine": "구글",
+        "section": "구글 광고",
+        "rank": 5,
+        "url": "https://lodac.kr/",
+        "note": "하단"
+      }
+    ],
+    "rank": 17
+  }
+]

@@ -1,0 +1,329 @@
+{
+  "checked_date": "2026-11-23",
+  "analysis_status": "not_started",
+  "targets": [
+    {
+      "id": "C01",
+      "company": "하룹",
+      "observed_brand": "하룹",
+      "entity": "주식회사 하룹",
+      "channels": [
+        "https://haroop.com/blog",
+        "https://blog.naver.com/harmonysic",
+        "https://www.youtube.com/@haroop"
+      ],
+      "official_service_sources": [
+        "https://haroop.com/price",
+        "https://haroop.com/aeogeo"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C02",
+      "company": "애드리절트",
+      "observed_brand": "애드리절트",
+      "entity": "주식회사 애드리절트",
+      "channels": [
+        "https://adresult.kr/93",
+        "https://www.youtube.com/@adresult"
+      ],
+      "official_service_sources": [
+        "https://adresult.kr/",
+        "https://adresult.kr/SEO",
+        "https://adresult.kr/departments"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C03",
+      "company": "상승기획",
+      "observed_brand": "상승기획",
+      "entity": "상승기획",
+      "channels": [
+        "https://blog.naver.com/qkrtjdgus97",
+        "https://blog.naver.com/dropyi65"
+      ],
+      "official_service_sources": [
+        "https://sangseung.net/",
+        "https://sangseung.net/succeed/",
+        "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C04",
+      "company": "시월기획",
+      "observed_brand": "시월기획",
+      "entity": "주식회사 시월기획",
+      "channels": [
+        "https://www.10wol.com/news",
+        "https://blog.naver.com/andonghyun2"
+      ],
+      "official_service_sources": [
+        "https://www.10wol.com/",
+        "https://www.10wol.com/product",
+        "https://www.10wol.com/overseas.html"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C05",
+      "company": "오른기획",
+      "observed_brand": "오른기획",
+      "entity": "오른기획",
+      "channels": [
+        "https://blog.oreun.net/",
+        "https://blog.naver.com/charmark",
+        "https://www.youtube.com/@oreun-net"
+      ],
+      "official_service_sources": [
+        "https://blog.oreun.net/",
+        "https://global.oreun.net/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C06",
+      "company": "리앤메디",
+      "observed_brand": "리앤메디",
+      "entity": "주식회사 리앤커뮤니케이션의 브랜드",
+      "channels": [
+        "https://www.reanmedi.com/INSIGHT",
+        "https://www.youtube.com/@%EB%A6%AC%EC%95%A4%EB%A9%94%EB%94%94"
+      ],
+      "official_service_sources": [
+        "https://www.reanmedi.com/",
+        "https://www.reanmedi.com/MARKETING"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C07",
+      "company": "윈에이드",
+      "observed_brand": "윈에이드",
+      "entity": "주식회사 윈에이드",
+      "channels": [
+        "https://winaid.co.kr/insights",
+        "https://winaid.co.kr/blog",
+        "https://winaid.co.kr/guides",
+        "https://blog.naver.com/qaz030800"
+      ],
+      "official_service_sources": [
+        "https://winaid.co.kr/services",
+        "https://winaid.co.kr/hospital-marketing-agency"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C08",
+      "company": "KR마케팅",
+      "observed_brand": "KR마케팅",
+      "entity": "주식회사 케이알마케팅",
+      "channels": [
+        "https://krmkt.co.kr/information/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/cases/"
+      ],
+      "official_service_sources": [
+        "https://krmkt.co.kr/media/",
+        "https://krmkt.co.kr/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/medical/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C09",
+      "company": "골드닥터스",
+      "observed_brand": "골드닥터스",
+      "entity": "주식회사 지디엠(GDM)",
+      "channels": [
+        "https://golddoctors.co.kr/news",
+        "https://golddoctors.co.kr/review"
+      ],
+      "official_service_sources": [
+        "https://golddoctors.co.kr/service"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C10",
+      "company": "나이스컴퍼니",
+      "observed_brand": "나이스컴퍼니",
+      "entity": "나이스컴퍼니 주식회사 후보 법인",
+      "channels": [
+        "https://www.nicecompany.kr/"
+      ],
+      "official_service_sources": [
+        "https://www.nicecompany.kr/sub/online.html",
+        "https://www.nicecompany.kr/sub/contents.html"
+      ],
+      "attribution_status": "candidate_entity_unresolved",
+      "status": "not_started"
+    },
+    {
+      "id": "C11",
+      "company": "스타닥마케팅",
+      "observed_brand": "스타닥마케팅",
+      "entity": "스타닥(STARDOC)",
+      "channels": [
+        "https://blog.naver.com/eszettsupp/222241135287"
+      ],
+      "official_service_sources": [
+        "https://www.startdoctor.co.kr/",
+        "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C12",
+      "company": "애드라이크",
+      "observed_brand": "애드라이크",
+      "entity": "주식회사 애드라이크",
+      "channels": [
+        "https://adlike.kr/column",
+        "https://blog.naver.com/adlikekorea",
+        "https://www.instagram.com/adlike_official"
+      ],
+      "official_service_sources": [
+        "https://adlike.kr/service",
+        "https://adlike.kr/GlobalMarketing"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C13",
+      "company": "청명마케팅",
+      "observed_brand": "청명마케팅",
+      "entity": "청명마케팅",
+      "channels": [
+        "https://cmad.kr/medical"
+      ],
+      "official_service_sources": [
+        "https://cmad.kr/medical"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C14",
+      "company": "크리앤서",
+      "observed_brand": "크리앤서",
+      "entity": "주식회사 크리앤서",
+      "channels": [
+        "https://creanswer.com/insight",
+        "https://creanswer.com/blog/"
+      ],
+      "official_service_sources": [
+        "https://creanswer.com/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C15",
+      "company": "메드엠씨",
+      "observed_brand": "메드엠씨",
+      "entity": "메드엠씨(MedMC)",
+      "channels": [
+        "https://medmc.co.kr/blog/"
+      ],
+      "official_service_sources": [
+        "https://medmc.co.kr/",
+        "https://mediplace.kr/terms/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C16",
+      "company": "라온하제코리아",
+      "observed_brand": "라온하제코리아",
+      "entity": "라온하제코리아(공식 사업자 144-01-60867)",
+      "channels": [
+        "https://raonhajekorea.com/default/"
+      ],
+      "official_service_sources": [
+        "https://raonhajekorea.com/default/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C17",
+      "company": "가주메디",
+      "observed_brand": "가주메디",
+      "entity": "가주컴퍼니의 병원마케팅 브랜드",
+      "channels": [
+        "https://www.youtube.com/@gajumedi"
+      ],
+      "official_service_sources": [
+        "https://gajumedi.com/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C18",
+      "company": "광고기획감각",
+      "observed_brand": "광고기획감각",
+      "entity": "광고기획감각",
+      "channels": [
+        "https://gamgakad.com/"
+      ],
+      "official_service_sources": [
+        "https://gamgakad.com/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C19",
+      "company": "레코마케팅",
+      "observed_brand": "레코마케팅",
+      "entity": "레코마케팅",
+      "channels": [
+        "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/",
+        "https://recomkt.com/faq/",
+        "https://blog.naver.com/punks000"
+      ],
+      "official_service_sources": [
+        "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%84%9C%EB%B9%84%EC%8A%A4/",
+        "https://recomkt.com/ai-hospital-marketing/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    },
+    {
+      "id": "C20",
+      "company": "오픈타임(기존 검색 표기 로닥GEO)",
+      "observed_brand": "로닥GEO(오픈타임)",
+      "entity": "피케이커뮤니케이션의 브랜드(개인사업자)",
+      "channels": [
+        "https://lodac.kr/geo-aeo/guide/",
+        "https://lodac.kr/glossary/",
+        "https://lodac.kr/blog/",
+        "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ko",
+        "https://lodac.kr/industries/"
+      ],
+      "official_service_sources": [
+        "https://lodac.kr/",
+        "https://lodac.kr/about/ai-info/",
+        "https://idearabbit.co.kr/about/"
+      ],
+      "attribution_status": "official_site_or_official_linked_channel_seed",
+      "status": "not_started"
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "checked_date": "2026-11-23",
+  "current_public_page_records": [
+    {
+      "file": "evidence/adlike-services.json",
+      "url": "https://adlike.kr/service",
+      "status": 403,
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.121927+00:00",
+      "local_raw_only": true,
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3"
+    },
+    {
+      "file": "evidence/adresult-home.json",
+      "url": "https://adresult.kr/",
+      "status": 403,
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:00.487800+00:00",
+      "local_raw_only": true,
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3"
+    },
+    {
+      "file": "evidence/cm-medical.json",
+      "url": "https://cmad.kr/medical",
+      "status": 403,
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.148812+00:00",
+      "local_raw_only": true,
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3"
+    },
+    {
+      "file": "evidence/creanswer-home.json",
+      "url": "https://creanswer.com/",
+      "status": 200,
+      "title": "병원마케팅 | 병원광고·병원홈페이지제작·병원블로그·AI검색 대행사 크리앤서",
+      "checked_at": "2026-11-23T10:32:01.161026+00:00",
+      "local_raw_only": true,
+      "text_sha256": "6dafc290184326d4f6c6533a159cf27bfa744c307d9e2eb1a90ea53f01978991"
+    },
+    {
+      "file": "evidence/gaju-home.json",
+      "url": "https://gajumedi.com/",
+      "status": 200,
+      "title": "원장님은 진료만 하세요 | 병원마케팅 가주",
+      "checked_at": "2026-11-23T10:32:01.369265+00:00",
+      "local_raw_only": true,
+      "text_sha256": "f1fff2ca998cb3fe6c56554825a36a16b65c4a065a65a5512b7d8c38de1653d1"
+    },
+    {
+      "file": "evidence/gamgak-home.json",
+      "url": "https://gamgakad.com/",
+      "status": 403,
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:01.407389+00:00",
+      "local_raw_only": true,
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3"
+    },
+    {
+      "file": "evidence/gold-service.json",
+      "url": "https://golddoctors.co.kr/service",
+      "status": 200,
+      "title": "서비스 소개 - 골드닥터스",
+      "checked_at": "2026-11-23T10:32:00.882320+00:00",
+      "local_raw_only": true,
+      "text_sha256": "14f39c18195def5105dfe5a6182eae2bace555bb968af0ff25b8786f57814b01"
+    },
+    {
+      "file": "evidence/haroop-price.json",
+      "url": "https://haroop.com/price",
+      "status": 200,
+      "title": "병원마케팅 비용 · 서비스 가격 안내 | 하룹 - 15년, 2,400+ 병원",
+      "checked_at": "2026-11-23T10:32:00.487274+00:00",
+      "local_raw_only": true,
+      "text_sha256": "3d3c2f4bc55485664aa7c7b0fcb9691c365460981c002342e0ecd5337f832a5f"
+    },
+    {
+      "file": "evidence/kr-media.json",
+      "url": "https://krmkt.co.kr/media/",
+      "status": 200,
+      "title": "광고 상품 비교 | KR마케팅",
+      "checked_at": "2026-11-23T10:32:00.880141+00:00",
+      "local_raw_only": true,
+      "text_sha256": "22c4457a363e5da8350d588befc6e766a4874a0f7e93ce8439b4130a83abdde4"
+    },
+    {
+      "file": "evidence/lodac-home.json",
+      "url": "https://lodac.kr/",
+      "status": 200,
+      "title": "GEO·AEO 업체 오픈타임 | AI 검색 추천·GEO 최적화",
+      "checked_at": "2026-11-23T10:32:01.566397+00:00",
+      "local_raw_only": true,
+      "text_sha256": "f2756773973655e9cb2d1925009e7bd9766a8aba97849440e0a104d277200818"
+    },
+    {
+      "file": "evidence/medmc-home.json",
+      "url": "https://medmc.co.kr/",
+      "status": 200,
+      "title": "병원·치과마케팅 전문 메드엠씨 | 메드엠씨",
+      "checked_at": "2026-11-23T10:32:01.293236+00:00",
+      "local_raw_only": true,
+      "text_sha256": "542b21c11357153b1ffba763d364072a647cc341d89c63240d0a0c4e4b329b69"
+    },
+    {
+      "file": "evidence/nice-content.json",
+      "url": "https://www.nicecompany.kr/sub/contents.html",
+      "status": 200,
+      "title": "나이스컴퍼니",
+      "checked_at": "2026-11-23T10:32:01.061658+00:00",
+      "local_raw_only": true,
+      "text_sha256": "c0be34c417edcc81c49690f5f4ddcb451e4b531152693acf4b63f96fac29a893"
+    },
+    {
+      "file": "evidence/nice-services.json",
+      "url": "https://www.nicecompany.kr/sub/online.html",
+      "status": 200,
+      "title": "나이스컴퍼니",
+      "checked_at": "2026-11-23T10:32:00.982683+00:00",
+      "local_raw_only": true,
+      "text_sha256": "4d2a59b020ef02fe4e10b730eda294c38ee4295bd4110dac4c0fdd3c9a387df1"
+    },
+    {
+      "file": "evidence/oreun-global.json",
+      "url": "https://global.oreun.net/",
+      "status": 200,
+      "title": "오른기획 - 병원마케팅 | 중국마케팅 | 해외환자유치 | 해외마케팅 | 샤오홍슈 | 따종디엔핑",
+      "checked_at": "2026-11-23T10:32:00.628481+00:00",
+      "local_raw_only": true,
+      "text_sha256": "79b3a0317005d8247cf92044ad4a55f7a4cea2f50168cb999a6d596385a68339"
+    },
+    {
+      "file": "evidence/raon-home.json",
+      "url": "https://raonhajekorea.com/default/",
+      "status": 200,
+      "title": "580개 병원이 선택한 병원 마케팅 전문 회사 - 라온하제코리아",
+      "checked_at": "2026-11-23T10:32:01.306447+00:00",
+      "local_raw_only": true,
+      "text_sha256": "22d751616ae2bcb185b34a08ff19cf5d6d055255976051d5161c08e993a789b4"
+    },
+    {
+      "file": "evidence/rean-home.json",
+      "url": "https://www.reanmedi.com/",
+      "status": 403,
+      "title": "접근 제한",
+      "checked_at": "2026-11-23T10:32:00.782411+00:00",
+      "local_raw_only": true,
+      "text_sha256": "efb4784130916453c214bc6dc2898ecc46bd5478047540cb13c81c4daf0689d3"
+    },
+    {
+      "file": "evidence/reco-services.json",
+      "url": "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%84%9C%EB%B9%84%EC%8A%A4/",
+      "status": 200,
+      "title": "병원마케팅 서비스 5개 영역 | 레코마케팅",
+      "checked_at": "2026-11-23T10:32:01.499214+00:00",
+      "local_raw_only": true,
+      "text_sha256": "8e7fa6176796ba9fecedf09f62c8c0694b587b5832ca9359f4e342c70921cc4b"
+    },
+    {
+      "file": "evidence/sangseung-home.json",
+      "url": "https://sangseung.net/",
+      "status": 200,
+      "title": "병원마케팅 상승기획 - 성과보장 | 병원온라인마케팅 | 병원광고 | 병원홍보",
+      "checked_at": "2026-11-23T10:32:00.488039+00:00",
+      "local_raw_only": true,
+      "text_sha256": "f2014d36f041f3033d560bc9dd114dc1bfd6667061257ea9a17a72fa68857157"
+    },
+    {
+      "file": "evidence/siwol-overseas.json",
+      "url": "https://www.10wol.com/overseas.html",
+      "status": 200,
+      "title": "중국마케팅·샤오홍슈·해외환자 유치 마케팅 | 시월기획",
+      "checked_at": "2026-11-23T10:32:00.488398+00:00",
+      "local_raw_only": true,
+      "text_sha256": "091e05cdf47f5e3549a4191910c37246db2746598082015643373ee0a67eb0a2"
+    },
+    {
+      "file": "evidence/siwol-product.json",
+      "url": "https://www.10wol.com/product",
+      "status": 200,
+      "title": "국내마케팅 광고대행사 | 검색광고·SEO·SNS | 시월기획",
+      "checked_at": "2026-11-23T10:32:00.488223+00:00",
+      "local_raw_only": true,
+      "text_sha256": "2cfc75ec93e3abbd4456c431bee622edee18cfefc54ac048411dbd3d5fdaf55f"
+    },
+    {
+      "file": "evidence/stardoc-home.json",
+      "url": "https://www.startdoctor.co.kr/",
+      "status": 200,
+      "title": "병원마케팅 전문 | 의사가 대표인 스타닥마케팅 | 병원광고 | 병원온라인마케팅 | 병원블로그마케팅",
+      "checked_at": "2026-11-23T10:32:01.090841+00:00",
+      "local_raw_only": true,
+      "text_sha256": "2e3c15de6d2ed7c87de8f69d5790370f83f2c401111d7598dff7700a44b29b9e"
+    },
+    {
+      "file": "evidence/winaid-services.json",
+      "url": "https://winaid.co.kr/services",
+      "status": 200,
+      "title": "병원마케팅 서비스 | 네이버 플레이스·AEO·숏폼·광고·CRM | 병원마케팅 윈에이드",
+      "checked_at": "2026-11-23T10:32:00.817947+00:00",
+      "local_raw_only": true,
+      "text_sha256": "9367d9a7bad1a01967319f620a8d71e975f603ba74234d80fe897dce12a128f6"
+    }
+  ],
+  "prior_service_evidence": "local research/blinkad-hospital-b2b-20261123/deep-dive/evidence/ and staff-evidence/",
+  "financial_sources": [
+    {
+      "name": "하룹",
+      "revenue_krw": 6850000000,
+      "year": null,
+      "status": "year_unverified",
+      "source": "https://www.jobkorea.co.kr/company/42006511/salary",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "애드리절트",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.incruit.com/company/1682969602/",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "상승기획",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.incruit.com/company/1691252195/",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "시월기획",
+      "revenue_krw": 3949160000,
+      "year": 2025,
+      "status": "public_provider",
+      "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "오른기획",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.incruit.com/company/1688585642",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "리앤메디",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "윈에이드",
+      "revenue_krw": 4200000000,
+      "year": null,
+      "status": "year_unverified",
+      "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "KR마케팅",
+      "revenue_krw": 8426950000,
+      "year": 2025,
+      "status": "public_provider_with_company_rounded_statement",
+      "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "골드닥터스",
+      "revenue_krw": 5529960000,
+      "year": 2024,
+      "status": "public_provider_operator_gdm",
+      "source": "https://www.incruit.com/company/1686261958/",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "나이스컴퍼니",
+      "revenue_krw": 6758160000,
+      "year": 2025,
+      "status": "candidate_entity_only",
+      "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "스타닥마케팅",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "애드라이크",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://www.incruit.com/company/1682002037/",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "청명마케팅",
+      "revenue_krw": null,
+      "year": null,
+      "status": "not_verified",
+      "source": "https://cmad.kr/medical",
+      "scope": "company_total_not_hospital_or_geo_segment"
+    },
+    {
+      "name": "크리앤서",
+      "revenue_krw": 1147430000,
+      "year": 2025,
+      "status": "public_provider",
+      "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+      "scope": "company_total_not_hospital_or_geo_segment",
+      "notes": [
+        "인크루트/NICE D&B 11억4742만원과 1만원 차이.",
+        "잡코리아 기본표의 연도 없는 50억원은 같은 페이지 2025년 재무 영역과 달라 최신 결산값으로 채택하지 않았다."
+      ]
+    }
+  ],
+  "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+  "nps_data_month": "2026-09",
+  "nps_release": "20261022",
+  "raw_files_included_in_git": false,
+  "local_workspace_folder": "research/blinkad-hospital-b2b-20261123/top20"
+}
