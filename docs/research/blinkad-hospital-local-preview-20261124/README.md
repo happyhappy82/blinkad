@@ -2,6 +2,10 @@
 
 작성·검증: 2026-11-24. 형님이 앞서 제안한7페이지를 만들고 로컬로 띄우라고 요청해 구현했다.
 
+## 최신 원고 · 홈페이지 통계와 광고 보고서
+
+[대표 서비스의 통계 섹션](https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/hospital-marketing/#tracking-and-analysis)에서 방문 경로·전화/메신저 클릭·상담 접수·예약/내원을 구분한다. 바로 아래에 가상의 신청률 계산과 월별 분석 예시가 있다. 대행사 비교, 홈페이지 제작, 제작비, 해외 마케팅의 원고에도 각각 보고서, 테스트, 견적, 언어별 유입에 관한 설명을 추가했다. 2026-11-24 Google 공식 문서와 대조했다. 수정 대상은 검토 원고이며 사이트 계측과 실제 병원 성과 측정은 수행하지 않았다.
+
 ## 현재 검토본 · 서비스 메뉴 진입
 
 [병원마케팅 대행 초안](https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/hospital-marketing/)은 데스크톱의 서비스 드롭다운과 모바일의 메뉴 → 서비스 → 병원마케팅에서 열린다. 목록과 본문에 같은 메뉴가 있다. 대표 서비스 상단에 6개 분야별 가이드를 연결했고 각 가이드의 상단에서 대표 서비스로 돌아갈 수 있다. 기존 전체 목록 URL은 7개 초안 검토용이다. 운영 사이트 메뉴 변경은 별도다.
