@@ -1,0 +1,93 @@
+{
+  "checked_date_kst": "2026-11-24",
+  "scope": "public article selection and media concept only",
+  "index_unique_article_links": 135,
+  "candidate_bodies_read": 7,
+  "chosen_count": 4,
+  "articles": [
+    {
+      "priority": 1,
+      "url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+      "title": "Google 지도에는 나오는데 문의가 없다면 어디부터 볼까?",
+      "status": 200,
+      "canonical": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+      "sha256_html": "e0fd6d49652618050d7c9d14f8c114ea44d0b0a529089591a613eb2274d7f62c",
+      "h2": [
+        "상호명 검색만으로는 새 고객에게 보이는지 알기 어렵습니다",
+        "조회와 문의 사이를 네 구간으로 나눠봅니다",
+        "프로필 첫 화면이 고객의 질문에 답하고 있는지 봅니다",
+        "전화와 예약 링크는 직접 눌러봐야 합니다",
+        "리뷰 수보다 최근 내용과 답변을 확인합니다",
+        "문의 경로가 정상인지 확인한 뒤 광고를 붙입니다",
+        "자주 묻는 질문"
+      ],
+      "insert_after_h2": "조회와 문의 사이를 네 구간으로 나눠봅니다",
+      "insertion_note": "해당 절의 본문/표/목록 설명 뒤",
+      "direct_article_img_count": 0,
+      "direct_article_video_count": 0
+    },
+    {
+      "priority": 2,
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+      "status": 200,
+      "canonical": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "sha256_html": "ccdf0ee2159f64c747a71cb0755e09aa7ec59bdf091ab2d9444961756b41d94e",
+      "h2": [
+        "기존 홈페이지에서 무엇을 살리고, 무엇을 추가할까요?",
+        "가능 여부는 제작 방식과 변경 권한을 보고 판단합니다",
+        "기존 제작사와 새 제작사가 달라도 진행할 수 있나요?",
+        "견적과 일정은 어떤 자료를 보내야 알 수 있을까요?",
+        "공개할 때는 기존 한국어 사이트도 함께 확인합니다"
+      ],
+      "insert_after_h2": "기존 홈페이지에서 무엇을 살리고, 무엇을 추가할까요?",
+      "insertion_note": "해당 절의 본문/표/목록 설명 뒤",
+      "direct_article_img_count": 0,
+      "direct_article_video_count": 0
+    },
+    {
+      "priority": 3,
+      "url": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+      "title": "GEO 마케팅, AI가 설명하는 브랜드 이미지까지 살펴봐야 합니다",
+      "status": 200,
+      "canonical": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+      "sha256_html": "5f69455bd899e4cfb7d15f759dd87822c4aa7c94e2da1c6025341b852c1489e8",
+      "h2": [
+        "소개가 달라지면 고객이 기대하는 것도 달라집니다",
+        "‘전문 업체’라는 말 뒤에 실제 하는 일을 적어주세요",
+        "틀린 설명과 덜 알려진 장점은 따로 봅니다",
+        "GEO 마케팅은 우리 회사에 맡길 이유를 설명하는 일이기도 합니다"
+      ],
+      "insert_after_h2": null,
+      "insertion_note": "도입부 세 문단 뒤, 첫 H2 앞",
+      "direct_article_img_count": 0,
+      "direct_article_video_count": 0
+    },
+    {
+      "priority": 4,
+      "url": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes",
+      "title": "외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법",
+      "status": 200,
+      "canonical": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes",
+      "sha256_html": "f8bc1eb5f51bd090ff0d685877e22809b3a2d2d2186d917e02b4095491825373",
+      "h2": [
+        "외국인 관광객은 카페를 어디에서 발견할까?",
+        "저장된 카페가 실제 방문으로 이어지지 않는 이유는 무엇일까?",
+        "블링크애드는 카페 유입을 어떻게 점검할까?",
+        "외국인 카페 마케팅에는 어떤 정보가 필요할까?",
+        "SEO·AEO·GEO를 함께 고려하려면 어떻게 써야 할까?",
+        "카페 마케팅 성과는 무엇으로 확인할까?",
+        "자주 묻는 질문",
+        "참고 자료"
+      ],
+      "insert_after_h2": "저장된 카페가 실제 방문으로 이어지지 않는 이유는 무엇일까?",
+      "insertion_note": "해당 절의 본문/표/목록 설명 뒤",
+      "direct_article_img_count": 0,
+      "direct_article_video_count": 0
+    }
+  ],
+  "higgsfield_check": "models_explore recommendation only; no generation",
+  "generation_requests": 0,
+  "live_article_changes": 0,
+  "measurement_limit": "No traffic, search demand, media quality or conversion uplift measured."
+}
