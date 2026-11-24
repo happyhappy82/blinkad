@@ -16,7 +16,7 @@ export type HospitalPage = {
   title: string
   shortTitle: string
   description: string
-  answer: string
+  answer?: string
   sections: Section[]
   related: HospitalTopic[]
   sources: { title: string; href: string }[]
@@ -161,15 +161,13 @@ const hospitalPages: HospitalPage[] = [
     ], related: ['hospital-marketing', 'hospital-website', 'hospital-geo'], sources: [ownScope, campaignLinks, gaPrivacy, { title: 'Medical Korea · 외국인환자유치 정보시스템', href: 'https://www.medicalkorea.or.kr/korp/intro/intro.do' }],
   },
   {
-    slug: 'hospital-work', role: '공개 활동·작업 확인', shortTitle: '병원 업무 기록',
+    slug: 'hospital-work', role: '교육·컨설팅', shortTitle: '병원 업무 기록',
     title: '병원마케팅 교육과 컨설팅에서 다룬 내용',
-    description: '강남구 병원 관계자 교육과 담소유병원 컨설팅을 예로 들어 어떤 이야기를 나눴는지 소개합니다. 업무를 맡길 때 어떤 자료를 요청하면 좋을지도 짚었습니다.',
-    answer: '블링크애드 회사소식에서 교육 주제와 컨설팅 내용을 확인하실 수 있습니다. 각 병원의 환자 수나 매출이 얼마나 달라졌는지 보여주는 자료는 이 기록에 없습니다.',
+    description: '블링크애드는 강남구 병원 관계자들을 대상으로 구글 지도 관리와 AI 검색 대응 교육을 진행했습니다. 담소유병원과의 컨설팅에서는 해외 환자에게 진료 내용과 상담 방법을 외국어로 안내하는 방안을 논의했습니다.',
     sections: [
-      { id: 'gangnam', title: '강남구 병원 관계자 대상 AI 검색·브랜드 교육', paragraphs: ['2026년 10월 5일 회사소식에 소개한 교육은 의료관광협회에서 강남구 안과·성형외과·피부과·종합병원 관계자를 대상으로 진행했습니다. 블링크애드 권순현 대표가 환자들이 병원을 찾고 고르는 과정, 구글 지도와 공식 홈페이지 관리, AI 검색 대응을 주제로 강의했습니다.', '강의에서는 먼저 병원 정보와 환자 안내를 점검한 뒤 필요한 콘텐츠를 어떻게 관리할지 살펴봤습니다. 교육 이후 각 병원이 무엇을 바꿨고 어떤 결과를 얻었는지는 이 자료만으로 알기 어렵습니다.'], image: { src: '/news/gangnam-hospital-ai-search-brand-marketing-20261005.jpeg', alt: '블링크애드 공식 회사소식에 공개된 강남구 병원 관계자 대상 교육 사진', caption: '공식 회사소식의 교육 사진 · 게시일 2026.10.05' } },
-      { id: 'damsoyu', title: '담소유병원 대상 외국인 마케팅·AEO·GEO 컨설팅', paragraphs: ['2026년 9월 9일 회사소식은 담소유병원 담당자를 대상으로 진행한 컨설팅을 소개합니다. 해외 환자가 병원을 찾고 진료 정보를 비교할 때 구글 검색과 지도, 홈페이지, AI 검색을 어떻게 이용하는지 논의했습니다.', '다국어로 진료 내용과 문의 방법을 안내하는 법, 의료진과 진료 정보가 페이지마다 일치하는지 확인하는 법, 상담과 방문 전에 환자에게 알려줄 내용을 살펴봤습니다. 이 기록에는 컨설팅 이후 환자나 예약이 얼마나 늘었는지에 관한 수치는 없습니다.'], image: { src: '/news/damsoyu-hospital-foreign-patient-aeo-geo-consulting.jpg', alt: '공식 회사소식에 공개된 담소유병원 외국인 마케팅 컨설팅 사진', caption: '공식 회사소식의 컨설팅 사진 · 게시일 2026.09.09' } },
-      { id: 'materials', title: '업무를 맡길 때 어떤 자료를 요청할 수 있나요?', table: { heads: ['확인 단계', '볼 자료'], rows: [['처음 확인한 문제', '검색·지도·페이지에서 관측한 내용과 확인일'], ['합의한 업무', '대상 진료·언어·페이지·산출물과 병원 협조 범위'], ['병원 확인', '공식 정보의 확인 주체와 원고·화면 의견 반영'], ['실제 적용', '변경 전후 내용·공개 URL·문의 경로 확인'], ['이후 결과', '측정 기간·조건·분모와 확인 가능한 변화/한계']] }, paragraphs: ['환자 정보나 비공개 계정 자료가 포함되지 않는 범위에서 작업을 설명합니다. 성과를 확인할 원자료가 없다면 어디를 고쳤고 지금 무엇까지 확인할 수 있는지 나눠서 보세요.'] },
-      { id: 'boundary', title: '교육 기록으로 어디까지 알 수 있나요?', paragraphs: ['교육 참여나 컨설팅 수행은 어떤 주제를 다뤘는지 보여 주는 기록입니다. 개별 병원의 검색 순위, 환자·매출 증가, 기관의 추천이나 효과 인증까지 뜻하지는 않습니다.', '현재 공개된 다른 업종의 수치나 설명용 예시를 병원의 성과로 바꾸어 사용하지 않습니다. 개별 병원 사례는 자료를 확인한 뒤 공개할 수 있는 내용만 소개하겠습니다.'] },
+      { id: 'gangnam', title: '강남구 병원 관계자 대상 AI 검색·브랜드 교육', paragraphs: ['의료관광협회에서 블링크애드 권순현 대표가 강남구 안과·성형외과·피부과·종합병원 관계자들을 만났습니다. 강의에서는 처음 방문하는 환자가 구글 지도에서 병원의 위치와 진료시간을 확인하고, 홈페이지에서 의료진과 진료 내용을 살펴보는 과정을 다뤘습니다.', 'AI 검색에 대비해 홈페이지를 정리하는 방법도 소개했습니다. 진료 안내를 환자가 이해하기 쉬운 말로 쓰고, 자주 받는 질문과 답변을 홈페이지에 담는 방법입니다.'], image: { src: '/news/gangnam-hospital-ai-search-brand-marketing-20261005.jpeg', alt: '블링크애드 공식 회사소식에 공개된 강남구 병원 관계자 대상 교육 사진', caption: '공식 회사소식의 교육 사진 · 게시일 2026.10.05' } },
+      { id: 'damsoyu', title: '담소유병원 대상 외국인 마케팅·AEO·GEO 컨설팅', paragraphs: ['담소유병원 담당자와는 해외 환자가 구글이나 AI 검색으로 병원을 찾은 뒤 홈페이지에서 어떤 정보를 확인하는지 살펴봤습니다.', '진료 절차와 방문 준비사항을 외국어로 설명하는 방법, 환자가 진료 안내를 읽은 뒤 바로 문의할 수 있도록 홈페이지에 상담 방법을 표시하는 방안을 논의했습니다.'], image: { src: '/news/damsoyu-hospital-foreign-patient-aeo-geo-consulting.jpg', alt: '공식 회사소식에 공개된 담소유병원 외국인 마케팅 컨설팅 사진', caption: '공식 회사소식의 컨설팅 사진 · 게시일 2026.09.09' } },
+      { id: 'materials', title: '업무를 맡길 때 어떤 자료를 요청할 수 있나요?', table: { heads: ['확인 단계', '볼 자료'], rows: [['처음 확인한 문제', '검색·지도·페이지에서 관측한 내용과 확인일'], ['합의한 업무', '대상 진료·언어·페이지·산출물과 병원 협조 범위'], ['병원 확인', '공식 정보의 확인 주체와 원고·화면 의견 반영'], ['실제 적용', '변경 전후 내용·공개 URL·문의 경로 확인'], ['이후 결과', '측정 기간·조건·분모와 확인 가능한 변화/한계']] } },
     ], related: ['hospital-marketing', 'agency-selection', 'hospital-geo'], sources: [
       { title: '2026.10.05 · 강남구 병원 대상 AI 검색·브랜드 전략 교육', href: 'https://www.blinkad.kr/news/gangnam-hospital-ai-search-brand-marketing-education' },
       { title: '2026.09.09 · 담소유병원 외국인 환자 유치·AEO·GEO 컨설팅', href: 'https://www.blinkad.kr/news/damsoyu-hospital-foreign-patient-aeo-geo-consulting' },

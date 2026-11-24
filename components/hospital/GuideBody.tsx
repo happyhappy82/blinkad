@@ -11,7 +11,7 @@ export default function GuideBody({ page }: { page: HospitalPage }) {
     <div className="hp-site">
       <div className="hp-copy">
         {!isService && <p>{page.description}</p>}
-        <p>{page.answer}</p>
+        {page.answer && <p>{page.answer}</p>}
         <details className="hp-contents">
           <summary>본문 목차 <ChevronDown size={18} aria-hidden="true" /></summary>
           <nav aria-label="본문 목차">
