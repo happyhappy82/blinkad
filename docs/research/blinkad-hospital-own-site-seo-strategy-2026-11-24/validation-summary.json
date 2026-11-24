@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-11-24T12:43:11+09:00",
+  "checks": {
+    "16_http_endpoints": true,
+    "all_http200": true,
+    "14_html_canonical_present": true,
+    "no_meta_or_header_noindex_observed": true,
+    "homepage_and_services_no_recognizable_direct_hospital_href": true,
+    "existing_hospital_article_present": true,
+    "existing_choice_article_present": true,
+    "3_public_hospital_activity_bodies": true,
+    "sitemap_xml_parsed": true,
+    "original_snapshot_hashes_unchanged": true,
+    "proposed_url_not_claimed_live": true
+  },
+  "all_passed": true,
+  "production_changes": 0,
+  "current_gsc_queries": 0,
+  "current_rank_measurements": 0,
+  "third_party_refdomain_measurements": 0
+}

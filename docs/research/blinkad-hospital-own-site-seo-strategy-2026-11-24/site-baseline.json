@@ -1,0 +1,327 @@
+{
+  "checked_at": "2026-11-24T12:43:11+09:00",
+  "scope": "16 public HTTP endpoints, 14 HTML pages + robots.txt + sitemap.xml; not a full-site rendered crawl",
+  "main_site_positioning": {
+    "title": "BlinkAd | 구글 AEO·GEO 외국인 마케팅 전문 에이전시",
+    "h1": [
+      "Google에서 발견되고, AI가 이해하는 브랜드로 만듭니다."
+    ],
+    "source_id": "BS-HOME"
+  },
+  "hospital_related_href_link_count_in_sample": {
+    "BS-HOME": 0,
+    "BS-SERVICES": 0,
+    "BS-HOSP": 1,
+    "BS-CHOICE": 0,
+    "BS-COST": 3,
+    "BS-AUDIT": 3
+  },
+  "sample_hospital_links": {
+    "BS-HOME": [],
+    "BS-SERVICES": [],
+    "BS-HOSP": [
+      {
+        "text": "병원 홈페이지 제작비와 작업 범위",
+        "href": "https://www.blinkad.kr/blog/hospital-website-cost-scope"
+      }
+    ],
+    "BS-CHOICE": []
+  },
+  "important_link_limits": "Counted extracted HTML href targets by recognizable hospital/medical URL terms; not all rendered buttons, not entire inbound-link graph, not proof pages are orphaned.",
+  "sitemap_urls": 661,
+  "hospital_service_url_observed_in_sitemap": false,
+  "sitemap_absence_is_not_index_absence": true,
+  "selected_html_page_technical_observations": [
+    {
+      "source_id": "BS-AEO",
+      "url": "https://www.blinkad.kr/aeo",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/aeo"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Answer",
+        "BreadcrumbList",
+        "ContactPoint",
+        "Country",
+        "FAQPage",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "Question",
+        "SearchAction",
+        "Service",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-AUDIT",
+      "url": "https://www.blinkad.kr/blog/hospital-website-audit",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/blog/hospital-website-audit"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-BLOG",
+      "url": "https://www.blinkad.kr/blog",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/blog"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "ContactPoint",
+        "Organization",
+        "SearchAction",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-CASE",
+      "url": "https://www.blinkad.kr/case-studies",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/case-studies"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "ContactPoint",
+        "Organization",
+        "SearchAction",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-CHOICE",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-CONTACT",
+      "url": "https://www.blinkad.kr/contact",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/contact"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "ContactPoint",
+        "Organization",
+        "SearchAction",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-COST",
+      "url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/blog/hospital-website-cost-scope"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-FOREIGN",
+      "url": "https://www.blinkad.kr/foreign-marketing",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/foreign-marketing"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Answer",
+        "BreadcrumbList",
+        "ContactPoint",
+        "Country",
+        "FAQPage",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "Question",
+        "SearchAction",
+        "Service",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-HOME",
+      "url": "https://www.blinkad.kr/",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "ContactPoint",
+        "Organization",
+        "SearchAction",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-HOSP",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/blog/hospital-foreign-marketing"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-NEWS1",
+      "url": "https://www.blinkad.kr/news/gangnam-hospital-ai-search-brand-marketing-education",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/news/gangnam-hospital-ai-search-brand-marketing-education"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "NewsArticle",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-NEWS2",
+      "url": "https://www.blinkad.kr/news/damsoyu-hospital-foreign-patient-aeo-geo-consulting",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/news/damsoyu-hospital-foreign-patient-aeo-geo-consulting"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "NewsArticle",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-NEWS3",
+      "url": "https://www.blinkad.kr/news/medical-tourism-association-aeo-geo-education",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/news/medical-tourism-association-aeo-geo-education"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "BreadcrumbList",
+        "ContactPoint",
+        "ImageObject",
+        "ListItem",
+        "NewsArticle",
+        "Organization",
+        "SearchAction",
+        "WebPage",
+        "WebSite"
+      ]
+    },
+    {
+      "source_id": "BS-SERVICES",
+      "url": "https://www.blinkad.kr/services",
+      "status": 200,
+      "canonical": [
+        "https://www.blinkad.kr/services"
+      ],
+      "meta_robots": null,
+      "x_robots_tag": null,
+      "schema_types": [
+        "ContactPoint",
+        "Organization",
+        "SearchAction",
+        "WebSite"
+      ]
+    }
+  ],
+  "robots_text_sha256": "e2ce651a4e52cf8aa5faf86dd24618bd86b7d9138ba7f4b2cd1a7ad6211d278b",
+  "public_case_hospital_outcome_available_in_reviewed_index": false,
+  "case_limit": "Reviewed case index shows a restaurant GBP result and an expressly hypothetical cafe AI example. Not proof no hospital projects exist.",
+  "public_hospital_activity_sources": [
+    "BS-NEWS1",
+    "BS-NEWS2",
+    "BS-NEWS3"
+  ],
+  "news_limit": "Self-published training/consulting activity. Not independent endorsement, realized patient/revenue outcome, or third-party backlink verification.",
+  "current_gsc_metrics": "not_read_this_turn",
+  "current_serp_rank": "not_measured_this_turn",
+  "referring_domain_gap": "not_measured",
+  "cwv_rendered_mobile": "not_measured",
+  "production_changes": 0,
+  "new_article_drafts": 0,
+  "new_scheduled_monitoring": 0
+}

@@ -1,0 +1,130 @@
+{
+  "checked_at": "2026-11-24T12:43:11+09:00",
+  "historical_keyword_measurement": "2026-11-23; Google latest provided month 2026-10",
+  "source_report": "../blinkad-hospital-b2b-keywords-2026-11-23.md",
+  "same_intent_spelling_variants_not_separate_pages": true,
+  "representative_service_proposal_id": "H-SERVICE",
+  "proposed_path_not_live": "/hospital-marketing",
+  "records": [
+    {
+      "id": "K1",
+      "cluster": [
+        "병원 마케팅",
+        "병원마케팅"
+      ],
+      "google_monthly_average": 1000,
+      "naver_pc_mobile_total": 10020,
+      "primary_page_role": "병원 서비스 대표 안내",
+      "current_url": null,
+      "proposed_path_not_live": "/hospital-marketing",
+      "action": "대표 안내 역할 신설 제안. 기존 병원외국인 업무범위 글을 세부 설명으로 유지하고 중복 본문 복제는 피함.",
+      "intent_basis": "11/23 정확 병원마케팅 Google9관측: 홈페이지7/허브1/기사1",
+      "business_fit": "실제 Google·AI검색·다국어·광고·GBP 제공 범위로 설명",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    },
+    {
+      "id": "K2",
+      "cluster": [
+        "병원 마케팅 대행사",
+        "병원 마케팅 대행",
+        "병원 마케팅 업체",
+        "병원 마케팅 회사"
+      ],
+      "google_monthly_average": 260,
+      "naver_pc_mobile_total": 580,
+      "primary_page_role": "K1 대표 서비스 안내 + 기존 선택 기준 글",
+      "current_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+      "action": "K1과 별도의 어순별 서비스페이지를 만들지 않는다. 기존 글은 중립적인 비교/선택 의도로 보강하고 실제 서비스·사례·비용으로 연결.",
+      "intent_basis": "11/23 병원마케팅대행사 Google8관측은 회사홈6/전용서비스1/외부비교1",
+      "business_fit": "무엇을 맡길 수 있는지 비교 가능한 정보",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    },
+    {
+      "id": "K3",
+      "cluster": [
+        "병원 광고 대행사"
+      ],
+      "google_monthly_average": 70,
+      "naver_pc_mobile_total": 180,
+      "primary_page_role": "K1 내 실제 광고 운영 범위",
+      "current_url": null,
+      "proposed_path_not_live": "/hospital-marketing",
+      "action": "구글 광고·랜딩·측정 실제 범위와 별도 매체비를 설명. 네이버/전채널 집행을 미확인 상태로 약속하지 않음.",
+      "intent_basis": "11/23 Google8관측: 회사홈7/전용서비스1",
+      "business_fit": "실제 제공 서비스에 맞는 문의 선별",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    },
+    {
+      "id": "K4",
+      "cluster": [
+        "병원 GEO",
+        "병원 AEO",
+        "병원 AI 마케팅"
+      ],
+      "google_monthly_average": 40,
+      "naver_pc_mobile_total": 290,
+      "primary_page_role": "기존 AI서비스의 병원 설명 + 기존 병원AI 글 중 대표 답변 선정",
+      "current_url": "https://www.blinkad.kr/aeo",
+      "action": "기존 병원 AI 글과 범위를 비교한 뒤 보강할 대표1편을 선택. 별도 병원GEO 안내는 독립된 업무·증거가 충분할 때만 분리.",
+      "intent_basis": "11/23 병원geo Google는 서비스/회사/가이드 혼합",
+      "business_fit": "측정조건·의료진 정보 검토·적용 페이지를 보여 줄 수 있을 때",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    },
+    {
+      "id": "K5",
+      "cluster": [
+        "병원 홈페이지 제작"
+      ],
+      "google_monthly_average": 390,
+      "naver_pc_mobile_total": 2510,
+      "primary_page_role": "현재 제작 관련 글과 실제 제작 서비스 안내 연결",
+      "current_url": "https://www.blinkad.kr/blog/hospital-website-audit",
+      "action": "기존 홈페이지10편을 상황별 목차로 재사용. 다국어 추가/개선/제작의 실제 범위와 비용·인수 조건을 보여 줌.",
+      "intent_basis": "검색량/자동완성은 기존01조사. 이 키워드의 신규 SERP형식 관측은 이번에 하지 않음.",
+      "business_fit": "실제 다국어·홈페이지 적용 범위가 맞는 수주 우선",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    },
+    {
+      "id": "K6",
+      "cluster": [
+        "병원 해외 마케팅",
+        "외국인 환자 유치"
+      ],
+      "google_monthly_average": 50,
+      "naver_pc_mobile_total": 40,
+      "primary_page_role": "현재 병원 외국인 마케팅 글",
+      "current_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "action": "나라/언어·진료·응대·사이트/지도/광고 범위와 실제 자료를 보강. 외국인환자유치 일반 키워드에는 제도/등록/환자소개 의도가 섞인 점을 설명.",
+      "intent_basis": "01수요 조사와 기존 검색의 의도 기록",
+      "business_fit": "현재 브랜드 포지셔닝과 직접 연결",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false,
+      "secondary_keyword_volume": {
+        "keyword": "외국인 환자 유치",
+        "google_monthly_average": 170,
+        "naver_pc_mobile_total": 410
+      }
+    },
+    {
+      "id": "K7",
+      "cluster": [
+        "병원 마케팅 성공 사례"
+      ],
+      "google_monthly_average": 110,
+      "naver_pc_mobile_total": 90,
+      "primary_page_role": "검증 가능한 실제 병원 작업/성과 사례",
+      "current_url": "https://www.blinkad.kr/case-studies",
+      "action": "현재 식당성과/가상카페 예시는 병원성과 대체 불가. 공개 허용 원자료가 있으면 실제 병원 작업 사례를 추가하고 성과는 확인된 범위만 표시.",
+      "intent_basis": "기존수요자료+현재공개사례 열람",
+      "business_fit": "병원 발주자의 증거 확인 질문",
+      "volume_basis": "2026-11-23 collection; Google Ads monthly average latest available month 2026-10; Naver PC/mobile. Cluster representative keyword only, not sum of variants.",
+      "all_cluster_variants_have_same_volume": false
+    }
+  ],
+  "actual_implementation": false
+}
