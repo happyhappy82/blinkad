@@ -1,0 +1,28 @@
+{
+  "job_id": "f06bdf26-00af-4c2a-b28a-9bfc9cea36c9",
+  "status": "completed",
+  "model": "gpt_image_2_6",
+  "quoted_credits": 1,
+  "confirmed_transaction_credits": -1,
+  "remaining_credits_observed": 444.5,
+  "bytes": 638712,
+  "sha256": "ab3624853825d1a3afcc7dd7d2d3a3b2e7177bef49c8a80ce1a9f176333218bb",
+  "source_http": 200,
+  "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_37VepJ9NostbCLJV8s8RQtD7jfy/hf_20261124_121621_f06bdf26-00af-4c2a-b28a-9bfc9cea36c9.gif",
+  "requested_size": [
+    768,
+    432
+  ],
+  "requested_frames": 30,
+  "requested_duration_ms": 6000,
+  "actual_width": 768,
+  "actual_height": 432,
+  "actual_frame_count": 16,
+  "actual_duration_seconds": 3.2,
+  "unique_frame_hashes": 16,
+  "loop_count_gif": 0,
+  "visual_review": "Korean title/four labels/caption readable; blue progression stops before actual inquiry; small text/card position shifts across keyframes. Output is 16 frames/3.2 seconds rather than requested 30/6. No regeneration.",
+  "generation_count": 1,
+  "credits_spent_confirmed": 1,
+  "live_article_modified": false
+}
