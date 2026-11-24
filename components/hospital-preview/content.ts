@@ -29,7 +29,7 @@ export type HospitalPage = {
 
 const googleHelpful = { title: 'Google 검색 센터 · 유용하고 신뢰할 수 있는 콘텐츠', href: 'https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko' }
 const googleAI = { title: 'Google 검색 센터 · AI 기능과 웹사이트', href: 'https://developers.google.com/search/docs/appearance/ai-features?hl=ko' }
-const ownScope = { title: '블링크애드 · 현재 공개된 병원 외국인 마케팅 업무', href: 'https://www.blinkad.kr/blog/hospital-foreign-marketing' }
+const ownScope = { title: '병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요?', href: 'https://www.blinkad.kr/blog/hospital-foreign-marketing' }
 
 const gaEventTesting = { title: 'Google 애널리틱스 · DebugView에서 이벤트 확인하기', href: 'https://support.google.com/analytics/answer/7201382?hl=ko' }
 const gaPrivacy = { title: 'Google 애널리틱스 · URL과 입력 양식에서 개인 식별 정보가 전송되지 않도록 하는 방법', href: 'https://support.google.com/analytics/answer/6366371?hl=ko' }
