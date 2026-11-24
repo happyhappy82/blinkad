@@ -1,20 +1,68 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import {
+  ArrowLeft, ArrowRight, Bot, Building2, Check, ClipboardList,
+  FileText, Globe2, Monitor, ReceiptText,
+} from 'lucide-react'
 import { hospitalPages, PREVIEW_ROOT } from '@/components/hospital-preview/content'
-import { PreviewFooter, PreviewHeader } from '@/components/hospital-preview/PreviewShell'
+import { ConsultationNote, PreviewFooter, PreviewHeader } from '@/components/hospital-preview/PreviewShell'
 
-export const metadata: Metadata = { title: '병원마케팅 7개 페이지 검토' }
+export const metadata: Metadata = { title: '병원마케팅 서비스와 가이드' }
+
+const icons = [Building2, ClipboardList, Bot, Monitor, ReceiptText, Globe2, FileText]
 
 export default function HospitalPreviewIndex() {
-  return <div className="hp-site"><PreviewHeader />
-    <main>
-      <section className="hp-container hp-index-hero">
-        <div><p className="hp-eyebrow"><span className="hp-status-dot" /> LOCAL PREVIEW · 7 PAGES</p><h1>병원이 맡길 일을<br /><span>명확하게 설명합니다.</span></h1><p className="hp-hero-description">병원마케팅 서비스부터 대행사 선택, AI 검색과 홈페이지,<br className="hp-desktop-break" /> 해외 마케팅·공개 업무 기록까지 이어지는 7개 핵심 안내입니다.</p><Link className="hp-primary" href={`${PREVIEW_ROOT}/hospital-marketing`}>대표 안내부터 보기 <span aria-hidden="true">↗</span></Link></div>
-        <div className="hp-route-map" aria-label="7개 안내의 읽기 흐름"><div className="hp-map-top"><span>읽기 흐름</span><span>01 → 07</span></div><div className="hp-map-main"><span className="hp-map-icon">B</span><div><small>START HERE</small><strong>병원마케팅 대행</strong></div><span>↗</span></div><div className="hp-map-branches"><span>대행사 선택</span><span>GEO·AI 검색</span><span>홈페이지·비용</span><span>외국인 마케팅</span></div><div className="hp-map-end"><span className="hp-status-dot" /> 공개 업무 기록과 상담 준비</div><p>각 안내에서 필요한 상세 설명으로 이동하고,<br />실제로 맡길 업무를 확인할 수 있습니다.</p></div>
-      </section>
-      <section className="hp-container hp-index-list" aria-labelledby="page-list"><div className="hp-section-intro"><div><p className="hp-eyebrow">CONTENTS</p><h2 id="page-list">페이지를 하나씩 살펴보세요.</h2></div><p>아래 제목을 누르면 본문 전체를 볼 수 있습니다.<br />상세 화면 상단에서 언제든 이 목록으로 돌아옵니다.</p></div>
-        <div className="hp-page-list">{hospitalPages.map(page => <Link key={page.slug} href={`${PREVIEW_ROOT}/${page.slug}`} className="hp-page-row"><span className="hp-page-number">{page.number}</span><div className="hp-page-row-main"><div className="hp-row-kicker">{page.role}<span>{page.number === '01' || page.number === '07' ? '신규 초안' : '기존 글 보강안'}</span></div><h3>{page.shortTitle}</h3><p>{page.description}</p><div className="hp-keywords">{page.keywords.map(word => <span key={word}>{word}</span>)}</div></div><span className="hp-row-arrow" aria-hidden="true">↗</span></Link>)}</div>
-        <aside className="hp-review-note"><span className="hp-eyebrow">검토 범위</span><p>실제 운영 페이지를 바꾸지 않은 로컬 초안입니다. 병원 업무 기록에는 공개된 교육·컨설팅만 담았으며, 확인되지 않은 환자·매출 증가 수치는 넣지 않았습니다.</p></aside>
-      </section>
-    </main><PreviewFooter /></div>
+  return (
+    <div className="hp-site min-h-screen bg-black text-white">
+      <PreviewHeader />
+      <main>
+        <header className="px-6 pb-16 pt-32">
+          <div className="mx-auto max-w-4xl">
+            <a href="https://www.blinkad.kr/services" className="hp-return">
+              <ArrowLeft size={20} aria-hidden="true" /> 블링크애드 서비스
+            </a>
+            <h1 className="mb-6 text-[2.375rem] font-bold leading-tight keep-all sm:text-5xl md:text-6xl">병원마케팅 서비스와<br /> 대행사 선택 가이드</h1>
+            <p className="max-w-2xl text-xl text-gray-400 keep-all">
+              구글 지도와 AI 검색, 다국어 홈페이지부터 제작 견적까지.<br className="hidden md:block" />
+              병원에서 맡길 일과 대행사에 확인할 점을 살펴보세요.
+            </p>
+          </div>
+        </header>
+
+        <div id="guides" className="mx-auto max-w-6xl scroll-mt-24 space-y-16 px-6 pb-24 md:space-y-24">
+          {hospitalPages.map((page, index) => {
+            const Icon = icons[index]
+            const href = PREVIEW_ROOT + '/' + page.slug
+            return (
+              <section key={page.slug} className="grid items-start gap-6 md:grid-cols-2 md:gap-12">
+                <div className={index % 2 ? 'md:order-2' : ''}>
+                  <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-brand-blue/20 bg-brand-blue/10">
+                    <Icon className="h-8 w-8 text-brand-blue" aria-hidden="true" />
+                  </div>
+                  <p className="mb-2 text-sm font-medium text-brand-blue">{page.role}</p>
+                  <h2 className="mb-4 text-3xl font-bold md:text-4xl"><Link href={href}>{page.shortTitle}</Link></h2>
+                  <p className="mb-8 leading-relaxed text-gray-400 keep-all">{page.description}</p>
+                  <Link href={href} className="hp-primary" aria-label={page.shortTitle + ' 자세히 보기'}>
+                    {page.shortTitle} 보기 <ArrowRight size={18} aria-hidden="true" />
+                  </Link>
+                </div>
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8">
+                  <h3 className="mb-6 text-lg font-semibold">이 안내에서 확인할 내용</h3>
+                  <ul className="space-y-4">
+                    {page.points.map(point => (
+                      <li key={point} className="flex items-start gap-3 text-gray-300">
+                        <Check size={20} className="mt-0.5 shrink-0 text-brand-blue" aria-hidden="true" />{point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </section>
+            )
+          })}
+        </div>
+        <ConsultationNote />
+      </main>
+      <PreviewFooter />
+    </div>
+  )
 }

@@ -98,11 +98,23 @@ for asset in ASSETS:
     target.write_bytes(source.read_bytes())
 
 (OUT / 'assets/preview-nav.js').write_text('''document.addEventListener('click', function(event) {
+  var toggle = event.target.closest('[data-preview-toggle]');
+  if (toggle) {
+    var panel = document.getElementById(toggle.dataset.previewToggle);
+    panel.hidden = !panel.hidden;
+    toggle.setAttribute('aria-expanded', String(!panel.hidden));
+    if (panel.id === 'mobile-menu') {
+      toggle.setAttribute('aria-label', panel.hidden ? '메뉴 열기' : '메뉴 닫기');
+    }
+    return;
+  }
   var link = event.target.closest('[data-preview-back]');
   if (!link) return;
   var prefix = location.origin + '/hospital-marketing-preview';
   if (document.referrer.startsWith(prefix) && document.referrer !== location.href && history.length > 1) {
-    event.preventDefault(); history.back();
+    event.preventDefault();
+    if (location.hash) location.assign(document.referrer);
+    else history.back();
   }
 });
 ''')
