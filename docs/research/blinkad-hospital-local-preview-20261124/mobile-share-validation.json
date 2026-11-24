@@ -1,0 +1,121 @@
+{
+  "external": {
+    "checked_date": "2026-11-24",
+    "origin": "https://particle-enrolled-andale-parameters.trycloudflare.com",
+    "review_url": "https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/",
+    "static_port": 18897,
+    "dev_port": 18896,
+    "static_server_session": 35163,
+    "tunnel_session": 28211,
+    "external_tls_verified": true,
+    "pages": [
+      {
+        "path": "/hospital-marketing-preview/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 6357
+      },
+      {
+        "path": "/hospital-marketing-preview/hospital-marketing/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 9244
+      },
+      {
+        "path": "/hospital-marketing-preview/agency-selection/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 8316
+      },
+      {
+        "path": "/hospital-marketing-preview/hospital-geo/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 8317
+      },
+      {
+        "path": "/hospital-marketing-preview/hospital-website/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 8541
+      },
+      {
+        "path": "/hospital-marketing-preview/website-cost/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 7918
+      },
+      {
+        "path": "/hospital-marketing-preview/foreign-patients/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 7740
+      },
+      {
+        "path": "/hospital-marketing-preview/hospital-work/",
+        "status": 200,
+        "noindex": "noindex, nofollow, noarchive",
+        "no_next_runtime": true,
+        "bytes": 8288
+      }
+    ],
+    "not_shared": [
+      {
+        "path": "/api/inquiry",
+        "status": 404
+      },
+      {
+        "path": "/erp",
+        "status": 404
+      },
+      {
+        "path": "/.env",
+        "status": 404
+      },
+      {
+        "path": "/.git/config",
+        "status": 404
+      },
+      {
+        "path": "/assets/",
+        "status": 404
+      }
+    ],
+    "actual_phone_5g_test": false
+  },
+  "browser": {
+    "checked_date": "2026-11-24",
+    "external_https": true,
+    "mobile_width": 390,
+    "detail": {
+      "url": "https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/hospital-marketing/",
+      "width": 390,
+      "documentWidth": 375,
+      "headerLinks": [
+        {
+          "text": "← 뒤로가기",
+          "height": 44,
+          "href": "https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview"
+        },
+        {
+          "text": "전체 목록 7",
+          "height": 44,
+          "href": "https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview"
+        }
+      ],
+      "scripts": [
+        "https://particle-enrolled-andale-parameters.trycloudflare.com/assets/preview-nav.js"
+      ]
+    },
+    "index_to_detail_to_back": true,
+    "direct_detail_to_list": true,
+    "real_phone_5g_test": false
+  }
+}

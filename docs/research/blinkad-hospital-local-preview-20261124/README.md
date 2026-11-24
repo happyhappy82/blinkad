@@ -12,7 +12,7 @@
 - 현재 터미널 서버 세션: `92641`. 형님이 검토할 수 있도록 실행 유지.
 - 브라우저: Ego Lite 공간109의 결과 탭을 목록 화면으로 열고 `finish({keep:['p1']})`로 사용자에게 남겼다. 다음 턴에서 재개할 때 공간109를 claim한 뒤 남긴 탭을 adopt한다. 이전 조사 공간93은 조작하지 않았다.
 
-이 브랜치는 저장소의 기존 `vercel.json`에 있는 `erp/*: false` 자동배포 제외 규칙을 사용한다. 이 목적의 브랜치 접두어이며 ERP 업무를 수정하지 않았다. Vercel 설정·권한은 바꾸지 않았고 공식 도메인 배포·Sites등록·외부공유 터널·발행은 수행하지 않았다. [Vercel 공식 Git배포 설정](https://vercel.com/docs/project-configuration/git-configuration#git.deploymentenabled)
+이 브랜치는 저장소의 기존 `vercel.json`에 있는 `erp/*: false` 자동배포 제외 규칙을 사용한다. 이 목적의 브랜치 접두어이며 ERP 업무를 수정하지 않았다. Vercel 설정·권한, 공식 도메인 배포·Sites등록·발행은 수행하지 않았다. 초기 로컬 구현 이후 형님의 모바일 요청으로 아래 별도 검토자료 HTTPS 공유를 추가했다. [Vercel 공식 Git배포 설정](https://vercel.com/docs/project-configuration/git-configuration#git.deploymentenabled)
 
 ## 7개 본문과 역할
 
@@ -49,3 +49,15 @@
 ## 실제 다음 일
 
 형님이 로컬 초안의 내용·정보 배치·디자인을 검토한다. 반영할 수정이 정해지면 같은 URL/서버/브라우저 공간109를 재사용한다. 공식사이트 적용·실제 검색노출 측정·사례 원자료 추가·운영 발행은 이번 완료와 구분한다.
+
+
+## 모바일 외부 공유 — 2026-11-24 후속 요청
+
+- **휴대폰 검토 주소: https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/**
+- 같은Wi-Fi 없이 접속하는 외부HTTPS 주소다. 일반 DNS/TLS로 목록+7본문8경로200·noindex 헤더를 확인했다. 실제 휴대폰5G 측정은 하지 않았고, 실제 브라우저390px에서 표시와 이동을 확인했다.
+- 공유 루트는 `.hospital-preview-share/public/`이며, 8개HTML과 필요한 로고/교육사진/스타일/짧은뒤로가기JS만 있다. Next.js 런타임·HMR·운영API·저장소/계정자료는 포함하지 않는다. /api/inquiry·/erp·/.env·/.git/config·디렉터리목록은404 확인.
+- 기존 개발서버18896은 그대로 두고, 정적공유서버18897(세션35163)과 Cloudflare터널(세션28211)을 실행 유지한다. 계정/권한/호스팅 설정 변경·새패키지설치0. 기존 `/tmp/blinkad-f02-tunnel-bin/cloudflared`를 재사용했다.
+- 터널로그: `/tmp/blinkad-hospital-mobile-tunnel-20261124.log`. 상태: `.hospital-preview-share/state.json`. 로그/생성자료는Git제외. 임시주소이므로 맥·공유서버·터널이 실행 중이어야 한다. 재개 시 기존프로세스/주소부터 확인해 새 터널을 불필요하게 만들지 않는다.
+- 수정 후에는 같은 개발서버를 확인하고 `python3 scripts/export-hospital-preview.py`로 정적자료를 갱신한다. 같은 정적서버·터널은 유지하며 URL을 바꾸지 않는다. 외부공유는 기존 localhost18896변경을 자동반영하지 않으므로 export가 필요하다.
+- 모바일390에서 목록→대표안내→뒤로가기, 상세직접진입→전체목록, 상단44px·문서가로넘침없음을 확인했다. JavaScript없이도 뒤로가기링크의 목록fallback이 작동하는 정적anchor를 사용한다.
+- 공개검토 연결이며 공식 사이트 배포·검색색인·광고/접수 제출은 수행하지 않았다. 검증: `mobile-share-validation.json`.
