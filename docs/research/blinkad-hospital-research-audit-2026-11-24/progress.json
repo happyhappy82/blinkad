@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "status": "complete_with_corrections_and_explicit_limits",
+  "current_functional_ai_targets": 14,
+  "site_targets": 10,
+  "company_roster": 20,
+  "claim_review_items": 30,
+  "keyword_rows_rechecked": 190,
+  "keyword_mismatches": 0,
+  "score_mismatches": 0,
+  "serp_url_corrections": 1,
+  "latest_nps_rows": 13,
+  "nps_changed_values": 7,
+  "independent_external_audit": false,
+  "new_rank_ai_measurement": 0,
+  "operational_change": 0
+}

@@ -1,0 +1,178 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "within_preselected_twenty_not_entire_korean_market": true,
+  "functional_overlap_count": 14,
+  "records": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C01-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "public_reader_with_origin_http403",
+      "source_ids": [
+        "C02-A1",
+        "W-C02"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C03-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C05-A1",
+        "C05-A2F"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": true
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "public_reader_with_origin_http403",
+      "source_ids": [
+        "C06-A1",
+        "W-C06"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C07-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C08-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C09-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C10-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": true
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C11-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C14-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C15-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C19-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    },
+    {
+      "company_id": "C20",
+      "name": "오픈타임",
+      "public_ai_offer_reconfirmed": true,
+      "evidence_method": "direct_public_body",
+      "source_ids": [
+        "C20-A1"
+      ],
+      "private_service_delivery_or_outcome_audited": false,
+      "fully_standardized_quote_obtained": false,
+      "previous_limited_addendum": false
+    }
+  ]
+}

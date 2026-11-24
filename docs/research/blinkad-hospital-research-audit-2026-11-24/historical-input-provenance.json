@@ -1,0 +1,188 @@
+{
+  "sources": [
+    {
+      "relative_local_file": "evidence/historical-keywords/google-volume-extra.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/google-volume-extra.json",
+      "sha256": "33c004ccd22fed74ec714bb067f5e1ea86e3f6cfa8b1e050bad2450333102753",
+      "bytes": 41461,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/google-volume.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/google-volume.json",
+      "sha256": "5143d53a7cd3173777ef839b4159264d5ed2d771b92596a62190c61942098712",
+      "bytes": 146997,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/naver-volume-extra.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/naver-volume-extra.json",
+      "sha256": "c4a15b69974e5352cb31c1b1e7bbe04080e276a4ad26f156db02e6773f35037f",
+      "bytes": 14771,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/naver-volume.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/naver-volume.json",
+      "sha256": "2aad0a284e7c158ed384b8868dbe629a977f0924bf2c69d7597e5dec5fdb3c76",
+      "bytes": 39568,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/suggest.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/suggest.json",
+      "sha256": "21dd1880be5779439c2b5831b92ddc0f4e4bb87ae7c2de7d084974f6ae8d2129",
+      "bytes": 122458,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/google-volume-buying.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/google-volume-buying.json",
+      "sha256": "915d9191d19dcdf333707aadd47eef4c513a55946a37e07c21163ca6019abdb0",
+      "bytes": 16200,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/naver-volume-buying.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/naver-volume-buying.json",
+      "sha256": "e12a5f12bbd1af0c122189bbf2e7b20aff61ad504553651eda475e1c45b36374",
+      "bytes": 8601,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/suggest-extra.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/suggest-extra.json",
+      "sha256": "2c3666085a76b99490e8e800e6016e39bc09105455a8a383066aaab47278d35d",
+      "bytes": 52171,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/buying-seed.txt",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/buying-seed.txt",
+      "sha256": "aab1964559c933dc5f57cf581bf3fba4543a80024d1070c5bbe80ecc453a5085",
+      "bytes": 827,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/seed.txt",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/seed.txt",
+      "sha256": "301b5cf3bceae8b9b3a27a9d40cad588a367faa100acb14b74dc97f780b0140e",
+      "bytes": 2953,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/suggest-buying.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/suggest-buying.json",
+      "sha256": "73774ad88154f57f0484efced9b540e32f54b670246c084651af2fa266002e33",
+      "bytes": 32865,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-keywords/extra-seed.txt",
+      "source_path_at_audit": "/tmp/blinkad-hospital-b2b-20261123/extra-seed.txt",
+      "sha256": "b542d4f0165d74cb656a6cf4d9397f7e29e68ce7a7d15eda598e3a8ea2619d8c",
+      "bytes": 1211,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-1.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-1.html",
+      "sha256": "f1bbe983a97e60b0891384c747fa4e77665150ff1530251a4fb0722bb8a30662",
+      "bytes": 2054909,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-3.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-3.html",
+      "sha256": "18dd3cfd10a8857203289561c1b8ccc10f325a177141c5d969a262721f2a14fb",
+      "bytes": 1987785,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-2.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-2.html",
+      "sha256": "28ce3bbcb5ab586a9c0551ccb36e29b2e7bd99bbc7e7618bdeb48fd991add41f",
+      "bytes": 1767955,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-4.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-4.html",
+      "sha256": "1f4c0f54d667fb6c3aec77cf6ac838f74b9d964b8acd3a9f385a0edd5fbc1787",
+      "bytes": 1809779,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-4.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-4.json",
+      "sha256": "3f93498c0374dedecb85c976451a03f1742d79b5bb628c54ffc6d8ae948e667b",
+      "bytes": 4666,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-2.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-2.json",
+      "sha256": "e14fefa10fa8c911b63f605502c1fd742e1bac777b3ac12687dfef5b37d2fd85",
+      "bytes": 4299,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-3.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-3.json",
+      "sha256": "bd4a2e8677db73710d27ed0bf8971c3575e8386e64d70401ce87a4ef36824064",
+      "bytes": 7328,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/google-browser-1.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/google-browser-1.json",
+      "sha256": "841ee753f772e9f8de7953c93ba3576b604a5e75621fc5f0fff16c88fb79f965",
+      "bytes": 4723,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/naver-1.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/naver-1.html",
+      "sha256": "9c010b53b6afefff6bac0bcea81d0570d27175019625ac1c6a612972549a112c",
+      "bytes": 1465591,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/naver-4.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/naver-4.html",
+      "sha256": "b09b456f3b377d4b0c7bd6f7722c80e4d07c1c800635811cbd39663696a3850a",
+      "bytes": 1403233,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/naver-3.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/naver-3.html",
+      "sha256": "0073cd6117e72f49c234d68499e702c30974b34c04b24dd8783c94a968d5dd39",
+      "bytes": 1595461,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-search/naver-2.html",
+      "source_path_at_audit": "/tmp/blinkad-hospital-competitors-20261123/naver-2.html",
+      "sha256": "b9e1fc04c6ea68229d292291857958f20feb155989814b3262aa101e4bd7785b",
+      "bytes": 1307076,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-staff/nps.csv",
+      "source_path_at_audit": "/tmp/blinkad-hospital-company-profiles-20261123/nps.csv",
+      "sha256": "5ce875a10d6bb6f3312af2878ad1cdc65e2a4bfb3dba341bf1a6d32c7fb97d42",
+      "bytes": 115132122,
+      "raw_storage": "local_only_not_git"
+    },
+    {
+      "relative_local_file": "evidence/historical-company/original-official-profiles.json",
+      "source_path_at_audit": "/tmp/blinkad-hospital-company-profiles-20261123/official.json",
+      "sha256": "745ee5f2a19eb83ec13b5a4abbb9f7f5e2a1a7f09823fe225b9c0b2ff6f57180",
+      "bytes": 1137313,
+      "raw_storage": "local_only_not_git"
+    }
+  ],
+  "copied_existing_historical_sources_not_new_observations": true,
+  "raw_files_not_in_git": true
+}

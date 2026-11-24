@@ -57,7 +57,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 30,
+          "data_month": "2026-10",
+          "entity_name": "(주) 하룹",
+          "masked_business_prefix": "669880",
+          "address": "충청북도 청주시 흥덕구 원터로",
+          "prior_subscribers": 30,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": 6850000000,
+          "year": null,
+          "status": "amount_reported_but_fiscal_year_unverified",
+          "source_url": "https://www.jobkorea.co.kr/company/42006511/salary",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C02",
@@ -110,7 +137,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 26,
+          "data_month": "2026-10",
+          "entity_name": "주식회사애드리절트",
+          "masked_business_prefix": "889880",
+          "address": "서울특별시 강남구 헌릉로618길",
+          "prior_subscribers": 27,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": "https://www.incruit.com/company/1682969602/",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C03",
@@ -163,7 +217,20 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": null,
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": "https://www.incruit.com/company/1691252195/",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C05",
@@ -207,7 +274,20 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": true
+      "limited_addendum": true,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": null,
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": "https://www.incruit.com/company/1688585642",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C06",
@@ -259,7 +339,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 7,
+          "data_month": "2026-10",
+          "entity_name": "(주)리앤커뮤니케이션",
+          "masked_business_prefix": "786870",
+          "address": "서울특별시 서초구 강남대로8길",
+          "prior_subscribers": 7,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C07",
@@ -311,7 +418,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 11,
+          "data_month": "2026-10",
+          "entity_name": "주식회사윈에이드",
+          "masked_business_prefix": "178880",
+          "address": "서울특별시 영등포구 양평로20길",
+          "prior_subscribers": 13,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": 4200000000,
+          "year": null,
+          "status": "amount_reported_but_fiscal_year_unverified",
+          "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C08",
@@ -363,7 +497,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 13,
+          "data_month": "2026-10",
+          "entity_name": "주식회사 케이알마케팅",
+          "masked_business_prefix": "818860",
+          "address": "서울특별시 금천구 두산로",
+          "prior_subscribers": 13,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": 8426950000,
+          "year": 2025,
+          "status": "public_provider_statement_not_audited_financials",
+          "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C09",
@@ -409,7 +570,36 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 26,
+          "data_month": "2026-10",
+          "entity_name": "(주)지디엠(GDMInc.)",
+          "masked_business_prefix": "184880",
+          "address": "인천광역시 남동구 인주대로",
+          "prior_subscribers": 25,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": 5529960000,
+          "year": 2024,
+          "status": "public_provider_statement_not_audited_financials",
+          "source_url": "https://www.incruit.com/company/1686261958/",
+          "company_total_not_geo_or_hospital_segment": true,
+          "method": "current raw response is navigation shell; earlier saved source and current public search rendition retain the figure",
+          "display_recommendation": "약55.3억원(2024), 현재 직접 본문 접근과 기존/검색 수집본 확인 구분"
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C10",
@@ -464,10 +654,50 @@
         "total_current_company_headcount_verified": false,
         "aeo_geo_team_headcount_verified": false
       },
-      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "financial_caveat": "회사전체매출. 상세2025표6,758,161천원 확인·만원 표시차이 보강. 실제 감사/AI부문매출 미확인",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": true
+      "limited_addendum": true,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 15,
+          "data_month": "2026-10",
+          "entity_name": "나이스컴퍼니주식회사",
+          "masked_business_prefix": "746860",
+          "address": "부산광역시 금정구 금정로",
+          "prior_subscribers": 15,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match",
+          "identity_addendum": {
+            "prior_prefix_match_flag": false,
+            "prior_match_basis_overstated": true,
+            "current_support": "NICE 사업자746-86-0****·김연태·부산금정구금정로 + NPS746860/회사명/주소 + 공식 사이트 김연태/금정로94",
+            "identity_provider_url": "https://www.nicebizinfo.com/ep/EP0100M002GE.nice?kiscode=JE8396",
+            "full_unmasked_registration_certificate_audited": false
+          }
+        },
+        "financial_recheck": {
+          "revenue_krw": 6758161000,
+          "year": 2025,
+          "status": "public_provider_detailed_table_thousand_krw",
+          "source_url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad",
+          "company_total_not_geo_or_hospital_segment": true,
+          "display_summary": "67억5천만원",
+          "detail_cell_thousand_krw": 6758161,
+          "converted_krw": 6758161000,
+          "saramin_reported_to_10000_krw": 6758160000,
+          "precision_difference_krw": 1000,
+          "interpretation": "동일 잡코리아 페이지의 요약/상세 표시 정밀도 차이 확인. 사람인 만원 단위와 차이1천원. 독립 감사자료 두 벌로 세지 않음"
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C11",
@@ -517,7 +747,34 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 37,
+          "data_month": "2026-10",
+          "entity_name": "스타닥(stardoc)",
+          "masked_business_prefix": "308135",
+          "address": "서울특별시 강남구 언주로108길",
+          "prior_subscribers": 32,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C14",
@@ -578,7 +835,36 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": {
+          "subscribers": 14,
+          "data_month": "2026-10",
+          "entity_name": "주식회사크리앤서",
+          "masked_business_prefix": "135870",
+          "address": "서울특별시 구로구 디지털로33길",
+          "prior_subscribers": 12,
+          "prior_month": "2026-09",
+          "same_as_total_company_headcount": false,
+          "same_as_aeo_team": false,
+          "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+          "raw_file_provenance": "nps-file-provenance.json",
+          "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+          "identity_status": "publicly_supported_match"
+        },
+        "financial_recheck": {
+          "revenue_krw": 1147430000,
+          "year": 2025,
+          "status": "public_provider_statement_not_audited_financials",
+          "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+          "company_total_not_geo_or_hospital_segment": true,
+          "alternative_incruit_krw": 1147420000,
+          "alternative_difference_krw": 10000
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C15",
@@ -621,7 +907,20 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": null,
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": null,
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C19",
@@ -665,7 +964,20 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": null,
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": null,
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     },
     {
       "company_id": "C20",
@@ -718,9 +1030,23 @@
       "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
       "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
       "evidence_level": "vendor_public_offer_not_audited_results",
-      "limited_addendum": false
+      "limited_addendum": false,
+      "latest_audit_facts": {
+        "checked_at": "2026-11-24T11:48:47+09:00",
+        "reference": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+        "latest_nps_workplace": null,
+        "financial_recheck": {
+          "revenue_krw": null,
+          "year": null,
+          "status": "not_verified",
+          "source_url": null,
+          "company_total_not_geo_or_hospital_segment": true
+        }
+      },
+      "historical_fields_notice": "financial_prior_record/staff_prior_record는 이전 기록. 현재 인원/정밀도는latest_audit_facts를 우선"
     }
   ],
   "classification_source": "../blinkad-hospital-stage5-verification-2026-11-24/current-classification.json",
-  "no_price_or_outcome_rank": true
+  "no_price_or_outcome_rank": true,
+  "whole_research_audit": "../blinkad-hospital-research-audit-2026-11-24.md"
 }

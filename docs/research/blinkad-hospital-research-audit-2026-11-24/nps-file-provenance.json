@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-11-24T11:31:39+09:00",
+  "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+  "dataset_name": "국민연금공단_국민연금 가입 사업장 내역_20261123",
+  "download_endpoint": "https://www.data.go.kr/cmm/cmm/fileDownload.do",
+  "file_metadata_ids": {
+    "atchFileId": "FILE_000000007773090",
+    "fileDetailSn": "1"
+  },
+  "sha256": "0b0d09d958f558a5ef2989aff2ff06524b248b072a4eacd3c51989c109f7cf62",
+  "bytes": 114885359,
+  "raw_storage": "local_only_not_git"
+}

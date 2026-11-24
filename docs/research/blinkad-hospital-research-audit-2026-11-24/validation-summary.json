@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "passed": true,
+  "errors": [],
+  "historical_snapshot_sha256": {
+    "stage1/master-roster.json": "9aa821c328bc60b738662ff02cde8d1226a7147ee13098443a1e254d207b901d",
+    "stage1/site-search-evidence.json": "e06b2e73ce3451e7616def8bf0762a7ab80fa89045ad2c611fe7018d121c24ce",
+    "analysis-selection/historical-exact-query.json": "6198ae907ac2590e0683b4a7929113f41c84025fdcbe051f0865aa6cc0b6f075"
+  },
+  "historical_placements_unchanged": true,
+  "claim_items": 30,
+  "keyword_rows": 190,
+  "keyword_mismatches": 0,
+  "visibility_score_mismatches": 0,
+  "observed_platform_url_corrections": 1,
+  "latest_nps_month": "2026-10",
+  "latest_nps_rows": 13,
+  "changed_nps_values": 7,
+  "product_targets": 14,
+  "site_targets": 10,
+  "current_roster": 20,
+  "new_http_request_records": 48,
+  "usable_direct_body_records": 33,
+  "historical_source_files_preserved": 26,
+  "same_analyst_not_independent_audit": true,
+  "not_confirmed": [
+    "same-scope private quotations14",
+    "actual delivery/outcome audit",
+    "ranking causality",
+    "current full headcount/AI dedicated teams",
+    "unpublished topics full dedup"
+  ],
+  "no_operational_changes": true
+}

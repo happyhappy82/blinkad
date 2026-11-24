@@ -1,0 +1,214 @@
+{
+  "previous_csv_sha256": "5ce875a10d6bb6f3312af2878ad1cdc65e2a4bfb3dba341bf1a6d32c7fb97d42",
+  "latest_source": "evidence/NPS-file-provenance.json",
+  "records": [
+    {
+      "brand": "하룹",
+      "old_month": "2026-09",
+      "old_subscribers": 30,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "(주) 하룹",
+          "id": "669880",
+          "address": "충청북도 청주시 흥덕구 원터로",
+          "num": 30,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "애드리절트",
+      "old_month": "2026-09",
+      "old_subscribers": 27,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사애드리절트",
+          "id": "889880",
+          "address": "서울특별시 강남구 헌릉로618길",
+          "num": 26,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "시월기획",
+      "old_month": "2026-09",
+      "old_subscribers": 49,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사시월기획",
+          "id": "199870",
+          "address": "세종특별자치시  한누리대로",
+          "num": 48,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "리앤메디",
+      "old_month": "2026-09",
+      "old_subscribers": 7,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "(주)리앤커뮤니케이션",
+          "id": "786870",
+          "address": "서울특별시 서초구 강남대로8길",
+          "num": 7,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "윈에이드",
+      "old_month": "2026-09",
+      "old_subscribers": 13,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사윈에이드",
+          "id": "178880",
+          "address": "서울특별시 영등포구 양평로20길",
+          "num": 11,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "KR마케팅",
+      "old_month": "2026-09",
+      "old_subscribers": 13,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사 케이알마케팅",
+          "id": "818860",
+          "address": "서울특별시 금천구 두산로",
+          "num": 13,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "골드닥터스",
+      "old_month": "2026-09",
+      "old_subscribers": 25,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "(주)지디엠(GDMInc.)",
+          "id": "184880",
+          "address": "인천광역시 남동구 인주대로",
+          "num": 26,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "나이스컴퍼니",
+      "old_month": "2026-09",
+      "old_subscribers": 15,
+      "old_entity_prefix_verified": false,
+      "new_matches": [
+        {
+          "name": "나이스컴퍼니주식회사",
+          "id": "746860",
+          "address": "부산광역시 금정구 금정로",
+          "num": 15,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "스타닥마케팅",
+      "old_month": "2026-09",
+      "old_subscribers": 32,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "스타닥(stardoc)",
+          "id": "308135",
+          "address": "서울특별시 강남구 언주로108길",
+          "num": 37,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "애드라이크",
+      "old_month": "2026-09",
+      "old_subscribers": 18,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사 애드라이크",
+          "id": "667810",
+          "address": "서울특별시 강서구 마곡중앙로",
+          "num": 18,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "크리앤서",
+      "old_month": "2026-09",
+      "old_subscribers": 12,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "주식회사크리앤서",
+          "id": "135870",
+          "address": "서울특별시 구로구 디지털로33길",
+          "num": 14,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "라온하제코리아",
+      "old_month": "2026-09",
+      "old_subscribers": 31,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "라온하제코리아",
+          "id": "144016",
+          "address": "경기도 성남시 분당구 성남대로331번길",
+          "num": 32,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    },
+    {
+      "brand": "광고기획감각",
+      "old_month": "2026-09",
+      "old_subscribers": 11,
+      "old_entity_prefix_verified": true,
+      "new_matches": [
+        {
+          "name": "광고기획감각",
+          "id": "647490",
+          "address": "대구광역시 남구 대명남로",
+          "num": 11,
+          "month": "2026-10"
+        }
+      ],
+      "match_basis": "prior legal name + masked business prefix + city/district; Nice prior official prefix remains unverified"
+    }
+  ]
+}

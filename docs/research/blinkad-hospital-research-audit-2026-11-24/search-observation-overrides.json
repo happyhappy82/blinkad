@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "original_observation": "2026-11-23T18:02:04.691+09:00",
+  "original_files_preserved": true,
+  "apply_when_reading": [
+    "blinkad-hospital-competitor-stage1-scope-2026-11-23/historical-serp-placements.json",
+    "stage1/historical-serp-placements.json",
+    "stage1/site-search-evidence.json",
+    "analysis-selection/historical-exact-query.json",
+    "data/company-rankings.json"
+  ],
+  "overrides": [
+    {
+      "query": "병원마케팅",
+      "engine": "구글",
+      "section": "구글 자연검색",
+      "rank": 8,
+      "brand": "바름",
+      "title": "병원 홍보 마케팅, 하수와 고수, 천상계의 차이",
+      "stored_url_in_error": "https://www.openads.co.kr/content/contentDetail?contsId=14924",
+      "raw_display_citation": "https://blog.naver.com › barumit",
+      "observed_platform": "Naver Blog",
+      "observed_domain": "blog.naver.com",
+      "observed_profile_prefix": "https://blog.naver.com/barumit",
+      "exact_original_post_url_recovered": null,
+      "crossposted_comparison_evidence_url": "https://www.openads.co.kr/content/contentDetail?contsId=14924",
+      "correction": "OpenAds는 동일 글 대조 자료이며 당시 검색 결과 URL로 사용하지 않음. 실제 지면은 네이버 블로그로 정정. 프로필 prefix를 정확한 게시물URL이라고 쓰지 않음",
+      "scope_impact": "기존 선정20/사이트10에는 바름이 없어 두 대상 명부와 노출빈도 점수는 불변"
+    }
+  ]
+}

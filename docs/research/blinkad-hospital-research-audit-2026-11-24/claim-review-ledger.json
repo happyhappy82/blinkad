@@ -1,0 +1,359 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "same_analyst_recheck_not_independent_external_audit": true,
+  "items": [
+    {
+      "id": "A01",
+      "category": "정정",
+      "subject": "검색 결과 URL",
+      "review_result": "병원마케팅 구글8번째 원문 표시는 Naver Blog/barumit인데 저장URL은 OpenAds 동일 글이었다",
+      "action": "관측 지면/정확URL 미복원/비교용 동일 글을 분리. 기존 검색 스냅샷은 보존하고 override 연결",
+      "source_ids": [
+        "H-SERP4"
+      ]
+    },
+    {
+      "id": "A02",
+      "category": "갱신",
+      "subject": "직원 자료 최신성",
+      "review_result": "이전 값은2026-09로 날짜가 명시돼 있었지만 현재 포털은2026-10/11월23일공개. 13행 중7개값 달라짐",
+      "action": "최신 CSV 재추출·9월 이력 보존·10월 현재 표 저장",
+      "source_ids": [
+        "NPS-A1",
+        "NPS-FILE"
+      ]
+    },
+    {
+      "id": "A03",
+      "category": "보강정정",
+      "subject": "나이스 NPS 매칭 근거",
+      "review_result": "이전 prefixMatch=false인데 match_basis에는 번호대조까지 완료한 것으로 적힘",
+      "action": "과거 근거 서술 부족 인정. NICE746-86-0****/김연태/주소 추가대조로 현재 공개 연결 보강",
+      "source_ids": [
+        "W-C10-ID",
+        "NPS-FILE",
+        "C10-A2"
+      ]
+    },
+    {
+      "id": "A04",
+      "category": "보강정정",
+      "subject": "나이스 매출 정밀도",
+      "review_result": "잡코리아 같은 페이지에서 요약67억5천만원과 상세6758161천원 확인. 사람인675816만원과차이1000원",
+      "action": "2025년6758161000원 상세표 채택. 단순 미해소 금액 충돌 표현을 표시 정밀도 설명으로 교정",
+      "source_ids": [
+        "W-C10-FIN"
+      ]
+    },
+    {
+      "id": "A05",
+      "category": "유지",
+      "subject": "190키워드 수치/자동완성",
+      "review_result": "원 응답과 전체190행 대조 불일치0. 네이버50/구글68/공통40/하나이상78 재현",
+      "action": "전국 수요이며661기관 담당자 검색량/새 제목 검색량으로 확대하지 않음",
+      "source_ids": [
+        "H-KEYWORDS"
+      ]
+    },
+    {
+      "id": "A06",
+      "category": "유지",
+      "subject": "종합 노출점수",
+      "review_result": "원185행/97브랜드의8화면·4검색어·고유지면 점수 재계산 불일치0",
+      "action": "노출빈도 표본으로 사용. 시장/매출/SEO 실력 순위로 쓰지 않음",
+      "source_ids": [
+        "H-SERP4",
+        "H-PLACEMENTS"
+      ]
+    },
+    {
+      "id": "A07",
+      "category": "유지",
+      "subject": "Google/Naver 원 관측",
+      "review_result": "원HTML 구글 자연8/8/8/9·전체33, 네이버 파워링크 각10·전체40와 저장 수 일치",
+      "action": "현재 순위로 갱신하지 않고 당시 관측으로 유지. URL1건은A01정정",
+      "source_ids": [
+        "H-SERP4",
+        "H-PLACEMENTS"
+      ]
+    },
+    {
+      "id": "A08",
+      "category": "한계유지",
+      "subject": "상위10의 의미",
+      "review_result": "선정10은 자체사이트자연검색6·네이버블로그1·광고2·최초특정광고ID별도미확인1인 종합표본",
+      "action": "단일 병원마케팅 자연검색 상위10개로 소개하지 않음",
+      "source_ids": [
+        "H-PLACEMENTS"
+      ]
+    },
+    {
+      "id": "A09",
+      "category": "유지",
+      "subject": "병원 AI 기능중복14곳",
+      "review_result": "표본20안에서14개 모두 공개 AI/검색최적화 기능근거 재확인. 추가2곳 명세제한 유지",
+      "action": "같은 수준의 유료상품/운영 이행/성과를 확인한14곳으로 표현하지 않음",
+      "source_ids": [
+        "C01-A1",
+        "C02-A1",
+        "C03-A1",
+        "C05-A1",
+        "C06-A1",
+        "C07-A1",
+        "C08-A1",
+        "C09-A1",
+        "C10-A1",
+        "C11-A1",
+        "C14-A1",
+        "C15-A1",
+        "C19-A1",
+        "C20-A1",
+        "W-C02",
+        "W-C06",
+        "C05-A2F"
+      ]
+    },
+    {
+      "id": "A10",
+      "category": "유지",
+      "subject": "하룹 공개가격",
+      "review_result": "구축기준50만원+월100만원VAT별도·16건·블로그결합80만원 조건 재확인",
+      "action": "디자인/기능변동·별도블로그비·최소기간미확인을 함께 유지",
+      "source_ids": [
+        "C01-A1",
+        "C01-A2"
+      ]
+    },
+    {
+      "id": "A11",
+      "category": "유지",
+      "subject": "오픈타임 가격/관측 단위",
+      "review_result": "월250만VAT별도/275만·질문10/글12/외부1·최소기간없음·5API+Naver화면·기본5회 재확인",
+      "action": "300은관측수. 300API호출·동일경로6앱으로 쓰지 않음",
+      "source_ids": [
+        "C20-A1",
+        "C20-A2"
+      ]
+    },
+    {
+      "id": "A12",
+      "category": "유지",
+      "subject": "KR 캐시30만원 제외",
+      "review_result": "현행 GEO페이지 진단/범위별 견적. 일반 광고/웹비와 분리 적절",
+      "action": "현재확정가로30만원을 되살리지 않음",
+      "source_ids": [
+        "C08-A1"
+      ]
+    },
+    {
+      "id": "A13",
+      "category": "유지",
+      "subject": "애드리절트 5/6엔진과 추적",
+      "review_result": "이번 리더도 설명5개/집계6개·일별AIRANK·7언어 확인",
+      "action": "표시상충 유지·모델/반복/실제 원자료 未. 집계의 이상 숫자도 실성과로 채택하지 않음",
+      "source_ids": [
+        "W-C02"
+      ]
+    },
+    {
+      "id": "A14",
+      "category": "유지",
+      "subject": "레코 보고 주기",
+      "review_result": "정형 월보고보다 의미있는성과/문제시 보고라는 공식설명 재확인",
+      "action": "월단위계약=월1회 정형리포트로 바꾸지 않음",
+      "source_ids": [
+        "C19-A2"
+      ]
+    },
+    {
+      "id": "A15",
+      "category": "유지",
+      "subject": "나이스 블로그/공식사이트 연결",
+      "review_result": "새 PostView 이미지의3개공식경로·tel1577-6702와공식사이트재대조",
+      "action": "공식연계확인 유지. 최초18시광고의정확동일ID는未",
+      "source_ids": [
+        "C10-A3F",
+        "C10-A2"
+      ]
+    },
+    {
+      "id": "A16",
+      "category": "한계유지",
+      "subject": "공개가격과 실제견적",
+      "review_result": "기본료/정량을동시확인한명세는하룹·오픈타임2개. 나머지확정실견적 없음",
+      "action": "시장평균/적정가/편당효율 우열을 계산하지 않음",
+      "source_ids": [
+        "C01-A1",
+        "C20-A1"
+      ]
+    },
+    {
+      "id": "A17",
+      "category": "한계유지",
+      "subject": "하룹/윈에이드 매출연도",
+      "review_result": "68.5억원/42억원 표시는확인. 해당값의결산연도는미확인",
+      "action": "2025년결산·병원/AI부문매출로 쓰지 않음",
+      "source_ids": [
+        "W-C01-FIN",
+        "W-C07-FIN"
+      ]
+    },
+    {
+      "id": "A18",
+      "category": "한계유지",
+      "subject": "다른 재무자료의 독립성",
+      "review_result": "시월/KR/크리앤서/나이스는NICE계열공급표시,골드인크루트는NICE D&B. 원감사보고서未",
+      "action": "회사총액/연도/기관별만원차이를 유지. 재인용사이트수를 독립감사수로 세지 않음",
+      "source_ids": [
+        "W-C04-FIN",
+        "W-C08-FIN",
+        "W-C14-FIN",
+        "W-C09-FIN",
+        "W-C10-FIN"
+      ]
+    },
+    {
+      "id": "A19",
+      "category": "한계유지",
+      "subject": "콘텐츠 심층분석의 양",
+      "review_result": "하룹10+나머지9개26본문URL. 영상4는목록메타. 회사별1~6개로표본수가다름",
+      "action": "전글전수/동일깊이10개/영상시청완료로 보고하지 않음",
+      "source_ids": [
+        "H-SITE-SAMPLES"
+      ]
+    },
+    {
+      "id": "A20",
+      "category": "유지",
+      "subject": "시월 canonical",
+      "review_result": "뉴스135/132/134 모두 홈 canonical 재확인",
+      "action": "설정관측만사용,실제Google선택·색인/페널티未",
+      "source_ids": [
+        "C04-A1",
+        "C04-A2",
+        "C04-A3"
+      ]
+    },
+    {
+      "id": "A21",
+      "category": "재확인불가",
+      "subject": "리앤 두 주소 중복",
+      "review_result": "현재직접403·리더불가. 이전1104자동일구간/해시관측은보존",
+      "action": "전체HTML중복/현재지속/색인/페널티로 확대하지 않음",
+      "source_ids": [
+        "C06-A2",
+        "C06-A3",
+        "H-REAN-DUP"
+      ]
+    },
+    {
+      "id": "A22",
+      "category": "유지",
+      "subject": "골드 수상 두 링크",
+      "review_result": "두한국경제URL은각각회사기사/행사종합기사이며둘다사회공헌수상근거",
+      "action": "둘이달라오타라고처리하지않음. SEO/AI기술인증으로도쓰지않음",
+      "source_ids": [
+        "C09-A2",
+        "C09-A3"
+      ]
+    },
+    {
+      "id": "A23",
+      "category": "한계유지",
+      "subject": "EEAT와 순위 인과",
+      "review_result": "Google공식은E-E-A-T자체를특정순위요소로설명하지않음",
+      "action": "사이트에서보이는신뢰정보의정성관측만가능. 순위기여율未",
+      "source_ids": [
+        "P-A3"
+      ]
+    },
+    {
+      "id": "A24",
+      "category": "유지",
+      "subject": "AI 전용 파일/스키마 필수",
+      "review_result": "GoogleAI기능은기본SEO요건중심이며특별한추가최적화필수아님",
+      "action": "고정FAQ수/스키마만으로AI노출을보장하지않음",
+      "source_ids": [
+        "P-A2"
+      ]
+    },
+    {
+      "id": "A25",
+      "category": "유지",
+      "subject": "의료 ChatGPT광고 정책",
+      "review_result": "미국선별승인/미국외일반금지조항재확인",
+      "action": "한국병원즉시집행가능을기정사실화하지않음",
+      "source_ids": [
+        "P-A1"
+      ]
+    },
+    {
+      "id": "A26",
+      "category": "한계유지",
+      "subject": "회사 전체 직원/AI 전담팀",
+      "review_result": "NPS는사업장가입자이고채용프로필은다른시점/범위",
+      "action": "전사현재총인원·AI전담팀을추정하지않음",
+      "source_ids": [
+        "NPS-A1",
+        "NPS-FILE"
+      ]
+    },
+    {
+      "id": "A27",
+      "category": "한계유지",
+      "subject": "20개 공개서비스 목록",
+      "review_result": "공개페이지의명칭수집목록. 이번19곳은직접/리더연결·광고기획감각은현재재접근실패/이전저장근거",
+      "action": "모든계약옵션/외주작업/미공개상품 전부를확정한목록이라고쓰지않음",
+      "source_ids": [
+        "C04-SV",
+        "W-C12",
+        "W-C13",
+        "C16-SV",
+        "C17-SV",
+        "C18-SV",
+        "H-COMPANY"
+      ]
+    },
+    {
+      "id": "A28",
+      "category": "한계유지",
+      "subject": "블링크애드 적용안",
+      "review_result": "상품단위/측정문서정합성/보고증거를우선권장한해석. 실제전환효과미검증",
+      "action": "전략제안과적용·성과확인을구분,기존가격/사이트/스킬변경0",
+      "source_ids": [
+        "H-STAGE6"
+      ]
+    },
+    {
+      "id": "A29",
+      "category": "한계유지",
+      "subject": "신규 콘텐츠2개 비중복",
+      "review_result": "현재공개목록135·가까운6본문과10/5등록메타258을대조한후보",
+      "action": "최신미게시전체중복확정아님. 보강6/신규검토2/최종확정0유지",
+      "source_ids": [
+        "H-STAGE6"
+      ]
+    },
+    {
+      "id": "A30",
+      "category": "재현성보강",
+      "subject": "원자료 보존과 성공 판정",
+      "review_result": "일부검색/키워드/NPS초기원자료가/tmp에남아있었고HTTP200은보안화면/메뉴셸일수있음",
+      "action": "원래26파일을영구로컬복사·SHA기록. 보안/메뉴셸을근거에서제외,현재분석자자가재검토임을명시",
+      "source_ids": [
+        "H-ARCHIVE",
+        "C10-FIN2",
+        "C09-FIN"
+      ]
+    }
+  ],
+  "counts": {
+    "갱신": 1,
+    "보강정정": 2,
+    "유지": 14,
+    "재현성보강": 1,
+    "재확인불가": 1,
+    "정정": 1,
+    "한계유지": 10
+  }
+}

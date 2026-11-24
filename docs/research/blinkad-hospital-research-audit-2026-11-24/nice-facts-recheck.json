@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "official_blog_image_targets": [
+    "https://www.nicecompany.kr/sub/portfolio.html",
+    "https://www.nicecompany.kr/sub/kpi_list.html",
+    "https://www.nicecompany.kr/sub/inquiry/form.html"
+  ],
+  "phone_in_image_metadata": "tel:1577-6702",
+  "official_home_phone": "1577-6702",
+  "public_company_provider": "https://www.nicebizinfo.com/ep/EP0100M002GE.nice?kiscode=JE8396",
+  "provider_masked_business_number": "746-86-0****",
+  "nps_masked_prefix": "746860",
+  "director": "김연태",
+  "location": "부산금정구금정로",
+  "original_ad_exact_id_verified": false,
+  "prior_prefix_basis_corrected_by_additional_evidence": true,
+  "financial_year": 2025,
+  "jobkorea_table_unit_krw": 1000,
+  "jobkorea_table_value": 6758161,
+  "converted_krw": 6758161000,
+  "saramin_value_krw": 6758160000,
+  "precision_difference_krw": 1000,
+  "independent_audited_statements_obtained": false
+}

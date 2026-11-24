@@ -1,0 +1,1007 @@
+{
+  "checked_at": "2026-11-24T11:48:47+09:00",
+  "company_count": 20,
+  "latest_nps_scope": "Re-extracted 13 previously identified rows from full October file. Other7 remain unverified; not inferred zero",
+  "nps_dataset_release": "20261123",
+  "nps_data_month": "2026-10",
+  "nps_dataset_page_updated_at": "2026-11-23 15:58:36",
+  "matched_workplace_rows": 13,
+  "changed_monthly_values": [
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "old": 27,
+      "new": 26
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "old": 49,
+      "new": 48
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "old": 13,
+      "new": 11
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "old": 25,
+      "new": 26
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "old": 32,
+      "new": 37
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "old": 12,
+      "new": 14
+    },
+    {
+      "company_id": "C16",
+      "name": "라온하제코리아",
+      "old": 31,
+      "new": 32
+    }
+  ],
+  "records": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "entity": "주식회사 하룹",
+      "representative": "이상민",
+      "historical_financial_record": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 30,
+        "month": "2026-09",
+        "nps_entity": "(주) 하룹",
+        "nps_location": "충청북도 청주시 흥덕구 원터로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 92,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/company/42006511"
+          },
+          {
+            "count": 30,
+            "source": "Jobplanet",
+            "as_of": null,
+            "url": "https://www.jobplanet.co.kr/companies/347332/landing/%ED%95%98%EB%A3%B9"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 30,
+        "data_month": "2026-10",
+        "entity_name": "(주) 하룹",
+        "masked_business_prefix": "669880",
+        "address": "충청북도 청주시 흥덕구 원터로",
+        "prior_subscribers": 30,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "entity": "주식회사 애드리절트",
+      "representative": "이승민",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1682969602/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 27,
+        "month": "2026-09",
+        "nps_entity": "주식회사애드리절트",
+        "nps_location": "서울특별시 강남구 헌릉로618길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하",
+            "source": "JobKorea recruitment",
+            "as_of": "2026-10 posting",
+            "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50123393"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 26,
+        "data_month": "2026-10",
+        "entity_name": "주식회사애드리절트",
+        "masked_business_prefix": "889880",
+        "address": "서울특별시 강남구 헌릉로618길",
+        "prior_subscribers": 27,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682969602/",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "entity": "상승기획",
+      "representative": "유동현",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1691252195/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하 태그, 정확 인원 비공개",
+            "source": "Wanted",
+            "as_of": null,
+            "url": "https://www.wanted.co.kr/company/44948"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1691252195/",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "entity": "주식회사 시월기획",
+      "representative": "안동현",
+      "historical_financial_record": {
+        "revenue_krw": 3949160000,
+        "year": 2025,
+        "status": "public_provider",
+        "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 49,
+        "month": "2026-09",
+        "nps_entity": "주식회사시월기획",
+        "nps_location": "세종특별자치시  한누리대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 49,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 48,
+        "data_month": "2026-10",
+        "entity_name": "주식회사시월기획",
+        "masked_business_prefix": "199870",
+        "address": "세종특별자치시  한누리대로",
+        "prior_subscribers": 49,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 3949160000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "entity": "오른기획",
+      "representative": "정수우",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1688585642",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1688585642",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "entity": "주식회사 리앤커뮤니케이션의 브랜드",
+      "representative": "김태민",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 7,
+        "month": "2026-09",
+        "nps_entity": "(주)리앤커뮤니케이션",
+        "nps_location": "서울특별시 서초구 강남대로8길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "JobKorea",
+            "as_of": "2026",
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 7,
+        "data_month": "2026-10",
+        "entity_name": "(주)리앤커뮤니케이션",
+        "masked_business_prefix": "786870",
+        "address": "서울특별시 서초구 강남대로8길",
+        "prior_subscribers": 7,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "entity": "주식회사 윈에이드",
+      "representative": "이현승",
+      "historical_financial_record": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사윈에이드",
+        "nps_location": "서울특별시 영등포구 양평로20길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 23,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 11,
+        "data_month": "2026-10",
+        "entity_name": "주식회사윈에이드",
+        "masked_business_prefix": "178880",
+        "address": "서울특별시 영등포구 양평로20길",
+        "prior_subscribers": 13,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "entity": "주식회사 케이알마케팅",
+      "representative": "이종남",
+      "historical_financial_record": {
+        "revenue_krw": 8426950000,
+        "year": 2025,
+        "status": "public_provider_with_company_rounded_statement",
+        "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사 케이알마케팅",
+        "nps_location": "서울특별시 금천구 두산로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "Gyeonggi employment portal",
+            "as_of": "2025-12",
+            "url": "https://job.gg.go.kr/empmn/desEntDtl.do?bizrno=8188600477&cntType=O"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 13,
+        "data_month": "2026-10",
+        "entity_name": "주식회사 케이알마케팅",
+        "masked_business_prefix": "818860",
+        "address": "서울특별시 금천구 두산로",
+        "prior_subscribers": 13,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 8426950000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "entity": "주식회사 지디엠(GDM)",
+      "representative": "이국진",
+      "historical_financial_record": {
+        "revenue_krw": 5529960000,
+        "year": 2024,
+        "status": "public_provider_operator_gdm",
+        "source": "https://www.incruit.com/company/1686261958/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 25,
+        "month": "2026-09",
+        "nps_entity": "(주)지디엠(GDMInc.)",
+        "nps_location": "인천광역시 남동구 인주대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 26,
+        "data_month": "2026-10",
+        "entity_name": "(주)지디엠(GDMInc.)",
+        "masked_business_prefix": "184880",
+        "address": "인천광역시 남동구 인주대로",
+        "prior_subscribers": 25,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 5529960000,
+        "year": 2024,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.incruit.com/company/1686261958/",
+        "company_total_not_geo_or_hospital_segment": true,
+        "method": "current raw response is navigation shell; earlier saved source and current public search rendition retain the figure",
+        "display_recommendation": "약55.3억원(2024), 현재 직접 본문 접근과 기존/검색 수집본 확인 구분"
+      }
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "entity": "나이스컴퍼니 주식회사 — 공식 사이트·공식 블로그 연결 확인",
+      "representative": "김연태",
+      "historical_financial_record": {
+        "revenue_krw": 6758160000,
+        "year": 2025,
+        "status": "candidate_entity_only",
+        "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 15,
+        "month": "2026-09",
+        "nps_entity": "나이스컴퍼니주식회사",
+        "nps_location": "부산광역시 금정구 금정로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 15,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260"
+          },
+          {
+            "count": 29,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 15,
+        "data_month": "2026-10",
+        "entity_name": "나이스컴퍼니주식회사",
+        "masked_business_prefix": "746860",
+        "address": "부산광역시 금정구 금정로",
+        "prior_subscribers": 15,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match",
+        "identity_addendum": {
+          "prior_prefix_match_flag": false,
+          "prior_match_basis_overstated": true,
+          "current_support": "NICE 사업자746-86-0****·김연태·부산금정구금정로 + NPS746860/회사명/주소 + 공식 사이트 김연태/금정로94",
+          "identity_provider_url": "https://www.nicebizinfo.com/ep/EP0100M002GE.nice?kiscode=JE8396",
+          "full_unmasked_registration_certificate_audited": false
+        }
+      },
+      "financial_recheck": {
+        "revenue_krw": 6758161000,
+        "year": 2025,
+        "status": "public_provider_detailed_table_thousand_krw",
+        "source_url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad",
+        "company_total_not_geo_or_hospital_segment": true,
+        "display_summary": "67억5천만원",
+        "detail_cell_thousand_krw": 6758161,
+        "converted_krw": 6758161000,
+        "saramin_reported_to_10000_krw": 6758160000,
+        "precision_difference_krw": 1000,
+        "interpretation": "동일 잡코리아 페이지의 요약/상세 표시 정밀도 차이 확인. 사람인 만원 단위와 차이1천원. 독립 감사자료 두 벌로 세지 않음"
+      }
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "entity": "스타닥(STARDOC)",
+      "representative": "이승준",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 32,
+        "month": "2026-09",
+        "nps_entity": "스타닥(stardoc)",
+        "nps_location": "서울특별시 강남구 언주로108길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 35,
+            "source": "Saramin",
+            "as_of": null,
+            "url": "https://m.saramin.co.kr/job-search/company-info-view?csn=bTVOQVF3N3FQcEttdllFQTRnczRNdz09"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 37,
+        "data_month": "2026-10",
+        "entity_name": "스타닥(stardoc)",
+        "masked_business_prefix": "308135",
+        "address": "서울특별시 강남구 언주로108길",
+        "prior_subscribers": 32,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C12",
+      "name": "애드라이크",
+      "entity": "주식회사 애드라이크",
+      "representative": "최범석",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1682002037/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 18,
+        "month": "2026-09",
+        "nps_entity": "주식회사 애드라이크",
+        "nps_location": "서울특별시 강서구 마곡중앙로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "entity_note": "과거 사업 이력, 현 법인 총인원으로 채택하지 않음",
+            "url": "https://www.incruit.com/company/1682002037/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 18,
+        "data_month": "2026-10",
+        "entity_name": "주식회사 애드라이크",
+        "masked_business_prefix": "667810",
+        "address": "서울특별시 강서구 마곡중앙로",
+        "prior_subscribers": 18,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682002037/",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C13",
+      "name": "청명마케팅",
+      "entity": "청명마케팅",
+      "representative": "장시우",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://cmad.kr/medical",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://cmad.kr/medical",
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "entity": "주식회사 크리앤서",
+      "representative": "박성호",
+      "historical_financial_record": {
+        "revenue_krw": 1147430000,
+        "year": 2025,
+        "status": "public_provider",
+        "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+        "scope": "company_total_not_hospital_or_geo_segment",
+        "notes": [
+          "인크루트/NICE D&B 11억4742만원과 1만원 차이.",
+          "잡코리아 기본표의 연도 없는 50억원은 같은 페이지 2025년 재무 영역과 달라 최신 결산값으로 채택하지 않았다."
+        ]
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 12,
+        "month": "2026-09",
+        "nps_entity": "주식회사크리앤서",
+        "nps_location": "서울특별시 구로구 디지털로33길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 20,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/30112816"
+          },
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "url": "https://www.incruit.com/company/1682368064/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 14,
+        "data_month": "2026-10",
+        "entity_name": "주식회사크리앤서",
+        "masked_business_prefix": "135870",
+        "address": "서울특별시 구로구 디지털로33길",
+        "prior_subscribers": 12,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": 1147430000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+        "company_total_not_geo_or_hospital_segment": true,
+        "alternative_incruit_krw": 1147420000,
+        "alternative_difference_krw": 10000
+      }
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "entity": "메드엠씨(MedMC)",
+      "representative": "이정훈",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C16",
+      "name": "라온하제코리아",
+      "entity": "라온하제코리아(공식 사업자 144-01-60867)",
+      "representative": "김영무",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 31,
+        "month": "2026-09",
+        "nps_entity": "라온하제코리아",
+        "nps_location": "경기도 성남시 분당구 성남대로331번길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 20,
+            "source": "Incruit",
+            "as_of": null,
+            "url": "https://www.incruit.com/company/1681692741/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 32,
+        "data_month": "2026-10",
+        "entity_name": "라온하제코리아",
+        "masked_business_prefix": "144016",
+        "address": "경기도 성남시 분당구 성남대로331번길",
+        "prior_subscribers": 31,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C17",
+      "name": "가주메디",
+      "entity": "가주컴퍼니의 병원마케팅 브랜드",
+      "representative": "박영주",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C18",
+      "name": "광고기획감각",
+      "entity": "광고기획감각",
+      "representative": "손근찬",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": 11,
+        "month": "2026-09",
+        "nps_entity": "광고기획감각",
+        "nps_location": "대구광역시 남구 대명남로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": {
+        "subscribers": 11,
+        "data_month": "2026-10",
+        "entity_name": "광고기획감각",
+        "masked_business_prefix": "647490",
+        "address": "대구광역시 남구 대명남로",
+        "prior_subscribers": 11,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "entity": "레코마케팅",
+      "representative": "송성철",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      }
+    },
+    {
+      "company_id": "C20",
+      "name": "로닥GEO(오픈타임)",
+      "entity": "피케이커뮤니케이션의 브랜드(개인사업자)",
+      "representative": "박정윤",
+      "historical_financial_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "historical_staff_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 5,
+            "source": "RocketPunch company profile",
+            "as_of": null,
+            "url": "https://www.rocketpunch.com/companies/opentime",
+            "note": "공개 기업 프로필. 국민연금 원본 수치와 구분"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false,
+        "profile_count": 5
+      },
+      "latest_nps_workplace": null,
+      "financial_recheck": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "headcount_profile_limit": "RocketPunch5명은 기준일 없는 기업 프로필 표시. 직접 본문 재확인 제한/검색 수집본으로 연결. 전체 현재 인원으로 확정하지 않음; NPS 미확인은0명이 아님"
+    }
+  ]
+}

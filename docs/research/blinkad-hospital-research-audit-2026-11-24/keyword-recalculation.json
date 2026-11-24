@@ -1,0 +1,1354 @@
+{
+  "source": "original response files; no new API requests",
+  "header": [
+    "검색어",
+    "네이버 PC",
+    "네이버 모바일",
+    "구글 월평균",
+    "구글 2026-10",
+    "네이버 자동완성 입력",
+    "구글 자동완성 입력"
+  ],
+  "candidate_count": 190,
+  "table_rows_rechecked": 190,
+  "counts": {
+    "naver": 50,
+    "google": 68,
+    "both": 40,
+    "either": 78
+  },
+  "mismatches": [],
+  "facts": [
+    {
+      "keyword": "병원 마케팅",
+      "naver_pc": 3920,
+      "naver_mobile": 6100,
+      "google_average": 1000,
+      "google_october": 1000
+    },
+    {
+      "keyword": "병원 광고",
+      "naver_pc": 380,
+      "naver_mobile": 980,
+      "google_average": 320,
+      "google_october": 210
+    },
+    {
+      "keyword": "병원 홍보",
+      "naver_pc": 250,
+      "naver_mobile": 70,
+      "google_average": 110,
+      "google_october": 170
+    },
+    {
+      "keyword": "의료 마케팅",
+      "naver_pc": 40,
+      "naver_mobile": 30,
+      "google_average": 40,
+      "google_october": 40
+    },
+    {
+      "keyword": "의료기관 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 0
+    },
+    {
+      "keyword": "종합병원 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 홍보",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 홍보 전략",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 광고",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 AI 검색노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 SEO",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 외국인 환자 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "중소병원 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "전문병원 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "상급종합병원 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 브랜딩",
+      "naver_pc": 40,
+      "naver_mobile": 30,
+      "google_average": 50,
+      "google_october": 50
+    },
+    {
+      "keyword": "병원 브랜드 마케팅",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홍보 마케팅",
+      "naver_pc": 60,
+      "naver_mobile": 20,
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 마케팅 전략",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 30,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 마케팅 사례",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 홍보 전략",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 홍보 사례",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 0
+    },
+    {
+      "keyword": "병원 마케팅 성공 사례",
+      "naver_pc": 70,
+      "naver_mobile": 20,
+      "google_average": 110,
+      "google_october": 140
+    },
+    {
+      "keyword": "병원 마케팅 대행",
+      "naver_pc": 60,
+      "naver_mobile": 40,
+      "google_average": 20,
+      "google_october": 20
+    },
+    {
+      "keyword": "병원 마케팅 대행사",
+      "naver_pc": 360,
+      "naver_mobile": 220,
+      "google_average": 260,
+      "google_october": 260
+    },
+    {
+      "keyword": "병원 마케팅 업체",
+      "naver_pc": 100,
+      "naver_mobile": 20,
+      "google_average": 50,
+      "google_october": 30
+    },
+    {
+      "keyword": "병원 마케팅 회사",
+      "naver_pc": 100,
+      "naver_mobile": 130,
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "병원 광고 대행사",
+      "naver_pc": 140,
+      "naver_mobile": 40,
+      "google_average": 70,
+      "google_october": 50
+    },
+    {
+      "keyword": "병원 마케팅 비용",
+      "naver_pc": 20,
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 광고 비용",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홍보 대행",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 광고 대행",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 홍보 담당자",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홍보팀",
+      "naver_pc": 20,
+      "naver_mobile": 30,
+      "google_average": 30,
+      "google_october": 20
+    },
+    {
+      "keyword": "병원 마케터",
+      "naver_pc": 20,
+      "naver_mobile": 40,
+      "google_average": 30,
+      "google_october": 20
+    },
+    {
+      "keyword": "병원 마케팅 교육",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 마케팅 채용",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 종류",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 0
+    },
+    {
+      "keyword": "병원 마케팅 트렌드",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 컨설팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 환자 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 신규 환자 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 온라인 마케팅",
+      "naver_pc": 30,
+      "naver_mobile": 10,
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "병원 디지털 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 검색 광고",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 블로그 마케팅",
+      "naver_pc": 200,
+      "naver_mobile": 80,
+      "google_average": 50,
+      "google_october": 30
+    },
+    {
+      "keyword": "병원 블로그 대행",
+      "naver_pc": 120,
+      "naver_mobile": 40,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 광고 심의",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "의료 광고 심의",
+      "naver_pc": 790,
+      "naver_mobile": 70,
+      "google_average": 320,
+      "google_october": 260
+    },
+    {
+      "keyword": "의료 광고 사전 심의",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 20,
+      "google_october": 20
+    },
+    {
+      "keyword": "외국인 환자 유치",
+      "naver_pc": 290,
+      "naver_mobile": 120,
+      "google_average": 170,
+      "google_october": 170
+    },
+    {
+      "keyword": "외국인 환자 유치 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 방법",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 등록",
+      "naver_pc": 50,
+      "naver_mobile": 10,
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 환자 유치 등록증",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 사업",
+      "naver_pc": 50,
+      "naver_mobile": 40,
+      "google_average": 20,
+      "google_october": 20
+    },
+    {
+      "keyword": "외국인 환자 유치 업체",
+      "naver_pc": 60,
+      "naver_mobile": 30,
+      "google_average": 50,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 환자 유치 대행",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 의료기관",
+      "naver_pc": 100,
+      "naver_mobile": 30,
+      "google_average": 90,
+      "google_october": 70
+    },
+    {
+      "keyword": "외국인 환자 유치 기관",
+      "naver_pc": 90,
+      "naver_mobile": 10,
+      "google_average": 70,
+      "google_october": 50
+    },
+    {
+      "keyword": "외국인 환자 유치 실적",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 20,
+      "google_october": 10
+    },
+    {
+      "keyword": "외국인 환자 유치 통계",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 에이전시",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 140,
+      "google_october": 110
+    },
+    {
+      "keyword": "외국인 환자 유치업",
+      "naver_pc": 370,
+      "naver_mobile": 290,
+      "google_average": 210,
+      "google_october": 170
+    },
+    {
+      "keyword": "외국인 환자 유치업자",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 20,
+      "google_october": 20
+    },
+    {
+      "keyword": "외국인 환자 유치 전략",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 외국인 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 해외 마케팅",
+      "naver_pc": 20,
+      "naver_mobile": 20,
+      "google_average": 50,
+      "google_october": 70
+    },
+    {
+      "keyword": "병원 글로벌 마케팅",
+      "naver_pc": 10,
+      "naver_mobile": 120,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "의료관광 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "의료관광 사업",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "외국인 환자 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "국제진료센터",
+      "naver_pc": 50,
+      "naver_mobile": 110,
+      "google_average": 90,
+      "google_october": 110
+    },
+    {
+      "keyword": "병원 AI 검색 노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AI 검색 최적화",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 검색 노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 검색엔진 최적화",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 SEO",
+      "naver_pc": 30,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AEO",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO",
+      "naver_pc": 180,
+      "naver_mobile": 110,
+      "google_average": 40,
+      "google_october": 210
+    },
+    {
+      "keyword": "병원 AI 마케팅",
+      "naver_pc": 60,
+      "naver_mobile": 10,
+      "google_average": 10,
+      "google_october": 50
+    },
+    {
+      "keyword": "병원 챗GPT 검색",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "챗GPT 병원 추천",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AI 병원 추천",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AI 검색 노출",
+      "naver_pc": 20,
+      "naver_mobile": 20,
+      "google_average": 20,
+      "google_october": 40
+    },
+    {
+      "keyword": "AI 검색 최적화",
+      "naver_pc": 100,
+      "naver_mobile": 80,
+      "google_average": 170,
+      "google_october": 260
+    },
+    {
+      "keyword": "AEO 마케팅",
+      "naver_pc": 180,
+      "naver_mobile": 340,
+      "google_average": 140,
+      "google_october": 140
+    },
+    {
+      "keyword": "AEO 마케팅 대행사",
+      "naver_pc": 30,
+      "naver_mobile": 410,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "GEO 마케팅",
+      "naver_pc": 720,
+      "naver_mobile": 350,
+      "google_average": 480,
+      "google_october": 880
+    },
+    {
+      "keyword": "GEO 마케팅 대행사",
+      "naver_pc": 130,
+      "naver_mobile": 410,
+      "google_average": 40,
+      "google_october": 260
+    },
+    {
+      "keyword": "GEO 마케팅 사례",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 20,
+      "google_october": 40
+    },
+    {
+      "keyword": "AI 검색 마케팅",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "생성형 AI 검색 최적화",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "생성형 엔진 최적화",
+      "naver_pc": 30,
+      "naver_mobile": "< 10",
+      "google_average": 140,
+      "google_october": 70
+    },
+    {
+      "keyword": "답변 엔진 최적화",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 구글 지도",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "구글 지도 병원 등록",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "구글 비즈니스 프로필",
+      "naver_pc": 500,
+      "naver_mobile": 370,
+      "google_average": 4400,
+      "google_october": 6600
+    },
+    {
+      "keyword": "구글 비즈니스 프로필 등록",
+      "naver_pc": 50,
+      "naver_mobile": 10,
+      "google_average": 140,
+      "google_october": 320
+    },
+    {
+      "keyword": "구글 지도 상위노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 40,
+      "google_october": 10
+    },
+    {
+      "keyword": "구글 지도 마케팅",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "구글 지도 업체 등록",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 140,
+      "google_october": 140
+    },
+    {
+      "keyword": "병원 구글 광고",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 네이버 플레이스",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "네이버 플레이스 병원 등록",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 제작",
+      "naver_pc": 1160,
+      "naver_mobile": 1350,
+      "google_average": 390,
+      "google_october": 590
+    },
+    {
+      "keyword": "병원 홈페이지 제작 업체",
+      "naver_pc": 80,
+      "naver_mobile": 10,
+      "google_average": 50,
+      "google_october": 110
+    },
+    {
+      "keyword": "병원 홈페이지 제작 비용",
+      "naver_pc": 40,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 리뉴얼",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 다국어 홈페이지",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 홈페이지 제작",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 SEO",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지",
+      "naver_pc": 220,
+      "naver_mobile": 90,
+      "google_average": 210,
+      "google_october": 260
+    },
+    {
+      "keyword": "다국어 홈페이지 제작",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": 20,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 마케팅",
+      "naver_pc": 50,
+      "naver_mobile": 20,
+      "google_average": 40,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 마케팅 대행사",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 개원 마케팅",
+      "naver_pc": 70,
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "개원 마케팅",
+      "naver_pc": 80,
+      "naver_mobile": 20,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO 마케팅",
+      "naver_pc": 60,
+      "naver_mobile": 30,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO 대행사",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO 대행사 추천",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO 점검방법",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AEO GEO 차이",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AI 병원 마케팅",
+      "naver_pc": 10,
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AI 검색 최적화 방법",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AI 검색 최적화 GEO",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "AEO GEO 마케팅",
+      "naver_pc": 910,
+      "naver_mobile": 2710,
+      "google_average": 10,
+      "google_october": 40
+    },
+    {
+      "keyword": "GEO 마케팅 뜻",
+      "naver_pc": 40,
+      "naver_mobile": 40,
+      "google_average": 20,
+      "google_october": 50
+    },
+    {
+      "keyword": "GEO 마케팅 방법",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "GEO 마케팅 업체",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "GEO 마케팅 전략",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "GEO 마케팅 회사",
+      "naver_pc": 10,
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 예산",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 제안서",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 50,
+      "google_october": 110
+    },
+    {
+      "keyword": "병원 마케팅 대행사 추천",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 대행업체",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 전문",
+      "naver_pc": 10,
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 업무",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 관리",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 0
+    },
+    {
+      "keyword": "병원 홈페이지 디자인",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "병원 홈페이지 포트폴리오",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 제작 전문 업체",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 외국인 환자 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 기관 등록",
+      "naver_pc": 60,
+      "naver_mobile": "< 10",
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 환자 유치 기관 조회",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 의료기관 등록",
+      "naver_pc": 50,
+      "naver_mobile": 10,
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 환자 유치 등록 기관",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 유치 의료기관 현황",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 10
+    },
+    {
+      "keyword": "외국인 환자 유치 정보 시스템",
+      "naver_pc": 440,
+      "naver_mobile": 40,
+      "google_average": 720,
+      "google_october": 590
+    },
+    {
+      "keyword": "외국인 환자 유치 플랫폼",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 10,
+      "google_october": 30
+    },
+    {
+      "keyword": "외국인 환자 유치업 등록",
+      "naver_pc": 240,
+      "naver_mobile": 110,
+      "google_average": 70,
+      "google_october": 110
+    },
+    {
+      "keyword": "외국인 환자 유치 에이전시 현황",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 40,
+      "google_october": 30
+    },
+    {
+      "keyword": "의료관광 에이전시",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": 70,
+      "google_october": 40
+    },
+    {
+      "keyword": "의료관광 플랫폼",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": 30,
+      "google_october": 30
+    },
+    {
+      "keyword": "병원 홈페이지 검색 노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 챗GPT 노출",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "챗GPT 검색 노출",
+      "naver_pc": "< 10",
+      "naver_mobile": 10,
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AI 노출",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 회사 추천",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "서울 병원 마케팅",
+      "naver_pc": 10,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "경기 병원 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 유지보수",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 개편",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 제작 견적",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 리뉴얼 비용",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 SEO 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AEO 마케팅",
+      "naver_pc": 20,
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 검색 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 제안서 양식",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 대행사 비용",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 대행사 견적",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AI 마케팅 대행",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 입찰",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 제안요청서",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홍보 대행사",
+      "naver_pc": 10,
+      "naver_mobile": 10,
+      "google_average": 10,
+      "google_october": 0
+    },
+    {
+      "keyword": "병원 홍보 업체",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 환자 유치 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "외국인 환자 직접 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 해외 환자 유치",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 홈페이지 외국어",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 다국어 홈페이지 제작",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 디지털 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 외국인 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "종합병원 홍보 마케팅",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 외주",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 마케팅 대행 비용",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 GEO 사례",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 AI 검색 노출 방법",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 검색 최적화",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    },
+    {
+      "keyword": "병원 구글 SEO",
+      "naver_pc": "< 10",
+      "naver_mobile": "< 10",
+      "google_average": null,
+      "google_october": null
+    }
+  ],
+  "national_not_staff_specific": true
+}
