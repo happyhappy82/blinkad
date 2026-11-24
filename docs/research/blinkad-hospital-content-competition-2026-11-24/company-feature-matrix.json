@@ -1,0 +1,360 @@
+{
+  "checked_at": "2026-11-24T12:12:56+09:00",
+  "original_roster_count": 20,
+  "supplemental_exact_query_companies": [
+    "바름",
+    "한국온라인광고연구소"
+  ],
+  "original_20_records": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "공개 상품·가격·제작/운영 범위를 넓게 제시하는 병원 종합 마케팅 회사",
+      "observed_features": "가격표·채널별 상품·홈페이지·AEO/GEO·사례·블로그가 연결된다. 이전 공식 가격표에서 11분야 57상품을 확인했다. / 네이버 블로그 필요성, 검색부터 상담까지의 단계, 답변형 콘텐츠, AI와 병원 소유 웹 자산, 클릭 이후 경로를 다룬다.",
+      "content_implication_interpretation": "낮은 월 총액이나 AI라는 표현으로 비교하지 말고 원주제·언어별 결과물·게시/기술 적용·수정과 확인 자료까지 같은 단위로 설명한다.",
+      "source_ids": [
+        "C01-HOME",
+        "C01-HUB"
+      ],
+      "prior_official_urls": [
+        "https://haroop.com/price",
+        "https://haroop.com/aeogeo"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "대표·팀의 전문성, 진료과별 전략과 AIO를 묶어 보여 주는 병원 전문 대행사",
+      "observed_features": "회사/대표/팀 → 진료과별 패키지 → AIO·홈페이지 정비·영상·중국 마케팅 → 사례/칼럼 → 상담으로 이어진다. / 대행사 교체·선택, 신환 문제, 검색어, AI, 숏폼을 다룬다. 현재 목록은 고정글이 섞여 있어 발행순·전체 글 수로 계산하지 않았다.",
+      "content_implication_interpretation": "대행사 선택 글을 또 만드는 대신 기존 선택 글에 합의한 작업 범위·의료진 확인 책임·실제 변경 URL·검수 자료를 묶은 예시를 보강한다.",
+      "source_ids": [
+        "C02-WHOME24",
+        "C02-WLIST24"
+      ],
+      "prior_official_urls": [
+        "https://adresult.kr/",
+        "https://adresult.kr/SEO",
+        "https://adresult.kr/departments"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "병원에 집중하며 대표의 환자 경험과 병원별 이야기를 마케팅 과정에 연결하는 회사",
+      "observed_features": "대표 이야기·성공 과정·칼럼·진료과와 지역별 마케팅 설명을 연결한다. / 카페 입소문, 피부과 STP, 치과 영상, 개원 전 채널 선택, 광고 심의 반려, 지역별 전략 등 병원 상황에 맞춘 제목을 사용한다.",
+      "content_implication_interpretation": "국가·언어별로 실제 환자가 어떤 정보를 비교했는지, 어느 병원 페이지에 무엇을 추가했는지를 확인 자료와 함께 설명한다. 가상의 원장 경험담이나 고객 성공담을 만들지 않는다.",
+      "source_ids": [
+        "C03-HOME",
+        "C03-HUB",
+        "C03-PROCESS"
+      ],
+      "prior_official_urls": [
+        "https://sangseung.net/",
+        "https://sangseung.net/succeed/",
+        "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "채널·광고·영상·해외 마케팅을 묶은 종합대행",
+      "observed_features": "홈페이지에 블로그/인스타/스레드·영상·SEO·검색광고와 병원/법률 관련 소식 제목을 배치한다.",
+      "content_implication_interpretation": "실제 문의→내원, 영상 제작, 블로그 대행 등은 이미 목록에 있다. 블링크애드는 외국인 검색 범위와 작업 결과물의 차이를 보여 줄 필요가 있다.",
+      "source_ids": [
+        "C04-HOME"
+      ],
+      "prior_official_urls": [
+        "https://www.10wol.com/",
+        "https://www.10wol.com/product",
+        "https://www.10wol.com/overseas.html"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원 전용·매출 자료·재계약·환불 약속을 강조",
+      "observed_features": "현재 웹블로그 진입면이 병원 진료과·익명 매출 자료·고객 이야기·원칙·칼럼/글로벌로 연결된다.",
+      "content_implication_interpretation": "숫자·후기·환불 약속은 공개 주장과 계약 확인을 나눈다. 성과 보장 대신 공개 허용 자료의 정의·기간·다른 변화와 한계를 제시한다.",
+      "source_ids": [
+        "C05-HUB"
+      ],
+      "prior_official_urls": [
+        "https://blog.oreun.net/",
+        "https://global.oreun.net/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "AI 검색·홈페이지·광고·상담 운영을 질문과 실행 기준으로 설명하는 병원 마케팅 회사",
+      "observed_features": "병원 성장·AI·의료광고·상담 질문에서 AEO/GEO·콘텐츠·광고·사이트·운영 설명으로 이어진다. / 부서별 요청 우선순위, 개원/연간 예산, 상담 링크 변경 테스트, 촬영 자료 부족, 결정 기록, 의료진 사실 검토, 사례 숫자와 출처 보존 등을 다룬다.",
+      "content_implication_interpretation": "협업 체크리스트라는 주제를 복제하기보다 실제로 승인된 원고가 어떤 확인을 거쳐 사이트에 반영됐는지 문서와 결과물을 연결한다.",
+      "source_ids": [
+        "C06-WHOME24",
+        "C06-WHUB24"
+      ],
+      "prior_official_urls": [
+        "https://www.reanmedi.com/",
+        "https://www.reanmedi.com/MARKETING"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "병원 운영자의 세부 질문에 짧은 답과 절차·관련 글을 제공하는 콘텐츠 중심 사이트",
+      "observed_features": "당시 검색 결과 URL은 홈페이지가 아니라 블로그 목록이다. 블로그·인사이트·가이드·백과·리포트·서비스로 읽을 목적을 나눈다. / 사이트 메뉴, 마케팅 예산, 인플루언서/리뷰 표현, 홈페이지 이탈, 개원·SEO 기간, 상담 질문 등 실무 질문을 다룬다.",
+      "content_implication_interpretation": "블링크애드의 기존 홈페이지 시리즈에 실제 주소 관계도·수정 전후 링크·작업 완료 확인표를 붙인다. 제목만 다른 메뉴/견적/SEO 글을 늘리지 않는다.",
+      "source_ids": [
+        "C07-RANK",
+        "C07-HOME",
+        "C07-A1",
+        "C07-A2"
+      ],
+      "prior_official_urls": [
+        "https://winaid.co.kr/services",
+        "https://winaid.co.kr/hospital-marketing-agency"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "광고 매체 비교와 집행 체계를 앞세운 종합 광고회사",
+      "observed_features": "현재 광고 페이지가 매체별 사용 상황·지면·과금·목표를 표로 비교하고 서비스/가이드와 연결한다.",
+      "content_implication_interpretation": "매체 이름의 나열보다 어떤 환자·언어·목표에 어떤 자료를 쓸지 설명한다. 공식 대행권·규모를 이번에 독립 인증한 것은 아니다.",
+      "source_ids": [
+        "C08-SERVICE"
+      ],
+      "prior_official_urls": [
+        "https://krmkt.co.kr/media/",
+        "https://krmkt.co.kr/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/medical/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원 올케어·블로그·AI 추천·의료광고 대응",
+      "observed_features": "현재 서비스 페이지에서 블로그 기획/순위 점검, AI 추천, 플레이스·광고·민원/심의 등으로 항목을 나눈다.",
+      "content_implication_interpretation": "AI 추천 효과와 고객 수는 자사 주장이다. 실제 측정 조건과 적용된 진료 페이지를 보여 줄 때만 차별 근거가 된다.",
+      "source_ids": [
+        "C09-SERVICE"
+      ],
+      "prior_official_urls": [
+        "https://golddoctors.co.kr/service"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "맞춤 TF·지역 업종 집중·콘텐츠/성과·자동화",
+      "observed_features": "현재 서비스가 블로그/플레이스·브랜딩·AI/SEO·콘텐츠·인플루언서·퍼포먼스·솔루션으로 나뉜다.",
+      "content_implication_interpretation": "1:5·24시간·독점 운영 등은 회사 설명이며 계약 확인 아님. 실제 담당/완료/범위 자료로 비교한다. 공개 주체 연결은 이번 정정에 반영했다.",
+      "source_ids": [
+        "C10-SERVICE"
+      ],
+      "prior_official_urls": [
+        "https://www.nicecompany.kr/sub/online.html",
+        "https://www.nicecompany.kr/sub/contents.html"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "의사 출신 대표라는 소개와 진료과 이해·진행 과정 공개를 강조하는 병원 전문 회사",
+      "observed_features": "대표 소개·의사의 관점·진료과별 설명·진행 과정·서비스·영상·상담을 연결한다. / 진단→우선순위→구조/콘텐츠 적용→측정과 변경 이력·다음 작업의 흐름을 설명한다.",
+      "content_implication_interpretation": "블링크애드가 실제 수행한 업무의 책임자·판단 근거·결과 확인을 보여 준다. 대표 자격이나 병원 성공담을 흉내 내지 않는다.",
+      "source_ids": [
+        "C11-HOME",
+        "C11-A1"
+      ],
+      "prior_official_urls": [
+        "https://www.startdoctor.co.kr/",
+        "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C12",
+      "name": "애드라이크",
+      "role": "exact_query_google_observed_20261123",
+      "public_positioning": "병원 경험을 가진 인력과 여러 채널의 직접 수행을 강조하는 통합 대행사",
+      "observed_features": "브랜드 블로그·바이럴·SNS·유튜브·앱·검색·해외 마케팅, 심의와 제작·개원 지원을 한 회사의 메뉴로 제시한다. / 현재 홈페이지에서 진료과별 익명 고객 이야기와 포트폴리오·팀·서비스를 상담으로 연결한다.",
+      "content_implication_interpretation": "광고 운영·원고·번역·홈페이지 적용·의료진 검토·보고에서 누가 무엇을 하는지 실제 인수인계 자료로 설명한다. 다국어 기본 포함 범위와 추가 범위를 명확히 한다.",
+      "source_ids": [
+        "C12-WHOME24"
+      ],
+      "prior_official_urls": [
+        "https://adlike.kr/service",
+        "https://adlike.kr/GlobalMarketing"
+      ],
+      "review_scope": "current_entry_body_or_reader_plus_dated_samples",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C13",
+      "name": "청명마케팅",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원 운영·개원 상황에 맞춘 마케팅",
+      "observed_features": "이전 공식 병원 페이지에서 전략/운영과 개원 서비스를 확인했다. 오늘 직접 HTTP는403이어서 본문 최신 재확인에 실패했다.",
+      "content_implication_interpretation": "서비스 비교 참고 대상으로 유지한다. 현재 글이 없다는 결론이나 개별 칼럼 내용 평가는 보류한다.",
+      "source_ids": [
+        "C13-SERVICE"
+      ],
+      "prior_official_urls": [
+        "https://cmad.kr/medical"
+      ],
+      "review_scope": "prior_official_snapshot_current_http_blocked",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원 사이트·콘텐츠·AI 검색·해외 환자 통합",
+      "observed_features": "현재 홈페이지가 진단→설계→제작→운영→개선을 제시하고 홈페이지·GEO/SEO·지도·광고·블로그·SNS·외국인 서비스를 연결한다.",
+      "content_implication_interpretation": "AI 용어/스키마 예시만의 차별성은 약하다. 실제 적용 페이지와 사실 확인·측정·문의 기록을 묶어 설명한다.",
+      "source_ids": [
+        "C14-HOME"
+      ],
+      "prior_official_urls": [
+        "https://creanswer.com/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원/치과별 기획·영상·웹의 결합",
+      "observed_features": "현재 홈페이지가 병원과 치과를 나누고 웹사이트형 블로그·유튜브·홈페이지·SEO/GEO·자체 메디플레이스를 연결한다.",
+      "content_implication_interpretation": "웹/블로그/영상 연결은 이미 공개 포지션이다. 영상 제작을 기본 납품으로 약속하지 않고 자사 제공 범위와 질문별 페이지 적용을 구체화한다.",
+      "source_ids": [
+        "C15-HOME"
+      ],
+      "prior_official_urls": [
+        "https://medmc.co.kr/",
+        "https://mediplace.kr/terms/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C16",
+      "name": "라온하제코리아",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "병원 네트워크·담당자 경력·국가권별 마케팅",
+      "observed_features": "현재 홈페이지에 국내 채널과 일본/중화권/영미권 서비스, 익명 성장 사례, 팀별 프로젝트가 제시된다.",
+      "content_implication_interpretation": "국가/언어별 콘텐츠 질문과 상담 준비를 실제 자료로 설명한다. 고객 수·상승률·경력은 회사 소개로 표기하고 독립 검증값으로 사용하지 않는다.",
+      "source_ids": [
+        "C16-HOME"
+      ],
+      "prior_official_urls": [
+        "https://raonhajekorea.com/default/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C17",
+      "name": "가주메디",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "무료 평판 리포트에서 상담으로 연결",
+      "observed_features": "현재 홈페이지가 검색 화면·리뷰·바로 할 일을 한 장 리포트로 보여 주며 가상 병원 샘플임을 표시한다.",
+      "content_implication_interpretation": "무료 진단과 리포트 예시는 이미 경쟁사에 있다. 실제 관측과 샘플을 구분하고 그 다음에 무엇을 고치는지로 구체화한다. AI 쇼츠가 공개되어 있지만 GEO 실측 상품으로 바꾸어 쓰지 않는다.",
+      "source_ids": [
+        "C17-HOME"
+      ],
+      "prior_official_urls": [
+        "https://gajumedi.com/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C18",
+      "name": "광고기획감각",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "택배차·차량 기반 지역 옥외광고",
+      "observed_features": "이전 공식 자료는 차량·생활권·제작/시공/운영 중심이다. 오늘 직접 HTTP403이어서 최신 본문은 미확인이다.",
+      "content_implication_interpretation": "디지털 대행과 같은 상품군으로 가격·편수를 비교하지 않는다. 오프라인 인지도 목적의 인접 참고 대상으로 둔다.",
+      "source_ids": [
+        "C18-HOME"
+      ],
+      "prior_official_urls": [
+        "https://gamgakad.com/"
+      ],
+      "review_scope": "prior_official_snapshot_current_http_blocked",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "지역 병원 집중·대표 직접 관리·웹/AI·개원 지원",
+      "observed_features": "현재 서비스 본문이 온라인·홈페이지·개원 컨설팅·언론·미스터리쇼퍼5영역을 질문 답변으로 설명한다.",
+      "content_implication_interpretation": "다국어·GBP·AI·홈페이지 운영도 공개한다. 블링크애드만 하는 기능으로 말하지 않고 실제 언어별 산출물과 검증 자료로 구분한다. 성과/문제 발생 시 보고와 고정 월 보고를 혼동하지 않는다.",
+      "source_ids": [
+        "C19-SERVICE"
+      ],
+      "prior_official_urls": [
+        "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%84%9C%EB%B9%84%EC%8A%A4/",
+        "https://recomkt.com/ai-hospital-marketing/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    },
+    {
+      "company_id": "C20",
+      "name": "오픈타임(기존 로닥GEO)",
+      "role": "original_mixed20_reference_not_exact_query_google_cohort",
+      "public_positioning": "GEO·SEO 전문·공개 요금/측정/리포트",
+      "observed_features": "현재 홈페이지가 측정 기준·요금·리포트 샘플·회사 정보·가이드·용어집·업종 페이지를 연결한다. 병원 전용 회사는 아니다.",
+      "content_implication_interpretation": "공개 월250만원(VAT 별도)의 포함 단위와 실제측정 방식이 비교 기준이다. 6AI 중 네이버는 실제 화면 경로라6공식API나300API호출로 쓰지 않는다.",
+      "source_ids": [
+        "C20-HOME"
+      ],
+      "prior_official_urls": [
+        "https://lodac.kr/",
+        "https://lodac.kr/about/ai-info/",
+        "https://idearabbit.co.kr/about/"
+      ],
+      "review_scope": "current_service_or_home_body",
+      "whole_content_corpus_reviewed": false
+    }
+  ],
+  "not_full_corpus_audit": true
+}

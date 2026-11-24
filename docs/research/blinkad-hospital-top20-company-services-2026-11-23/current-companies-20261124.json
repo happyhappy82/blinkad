@@ -1,0 +1,2575 @@
+{
+  "checked_date": "2026-11-24",
+  "purpose": "effective corrected working roster; historical source files unchanged",
+  "source_facts": "../blinkad-hospital-research-audit-2026-11-24/current-company-facts.json",
+  "staff_scope": "NPS 2026-10 workplace subscribers, not employee total",
+  "companies": [
+    {
+      "name": "하룹",
+      "entity": "주식회사 하룹",
+      "representative": "이상민",
+      "services": {
+        "블로그 · 카페 · 지식인": [
+          "병원 네이버 블로그 관리",
+          "병원 네이버 블로그 관리 · 디자인 포함",
+          "블로그 검색 콘텐츠",
+          "블로그 디자인",
+          "공식 카페 관리",
+          "카페 검색 콘텐츠",
+          "지식인 검색 콘텐츠",
+          "지식인 전문가 답변 (하이닥)"
+        ],
+        "영상 · SNS": [
+          "병원 유튜브 채널 관리",
+          "유튜브 검색 최적화",
+          "인스타그램 릴스 · 유튜브 숏츠 관리",
+          "병원 인스타그램 관리",
+          "카카오톡 채널 관리",
+          "인스타그램 카드뉴스 제작"
+        ],
+        "채널 세팅 · 병원 플랫폼": [
+          "구글 비즈니스 프로필 + 네이버 플레이스 AI 최적화 세팅",
+          "네이버 플레이스 최적화",
+          "플레이스 · 스마트콜 세팅",
+          "네이버 예약 세팅",
+          "네이버 클립 숏폼",
+          "카카오톡 채널 세팅",
+          "인스타그램 위치태그 등록",
+          "구글 비즈니스 프로필 정비",
+          "모두닥 · 굿닥 병원 프로필 관리",
+          "당근 비즈프로필 세팅 · 관리",
+          "지도 · 내비게이션 등록"
+        ],
+        "검색광고 · 퍼포먼스광고": [
+          "키워드광고 (파워링크)",
+          "퍼포먼스광고 (구글 · 메타 · 당근)",
+          "브랜드검색 · 파워컨텐츠 · 디스플레이"
+        ],
+        "지역 커뮤니티": [
+          "지역 커뮤니티 게시판 입점",
+          "맘카페 게시판 입점",
+          "맘카페 클릭형 배너",
+          "카페 참여형 정보 게시물"
+        ],
+        "AI 검색 (AEO · GEO)": [
+          "병원 AEO/GEO 관리",
+          "AEO · GEO 웹블로그 관리"
+        ],
+        "웹사이트 · 개발": [
+          "병원 홈페이지 제작",
+          "병원 랜딩페이지 제작",
+          "상세페이지 · 이벤트 이미지 제작",
+          "SEO 웹사이트 월관리",
+          "병원 맞춤 개발",
+          "하룹CTO 개발팀 고용 서비스"
+        ],
+        "촬영 · 디자인": [
+          "사진 촬영 · 편집",
+          "사진 + 영상 촬영 · 편집",
+          "아이폰 스냅 촬영",
+          "전후사진 리얼리뷰 패키지",
+          "오프라인 인쇄물 디자인"
+        ],
+        "평판 · 의료 리스크": [
+          "의료 광고 심의",
+          "보건소 민원 처리",
+          "온라인 평판관리",
+          "의료기사 언론 송출"
+        ],
+        "패키지 · 컨설팅": [
+          "무료 마케팅 진단",
+          "신환 · 매출 집중 패키지",
+          "매출 성과형 패키지",
+          "브랜딩 · 개원 컨설팅",
+          "개원 디자인 패키지"
+        ],
+        "검색 자산 구축": [
+          "자체육성 블로그",
+          "자체육성 카페",
+          "고화력 블로그 임대"
+        ]
+      },
+      "sources": [
+        "https://haroop.com/price",
+        "https://haroop.com/aeogeo"
+      ],
+      "channels": [
+        "https://haroop.com/blog",
+        "https://blog.naver.com/harmonysic",
+        "https://www.youtube.com/@haroop"
+      ],
+      "notes": [
+        "공식 가격표의 11개 분야·57개 상품명을 모두 수록했다.",
+        "병원 맞춤 개발의 세부 범위에는 AI·CRM/EMR·의료 DX·직원관리·마케팅 자동화가, CTO 서비스에는 차트/의료서비스·AI 모델 개발·정부 R&D·TIPS 컨설팅이 제시된다."
+      ],
+      "id": "C01",
+      "selection_number": 1,
+      "observed_rank": 1,
+      "visibility_score": [
+        8,
+        4,
+        16
+      ],
+      "placements": [
+        {
+          "q": "병원geo",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 8,
+          "url": "https://haroop.com/ai-search-geo",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 4,
+          "url": "https://haroop.com/",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 클립",
+          "rank": "—",
+          "url": "https://clip.naver.com/@haroop_marketing",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 5,
+          "url": "https://haroop.com",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 4,
+          "url": "https://haroop.com/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 7,
+          "url": "https://haroop.com",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 1,
+          "url": "https://haroop.com/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 4,
+          "url": "https://haroop.com",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 4,
+          "url": "https://haroop.com/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://haroop.com/",
+          "note": "화면에 이름이 표시된 출처"
+        }
+      ],
+      "financial": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "68억5,000만원 (결산연도 미확인)",
+      "staff_display": "30名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 57,
+      "historical_reference": "companies.json#C01",
+      "historical_staff": {
+        "nps_workplace_subscribers": 30,
+        "month": "2026-09",
+        "nps_entity": "(주) 하룹",
+        "nps_location": "충청북도 청주시 흥덕구 원터로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 92,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/company/42006511"
+          },
+          {
+            "count": 30,
+            "source": "Jobplanet",
+            "as_of": null,
+            "url": "https://www.jobplanet.co.kr/companies/347332/landing/%ED%95%98%EB%A3%B9"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 30,
+        "data_month": "2026-10",
+        "entity_name": "(주) 하룹",
+        "masked_business_prefix": "669880",
+        "address": "충청북도 청주시 흥덕구 원터로",
+        "prior_subscribers": 30,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "애드리절트",
+      "entity": "주식회사 애드리절트",
+      "representative": "이승민",
+      "services": {
+        "기획·진료과": [
+          "병원 통합 마케팅·브랜딩",
+          "진료과별 맞춤 패키지(정형외과·피부과·치과·한의원)",
+          "재활마케팅"
+        ],
+        "검색·콘텐츠": [
+          "병원 블로그·콘텐츠",
+          "플레이스·검색광고",
+          "의료광고 표현·심의 대응"
+        ],
+        "AI·해외": [
+          "AIO/AI 검색 최적화",
+          "AIRANK 질의별 언급·경쟁사·출처·화면 기록",
+          "다국어 AI 마케팅(영어·중국어·일본어·몽골어·러시아어·태국어·베트남어)",
+          "중국마케팅"
+        ],
+        "제작": [
+          "홈페이지 리빌딩",
+          "영상패키지",
+          "애드필름(공식 상품명)"
+        ]
+      },
+      "sources": [
+        "https://adresult.kr/",
+        "https://adresult.kr/SEO",
+        "https://adresult.kr/departments"
+      ],
+      "channels": [
+        "https://adresult.kr/93",
+        "https://www.youtube.com/@adresult"
+      ],
+      "notes": [
+        "일부 상품 상세는 이미지 중심이다. 애드필름의 세부 납품 형태는 공식 상품명까지만 기록했다."
+      ],
+      "id": "C02",
+      "selection_number": 2,
+      "observed_rank": 2,
+      "visibility_score": [
+        5,
+        3,
+        9
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 3,
+          "url": "https://adresult.kr",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/9fdc_8190/224481897315",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 동영상",
+          "rank": "—",
+          "url": "https://www.youtube.com/channel/UCrmK0tiaWRuZYlrm5CabtBA",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://adresult.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 3,
+          "url": "https://adresult.kr",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://adresult.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 1,
+          "url": "https://adresult.kr",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 웹문서",
+          "rank": "—",
+          "url": "https://adresult.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://adresult.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682969602/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "26名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 13,
+      "historical_reference": "companies.json#C02",
+      "historical_staff": {
+        "nps_workplace_subscribers": 27,
+        "month": "2026-09",
+        "nps_entity": "주식회사애드리절트",
+        "nps_location": "서울특별시 강남구 헌릉로618길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하",
+            "source": "JobKorea recruitment",
+            "as_of": "2026-10 posting",
+            "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50123393"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 26,
+        "data_month": "2026-10",
+        "entity_name": "주식회사애드리절트",
+        "masked_business_prefix": "889880",
+        "address": "서울특별시 강남구 헌릉로618길",
+        "prior_subscribers": 27,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "상승기획",
+      "entity": "상승기획",
+      "representative": "유동현",
+      "services": {
+        "통합·콘텐츠": [
+          "올인원 병원마케팅",
+          "원장 인터뷰·병원/경쟁/상권 분석·스토리 원고",
+          "브랜딩·블로그·플레이스·SNS·검색광고 운영"
+        ],
+        "영상·AI": [
+          "영상마케팅·유튜브",
+          "AI 추천/검색 최적화 마케팅"
+        ],
+        "병원 서비스": [
+          "텔레마케팅",
+          "외국인환자 유치",
+          "병원 홈페이지 제작",
+          "병원 컨설팅·개원 관련 전략"
+        ]
+      },
+      "sources": [
+        "https://sangseung.net/",
+        "https://sangseung.net/succeed/",
+        "https://sangseung.net/ai%eb%a7%88%ec%bc%80%ed%8c%85/"
+      ],
+      "channels": [
+        "https://blog.naver.com/qkrtjdgus97",
+        "https://blog.naver.com/dropyi65"
+      ],
+      "notes": [],
+      "id": "C03",
+      "selection_number": 3,
+      "observed_rank": 3,
+      "visibility_score": [
+        5,
+        3,
+        8
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 4,
+          "url": "https://sangseung.net",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://sangseung.net/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 4,
+          "url": "https://sangseung.net",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 광고",
+          "rank": 1,
+          "url": "https://sangseung.net/",
+          "note": "상단"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://sangseung.net/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 2,
+          "url": "https://sangseung.net",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://sangseung.net/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://sangseung.net/",
+          "note": "화면에 이름이 표시된 출처"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1691252195/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 9,
+      "historical_reference": "companies.json#C03",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하 태그, 정확 인원 비공개",
+            "source": "Wanted",
+            "as_of": null,
+            "url": "https://www.wanted.co.kr/company/44948"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "시월기획",
+      "entity": "주식회사 시월기획",
+      "representative": "안동현",
+      "services": {
+        "국내 채널": [
+          "브랜드/검색 블로그·최적화 블로그 관리",
+          "인스타그램·스레드 계정 운영",
+          "리얼모델·체험단 모집",
+          "유튜브 기획·촬영·편집·채널 운영",
+          "쇼츠·릴스·틱톡·썸네일/채널아트"
+        ],
+        "광고·웹": [
+          "네이버·구글·카카오 검색/디스플레이 광고",
+          "메타·인스타그램 광고·소재 테스트·전환 측정",
+          "플레이스 최적화",
+          "홈페이지 SEO",
+          "홈페이지·랜딩·상세페이지·브랜드 콘텐츠",
+          "언론보도"
+        ],
+        "중국·외국인": [
+          "해외/중국 마케팅 전략·중국어 콘텐츠",
+          "샤오홍슈",
+          "KOL/KOC 협업",
+          "도우인",
+          "위챗",
+          "바이두",
+          "외국인 특화 플랫폼 입점·병원 정보·예약 경로 연결"
+        ]
+      },
+      "sources": [
+        "https://www.10wol.com/",
+        "https://www.10wol.com/product",
+        "https://www.10wol.com/overseas.html"
+      ],
+      "channels": [
+        "https://www.10wol.com/news",
+        "https://blog.naver.com/andonghyun2"
+      ],
+      "notes": [
+        "MSO는 메뉴에 준비중으로 표시돼 제공 중 서비스 목록에서 제외했다."
+      ],
+      "id": "C04",
+      "selection_number": 4,
+      "observed_rank": 4,
+      "visibility_score": [
+        5,
+        3,
+        6
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://www.10wol.com/",
+          "note": "표시된 게시 주체"
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://www.10wol.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 6,
+          "url": "https://www.10wol.com",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/jpxjr9ynfi/224478701032",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://www.10wol.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/jpxjr9ynfi/224483021252",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": 3949160000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "39억4,916만원 (2025)",
+      "staff_display": "48名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 18,
+      "historical_reference": "companies.json#C04",
+      "historical_staff": {
+        "nps_workplace_subscribers": 49,
+        "month": "2026-09",
+        "nps_entity": "주식회사시월기획",
+        "nps_location": "세종특별자치시  한누리대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 49,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54958764"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 48,
+        "data_month": "2026-10",
+        "entity_name": "주식회사시월기획",
+        "masked_business_prefix": "199870",
+        "address": "세종특별자치시  한누리대로",
+        "prior_subscribers": 49,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "오른기획",
+      "entity": "오른기획",
+      "representative": "정수우",
+      "services": {
+        "국내 병원": [
+          "올인원 병원마케팅",
+          "브랜드 블로그·플레이스·카페·영상",
+          "병원 홈페이지 제작",
+          "AI 마케팅(ChatGPT·네이버 AI 브리핑 대응 표시)",
+          "개원컨설팅·개원연구소 연계",
+          "의료광고 표현 검토·민원 소명자료 지원"
+        ],
+        "중국·외국인": [
+          "중국/해외환자 마케팅 전략",
+          "샤오홍슈·바이두·따종디엔핑 등 현지 채널",
+          "중국어 콘텐츠·현지화",
+          "KOL/KOC·체험 콘텐츠",
+          "중국어 DM·댓글·위챗 문의 응대"
+        ]
+      },
+      "sources": [
+        "https://blog.oreun.net/",
+        "https://global.oreun.net/"
+      ],
+      "channels": [
+        "https://blog.oreun.net/",
+        "https://blog.naver.com/charmark",
+        "https://www.youtube.com/@oreun-net"
+      ],
+      "notes": [
+        "AI 상세 링크는 페이지 없음으로 확인돼 실제 세부 납품 범위는 미확인이다.",
+        "개인사업자 표시와 일부 법인 표현의 범위는 별도 확인이 필요하다."
+      ],
+      "id": "C05",
+      "selection_number": 5,
+      "observed_rank": 5,
+      "visibility_score": [
+        4,
+        4,
+        4
+      ],
+      "placements": [
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/oreunplan/224478115501",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/rany_rany/224485190139",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/charmark/224485186286",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/oreunplan/224485188245",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/rany_rany/224485190139",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/charmark/224484662415",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1688585642",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 11,
+      "historical_reference": "companies.json#C05",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "리앤메디",
+      "entity": "주식회사 리앤커뮤니케이션의 브랜드",
+      "representative": "김태민",
+      "services": {
+        "진단·운영": [
+          "성장/경쟁/상권·검색수요 진단",
+          "병원/개원 마케팅·포지셔닝·브랜딩",
+          "Search & AI Visibility·SEO/AEO/GEO",
+          "의료 콘텐츠·광고 운영·데이터 분석"
+        ],
+        "제작": [
+          "병원 홈페이지 제작",
+          "의료정보/병원 소개 영상·BI 영상·모션그래픽",
+          "온라인 브랜딩·블로그 스킨·카드뉴스·뉴스레터",
+          "오프라인 홍보물·개원선물·판촉물·굿즈"
+        ]
+      },
+      "sources": [
+        "https://www.reanmedi.com/",
+        "https://www.reanmedi.com/MARKETING"
+      ],
+      "channels": [
+        "https://www.reanmedi.com/INSIGHT",
+        "https://www.youtube.com/@%EB%A6%AC%EC%95%A4%EB%A9%94%EB%94%94"
+      ],
+      "notes": [],
+      "id": "C06",
+      "selection_number": 6,
+      "observed_rank": 6,
+      "visibility_score": [
+        4,
+        3,
+        5
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 6,
+          "url": "https://www.reanmedi.com",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 9,
+          "url": "https://reanmedi.com/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://reanmedi.com/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 5,
+          "url": "https://reanmedi.com/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 6,
+          "url": "https://www.reanmedi.com",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "7名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 8,
+      "historical_reference": "companies.json#C06",
+      "historical_staff": {
+        "nps_workplace_subscribers": 7,
+        "month": "2026-09",
+        "nps_entity": "(주)리앤커뮤니케이션",
+        "nps_location": "서울특별시 서초구 강남대로8길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "JobKorea",
+            "as_of": "2026",
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 7,
+        "data_month": "2026-10",
+        "entity_name": "(주)리앤커뮤니케이션",
+        "masked_business_prefix": "786870",
+        "address": "서울특별시 서초구 강남대로8길",
+        "prior_subscribers": 7,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "윈에이드",
+      "entity": "주식회사 윈에이드",
+      "representative": "이현승",
+      "services": {
+        "공식 서비스": [
+          "네이버 플레이스 관리·광고",
+          "AEO·GEO/AI 검색 노출",
+          "병원 홈페이지 SEO",
+          "숏폼·영상 제작",
+          "AI 기반 홈페이지 제작",
+          "퍼포먼스 마케팅",
+          "의료광고 심의·의료법 준수 운영",
+          "의료 플랫폼 통합 운영",
+          "브랜딩·원장/병원 IP",
+          "인플루언서·크리에이터 협업",
+          "해외환자 유치",
+          "제휴·협업",
+          "신규 개원·개원 마케팅 컨설팅",
+          "AI 콘텐츠·브랜드 블로그·홈페이지 Insight",
+          "병원 CRM·재방문 관리"
+        ],
+        "별도 분야": [
+          "동물병원 마케팅"
+        ]
+      },
+      "sources": [
+        "https://winaid.co.kr/services",
+        "https://winaid.co.kr/hospital-marketing-agency"
+      ],
+      "channels": [
+        "https://winaid.co.kr/insights",
+        "https://winaid.co.kr/blog",
+        "https://winaid.co.kr/guides",
+        "https://blog.naver.com/qaz030800"
+      ],
+      "notes": [],
+      "id": "C07",
+      "selection_number": 7,
+      "observed_rank": 7,
+      "visibility_score": [
+        3,
+        3,
+        6
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 7,
+          "url": "https://winaid.co.kr/hospital-marketing-agency",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://winaid.co.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 8,
+          "url": "https://winaid.co.kr/hospital-marketing-agency",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://winaid.co.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 5,
+          "url": "https://winaid.co.kr/blog",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://winaid.co.kr/",
+          "note": "화면에 이름이 표시된 출처"
+        }
+      ],
+      "financial": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "42억원 (결산연도 미확인)",
+      "staff_display": "11名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 16,
+      "historical_reference": "companies.json#C07",
+      "historical_staff": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사윈에이드",
+        "nps_location": "서울특별시 영등포구 양평로20길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 23,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 11,
+        "data_month": "2026-10",
+        "entity_name": "주식회사윈에이드",
+        "masked_business_prefix": "178880",
+        "address": "서울특별시 영등포구 양평로20길",
+        "prior_subscribers": 13,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "KR마케팅",
+      "entity": "주식회사 케이알마케팅",
+      "representative": "이종남",
+      "services": {
+        "광고 19종": [
+          "네이버 파워링크",
+          "네이버 플레이스 광고",
+          "네이버 쇼핑검색",
+          "네이버 GFA",
+          "네이버 보장형 디스플레이",
+          "네이버 브랜드검색",
+          "네이버 파워컨텐츠",
+          "카카오 키워드광고",
+          "카카오 비즈보드",
+          "카카오 브랜드검색",
+          "카카오모먼트",
+          "구글 검색광고",
+          "구글 실적 최대화(PMax)",
+          "구글 디스플레이(GDN)",
+          "유튜브 광고",
+          "구글 디맨드젠",
+          "메타 페이스북·인스타그램 광고",
+          "DV360",
+          "ADN 배너"
+        ],
+        "기획·제작·운영": [
+          "검색광고·미디어믹스·자동입찰·로그/전환 분석",
+          "병원마케팅·의료광고 심의 대응",
+          "유튜브 채널 기획·촬영·편집·운영",
+          "TVC·제품·기업 홍보/광고영상 제작",
+          "라이브커머스",
+          "홈페이지 구축·개선",
+          "광고 배너·블로그 스킨 제작"
+        ],
+        "AI·SEO": [
+          "GEO 무료 진단·SEO/GEO 운영",
+          "본문 텍스트화·구조화·사이트 개선",
+          "전문가 칼럼·질문형 콘텐츠",
+          "주간 AI 측정·대시보드·리포트",
+          "네이버·구글·카카오·빙 지도 정보 정합성",
+          "AI 답변 광고 운영(자사 서비스 설명상 항목)"
+        ]
+      },
+      "sources": [
+        "https://krmkt.co.kr/media/",
+        "https://krmkt.co.kr/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/medical/"
+      ],
+      "channels": [
+        "https://krmkt.co.kr/information/",
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/cases/"
+      ],
+      "notes": [
+        "광고 매체별 대행권·AI 광고 집행 가능 범위는 이 목록에서 독립 검증하지 않았다."
+      ],
+      "id": "C08",
+      "selection_number": 8,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 8,
+          "url": "https://krmkt.co.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 8,
+          "url": "https://krmkt.co.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 7,
+          "url": "https://krmkt.co.kr/",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": 8426950000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "84억2,695만원 (2025)",
+      "staff_display": "13名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 32,
+      "historical_reference": "companies.json#C08",
+      "historical_staff": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사 케이알마케팅",
+        "nps_location": "서울특별시 금천구 두산로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "Gyeonggi employment portal",
+            "as_of": "2025-12",
+            "url": "https://job.gg.go.kr/empmn/desEntDtl.do?bizrno=8188600477&cntType=O"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 13,
+        "data_month": "2026-10",
+        "entity_name": "주식회사 케이알마케팅",
+        "masked_business_prefix": "818860",
+        "address": "서울특별시 금천구 두산로",
+        "prior_subscribers": 13,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "골드닥터스",
+      "entity": "주식회사 지디엠(GDM)",
+      "representative": "이국진",
+      "services": {
+        "공식 서비스": [
+          "브랜드 블로그·키워드 선정·순위 점검",
+          "AI 추천(ChatGPT·Gemini) 정보 정비",
+          "플레이스 정보·이미지·예약/문의 연결",
+          "검색광고(파워링크·파워컨텐츠·브랜드검색·플레이스)",
+          "당근 비즈프로필",
+          "카카오 채널·모먼트·내비 등록/모니터링",
+          "지식인 관리",
+          "보건소 민원 대응",
+          "의료광고 심의 지원",
+          "맘카페 광고·배너",
+          "홈페이지 정보 업데이트",
+          "언론보도"
+        ]
+      },
+      "sources": [
+        "https://golddoctors.co.kr/service"
+      ],
+      "channels": [
+        "https://golddoctors.co.kr/news",
+        "https://golddoctors.co.kr/review"
+      ],
+      "notes": [],
+      "id": "C09",
+      "selection_number": 9,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 2,
+          "url": "https://golddoctors.co.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 4,
+          "url": "https://golddoctors.co.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 2,
+          "url": "https://golddoctors.co.kr/",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": 5529960000,
+        "year": 2024,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.incruit.com/company/1686261958/",
+        "company_total_not_geo_or_hospital_segment": true,
+        "method": "current raw response is navigation shell; earlier saved source and current public search rendition retain the figure",
+        "display_recommendation": "약55.3억원(2024), 현재 직접 본문 접근과 기존/검색 수집본 확인 구분"
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "55억2,996만원 (2024)",
+      "staff_display": "26名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 12,
+      "historical_reference": "companies.json#C09",
+      "historical_staff": {
+        "nps_workplace_subscribers": 25,
+        "month": "2026-09",
+        "nps_entity": "(주)지디엠(GDMInc.)",
+        "nps_location": "인천광역시 남동구 인주대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 26,
+        "data_month": "2026-10",
+        "entity_name": "(주)지디엠(GDMInc.)",
+        "masked_business_prefix": "184880",
+        "address": "인천광역시 남동구 인주대로",
+        "prior_subscribers": 25,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "나이스컴퍼니",
+      "entity": "나이스컴퍼니 주식회사",
+      "representative": "김연태",
+      "services": {
+        "온라인 마케팅": [
+          "블로그·플레이스 상위노출",
+          "검색 점유·멀티채널 노출",
+          "기업·관공서 브랜딩",
+          "AI 검색 노출",
+          "네이버·구글 웹사이트 SEO",
+          "콘텐츠·숏폼·배너 제작",
+          "인플루언서·체험단",
+          "퍼포먼스·리타겟팅·전환 추적",
+          "맞춤 솔루션·업무 자동화·사내 툴·API 연동"
+        ],
+        "콘텐츠·디자인": [
+          "인스타그램·메타·당근 광고 콘텐츠",
+          "상세페이지·홈페이지 디자인",
+          "리플릿·브로슈어",
+          "블로그 포스팅·스킨·이미지",
+          "시장조사·타깃/경쟁 분석·콘텐츠 전략"
+        ]
+      },
+      "sources": [
+        "https://www.nicecompany.kr/sub/online.html",
+        "https://www.nicecompany.kr/sub/contents.html"
+      ],
+      "channels": [
+        "https://www.nicecompany.kr/"
+      ],
+      "notes": [
+        "공개 사이트/기업정보/NPS 연결 확인. 등록증·광고계정 집행주체 확인 아님."
+      ],
+      "id": "C10",
+      "selection_number": 10,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85%EB%8C%80%ED%96%89%EC%82%AC",
+          "note": "표시된 게시 주체·광고 도착지 미확인"
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%20%EA%B4%91%EA%B3%A0%EB%8C%80%ED%96%89%EC%82%AC",
+          "note": "표시된 게시 주체·광고 도착지 미확인"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 브랜드 콘텐츠 광고",
+          "rank": "—",
+          "url": "https://search.naver.com/search.naver?query=%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85",
+          "note": "표시된 게시 주체·광고 도착지 미확인"
+        }
+      ],
+      "financial": {
+        "revenue_krw": 6758161000,
+        "year": 2025,
+        "status": "public_provider_detailed_table_thousand_krw",
+        "source_url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad",
+        "company_total_not_geo_or_hospital_segment": true,
+        "display_summary": "67억5천만원",
+        "detail_cell_thousand_krw": 6758161,
+        "converted_krw": 6758161000,
+        "saramin_reported_to_10000_krw": 6758160000,
+        "precision_difference_krw": 1000,
+        "interpretation": "동일 잡코리아 페이지의 요약/상세 표시 정밀도 차이 확인. 사람인 만원 단위와 차이1천원. 독립 감사자료 두 벌로 세지 않음"
+      },
+      "content_attribution_status": "public_blog_site_company_link_supported; advertising_account_operator_unverified",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "2025 6,758,161,000 KRW; provider detailed value, not audited statement",
+      "staff_display": "15名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 14,
+      "historical_reference": "companies.json#C10",
+      "historical_staff": {
+        "nps_workplace_subscribers": 15,
+        "month": "2026-09",
+        "nps_entity": "나이스컴퍼니주식회사",
+        "nps_location": "부산광역시 금정구 금정로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 15,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260"
+          },
+          {
+            "count": 29,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 15,
+        "data_month": "2026-10",
+        "entity_name": "나이스컴퍼니주식회사",
+        "masked_business_prefix": "746860",
+        "address": "부산광역시 금정구 금정로",
+        "prior_subscribers": 15,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match",
+        "identity_addendum": {
+          "prior_prefix_match_flag": false,
+          "prior_match_basis_overstated": true,
+          "current_support": "NICE 사업자746-86-0****·김연태·부산금정구금정로 + NPS746860/회사명/주소 + 공식 사이트 김연태/금정로94",
+          "identity_provider_url": "https://www.nicebizinfo.com/ep/EP0100M002GE.nice?kiscode=JE8396",
+          "full_unmasked_registration_certificate_audited": false
+        }
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "스타닥마케팅",
+      "entity": "스타닥(STARDOC)",
+      "representative": "이승준",
+      "services": {
+        "분석·브랜딩": [
+          "병원 상권·잠재고객/개원 분석",
+          "병원 브랜드 기획·원장 인터뷰·가이드",
+          "원내 환자 접점(MOT)·내부 브랜딩/운영 컨설팅",
+          "병원 마케팅 강의"
+        ],
+        "채널·제작": [
+          "병원 종합마케팅·미디어믹스",
+          "네이버·구글·SNS·배너·카페·앱 콘텐츠/광고",
+          "유튜브 제작/채널·순위 최적화(SEO)",
+          "병원 웹사이트 제작·개선",
+          "해외환자/해외마케팅"
+        ],
+        "AI·검색": [
+          "SEO·AEO·GEO 진단",
+          "질문형 의료 콘텐츠·구조화 데이터·내부링크",
+          "적용 내역·검색/AI 언급·문의 점검"
+        ]
+      },
+      "sources": [
+        "https://www.startdoctor.co.kr/",
+        "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      ],
+      "channels": [
+        "https://blog.naver.com/eszettsupp/222241135287"
+      ],
+      "notes": [
+        "회사 연혁의 메디컬빌딩 개발·ELREJU 스킨부스터는 마케팅 외 사업 이력으로 별도 표시하며 대행 상품에 합치지 않았다."
+      ],
+      "id": "C11",
+      "selection_number": 11,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/stardoc_/224482353052",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 5,
+          "url": "https://www.startdoctor.co.kr",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 7,
+          "url": "https://www.startdoctor.co.kr",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "37名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 12,
+      "historical_reference": "companies.json#C11",
+      "historical_staff": {
+        "nps_workplace_subscribers": 32,
+        "month": "2026-09",
+        "nps_entity": "스타닥(stardoc)",
+        "nps_location": "서울특별시 강남구 언주로108길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 35,
+            "source": "Saramin",
+            "as_of": null,
+            "url": "https://m.saramin.co.kr/job-search/company-info-view?csn=bTVOQVF3N3FQcEttdllFQTRnczRNdz09"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 37,
+        "data_month": "2026-10",
+        "entity_name": "스타닥(stardoc)",
+        "masked_business_prefix": "308135",
+        "address": "서울특별시 강남구 언주로108길",
+        "prior_subscribers": 32,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "애드라이크",
+      "entity": "주식회사 애드라이크",
+      "representative": "최범석",
+      "services": {
+        "공식 마케팅 메뉴": [
+          "브랜드 블로그(노출형·성장형 투트랙)",
+          "바이럴마케팅",
+          "SNS마케팅",
+          "유튜브마케팅",
+          "어플마케팅",
+          "검색광고",
+          "해외마케팅(일본 현지 SNS·인플루언서 포함)",
+          "의료광고심의",
+          "의료기기마케팅"
+        ],
+        "제작·개원": [
+          "병원 웹사이트",
+          "개원패키지",
+          "마케팅 무료진단"
+        ]
+      },
+      "sources": [
+        "https://adlike.kr/service",
+        "https://adlike.kr/GlobalMarketing"
+      ],
+      "channels": [
+        "https://adlike.kr/column",
+        "https://blog.naver.com/adlikekorea",
+        "https://www.instagram.com/adlike_official"
+      ],
+      "notes": [],
+      "id": "C12",
+      "selection_number": 12,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 2,
+          "url": "https://adlike.kr",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 2,
+          "url": "https://adlike.kr",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 3,
+          "url": "https://adlike.kr",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682002037/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "18名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 12,
+      "historical_reference": "companies.json#C12",
+      "historical_staff": {
+        "nps_workplace_subscribers": 18,
+        "month": "2026-09",
+        "nps_entity": "주식회사 애드라이크",
+        "nps_location": "서울특별시 강서구 마곡중앙로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "entity_note": "과거 사업 이력, 현 법인 총인원으로 채택하지 않음",
+            "url": "https://www.incruit.com/company/1682002037/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 18,
+        "data_month": "2026-10",
+        "entity_name": "주식회사 애드라이크",
+        "masked_business_prefix": "667810",
+        "address": "서울특별시 강서구 마곡중앙로",
+        "prior_subscribers": 18,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "청명마케팅",
+      "entity": "청명마케팅",
+      "representative": "장시우",
+      "services": {
+        "전략·운영": [
+          "병원 로컬브랜딩·지역 인식 진단",
+          "마케팅 목표·예산·채널 설계",
+          "병원 검색·블로그/콘텐츠·플레이스 운영",
+          "온라인 광고 운영",
+          "의료법 기준의 콘텐츠 제작",
+          "초진·재진·진료·매출과 검색/문의/예약 데이터 분석",
+          "월간 정기 보고·전략 조정"
+        ],
+        "개원": [
+          "OPENING 120 개원 마케팅",
+          "개원 전 타깃·주력진료·브랜드 설계",
+          "홈페이지·플레이스·SNS 기반 구성",
+          "개원 광고·콘텐츠·커뮤니티 운영",
+          "개원 후 질문·내원·매출·인식 개선"
+        ]
+      },
+      "sources": [
+        "https://cmad.kr/medical"
+      ],
+      "channels": [
+        "https://cmad.kr/medical"
+      ],
+      "notes": [
+        "일반 메뉴의 다른 사업 제안을 병원 계약 상품에 자동 합치지 않았다."
+      ],
+      "id": "C13",
+      "selection_number": 13,
+      "observed_rank": 8,
+      "visibility_score": [
+        3,
+        3,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 5,
+          "url": "https://cmad.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 2,
+          "url": "https://cmad.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 5,
+          "url": "https://cmad.kr/",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://cmad.kr/medical",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 12,
+      "historical_reference": "companies.json#C13",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "크리앤서",
+      "entity": "주식회사 크리앤서",
+      "representative": "박성호",
+      "services": {
+        "공식 상품군": [
+          "병원 홈페이지·랜딩페이지 제작",
+          "SEO·GEO·AEO·LLMO·E-E-A-T 구조 설계",
+          "네이버 플레이스·Google 비즈니스 프로필·카카오맵·리뷰 관리",
+          "네이버·구글 검색광고",
+          "네이버·티스토리·워드프레스 블로그",
+          "유튜브·인스타그램·스레드 SNS/콘텐츠",
+          "외국인환자 유치(영어·중국어·일본어)",
+          "웹문서·언론보도",
+          "검색환경 진단·키워드/채널/예산 전략·운영 개선"
+        ]
+      },
+      "sources": [
+        "https://creanswer.com/"
+      ],
+      "channels": [
+        "https://creanswer.com/insight",
+        "https://creanswer.com/blog/"
+      ],
+      "notes": [
+        "잡코리아 기본표의 연도 없는 50억원과 연도 있는 재무 수치는 분리한다."
+      ],
+      "id": "C14",
+      "selection_number": 14,
+      "observed_rank": 14,
+      "visibility_score": [
+        3,
+        2,
+        4
+      ],
+      "placements": [
+        {
+          "q": "병원geo",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 2,
+          "url": "https://creanswer.com",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 1,
+          "url": "https://creanswer.com/",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/dlavmffksxm200/224485193836",
+          "note": ""
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/debkvlz9fqy/224462655604",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/zrcujkvbzul/224485197896",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": 1147430000,
+        "year": 2025,
+        "status": "public_provider_statement_not_audited_financials",
+        "source_url": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+        "company_total_not_geo_or_hospital_segment": true,
+        "alternative_incruit_krw": 1147420000,
+        "alternative_difference_krw": 10000
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "11억4,743만원 (2025)",
+      "staff_display": "14名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 9,
+      "historical_reference": "companies.json#C14",
+      "historical_staff": {
+        "nps_workplace_subscribers": 12,
+        "month": "2026-09",
+        "nps_entity": "주식회사크리앤서",
+        "nps_location": "서울특별시 구로구 디지털로33길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 20,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/30112816"
+          },
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "url": "https://www.incruit.com/company/1682368064/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 14,
+        "data_month": "2026-10",
+        "entity_name": "주식회사크리앤서",
+        "masked_business_prefix": "135870",
+        "address": "서울특별시 구로구 디지털로33길",
+        "prior_subscribers": 12,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "메드엠씨",
+      "entity": "메드엠씨(MedMC)",
+      "representative": "이정훈",
+      "services": {
+        "병원·치과": [
+          "병원 마케팅",
+          "치과 마케팅·주력 진료/상권별 전략",
+          "검색광고·네이버 플레이스",
+          "콘텐츠 전략·브랜드 포지셔닝"
+        ],
+        "영상·웹": [
+          "병원 유튜브 기획·촬영·제작·운영",
+          "치과 유튜브 제작·운영",
+          "병원·치과 웹사이트형 블로그",
+          "영상연계형 웹로그",
+          "병원 홈페이지 제작"
+        ],
+        "AI·검색": [
+          "SEO·GEO·AI 검색 최적화",
+          "웹사이트 GEO 자가진단"
+        ]
+      },
+      "sources": [
+        "https://medmc.co.kr/",
+        "https://mediplace.kr/terms/"
+      ],
+      "channels": [
+        "https://medmc.co.kr/blog/"
+      ],
+      "notes": [
+        "MediPlace(메디플레이스)는 자체 운영 병·의원 정보 플랫폼이다. 고객 대행 계약에 포함되는 등록/운영 조건은 별도 확인이 필요하다."
+      ],
+      "id": "C15",
+      "selection_number": 15,
+      "observed_rank": 15,
+      "visibility_score": [
+        3,
+        2,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원geo",
+          "engine": "구글",
+          "section": "구글 광고",
+          "rank": 1,
+          "url": "https://medmc.co.kr/",
+          "note": "검색광고"
+        },
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 8,
+          "url": "https://medmc.co.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 광고",
+          "rank": 2,
+          "url": "https://medmc.co.kr/",
+          "note": "상단"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 11,
+      "historical_reference": "companies.json#C15",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "라온하제코리아",
+      "entity": "라온하제코리아(공식 사업자 144-01-60867)",
+      "representative": "김영무",
+      "services": {
+        "국내 상품군": [
+          "브랜드 블로그",
+          "바비톡·강남언니 플랫폼 마케팅",
+          "네이버 카페·성예사 커뮤니티",
+          "인스타그램·페이스북 SNS",
+          "유튜브 영상 제작",
+          "체험형 마케팅·셀카모델·인플루언서"
+        ],
+        "일본": [
+          "강남언니 일본어 패키지",
+          "트위터(X) 일본 계정/콘텐츠",
+          "인스타그램 일본 계정/콘텐츠",
+          "일본 인플루언서 체험단(인스타그램·유튜브·틱톡)",
+          "코네스트 바이럴"
+        ],
+        "중화권": [
+          "시장·타깃·진료과·해외 전략 컨설팅",
+          "샤오홍슈·웨이보 공식 계정·기업 인증·콘텐츠",
+          "홍콩/대만 등 인스타그램·스레드·페이스북",
+          "틱톡 숏폼",
+          "원내 촬영·콘텐츠 기획/편집",
+          "위챗·샤오홍슈·인스타그램 DM/문의 CS",
+          "체험단 마케팅",
+          "원내 중문 안내·환자 접점(MOT)·사후/재방문 설계"
+        ],
+        "영미권": [
+          "Reddit 정보/Q&A·경험형 콘텐츠",
+          "Instagram 콘텐츠·DM/링크 동선",
+          "Google 영수증 리뷰(공식 상품명)"
+        ]
+      },
+      "sources": [
+        "https://raonhajekorea.com/default/"
+      ],
+      "channels": [
+        "https://raonhajekorea.com/default/"
+      ],
+      "notes": [
+        "구글/AI가 인용한다는 효과는 자사 설명이며 독립 검증하지 않았다.",
+        "공식 개인사업자와 같은 이름의 별도 법인을 인력·매출에 합산하지 않는다."
+      ],
+      "id": "C16",
+      "selection_number": 16,
+      "observed_rank": 16,
+      "visibility_score": [
+        2,
+        2,
+        3
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 1,
+          "url": "https://raonhajekorea.com",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 자연검색",
+          "rank": 1,
+          "url": "https://raonhajekorea.com",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 AI 개요",
+          "rank": "—",
+          "url": "https://raonhajekorea.com/",
+          "note": "화면에 이름이 표시된 출처"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "32名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 22,
+      "historical_reference": "companies.json#C16",
+      "historical_staff": {
+        "nps_workplace_subscribers": 31,
+        "month": "2026-09",
+        "nps_entity": "라온하제코리아",
+        "nps_location": "경기도 성남시 분당구 성남대로331번길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 20,
+            "source": "Incruit",
+            "as_of": null,
+            "url": "https://www.incruit.com/company/1681692741/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 32,
+        "data_month": "2026-10",
+        "entity_name": "라온하제코리아",
+        "masked_business_prefix": "144016",
+        "address": "경기도 성남시 분당구 성남대로331번길",
+        "prior_subscribers": 31,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "가주메디",
+      "entity": "가주컴퍼니의 병원마케팅 브랜드",
+      "representative": "박영주",
+      "services": {
+        "검색": [
+          "무료 온라인 평판·검색 리포트",
+          "네이버 플레이스 최적화",
+          "블로그·카페 상위노출",
+          "네이버 파워링크·플레이스 광고",
+          "구글 검색·배너 광고"
+        ],
+        "영상·SNS·광고": [
+          "AI 쇼츠 제작",
+          "카드뉴스·이미지 콘텐츠 제작",
+          "유튜브·인스타그램·틱톡·페이스북·네이버 클립 채널 운영",
+          "메타 광고",
+          "지역/관심사 타깃 배너"
+        ],
+        "평판": [
+          "네이버·카카오·구글 리뷰 분석/관리",
+          "언론보도 기획·송출"
+        ]
+      },
+      "sources": [
+        "https://gajumedi.com/"
+      ],
+      "channels": [
+        "https://www.youtube.com/@gajumedi"
+      ],
+      "notes": [
+        "이번 공식 페이지에서 확인한 AI 상품은 쇼츠 제작이다. 이를 별도 GEO 추적 상품으로 바꾸어 기재하지 않았다."
+      ],
+      "id": "C17",
+      "selection_number": 17,
+      "observed_rank": 17,
+      "visibility_score": [
+        2,
+        2,
+        2
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 7,
+          "url": "https://gajumedi.com/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 3,
+          "url": "https://gajumedi.com/",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 12,
+      "historical_reference": "companies.json#C17",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "광고기획감각",
+      "entity": "광고기획감각",
+      "representative": "손근찬",
+      "services": {
+        "택배차·옥외광고": [
+          "택배차·차량 이동형 옥외광고",
+          "지역·생활권 타깃 매체/차량 선정",
+          "광고 기획",
+          "광고 디자인",
+          "광고물 제작·시공",
+          "광고 운영·관리"
+        ],
+        "대상별 솔루션": [
+          "병원·의원 지역 광고",
+          "분양 광고",
+          "기업 브랜드 광고",
+          "학원·식당·헬스장 등 로컬 광고"
+        ]
+      },
+      "sources": [
+        "https://gamgakad.com/"
+      ],
+      "channels": [
+        "https://gamgakad.com/"
+      ],
+      "notes": [
+        "병원 디지털 종합대행사와 구분되는 인접 옥외광고 업체다. 버스광고와의 비교 문구를 별도 버스 매체 판매로 단정하지 않았다."
+      ],
+      "id": "C18",
+      "selection_number": 18,
+      "observed_rank": 17,
+      "visibility_score": [
+        2,
+        2,
+        2
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 3,
+          "url": "https://gamgakad.com/",
+          "note": "업종 인접 서비스"
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 6,
+          "url": "https://gamgakad.com/",
+          "note": "업종 인접 서비스"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "11名 NPS workplace subscribers (2026-10); not total employees",
+      "service_listing_count": 10,
+      "historical_reference": "companies.json#C18",
+      "historical_staff": {
+        "nps_workplace_subscribers": 11,
+        "month": "2026-09",
+        "nps_entity": "광고기획감각",
+        "nps_location": "대구광역시 남구 대명남로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": {
+        "subscribers": 11,
+        "data_month": "2026-10",
+        "entity_name": "광고기획감각",
+        "masked_business_prefix": "647490",
+        "address": "대구광역시 남구 대명남로",
+        "prior_subscribers": 11,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "레코마케팅",
+      "entity": "레코마케팅",
+      "representative": "송성철",
+      "services": {
+        "온라인": [
+          "네이버·워드프레스·티스토리 블로그",
+          "네이버 플레이스·Google 비즈니스 프로필",
+          "공개 리뷰 답변 지원",
+          "네이버·구글 검색광고",
+          "네이버 예약·톡톡·카카오 문의 연결",
+          "의료진/진료 콘텐츠·사진·설명 영상·숏폼"
+        ],
+        "홈페이지·AI": [
+          "병원 홈페이지 신규 제작·리뉴얼·운영",
+          "SEO/GEO/AEO·구조화·내부링크 개선",
+          "다국어 페이지(영어·중국어 번체/간체·일본어)",
+          "외국인환자 유치의료기관 등록 준비 지원",
+          "홈페이지 속도·콘텐츠/AI 진단"
+        ],
+        "컨설팅·홍보": [
+          "병원 개원 컨설팅(입지·행정·자금 준비 조율/분야별 연결)",
+          "언론홍보·보도자료·기사 송출",
+          "경쟁병원 미스터리쇼퍼·경쟁전략",
+          "의료광고 표현 검토·심의 자료/민원 대응 지원",
+          "목표·지표·일정·정기 보고 조율"
+        ]
+      },
+      "sources": [
+        "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%84%9C%EB%B9%84%EC%8A%A4/",
+        "https://recomkt.com/ai-hospital-marketing/"
+      ],
+      "channels": [
+        "https://recomkt.com/%EB%B3%91%EC%9B%90%EB%A7%88%EC%BC%80%ED%8C%85-%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8/",
+        "https://recomkt.com/faq/",
+        "https://blog.naver.com/punks000"
+      ],
+      "notes": [
+        "행정·자금 등 전문 실무는 해당 담당자와 진행하며 회사는 준비 항목·일정을 조율한다고 설명한다."
+      ],
+      "id": "C19",
+      "selection_number": 19,
+      "observed_rank": 17,
+      "visibility_score": [
+        2,
+        2,
+        2
+      ],
+      "placements": [
+        {
+          "q": "병원마케팅대행사",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/punks000/224480721641",
+          "note": ""
+        },
+        {
+          "q": "병원마케팅",
+          "engine": "네이버",
+          "section": "네이버 블로그",
+          "rank": "—",
+          "url": "https://blog.naver.com/punks000/224480721641",
+          "note": ""
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "정확한 인원 미확인",
+      "service_listing_count": 16,
+      "historical_reference": "companies.json#C19",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    },
+    {
+      "name": "로닥GEO(오픈타임)",
+      "display_name": "오픈타임(기존 검색 표기 로닥GEO)",
+      "entity": "피케이커뮤니케이션의 브랜드(개인사업자)",
+      "representative": "박정윤",
+      "services": {
+        "GEO·AEO": [
+          "AI 가시성·6개 AI 진단",
+          "GEO·AEO 통합 대행",
+          "답변형 콘텐츠",
+          "엔티티·JSON-LD 구조화",
+          "외부 언급·업종 디렉터리·브랜드 신뢰 정보"
+        ],
+        "SEO·운영": [
+          "Google SEO·검색의도/키워드 분석",
+          "기술 SEO·온페이지·콘텐츠 구조 개선",
+          "백링크·외부 신뢰 관리",
+          "AI 크롤러·robots·사이트맵 등 접근/색인 정비",
+          "검색 순위·노출·색인·AI 재측정·월간 리포트",
+          "SEO/GEO 진단·컨설팅"
+        ]
+      },
+      "sources": [
+        "https://lodac.kr/",
+        "https://lodac.kr/about/ai-info/",
+        "https://idearabbit.co.kr/about/"
+      ],
+      "channels": [
+        "https://lodac.kr/geo-aeo/guide/",
+        "https://lodac.kr/glossary/",
+        "https://lodac.kr/blog/",
+        "https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ko",
+        "https://lodac.kr/industries/"
+      ],
+      "notes": [
+        "일반 업종 대상 GEO·SEO 회사로 병원 전용 대행사와 구분한다."
+      ],
+      "id": "C20",
+      "selection_number": 20,
+      "observed_rank": 17,
+      "visibility_score": [
+        2,
+        2,
+        2
+      ],
+      "placements": [
+        {
+          "q": "병원geo",
+          "engine": "네이버",
+          "section": "네이버 파워링크",
+          "rank": 5,
+          "url": "https://lodac.kr/",
+          "note": ""
+        },
+        {
+          "q": "병원 광고대행사",
+          "engine": "구글",
+          "section": "구글 광고",
+          "rank": 5,
+          "url": "https://lodac.kr/",
+          "note": "하단"
+        }
+      ],
+      "financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": null,
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "content_attribution_status": "official_site_or_official_linked_channel_seed",
+      "content_analysis_status": "see_dated_target_matrix; original_status_preserved_in_snapshot",
+      "financial_display": "공개 매출 미확인",
+      "staff_display": "5명 · 로켓펀치 표시/기준일 미확인",
+      "service_listing_count": 11,
+      "historical_reference": "companies.json#C20",
+      "historical_staff": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 5,
+            "source": "RocketPunch company profile",
+            "as_of": null,
+            "url": "https://www.rocketpunch.com/companies/opentime",
+            "note": "공개 기업 프로필. 국민연금 원본 수치와 구분"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false,
+        "profile_count": 5
+      },
+      "staff": null,
+      "current_research_reference": "../blinkad-hospital-content-competition-2026-11-24/company-feature-matrix.json"
+    }
+  ]
+}

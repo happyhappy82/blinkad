@@ -1,0 +1,495 @@
+{
+  "checked_at": "2026-11-24T12:12:56+09:00",
+  "records": [
+    {
+      "g": "G01",
+      "c": "C02",
+      "name": "애드리절트",
+      "rank": 1,
+      "url": "https://adresult.kr/",
+      "kind": "homepage",
+      "position": "대표·팀의 전문성, 진료과별 전략과 AIO를 묶어 보여 주는 병원 전문 대행사",
+      "sources": [
+        "C02-WHOME24",
+        "C02-WLIST24"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "회사/대표/팀 → 진료과별 패키지 → AIO·홈페이지 정비·영상·중국 마케팅 → 사례/칼럼 → 상담으로 이어진다."
+        ],
+        [
+          "콘텐츠 주제",
+          "대행사 교체·선택, 신환 문제, 검색어, AI, 숏폼을 다룬다. 현재 목록은 고정글이 섞여 있어 발행순·전체 글 수로 계산하지 않았다."
+        ],
+        [
+          "이전 본문 표본",
+          "11월23일 읽은 대행사 교체 질문·숏폼·AI 글은 실무 담당자와 진단, 운영 방향을 설명했다. 11월24일 일부 개별 본문 재조회는 실패해 이전 날짜를 유지한다."
+        ]
+      ],
+      "trust": "대표 이력·저서, 팀과 진료과별 서비스, 고객 후기·사례를 연결한다. 저서/회사 소개와 고객 성과 원자료 검증은 구분한다.",
+      "limit": "고객 증가·비용 절감·재계약 등은 자사 공개 주장이다. AIRANK 운영 설명은 공개되어 있으므로 AI 측정 자체를 블링크애드만의 기능으로 주장할 수 없다. 5/6개 엔진 설명 차이와 실제 납품량·견적은 앞선 조사대로 미확정이다.",
+      "response": "대행사 선택 글을 또 만드는 대신 기존 선택 글에 합의한 작업 범위·의료진 확인 책임·실제 변경 URL·검수 자료를 묶은 예시를 보강한다.",
+      "asset": "기존 대행사 선택 글 보강 + 병원 서비스 대표 안내",
+      "proof": "공개 가능한 작업 지시/산출물/확인 결과의 연결 자료. 실제 고객 성과를 쓸 때는 허용 범위·기간·분모·동시 광고 변경까지 확인.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 26,
+        "data_month": "2026-10",
+        "entity_name": "주식회사애드리절트",
+        "masked_business_prefix": "889880",
+        "address": "서울특별시 강남구 헌릉로618길",
+        "prior_subscribers": 27,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682969602/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G01-C02.md"
+    },
+    {
+      "g": "G02",
+      "c": "C03",
+      "name": "상승기획",
+      "rank": 2,
+      "url": "https://sangseung.net/",
+      "kind": "homepage",
+      "position": "병원에 집중하며 대표의 환자 경험과 병원별 이야기를 마케팅 과정에 연결하는 회사",
+      "sources": [
+        "C03-HOME",
+        "C03-HUB",
+        "C03-PROCESS"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "대표 이야기·성공 과정·칼럼·진료과와 지역별 마케팅 설명을 연결한다."
+        ],
+        [
+          "콘텐츠 주제",
+          "카페 입소문, 피부과 STP, 치과 영상, 개원 전 채널 선택, 광고 심의 반려, 지역별 전략 등 병원 상황에 맞춘 제목을 사용한다."
+        ],
+        [
+          "운영 설명",
+          "성공 과정 페이지가 대표의 임플란트 병원 탐색 경험과 사전 조사 단계를 설명한다. 14일 사전 조사 설명을 최소 계약기간으로 바꾸어 읽지 않았다."
+        ]
+      ],
+      "trust": "누가 왜 이 일을 시작했는지와 병원 상황을 서사로 설명한다. 지역·진료과·환자 선택을 구체화한 점이 콘텐츠 특징이다.",
+      "limit": "익명 사례의 신환 증가를 자사 마케팅만의 효과라고 확정할 원자료는 없다. 대표 이야기의 진위·고객 결과를 독립적으로 감사한 것은 아니다.",
+      "response": "국가·언어별로 실제 환자가 어떤 정보를 비교했는지, 어느 병원 페이지에 무엇을 추가했는지를 확인 자료와 함께 설명한다. 가상의 원장 경험담이나 고객 성공담을 만들지 않는다.",
+      "asset": "기존 병원 외국인 마케팅·지역별 병원 글 보강",
+      "proof": "질문 출처·확인일·병원 승인 정보·변경된 실제 안내 페이지. 사례 공개 허용 범위를 먼저 확인.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": null,
+      "company_financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1691252195/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G02-C03.md"
+    },
+    {
+      "g": "G03",
+      "c": "C12",
+      "name": "애드라이크",
+      "rank": 3,
+      "url": "https://adlike.kr/",
+      "kind": "homepage",
+      "position": "병원 경험을 가진 인력과 여러 채널의 직접 수행을 강조하는 통합 대행사",
+      "sources": [
+        "C12-WHOME24"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "브랜드 블로그·바이럴·SNS·유튜브·앱·검색·해외 마케팅, 심의와 제작·개원 지원을 한 회사의 메뉴로 제시한다."
+        ],
+        [
+          "콘텐츠 형태",
+          "현재 홈페이지에서 진료과별 익명 고객 이야기와 포트폴리오·팀·서비스를 상담으로 연결한다."
+        ],
+        [
+          "열람 범위",
+          "11월24일 홈페이지는 공개 리더로 읽었다. 회사 소개/칼럼 목록의 현재 본문은 차단되어 이전 공식 서비스 자료와 구분했다. 개별 칼럼의 품질·작성법을 새로 분석했다고 쓰지 않는다."
+        ]
+      ],
+      "trust": "병원 내부·상담·MSO 등 경험과 직접 실행 체계를 회사 소개에서 내세운다. 직원 수와 실제 투입 전담 인력은 다른 정보다.",
+      "limit": "인하우스 수행·유지율·고객 확장 사례는 회사 설명이다. 계약서·투입 인력·고객 매출을 검증하지 않았다.",
+      "response": "광고 운영·원고·번역·홈페이지 적용·의료진 검토·보고에서 누가 무엇을 하는지 실제 인수인계 자료로 설명한다. 다국어 기본 포함 범위와 추가 범위를 명확히 한다.",
+      "asset": "기존 병원 외국인 마케팅 업무 범위 글 보강",
+      "proof": "실제 제공 범위·병원 준비물·담당 역할·추가 비용 조건. 확인되지 않은 네이버/SNS 종합 운영을 블링크애드 상품에 추가하지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 18,
+        "data_month": "2026-10",
+        "entity_name": "주식회사 애드라이크",
+        "masked_business_prefix": "667810",
+        "address": "서울특별시 강서구 마곡중앙로",
+        "prior_subscribers": 18,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.incruit.com/company/1682002037/",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G03-C12.md"
+    },
+    {
+      "g": "G04",
+      "c": "C01",
+      "name": "하룹",
+      "rank": 4,
+      "url": "https://haroop.com/",
+      "kind": "homepage",
+      "position": "공개 상품·가격·제작/운영 범위를 넓게 제시하는 병원 종합 마케팅 회사",
+      "sources": [
+        "C01-HOME",
+        "C01-HUB"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "가격표·채널별 상품·홈페이지·AEO/GEO·사례·블로그가 연결된다. 이전 공식 가격표에서 11분야 57상품을 확인했다."
+        ],
+        [
+          "콘텐츠 주제",
+          "네이버 블로그 필요성, 검색부터 상담까지의 단계, 답변형 콘텐츠, AI와 병원 소유 웹 자산, 클릭 이후 경로를 다룬다."
+        ],
+        [
+          "표본 범위",
+          "11월23일 파일럿에서 10개 글 본문을 읽었고, 11월24일 홈페이지와 목록을 재확인했다. 과거 본문 분석을 오늘 전수 재열람으로 계산하지 않는다."
+        ]
+      ],
+      "trust": "상품·비용·작업 범위를 독자가 직접 살펴볼 수 있는 구조다. AI·홈페이지·상담 연결이라는 주제는 이미 공개되어 있다.",
+      "limit": "공개 AEO 기본 세팅 50만원·월100만원/16편(VAT 별도)은 세팅 변동·별도 항목·계약 조건과 함께 비교해야 한다. 68.5억원은 결산연도 미확인이고 NPS30명은 2026-10 사업장 가입자다.",
+      "response": "낮은 월 총액이나 AI라는 표현으로 비교하지 말고 원주제·언어별 결과물·게시/기술 적용·수정과 확인 자료까지 같은 단위로 설명한다.",
+      "asset": "병원 서비스 대표 안내 + 기존 견적/제작비 글 보강",
+      "proof": "확정된 블링크애드 산출물 단위·포함/별도 비용표. 내부 월8건의 언어/원주제 기준이 미확정이면 공개 확정값으로 쓰지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 30,
+        "data_month": "2026-10",
+        "entity_name": "(주) 하룹",
+        "masked_business_prefix": "669880",
+        "address": "충청북도 청주시 흥덕구 원터로",
+        "prior_subscribers": 30,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G04-C01.md"
+    },
+    {
+      "g": "G05",
+      "c": "C07",
+      "name": "윈에이드",
+      "rank": 5,
+      "url": "https://winaid.co.kr/blog",
+      "kind": "blog_hub",
+      "position": "병원 운영자의 세부 질문에 짧은 답과 절차·관련 글을 제공하는 콘텐츠 중심 사이트",
+      "sources": [
+        "C07-RANK",
+        "C07-HOME",
+        "C07-A1",
+        "C07-A2"
+      ],
+      "features": [
+        [
+          "검색 진입",
+          "당시 검색 결과 URL은 홈페이지가 아니라 블로그 목록이다. 블로그·인사이트·가이드·백과·리포트·서비스로 읽을 목적을 나눈다."
+        ],
+        [
+          "콘텐츠 주제",
+          "사이트 메뉴, 마케팅 예산, 인플루언서/리뷰 표현, 홈페이지 이탈, 개원·SEO 기간, 상담 질문 등 실무 질문을 다룬다."
+        ],
+        [
+          "새 본문 표본",
+          "예산 글과 홈페이지 메뉴 글을 이번에 읽었다. 메뉴 글은 진단→재배치→링크 수정→모바일 확인을, 예산 글은 상황별 자원 배분을 설명한다."
+        ]
+      ],
+      "trust": "직접 답변·단계별 설명·관련 주제와 무료 진단 연결이 뚜렷하다. 답변형 제목과 목차만으로도 경쟁력이 생긴다고 단정하지 않는다.",
+      "limit": "예산 비율·작업 소요시간은 회사의 운영 제안이다. 모든 사이트가 반드시 3단계 메뉴여야 한다는 SEO 규칙으로 인용하지 않는다. 이전 AI 설명의 20~30개는 고정 측정 질문이며 월 납품 편수가 아니다.",
+      "response": "블링크애드의 기존 홈페이지 시리즈에 실제 주소 관계도·수정 전후 링크·작업 완료 확인표를 붙인다. 제목만 다른 메뉴/견적/SEO 글을 늘리지 않는다.",
+      "asset": "기존 홈페이지 진단·구조·SEO 검수·비용 시리즈 보강",
+      "proof": "공개 가능한 실제 페이지 비교, 검수 결과와 적용 조건. 주관적 점수나 고정 편수·FAQ 수를 성과 근거로 쓰지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 11,
+        "data_month": "2026-10",
+        "entity_name": "주식회사윈에이드",
+        "masked_business_prefix": "178880",
+        "address": "서울특별시 영등포구 양평로20길",
+        "prior_subscribers": 13,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "amount_reported_but_fiscal_year_unverified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G05-C07.md"
+    },
+    {
+      "g": "G06",
+      "c": "C06",
+      "name": "리앤메디",
+      "rank": 6,
+      "url": "https://www.reanmedi.com/",
+      "kind": "homepage",
+      "position": "AI 검색·홈페이지·광고·상담 운영을 질문과 실행 기준으로 설명하는 병원 마케팅 회사",
+      "sources": [
+        "C06-WHOME24",
+        "C06-WHUB24"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "병원 성장·AI·의료광고·상담 질문에서 AEO/GEO·콘텐츠·광고·사이트·운영 설명으로 이어진다."
+        ],
+        [
+          "현재 제목 목록",
+          "부서별 요청 우선순위, 개원/연간 예산, 상담 링크 변경 테스트, 촬영 자료 부족, 결정 기록, 의료진 사실 검토, 사례 숫자와 출처 보존 등을 다룬다."
+        ],
+        [
+          "이전 본문 한계",
+          "이전 두 URL의 수집된 본문 구간이 같았다는 관측은 남긴다. 현재 전체 HTML/canonical·색인 재확인 없이 복제 제재나 순위 하락으로 단정하지 않는다."
+        ]
+      ],
+      "trust": "글 제목이 병원과 대행사의 실제 협업·승인·변경 상황까지 세분화되어 있다. 이번 목록 분석과 과거 본문 표본을 구분했다.",
+      "limit": "여러 부서 요청·의료진 검수·작업 완료 기준은 이미 이 회사의 제목 목록에 있다. 이 질문들이 경쟁사에 없다고 주장하지 않는다. 공개 리더로 목록을 읽었으며 해당 글 전부의 본문을 읽은 것은 아니다.",
+      "response": "협업 체크리스트라는 주제를 복제하기보다 실제로 승인된 원고가 어떤 확인을 거쳐 사이트에 반영됐는지 문서와 결과물을 연결한다.",
+      "asset": "병원 서비스 대표 안내와 기존 웹사이트 운영 글의 실제 예시 보강",
+      "proof": "담당자·승인 날짜·의견 반영 범위·실제 적용·미완료를 구분하는 공개 허용 예시. 고객 검수완료 원고는 이번 연구에서 수정하지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 7,
+        "data_month": "2026-10",
+        "entity_name": "(주)리앤커뮤니케이션",
+        "masked_business_prefix": "786870",
+        "address": "서울특별시 서초구 강남대로8길",
+        "prior_subscribers": 7,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G06-C06.md"
+    },
+    {
+      "g": "G07",
+      "c": "C11",
+      "name": "스타닥마케팅",
+      "rank": 7,
+      "url": "https://www.startdoctor.co.kr/",
+      "kind": "homepage",
+      "position": "의사 출신 대표라는 소개와 진료과 이해·진행 과정 공개를 강조하는 병원 전문 회사",
+      "sources": [
+        "C11-HOME",
+        "C11-A1"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "대표 소개·의사의 관점·진료과별 설명·진행 과정·서비스·영상·상담을 연결한다."
+        ],
+        [
+          "AI/SEO 설명",
+          "진단→우선순위→구조/콘텐츠 적용→측정과 변경 이력·다음 작업의 흐름을 설명한다."
+        ],
+        [
+          "콘텐츠 역할",
+          "원장의 질문에 답하면서 누가 병원을 이해하고 실행하는지를 함께 보여 준다. 이번에는 홈페이지와 AI/SEO 페이지 본문을 읽었다."
+        ]
+      ],
+      "trust": "대표 경력·담당자의 이해·진행 가시성이 신뢰 재료다. 의사 출신은 회사의 공개 소개이며 면허 원장 직접 대조를 한 것은 아니다.",
+      "limit": "언론 소개는 매체 노출의 증거이며 효과나 기술 인증은 아니다. 실제 계약 보고서·최소기간·수량·가격은 확인 불가다.",
+      "response": "블링크애드가 실제 수행한 업무의 책임자·판단 근거·결과 확인을 보여 준다. 대표 자격이나 병원 성공담을 흉내 내지 않는다.",
+      "asset": "병원 서비스 대표 안내 + 검수/작업 사례 자료",
+      "proof": "담당 역할·작업 범위·확인 가능한 변경 결과. 공개 전후 사례가 없으면 원자료 확보 전 성과 콘텐츠를 보류.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": {
+        "subscribers": 37,
+        "data_month": "2026-10",
+        "entity_name": "스타닥(stardoc)",
+        "masked_business_prefix": "308135",
+        "address": "서울특별시 강남구 언주로108길",
+        "prior_subscribers": 32,
+        "prior_month": "2026-09",
+        "same_as_total_company_headcount": false,
+        "same_as_aeo_team": false,
+        "source_url": "https://www.data.go.kr/data/15083277/fileData.do",
+        "raw_file_provenance": "nps-file-provenance.json",
+        "public_identity_match_basis": "legal name + masked business prefix + location; public records, not registration certificate audit",
+        "identity_status": "publicly_supported_match"
+      },
+      "company_financial": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source_url": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "company_total_not_geo_or_hospital_segment": true
+      },
+      "profile_path": "companies/G07-C11.md"
+    },
+    {
+      "g": "G08",
+      "c": null,
+      "name": "바름",
+      "rank": 8,
+      "url": null,
+      "kind": "naver_blog_article",
+      "position": "대표/브랜드의 마케팅 해설을 외부 채널에 발행하고 데이터·채널 운영 서비스로 연결하는 회사",
+      "sources": [
+        "BARM-HOME",
+        "BARM-SERVICE",
+        "BARM-ARTICLE"
+      ],
+      "features": [
+        [
+          "검색 진입 정정",
+          "저장 원화면은 Naver Blog/barumit 표시다. 정확한 당시 게시물 URL은 복원하지 못했다. OpenAds14924를 검색 순위 URL로 다시 쓰지 않는다."
+        ],
+        [
+          "대조 글의 논지",
+          "동일 제목의 OpenAds 글은 단순 집행, 데이터/여러 채널 운영, 의료진 콘텐츠의 차이를 설명하고 회사의 상담과 다른 글로 연결한다. OpenAds 본문을 원 네이버 글의 HTML 구조로 간주하지 않는다."
+        ],
+        [
+          "서비스 페이지",
+          "병원 페이지는 PLAN–DO–SEE, 분석·GA4·웹/SEO·여러 광고 채널과 익명 진료과 사례 그래프를 묶는다."
+        ]
+      ],
+      "trust": "자사 설명 외에 외부 발행 채널, 데이터 기반 과정과 사례 표현을 활용한다. 외부 플랫폼에 실렸다는 사실과 독립 검증은 다르다.",
+      "limit": "서비스의 성과 숫자는 회사 제시 사례다. 파트너 로고의 현재 연도/공식 디렉터리는 별도 확인하지 않았고 자연검색 능력 인증으로 사용하지 않는다.",
+      "response": "실제 지표가 무엇을 센 값인지, 기간·분모·수집 경로와 다른 변화가 무엇이었는지를 밝히는 사례로 차이를 만든다. 기존 자사 원문을 기준으로 채널별 후속 발행을 기획할 수 있다.",
+      "asset": "기존 상담 전환/병원 외국인 마케팅 글 보강 및 외부 채널 후속 기획",
+      "proof": "전후 지표 원자료와 한계. 네이버 원글 URL 미복원 상태를 해소하기 전 해당 게시물 메타·태그 분석을 했다고 쓰지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": null,
+      "company_financial": null,
+      "profile_path": "companies/G08-barum.md"
+    },
+    {
+      "g": "G09",
+      "c": null,
+      "name": "한국온라인광고연구소",
+      "rank": 9,
+      "url": "https://www.koal365.kr/",
+      "kind": "homepage",
+      "position": "대표·저서·언론·다양한 고객과 종합 서비스를 전면에 내세우는 브랜드 중심 회사",
+      "sources": [
+        "KOAL-HOME",
+        "KOAL-SERVICE",
+        "KOAL-DIAG"
+      ],
+      "features": [
+        [
+          "서비스 진입",
+          "대표·책·언론·고객·팀·제작 현장·서비스·상담이 연결된 넓은 소개 구조다."
+        ],
+        [
+          "질문 답변 블록",
+          "현재 HTML에는 병원 마케팅 단계와 예산·채널·견적·성과 확인 등에 관한 질문 답변, 페이지 내부 앵커가 포함된다. HTML의 모든 문장이 초기 화면에서 보인다고 단정하지 않는다."
+        ],
+        [
+          "성과 기준",
+          "일부 설명은 노출·방문·문의·예약·내원과 다른 영향 요인을 나눈다. 상담 전환을 전혀 다루지 않는 회사로 분류하지 않는다."
+        ]
+      ],
+      "trust": "대표/저서/미디어 노출·고객과 팀을 신뢰 재료로 사용한다. 자체 페이지의 “사이트를 살펴본” 평가 문장은 실제 계약 경험이 아니라는 설명이 있어 독립 고객 후기로 집계하지 않았다.",
+      "limit": "성과 보장·팀 규모·협업 숫자는 자사 홍보 주장이다. 현재 HTML의 긴 분량·헤딩 수는 품질 점수·발행 글 수·순위 원인으로 쓰지 않는다. 실제 렌더링·모바일·속도 전체 검사는 하지 않았다.",
+      "response": "긴 설명과 같은 검색어의 반복보다 원장이 맡길 일·받을 자료·확인 방법을 한 흐름으로 제시하고, 블링크애드가 보여 줄 수 있는 실제 근거를 연결한다.",
+      "asset": "병원 서비스 대표 안내의 정보 구성 및 근거 연결",
+      "proof": "담당자·작업 예시·출처·제공 범위·문의 전 준비 항목. 보장 문구·거대한 고객 수를 대응 근거 없이 따라 쓰지 않는다.",
+      "checked_at": "2026-11-24T12:12:56+09:00",
+      "historical_observation_at": "2026-11-23T18:02:04.691+09:00",
+      "historical_rank_not_current": true,
+      "full_site_reviewed": false,
+      "independent_outcome_audit": false,
+      "current_nps": null,
+      "company_financial": null,
+      "profile_path": "companies/G09-koal.md"
+    }
+  ]
+}

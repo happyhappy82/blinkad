@@ -1,0 +1,141 @@
+{
+  "checked_at": "2026-11-24T12:12:56+09:00",
+  "existing_page_inventory_scope": "published public blog list and sitemap, current selected bodies and previous dated bodies; unpublished portal content not exhaustive",
+  "existing_pages": {
+    "hospital_scope": {
+      "title": "병원 외국인 마케팅 업무 범위",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "review_level": "body_current"
+    },
+    "choice": {
+      "title": "병원 마케팅 대행사 선택",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+      "review_level": "body_current"
+    },
+    "site_cost": {
+      "title": "병원 홈페이지 제작비/작업 범위",
+      "url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+      "review_level": "current_list_and_prior_dated_review"
+    },
+    "site_structure": {
+      "title": "병원 소개·의료진·진료 페이지 구성",
+      "url": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+      "review_level": "current_list_and_prior_dated_review"
+    },
+    "site_seo": {
+      "title": "병원 홈페이지 SEO 검수",
+      "url": "https://www.blinkad.kr/blog/hospital-website-seo-review",
+      "review_level": "current_list_and_prior_dated_review"
+    },
+    "inquiry": {
+      "title": "병원 홈페이지 문의·예약 경로",
+      "url": "https://www.blinkad.kr/blog/hospital-website-inquiry-booking",
+      "review_level": "current_list_and_prior_dated_review"
+    },
+    "multilingual": {
+      "title": "기존 병원 사이트에 다국어 페이지 추가",
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "review_level": "current_list_and_prior_dated_review"
+    },
+    "cases": {
+      "title": "공개 사례 페이지",
+      "url": "https://www.blinkad.kr/case-studies",
+      "review_level": "body_current"
+    }
+  },
+  "actions": [
+    {
+      "id": "CP01",
+      "decision": "대표 안내 역할 설계",
+      "status": "proposal_not_implemented",
+      "title": "병원마케팅 대행을 맡기기 전, 국내·외국인 환자별로 무엇을 확인해야 할까요?",
+      "target": "정확 병원마케팅의 대행 검토 의도",
+      "existing": [
+        "hospital_scope",
+        "choice"
+      ],
+      "reason": "관측9결과 중 홈페이지7·블로그 허브1·기사1. 여러 글을 읽은 뒤 맡길 일과 근거를 한 번에 비교할 진입점이 필요하다는 가설.",
+      "additional_value": "대상 환자/국가·현재 상태별 우선 업무, 실제 제공 범위·병원 준비물·산출물·검수·결과 확인을 한 흐름으로 연결.",
+      "required_evidence": "확정된 실제 업무 범위와 납품 단위; 공개 가능한 작업 예시; 기존 글과의 역할 차이",
+      "publication_rule": "새 서비스 URL은 아직 제안이다. 기존 병원 범위 글 보강으로 충분한지 먼저 비교하고, 새 대표 페이지를 택하면 기존 글을 지우지 않고 세부 안내로 역할을 나눈다."
+    },
+    {
+      "id": "CP02",
+      "decision": "기존 글 보강",
+      "status": "proposal_not_implemented",
+      "title": "기존 대행사 선택 글에 작업·책임·확인 자료 비교표 추가",
+      "target": "병원마케팅대행사/대행사 비교",
+      "existing": [
+        "choice"
+      ],
+      "reason": "애드리절트·리앤메디·KOAL과 자사에 이미 선택 기준/전환 주제가 있다.",
+      "additional_value": "실제 견적의 업무 단위와 병원/대행사 책임을 확인하는 표. 측정이 안 되는 항목을 미확인으로 남기는 보고 예시.",
+      "required_evidence": "48곳 조사 등 기존 일반화 수치의 현재 근거 재검토; 확정 납품 단위; 공개 허용 예시",
+      "publication_rule": "동일 답변의 새 선택 글을 추가하지 않는다. 기존 본문 변경은 별도 콘텐츠 작업 단계에서 진행."
+    },
+    {
+      "id": "CP03",
+      "decision": "기존 글 보강",
+      "status": "proposal_not_implemented",
+      "title": "기존 비용 글에 포함·별도·병원 준비물 기준 추가",
+      "target": "병원마케팅 비용/홈페이지 제작비",
+      "existing": [
+        "hospital_scope",
+        "site_cost"
+      ],
+      "reason": "하룹·오픈타임은 공개 가격/조건, KR은 매체 비교를 이미 제공한다.",
+      "additional_value": "광고비·운영비·원고·번역·촬영·홈페이지 적용·검수의 포함 여부와 산출물 단위가 같은 견적끼리 비교하게 한다.",
+      "required_evidence": "실제 확정 견적·언어/원주제별 수량 정의; 미확정 가격은 공란",
+      "publication_rule": "신규 요금제·경쟁사 평균 견적을 만들어 넣지 않는다."
+    },
+    {
+      "id": "CP04",
+      "decision": "실제 예시로 기존 글 보강",
+      "status": "proposal_not_implemented",
+      "title": "검색→병원 안내→문의 경로를 실제 페이지로 설명",
+      "target": "병원 홈페이지 SEO/문의/외국인 마케팅",
+      "existing": [
+        "site_structure",
+        "site_seo",
+        "inquiry",
+        "multilingual"
+      ],
+      "reason": "윈에이드·메드엠씨·크리앤서·레코도 구조/채널 연결을 설명한다. 자사에 홈페이지10편이 있다.",
+      "additional_value": "언어별 주소/진료 정보/관련 링크/문의 접수를 실제 적용 예시와 확인 기록으로 연결.",
+      "required_evidence": "병원 공개 허용; 실제 페이지 변경 전후; 환자 개인정보를 포함하지 않은 점검 자료",
+      "publication_rule": "메뉴 구조·번역·예약 구분이라는 주제로 같은 답을 새 글에 반복하지 않는다."
+    },
+    {
+      "id": "CP05",
+      "decision": "자료 확보 전 신규 사례 보류",
+      "status": "evidence_required_not_written",
+      "title": "병원 사이트의 어느 정보를 왜 바꿨는지 보여 주는 작업 사례",
+      "target": "병원 마케팅 사례/실제 작업 검토",
+      "existing": [
+        "cases",
+        "hospital_scope"
+      ],
+      "reason": "성장률·고객 로고 중심 사례가 많다. 블링크애드는 실제 작업과 확인 결과를 연결할 때 의미 있는 차이를 만들 수 있다.",
+      "additional_value": "문제→관측→수정 범위→병원 확인→적용 URL→결과/한계를 보여 주는 구체적 사례.",
+      "required_evidence": "공개 승인, 작업 원자료, 측정 기간·분모·경로·혼재 요인. 증가 자료가 없으면 성과 상승 문장 없이 작업 사례로 한정.",
+      "publication_rule": "새 성과를 추정하지 않는다. 가상 사례는 명확히 표시하며 실제 병원 성과로 쓰지 않는다."
+    },
+    {
+      "id": "CP06",
+      "decision": "측정 설명 정합성 확인 후 기존 글 보강",
+      "status": "evidence_required_not_written",
+      "title": "병원 AI 검색 보고서에서 언급·인용·방문·문의를 나누는 예시",
+      "target": "병원 AEO/GEO 검토",
+      "existing": [
+        "hospital_scope"
+      ],
+      "reason": "여러 경쟁사가 이미 AI 측정·운영·보고를 설명한다. 기술명보다 측정 조건과 실제 적용을 연결해야 한다.",
+      "additional_value": "공식API/UI 경로, 질문·모델·검색 여부·반복·실패 분모를 밝히고 언급/인용/방문/문의와 다음 작업을 분리.",
+      "required_evidence": "기존 공개 설명·설치 스킬의 대상/경로 차이 정리; 실제 보고서 공개 허용",
+      "publication_rule": "이번에는 새 AI실측·측정 프로토콜 변경·운영 자동화를 실행하지 않는다."
+    }
+  ],
+  "actual_edits_to_production": 0,
+  "actual_articles_written": 0,
+  "publications": 0
+}

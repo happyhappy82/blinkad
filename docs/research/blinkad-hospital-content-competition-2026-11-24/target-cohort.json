@@ -1,0 +1,100 @@
+{
+  "checked_at": "2026-11-24T12:12:56+09:00",
+  "primary_engine_assumption": "Google organic, provisional pending optional user preference",
+  "query": "병원마케팅",
+  "historical_observed_at": "2026-11-23T18:02:04.691+09:00",
+  "ranks_are_not_live_20261124": true,
+  "live_refresh": "Direct public Google HTTP returned no usable organic h3; no fresh rank claim",
+  "count": 9,
+  "page_type_counts": {
+    "homepage": 7,
+    "blog_hub": 1,
+    "naver_blog_article": 1
+  },
+  "records": [
+    {
+      "g": "G01",
+      "c": "C02",
+      "name": "애드리절트",
+      "rank": 1,
+      "url": "https://adresult.kr/",
+      "kind": "homepage",
+      "profile_path": "companies/G01-C02.md"
+    },
+    {
+      "g": "G02",
+      "c": "C03",
+      "name": "상승기획",
+      "rank": 2,
+      "url": "https://sangseung.net/",
+      "kind": "homepage",
+      "profile_path": "companies/G02-C03.md"
+    },
+    {
+      "g": "G03",
+      "c": "C12",
+      "name": "애드라이크",
+      "rank": 3,
+      "url": "https://adlike.kr/",
+      "kind": "homepage",
+      "profile_path": "companies/G03-C12.md"
+    },
+    {
+      "g": "G04",
+      "c": "C01",
+      "name": "하룹",
+      "rank": 4,
+      "url": "https://haroop.com/",
+      "kind": "homepage",
+      "profile_path": "companies/G04-C01.md"
+    },
+    {
+      "g": "G05",
+      "c": "C07",
+      "name": "윈에이드",
+      "rank": 5,
+      "url": "https://winaid.co.kr/blog",
+      "kind": "blog_hub",
+      "profile_path": "companies/G05-C07.md"
+    },
+    {
+      "g": "G06",
+      "c": "C06",
+      "name": "리앤메디",
+      "rank": 6,
+      "url": "https://www.reanmedi.com/",
+      "kind": "homepage",
+      "profile_path": "companies/G06-C06.md"
+    },
+    {
+      "g": "G07",
+      "c": "C11",
+      "name": "스타닥마케팅",
+      "rank": 7,
+      "url": "https://www.startdoctor.co.kr/",
+      "kind": "homepage",
+      "profile_path": "companies/G07-C11.md"
+    },
+    {
+      "g": "G08",
+      "c": null,
+      "name": "바름",
+      "rank": 8,
+      "url": null,
+      "kind": "naver_blog_article",
+      "profile_path": "companies/G08-barum.md"
+    },
+    {
+      "g": "G09",
+      "c": null,
+      "name": "한국온라인광고연구소",
+      "rank": 9,
+      "url": "https://www.koal365.kr/",
+      "kind": "homepage",
+      "profile_path": "companies/G09-koal.md"
+    }
+  ],
+  "rank8_override": "../blinkad-hospital-research-audit-2026-11-24/search-observation-overrides.json",
+  "naver_analysis": "Kept separate in historical evidence; not equated with Google ranks",
+  "original20_retained": true
+}

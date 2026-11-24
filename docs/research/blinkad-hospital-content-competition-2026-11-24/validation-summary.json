@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-11-24T12:12:56+09:00",
+  "checks": {
+    "historical_snapshots_unchanged": true,
+    "original_20_ids_preserved": true,
+    "exact_cohort_9": true,
+    "home_7_hub_1_article_1": true,
+    "barum_unknown_exact_url_preserved": true,
+    "all_company_source_ids_exist": true,
+    "nps_13_latest_month": true,
+    "staff_changes_7": true,
+    "nice_detailed_amount_correct": true,
+    "local_git_profile_count_9": true,
+    "no_raw_evidence_copied_to_git": true,
+    "google_current_rank_not_claimed": true,
+    "no_production_changes": true
+  },
+  "all_passed": true,
+  "direct_http_records": 45,
+  "direct_http_substantive_bodies": 37,
+  "reader_evidence_records": 5,
+  "company_profiles": 9,
+  "original_company_feature_rows": 20,
+  "content_action_candidates": 6,
+  "current_rank_measurements": 0,
+  "full_site_or_all_post_reviews": 0,
+  "actual_production_edits": 0,
+  "publications": 0
+}
