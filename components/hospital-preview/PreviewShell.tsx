@@ -27,10 +27,10 @@ export function PreviewFooter() {
 export function ConsultationNote() {
   return (
     <section id="consultation" className="border-t border-white/10 bg-white/5 px-6 py-16 text-center md:py-24">
-      <h2 className="mb-6 text-3xl font-bold md:text-4xl">우리 병원은 어디부터 시작할까요?</h2>
+      <h2 className="mb-6 text-3xl font-bold md:text-4xl">병원마케팅 상담을 원하시나요?</h2>
       <p className="mx-auto mb-8 max-w-xl text-gray-400 keep-all">
-        홈페이지와 지도 주소, 우선 진료, 상담 가능한 언어를 알려주세요.
-        담당자가 현재 상황을 살펴보고 먼저 손볼 곳을 안내합니다.
+        홈페이지와 지도 주소, 먼저 알리고 싶은 진료, 환자에게 답변할 수 있는 언어를 알려주세요.
+        담당자가 살펴보고 어떤 일부터 맡기면 좋을지 말씀드리겠습니다.
       </p>
       <a href={siteOrigin + '/contact'} target="_blank" rel="noreferrer" className="hp-primary">
         병원마케팅 상담하기 <ArrowRight size={18} aria-hidden="true" />
