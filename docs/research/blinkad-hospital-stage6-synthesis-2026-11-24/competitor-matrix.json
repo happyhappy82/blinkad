@@ -1,0 +1,726 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "scope": "14 functional overlaps; not 14 equivalent quotes",
+  "records": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "positioning": "웹블로그 구축·월 콘텐츠 운영",
+      "price_scope": "구축 기준50만원+월100만원, VAT 별도·월16건. 디자인/기능 변동. 기존 블로그 결합 GEO80만원은 별도 블로그비 필요",
+      "workflow": "웹블로그/홈페이지/랜딩을 구분하고 공식 사이트 콘텐츠를 축적",
+      "measurement_reporting": "트랙별 주간 테스트·월/주 보고가 달라 한 계약으로 합치지 않음",
+      "contract_assets": "최소기간·해지·원고/소스/데이터 이관 미확인",
+      "benchmark": "구축비·월액·수량을 공개한 판매 명세",
+      "blinkad_recommendation": "동일 건수·언어·구축 범위로 환산하기 전 가격/편수 경쟁을 하지 않는다",
+      "source_urls": [
+        "https://haroop.com/aeogeo"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage2-haroop-pilot-2026-11-23/pricing-and-service.json",
+        "blinkad-hospital-stage5-verification-2026-11-24/verification-ledger.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 6850000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/company/42006511/salary",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 30,
+        "month": "2026-09",
+        "nps_entity": "(주) 하룹",
+        "nps_location": "충청북도 청주시 흥덕구 원터로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 92,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/company/42006511"
+          },
+          {
+            "count": 30,
+            "source": "Jobplanet",
+            "as_of": null,
+            "url": "https://www.jobplanet.co.kr/companies/347332/landing/%ED%95%98%EB%A3%B9"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "positioning": "AIO·자체 AIRANK·다국어",
+      "price_scope": "AI 고정 월액·월 제작량·언어 추가비 미공개/미확인",
+      "workflow": "AIO 상담과 기존 디자인을 유지하는 사이트 리빌딩, 7개 언어 대응 안내",
+      "measurement_reporting": "일별 질문·경쟁사·인용 출처·화면 기록 안내. AI5/6개 표시 상충, 모델/반복 미확인",
+      "contract_assets": "일반 병원마케팅3개월을 AIO 최소기간으로 확정하지 않음. 데이터 반출/이관 미확인",
+      "benchmark": "일별 기록과 고객이 이해할 수 있는 측정 화면",
+      "blinkad_recommendation": "새 측정 도구보다 기존 보고서의 원답변·조건·변경 이력을 먼저 보여준다",
+      "source_urls": [
+        "https://adresult.kr/SEO",
+        "https://adresult.kr/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage4-site-content-eeat-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1682969602/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 27,
+        "month": "2026-09",
+        "nps_entity": "주식회사애드리절트",
+        "nps_location": "서울특별시 강남구 헌릉로618길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하",
+            "source": "JobKorea recruitment",
+            "as_of": "2026-10 posting",
+            "url": "https://www.jobkorea.co.kr/Recruit/GI_Read/50123393"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "positioning": "원장 이야기·병원 브랜딩과 AI 연결",
+      "price_scope": "AI 단독 월액·월 수량 미확인",
+      "workflow": "시장·경쟁 조사와 원장 인터뷰·진료 강점을 콘텐츠로 구성",
+      "measurement_reporting": "AI 추천 화면 제시. 고정 질문·모델·반복·보고 주기 미확인",
+      "contract_assets": "일반 준비기간14일은 최소 계약기간이 아님. 권리/해지 미확인",
+      "benchmark": "의료진의 구체적 판단과 병원 설명",
+      "blinkad_recommendation": "의료진 확인을 마케팅 수식어 대신 자료 출처·검토 역할로 드러낸다",
+      "source_urls": [
+        "https://sangseung.net/ai%EB%A7%88%EC%BC%80%ED%8C%85/",
+        "https://sangseung.net/succeed/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage4-site-content-eeat-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1691252195/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": null,
+            "display": "50명 이하 태그, 정확 인원 비공개",
+            "source": "Wanted",
+            "as_of": null,
+            "url": "https://www.wanted.co.kr/company/44948"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "positioning": "환자 질문형 콘텐츠·공식 허브/블로그",
+      "price_scope": "AI 상세 명세 접근 제한. 월액·정량 미확인",
+      "workflow": "공식 AI 카드·공식 연계 GEO 글에서 질문·판단 기준·정보 일치와 진단 제안 확인",
+      "measurement_reporting": "글의 A/B 예시는 설명용. 모델·반복·정기 보고 미확인",
+      "contract_assets": "약정·이관·수정 범위 미확인",
+      "benchmark": "질문형 콘텐츠에서 진단으로 연결하는 구조",
+      "blinkad_recommendation": "제공 작업과 일반 설명·가상 예시를 구분해 안내한다",
+      "source_urls": [
+        "https://blog.oreun.net/",
+        "https://blog.naver.com/oreunplan/224478115501"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage5-verification-2026-11-24/additional-products/C05.md"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.incruit.com/company/1688585642",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": true
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "positioning": "AEO/GEO·SEO·영상·환자관리 연계",
+      "price_scope": "AI 전용 월액·글/영상/언어별 수량 미확인",
+      "workflow": "FAQ·진료 콘텐츠·영상·홈페이지 개선을 제시",
+      "measurement_reporting": "목표 AI 명단은 고정 실측 계약과 다름. AI 반복/보고 조건 미확인",
+      "contract_assets": "홈페이지 제작이 AEO에 자동 포함된다는 근거 없음. 계약/권리 미확인",
+      "benchmark": "사이트·영상·환자 경험을 묶는 설명",
+      "blinkad_recommendation": "검색 개선과 문의 처리에서 맡을 업무·병원이 맡을 업무를 명시한다",
+      "source_urls": [
+        "https://www.reanmedi.com/",
+        "https://www.reanmedi.com/MARKETING"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage4-site-content-eeat-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 7,
+        "month": "2026-09",
+        "nps_entity": "(주)리앤커뮤니케이션",
+        "nps_location": "서울특별시 서초구 강남대로8길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "JobKorea",
+            "as_of": "2026",
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/29957364"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "positioning": "질문 세트·페이지·병원 소유 자산",
+      "price_scope": "AI 월액·월 새 글 수 미확인. 20~30개는 질문 수",
+      "workflow": "질문 설정→AI 답변/출처→정보 일치→구조·질문 페이지→월 재점검",
+      "measurement_reporting": "같은 질문을 월별 확인. 모델/반복/검색 조건 미확인",
+      "contract_assets": "병원 명의 계정·도메인·소스 원칙 공개. 세부 저작권/라이선스/데이터 이관 별도",
+      "benchmark": "질문부터 재점검까지의 과정과 소유 주체",
+      "blinkad_recommendation": "질문 수와 원고 수, 운영 권한과 저작재산권을 구분한다",
+      "source_urls": [
+        "https://winaid.co.kr/services/aeo-geo",
+        "https://winaid.co.kr/about"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage4-site-content-eeat-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 4200000000,
+        "year": null,
+        "status": "year_unverified",
+        "source": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사윈에이드",
+        "nps_location": "서울특별시 영등포구 양평로20길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 23,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/winaid0070/Company_name/%E3%88%9C%EC%9C%88%EC%97%90%EC%9D%B4%EB%93%9C"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "positioning": "HTML 전환·수정 로그·단계형 GEO",
+      "price_scope": "현행 진단 후 견적. 캐시30만원 제외. HTML 전환은 페이지별1회 견적",
+      "workflow": "진단→이미지 설명 HTML 전환→제목/FAQ 등 수정→칼럼→재측정",
+      "measurement_reporting": "매일 변경 로그·주간 AI 확인·월 보고. 네이버/Claude 명단 상충 유지",
+      "contract_assets": "12개월 할부는 약정이 아님. 웹 제작 권리 설명을 GEO 전체 이관으로 확대하지 않음",
+      "benchmark": "수정 내역과 정기 확인을 보이게 만든 운영 설명",
+      "blinkad_recommendation": "고객에게 실제로 바뀐 URL·변경 전후·확인 결과를 제시한다",
+      "source_urls": [
+        "https://krmkt.co.kr/geo/",
+        "https://krmkt.co.kr/helper/basics-agency-fee-structures/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage5-verification-2026-11-24/verification-ledger.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 8426950000,
+        "year": 2025,
+        "status": "public_provider_with_company_rounded_statement",
+        "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/aTJ1emhkcXpPMHUzb3o3a05MQlo4dz09/company_nm/%28%EC%A3%BC%29%EC%BC%80%EC%9D%B4%EC%95%8C%EB%A7%88%EC%BC%80%ED%8C%85",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 13,
+        "month": "2026-09",
+        "nps_entity": "주식회사 케이알마케팅",
+        "nps_location": "서울특별시 금천구 두산로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 12,
+            "source": "Gyeonggi employment portal",
+            "as_of": "2025-12",
+            "url": "https://job.gg.go.kr/empmn/desEntDtl.do?bizrno=8188600477&cntType=O"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "positioning": "종합 병원마케팅 안의 AI 정보 노출",
+      "price_scope": "독립 AI 가격·납품 수량 미확인",
+      "workflow": "병원 종합 서비스에 생성형 AI 정보 노출 기능을 제시",
+      "measurement_reporting": "블로그 순위 확인 AI 프로그램과 생성형 AI 답변 실측을 구분. 후자의 조건 미확인",
+      "contract_assets": "브랜드검색 기간제 과금을 AEO 약정으로 쓰지 않음. 종료 권리 미확인",
+      "benchmark": "고객 추천·영상·연혁을 통한 회사 신뢰 설명",
+      "blinkad_recommendation": "수상·협찬·연혁은 해당 사실만 쓰고 AI 효과 인증으로 바꾸지 않는다",
+      "source_urls": [
+        "https://golddoctors.co.kr/service",
+        "https://golddoctors.co.kr/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage4-site-content-eeat-2026-11-23/company-records.json",
+        "blinkad-hospital-stage5-verification-2026-11-24/verification-ledger.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 5529960000,
+        "year": 2024,
+        "status": "public_provider_operator_gdm",
+        "source": "https://www.incruit.com/company/1686261958/",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 25,
+        "month": "2026-09",
+        "nps_entity": "(주)지디엠(GDMInc.)",
+        "nps_location": "인천광역시 남동구 인주대로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "positioning": "AI 검색 노출·SEO와 병원 포트폴리오",
+      "price_scope": "AI 단독 가격 미확인. 일반 키워드30~70만원을 AI 견적으로 사용하지 않음",
+      "workflow": "공식 ChatGPT/네이버 AI 노출·SEO·팀별 작업·포트폴리오 공개",
+      "measurement_reporting": "일반 월 보고·전환 설명은 있으나 AI별 질문/반복/원답변 규격 미확인",
+      "contract_assets": "공식 연결 확인. 최초 특정 광고ID 동일성·AI 계약/권리 미확인",
+      "benchmark": "팀별 운영·포트폴리오·문의 목적지 연결",
+      "blinkad_recommendation": "사례의 실제 범위와 보고 지표를 서비스별로 나눈다",
+      "source_urls": [
+        "https://www.nicecompany.kr/sub/online.html",
+        "https://www.nicecompany.kr/sub/portfolio.html"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage5-verification-2026-11-24/additional-products/C10.md",
+        "blinkad-hospital-stage5-verification-2026-11-24/nice-identity-resolution.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 6758160000,
+        "year": 2025,
+        "status": "candidate_entity_only",
+        "source": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 15,
+        "month": "2026-09",
+        "nps_entity": "나이스컴퍼니주식회사",
+        "nps_location": "부산광역시 금정구 금정로",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 15,
+            "source": "Saramin",
+            "as_of": "2026",
+            "url": "https://m.saramin.co.kr/job-search/view?rec_idx=54080260"
+          },
+          {
+            "count": 29,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/recruit/co_read/c/nicecompanyad"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": true
+    },
+    {
+      "company_id": "C11",
+      "name": "스타닥마케팅",
+      "positioning": "기존 사이트 SEO/AEO/GEO·문의 연결",
+      "price_scope": "AI 고정가·정량 미확인. 사이트 이전은 별도 범위 견적",
+      "workflow": "현황 진단→우선순위→합의 범위 적용→확인·보완",
+      "measurement_reporting": "질문별 병원명/공식 출처·유입/문의 중 확인 가능한 부분. 반복/모델/주기 미확인",
+      "contract_assets": "약정·권리·데이터 반출 미확인. 설명용 가상 병원은 실제 성과 아님",
+      "benchmark": "진단·우선순위·변경 기록·다음 제안이라는 결과물",
+      "blinkad_recommendation": "납품서에서 조사 의견과 실제 반영·확인을 분리한다",
+      "source_urls": [
+        "https://www.startdoctor.co.kr/sub/ai-seo.php"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "source": "https://www.innoforest.co.kr/company/CP00025848/%EC%8A%A4%ED%83%80%EB%8B%A5",
+        "scope": "company_total_not_hospital_or_geo_segment"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 32,
+        "month": "2026-09",
+        "nps_entity": "스타닥(stardoc)",
+        "nps_location": "서울특별시 강남구 언주로108길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 35,
+            "source": "Saramin",
+            "as_of": null,
+            "url": "https://m.saramin.co.kr/job-search/company-info-view?csn=bTVOQVF3N3FQcEttdllFQTRnczRNdz09"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C14",
+      "name": "크리앤서",
+      "positioning": "GEO/AEO/LLMO·웹·다국어",
+      "price_scope": "월액·언어/페이지별 수량·최소기간 미확인",
+      "workflow": "질문/답변·홈페이지 구조·영어/일어/간체/번체 페이지",
+      "measurement_reporting": "인용·크롤러 로그·유입 주기적 확인. 정확한 주기·반복·모델 미확인",
+      "contract_assets": "호스팅·원고·소스 권리/해지 미확인. 특허 표시를 AI 성과 증명으로 보지 않음",
+      "benchmark": "AI 전용 서비스 설명과 다국어 웹의 결합",
+      "blinkad_recommendation": "다국어는 경쟁사도 제공하므로 언어 수만으로 독점 차별화를 주장하지 않는다",
+      "source_urls": [
+        "https://creanswer.com/geo",
+        "https://creanswer.com/aeo"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": 1147430000,
+        "year": 2025,
+        "status": "public_provider",
+        "source": "https://www.saramin.co.kr/zf_user/company-info/view-inner-finance/csn/OHZyWWtjMmRQTWFyN0s0MDBmVU5lZz09/company_nm/%28%EC%A3%BC%29%ED%81%AC%EB%A6%AC%EC%95%A4%EC%84%9C",
+        "scope": "company_total_not_hospital_or_geo_segment",
+        "notes": [
+          "인크루트/NICE D&B 11억4742만원과 1만원 차이.",
+          "잡코리아 기본표의 연도 없는 50억원은 같은 페이지 2025년 재무 영역과 달라 최신 결산값으로 채택하지 않았다."
+        ]
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": 12,
+        "month": "2026-09",
+        "nps_entity": "주식회사크리앤서",
+        "nps_location": "서울특별시 구로구 디지털로33길",
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 20,
+            "source": "JobKorea",
+            "as_of": null,
+            "url": "https://www.jobkorea.co.kr/Recruit/Co_Read/C/30112816"
+          },
+          {
+            "count": 11,
+            "source": "Incruit",
+            "as_of": null,
+            "url": "https://www.incruit.com/company/1682368064/"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C15",
+      "name": "메드엠씨",
+      "positioning": "병원 자체 웹로그·영상·자체 분석",
+      "price_scope": "AI 고정가·월 글/영상 수 미확인",
+      "workflow": "공식 도메인 웹로그·진료 질문 콘텐츠·관련 진료 링크·영상",
+      "measurement_reporting": "ChatGPT/Gemini 언급·공식 도메인 인용 주간 측정 안내. 반복/모델 미확인",
+      "contract_assets": "자체 플랫폼 MediPlace는 독립 제3자 인증이 아님. 이관/약정 미확인",
+      "benchmark": "AI 답변 지표와 GA4 방문 데이터의 분리",
+      "blinkad_recommendation": "외부 노출의 운영 주체와 병원 공식 출처를 함께 밝힌다",
+      "source_urls": [
+        "https://medmc.co.kr/hospital-seo-geo/",
+        "https://medmc.co.kr/hospital-weblog/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C19",
+      "name": "레코마케팅",
+      "positioning": "대표 직접 진단·지역 병원 통합 운영",
+      "price_scope": "진단 후 견적·VAT 별도. 월 글 수는 계약별",
+      "workflow": "진단→필요 업무→병원 자료/원장 인터뷰→계정·콘텐츠 정비",
+      "measurement_reporting": "정형 월 보고보다 의미 있는 성과 때/문제 즉시 보고. 고정 AI 실측 조건 미확인",
+      "contract_assets": "월 계약·위약금/해지 통지기간 없음 안내. 수행비 정산 미확인. 제작물 권리는 계약 전 협의",
+      "benchmark": "대표 책임과 계약/보고 방식에 대한 구체적 FAQ",
+      "blinkad_recommendation": "월 계약·월 보고·전액 환불·저작권 양도를 서로 다른 조건으로 명세한다",
+      "source_urls": [
+        "https://recomkt.com/ai-hospital-marketing/",
+        "https://recomkt.com/faq/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage5-verification-2026-11-24/verification-ledger.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    },
+    {
+      "company_id": "C20",
+      "name": "오픈타임",
+      "positioning": "질문·콘텐츠·외부 언급·반복 측정 정량형",
+      "price_scope": "월250만원, VAT 별도/포함275만원. 질문10·글12·외부 언급1·월 보고·온페이지",
+      "workflow": "고정 질문→기술/콘텐츠→외부 언급→월 반복 비교. 수량 이월 없음·유료 매체 실비 별도",
+      "measurement_reporting": "6대상×질문10×기본5회=300관측. 5공식 API+네이버 화면. API/앱 차이와 분모 공개",
+      "contract_assets": "월 단위·최소기간 없음·고객 원고 소유 안내. 실제 확장/중도 정산 별도",
+      "benchmark": "가격·납품·조건·한계를 함께 공개한 명세",
+      "blinkad_recommendation": "비율의 분모·API/UI 구분·원자료 제공 범위까지 구매자가 비교하게 한다",
+      "source_urls": [
+        "https://lodac.kr/pricing/",
+        "https://lodac.kr/methodology/"
+      ],
+      "prior_record_paths": [
+        "blinkad-hospital-stage3-aeo-products-2026-11-23/company-records.json",
+        "blinkad-hospital-stage5-verification-2026-11-24/verification-ledger.json"
+      ],
+      "product_source_checked_dates": [
+        "2026-11-23",
+        "2026-11-24"
+      ],
+      "financial_prior_record": {
+        "revenue_krw": null,
+        "year": null,
+        "status": "not_verified",
+        "scope": "company_total"
+      },
+      "staff_prior_record": {
+        "nps_workplace_subscribers": null,
+        "month": null,
+        "nps_entity": null,
+        "nps_location": null,
+        "nps_source": "https://www.data.go.kr/data/15083277/fileData.do",
+        "scope": "workplace_pension_subscribers_not_total_company_headcount",
+        "alternatives": [
+          {
+            "count": 5,
+            "source": "RocketPunch company profile",
+            "as_of": null,
+            "url": "https://www.rocketpunch.com/companies/opentime",
+            "note": "공개 기업 프로필. 국민연금 원본 수치와 구분"
+          }
+        ],
+        "total_current_company_headcount_verified": false,
+        "aeo_geo_team_headcount_verified": false,
+        "profile_count": 5
+      },
+      "financial_caveat": "회사 전체 공개정보. 결산연도 없는 값은2025년으로 쓰지 않음. C10 반올림/기관별 수치는 stage5 보강 우선",
+      "staff_caveat": "NPS는2026-09 사업장 가입자. 현 총인원·AI 전담 인원 아님",
+      "evidence_level": "vendor_public_offer_not_audited_results",
+      "limited_addendum": false
+    }
+  ],
+  "classification_source": "../blinkad-hospital-stage5-verification-2026-11-24/current-classification.json",
+  "no_price_or_outcome_rank": true
+}

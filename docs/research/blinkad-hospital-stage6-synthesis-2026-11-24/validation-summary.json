@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "passed": true,
+  "errors": [],
+  "historical_snapshot_sha256": {
+    "stage1/master-roster.json": "9aa821c328bc60b738662ff02cde8d1226a7147ee13098443a1e254d207b901d",
+    "stage1/site-search-evidence.json": "e06b2e73ce3451e7616def8bf0762a7ab80fa89045ad2c611fe7018d121c24ce",
+    "analysis-selection/historical-exact-query.json": "6198ae907ac2590e0683b4a7929113f41c84025fdcbe051f0865aa6cc0b6f075"
+  },
+  "product_companies": 14,
+  "site_companies": 10,
+  "union_companies": 15,
+  "limited_addenda": 2,
+  "priority_items": 10,
+  "refresh_content_items": 6,
+  "new_unapproved_content_candidates": 2,
+  "new_public_http_sources": 15,
+  "current_public_listing_links": 135,
+  "checks": [
+    "historical snapshots unchanged",
+    "stage5 classifications retained",
+    "all cited prior records exist",
+    "public source status and HTML hashes",
+    "internal quote arithmetic and scope",
+    "public/installed/user measurement conditions distinguished",
+    "proposal-only status and no operational changes",
+    "local and Git relative links; JSON parse"
+  ],
+  "not_performed": [
+    "new AI or rank measurements",
+    "private quote/contracts/outcome audit",
+    "site/price/ads/account/permission changes",
+    "content publishing",
+    "ego93 resume or bypass"
+  ]
+}

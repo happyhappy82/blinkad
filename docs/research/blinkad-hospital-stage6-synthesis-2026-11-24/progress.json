@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "stage": 6,
+  "status": "complete_public_scope",
+  "six_stage_research_complete_in_public_scope": true,
+  "functional_overlap_companies": 14,
+  "site_analysis_companies": 10,
+  "union_company_slots": 15,
+  "recommendation_tasks": 10,
+  "content_refresh": 6,
+  "content_new_candidates_not_final": 2,
+  "new_rank_or_ai_measurements": 0,
+  "private_quotes_received": 0,
+  "operational_changes": 0,
+  "published_content": 0,
+  "browser_ego93_user_handoff_preserved": true
+}

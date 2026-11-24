@@ -1,0 +1,245 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "new_public_http_sources": [
+    {
+      "source_id": "B01",
+      "requested_url": "https://www.blinkad.kr/",
+      "url": "https://www.blinkad.kr/",
+      "title": "BlinkAd | 구글 AEO·GEO 외국인 마케팅 전문 에이전시",
+      "role": "current_blinkad_home",
+      "checked_at": "2026-11-24T09:08:52+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "9ecfa3b62c73487e86fa51d253c7a1cfa2cebdcbc62868d9a1733356a5290bf6",
+      "text_sha256": "e241ccddeb1d7112f32d9c900343de49f764a2b46a6d20cbb3afa43a27903661",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B02",
+      "requested_url": "https://www.blinkad.kr/services",
+      "url": "https://www.blinkad.kr/services",
+      "title": "외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO·레딧 - BlinkAd",
+      "role": "current_blinkad_service_scope",
+      "checked_at": "2026-11-24T09:08:52+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "748aae4c283d3d70fea685d0b6d8f60b6c4410c898a2454318685908a7fecd80",
+      "text_sha256": "2189e9a976eb5dd0c9e22c74ccc8c041f4c4b670b37e70b0b8578b86a7901d77",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B03",
+      "requested_url": "https://www.blinkad.kr/contact",
+      "url": "https://www.blinkad.kr/contact",
+      "title": "무료 업장 진단 | BlinkAd",
+      "role": "current_blinkad_inquiry_fields",
+      "checked_at": "2026-11-24T09:08:52+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "2254f05e79a9ffec34d6f4342779044342aa76ea1db61232a21525974cf9838c",
+      "text_sha256": "8bf256ce8ac3fd9c4e6930711a85816d8d04062811dbd496bcb5833f18fb9c5d",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B04",
+      "requested_url": "https://www.blinkad.kr/aeo",
+      "url": "https://www.blinkad.kr/aeo",
+      "title": "AI 검색 최적화(AEO·GEO) 대행 | ChatGPT·Gemini에 인용되는 브랜드 - BlinkAd",
+      "role": "current_ai_service",
+      "checked_at": "2026-11-24T09:11:28+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "2a1490e894db40feee747cb44f1a7acdf4468ac900a2cca7b5e4f4725f55c319",
+      "text_sha256": "a1a09247940feecb039e366709213905ee79e49f20c8682983e4c917e93482cd",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B05",
+      "requested_url": "https://www.blinkad.kr/foreign-marketing",
+      "url": "https://www.blinkad.kr/foreign-marketing",
+      "title": "외국인마케팅 대행사 | 구글맵·리뷰·다국어 콘텐츠 외국인 고객 유입 - BlinkAd",
+      "role": "current_foreign_service",
+      "checked_at": "2026-11-24T09:11:28+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "d5525f895781144e869df2d55c7b6b3985d48affafe05eb81daffb0b08580025",
+      "text_sha256": "aec306c9b13ddd57ea4cacf31c364d497eee5db72604d9050419b720b1870edd",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B06",
+      "requested_url": "https://www.blinkad.kr/case-studies",
+      "url": "https://www.blinkad.kr/case-studies",
+      "title": "프로젝트 사례 - BlinkAd",
+      "role": "current_cases_and_example_labels",
+      "checked_at": "2026-11-24T09:11:28+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "2e4739f114168326d3ccf775a0a5c373720d5906709b4504421520d321134586",
+      "text_sha256": "ecd4c9b163db99bc70af9b8c5e25bb1e3457fcbf066402ce245a4995ccefab8c",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B07",
+      "requested_url": "https://www.blinkad.kr/blog",
+      "url": "https://www.blinkad.kr/blog",
+      "title": "블로그 | BlinkAd - 구글 AEO·GEO 외국인 마케팅 전문",
+      "role": "current_content_inventory",
+      "checked_at": "2026-11-24T09:11:28+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "1a39bcbff9cb06b32e2efa87bbd81da0bafacde983caa4909ba26dac6c50f46a",
+      "text_sha256": "e11ac30fb6978314c607c2c3140254fe1e605411c6b52e5eeda827aa43056f4c",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B08",
+      "requested_url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+      "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요? - BlinkAd Blog",
+      "role": "closest_existing_hospital_service_article",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "7b0a97c04a7bac9fd752849602db7b419caf596a56dcf2e26d5c4974afda88fb",
+      "text_sha256": "4d124b0f2e33172d02a49583ad61e3793b9f3b1ef1298d07acd4316ad78fd341",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B09",
+      "requested_url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+      "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+      "title": "병원 마케팅 대행사 고르는 법, 광고 보고서보다 상담 전환을 보세요 - BlinkAd Blog",
+      "role": "closest_existing_agency_selection",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "314d92628642d0a5e536ffc7268d76f693741cbb996ae98750a6d51fbe524802",
+      "text_sha256": "9c708fd87942029ef24570d75adec80da6859ccb4dc72655a473f16374f38f62",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B10",
+      "requested_url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요? - BlinkAd Blog",
+      "role": "closest_existing_multilingual_article",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "f72c50a65ef67f1b416a2137b63d6bcedad2d04ade401b3a1575433b23c3c0c8",
+      "text_sha256": "1e7a64bfe0b569fa7f17dd1b771072674461ae31cbfeb21d4ce881d95e0ec3c8",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B11",
+      "requested_url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+      "url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+      "title": "병원 홈페이지 제작비가 달라지는 작업 범위와 추가 비용 - BlinkAd Blog",
+      "role": "closest_existing_price_scope_article",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "741529e8dcc2a1b7cc1e6f80dbe5b1454d7b6e9ece99f0ca67825571697898ee",
+      "text_sha256": "5e960b80b5c6e051a0676ad98a70f2afb84eacd5d69e261477510281b5309d83",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B12",
+      "requested_url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+      "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+      "title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요. - BlinkAd Blog",
+      "role": "closest_existing_outsourcing_decision",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "38b8aa59d87bcf454e25514e9413c0d8ea2226c9b9de11815c0bbab3833c7e38",
+      "text_sha256": "7fb5d61edcb60c1925595fe11ee3de45ddc76b267fee2442c942df9a3fd3f70d",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "B13",
+      "requested_url": "https://www.blinkad.kr/blog/aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon",
+      "url": "https://www.blinkad.kr/blog/aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon",
+      "title": "AEO GEO 피부과 마케팅 전략 2026 AI 답변 1순위 차지하려면? - BlinkAd Blog",
+      "role": "closest_existing_ai_strategy_and_guarantee_title",
+      "checked_at": "2026-11-24T09:12:07+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "765b5295ae829a9621171aa9251d8416d41f62cfe5544c7e166738950f7cbfc5",
+      "text_sha256": "87bd84d569643797e149aa0d27c6888d47f9cbecdb3e6966567e041e1bc35f99",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "P01",
+      "requested_url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko",
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content?hl=ko",
+      "title": "유용하고 신뢰할 수 있는 사용자 중심 콘텐츠 만들기 | Google 검색 센터  |  Documentation  |  Google for Developers",
+      "role": "official_helpful_content_and_eeat",
+      "checked_at": "2026-11-24T09:13:05+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "77c713731a33cfbe5c758b161577a1289336306f93efd925c45be4c2869208fc",
+      "text_sha256": "35ae68092d94594a83f927ca6025a533d65ec381da577b4ef738b77d1c05a7a7",
+      "substantive_body_available": true
+    },
+    {
+      "source_id": "P02",
+      "requested_url": "https://developers.google.com/search/docs/appearance/ai-features?hl=ko",
+      "url": "https://developers.google.com/search/docs/appearance/ai-features?hl=ko",
+      "title": "AI 기능 및 웹사이트 | Google 검색 센터  |  Documentation  |  Google for Developers",
+      "role": "official_google_ai_feature_requirements",
+      "checked_at": "2026-11-24T09:13:05+09:00",
+      "method": "read_only_public_http",
+      "status": 200,
+      "html_sha256": "b608bc799e5b53616aa8c1ea213a016157c7d12b2206aab24c7d83662300f328",
+      "text_sha256": "b2137d36a3c194abbec06075fb73efb79c932543810f352937b52e673f9caabd",
+      "substantive_body_available": true
+    }
+  ],
+  "internal_document_references": [
+    {
+      "source_id": "I01",
+      "path": "/Users/mcbookpro/Documents/Claude Code/.codex/skills/blinkad-quote-hospital-1month/SKILL.md",
+      "checked_at": "2026-11-24T09:18:25+09:00",
+      "sha256": "308b96be28281d2fa08a7290bcb41643a51801f3c7d133db451f2e3937e08d70",
+      "evidence_level": "internal_document_not_public_offer_or_executed_delivery"
+    },
+    {
+      "source_id": "I01-renderer",
+      "path": "/Users/mcbookpro/Documents/Claude Code/.codex/skills/blinkad-quote-hospital-1month/scripts/render_hospital_1month_quote.py",
+      "checked_at": "2026-11-24T09:18:25+09:00",
+      "sha256": "f62f7a12607641e04fd5ddcce5063e7a67176f11b902c4fafdf7b4b008ce2cd7",
+      "evidence_level": "internal_document_not_public_offer_or_executed_delivery"
+    },
+    {
+      "source_id": "I02",
+      "path": "/Users/mcbookpro/.agents/skills/blinkad-geo-monthly-report/SKILL.md",
+      "checked_at": "2026-11-24T09:18:25+09:00",
+      "sha256": "6359ed56ceae2f6ea8a715ba0a297ff339b47fdf69f7917ebff2eadee9a8af96",
+      "evidence_level": "internal_document_not_public_offer_or_executed_delivery"
+    },
+    {
+      "source_id": "I03",
+      "path": "/Users/mcbookpro/Documents/Claude Code/AGENTS.md",
+      "checked_at": "2026-11-24T09:18:25+09:00",
+      "sha256": "6f43a2769c1becb37e62b1787a3197f9799b311b7042c86ece62998741c8cccd",
+      "evidence_level": "internal_document_not_public_offer_or_executed_delivery"
+    },
+    {
+      "source_id": "I04",
+      "path": "/Users/mcbookpro/Documents/Claude Code/sites/blinkad/docs/blinkad-registered-topic-audit-20261005.json",
+      "checked_at": "2026-11-24T09:18:25+09:00",
+      "sha256": "4f468d816c56c26e75c45ca848ff7bc8eff4012ec1300143d6e10f78ae08c582",
+      "evidence_level": "internal_document_not_public_offer_or_executed_delivery"
+    }
+  ],
+  "prior_evidence_indices": [
+    "../blinkad-hospital-stage2-haroop-pilot-2026-11-23/source-index.json",
+    "../blinkad-hospital-stage3-aeo-products-2026-11-23/source-index.json",
+    "../blinkad-hospital-stage4-site-content-eeat-2026-11-23/source-index.json",
+    "../blinkad-hospital-stage5-verification-2026-11-24/source-index.json"
+  ],
+  "prior_fact_dates": "2026-11-23 to 2026-11-24; synthesis does not reset source dates",
+  "raw_full_text_in_git": false
+}

@@ -1,0 +1,171 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "proposed_not_committed_schedule": true,
+  "items": [
+    {
+      "id": "P0-01",
+      "priority": "P0",
+      "task": "측정 설명의 정본과 비교 단위를 맞춘다",
+      "suggested_owner_role": "서비스 책임자·측정 담당",
+      "proposed_deliverable": "공개 AI 대상과 내부 문서의 API/UI·대상 차이를 대조하고 신규 계약의 측정 조건표1개 작성",
+      "acceptance": "플랫폼/모델·검색·언어/지역·질문 버전·반복·유효/실패 분모·증거·비교 규칙 명시. 기존 결과는 경로별 보존",
+      "dependencies": [],
+      "source_ids": [
+        "B04",
+        "I02",
+        "I03"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P0-02",
+      "priority": "P0",
+      "task": "병원 상품의 납품 단위를 한 장으로 정리한다",
+      "suggested_owner_role": "서비스 책임자·운영 담당",
+      "proposed_deliverable": "기존 견적의 월8건이 원주제/언어 산출물/수정 중 무엇인지 결정하고 포함/별도 표 작성",
+      "acceptance": "원고·번역·기술 적용·발행·의료진 확인·수정·광고비/제작비를 구분. 가격 변경 없이 미확정 칸 표시",
+      "dependencies": [
+        "P0-01"
+      ],
+      "source_ids": [
+        "B02",
+        "B08",
+        "I01"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P0-03",
+      "priority": "P0",
+      "task": "비교 가능한 월간 보고서 예시를 정리한다",
+      "suggested_owner_role": "측정·광고·콘텐츠 담당",
+      "proposed_deliverable": "기존 보고 양식에 원답변 조건·작업 변경·다음 행동·문의 기록 공백을 연결",
+      "acceptance": "납품/AI언급/자사인용/방문/실제문의/예약을 분리. 미연결=미확인. 가상 예시는 실제 성과와 명확히 구별",
+      "dependencies": [
+        "P0-01",
+        "P0-02"
+      ],
+      "source_ids": [
+        "B04",
+        "B06"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P0-04",
+      "priority": "P0",
+      "task": "오래된 성과·보장 표현을 우선 검토한다",
+      "suggested_owner_role": "콘텐츠 책임자",
+      "proposed_deliverable": "기존1순위/ROI/정량상승 문구의 원출처·실험 범위·상담 약속 대조표 작성",
+      "acceptance": "확인된 사실/회사 경험/가정/효과 보장 구분. 수정 제안만 만들고 기존 게시물은 이번 조사에서 변경하지 않음",
+      "dependencies": [],
+      "source_ids": [
+        "B04",
+        "B09",
+        "B13",
+        "P01",
+        "P02"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P1-01",
+      "priority": "P1",
+      "task": "기존 병원 설명을 발주용 서비스 안내로 보강한다",
+      "suggested_owner_role": "서비스·웹 담당",
+      "proposed_deliverable": "기존 병원 외국인 마케팅 글을 기준으로 업무/산출물/병원 협조/일정 조건을 연결",
+      "acceptance": "기존 URL 유지 우선. 유사 서비스 허브를 추가할지 기존 글 보강으로 끝낼지 먼저 결정",
+      "dependencies": [
+        "P0-02",
+        "P0-03"
+      ],
+      "source_ids": [
+        "B08",
+        "B02"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P1-02",
+      "priority": "P1",
+      "task": "승인 가능한 병원 증거자료를 선별한다",
+      "suggested_owner_role": "고객 담당·측정 담당",
+      "proposed_deliverable": "실제 변경URL·측정 원자료가 있고 공개 범위가 확인된 건만 사례 후보로 선정",
+      "acceptance": "전후 동일 조건·동시 변경·한계·공개 동의 점검. 자료가 없으면 과정 사례/양식으로 대체하고 성과 수치 생성 금지",
+      "dependencies": [
+        "P0-03"
+      ],
+      "source_ids": [
+        "B06"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P1-03",
+      "priority": "P1",
+      "task": "보강6건·신규검토2건의 콘텐츠 순서를 정한다",
+      "suggested_owner_role": "콘텐츠 담당",
+      "proposed_deliverable": "기존 글의 직접 답변을 먼저 보강하고 신규2건은 최신 등록글 본문 대조 후 확정",
+      "acceptance": "이번8개는 기회 목록. 신규 비중복/집필/발행 승인으로 표시하지 않음",
+      "dependencies": [
+        "P0-01",
+        "P0-02",
+        "P0-04"
+      ],
+      "source_ids": [
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "B12",
+        "B13",
+        "I04"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P1-04",
+      "priority": "P1",
+      "task": "기존 상담 경로에 병원 맥락을 이어준다",
+      "suggested_owner_role": "영업·웹 담당",
+      "proposed_deliverable": "필수 입력 증가 없이 기존 글 CTA에서 현재 사이트/진료/목표 언어를 요청하는 문구 제안",
+      "acceptance": "현재 contact 재사용. 유입 주제 전달은 기존 기능 가능 범위 검토. 실 양식/CRM 변경은 별도 작업",
+      "dependencies": [
+        "P1-01"
+      ],
+      "source_ids": [
+        "B03",
+        "B08"
+      ],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P2-01",
+      "priority": "P2",
+      "task": "661곳 영업 대상을 문제·권한·응대 여건으로 나눈다",
+      "suggested_owner_role": "영업 책임자",
+      "proposed_deliverable": "국제진료/홍보/다진료과별 창구·목표 언어·콘텐츠 확인/사이트 반영 가능 여부를 기존 자료로 분류",
+      "acceptance": "기관 매출·직원 수만으로 발주 가능성 판정하지 않음. 담당자 검색 수요로 키워드 수치를 오인하지 않음",
+      "dependencies": [
+        "P1-01"
+      ],
+      "source_ids": [],
+      "status": "recommendation_not_executed"
+    },
+    {
+      "id": "P2-02",
+      "priority": "P2",
+      "task": "보고 운영을 재사용하고 도구 증설은 수요 확인 뒤 검토한다",
+      "suggested_owner_role": "운영 책임자",
+      "proposed_deliverable": "월 반복 소요시간·자료 제공 지연·측정 실패·추가 언어 작업을 기록",
+      "acceptance": "반복 병목이 확인되기 전 새 대시보드/CRM/자동화 구축을 선행하지 않음",
+      "dependencies": [
+        "P0-03",
+        "P1-02"
+      ],
+      "source_ids": [],
+      "status": "recommendation_not_executed"
+    }
+  ]
+}

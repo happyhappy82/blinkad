@@ -1,0 +1,82 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "records": [
+    {
+      "company_id": "C01",
+      "name": "하룹",
+      "observed_structure": "공개 가격·상품·자사 칼럼·후기",
+      "applicable_pattern": "제공 수량과 구축/운영 구분을 구매 전에 설명",
+      "limits": "자사 성과·후기와 독립 검증은 구분"
+    },
+    {
+      "company_id": "C02",
+      "name": "애드리절트",
+      "observed_structure": "대표/저서·진료과별 상품·사례·선택 질문 칼럼",
+      "applicable_pattern": "회사·담당자·상품·증거·상담의 연결",
+      "limits": "저서 출간/인터뷰가 병원 SEO 효과 인증은 아님"
+    },
+    {
+      "company_id": "C03",
+      "name": "상승기획",
+      "observed_structure": "진료과·지역·원장 이야기와 사례",
+      "applicable_pattern": "실제 의료진 판단을 구체적 진료 설명으로 연결",
+      "limits": "익명 성장 수치의 원자료 미확인"
+    },
+    {
+      "company_id": "C04",
+      "name": "시월기획",
+      "observed_structure": "회사·진료과 상품·뉴스·포트폴리오",
+      "applicable_pattern": "서비스와 읽을거리를 역할별로 분리",
+      "limits": "뉴스3개 홈 canonical 재확인. 실제 Google 대표주소/색인 미확인"
+    },
+    {
+      "company_id": "C05",
+      "name": "오른기획",
+      "observed_structure": "공식 허브+공식 연계 네이버 질문형 글",
+      "applicable_pattern": "담당자 실무 질문→작업 확인→상담",
+      "limits": "3개 블로그를 독립 추천3건으로 세지 않음"
+    },
+    {
+      "company_id": "C06",
+      "name": "리앤메디",
+      "observed_structure": "병원 과정·영상/홈페이지/환자 경험",
+      "applicable_pattern": "서비스가 연결되는 단계를 설명",
+      "limits": "두 글 동일 구간은11/23 관측.11/24 전체 본문/대표주소 접근 제한"
+    },
+    {
+      "company_id": "C07",
+      "name": "윈에이드",
+      "observed_structure": "서비스·긴 가이드·용어·데이터·팀",
+      "applicable_pattern": "정의·과정·원칙·담당자·관련 콘텐츠 연결",
+      "limits": "특정 FAQ/스키마가 AI 인용을 결정한다는 일반화는 별도 검증"
+    },
+    {
+      "company_id": "C08",
+      "name": "KR마케팅",
+      "observed_structure": "계산/실무 가이드·계층형 상품·변경 로그",
+      "applicable_pattern": "작업 범위와 확인 자료를 구체화",
+      "limits": "기존 관측은 광고 노출. 검색 상위 원인으로 쓰지 않음"
+    },
+    {
+      "company_id": "C09",
+      "name": "골드닥터스",
+      "observed_structure": "영상·고객 추천·연혁·사회공헌 수상",
+      "applicable_pattern": "서비스 경험을 회사 정보와 연결",
+      "limits": "영상4개 목록 메타만 확인. 수상=기술 인증 아님. 기존 광고 노출 구분"
+    },
+    {
+      "company_id": "C10",
+      "name": "나이스컴퍼니",
+      "observed_structure": "팀별 작업·병원 포트폴리오·키워드 글→공식 문의",
+      "applicable_pattern": "공식 링크/담당 팀·과정 연결",
+      "limits": "회사 연결은 확인. 최초 광고ID 동일성·성과 원자료 별도 미확인"
+    }
+  ],
+  "reference_reports": [
+    "../blinkad-hospital-stage4-site-content-eeat-2026-11-23.md",
+    "../blinkad-hospital-stage5-verification-2026-11-24.md"
+  ],
+  "no_numeric_eeat_score": true,
+  "no_ranking_causality_claim": true,
+  "observation_dates": "2026-11-23 to 2026-11-24; not new SERP measurement"
+}

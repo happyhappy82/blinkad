@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "public_existing": [
+    "종합 서비스",
+    "외국인마케팅",
+    "구글 프로필",
+    "브랜드 블로그",
+    "AI 실측·월간 보고 안내",
+    "레딧",
+    "프로젝트 사례·예시 구분",
+    "병원 외국인 마케팅 안내 글",
+    "병원 홈페이지 시리즈"
+  ],
+  "public_scope_source_ids": [
+    "B01",
+    "B02",
+    "B04",
+    "B05",
+    "B06",
+    "B08"
+  ],
+  "internal_quote_template_only": {
+    "profile_monthly_krw": 1400000,
+    "ads_operation_monthly_krw": 500000,
+    "aeo_8_items_monthly_krw": 1200000,
+    "one_month_total_ex_vat_krw": 3100000,
+    "one_month_total_inc_vat_krw": 3410000,
+    "not_a_new_public_universal_price": true,
+    "extra_costs": [
+      "실매체비",
+      "의료광고심의비",
+      "촬영",
+      "번역",
+      "랜딩/웹개발",
+      "외부 솔루션"
+    ],
+    "quantity_language_definition_unresolved": true,
+    "source_ids": [
+      "I01",
+      "I01-renderer"
+    ]
+  },
+  "measurement_document_alignment": {
+    "public_targets": "ChatGPT/Gemini/Perplexity/Google AI 및 월 같은 질문 안내",
+    "installed_document": "Gemini Web 로그아웃·12질문×5회=60·API 제외",
+    "higher_priority_user_rule": "AI 언급률/점유율 신규 실측은 각 공식 API. DataForSEO AI 전부 금지",
+    "interpretation": "문서 간 정합성 문제. 실제 전 고객 계약이나 모든 운영 실적을 감사한 결과 아님",
+    "recommendation": "신규 작업은 사용자 규칙을 우선하고 경로/모델/질문 변경은 새 baseline/version. API와UI 결과 혼합 비교 금지",
+    "no_protocol_changed_or_measurement_run": true,
+    "source_ids": [
+      "B04",
+      "I02",
+      "I03"
+    ]
+  },
+  "contact_read_only": {
+    "observed_fields": [
+      "이름",
+      "연락처",
+      "선택 문의내용"
+    ],
+    "no_form_submission": true,
+    "no_conversion_audit": true,
+    "source_id": "B03"
+  },
+  "own_claim_review_candidates": {
+    "not_full_fact_check": true,
+    "older_ai_strategy_article": "B13",
+    "examples_to_reverify": [
+      "AI 답변에 없으면 후보 자동 탈락이라는 일반화",
+      "기존 채널 ROI가 무너졌다는 포괄적 표현",
+      "GEO 연구의40%를 병원별 인용 상승에 적용하는 문구",
+      "자체 환자 통계를 설명하는 예시/안전표현의 조건"
+    ],
+    "other": "B04 효과2~3개월 안내는 회사 근거/조건 검토. B09 기존48곳 일반화의 원조사 연결 여부 검토",
+    "no_live_content_changed": true
+  }
+}

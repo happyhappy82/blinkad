@@ -1,0 +1,715 @@
+{
+  "checked_at": "2026-11-24T09:18:25+09:00",
+  "refresh_existing_count": 6,
+  "new_candidate_count": 2,
+  "approved_new_count": 0,
+  "current_public_list_link_count": 135,
+  "old_registered_inventory_date": "2026-10-05T18:02:45.001487+09:00",
+  "old_registered_entries": 258,
+  "dedup_scope": "Current public listing + 6 closest article bodies + dated registered metadata; not all current unpublished drafts",
+  "inventory": [
+    {
+      "text": "General 2026.11.15 BlinkAd Team 중국 AI 검색 노출, 블링크애드는 이렇게 준비합니다 중국 AI 검색 노출을 준비하는 대표·담당자에게 질문 선정, 현재 답변 점검, 중국어 브랜드 정보와 콘텐츠 보완, 재확인 순서를 설명합니다. 카페 예시로 맡길 수 있는 작업을 안내합니다. Rea",
+      "href": "https://www.blinkad.kr/blog/china-ai-search-visibility"
+    },
+    {
+      "text": "General 2026.11.11 BlinkAd Team 피부과 마케팅, 한의원까지 피부미용에 나선 지금 더 중요해진 이유 한의계의 피부미용 교육 움직임을 바탕으로 피부과 마케팅의 역할을 살펴봅니다. 가상의 두 병원 예시로 진료 설명, 검색·지도·홈페이지 연결, 문의 준비를 설명합니다. Read Arti",
+      "href": "https://www.blinkad.kr/blog/dermatology-marketing-skin-care-competition"
+    },
+    {
+      "text": "General 2026.11.10 BlinkAd Team GEO 마케팅, AI가 설명하는 브랜드 이미지까지 살펴봐야 합니다 GEO 마케팅을 준비한다면 AI가 우리 회사를 어떤 업체로 소개하는지도 살펴보세요. 커피머신 판매·설치·교육 업체의 예시로 서비스의 강점과 사실을 정확하게 설명할 방법을 알려드립니다",
+      "href": "https://www.blinkad.kr/blog/geo-marketing-brand-description"
+    },
+    {
+      "text": "General 2026.11.09 BlinkAd Team SEO 컨설팅, 홈페이지를 새로 만들기 전에 받아야 할까요? 검색으로 고객을 확보하려는 홈페이지라면 내용과 기능을 확정하기 전에 SEO를 함께 검토해보세요. 고객이 읽어야 할 설명을 제작 요청에 반영하는 방법을 알려드립니다. Read Article",
+      "href": "https://www.blinkad.kr/blog/seo-consulting-before-website-build"
+    },
+    {
+      "text": "General 2026.11.09 BlinkAd Team 다국어 SEO 대행, 번역한 홈페이지가 해외 검색에 안 보인다면? 번역한 홈페이지가 해외 검색에서 보이지 않는다면 언어별 주소와 색인 상태, 서비스 설명, 문의 방법을 함께 살펴보세요. 다국어 SEO를 맡기기 전에 확인할 내용을 설명합니다. Rea",
+      "href": "https://www.blinkad.kr/blog/multilingual-seo-translated-website-search"
+    },
+    {
+      "text": "General 2026.11.09 BlinkAd Team 구글맵 리뷰 관리 대행, 외국어 후기 답변도 맡길 수 있을까요? 외국어 구글맵 후기 답변도 운영을 맡길 수 있습니다. 후기 확인과 번역, 매장의 사실 확인, 답변 작성과 게시 후 확인까지 맡길 업무를 정하는 방법을 설명합니다. Read Articl",
+      "href": "https://www.blinkad.kr/blog/google-maps-foreign-language-review-management"
+    },
+    {
+      "text": "General 2026.11.09 BlinkAd Team 자연유입 마케팅, 검색 유입이 줄었다면 무엇부터 확인할까요? 자연유입 마케팅 중 검색 방문이 줄었을 때, 페이지별 노출·클릭과 접근 오류·수요 변화를 나눠 필요한 작업을 고르는 방법을 설명합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/organic-marketing-search-traffic-drop"
+    },
+    {
+      "text": "General 2026.11.06 BlinkAd Team 홈페이지 SEO, 우리를 모르는 신규 고객의 검색어는 어떻게 고를까요? 피부과 예시로 병원명·진료명·지역 검색어를 구분하고, 신규 문의를 위한 홈페이지 내용을 준비하는 방법을 설명합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/homepage-seo-new-customer-keywords"
+    },
+    {
+      "text": "General 2026.11.06 BlinkAd Team GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요. GEO 마케팅을 직접 진행할지, 필요한 부분만 의뢰할지, 지속 운영을 맡길지 현재 문제와 내부 인력·수정 권한·관리 여건에 맞춰 판단합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision"
+    },
+    {
+      "text": "General 2026.11.04 BlinkAd Team 자연유입 마케팅 계획, 예산과 진행 범위를 어떻게 정할까요? 자연유입 마케팅을 시작할 때 광고비와 준비·운영 비용을 나눠 보고, 현재 홈페이지와 고객의 가치에 맞춰 예산과 진행 범위를 정하는 방법을 설명합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/organic-marketing-budget-plan"
+    },
+    {
+      "text": "General 2026.11.04 BlinkAd Team 레딧 마케팅이 영어권 고객 유치에 중요한 3가지 이유 영어권 고객의 구체적인 질문, 경험담의 이용 조건, 선택의 비교 기준을 공개 대화에서 읽을 수 있다는 레딧 마케팅의 세 가지 필요성을 설명합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/english-inbound-marketing-reddit"
+    },
+    {
+      "text": "General 2026.11.02 BlinkAd Team 외국인 구글광고 대행, 업체 선택 전에 꼭 봐야 할 3가지 외국인 구글광고 대행사를 선택하기 전 국가·언어별 고객 전략, 광고에서 문의까지의 흐름, 실제 문의 측정에 관한 설명과 자료를 확인합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/foreign-google-ads-agency-selection"
+    },
+    {
+      "text": "General 2026.10.31 BlinkAd Team 프랜차이즈 구글맵 관리 대행, 여러 매장을 맡길 업체는 어떻게 고를까요? 프랜차이즈 구글맵 대행사를 비교할 때 매장별 업무 범위, 직영·가맹 운영 조건, 수행·성과 자료와 견적·인계 조건을 살펴봅니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/franchise-google-maps-agency-selection"
+    },
+    {
+      "text": "General 2026.10.29 BlinkAd Team 병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요? 기존 한국어 홈페이지를 유지하며 다국어 페이지를 추가할 조건과 제작 범위, 기존 제작사 협조, 견적·공개 전 확인할 일을 설명합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website"
+    },
+    {
+      "text": "General 2026.10.28 BlinkAd Team 외국인마케팅 예산, 인플루언서 협찬과 구글마케팅 중 무엇이 먼저일까? 외국인마케팅 예산, 인플루언서 협찬과 구글마케팅 중 어디에 먼저 써야 할까요? 블링크애드가 상품 소개와 검색 고객의 상황을 따라 예산과 견적을 비교하는 기준을 설명합니다. Rea",
+      "href": "https://www.blinkad.kr/blog/foreign-influencer-vs-google-marketing-budget"
+    },
+    {
+      "text": "General 2026.10.27 BlinkAd Team 병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요? 병원 외국인 마케팅을 위해 맡길 구글맵·다국어 홈페이지·구글광고·AI 검색 최적화·레딧 마케팅 업무와 결과 확인 방법, 병원 준비자료를 안내합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/hospital-foreign-marketing"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.23 BlinkAd Team 병원 홈페이지 오픈 검수와 이후 관리, 어디까지 맡겨야 할까? 병원 홈페이지 오픈 검수는 화면과 문구 확인만으로 끝나지 않습니다. 검색 접근과 실제 노출, 문의 접수, 운영 권한, 유지관리 담당자를 나눠 확인하고 오픈 이후 지원 범",
+      "href": "https://www.blinkad.kr/blog/hospital-website-launch-maintenance"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.21 BlinkAd Team 병원 홈페이지 리뉴얼, 기존 주소와 검색 유입을 지키는 이전 작업 병원 홈페이지를 리뉴얼할 때 기존 페이지 주소와 검색 유입도 함께 챙겨야 합니다. 이전 주소와 새 페이지를 짝짓고, 리디렉션과 내부 링크를 확인하며, 공개 후 오류와",
+      "href": "https://www.blinkad.kr/blog/hospital-website-renewal-url-migration"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.19 BlinkAd Team 병원 홈페이지 문의·예약 경로, 제작 단계에서 점검할 부분 병원 홈페이지의 문의 버튼을 누르는 것과 예약이 확정되는 것은 다릅니다. 문의 접수부터 직원의 확인과 후속 안내까지 이용 과정을 살펴보고, 모바일 입력과 완료 화면, 측정 ",
+      "href": "https://www.blinkad.kr/blog/hospital-website-inquiry-booking"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.17 BlinkAd Team 병원 소개·의료진·진료 안내를 검색 가능한 페이지로 구성하는 법 병원 소개와 의료진 이력, 진료 안내를 이미지 한 장에 담으면 필요한 정보를 찾아보기 어렵습니다. 병원에서 승인한 정보를 페이지 본문으로 구성하고, 방문자와 검색엔진이",
+      "href": "https://www.blinkad.kr/blog/hospital-website-content-structure"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.15 BlinkAd Team 병원 홈페이지 제작비가 달라지는 작업 범위와 추가 비용 병원 홈페이지 제작비는 페이지 수뿐 아니라 화면 설계, 원고와 사진 준비, 예약 기능, 주소 이전, 운영 지원 범위에 따라 달라집니다. 견적서의 총액을 비교하기 전에 포함된 작",
+      "href": "https://www.blinkad.kr/blog/hospital-website-cost-scope"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.13 BlinkAd Team 병원 홈페이지 SEO 검수, 실제 페이지에서 확인하는 항목 병원 홈페이지의 SEO 작업이 끝났다면 실제 페이지에서 무엇을 확인해야 할까요? 주요 주소, 제목과 설명, 검색 접근, 내부 링크, 모바일 문의 경로를 점검하고 수정 전후 ",
+      "href": "https://www.blinkad.kr/blog/hospital-website-seo-review"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.11 BlinkAd Team 병원 홈페이지 제작사에 확인할 검색·운영·인수 조건 병원 홈페이지 제작사를 고를 때 포트폴리오와 총액 외에 확인할 조건이 있습니다. 검색 작업의 적용 페이지와 검수 자료, 병원에서 수정할 수 있는 범위, 계약 종료 후 넘겨받을 계정",
+      "href": "https://www.blinkad.kr/blog/hospital-website-agency-checklist"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.09 BlinkAd Team 병원 홈페이지 개선과 재제작, 작업 범위는 어떻게 달라질까? 병원 홈페이지를 부분적으로 고칠지, 새로 제작할지는 사이트의 나이만으로 정하기 어렵습니다. 원고와 링크 수정, 기능 추가, 구조 재설계의 차이를 살펴보고 현재 사이트에서 ",
+      "href": "https://www.blinkad.kr/blog/hospital-website-improvement-vs-rebuild"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.07 BlinkAd Team 병원 홈페이지 진단은 무엇을 보고, 어떤 개선안을 내야 할까? 병원 홈페이지 진단은 점수보다 고칠 페이지와 작업 우선순위를 알려줘야 합니다. 검색 접근, 진료 안내, 문의 경로, 운영 권한을 살펴보고 발견한 문제를 실제 개선 범위와",
+      "href": "https://www.blinkad.kr/blog/hospital-website-audit"
+    },
+    {
+      "text": "HOSPITAL WEBSITE 2026.10.05 BlinkAd Team 병원 홈페이지 제작, AI 검색까지 고려하면 무엇이 달라질까? 병원 홈페이지를 새로 만들 때 AI 검색까지 고려한다면 무엇을 요청해야 할까요? 검색엔진이 읽을 수 있는 진료 정보, 페이지별 안내, 문의·예약 테스트, 오픈 후 확인 ",
+      "href": "https://www.blinkad.kr/blog/hospital-website-ai-search"
+    },
+    {
+      "text": "General 2026.09.26 BlinkAd Team 가격·행사 안내가 직원마다 다를 때, 상담 기준을 맞추는 방법 같은 행사를 보고 문의했는데 직원마다 적용 기간이나 포함 항목을 다르게 설명하면 고객은 어떤 안내를 믿어야 할지 묻게 됩니다. 병원에서는 지금 쓰는 공통 안내와 그 고객에게 이미 보낸 ",
+      "href": "https://www.blinkad.kr/blog/doctornest-consultation-manual-handover"
+    },
+    {
+      "text": "AEO CONTENT 2026.09.26 BlinkAd Team 강남 성형외과 외국인 마케팅, 일본·중국·영어권 검색을 문의로 연결하려면 영어·일본어·중국어로 검색했을 때 달라지는 강남역 지도 결과와 공식 홈페이지의 상담 경로를 살펴보고, 다국어 페이지에서 같아야 할 정보와 따로 운영할 정보를 구분합니다",
+      "href": "https://www.blinkad.kr/blog/gangnam-seonghyeong-oigoa-oigug-in-maketing-ilbonjunggugyeong-eogueon-geomsaeg-eul-mun-euilo-yeongyeolhalyeomyeon"
+    },
+    {
+      "text": "AEO CONTENT 2026.09.26 BlinkAd Team 홍대 미용실 외국인 마케팅, Google Maps와 Instagram 문의를 예약으로 바꾸는 법 홍대 미용실의 Google Maps, Instagram, 예약 페이지에 어떤 정보를 나눠 담아야 문의가 누락되지 않고 예약 기록으로 이어지는지 ",
+      "href": "https://www.blinkad.kr/blog/hongdae-miyongsil-oigug-in-maketing-google-mapsoa-instagram-mun-euileul-yeyag-eulo-bakkuneun-beob"
+    },
+    {
+      "text": "AEO CONTENT 2026.09.26 BlinkAd Team 명동 피부과 외국인 마케팅, 단기 체류 환자의 검색을 예약으로 연결하는 법 명동 피부과를 찾는 단기 체류 고객이 예약 전에 확인할 시술 시간, 일정, 회복 안내와 출국 후 문의 방법을 지도 프로필과 공식 영문 사이트 기준으로 살펴봅니다. R",
+      "href": "https://www.blinkad.kr/blog/myeongdong-pibugoa-oigug-in-maketing-dangi-chelyu-hoanjaeui-geomsaeg-eul-yeyag-eulo-yeongyeolhaneun-beob"
+    },
+    {
+      "text": "General 2026.09.25 BlinkAd Team 해외 매장 광고, Google Ads보다 먼저 손봐야 할 것 해외 매장에 Google Ads를 시작하기 전에는 고객과 언어, 지도 정보, 랜딩페이지, 문의 경로와 전환 측정부터 확인해야 합니다. 광고비를 쓰기 전에 직접 점검할 다섯 가지를 정리했습",
+      "href": "https://www.blinkad.kr/blog/haeoi-maejang-goanggo-google-adsboda-meonjeo-sonboaya-hal-geos"
+    },
+    {
+      "text": "General 2026.09.25 BlinkAd Team Google 지도에는 나오는데 문의가 없다면 어디부터 볼까? Google 지도에서 매장이 보이는데도 문의가 없다면 노출부터 늘릴 일이 아닐 수 있습니다. 검색어와 조회, 전화·길찾기·웹사이트 클릭, 실제 문의를 나눠 보고 고객이 멈추는 지점을 찾는",
+      "href": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka"
+    },
+    {
+      "text": "General 2026.09.25 BlinkAd Team 해외 한인 매장, 교민 소개만 기다려도 될까? 해외 한인 매장은 보통 교민 소개로 첫 손님을 만납니다. 소개만으로 닿지 않는 고객을 받으려면 Google 검색과 지도에 정확한 영업정보와 문의 경로를 갖춰야 합니다. 무엇부터 확인해야 하는지 살펴봅니",
+      "href": "https://www.blinkad.kr/blog/haeoi-han-in-maejang-gyomin-sogaeman-gidalyeodo-doilkka"
+    },
+    {
+      "text": "AEO CONTENT 2026.09.18 BlinkAd Team 강남 피부과 외국인 마케팅, 구글지도 검색을 상담 예약으로 연결하는 구조 강남 피부과가 구글지도에서 발견된 뒤 외국어 진료 정보, 상담 응답, 예약 확정까지 연결하려면 무엇을 확인해야 하는지 실제 검색 결과 5곳과 공식 통계로 살펴봅니다. ",
+      "href": "https://www.blinkad.kr/blog/gangnam-pibugoa-oigug-in-maketing-gugeuljido-geomsaeg-eul-sangdam-yeyag-eulo-yeongyeolhaneun-gujo"
+    },
+    {
+      "text": "AEO CONTENT 2026.09.18 BlinkAd Team 명동 약국 외국인 마케팅, 관광객의 ‘외국인 약국’ 검색을 방문으로 바꾸는 법 명동 약국을 찾는 관광객이 Google 지도에서 위치와 영업시간을 확인하고 방문하기까지, 프로필 정보와 길찾기·문의·결제 기록을 어떻게 나눠 볼지 설명합니다. R",
+      "href": "https://www.blinkad.kr/blog/myeongdong-yaggug-oigug-in-maketing-goangoanggaeg-eui-oigug-in-yaggug-geomsaeg-eul-bangmun-eulo-bakkuneun-beob"
+    },
+    {
+      "text": "General 2026.09.05 BlinkAd Team 외국인 고객은 한국 에스테틱을 어떻게 찾고 예약할까? 에스테틱 마케팅의 시작 외국인 고객이 비의료 에스테틱의 관리 종류·가격·시간을 이해하고 상담과 예약으로 이동하도록 Google 지도, 외국어 서비스 페이지와 예약 동선을 구성하는 방법을 살펴봅니",
+      "href": "https://www.blinkad.kr/blog/how-foreign-customers-find-and-book-korean-esthetics"
+    },
+    {
+      "text": "General 2026.09.05 BlinkAd Team 외국인 손님은 숙소를 어디서 검색하고 비교할까? 숙박업 마케팅의 시작 외국인 손님이 게스트하우스·한옥스테이를 발견한 뒤 예약하려면 어떤 정보가 필요할까요? 객실과 공용시설 설명, Google 지도 등록 자격, 예약 전후 안내를 공식 자료로 확인했습",
+      "href": "https://www.blinkad.kr/blog/how-foreign-guests-search-and-compare-accommodations"
+    },
+    {
+      "text": "General 2026.09.05 BlinkAd Team 외국인 관광객은 아고다·트립닷컴에서 무엇을 보고 호텔을 예약할까? 호텔 마케팅의 시작 호텔 마케팅을 시작할 때 아고다·트립닷컴과 Google 지도에서 무엇을 확인해야 할까요? 공식 안내를 직접 대조해 객실 사진, 조식·취소 조건, 체크인 안내의 점",
+      "href": "https://www.blinkad.kr/blog/how-foreign-guests-choose-korean-hotels-on-agoda-and-tripcom"
+    },
+    {
+      "text": "General 2026.09.04 BlinkAd Team 외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법 외국인 관광객이 한국 카페를 발견하고 저장한 뒤 실제 길찾기와 방문으로 이동하는 과정을 설명합니다. Google 지도 프로필, 대표 메뉴·가격·영업시간·입구 사진, 다국어 안내와 성",
+      "href": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes"
+    },
+    {
+      "text": "General 2026.09.03 BlinkAd Team 외국인 손님은 한국 식당을 어떻게 찾을까? 식당 마케팅의 시작 외국인 손님이 Google 검색과 지도에서 한국 식당을 발견하고 메뉴·가격·사진·리뷰를 비교해 길찾기나 예약으로 이동하는 과정과, 식당이 먼저 정리해야 할 프로필·외국어 메뉴·성과 지표",
+      "href": "https://www.blinkad.kr/blog/how-foreign-customers-find-korean-restaurants"
+    },
+    {
+      "text": "General 2026.08.27 BlinkAd Team 외국인 마케팅 우리 업종도 될까요? 상담을 하다 보면 제일 많이 듣는 질문이 있습니다. \"우리 같은 데도 외국인이 오나요?\"입니다. 이 질문에 저희가 \"다 됩니다\"라고 답하지는 않습니다. 되는 곳이 있고, 솔직히 어려운 곳도 있습니다. 오늘은 그 ",
+      "href": "https://www.blinkad.kr/blog/oigug-in-maketing-uli-eobjongdo-doilkkayo"
+    },
+    {
+      "text": "General 2026.08.27 BlinkAd Team 외국인 관광객 손님은 네이버에서 우리 매장을 찾지 않습니다 외국인 손님을 받고 싶다는 사장님들과 이야기를 나누다 보면 거의 매번 같은 장면이 나옵니다. 매장 소개와 메뉴, 사진, 리뷰 답글까지 꼼꼼하게 관리해 두신 화면을 보여 주시는데, 그 화면이",
+      "href": "https://www.blinkad.kr/blog/oigug-in-goangoanggaeg-sonnim-eun-neibeoeseo-uli-maejang-eul-chaj-ji-anhseubnida"
+    },
+    {
+      "text": "General 2026.08.17 BlinkAd Team 뷰티네스트 요금과 시작 방법 뷰티네스트 요금은 월 구독료와 사용량 과금으로 나뉩니다. 설치비는 없습니다. 구독료는 도구를 쓰는 기본 비용이고, 사용량은 실제로 상담이 연결된 만큼 붙습니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/byutineseuteu-yogeumgoa-sijag-bangbeob"
+    },
+    {
+      "text": "General 2026.08.17 BlinkAd Team 병원 마케팅 대행사 고르는 법, 광고 보고서보다 상담 전환을 보세요 병원 마케팅 대행사를 알아보실 때 대부분 포트폴리오와 가격을 먼저 보십니다. 그런데 계약 후 몇 달 지나서 아쉬움이 생기는 지점은 대개 다른 곳입니다. 보고서에는 노출과 클릭이 늘",
+      "href": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo"
+    },
+    {
+      "text": "General 2026.08.16 BlinkAd Team 뷰티네스트로 외국인 손님 문의 받는 법 (LINE·WhatsApp·Instagram) 관광 상권에서 매장을 운영하시면 외국인 손님 문의가 옵니다. 뷰티네스트는 이 문의를 인스타그램 디엠, 라인, 왓츠앱 같은 채널에서 한 화면으로 받아, 직원이 한국",
+      "href": "https://www.blinkad.kr/blog/byutineseuteulo-oigug-in-sonnim-mun-eui-badneun-beob-linewhatsappinstagram"
+    },
+    {
+      "text": "General 2026.08.16 BlinkAd Team 닥터네스트를 쓰면 안 되는 병원 (도입 전 솔직한 체크리스트) 도구를 파는 쪽에서 \"이런 경우엔 저희 제품이 맞지 않습니다\"라고 쓰는 글은 드뭅니다. 그런데 맞지 않는 병원이 도입하면 몇 달 쓰다 그만두게 되고, 그건 병원에도 저희에게도 손해입니다",
+      "href": "https://www.blinkad.kr/blog/dagteoneseuteuleul-sseumyeon-an-doineun-byeong-ueon-doib-jeon-soljighan-chekeuliseuteu"
+    },
+    {
+      "text": "General 2026.08.15 BlinkAd Team 재방문 주기, 환자가 정하게 두면 안 옵니다 재방문이 안 되는 이유를 물으면 대개 만족도나 가격 얘기가 나옵니다. 그런데 실제로 확인해 보면 불만이 있어서 안 오는 경우보다 언제 가야 할지 몰라서 미루는 경우가 훨씬 많습니다. 시술 효과가 떨어지는",
+      "href": "https://www.blinkad.kr/blog/jaebangmun-jugi-hoanjaga-jeonghage-dumyeon-an-obnida"
+    },
+    {
+      "text": "General 2026.08.15 BlinkAd Team 외국인 환자 문의, 번역부터 다음 상담까지 어떻게 이어갈까? 외국어 문의에 답할 때는 문장을 번역하는 것만으로 끝나지 않습니다. 환자가 물은 날짜와 비용을 정확히 이해했는지 확인하고, 직원이 바뀌면 아직 답하지 못한 질문도 넘겨야 합니다. Read",
+      "href": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-google-maps-mun-euileul-silje-yeyag-eulo-bakkuneun-sangdam-dongseon"
+    },
+    {
+      "text": "General 2026.08.14 BlinkAd Team 뷰티 매장 고객관리, 상담 기록과 다음 안내를 함께 챙기는 법 손님에게 다시 연락하려는데 지난번에 어떤 시술을 받았는지, 무엇을 물었는지 찾느라 시간이 걸릴 때가 있습니다. 상담 내용은 메신저에 있고 시술 기록은 다른 곳에 있으면 담당자가 바뀔 때",
+      "href": "https://www.blinkad.kr/blog/byutineseuteulan-miyongsilneilsyab-sangdamgoa-jaebangmun-eul-han-hoamyeon-eseo-boneun-bangsig"
+    },
+    {
+      "text": "General 2026.08.14 BlinkAd Team 카카오톡·DM으로 흩어진 병원 문의, 한곳에서 관리하려면 상담 직원이 카카오톡에 답한 뒤 인스타그램 DM을 열고, 교대할 때는 다시 각 대화를 확인합니다. 채널이 여럿이면 어느 문의에 답했고 누구에게 다시 연락해야 하는지 찾는 데 시간이 걸립니다.",
+      "href": "https://www.blinkad.kr/blog/dagteoneseuteulan-byeong-ueon-sangdam-eul-hanalo-moeuneun-bangsig-jeongli"
+    },
+    {
+      "text": "General 2026.08.14 BlinkAd Team 광고로 들어온 문의, 예약까지 어디에 기록해야 할까? 광고 보고서에는 클릭이 늘었다고 나오는데 상담실에서는 예약이 늘었는지 답하기 어려울 때가 있습니다. 클릭한 사람과 실제로 문의한 사람을 연결할 기록이 없으면 무엇이 예약으로 이어졌는지 알기 어렵",
+      "href": "https://www.blinkad.kr/blog/byeong-ueon-maketing-goanggo-yuib-eul-sangdamyeyagjaebangmun-eulo-yeongyeolhaneun-bangbeob"
+    },
+    {
+      "text": "General 2026.08.13 BlinkAd Team 닥터팔레트 vs 애프터닥, 비교 전에 병원이 먼저 정해야 할 것 닥터팔레트, 애프터닥 같은 이름을 검색창에 넣어보셨다면 이미 병원에 뭔가 하나 더 필요하다고 느끼신 겁니다. 다만 두 제품을 나란히 놓고 비교하기 전에 먼저 정하셔야 할 게 있습니다.",
+      "href": "https://www.blinkad.kr/blog/dagteopalleteu-vs-aepeuteodag-bigyo-jeon-e-byeong-ueon-i-meonjeo-jeonghaeya-hal-geos"
+    },
+    {
+      "text": "General 2026.08.12 BlinkAd Team 예약 확인·변경 연락을 놓치지 않으려면 무엇을 정리해야 할까? 환자가 카카오톡으로 예약을 옮겨 달라고 하면 답장한 뒤에도 할 일이 남습니다. 예약 프로그램의 날짜를 바꾸고, 이전 날짜에 맞춰 준비한 안내가 있는지도 확인해야 합니다. 대화에서 변경을",
+      "href": "https://www.blinkad.kr/blog/3-byeong-ueon-allimtog-yeyagsisul-hujaebangmun-mesijineun-eonje-bonaeya-halkka"
+    },
+    {
+      "text": "General 2026.08.12 BlinkAd Team AI가 인용하는 랜딩페이지는 구조가 다릅니다: AEO GEO 랜딩페이지 설계법 같은 내용을 담아도 어떤 페이지는 AI 답변에 인용되고 어떤 페이지는 무시됩니다. 차이는 내용의 양이 아니라 구조입니다. AI는 페이지 전체를 읽고 요약하는 게 아니라,",
+      "href": "https://www.blinkad.kr/blog/aiga-in-yonghaneun-laendingpeijineun-gujoga-daleubnida-aeo-geo-laendingpeiji-seolgyebeob"
+    },
+    {
+      "text": "General 2026.08.11 BlinkAd Team [프리미엄콘텐츠] 의료관광 117만 명 시대, 외국인 환자는 어느 진료과로 몰렸을까 외국인 환자가 연간 117만 명을 넘었습니다. 정부가 2027년 목표로 잡았던 70만 명을 3년 앞당겨 달성한 숫자입니다. 그런데 이 성장의 과실이 모든 진료과에 ",
+      "href": "https://www.blinkad.kr/blog/peulimieomkontencheu-euilyogoangoang-117man-myeong-sidae-oigug-in-hoanjaneun-eoneu-jinlyogoalo-mollyeoss-eulkka"
+    },
+    {
+      "text": "General 2026.08.08 BlinkAd Team 약국 영어 회화보다 중요한 외국인 손님이 우리 약국을 찾아오게 만드는 법 외국인 손님을 받으려면 영어 회화부터 배워야 한다고 생각하기 쉽습니다. 그런데 순서가 반대입니다. 회화는 손님이 문을 열고 들어온 다음에 쓰는 것이고, 그 앞에는 손님이 우리",
+      "href": "https://www.blinkad.kr/blog/yaggug-yeong-eo-hoihoaboda-jung-yohan-oigug-in-sonnim-i-uli-yaggug-eul-chaj-aoge-mandeuneun-beob"
+    },
+    {
+      "text": "General 2026.08.08 BlinkAd Team 외국인 약국 소비 17배 가까이 늘었는데, 우리 약국은 왜 조용할까? 외국인의 국내 약국 소비액은 2021년 76억 원에서 2025년 1,256억 원으로 약 16배 늘었습니다. 2026년 상반기에만 1,421억 원을 기록해 이미 지난해 한 해 규모",
+      "href": "https://www.blinkad.kr/blog/oigug-in-yaggug-sobi-17bae-gakkai-neul-eossneunde-uli-yaggug-eun-oae-joyonghalkka"
+    },
+    {
+      "text": "General 2026.08.07 BlinkAd Team 외국인 환자 유치, 왜 광고보다 구글 지도 순위 진단이 먼저일까? 원장님들께 외국인 환자 유치 문의를 받으면 가장 많이 듣는 말이 있습니다. 광고를 얼마나 써야 하느냐는 질문입니다. 그런데 저희가 먼저 확인하는 것은 광고 예산이 아니라, 지금 이 ",
+      "href": "https://www.blinkad.kr/blog/oigug-in-hoanja-yuchi-oae-goanggoboda-gugeul-jido-sun-ui-jindan-i-meonjeoilkka"
+    },
+    {
+      "text": "General 2026.08.05 BlinkAd Team 외국인 타겟 홈페이지 제작 업체 고르기 전 체크리스트 6가지 외국인 타겟으로 마케팅하고 싶을때, 홈페이지 제작 업체를 고를 때 디자인 시안만 비교하면 실패합니다. 완성된 사이트의 성패는 디자인이 아니라 소유권, 관리 구조, 검색 대응에서 갈리기 때",
+      "href": "https://www.blinkad.kr/blog/oigug-in-tages-hompeiji-jejag-eobche-goleugi-jeon-chekeuliseuteu-6gaji"
+    },
+    {
+      "text": "General 2026.06.17 BlinkAd Team 구글 광고 비용, 월 얼마면 효과 볼 수 있을까? 업종별 현실 정리 구글 광고 예산을 정할 때는 클릭 비용과 실제 접수 기록을 함께 봐야 합니다. 공식 예산 한도, CPA 입찰과 과금의 차이, 광고비·대행료 구분과 가정 계산 예시를 정리했습니다. ",
+      "href": "https://www.blinkad.kr/blog/gugeul-goanggo-biyong-ueol-eolmamyeon-hyogoa-bol-su-iss-eulkka-eobjongbyeol-hyeonsil-jeongli"
+    },
+    {
+      "text": "General 2026.05.31 BlinkAd Team 위챗페이 한국 결제, 중국인 관광객 많은 매장이 확인할 것 중국인 관광객이 많은 상권에서 매장을 운영한다면 위챗페이 결제 가능 여부를 한 번쯤 고민하게 됩니다. 명동, 홍대, 성수, 압구정, 제주, 부산처럼 외국인 관광객이 움직이는 지역에서는 결제",
+      "href": "https://www.blinkad.kr/blog/uichaespei-hangug-gyeolje-junggug-in-goangoanggaeg-manh-eun-maejang-i-hoag-inhal-geos"
+    },
+    {
+      "text": "General 2026.05.30 BlinkAd Team 알리페이 한국 결제, 외국인 손님 받는 매장이 준비할 것 외국인 관광객이 많은 상권에서 매장을 운영하다 보면 손님이 계산대에서 'Alipay?'라고 묻는 경우가 있습니다. 특히 중국어권 관광객, 동남아 관광객, 일본 관광객이 많은 지역에서는 현금이",
+      "href": "https://www.blinkad.kr/blog/allipei-hangug-gyeolje-oigug-in-sonnim-badneun-maejang-i-junbihal-geos"
+    },
+    {
+      "text": "General 2026.05.29 BlinkAd Team 택스리펀드 매장, 외국인 관광객이 헷갈리지 않게 안내하는 방법 외국인 관광객이 많은 상권에서 매장을 운영한다면 택스리펀드는 단순한 세금 환급 제도가 아니라 방문 전 신뢰를 만드는 정보가 될 수 있습니다. 외국인 손님은 구글맵에서 매장을 찾고, 사진",
+      "href": "https://www.blinkad.kr/blog/taegseulipeondeu-maejang-oigug-in-goangoanggaeg-i-hesgalliji-anhge-annaehaneun-bangbeob"
+    },
+    {
+      "text": "General 2026.05.28 BlinkAd Team 와우패스 쓰는 외국인 관광객, 식당·카페 결제 준비 방법 외국인 손님이 많은 상권에서 식당이나 카페를 운영한다면 와우패스 결제를 한 번쯤 들어봤을 가능성이 높습니다. 외국인 관광객 입장에서는 환전, 결제, 교통카드 기능을 한 장으로 해결할 수 있어",
+      "href": "https://www.blinkad.kr/blog/oaupaeseu-sseuneun-oigug-in-goangoanggaeg-sigdangkape-gyeolje-junbi-bangbeob"
+    },
+    {
+      "text": "General 2026.05.27 BlinkAd Team 외국인 손님 응대 매뉴얼, 리뷰까지 좋아지는 기본 문장 외국인 손님이 들어왔을 때 바로 쓸 수 있는 영어 문장을 주문, 결제, 포장, 대기 안내 순으로 정리했습니다. 응대가 매끄러워지면 손님이 남기는 리뷰 내용까지 달라집니다. Read Articl",
+      "href": "https://www.blinkad.kr/blog/oigug-in-sonnim-eungdae-maenyueol-libyukkaji-joh-ajineun-gibon-munjang"
+    },
+    {
+      "text": "General 2026.05.26 BlinkAd Team 다국어 메뉴판 영어,일본어,중국어 어디까지 준비해야 할까? 외국인 손님을 받는 식당이라면 영어 메뉴판만 준비하면 되는지, 일본어와 중국어까지 만들어야 하는지 고민하게 됩니다. 특히 명동, 홍대, 동대문, 이태원, 성수, 신촌처럼 외국인 유입이 있는",
+      "href": "https://www.blinkad.kr/blog/dagug-eo-menyupan-yeong-eoilbon-eojunggug-eo-eodikkaji-junbihaeya-halkka"
+    },
+    {
+      "text": "General 2026.05.24 BlinkAd Team 메뉴판 번역 맡기기 전, 식당 사장님이 확인해야 할 5가지 외국인 손님을 받는 식당이라면 메뉴판 번역을 한 번쯤 고민하게 됩니다. 특히 명동, 홍대, 신촌, 이태원, 성수처럼 외국인 유동이 있는 상권에서는 영어 메뉴판이나 일본어·중국어 메뉴판을 준",
+      "href": "https://www.blinkad.kr/blog/menyupan-beon-yeog-matgigi-jeon-sigdang-sajangnim-i-hoag-inhaeya-hal-5gaji"
+    },
+    {
+      "text": "General 2026.05.24 BlinkAd Team 영어 메뉴판 만드는 법, 외국인 손님이 구글맵에서 실제로 보는것은? 외국인 손님을 더 받고 싶은 식당 사장님들이 가장 먼저 떠올리는 준비물이 영어 메뉴판입니다. 그런데 실제 매장에서는 영어 메뉴판을 만들어두고도 외국인 손님이 크게 늘지 않는 경우가",
+      "href": "https://www.blinkad.kr/blog/yeong-eo-menyupan-mandeuneun-beob-oigug-in-sonnim-i-gugeulmaeb-eseo-siljelo-boneungeos-eun"
+    },
+    {
+      "text": "General 2026.05.07 BlinkAd Team 외국인 관광객 통계와 추이, 2026년 외국인마케팅이 중요한 이유 2026년 1~9월 방한 외국인은 1,711만 명으로 작년 같은 기간보다 21.5% 늘었습니다. 어느 나라에서 얼마나 오는지, 이 숫자가 우리 매장의 외국인 마케팅에서 무엇을 바꾸는",
+      "href": "https://www.blinkad.kr/blog/oigug-in-goangoanggaeg-tonggyeoa-chui-2026nyeon-oigug-inmaketing-i-jung-yohan-iyu"
+    },
+    {
+      "text": "General 2026.05.05 BlinkAd Team 안과 AEO, 치과 AEO로 신규 환자를 늘릴 수 있을까? 안과 AEO, 치과 AEO로 신규 환자를 늘릴 수 있을까요? 안과는 라식, 라섹, 스마일라식처럼 선택지가 갈리고, 검사 전후 질문도 많습니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/angoa-aeo-chigoa-aeolo-singyu-hoanjaleul-neullil-su-iss-eulkka"
+    },
+    {
+      "text": "General 2026.05.05 BlinkAd Team 성형외과 GEO, 피부과 GEO로 정체된 매출을 늘릴 수 있을까? 성형외과 GEO, 피부과 GEO로 정체된 매출을 늘릴 수 있을까요? 이 질문의 답은 가능하다입니다. 다만 전제가 있습니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/seonghyeong-oigoa-geo-pibugoa-geolo-jeongchedoin-maechul-eul-neullil-su-iss-eulkka"
+    },
+    {
+      "text": "General 2026.04.27 BlinkAd Team 피부과,성형외과 외국인 환자 유치 AEO로 가능할까? Best dermatology clinic in Seoul을 Perplexity에 물으면 우리 병원이 답에 나올까요. 외국인 환자가 AI에게 병원을 묻는 흐름과, 영문 답변에 인용되려면 병원이 ",
+      "href": "https://www.blinkad.kr/blog/pibugoaseonghyeong-oigoa-oigug-in-hoanja-yuchi-aeolo-ganeunghalkka"
+    },
+    {
+      "text": "General 2026.04.26 BlinkAd Team 병원 마케팅 의료법 자주 걸리는 8가지 위반 사례는? 의료광고의 후기·가격·효과 표현·사진·심의 여부를 현행 의료법과 함께 점검합니다. 단어를 바꾸는 것에 그치지 않고 광고의 근거와 적용 조건, 실제 게시본을 확인하는 방법을 정리했습니다. Read",
+      "href": "https://www.blinkad.kr/blog/byeong-ueon-maketing-euilyobeob-jaju-geollineun-8gaji-uiban-salyeneun"
+    },
+    {
+      "text": "General 2026.04.25 BlinkAd Team 2026 병원 블로그 잘쓰는법, AI 검색에 인용되는 5문장 답변 구조 병원 블로그의 5문장 구조를 공식 인용 규칙이 아닌 초안 점검 예시로 활용합니다. Google 공식 안내를 바탕으로 질문의 답·실제 근거·적용 조건과 출처를 정리하는 방법을 설",
+      "href": "https://www.blinkad.kr/blog/2026-byeong-ueon-beullogeu-jalsseuneunbeob-ai-geomsaeg-e-in-yongdoineun-5munjang-dabbyeon-gujo"
+    },
+    {
+      "text": "General 2026.04.24 BlinkAd Team 환자가 ChatGPT에 \"강남 치과 추천\" 물어보면 우리 병원이 안 나오는 이유 환자가 검색창에 \"강남 치과 추천\"을 치는 시대는 빠르게 끝나가고 있습니다. 대신 환자는 ChatGPT 입력창에 \"강남에서 임플란트 잘하는 치과 알려줘\"라고 묻습니다.",
+      "href": "https://www.blinkad.kr/blog/hoanjaga-chatgpte-gangnam-chigoa-chucheon-mul-eobomyeon-uli-byeong-ueon-i-an-naoneun-iyu"
+    },
+    {
+      "text": "General 2026.04.23 BlinkAd Team 구글 AI 오버뷰 시대, 병원 광고 어떻게 바뀌나 (병원 마케터 필독) 광고비는 늘렸는데 클릭은 그만큼 늘지 않았습니다. ALM Corp Q4 2025 벤치마크에 따르면 Google Search 광고 지출이 전년 대비 9% 증가하는 동안 클릭은 4",
+      "href": "https://www.blinkad.kr/blog/gugeul-ai-obeobyu-sidae-byeong-ueon-goanggo-eotteohge-bakkuina-byeong-ueon-maketeo-pildog"
+    },
+    {
+      "text": "General 2026.04.23 BlinkAd Team Perplexity , ChatGPT가 환자에게 추천하는 병원의 5가지 공통점 ChatGPT는 전국 로컬 비즈니스 중 단 1.2%만 추천합니다(SOCi 2026 Local Visibility Index). 100개 병원 중 단 1~2곳만 AI가 환",
+      "href": "https://www.blinkad.kr/blog/perplexity-chatgptga-hoanjaege-chucheonhaneun-byeong-ueon-eui-5gaji-gongtongjeom"
+    },
+    {
+      "text": "General 2026.04.22 BlinkAd Team AEO GEO 피부과 마케팅 전략 2026 AI 답변 1순위 차지하려면? \"강남 피부과 추천\"을 ChatGPT에게 물어보면 우리 병원이 답에 등장할까요? 이 한 문장의 답이 2026년 피부과 마케팅 성패를 가릅니다. 강남언니에 광고비 늘리고, 인스",
+      "href": "https://www.blinkad.kr/blog/aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon"
+    },
+    {
+      "text": "General 2026.04.22 BlinkAd Team AI 답변 확산으로 병원 웹사이트 트래픽이 줄어드는 이유 (2026) 제가 기억하기로 2024년 여름까지만 해도 환자가 구글에 \"강남 치과 추천\"을 검색하면 병원 웹사이트가 줄줄이 노출됐습니다. 클릭이 들어왔고, 상담 문의로 이어졌죠. Read A",
+      "href": "https://www.blinkad.kr/blog/ai-dabbyeon-hoagsan-eulo-byeong-ueon-uebsaiteu-teulaepig-i-jul-eodeuneun-iyu-2026"
+    },
+    {
+      "text": "General 2026.04.08 BlinkAd Team 소상공인 온라인 마케팅, 구글에서 손님 받는 3단계 \"마케팅에 돈 쓸 여유가 없는데, 손님은 어떻게 받죠?\" 소상공인을 만나면 가장 많이 듣는 말입니다. 네이버 광고비는 클릭당 수백 원에서 수천 원, 인스타그램 광고도 월 수십만 원은 기본이니 부담",
+      "href": "https://www.blinkad.kr/blog/sosanggong-in-onlain-maketing-gugeul-eseo-sonnim-badneun-3dangye"
+    },
+    {
+      "text": "General 2026.04.02 BlinkAd Team 하이퍼로컬 마케팅이란? 반경 1km 안에서 매출 만드는 전략 가게 바로 앞을 지나가면서도 우리 매장을 모르는 사람이 얼마나 많을까요? 사실 매출의 상당 부분은 반경 1km 이내에 사는, 혹은 일하는 고객에게서 나옵니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/haipeolokeol-maketing-ilan-bangyeong-1km-an-eseo-maechul-mandeuneun-jeonlyag"
+    },
+    {
+      "text": "General 2026.03.30 BlinkAd Team 로컬 SEO란? 동네 장사하는 사장님을 위한 쉬운 설명 \"사장님, 혹시 '강남 맛집'이나 '홍대 네일샵'처럼 검색해보신 적 있으시죠?\" 우리가 매일 하는 이런 검색, 바로 로컬 검색입니다. 그런데 이 검색 결과에 내 가게가 안 나온다면? 바로 옆 ",
+      "href": "https://www.blinkad.kr/blog/lokeol-seolan-dongne-jangsahaneun-sajangnim-eul-uihan-suiun-seolmyeong"
+    },
+    {
+      "text": "General 2026.03.27 BlinkAd Team 구글 지도 리뷰 vs 네이버 플레이스 리뷰, 어디가 매출에 도움될까? 구글 지도와 네이버 플레이스 리뷰를 고객의 검색·문의 경로에 맞춰 비교합니다. 보상 없는 리뷰 요청, 플랫폼별 공식 정책과 실제 접수 기록을 기준으로 관리 우선순위를 정하는 방법",
+      "href": "https://www.blinkad.kr/blog/gugeul-jido-libyu-vs-neibeo-peulleiseu-libyu-eodiga-maechul-e-doumdoilkka"
+    },
+    {
+      "text": "General 2026.03.24 BlinkAd Team 구글 마이비즈니스 등록부터 관리까지, 2026년 최신 가이드 구글에 가게를 등록하는 순서를 계정 만들기, 정보 입력, 인증, 사진 등록까지 단계별로 정리했습니다. 사업자등록증이 필요한 경우와 인증이 막혔을 때 확인할 것도 함께 담았습니다. Read",
+      "href": "https://www.blinkad.kr/blog/gugeul-maibijeuniseu-deunglogbuteo-goanlikkaji-2026nyeon-choisin-gaideu"
+    },
+    {
+      "text": "General 2026.03.21 BlinkAd Team 구글 비즈니스 프로필 사진, 이 5장이 클릭률을 2배로 만듭니다 구글에서 우리 가게를 찾은 고객은 사진으로 여러 가지를 확인합니다. 입구가 어디인지, 안에 앉을 자리가 있는지, 어떤 메뉴나 서비스를 고를 수 있는지 살펴보겠지요. Read Artic",
+      "href": "https://www.blinkad.kr/blog/gbp-sajin-i-5jang-i-keulliglyul-eul-2baelo-mandeubnida"
+    },
+    {
+      "text": "General 2026.03.18 BlinkAd Team 구글 리뷰 관리, 별점 4.5점 유지하는 가게들이 매일 하는 ‘이것’은? 별점 4.5를 유지하는 가게는 리뷰가 올라온 뒤가 아니라 올라오기 전에 움직입니다. 답글 작성 기준과 낮은 별점이 달렸을 때 대응 순서, 매일 5분이면 되는 관리 방법을 정리",
+      "href": "https://www.blinkad.kr/blog/gugeul-libyu-goanli-byeoljeom-45jeom-yujihaneun-gagedeul-i-maeil-haneun-igeoseun"
+    },
+    {
+      "text": "General 2026.03.15 BlinkAd Team 구글 비즈니스 프로필 인증 안 될 때, 이렇게 해결하세요 \"분명 주소도 맞게 입력했고, 전화번호도 확인했는데… 왜 인증이 안 되는 걸까?\" 구글 비즈니스 프로필을 등록하다 보면, 마지막 관문인 인증 단계에서 막히는 경우가 정말 많습니다. 저희는 수",
+      "href": "https://www.blinkad.kr/blog/gbp-injeung-an-doil-ttae-ileohge-haegyeolhaseyo"
+    },
+    {
+      "text": "General 2026.03.12 BlinkAd Team 구글 SEO 체크리스트 2026, 이것만 따라하세요! \"SEO 잘하면 매출이 오른다는 건 알겠는데, 도대체 뭐부터 해야 하나요?\" 이 질문, 사업을 운영하시는 대표님이나 마케터분들에게서 정말 자주 듣습니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/gugeul-seo-chekeuliseuteu-2026-igeosman-ttalahaseyo"
+    },
+    {
+      "text": "General 2026.03.09 BlinkAd Team 구글 마이비즈니스 vs 비즈니스 프로필, 뭐가 다른 건가요? 구글 마이비즈니스 앱은 종료됐고 지금은 구글 비즈니스 프로필로 바뀌었습니다. 기존에 등록해 둔 가게 정보와 리뷰는 어떻게 되는지, 이제 어디서 관리해야 하는지 정리했습니다. Read Ar",
+      "href": "https://www.blinkad.kr/blog/gugeul-maibijeuniseu-vs-bijeuniseu-peulopil-mueoga-daleun-geongayo"
+    },
+    {
+      "text": "General 2026.03.08 BlinkAd Team 홈페이지 없이 마케팅 하는 법, 구글 비즈니스 프로필이면 충분합니다 \"홈페이지가 없으면 요즘 장사가 안 되는 거 아닌가요?\" 소상공인 사장님들을 만나면 가장 많이 듣는 질문 중 하나입니다. 결론부터 말씀드리면, 홈페이지 없이 마케팅하는 것은 충분히",
+      "href": "https://www.blinkad.kr/blog/hompeiji-eobs-i-maketing-haneun-beob-gbpimyeon-chungbunhabnida"
+    },
+    {
+      "text": "General 2026.03.07 BlinkAd Team 악성 리뷰 대응법, 사장님이 절대 하면 안 되는 답글 유형 3가지 \"사장님, 이 가게 다시는 안 갑니다.\" 이런 리뷰 하나에 하루 종일 기분이 바닥을 치신 적 있으시죠? 악성 리뷰는 단순히 기분 나쁜 걸 넘어서, 매출에 직접적인 영향을 준다는 것 ",
+      "href": "https://www.blinkad.kr/blog/agseong-libyu-daeeungbeob-sajangnim-i-jeoldae-hamyeon-an-doineun-dabgeul-yuhyeong-3gaji"
+    },
+    {
+      "text": "General 2026.03.06 BlinkAd Team 구글 리뷰 늘리는 방법, 손님에게 자연스럽게 요청하는 멘트 5가지 리뷰를 부탁하는 게 어색해서 미루게 됩니다. 결제 직후와 재방문 때처럼 상황별로 바로 쓸 수 있는 요청 멘트 5가지와, 리뷰를 유도할 때 지켜야 할 구글 정책을 정리했습니다. Rea",
+      "href": "https://www.blinkad.kr/blog/gugeul-libyu-neullineun-bangbeob-sonnim-ege-jayeonseuleobge-yocheonghaneun-menteu-5gaji"
+    },
+    {
+      "text": "General 2026.03.05 BlinkAd Team 구글 비즈니스 프로필 게시물 작성법, 무료로 광고하는 방법 구글 비즈니스 프로필에 가게를 등록하고 끝내는 사장님이 많습니다. 저희 경험상 하지만 등록만 하고 내버려 두면, 구글은 해당 프로필을 \"관리되지 않는 가게\"로 판단합니다. Read Arti",
+      "href": "https://www.blinkad.kr/blog/gbp-gesimul-jagseongbeob-mulyolo-goanggohaneun-bangbeob"
+    },
+    {
+      "text": "General 2026.03.04 BlinkAd Team 구글 지도에 가게 등록했는데 안 뜹니다, 원인과 해결법 5가지 등록을 마쳤는데도 구글 지도 검색에 가게가 보이지 않는다면 원인은 대개 다섯 가지입니다. 인증 미완료, 카테고리 오설정, 중복 등록을 확인하는 순서대로 정리했습니다. Read Artic",
+      "href": "https://www.blinkad.kr/blog/gugeul-jidoe-gage-deungloghaessneunde-an-tteubnida-ueon-ingoa-haegyeolbeob-5gaji"
+    },
+    {
+      "text": "General 2026.02.27 BlinkAd Team 구글 SEO 시작 방법 입문자를 위한 90일 실전 로드맵 2026 SEO 시작 방법의 핵심은 \"0~30일 기술 점검 → 31~60일 콘텐츠/검색의도 정렬 → 61~90일 성과 측정/개선\" 순서로 진행하는 것이며, 이 90일 로드맵을 따르면 시행착오",
+      "href": "https://www.blinkad.kr/blog/gugeul-seo-sijag-bangbeob-ibmunjaleul-uihan-90il-siljeon-lodeumaeb-2026"
+    },
+    {
+      "text": "General 2026.02.24 BlinkAd Team 명일2동 구글 비즈니스 프로필 정보관리 오늘 저는 서울 강동구 명일2동 상권 데이터를 바탕으로, 사장님들의 가게가 구글 검색에서 상위 노출되고 더 많은 손님을 만날 수 있도록 돕는 구글 비즈니스 프로필(Google Business Profile, ",
+      "href": "https://www.blinkad.kr/blog/myeong-il2dong-gbp-jeongbogoanli"
+    },
+    {
+      "text": "General 2026.02.23 BlinkAd Team 구글 비즈니스 프로필 관리 대행 서비스 완벽 가이드 2026 구글 비즈니스 프로필 관리 대행은 소유권은 사업주가 유지하고, 리뷰·게시물·사진·리포트를 정기 운영하며, 성과를 전화/길찾기/웹사이트 클릭 같은 행동지표로 투명하게 공개하는 업체를 선택하",
+      "href": "https://www.blinkad.kr/blog/gbp-daehaeng-seobiseu-oanbyeog-gaideu-2026"
+    },
+    {
+      "text": "General 2026.02.23 BlinkAd Team 명일1동 구글 비즈니스 프로필 리뷰관리 대행 오늘 저는 명일1동 상권 데이터를 바탕으로, 사장님들의 가게를 구글 지도와 검색 결과 상단에 노출시켜 줄 구글 비즈니스 프로필(Google Business Profile, 이하 GBP) 최적화 전략을 알",
+      "href": "https://www.blinkad.kr/blog/myeong-il1dong-gbp-libyugoanli-daehaeng"
+    },
+    {
+      "text": "General 2026.02.22 BlinkAd Team 둔촌2동 구글 비즈니스 프로필 세팅 대행 오늘 저는 SEO 전문가의 입장에서 둔촌2동 상권 데이터를 바탕으로, 어떻게 하면 구글 비즈니스 프로필을 효과적으로 관리해서 더 많은 고객을 유치할 수 있는지 쉽고 명확하게 설명해 드릴게요. Read Art",
+      "href": "https://www.blinkad.kr/blog/dunchon2dong-gbp-seting-daehaeng"
+    },
+    {
+      "text": "General 2026.02.21 BlinkAd Team 구글 프로필 관리, 왜 가만히 있으면 안될까? 구글 프로필 관리를 방치하면 \"잘못된 정보 노출, 리뷰 신뢰 하락, 문의 누락, 광고 효율 저하\"가 동시에 발생하므로, 주간 점검 루틴과 응답 기준을 갖춘 운영이 중요합니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/gugeul-peulopil-goanli-oae-gamanhi-iss-eumyeon-andoilkka"
+    },
+    {
+      "text": "General 2026.02.21 BlinkAd Team 둔촌1동 구글 비즈니스 프로필 등록,관리 대행 고객의 마음을 사로잡으려면, 먼저 고객이 무엇을 검색하는지 알아야 해요. 이걸 바로 키워드 분석(Keyword Analysis)이라고 하고, 그 키워드를 검색하는 의도를 파악하는 것이 검색 의도(Sea",
+      "href": "https://www.blinkad.kr/blog/dunchon1dong-gbp-deungloggoanli-daehaeng"
+    },
+    {
+      "text": "General 2026.02.20 BlinkAd Team 길동 구글 비즈니스 프로필 상위노출 최적화 이럴 때 우리 가게의 온라인 명함이자 든든한 영업사원 역할을 톡톡히 해내는 것이 바로 구글 비즈니스 프로필(Google Business Profile, GBP)이에요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/gildong-gbp-sang-uinochul-choijeoghoa"
+    },
+    {
+      "text": "General 2026.02.19 BlinkAd Team 고덕2동 구글 비즈니스 프로필 관리 서비스 오늘 저는 사장님들의 그런 고민을 덜어드리고자, 고덕2동의 실제 상권 데이터를 바탕으로 구글 비즈니스 프로필(Google Business Profile, GBP)을 어떻게 하면 효과적으로 관리하고 최적화할",
+      "href": "https://www.blinkad.kr/blog/godeog2dong-gbp-seobiseu"
+    },
+    {
+      "text": "General 2026.02.18 BlinkAd Team 구글 비즈니스 프로필 운영 대행, 어떤 업체에 맡겨야 할까? 2026 구글 비즈니스 프로필 운영 대행 업체를 고를 때 꼭 봐야 할 7가지 기준을 정리했습니다. 소유권, 리뷰 정책, 리포트, 계약 해지 조건까지 구글 공식 정책 기준으로 설명합니다. ",
+      "href": "https://www.blinkad.kr/blog/gbp-un-yeong-daehaeng-eotteon-eobchee-matgyeoya-halkka-2026"
+    },
+    {
+      "text": "General 2026.02.18 BlinkAd Team 고덕1동 구글 비즈니스 프로필 운영 전문 고덕1동에서 사업체를 운영하고 계신 사장님들, 안녕하세요! 매일 가게 문을 열고 손님을 맞이하며 바쁘게 지내시죠? 하지만 아무리 좋은 서비스와 제품을 가지고 있어도, 고객들이 우리 가게를 찾지 못하면 소용이",
+      "href": "https://www.blinkad.kr/blog/godeog1dong-gbp-un-yeong-jeonmun"
+    },
+    {
+      "text": "General 2026.02.17 BlinkAd Team 강일동 구글 비즈니스 프로필 최적화 대행 많은 사장님들이 가게 운영만으로도 바쁘셔서 온라인 마케팅은 뒷전이 되기 쉽다는 것을 잘 알고 있어요. 하지만 지금 이 순간에도 수많은 고객들이 구글 지도나 검색을 통해 필요한 정보를 찾고 있다는 사실을 잊지",
+      "href": "https://www.blinkad.kr/blog/gang-ildong-gbp-choijeoghoa-daehaeng"
+    },
+    {
+      "text": "General 2026.02.16 BlinkAd Team 조치원읍 구글 비즈니스 프로필 관리 서비스 조치원읍은 2026년 1월 20일 기준 총 2749개의 업소가 활발하게 운영되고 있는 정말 역동적인 상권이에요. 하지만 이 말은 곧 그만큼 경쟁이 치열하다는 뜻이기도 하죠. Read Article →",
+      "href": "https://www.blinkad.kr/blog/jochiueon-eub-gbp-seobiseu"
+    },
+    {
+      "text": "General 2026.02.15 BlinkAd Team 연서면 구글 비즈니스 프로필 마케팅 관리 온라인에서 고객을 만나려면, 고객이 어떤 단어로 우리 가게를 찾고 있는지 아는 것이 가장 중요해요. 이것을 바로 키워드 분석(Keyword Analysis)이라고 하는데요, 고객이 검색창에 입력할 만한 단어",
+      "href": "https://www.blinkad.kr/blog/yeonseomyeon-gbp-maketing-goanli"
+    },
+    {
+      "text": "General 2026.02.14 BlinkAd Team 해밀동 구글 비즈니스 프로필 스마트관리 오늘 저는 세종특별자치시 해밀동의 최신 상권 데이터를 바탕으로, 어떻게 하면 구글 비즈니스 프로필을 효과적으로 관리해서 더 많은 고객을 우리 가게로 불러올 수 있을지, 그 실질적인 방법을 알려드리려고 해요. ",
+      "href": "https://www.blinkad.kr/blog/haemildong-gbp-seumateugoanli"
+    },
+    {
+      "text": "General 2026.02.13 BlinkAd Team 한솔동 구글 비즈니스 프로필 매장관리 대행 한솔동 사장님들, 요즘 손님들이 우리 가게를 어떻게 찾을까요? 아마 많은 분들이 구글 검색이나 구글 지도를 통해 주변 가게를 찾아보고 계실 거예요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/hansoldong-gbp-maejanggoanli-daehaeng"
+    },
+    {
+      "text": "General 2026.02.12 BlinkAd Team 종촌동 구글 비즈니스 프로필 로컬SEO 관리 세종특별자치시 종촌동은 440개의 다양한 업소가 활발하게 경쟁하는 매력적인 상권이에요. 특히 도움1로, 도움3로 같은 주요 거리나 메가시티, 종촌동몰리브 같은 대형 상가에서는 더욱 그렇죠. 이렇게 경쟁이",
+      "href": "https://www.blinkad.kr/blog/jongchondong-gbp-lokeolseo-goanli"
+    },
+    {
+      "text": "General 2026.02.11 BlinkAd Team 전의면 구글 비즈니스 프로필 통합관리 대행 이럴 때 우리 가게가 검색 결과 상위에 뜨지 않으면, 아무리 좋은 서비스와 상품을 가지고 있어도 고객들에게 발견될 기회조차 얻기 어렵겠죠? Read Article →",
+      "href": "https://www.blinkad.kr/blog/jeon-euimyeon-gbp-tonghabgoanli-daehaeng"
+    },
+    {
+      "text": "General 2026.02.10 BlinkAd Team 전동면 구글 비즈니스 프로필 성과관리해드립니다. 세종특별자치시 전동면은 총 138개의 업소가 있는 활기찬 상권이에요. 2026년 1월 20일 기준으로 보면, 한식(21개), 종합 소매(10개), 식료품 소매(10개)와 같이 경쟁이 치열한 업종도 많",
+      "href": "https://www.blinkad.kr/blog/jeondongmyeon-gbp-seonggoagoanlihaedeulibnida"
+    },
+    {
+      "text": "General 2026.02.09 BlinkAd Team 장군면 구글 비즈니스 프로필 진단해드립니다. 세종특별자치시 장군면에서 사업체를 운영하고 계신가요? 온라인에서 우리 가게를 효과적으로 알리고 싶지만, 어디서부터 시작해야 할지 막막하셨을 거예요. 특히 경쟁이 치열한 요즘 같은 시대에는 더욱 그렇죠. ",
+      "href": "https://www.blinkad.kr/blog/janggunmyeon-gbp-jindanhaedeulibnida"
+    },
+    {
+      "text": "General 2026.02.08 BlinkAd Team 연동면 구글 비즈니스 프로필 노출최적화 우리 가게를 더 많은 손님에게 알리고 싶으신가요? 매일 아침 문을 열고 손님을 기다리지만, 어떻게 해야 고객들이 우리 가게를 찾아올지 막막하게 느껴질 때가 많으실 거예요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/yeondongmyeon-gbp-nochulchoijeoghoa"
+    },
+    {
+      "text": "General 2026.02.07 BlinkAd Team 연기면 구글 비즈니스 프로필 리스팅관리 아무리 좋은 상품과 서비스도 고객에게 보여지지 않으면 아무 소용이 없어요. 특히 요즘은 스마트폰으로 '내 주변 맛집', '가까운 부동산'을 검색해서 찾아오는 손님들이 정말 많죠. 연기면처럼 지역 상권이 중요한",
+      "href": "https://www.blinkad.kr/blog/yeongimyeon-gbp-liseutinggoanli"
+    },
+    {
+      "text": "General 2026.02.06 BlinkAd Team 어진동 구글 비즈니스 프로필 작업대행 세종특별자치시 어진동에서 사업을 운영하고 계신 사장님들, 안녕하세요! 오늘날 온라인 검색은 고객이 우리 가게를 찾는 가장 기본적인 방법이에요. 특히 어진동처럼 역동적인 지역 상권에서는 온라인에서 눈에 띄는 것이",
+      "href": "https://www.blinkad.kr/blog/eojindong-gbp-jag-eobdaehaeng"
+    },
+    {
+      "text": "General 2026.02.05 BlinkAd Team 아름동 구글 비즈니스 프로필 평판 관리 대행 구글 비즈니스 프로필(GBP)은 우리 가게의 온라인 명함이라고 생각하시면 이해하기 쉬울 거예요. 구글 검색 결과나 구글 지도에 가게 이름, 주소, 전화번호, 영업시간은 물론, 사진, 리뷰, 최신 소식까지",
+      "href": "https://www.blinkad.kr/blog/aleumdong-gbp-pyeongpan-goanli-daehaeng"
+    },
+    {
+      "text": "General 2026.02.04 BlinkAd Team 소정면 구글 비즈니스 프로필 관리 컨설팅 세종특별자치시 소정면에 계신 사장님들, 안녕하세요! 우리 가게가 인터넷 검색 결과에 잘 보여야 한다는 건 알고 있지만, 막상 어떻게 시작해야 할지 막막하셨죠? 특히 소정면처럼 활기 넘치는 지역에서 수많은 가",
+      "href": "https://www.blinkad.kr/blog/sojeongmyeon-gbp-keonseolting"
+    },
+    {
+      "text": "General 2026.02.03 BlinkAd Team 소담동 구글 비즈니스 프로필 계정관리 소담동에서 열심히 사업장을 운영하고 계신 사장님들, 혹시 열심히 준비한 가게가 구글 검색이나 지도에서 잘 보이지 않아 속상했던 경험은 없으신가요? 온라인에서 우리 가게를 알리는 일, 막막하게만 느껴질 수 있어요",
+      "href": "https://www.blinkad.kr/blog/sodamdong-gbp-gyejeonggoanli"
+    },
+    {
+      "text": "General 2026.02.02 BlinkAd Team 새롬동 구글 비즈니스 프로필 유지관리 이런 환경에서 우리 가게를 고객에게 알리고 싶다면, 구글 비즈니스 프로필(Google Business Profile, GBP) 관리는 선택이 아닌 필수예요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/saelomdong-gbp-yujigoanli"
+    },
+    {
+      "text": "General 2026.02.01 BlinkAd Team 부강면 구글 비즈니스 프로필 등록,운영 세종특별자치시 부강면에서 가게를 운영하시는 사장님들, 안녕하세요! 저희는 기업의 성장을 돕는 SEO 에이전시의 수석 컨설턴트입니다. Read Article →",
+      "href": "https://www.blinkad.kr/blog/bugangmyeon-gbp-deunglogun-yeong"
+    },
+    {
+      "text": "General 2026.01.31 BlinkAd Team 보람동 구글 비즈니스 프로필 세팅,관리 세종특별자치시 보람동에서 가게를 운영하는 사장님들, 안녕하세요! 2026년 1월 20일 기준으로 보람동에만 무려 1,021개의 업소가 영업 중이라는 사실, 알고 계셨나요? 이렇게 많은 가게들 사이에서 우리 가",
+      "href": "https://www.blinkad.kr/blog/bolamdong-gbp-setinggoanli"
+    },
+    {
+      "text": "General 2026.01.30 BlinkAd Team 반곡동 구글 비즈니스 프로필 상위노출 관리 구글 비즈니스 프로필은 구글 검색 결과와 구글 지도에 우리 가게 정보가 나타나도록 하는 무료 온라인 명함이라고 생각하시면 이해하기 쉬울 거예요. 고객들이 \"반곡동 치과\", \"반곡동 맛집\"처럼 특정 지역과 ",
+      "href": "https://www.blinkad.kr/blog/bangogdong-gbp-sang-uinochul-goanli"
+    },
+    {
+      "text": "General 2026.01.29 BlinkAd Team 도담동 구글 비즈니스 프로필 관리대행 요즘 손님들은 궁금한 게 있으면 바로 스마트폰을 켜서 검색하는 게 일상이에요. \"도담동 맛집\", \"도담동 미용실\"처럼 특정 지역 + 업종 키워드로 검색하는 로컬 검색(Local Search)은 점점 더 중요해지",
+      "href": "https://www.blinkad.kr/blog/dodamdong-gbpdaehaeng"
+    },
+    {
+      "text": "General 2026.01.28 BlinkAd Team 대평동은  구글 비즈니스 프로필 관리 운영대행 하지만 걱정 마세요! 오늘 제가 소개해드릴 구글 비즈니스 프로필(Google Business Profile, GBP)만 제대로 관리해도 대평동 고객들이 사장님 가게를 쉽게 찾고 방문하도록 만들 수 있답",
+      "href": "https://www.blinkad.kr/blog/daepyeongdong-eun-gbp-un-yeongdaehaeng"
+    },
+    {
+      "text": "General 2026.01.27 BlinkAd Team 다정동 상권 분석 및 구글 비즈니스 프로필 관리 다정동 사장님들, 혹시 '우리 가게'가 손님들 눈에 잘 띄고 있나요? 세종특별자치시 다정동은 총 412개의 다양한 매장들이 활발하게 운영되고 있는 매력적인 상권이에요. 하지만 그만큼 경쟁도 치열하다는",
+      "href": "https://www.blinkad.kr/blog/dajeongdong-sanggueon-bunseog-mich-gbp"
+    },
+    {
+      "text": "General 2026.01.26 BlinkAd Team 나성동 사장님, 이거는 필수입니다. 이런 상황에서, 온라인에서 우리 가게를 돋보이게 하고 잠재 고객의 눈에 띄게 하는 가장 강력한 도구 중 하나가 바로 구글 비즈니스 프로필 (Google Business Profile, GBP)이에요. Read A",
+      "href": "https://www.blinkad.kr/blog/naseongdong-sajangnim-igeoneun-pilsuibnida"
+    },
+    {
+      "text": "General 2026.01.25 BlinkAd Team 구글 비즈니스 프로필 관리(금남면) 이런 상황에서 우리 가게를 고객에게 알리는 가장 강력하고 효과적인 방법 중 하나가 바로 구글 비즈니스 프로필(Google Business Profile, 줄여서 GBP) 관리예요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/gbpgeumnammyeon"
+    },
+    {
+      "text": "General 2026.01.24 BlinkAd Team 고운동에서 구글 비즈니스 프로필 관리란? 오늘 저는 고운동의 상세한 상권 데이터를 바탕으로, 구글 비즈니스 프로필 (Google Business Profile, GBP)을 어떻게 하면 효과적으로 관리해서 더 많은 고객을 유치할 수 있는지 그 비법을",
+      "href": "https://www.blinkad.kr/blog/goundong-eseo-gbplan"
+    },
+    {
+      "text": "General 2026.01.23 BlinkAd Team 제주 구좌읍 구글 비즈니스 프로필 관리 제주 구좌읍에서 가게를 운영하시는 사장님들, 혹시 이런 고민 해보셨나요? \"우리 가게를 고객들이 어떻게 찾을까?\", \"온라인에서 다른 경쟁업체보다 눈에 띄고 싶다!\" Read Article →",
+      "href": "https://www.blinkad.kr/blog/jeju-gujoaeub-gbp"
+    },
+    {
+      "text": "General 2026.01.22 BlinkAd Team 구글 프로필이 필요한 제주도 노형동 상권 특징은? 제주 노형동에서 가게를 운영하고 계신 사장님들, 안녕하세요! 4,211개가 넘는 수많은 업소들 사이에서 우리 가게를 돋보이게 하는 게 쉽지 않으시죠? Read Article →",
+      "href": "https://www.blinkad.kr/blog/gugeul-peulopil-i-pil-yohan-jejudo-nohyeongdong-sanggueon-teugjing-eun"
+    },
+    {
+      "text": "General 2026.01.21 BlinkAd Team 도두동에서 구글 비즈니스 프로필이 중요한 이유 제주도의 아름다운 도두동에서 사업을 운영하시는 사장님들, 혹시 이런 고민 해보신 적 있으신가요? \"우리 가게, 손님들이 어떻게 알고 찾아올까?\", \"온라인으로 홍보하고 싶은데, 뭘 어떻게 해야 할지 막",
+      "href": "https://www.blinkad.kr/blog/dodudong-eseo-gbpi-jung-yohan-iyu"
+    },
+    {
+      "text": "General 2026.01.20 BlinkAd Team 제주 봉개동 사장님, 구글 프로필 관리는 필수입니다. 제주 봉개동에서 가게를 운영하시는 사장님들, 안녕하세요! 매장을 알아보실때, 주변 상권에 대해 분명히 분석을 하실텐데요. Read Article →",
+      "href": "https://www.blinkad.kr/blog/jeju-bonggaedong-sajangnim-gugeul-peulopil-goanlineun-pilsuibnida"
+    },
+    {
+      "text": "General 2026.01.19 BlinkAd Team 제주 건입동 구글 비즈니스 프로필 관리 제주 건입동에서 매장을 운영하시는 사장님들, 안녕하세요! 요즘 손님들이 우리 가게를 어떻게 찾아오는지 혹시 생각해 보셨나요? 아마 많은 분들이 스마트폰으로 검색하고, 구글 지도 앱을 켜서 찾아오실 거예요. R",
+      "href": "https://www.blinkad.kr/blog/jeju-geon-ibdong-gbp"
+    }
+  ],
+  "items": [
+    {
+      "id": "T01",
+      "action": "보강",
+      "title_candidate": "병원 외국인 마케팅 대행, 업무별로 어떤 결과물을 받을 수 있나요?",
+      "target_reader": "국제진료·홍보 담당",
+      "keyword_family": "외국인 환자 유치",
+      "keyword_family_demand": "Naver PC290+모바일120 / Google170",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B08",
+        "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요? - BlinkAd Blog"
+      },
+      "proposed_difference": "기존 업무 표에 병원 납품 예시·권한·확인 자료 연결. 신규 글 분리 불필요",
+      "required_before_brief": "현재 서비스 설명을 구체적 납품 목록으로 보강",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T02",
+      "action": "보강",
+      "title_candidate": "병원 마케팅 대행사 비교, 같은 범위의 견적으로 맞춰보려면?",
+      "target_reader": "홍보·구매 담당",
+      "keyword_family": "병원마케팅대행사",
+      "keyword_family_demand": "Naver PC360+모바일220 / Google260",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B09",
+        "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+        "title": "병원 마케팅 대행사 고르는 법, 광고 보고서보다 상담 전환을 보세요 - BlinkAd Blog"
+      },
+      "proposed_difference": "기존 계약/보고/소유권 답변 유지, AI와 광고·번역·제작 포함표 추가",
+      "required_before_brief": "자사 견적 템플릿/공개 비교 범위와 기존48곳 일반화 문구 근거 검토",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T03",
+      "action": "보강",
+      "title_candidate": "병원 다국어 홈페이지, 한국어 정보가 바뀌면 무엇을 함께 고쳐야 할까요?",
+      "target_reader": "국제진료·사이트 운영",
+      "keyword_family": "병원홈페이지제작",
+      "keyword_family_demand": "Naver PC1160+모바일1350 / Google390",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B10",
+        "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+        "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요? - BlinkAd Blog"
+      },
+      "proposed_difference": "기존 다국어 글에 원자료/의료진 확인/언어별 변경 목록 추가",
+      "required_before_brief": "실제 병원 변경 흐름의 승인 가능한 예시 필요. 다국어 개요 새 글로 반복하지 않음",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T04",
+      "action": "보강",
+      "title_candidate": "병원 홈페이지 견적, 최초 제작비와 월 운영비를 어떻게 나눠 볼까요?",
+      "target_reader": "홍보·구매 담당",
+      "keyword_family": "병원홈페이지제작",
+      "keyword_family_demand": "Naver PC1160+모바일1350 / Google390",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B11",
+        "url": "https://www.blinkad.kr/blog/hospital-website-cost-scope",
+        "title": "병원 홈페이지 제작비가 달라지는 작업 범위와 추가 비용 - BlinkAd Blog"
+      },
+      "proposed_difference": "기존 제작비/운영비 구분을 기준으로 AEO·번역·외부 비용 포함표 보강",
+      "required_before_brief": "기존 글에 이미 핵심 답이 있어 신규 제목 발행 대상에서 제외",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T05",
+      "action": "보강",
+      "title_candidate": "병원 GEO, 내부 담당자가 있다면 어떤 일만 맡길 수 있을까요?",
+      "target_reader": "홍보·웹 담당",
+      "keyword_family": "병원GEO",
+      "keyword_family_demand": "Naver PC180+모바일110 / Google40",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B12",
+        "url": "https://www.blinkad.kr/blog/geo-marketing-outsourcing-decision",
+        "title": "GEO 마케팅 대행, 맡길까 말까 고민이라면 클릭하세요. - BlinkAd Blog"
+      },
+      "proposed_difference": "기존 내부/부분/지속 외주 판단 글에 병원 자료·검수·반영 권한 사례 추가",
+      "required_before_brief": "대행 의사결정이 중심인 기존 답변을 병원명만 바꿔 신규화하지 않음",
+      "priority": "P2",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T06",
+      "action": "보강",
+      "title_candidate": "피부과 GEO, 고정 질문의 변화와 실제 문의를 나눠 확인하는 법",
+      "target_reader": "의원·병원 마케팅 담당",
+      "keyword_family": "병원GEO",
+      "keyword_family_demand": "Naver PC180+모바일110 / Google40",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B13",
+        "url": "https://www.blinkad.kr/blog/aeo-geo-pibugoa-maketing-jeonlyag-2026-ai-dabbyeon-1sun-ui-chajihalyeomyeon",
+        "title": "AEO GEO 피부과 마케팅 전략 2026 AI 답변 1순위 차지하려면? - BlinkAd Blog"
+      },
+      "proposed_difference": "기존1순위 전략 글의 과도한 일반화·수치/실험 적용 범위부터 재검증",
+      "required_before_brief": "기존 성과 보장처럼 읽히는 표현과 원출처를 검토한 뒤 제안. 환자/치료 통계는 승인·근거 별도",
+      "priority": "P0",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T07",
+      "action": "신규검토",
+      "title_candidate": "병원 GEO 보고서, 언급률과 인용률의 분모부터 어떻게 읽어야 할까요?",
+      "target_reader": "홍보·성과 분석 담당",
+      "keyword_family": "병원GEO",
+      "keyword_family_demand": "Naver PC180+모바일110 / Google40",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B09",
+        "url": "https://www.blinkad.kr/blog/byeong-ueon-maketing-daehaengsa-goleuneun-beob-goanggo-bogoseoboda-sangdam-jeonhoan-eul-boseyo",
+        "title": "병원 마케팅 대행사 고르는 법, 광고 보고서보다 상담 전환을 보세요 - BlinkAd Blog"
+      },
+      "proposed_difference": "동일 질문/반복·실패·API와앱·언급vs자사URL·%p 해석이 중심. 일반 문의전환 글과 구분 가능성",
+      "required_before_brief": "최신 미게시/검토 원고까지 본문 대조 필요. 측정 조건 정본 확정 뒤 예시 작성",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    },
+    {
+      "id": "T08",
+      "action": "신규검토",
+      "title_candidate": "병원 AEO 월8건, 원고·번역·기존 글 보강은 각각 어떻게 셀까요?",
+      "target_reader": "홍보·구매·국제진료 담당",
+      "keyword_family": "병원GEO",
+      "keyword_family_demand": "Naver PC180+모바일110 / Google40",
+      "keyword_measurement_date": "2026-11-23",
+      "exact_title_demand_not_measured": true,
+      "closest_current_article": {
+        "source_id": "B08",
+        "url": "https://www.blinkad.kr/blog/hospital-foreign-marketing",
+        "title": "병원 외국인 마케팅 대행, 블링크애드에 어디까지 맡길 수 있나요? - BlinkAd Blog"
+      },
+      "proposed_difference": "콘텐츠 구매 단위의 계산이 중심. 홈페이지 제작 견적/대행 개요와 경계 확인",
+      "required_before_brief": "자사8건의 계약 정의 미확정이므로 정의 결정 및 최신 등록글 본문 대조 뒤 기획",
+      "priority": "P1",
+      "cta_destination": "https://www.blinkad.kr/contact",
+      "status": "opportunity_only_not_approved_brief"
+    }
+  ],
+  "national_keyword_data_not_staff_specific": true
+}
