@@ -1,0 +1,95 @@
+{
+  "checked_date_kst": "2026-11-24",
+  "source": "Higgsfield MCP estimate_video_cost / estimate_image_cost",
+  "generation_submitted": false,
+  "credits_spent": 0,
+  "scope": "Per-request quote only. No production-quality test. Regenerations and additional assets are extra.",
+  "quotes": [
+    {
+      "key": "video20",
+      "params": {
+        "model": "seedance_2_5",
+        "mode": "t2v",
+        "duration": 20,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "cost": {
+        "credits": 140,
+        "credits_exact": 140
+      },
+      "adjustments": null
+    },
+    {
+      "key": "video6",
+      "params": {
+        "model": "seedance_2_5",
+        "mode": "t2v",
+        "duration": 6,
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "generate_audio": false,
+        "count": 1
+      },
+      "cost": {
+        "credits": 42,
+        "credits_exact": 42
+      },
+      "adjustments": null
+    },
+    {
+      "key": "gif6",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "low",
+        "resolution": "1k",
+        "output_format": "gif",
+        "size": "768x432",
+        "frame_count": 30,
+        "frame_duration_ms": 200,
+        "count": 1
+      },
+      "cost": {
+        "credits": 0.75,
+        "credits_exact": 0.75
+      },
+      "adjustments": null
+    },
+    {
+      "key": "gif6_medium",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "medium",
+        "resolution": "1k",
+        "output_format": "gif",
+        "size": "768x432",
+        "frame_count": 30,
+        "frame_duration_ms": 200,
+        "count": 1
+      },
+      "cost": {
+        "credits": 1,
+        "credits_exact": 1
+      },
+      "adjustments": null
+    },
+    {
+      "key": "image1",
+      "params": {
+        "model": "gpt_image_2_6",
+        "quality": "medium",
+        "resolution": "1k",
+        "output_format": "png",
+        "aspect_ratio": "16:9",
+        "count": 1
+      },
+      "cost": {
+        "credits": 1,
+        "credits_exact": 1
+      },
+      "adjustments": null
+    }
+  ]
+}
