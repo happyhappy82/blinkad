@@ -7,7 +7,10 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { recordCtaClick } from '@/lib/tracker';
 import LanguageSwitch from './LanguageSwitch';
 
-const serviceLinks = [
+import { HOSPITAL_SERVICE_LINK } from '@/lib/hospital-paths';
+import { splitLanguagePath } from '@/lib/site-languages';
+
+const baseServiceLinks = [
   { href: '/services', label: '전체 서비스' },
   { href: '/foreign-marketing', label: '외국인마케팅' },
   { href: '/google-map-marketing', label: '구글 비즈니스 프로필 관리' },
@@ -23,8 +26,6 @@ const primaryLinks = [
   { href: '/news', label: '회사소식' },
 ];
 
-const servicePaths = serviceLinks.map((link) => link.href);
-
 function isCurrentPath(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -33,7 +34,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const isServiceActive = servicePaths.some((path) => isCurrentPath(pathname, path));
+  const serviceLinks = splitLanguagePath(pathname).language === 'ko'
+    ? [baseServiceLinks[0], HOSPITAL_SERVICE_LINK, ...baseServiceLinks.slice(1)]
+    : baseServiceLinks;
+  const isServiceActive = serviceLinks.some(link => isCurrentPath(pathname, link.href));
 
   const closeMobileMenu = () => {
     setIsMobileOpen(false);

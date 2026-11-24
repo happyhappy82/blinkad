@@ -16,6 +16,9 @@ import { getBlogConsultation } from '@/lib/blog-consultation'
 import { NestArticleExperience } from '@/components/NestInquiry'
 import { NEST_ARTICLES, NEST_UPDATED_AT } from '@/lib/nest-content'
 import Navbar from '@/components/Navbar'
+import GuideBody from '@/components/hospital/GuideBody'
+import { getHospitalPage } from '@/lib/hospital-content'
+import { hospitalBlogTopic, HOSPITAL_SERVICE_LINK, HOSPITAL_UPDATED_AT } from '@/lib/hospital-paths'
 
 const SITE_URL = 'https://www.blinkad.kr'
 const BLOG_BASE_URL = `${SITE_URL}/blog`
@@ -56,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
-  const rewriteDate = BLOG_REWRITE_DATES[post.id]
+  const rewriteDate = hospitalBlogTopic(post.id) ? HOSPITAL_UPDATED_AT : BLOG_REWRITE_DATES[post.id]
   const description = post.excerpt && post.excerpt.length > 50
     ? post.excerpt
     : `${post.title} - 블링크애드 블로그에서 자세히 알아보세요. 구글 AEO·GEO 외국인 마케팅 전문 에이전시의 인사이트를 제공합니다.`
@@ -110,10 +113,12 @@ export default async function BlogPost({ params }: Props) {
     notFound()
   }
 
+  const topic = hospitalBlogTopic(post.id)
+  const guide = topic && getHospitalPage(topic)
   const nestArticle = NEST_ARTICLES.find(article => article.slug === post.id)
   const isoDate = formatDateToISO(post.date)
   const imageUrl = post.imageUrl ? toAbsoluteUrl(post.imageUrl) : ''
-  const rewriteDate = BLOG_REWRITE_DATES[post.id]
+  const rewriteDate = hospitalBlogTopic(post.id) ? HOSPITAL_UPDATED_AT : BLOG_REWRITE_DATES[post.id]
   const canonicalUrl = `${BLOG_BASE_URL}/${post.id}`
   const renderedContent = post.content.replace(
     '<p><a href="https://www.blinkad.kr/contact">우리 매장이 외국인 고객에게 지금 어떤 화면으로 보이는지, 광고를 시작하기 전에 무엇부터 고쳐야 하는지 점검받기</a></p>',
@@ -236,6 +241,11 @@ export default async function BlogPost({ params }: Props) {
             </div>
           </header>
 
+          {guide && <nav aria-label="병원마케팅 안내" className="mb-8 flex flex-wrap gap-x-6 text-blue-400">
+            <Link href={HOSPITAL_SERVICE_LINK.href} className="inline-flex min-h-11 items-center hover:underline">병원마케팅 대행 안내</Link>
+            <a href="#hospital-guide" className="inline-flex min-h-11 items-center hover:underline">{guide.title} ↓</a>
+          </nav>}
+
           {/* Featured Image */}
           {post.imageUrl && (
             <div className="rounded-2xl overflow-hidden mb-12 relative aspect-video">
@@ -268,6 +278,10 @@ export default async function BlogPost({ params }: Props) {
           />
 
           </NestArticleExperience>
+          {guide && <section id="hospital-guide" className="mt-16 scroll-mt-24 border-t border-white/10 pt-10">
+            <h2 className="mb-6 text-3xl font-bold text-white">{guide.title}</h2>
+            <GuideBody page={guide} />
+          </section>}
           {!nestArticle && <BlogCTA copy={getBlogConsultation(post)} />}
 
           {/* Related Posts */}

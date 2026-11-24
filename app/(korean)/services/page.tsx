@@ -3,7 +3,8 @@ import Link from 'next/link'
 import { MapPin, FileText, Bot, ArrowLeft, Check, Globe2, MessagesSquare } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { languageAlternates } from '@/lib/site-languages'
+import { HOSPITAL_SERVICE_LINK } from '@/lib/hospital-paths'
+import { languageAlternates, splitLanguagePath } from '@/lib/site-languages'
 
 export const metadata: Metadata = {
   title: '외국인마케팅 서비스 | 구글 비즈니스 프로필·블로그·AEO·레딧 - BlinkAd',
@@ -133,6 +134,11 @@ export default function ServicesPage() {
             Google Maps, 리뷰, 웹사이트, 블로그, AI 검색을 연결해<br />
             온라인에서 발견되고 선택받는 브랜드를 만듭니다.
           </p>
+          {splitLanguagePath(services[0].href).language === 'ko' && (
+            <Link href={HOSPITAL_SERVICE_LINK.href} className="mt-6 inline-flex min-h-11 items-center gap-2 font-medium text-blue-400 hover:underline">
+              {HOSPITAL_SERVICE_LINK.label} →
+            </Link>
+          )}
         </div>
       </header>
 

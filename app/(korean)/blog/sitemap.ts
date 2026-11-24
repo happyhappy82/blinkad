@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 import { ENGLISH_BLOG_POSTS, getEnglishBlogPost } from '@/lib/english-blog-index'
 import { JAPANESE_BLOG_POSTS, getJapaneseBlogPost } from '@/lib/japanese-blog-index'
+import { hospitalBlogTopic, HOSPITAL_UPDATED_AT } from '@/lib/hospital-paths'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { CHINESE_BLOG_POSTS, getChineseBlogPost } from '@/lib/chinese-blog-index'
 import { languageAlternates } from '@/lib/site-languages'
@@ -23,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/${post.id}`,
     ...((getEnglishBlogPost(post.id) || getJapaneseBlogPost(post.id) || getChineseBlogPost(post.id)) && { alternates: { languages: languageAlternates(`/blog/${post.id}`) } }),
-    lastModified: new Date(BLOG_REWRITE_DATES[post.id] || post.date.replace(/\./g, '-')),
+    lastModified: new Date(hospitalBlogTopic(post.id) ? HOSPITAL_UPDATED_AT : BLOG_REWRITE_DATES[post.id] || post.date.replace(/\./g, '-')),
     changeFrequency: 'weekly' as const,
     priority: 0.8,
   }))

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { BLOG_POSTS } from '@/constants'
 import { ENGLISH_BLOG_POSTS, getEnglishBlogPost } from '@/lib/english-blog-index'
 import { JAPANESE_BLOG_POSTS, getJapaneseBlogPost } from '@/lib/japanese-blog-index'
+import { hospitalBlogTopic, HOSPITAL_UPDATED_AT, hospitalPaths } from '@/lib/hospital-paths'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { CHINESE_BLOG_POSTS, getChineseBlogPost } from '@/lib/chinese-blog-index'
 import { NEWS_POSTS } from '@/constants/news'
@@ -14,6 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 정적 페이지들
   const staticPages: MetadataRoute.Sitemap = [
+    ...[hospitalPaths['hospital-marketing'], hospitalPaths['hospital-work']].map(path => ({
+      url: baseUrl + path, lastModified: new Date(HOSPITAL_UPDATED_AT), changeFrequency: 'monthly' as const,
+    })),
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -87,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${baseUrl}/blog/${post.id}`,
     ...((getEnglishBlogPost(post.id) || getJapaneseBlogPost(post.id) || getChineseBlogPost(post.id)) && { alternates: { languages: languageAlternates(`/blog/${post.id}`) } }),
-    lastModified: new Date(BLOG_REWRITE_DATES[post.id] || (revisedNestSlugs.has(post.id) ? NEST_UPDATED_AT : post.date.replace(/\./g, '-'))),
+    lastModified: new Date(hospitalBlogTopic(post.id) ? HOSPITAL_UPDATED_AT : BLOG_REWRITE_DATES[post.id] || (revisedNestSlugs.has(post.id) ? NEST_UPDATED_AT : post.date.replace(/\./g, '-'))),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
