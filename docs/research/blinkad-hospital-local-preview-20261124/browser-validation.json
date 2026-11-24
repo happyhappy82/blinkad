@@ -1,0 +1,24 @@
+{
+  "checked_date": "2026-11-24",
+  "browser": "Ego Lite space109",
+  "desktop_service_navigation": true,
+  "index_return_button": true,
+  "mobile": {
+    "width": 390,
+    "documentWidth": 375,
+    "tableScroll": true,
+    "headerControls": [
+      {
+        "text": "← 뒤로가기",
+        "height": 44
+      },
+      {
+        "text": "전체 목록 7",
+        "height": 44
+      }
+    ],
+    "logoHeight": 28
+  },
+  "case_photo_loaded": true,
+  "limits": "Representative desktop and 390px mobile views; not all-device or full performance audit."
+}
