@@ -3,16 +3,13 @@ import { ArrowRight, List } from 'lucide-react'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import BackButton from './BackButton'
-import { PREVIEW_ROOT } from './content'
+import { HOSPITAL_SERVICE_PATH, PREVIEW_ROOT } from './content'
 
 const siteOrigin = 'https://www.blinkad.kr'
 
-export function PreviewHeader({ section = '/services', detail = false }: {
-  section?: '/services' | '/blog'
-  detail?: boolean
-}) {
+export function PreviewHeader({ detail = false }: { detail?: boolean }) {
   return (
-    <Navbar preview={{ siteOrigin, section }}>
+    <Navbar preview={{ siteOrigin, serviceLink: { label: '병원마케팅', href: HOSPITAL_SERVICE_PATH } }}>
       <div className="hp-review-links" role="group" aria-label="검토 페이지 이동">
         {detail && <BackButton />}
         <Link href={detail ? PREVIEW_ROOT : '#guides'} className="hp-list-link">

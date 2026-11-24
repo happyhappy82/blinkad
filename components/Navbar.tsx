@@ -30,17 +30,28 @@ function isCurrentPath(pathname: string, href: string) {
 }
 
 type NavbarProps = {
-  preview?: { siteOrigin: string; section: '/services' | '/blog' };
+  preview?: { siteOrigin: string; serviceLink: { label: string; href: string } };
   children?: ReactNode;
 };
 
 export default function Navbar({ preview, children }: NavbarProps) {
-  const currentPath = usePathname();
-  const pathname = preview?.section ?? currentPath;
+  const pathname = usePathname();
   const siteOrigin = preview?.siteOrigin ?? '';
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const isServiceActive = servicePaths.some((path) => isCurrentPath(pathname, path));
+  const isServiceActive = Boolean(preview) || servicePaths.some((path) => isCurrentPath(pathname, path));
+  const menuServices = serviceLinks.map(link => ({
+    ...link,
+    href: siteOrigin + link.href,
+    active: isCurrentPath(pathname, link.href),
+  }));
+  if (preview) {
+    // The draft sits directly below the service overview in both menus.
+    menuServices.splice(1, 0, {
+      ...preview.serviceLink,
+      active: isCurrentPath(pathname, preview.serviceLink.href),
+    });
+  }
 
   const closeMobileMenu = () => {
     setIsMobileOpen(false);
@@ -78,21 +89,18 @@ export default function Navbar({ preview, children }: NavbarProps) {
 
             <div className="pointer-events-none invisible absolute left-1/2 top-[calc(100%-1px)] w-64 -translate-x-1/2 pt-3 opacity-0 transition-all group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100">
               <div className="overflow-hidden rounded-lg border border-white/10 bg-[#111] p-2 shadow-2xl shadow-black/50">
-                {serviceLinks.map((link) => {
-                  const active = isCurrentPath(pathname, link.href);
-
-                  return (
-                    <Link
-                      key={link.href}
-                      href={siteOrigin + link.href}
-                      className={`block rounded-md px-3 py-2.5 text-sm transition-colors ${
-                        active ? 'bg-brand-blue/15 font-semibold text-brand-blue' : 'text-gray-300 hover:bg-white/[0.06] hover:text-white'
-                      }`}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                })}
+                {menuServices.map(({ href, label, active }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    aria-current={active ? 'page' : undefined}
+                    className={`block rounded-md px-3 py-2.5 text-sm transition-colors ${
+                      active ? 'bg-brand-blue/15 font-semibold text-brand-blue' : 'text-gray-300 hover:bg-white/[0.06] hover:text-white'
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
@@ -161,20 +169,17 @@ export default function Navbar({ preview, children }: NavbarProps) {
 
             {(preview || isMobileServicesOpen) && (
               <div id={preview ? 'mobile-services' : undefined} hidden={!isMobileServicesOpen} className="mb-2 border-l border-white/10 pl-4">
-                {serviceLinks.map((link) => {
-                  const active = isCurrentPath(pathname, link.href);
-
-                  return (
-                    <Link
-                      key={link.href}
-                      href={siteOrigin + link.href}
-                      onClick={closeMobileMenu}
-                      className={`block py-2.5 text-sm ${active ? 'font-semibold text-brand-blue' : 'text-gray-400'}`}
-                    >
-                      {link.label}
-                    </Link>
-                  );
-                })}
+                {menuServices.map(({ href, label, active }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    aria-current={active ? 'page' : undefined}
+                    onClick={closeMobileMenu}
+                    className={`block py-2.5 text-sm ${active ? 'font-semibold text-brand-blue' : 'text-gray-400'}`}
+                  >
+                    {label}
+                  </Link>
+                ))}
               </div>
             )}
 

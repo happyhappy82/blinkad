@@ -2,7 +2,13 @@
 
 작성·검증: 2026-11-24. 형님이 앞서 제안한7페이지를 만들고 로컬로 띄우라고 요청해 구현했다.
 
-## 현재 검토본 · 공식 사이트 디자인 반영
+## 현재 검토본 · 서비스 메뉴 진입
+
+[병원마케팅 대행 초안](https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/hospital-marketing/)은 데스크톱의 서비스 드롭다운과 모바일의 메뉴 → 서비스 → 병원마케팅에서 열린다. 목록과 본문에 같은 메뉴가 있다. 대표 서비스 상단에 6개 분야별 가이드를 연결했고 각 가이드의 상단에서 대표 서비스로 돌아갈 수 있다. 기존 전체 목록 URL은 7개 초안 검토용이다. 운영 사이트 메뉴 변경은 별도다.
+
+2026-11-24 기존 HTTPS에서 8개 경로 200, PC 1280px·모바일 390px 메뉴 진입, 6개 링크 표시, 제작비 가이드 왕복을 확인했다. 언어 테스트 16개와 TypeScript 검사를 통과했다.
+
+## 이전 검토본 · 공식 사이트 디자인 반영
 
 [모바일 검토](https://particle-enrolled-andale-parameters.trycloudflare.com/hospital-marketing-preview/)에서 목록과 본문 7개를 확인할 수 있다. 기존 로컬 주소와 외부 주소를 모두 유지했다. 아래 최초 검토 기록에 있는 읽기 흐름 도식과 우측 고정 목차는 이전 디자인이다.
 

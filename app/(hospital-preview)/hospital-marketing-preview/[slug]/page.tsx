@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, ChevronDown, ExternalLink } from 'lucide-react'
-import { getHospitalPage, hospitalPages, PREVIEW_ROOT } from '@/components/hospital-preview/content'
+import { getHospitalPage, hospitalPages, HOSPITAL_SERVICE_PATH, PREVIEW_ROOT } from '@/components/hospital-preview/content'
 import { ConsultationNote, PreviewFooter, PreviewHeader } from '@/components/hospital-preview/PreviewShell'
 
 export const dynamicParams = false
@@ -22,18 +22,37 @@ export default async function HospitalPreviewDetail({ params }: Props) {
 
   return (
     <div className="hp-site min-h-screen bg-black text-white">
-      <PreviewHeader detail section={isService ? '/services' : '/blog'} />
+      <PreviewHeader detail />
       <main>
         <article className="px-6 pb-20 pt-32">
           <div className={isService ? 'mx-auto max-w-4xl' : 'mx-auto max-w-3xl'}>
-            <Link href={PREVIEW_ROOT} className="hp-return">
-              <ArrowLeft size={20} aria-hidden="true" /> 병원마케팅 가이드로 돌아가기
-            </Link>
+            {isService ? (
+              <p className="mb-6 text-sm text-gray-400">서비스 <span aria-hidden="true">/</span> 병원마케팅</p>
+            ) : (
+              <Link href={HOSPITAL_SERVICE_PATH} className="hp-return">
+                <ArrowLeft size={20} aria-hidden="true" /> 병원마케팅 대행
+              </Link>
+            )}
             <header className="mb-12">
               {isService ? (
                 <>
-                  <h1 className="mb-6 text-5xl font-bold keep-all md:text-6xl">{page.title}</h1>
+                  <h1 className="mb-6 text-5xl font-bold keep-all md:text-6xl">{page.shortTitle}</h1>
                   <p className="max-w-2xl text-xl text-gray-400 keep-all">{page.description}</p>
+                  <nav aria-labelledby="service-guides-title" className="mt-10">
+                    <h2 id="service-guides-title" className="mb-3 text-lg font-bold">분야별 가이드</h2>
+                    <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                      {page.related.map(slug => {
+                        const guide = getHospitalPage(slug)!
+                        return (
+                          <li key={slug}>
+                            <Link href={PREVIEW_ROOT + '/' + slug} className="flex min-h-12 items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 font-medium hover:border-brand-blue/60">
+                              {guide.shortTitle}<ArrowRight size={16} aria-hidden="true" className="shrink-0 text-blue-400" />
+                            </Link>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </nav>
                 </>
               ) : (
                 <>
@@ -94,7 +113,7 @@ export default async function HospitalPreviewDetail({ params }: Props) {
                 </a></li>
               ))}</ul>
             </section>
-            <section aria-labelledby="related-title" className="mt-16 border-t border-white/10 pt-12">
+            {!isService && <section aria-labelledby="related-title" className="mt-16 border-t border-white/10 pt-12">
               <h2 id="related-title" className="mb-6 text-2xl font-bold">이어서 읽어보세요</h2>
               <div className="grid gap-4 md:grid-cols-3">
                 {page.related.map(slug => {
@@ -108,7 +127,7 @@ export default async function HospitalPreviewDetail({ params }: Props) {
                   )
                 })}
               </div>
-            </section>
+            </section>}
             <nav aria-label="가이드 이동" className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-6 text-sm text-gray-400">
               <Link href={PREVIEW_ROOT} className="hp-page-link"><ArrowLeft size={16} /> 전체 목록</Link>
               <Link href={PREVIEW_ROOT + '/' + next.slug} className="hp-page-link">{next.shortTitle} <ArrowRight size={16} /></Link>

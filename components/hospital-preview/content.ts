@@ -1,4 +1,5 @@
 export const PREVIEW_ROOT = '/hospital-marketing-preview'
+export const HOSPITAL_SERVICE_PATH = PREVIEW_ROOT + '/hospital-marketing'
 
 export type Section = {
   id: string
@@ -54,7 +55,7 @@ export const hospitalPages: HospitalPage[] = [
       ] },
       { id: 'deliverables', title: '보고서에는 실제로 바뀐 내용이 보여야 합니다.', table: { heads: ['맡긴 업무', '완료를 확인할 자료'], rows: [['지도 정보 정비', '변경 항목과 적용 전후 화면'], ['페이지 제작·개선', '검토한 원고·화면, 실제 적용 URL, 문의 경로 확인'], ['콘텐츠 운영', '확정 원고와 발행 주소, 병원 확인·수정 범위'], ['AI 검색 점검', '질문·언어·확인일·관측 조건과 실제 답변/출처'], ['광고 운영', '운영 범위와 지출·반응, 연결 페이지와 문의 확인 범위']] }, paragraphs: ['작업을 마쳤다는 것과 신규 환자가 늘었다는 것은 각각 확인해야 합니다. 예를 들어 영문 진료 페이지를 공개했다면 주소와 내용, 문의 연결부터 확인하고, 이후 검색과 실제 문의 자료를 같은 기간으로 살펴봅니다.'] },
       { id: 'preparation', title: '상담 전에는 네 가지를 알려주세요.', paragraphs: ['현재 홈페이지와 Google Maps 주소, 알리고 싶은 진료, 목표 고객의 언어, 가장 먼저 해결하고 싶은 문제를 알려주시면 됩니다. 사진과 진료 설명의 보유 상태, 홈페이지·광고 계정의 관리 주체도 함께 확인하면 범위를 정하기 수월합니다.', '외국어 페이지를 준비하는 것과 외국어로 상담을 진행하는 일은 별도 준비가 필요합니다. 병원에서 응대할 수 있는 언어와 연락 창구를 먼저 맞추겠습니다.'] },
-    ], related: ['agency-selection', 'foreign-patients', 'hospital-work'], sources: [ownScope, googleHelpful],
+    ], related: ['agency-selection', 'hospital-geo', 'hospital-website', 'website-cost', 'foreign-patients', 'hospital-work'], sources: [ownScope, googleHelpful],
   },
   {
     slug: 'agency-selection', number: '02', role: '비교·선택 가이드', shortTitle: '대행사 선택 기준',

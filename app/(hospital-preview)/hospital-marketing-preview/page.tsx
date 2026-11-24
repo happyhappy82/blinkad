@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import {
-  ArrowLeft, ArrowRight, Bot, Building2, Check, ClipboardList,
+  ArrowRight, Bot, Building2, Check, ClipboardList,
   FileText, Globe2, Monitor, ReceiptText,
 } from 'lucide-react'
-import { hospitalPages, PREVIEW_ROOT } from '@/components/hospital-preview/content'
+import { hospitalPages, HOSPITAL_SERVICE_PATH, PREVIEW_ROOT } from '@/components/hospital-preview/content'
 import { ConsultationNote, PreviewFooter, PreviewHeader } from '@/components/hospital-preview/PreviewShell'
 
-export const metadata: Metadata = { title: '병원마케팅 서비스와 가이드' }
+export const metadata: Metadata = { title: '병원마케팅 초안 검토 목록' }
 
 const icons = [Building2, ClipboardList, Bot, Monitor, ReceiptText, Globe2, FileText]
 
@@ -18,14 +18,13 @@ export default function HospitalPreviewIndex() {
       <main>
         <header className="px-6 pb-16 pt-32">
           <div className="mx-auto max-w-4xl">
-            <a href="https://www.blinkad.kr/services" className="hp-return">
-              <ArrowLeft size={20} aria-hidden="true" /> 블링크애드 서비스
-            </a>
-            <h1 className="mb-6 text-[2.375rem] font-bold leading-tight keep-all sm:text-5xl md:text-6xl">병원마케팅 서비스와<br /> 대행사 선택 가이드</h1>
+            <h1 className="mb-6 text-[2.375rem] font-bold leading-tight keep-all sm:text-5xl md:text-6xl">병원마케팅 초안 검토 목록</h1>
             <p className="max-w-2xl text-xl text-gray-400 keep-all">
-              구글 지도와 AI 검색, 다국어 홈페이지부터 제작 견적까지.<br className="hidden md:block" />
-              병원에서 맡길 일과 대행사에 확인할 점을 살펴보세요.
+              대표 서비스 페이지와 분야별 가이드 6편을 모았습니다.
             </p>
+            <Link href={HOSPITAL_SERVICE_PATH} className="hp-primary mt-6">
+              대표 서비스 페이지 보기 <ArrowRight size={18} aria-hidden="true" />
+            </Link>
           </div>
         </header>
 
