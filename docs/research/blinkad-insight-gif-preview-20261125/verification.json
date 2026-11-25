@@ -1,0 +1,44 @@
+{
+  "date_kst": "2026-11-25",
+  "local_url": "http://127.0.0.1:18951/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka#inquiry-gap-demo",
+  "source_base": "516a724694c589018a8d6793482db9dae15704d7",
+  "article_data_unchanged_sha256": "283ca74e7e420d5b9d3ab70f8189d5555615815820bcfa54591d8d5abc136d0c",
+  "insertion": "first four-stage table explanatory paragraph, before actual case H3",
+  "source_gif_sha256": "ab3624853825d1a3afcc7dd7d2d3a3b2e7177bef49c8a80ce1a9f176333218bb",
+  "typecheck": "tsc --noEmit passed",
+  "http": {
+    "target": 200,
+    "other_post": 200,
+    "gif": 200,
+    "poster": 200
+  },
+  "other_post_has_figure": false,
+  "preview_noindex": true,
+  "preview_gtm_disabled": true,
+  "visual_review": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "narrow_width": 320,
+    "horizontal_overflow": false,
+    "pause_resume": "passed",
+    "reduced_motion_static": "passed",
+    "touch_target_min_height": 44
+  },
+  "limitations": [
+    "Original generated GIF remains 3.2 seconds/16 frames with slight layout jitter.",
+    "No production build, official deployment, new generation or extra credit spend.",
+    "Local-only as explicitly requested; no HTTPS tunnel or physical phone/5G test."
+  ],
+  "server": {
+    "port": 18951,
+    "exec_session": 10802,
+    "env": "BLINKAD_LOCAL_PREVIEW=1"
+  },
+  "browser_task_space": 139
+}

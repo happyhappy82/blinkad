@@ -2,10 +2,13 @@ import type { Metadata } from 'next'
 import Tracker from '@/components/Tracker'
 import { LANGUAGE_INFO, type SiteLanguage } from '@/lib/site-languages'
 import { siteCopy } from '@/i18n/site'
+import LocalPreviewNavigation from '@/components/LocalPreviewNavigation'
 
 const SITE_NAME = 'BlinkAd'
+const LOCAL_PREVIEW = process.env.BLINKAD_LOCAL_PREVIEW === '1'
 
 export const metadata: Metadata = {
+  ...(LOCAL_PREVIEW && { robots: { index: false, follow: false } }),
   metadataBase: new URL('https://www.blinkad.kr'),
   applicationName: SITE_NAME,
   verification: {
@@ -61,7 +64,7 @@ export default function SiteDocument({
     <html lang={LANGUAGE_INFO[language].html}>
       <head>
         {/* Google Tag Manager */}
-        <script
+        {!LOCAL_PREVIEW && <script
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -69,30 +72,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-K2TTW7SV');`,
           }}
-        />
+        />}
         {/* End Google Tag Manager */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {/* Preconnect for external resources */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {!LOCAL_PREVIEW && <link rel="preconnect" href="https://www.googletagmanager.com" />}
+        {!LOCAL_PREVIEW && <link rel="dns-prefetch" href="https://www.googletagmanager.com" />}
         {/* RSS Feed */}
         <link rel="alternate" type="application/rss+xml" title={`${SITE_NAME} Blog RSS`} href="https://www.blinkad.kr/feed.xml" />
       </head>
-      <body className="bg-black text-white antialiased">
+      <body className={`bg-black text-white antialiased${LOCAL_PREVIEW ? ' pb-24' : ''}`}>
         {/* Google Tag Manager (noscript) */}
-        <noscript>
+        {!LOCAL_PREVIEW && <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-K2TTW7SV"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
           />
-        </noscript>
+        </noscript>}
         {/* End Google Tag Manager (noscript) */}
         {/* 통합 문의 추적 트래커 (Layout 마운트, Client Component) */}
-        <Tracker />
+        {!LOCAL_PREVIEW && <Tracker />}
         {/* Schema.org - WebSite */}
         <script
           type="application/ld+json"
@@ -135,6 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {children}
+        {LOCAL_PREVIEW && <LocalPreviewNavigation />}
       </body>
     </html>
   )
