@@ -39,6 +39,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Frozen review output and local tunnel state
+.insight-gif-share/
+
 # IDE
 .idea/
 .vscode/

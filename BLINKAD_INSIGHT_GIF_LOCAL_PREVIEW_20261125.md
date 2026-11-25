@@ -1,8 +1,10 @@
 # 블링크애드 인사이트 GIF 본문 로컬 검토
 
-확인일: 2026-11-25 KST. 상태: 로컬 반영·검토 완료, 공식 배포 전.
+확인일: 2026-11-25 KST. 최신 상태: 모바일 외부 HTTPS 검토 연결·확인 완료, 공식 배포 전.
 
 ## 확인 주소
+
+**최신 모바일 검토:** [GIF 본문 바로 보기](https://shoes-adopt-pushed-humanities.trycloudflare.com/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka/#inquiry-gap-demo) · [검토 목록](https://shoes-adopt-pushed-humanities.trycloudflare.com/blog/)
 
 [GIF가 들어간 본문 위치](http://127.0.0.1:18951/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka#inquiry-gap-demo)
 
@@ -10,7 +12,7 @@
 
 [인사이트 목록](http://127.0.0.1:18951/blog)
 
-형님이 로컬로 요청해 localhost에서 확인하도록 구성했다. 같은 컴퓨터에서 열 수 있으며 외부 HTTPS 터널은 만들지 않았다. 서버 실행이 유지돼야 주소가 열린다.
+초기 로컬 검토 뒤 형님이 모바일 접속을 요청해 외부 HTTPS 주소를 추가했다. 아래 localhost 주소도 유지한다. 외부 링크는 맥·정적 서버·터널이 실행 중일 때 열리는 임시 검토 주소다.
 
 ## 반영한 모습
 
@@ -53,3 +55,25 @@ BLINKAD_LOCAL_PREVIEW=1 ./node_modules/.bin/next dev --hostname 127.0.0.1 --port
 [PC 화면](docs/research/blinkad-insight-gif-preview-20261125/desktop.png) · [모바일 화면](docs/research/blinkad-insight-gif-preview-20261125/mobile.png) · [검증 기록](docs/research/blinkad-insight-gif-preview-20261125/verification.json)
 
 전체 production build·실기기/5G·외부 HTTPS·CWV 실측은 하지 않았다. 이번 작업은 로컬 검토이며 공식 main 병합·발행·배포·실제 문의 제출은 하지 않았다. 다음은 형님 본문 배치 검토 후 요청 범위에서 크기·간격·문구를 조정하는 것이다.
+
+
+## 모바일 외부 HTTPS 후속 연결
+
+최신 주소: https://shoes-adopt-pushed-humanities.trycloudflare.com/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka/#inquiry-gap-demo
+
+`export-insight-gif-preview.py`가 현재 글1개·목록1개와 필요한 CSS·로고·GIF/정지이미지만 `.insight-gif-share/public/`에 분리한다. Next 개발 런타임·GTM·운영 API·소스/계정자료·폼은 공유하지 않는다. 기존 본문 모양과 GIF는 유지하며 공유본 상단에는 인사이트/공식 사이트 링크를 두었다. 재생/정지와 직접진입 시 목록으로 이동하는 링크는 작은 검토용JS로 동작한다. JS가 없어도 뒤로가기/목록은 실제 목록 링크다.
+
+- 정적 서버127.0.0.1:18952, exec28022. 기존 Next18951/10802도 유지.
+- Cloudflared exec20207, 로그 `/tmp/blinkad-insight-gif-tunnel-20261125.log`.
+- 재개 정보 `.insight-gif-share/state.json` (Git제외). 다른 서버·터널은 변경하지 않았다.
+- 수정 후 기존 주소를 유지하려면 Next 검토본 수정 → 같은 export 스크립트 재실행. 터널을 새로 만들 필요가 없다.
+
+```bash
+/Users/mcbookpro/.local/share/blinkad/venvs/snu-publisher-20261013/bin/python scripts/export-insight-gif-preview.py
+/Users/mcbookpro/.local/share/blinkad/venvs/snu-publisher-20261013/bin/python scripts/serve-insight-gif-preview.py
+/tmp/blinkad-f02-tunnel-bin/cloudflared tunnel --url http://127.0.0.1:18952 --protocol http2 --no-autoupdate --logfile /tmp/blinkad-insight-gif-tunnel-20261125.log
+```
+
+위 서버/터널은 이미 실행 중이므로 중복 실행하지 않는다. Export는 기존 venv의 requests가 아닌 urllib+BeautifulSoup를 사용하고 정적서버는 표준라이브러리만 사용한다. 새 패키지 설치0.
+
+외부 일반DNS/TLS에서 목록/글/GIF/PNG/JS/CSS200, GIF원본SHA일치, `/api/inquiry`·`/.env`·`/.git/config`·디렉터리목록404를 확인했다. noindex/nofollow/header·robots.txt를 유지한다. Ego139에서 외부HTTPS390/320px 넘침없음·GIF재생/정지·목록→글→뒤로가기·직접진입의목록링크를 확인했다. 실제휴대폰5G테스트는 하지 않았다. [외부 모바일 화면](docs/research/blinkad-insight-gif-preview-20261125/mobile-https.png) · [외부 검증](docs/research/blinkad-insight-gif-preview-20261125/mobile-https-verification.json). 공식 홈페이지 배포·추가 영상생성/과금은0이다.

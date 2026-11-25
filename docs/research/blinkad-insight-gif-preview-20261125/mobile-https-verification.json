@@ -1,0 +1,77 @@
+{
+  "date_kst": "2026-11-25",
+  "state": {
+    "url": "https://shoes-adopt-pushed-humanities.trycloudflare.com",
+    "article_url": "https://shoes-adopt-pushed-humanities.trycloudflare.com/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka/#inquiry-gap-demo",
+    "list_url": "https://shoes-adopt-pushed-humanities.trycloudflare.com/blog/",
+    "static_port": 18952,
+    "static_server_session": 28022,
+    "tunnel_session": 20207,
+    "local_next_port": 18951,
+    "local_next_session": 10802,
+    "tunnel_log": "/tmp/blinkad-insight-gif-tunnel-20261125.log",
+    "browser_space": 139,
+    "requires_running_mac_server_tunnel": true
+  },
+  "http_checks": [
+    {
+      "path": "/blog/",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka/",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/media/insights/inquiry-gap.gif",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/media/insights/inquiry-gap.png",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/assets/preview.js",
+      "status": 200,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/api/inquiry",
+      "status": 404,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/.git/config",
+      "status": 404,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    },
+    {
+      "path": "/assets/",
+      "status": 404,
+      "robots": "noindex, nofollow, noarchive, none, none"
+    }
+  ],
+  "actual_phone_5g_test": false,
+  "browser_mobile_test": {
+    "widths": [
+      390,
+      320
+    ],
+    "horizontal_overflow": false,
+    "gif_loaded": true,
+    "pause_resume": "passed",
+    "list_article_back": "passed",
+    "nav_min_height": 44,
+    "same_browser_space": 139,
+    "physical_phone_5g": false
+  }
+}
