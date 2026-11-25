@@ -1,0 +1,20 @@
+{
+  "checked_date_kst": "2026-11-25",
+  "selected": {
+    "page": "https://unsplash.com/photos/espresso-machine-and-grinder-in-cafe-RuJWgkv0Shg",
+    "image": "https://images.unsplash.com/photo-1788999422547-6d0ab2a8b57c?auto=format&fit=max&w=1600&q=85",
+    "local": "/tmp/blinkad-geo-photo-20261125/candidate1.jpg"
+  },
+  "photographer": "Ali Aziz",
+  "author_profile": "https://unsplash.com/@thealiaziz",
+  "source_page_title": "A professional espresso machine and coffee grinder on a counter in a cafe",
+  "license_page": "https://unsplash.com/license",
+  "source_page_license_label": "Free to use under the Unsplash License",
+  "selection_reason": "Landscape photo shows real commercial espresso machine and grinder, no diagram or text overlay.",
+  "modifications": "None; downloaded 1600px full-photo CDN rendition displayed at natural aspect ratio.",
+  "article_context": "Illustrative equipment photo; not represented as BlinkAd client work or a particular supplier installation.",
+  "not_selected": {
+    "page": "https://unsplash.com/photos/espresso-machine-and-coffee-drinks-on-a-cafe-counter-D556jNpHQ70",
+    "reason": "Portrait composition puts more attention on the cafe interior than the machine."
+  }
+}

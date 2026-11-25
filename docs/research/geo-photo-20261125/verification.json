@@ -1,0 +1,31 @@
+{
+  "date_kst": "2026-11-25",
+  "article": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+  "preview_route": "/blog/geo-marketing-brand-description/",
+  "source_photo_page": "https://unsplash.com/photos/espresso-machine-and-grinder-in-cafe-RuJWgkv0Shg",
+  "photographer": "Ali Aziz",
+  "license": "https://unsplash.com/license",
+  "image_path": "/media/geo-coffee-machine.jpg",
+  "image_bytes": 184185,
+  "image_sha256": "33c904341b5f65b2c1899967e5eaeadaa03a6ce0f0be519393b6de54f34cab3f",
+  "insertion": "After introduction paragraph 3, before first h2",
+  "article_text_preserved": true,
+  "figure_count": 1,
+  "photo_edited": false,
+  "credits_used": 0,
+  "production_applied": false,
+  "production_deployed": false,
+  "ui": {
+    "viewports": [
+      390,
+      320,
+      1280
+    ],
+    "overflow": false,
+    "photo_loaded": true,
+    "min_footer_touch_height": 44,
+    "photo_jump": true,
+    "back_and_list_fallback": true,
+    "actual_phone_5g": "not tested"
+  }
+}
