@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>병원 홈페이지 언어 전환 샘플</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;width:960px;height:540px;overflow:hidden}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",Arial,sans-serif;color:#172331;background:#edf1f5;-webkit-font-smoothing:antialiased}
+    button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid #65a5e9;outline-offset:3px}
+    .example{position:absolute;top:7px;left:28px;font-size:10px;letter-spacing:.08em;color:#73818f}
+    #browser{position:absolute;left:24px;top:28px;width:912px;height:480px;background:white;border:1px solid #d9e0e7;border-radius:12px;overflow:visible;box-shadow:0 12px 30px #233c5010;transform-origin:100% 0%;will-change:transform}
+    .browser-bar{height:30px;border-radius:12px 12px 0 0;background:#f5f7f9;border-bottom:1px solid #e7ebef;display:flex;align-items:center;padding:0 15px;gap:6px}
+    .dot{width:7px;height:7px;border-radius:50%;background:#cbd4dc}.address{margin-left:30px;color:#8a95a0;font-size:10px;letter-spacing:.025em}
+    header{height:78px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #edf0f3}
+    .brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:650;letter-spacing:.025em;white-space:nowrap}
+    .brand-mark{display:grid;place-items:center;width:29px;height:29px;border-radius:8px;background:#245f91;color:white}
+    .nav{display:flex;align-items:center;gap:24px;color:#596674;font-size:13px}
+    .nav span{display:block;width:67px;text-align:center;white-space:nowrap}
+    .language{position:relative;z-index:4}
+    #language-button{width:144px;height:40px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #d9e2ea;border-radius:7px;color:#263a4e;background:white;font-size:16px;font-weight:550}
+    #language-button[aria-expanded=true]{border-color:#346f9f;box-shadow:0 0 0 3px #346f9f0d}
+    #language-menu{position:absolute;right:0;top:49px;width:172px;padding:5px;background:white;border:1px solid #dce4ec;border-radius:9px;box-shadow:0 10px 28px #223d5724}
+    [hidden]{display:none!important}.option{height:42px;width:100%;border:0;border-radius:5px;background:white;display:flex;align-items:center;justify-content:space-between;padding:0 13px;font-size:16px;color:#2c4054;text-align:left}
+    .option:hover,.option.active{background:#edf5fc;color:#1e5c91}.check{color:#2f6c9b;font-size:15px}
+    main{position:relative;padding:40px 48px;height:371px;background:linear-gradient(105deg,#fff 67%,#f8fbfd 100%);border-radius:0 0 12px 12px}
+    .eyebrow{font-size:10px;letter-spacing:.13em;color:#567c9b;font-weight:650;margin-bottom:13px}
+    h1{margin:0;white-space:pre-line;width:495px;height:101px;font-size:36px;line-height:1.37;font-weight:650;letter-spacing:-1.1px}
+    .intro{width:470px;height:42px;font-size:13px;line-height:1.65;color:#6b7886;margin:14px 0 16px;white-space:pre-line}
+    .booking{height:43px;min-width:144px;border:0;border-radius:6px;padding:0 23px;background:#245f91;color:white;font-size:13px;font-weight:600;letter-spacing:.01em}
+    .info-card{position:absolute;right:42px;top:56px;width:240px;background:#f1f6fa;border:1px solid #e4edf4;border-radius:11px;padding:24px 22px}
+    .info-label{font-size:10px;letter-spacing:.13em;color:#68829a;margin-bottom:18px;font-weight:600}
+    .info-row{height:48px;display:flex;align-items:center;gap:12px;font-size:13px;color:#3a5873;border-top:1px solid #dfe8f0}
+    .info-row:first-of-type{border-top:0}.info-icon{color:#5b83a5;display:flex;align-items:center}
+    #pointer{position:absolute;z-index:20;left:0;top:0;width:24px;height:30px;pointer-events:none;filter:drop-shadow(0 1px 1px #0002);will-change:transform}
+    #ripple{position:absolute;z-index:19;width:28px;height:28px;left:0;top:0;border:1.5px solid #397bb1;border-radius:50%;opacity:0;pointer-events:none}
+    #replay{position:fixed;right:24px;bottom:10px;background:#fff;border:1px solid #d6e0e8;border-radius:6px;height:30px;padding:0 12px;font-size:11px;color:#49647a}
+    html[data-capture=true] #replay{display:none}
+  </style>
+</head>
+<body>
+  <div class="example">구성 예시 · SAMPLE WEBSITE</div>
+  <div id="browser">
+    <div class="browser-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="address">sample-clinic.example</span></div>
+    <header>
+      <div class="brand"><span class="brand-mark"><svg width="17" height="17" viewBox="0 0 20 20" aria-hidden="true"><path d="M8 2h4v6h6v4h-6v6H8v-6H2V8h6Z" fill="currentColor"/></svg></span>SAMPLE CLINIC</div>
+      <div class="nav"><span data-copy="navCare">진료 안내</span><span data-copy="navDoctors">의료진</span><span data-copy="navLocation">오시는 길</span></div>
+      <div class="language">
+        <button id="language-button" aria-label="언어 선택" aria-haspopup="menu" aria-expanded="false"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><ellipse cx="10" cy="10" rx="3.2" ry="7.5"/><path d="M3 7h14M3 13h14"/></svg><span id="current-language">한국어</span><svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m2 4 4 4 4-4"/></svg></button>
+        <div id="language-menu" role="menu" aria-label="언어" hidden>
+          <button class="option" id="choose-ko" role="menuitem">한국어<span class="check" id="ko-check">✓</span></button>
+          <button class="option" id="choose-en" role="menuitem">English<span class="check" id="en-check" hidden>✓</span></button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="eyebrow">PATIENT INFORMATION</div>
+      <h1 data-copy="heading">진료부터 방문까지,<br>필요한 안내를 한곳에.</h1>
+      <p class="intro" data-copy="intro">진료 안내와 의료진, 내원 정보를 확인하세요.</p>
+      <button class="booking" data-copy="booking" type="button">진료 예약</button>
+      <aside class="info-card"><div class="info-label">EXPLORE OUR CLINIC</div>
+        <div class="info-row"><span class="info-icon"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M6 7h8M6 10h8M6 13h5"/></svg></span><span data-copy="navCare">진료 안내</span></div>
+        <div class="info-row"><span class="info-icon"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="10" cy="6" r="3"/><path d="M4 17v-2a6 6 0 0 1 12 0v2"/></svg></span><span data-copy="navDoctors">의료진</span></div>
+        <div class="info-row"><span class="info-icon"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M16 8c0 5-6 10-6 10S4 13 4 8a6 6 0 0 1 12 0Z"/><circle cx="10" cy="8" r="2"/></svg></span><span data-copy="navLocation">오시는 길</span></div>
+      </aside>
+    </main>
+  </div>
+  <svg id="pointer" width="24" height="30" viewBox="0 0 24 30" aria-hidden="true"><path d="M3 2v23l6-6 4 9 4-2-4-8 8-1Z" fill="white" stroke="#172331" stroke-width="1.5" stroke-linejoin="round"/></svg>
+  <div id="ripple"></div>
+  <button id="replay" type="button">다시 보기</button>
+  <script>
+    const copies={ko:{navCare:'진료 안내',navDoctors:'의료진',navLocation:'오시는 길',heading:['진료부터 방문까지,','필요한 안내를 한곳에.'].join(String.fromCharCode(10)),intro:'진료 안내와 의료진, 내원 정보를 확인하세요.',booking:'진료 예약'},en:{navCare:'Care',navDoctors:'Doctors',navLocation:'Location',heading:['Your guide to care','and clinic visits.'].join(String.fromCharCode(10)),intro:'Find care information, our doctors and directions.',booking:'Book a Visit'}};
+    const browser=document.getElementById('browser'),toggle=document.getElementById('language-button'),menu=document.getElementById('language-menu'),ko=document.getElementById('choose-ko'),en=document.getElementById('choose-en'),pointer=document.getElementById('pointer'),ripple=document.getElementById('ripple');
+    let currentLanguage='ko',selectedPoint=null;
+    function chooseLanguage(language){currentLanguage=language;document.documentElement.lang=language;document.querySelectorAll('[data-copy]').forEach(el=>el.textContent=copies[language][el.dataset.copy]);document.getElementById('current-language').textContent=language==='ko'?'한국어':'English';document.getElementById('ko-check').hidden=language!=='ko';document.getElementById('en-check').hidden=language!=='en';menu.hidden=true;toggle.setAttribute('aria-expanded','false')}
+    toggle.addEventListener('click',()=>{menu.hidden=!menu.hidden;toggle.setAttribute('aria-expanded',String(!menu.hidden))});
+    ko.addEventListener('click',()=>chooseLanguage('ko'));en.addEventListener('click',()=>chooseLanguage('en'));
+    const clamp=v=>Math.max(0,Math.min(1,v));const ease=v=>{v=clamp(v);return v<.5?2*v*v:1-Math.pow(-2*v+2,2)/2};const mix=(a,b,v)=>a+(b-a)*v;
+    window.setDemoTime=ms=>{
+      ms=Math.max(0,Math.min(3999,ms));
+      const scale=ms<1100?mix(1,2,ease((ms-500)/600)):ms<1850?2:mix(2,1,ease((ms-1850)/650));
+      browser.style.transform=`scale(${scale})`;
+      if(ms<1100){selectedPoint=null;if(currentLanguage!=='ko')ko.click();menu.hidden=true;toggle.setAttribute('aria-expanded','false')}
+      else if(ms<1650){if(currentLanguage!=='ko')ko.click();if(menu.hidden)toggle.click()}
+      else if(currentLanguage!=='en'){if(menu.hidden)toggle.click();const er=en.getBoundingClientRect();selectedPoint={x:er.x+er.width*.55,y:er.y+er.height*.5};en.click()}
+      en.classList.toggle('active',ms>=1450&&ms<1650);
+      const tr=toggle.getBoundingClientRect();let x=tr.x+tr.width*.58,y=tr.y+tr.height*.48;
+      if(ms<1100){const travel=ease((ms-500)/550);x=mix(590,x,travel);y=mix(373,y,travel)}
+      else if(ms<1650){const er=en.getBoundingClientRect(),travel=ease((ms-1160)/350);x=mix(x,er.x+er.width*.55,travel);y=mix(y,er.y+er.height*.5,travel)}
+      else {const travel=ease((ms-1770)/650);x=mix(selectedPoint?.x??x,870,travel);y=mix(selectedPoint?.y??y,410,travel)}
+      pointer.style.transform=`translate(${x}px,${y}px)`;
+      const clickTime=ms>=1650?1650:1100;const phase=(ms-clickTime)/230;
+      ripple.style.opacity=phase>=0&&phase<=1?String(.55*(1-phase)):'0';ripple.style.transform=`translate(${x-14}px,${y-14}px) scale(${1+clamp(phase)*.6})`;
+      window.demoState={time:ms,language:currentLanguage,menuOpen:!menu.hidden,scale,cursorX:x,cursorY:y};
+    };
+    let playback=0;
+    function play(){cancelAnimationFrame(playback);const start=performance.now();const tick=now=>{const t=now-start;window.setDemoTime(t);if(t<3999)playback=requestAnimationFrame(tick)};playback=requestAnimationFrame(tick)}
+    document.getElementById('replay').addEventListener('click',play);
+    chooseLanguage('ko');const capture=new URLSearchParams(location.search).has('capture');document.documentElement.dataset.capture=String(capture);window.setDemoTime(0);if(!capture)play();
+  </script>
+</body>
+</html>
