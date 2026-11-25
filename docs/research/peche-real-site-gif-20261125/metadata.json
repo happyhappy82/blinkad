@@ -1,0 +1,104 @@
+{
+  "date_kst": "2026-11-25",
+  "method": "Actual live site navigation verified and screens captured; zoom, cursor, loading removal and final scroll assembled from those captures",
+  "design": "Actual Peche Clinic website screens, with visible source label",
+  "timeline_frames": 80,
+  "fps": 20,
+  "planned_still_holds": {
+    "home": [
+      0,
+      8
+    ],
+    "treatments": [
+      46,
+      79
+    ]
+  },
+  "actual_gif_duration_seconds": 4.0,
+  "actual_gif_frame_count": 80,
+  "final_treatment_hold_source_frames_identical": true,
+  "higgsfield_generation_requests": 0,
+  "higgsfield_credits_spent": 0,
+  "official_article_modified": false,
+  "files": {
+    "clinic-navigation.gif": {
+      "bytes": 3649833,
+      "sha256": "d8bcf59bf049ef25b2315c8d4fb75887b27daca6976e160e2c54f291c2259af7"
+    },
+    "clinic-navigation.mp4": {
+      "bytes": 346623,
+      "sha256": "d1cd69ca9c5a8806a21b2194cdfaa0a3150a78e06a41ea67ca1a93fc78a70012"
+    },
+    "poster.png": {
+      "bytes": 269365,
+      "sha256": "7f845650c859b8b220b0db325cdb165c26205d62c6d3cad57c78231bee36e675"
+    },
+    "source-home.png": {
+      "bytes": 665163,
+      "sha256": "994bdb06d6fa5b85c26e20789f576cae3331f94f007513b7e50cc047eec1f8ec"
+    },
+    "source-treatments.png": {
+      "bytes": 184703,
+      "sha256": "7e7ad7a9d28d48bc53e522885b445058f7cff68fd4861709aa560459b2fe1c6b"
+    },
+    "source.json": {
+      "bytes": 852,
+      "sha256": "4276c6d1fb03992e46db742dfeef417521450f5b9ea0c65104c75227197f264c"
+    },
+    "composition.html": {
+      "bytes": 2769,
+      "sha256": "79d341f0141598429db948325b6865c6b7e04d31fcafcd72410b4f4ea16825f2"
+    },
+    "preview.html": {
+      "bytes": 3275,
+      "sha256": "dae3821bc7421e57b2f03a31eec8270e4d5a8fc788cfb65fd7406ea4adddcfa9"
+    },
+    "index.html": {
+      "bytes": 815,
+      "sha256": "bf560d523e72cc100ce779f39ee9219e68c539a54e0dc52669daf212b1198565"
+    },
+    "capture-source.ego.mjs": {
+      "bytes": 1935,
+      "sha256": "6a8c245c5f960c15805b570eef30a5c8cdbb1b86bbf6914433b725039730621c"
+    },
+    "capture-frames.ego.mjs": {
+      "bytes": 1087,
+      "sha256": "21f542305b36f18aff5e428f78964b5095da5cb8fc3ce9a057e7576fec2df267"
+    },
+    "encode-media.py": {
+      "bytes": 3173,
+      "sha256": "a0dc753e06162bfa472d36cf0f5223fd97edc3fb7bdc549d10f942cefe8ac81c"
+    },
+    "mobile-preview.png": {
+      "bytes": 79864,
+      "sha256": "62205c878917ac7225157fed46294a7b3d6e71db63f6c751afe2343648c04d1d"
+    },
+    "https-verification.json": {
+      "bytes": 885,
+      "sha256": "a15cf622cdd0738f34e273490ffa781c19d11fd379aa837fb41cd80af5968430"
+    }
+  },
+  "visual_review": "passed: actual home, menu zoom/selection, treatment page and final GIF keyframes",
+  "gif_infinite_loop_verified": true,
+  "decoded_final_hold_identical": true,
+  "source_screenshot_size": [
+    1600,
+    900
+  ],
+  "source_browser_device_scale_factor": 2,
+  "editing": "Two actual source screenshots; authored zoom/cursor, removed loading and edited final scroll. Not a continuous real-time recording.",
+  "output_size": [
+    960,
+    540
+  ],
+  "mobile_preview": {
+    "url": "https://shoes-adopt-pushed-humanities.trycloudflare.com/real-clinic/preview.html",
+    "viewport": 390,
+    "document_width": 390,
+    "image_width": 350,
+    "navigation_link_height": 44,
+    "pause_resume": "passed",
+    "list_back": "passed",
+    "physical_phone_5g_tested": false
+  }
+}

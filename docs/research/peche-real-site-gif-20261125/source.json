@@ -1,0 +1,32 @@
+{
+  "date_kst": "2026-11-25",
+  "clinic": "페슈의원",
+  "method": "Actual browser screenshots at DPR2 after real menu navigation; loading removed and final page scrolled 240px in the edit",
+  "target": {
+    "url": "https://pecheskin.clinic/ko",
+    "label": "전체 시술",
+    "rect": {
+      "x": 767.16015625,
+      "y": 89.25,
+      "width": 97.2265625,
+      "height": 56.5,
+      "top": 89.25,
+      "right": 864.38671875,
+      "bottom": 145.75,
+      "left": 767.16015625
+    },
+    "viewport": [
+      1600,
+      900
+    ],
+    "devicePixelRatio": 2,
+    "scrollWidth": 1585
+  },
+  "result": {
+    "url": "https://pecheskin.clinic/ko/products?category=3720396e-84c8-4b71-886b-f1e91bcf059b",
+    "title": "페슈의원 전체 시술 안내 | 강남 피부과",
+    "scrollY": 240,
+    "scrollWidth": 1600,
+    "treatmentLinks": 11
+  }
+}

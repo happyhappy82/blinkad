@@ -1,0 +1,36 @@
+{
+  "preview.html": {
+    "status": 200,
+    "bytes": 3275,
+    "sha256": "dae3821bc7421e57b2f03a31eec8270e4d5a8fc788cfb65fd7406ea4adddcfa9"
+  },
+  "index.html": {
+    "status": 200,
+    "bytes": 815,
+    "sha256": "bf560d523e72cc100ce779f39ee9219e68c539a54e0dc52669daf212b1198565"
+  },
+  "clinic-navigation.gif": {
+    "status": 200,
+    "bytes": 3649833,
+    "sha256": "d8bcf59bf049ef25b2315c8d4fb75887b27daca6976e160e2c54f291c2259af7"
+  },
+  "clinic-navigation.mp4": {
+    "status": 200,
+    "bytes": 346623,
+    "sha256": "d1cd69ca9c5a8806a21b2194cdfaa0a3150a78e06a41ea67ca1a93fc78a70012"
+  },
+  "poster.png": {
+    "status": 200,
+    "bytes": 269365,
+    "sha256": "7f845650c859b8b220b0db325cdb165c26205d62c6d3cad57c78231bee36e675"
+  },
+  "source.json": {
+    "status": 404
+  },
+  "capture-source.ego.mjs": {
+    "status": 404
+  },
+  "composition.html": {
+    "status": 404
+  }
+}
