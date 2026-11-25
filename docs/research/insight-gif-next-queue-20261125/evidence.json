@@ -1,0 +1,45 @@
+{
+  "checked_date_kst": "2026-11-25",
+  "list_source": "https://www.blinkad.kr/blog",
+  "scope": "Stored planning and client context reconciled with four current official article bodies. No new production, generation or deployment.",
+  "queue": [
+    {
+      "order": 1,
+      "title": "병원 소개·의료진·진료 안내를 검색 가능한 페이지로 구성하는 법",
+      "url": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+      "state": "페슈 GIF 검토본 적용 완료·공식 배포 전",
+      "idea": "메인에서 전체 시술 메뉴를 선택하고 진료 목록을 확인하는 4초 실제 화면 편집본. 줌·커서 등 다듬기 제안은 아직 미실행."
+    },
+    {
+      "order": 2,
+      "title": "GEO 마케팅, AI가 설명하는 브랜드 이미지까지 살펴봐야 합니다",
+      "url": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+      "state": "새 GIF 미제작·후보",
+      "idea": "가상 커피머신 업체의 판매·설치·교육 중 소개에서 빠진 업무를 강조. 실제 AI 검색 결과가 바뀌는 성과처럼 표현하지 않는다."
+    },
+    {
+      "order": 3,
+      "title": "외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법",
+      "url": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes",
+      "state": "새 GIF 미제작·후보",
+      "idea": "카페 카드에서 영업시간·메뉴/가격·입구 정보를 확인하고 길찾기로 이어지는 3~5초 장면. 실제 매장 선정·자료는 미확정이며 길찾기를 방문 성과로 취급하지 않는다."
+    },
+    {
+      "order": 4,
+      "title": "홈페이지 SEO, 우리를 모르는 신규 고객의 검색어는 어떻게 고를까요?",
+      "url": "https://www.blinkad.kr/blog/homepage-seo-new-customer-keywords",
+      "state": "새 GIF 미제작·후보",
+      "idea": "A피부과 / 기미 치료 피부과 / 강남 기미 피부과를 검색 의도에 맞춰 비교. 가상 예시이며 검색량·실순위로 표시하지 않는다."
+    }
+  ],
+  "completed_from_work_records": [
+    {
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "commit": "87dbd6f"
+    },
+    {
+      "url": "https://www.blinkad.kr/blog/google-jidoeneun-naoneunde-mun-euiga-eobsdamyeon-eodibuteo-bolkka",
+      "commit": "006cf97"
+    }
+  ]
+}
