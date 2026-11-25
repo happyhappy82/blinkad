@@ -1,0 +1,20 @@
+{
+  "date_kst": "2026-11-25",
+  "job_id": "7548af8e-099c-49c1-8958-4c8a1c76a1cd",
+  "intended_article": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+  "params": {
+    "model": "gpt_image_2_6",
+    "quality": "medium",
+    "resolution": "1k",
+    "output_format": "gif",
+    "size": "768x432",
+    "frame_count": 16,
+    "frame_duration_ms": 250,
+    "count": 1,
+    "use_unlim": false,
+    "prompt": "Create one genuinely animated looping GIF for an editorial article about adding English pages to an existing Korean hospital website.\nOutput: 768x432 pixels, 16 frames, 250 ms per frame, about 4 seconds.\nThe single message is: select English in the language menu and the SAME Korean clinic webpage becomes its English-language version.\n\nSTYLE AND MOCK WEBSITE:\nShow ONE simplified desktop browser window, almost filling the canvas, on a very light gray background.\nFictional sample medical clinic, no real clinic or doctor. Use the same small brand name \"SAMPLE CLINIC\" throughout, a clean white and pale-blue design, dark charcoal text, thin lines, a quiet simple medical-building illustration on the right, and large readable interface labels.\nDo not add tiny body copy, real patients, medical claims, charts, extra callouts, standalone flowcharts, split screens, side-by-side websites, or rows of language-page cards.\nThe site layout, logo, illustration, hero shapes and colors must remain IDENTICAL when the language changes.\nThe only things changing in the website are its language selector and Korean labels turning into their English equivalents.\nA small unobtrusive outside badge \"구성 예시\" may indicate this is a demonstration.\nMake the language selector in the TOP RIGHT conspicuous and readable: a globe icon, \"한국어\", and a down arrow, in a generous pill-shaped control. No flags.\n\nEXACT KOREAN START STATE:\nHeader navigation: \"진료 안내\" / \"의료진\" / \"오시는 길\".\nLarge hero heading: \"진료 안내\".\nPrimary button: \"진료 예약\".\nLanguage selector: \"한국어\".\n\nEXACT ENGLISH END STATE:\nSame header navigation positions: \"Patient Guide\" / \"Doctors\" / \"Location\".\nSame large hero heading position: \"Patient Guide\".\nSame primary button shape and position: \"Book a Visit\".\nLanguage selector now reads \"English\".\n\nANIMATION STORYBOARD, 16 frames:\nFrames 0–2: hold a simple overview of the Korean webpage. The Korean headline and language selector are both clearly visible.\nFrames 3–5: smoothly ZOOM IN toward the top-right language selector. This is the visual focus. The view may crop the opposite side, but keep the full selector and enough of the SAME webpage visible.\nFrames 6–7: a clear cursor clicks \"한국어\"; open a simple dropdown directly under it, with exactly two readable choices: \"한국어\" and \"English\".\nFrames 8–9: the cursor selects \"English\"; briefly highlight that row in blue and close the dropdown.\nFrames 10–11: selector changes to \"English\" and ALL the shown Korean website labels switch to the exact English equivalents listed above. Keep the very same design, not a redesigned website.\nFrames 12–15: smoothly zoom back enough to show the English hero and header together, then HOLD the English page so the language change is unmistakable. Loop back to the initial Korean view after the final frame.\n\nPRIORITY:\nLanguage-menu zoom, explicit cursor selection of English, and the SAME PAGE clearly becoming English are far more important than webpage detail.\nKeep Korean and English spelling precise. The dropdown must actually open and English must actually be selected.\nReturn a real multi-frame animated GIF, not a static storyboard or contact sheet."
+  },
+  "quoted_credits": 1,
+  "generation_requests": 1,
+  "scope": "Create GIF for review; no official article change or deployment in this request."
+}

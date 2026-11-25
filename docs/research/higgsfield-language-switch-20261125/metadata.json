@@ -1,0 +1,58 @@
+{
+  "date_kst": "2026-11-25",
+  "job_id": "7548af8e-099c-49c1-8958-4c8a1c76a1cd",
+  "status": "completed",
+  "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_37VepJ9NostbCLJV8s8RQtD7jfy/hf_20261125_005201_7548af8e-099c-49c1-8958-4c8a1c76a1cd.gif",
+  "source_http": 200,
+  "bytes": 797318,
+  "sha256": "1f4f92f7318e720fdfe6d7447702ca5ecab582b49aebff9c7a2b38e200a8c58f",
+  "actual_width": 768,
+  "actual_height": 432,
+  "actual_frames": 16,
+  "actual_duration_seconds": 4.0,
+  "unique_frames": 16,
+  "loop_count": 0,
+  "qa_keyframe_indices": [
+    0,
+    4,
+    8,
+    12,
+    15
+  ],
+  "requested_duration_seconds": 4,
+  "requested_frames": 16,
+  "quoted_credits": 1,
+  "visual_review": {
+    "keyframes": [
+      0,
+      4,
+      8,
+      12,
+      15
+    ],
+    "korean_page_visible": true,
+    "language_selector_zoom": true,
+    "english_dropdown_selection": true,
+    "english_page_visible": true,
+    "same_overall_layout_maintained": true,
+    "text_checked": [
+      "진료 안내",
+      "의료진",
+      "오시는 길",
+      "진료 예약",
+      "한국어",
+      "English",
+      "Patient Guide",
+      "Doctors",
+      "Location",
+      "Book a Visit"
+    ],
+    "minor_generation_limitations": "Small typography/shape shifts across frames; illustrative sample, not a screen recording of an implemented site."
+  },
+  "official_article_changed": false,
+  "confirmed_transaction_credits": -1,
+  "transaction_time_utc": "2026-11-25T00:52:01.827187Z",
+  "balance_after_generation": 443.5,
+  "generation_requests": 1,
+  "extra_generations": 0
+}
