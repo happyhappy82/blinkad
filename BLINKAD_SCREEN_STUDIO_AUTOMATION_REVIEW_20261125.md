@@ -40,3 +40,16 @@
 설정 방법은 local `codex mcp add --help`의 stdio 서버 등록 구문과 [공식 MCP 안내](https://learn.chatgpt.com/docs/extend/mcp?surface=cli), 프로젝트의 수동 Codex 설정을 대조했다. 프로젝트 문서의 등록 예시는 `codex mcp add screenstudio -- npx -y screenstudio-mcp serve` 또는 config.toml의 `[mcp_servers.screenstudio]`, command=npx, args=[-y,screenstudio-mcp,serve], tool_timeout_sec=1800이다. 이번에는 help만 실행했고 등록·설치·doctor·앱 실행/업데이트·권한 변경·구매는0이다. 추후 실제 연결 시 프로젝트 기본 자동 설치 명령이 Claude 폴더도 변경할 수 있는 점을 피하고 Codex 범위에서 설정한다.
 
 제안할 첫 지시는 ‘페슈의원 사이트에서 메인→전체 시술을4초로 보여주고, 부드러운 줌·작은 커서·은은한 배경으로 정리한 뒤 MP4와 GIF로 출력’이다. 아직 이 방식으로 제작하거나 기존 검토본을 교체하지 않았다. 이번은 이용 방법 설명까지다.
+
+## 후속 질문: 업데이트가 계속되는가 (2026-11-25 16:42 KST 확인)
+
+GitHub REST API(저장소/main 커밋/릴리스/이슈·PR), GitHub 릴리스·changelog 및 npm 공식 registry를 읽기 전용으로 대조했다. npm www 페이지는403, 웹 도구의 커밋 목록 URL 조회도 제한되어 공개 REST API로 확인했다. 아래 날짜는 한국시간으로 변환했다. 원본UTC와 응답 요약은 `docs/research/screenstudio-maintenance-20261125/evidence.json`에 보관한다.
+
+- 최신 배포는 **v0.5.4, 2026-10-04 00:25 KST**다. npm latest도0.5.4이며 같은 날00:28 배포다. npm package의 repository가 동일 GitHub 저장소인지 확인했다. 0.5.0~0.5.4는10월3~4일 집중 배포됐다.
+- main의 최신 커밋은 **2026-10-08 05:54 KST, 2209470**이며 내레이션 작업 순서와 가이드 정리다. 이후 main 커밋·npm 새 버전은 이번 확인에서 없다. 저장소 updated_at(별표 등으로 바뀔 수 있음)을 코드 변경 시각으로 쓰지 않았다. archived=false이나 장기 유지보수를 보증하는 근거는 아니다.
+- **11월9일08:24 KST PR#2**가 Screen Studio4.1.0 지원을 제안했다. 현재open·merged_at=null로 main에 병합되지 않았다. 따라서4.1 지원이 배포됐다고 설명하지 않는다.
+- **11월11일13:37 KST issue#3**에4.1.0에서 State subscription timed out/편집기 미검출 제보가 올라왔고open·댓글0이다. 제보의 존재와 상태를 확인한 것이며 이번에 실제 오류를 재현한 것은 아니다.
+
+판단: 출시 초기의 여러 개선과 최근 커뮤니티 기여는 확인되지만, 현재도 활발한 릴리스가 계속된다고 단정할 근거는 약하다. 업데이트가 완전히 중단됐다고도 단정하지 않는다. 공개main은약7주, 배포는약7주반 새 내용이 없고4.1 관련 지원 제안·오류 제보가 미해결 상태다. 실제 도입은 검증된 버전에서 짧은 테스트 후 판단하는 방향을 권한다. 앱 최신 버전에 자동 추종하는 도구라고 가정하지 않는다.
+
+근거: [최신 릴리스](https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.4), [최신 main 커밋](https://github.com/tolimarchuk/screenstudio-mcp/commit/220947028c58857629f1cca88d79253fc7c3acff), [미병합4.1 PR](https://github.com/tolimarchuk/screenstudio-mcp/pull/2), [4.1 연결 오류 제보](https://github.com/tolimarchuk/screenstudio-mcp/issues/3), [npm registry](https://registry.npmjs.org/screenstudio-mcp). 이번은 유지보수 상태 조사만 완료했고 설치·업데이트·앱 실행·영상/본문 변경·배포는0이다.

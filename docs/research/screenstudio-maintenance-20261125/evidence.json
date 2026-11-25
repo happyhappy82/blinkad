@@ -1,0 +1,214 @@
+{
+  "checked_date_kst": "2026-11-25",
+  "sources": {
+    "repository": "https://api.github.com/repos/tolimarchuk/screenstudio-mcp",
+    "commits": "https://api.github.com/repos/tolimarchuk/screenstudio-mcp/commits?per_page=10",
+    "releases": "https://api.github.com/repos/tolimarchuk/screenstudio-mcp/releases?per_page=10",
+    "npm": "https://registry.npmjs.org/screenstudio-mcp"
+  },
+  "repository": {
+    "full_name": "tolimarchuk/screenstudio-mcp",
+    "html_url": "https://github.com/tolimarchuk/screenstudio-mcp",
+    "created_at": "2026-10-02T18:37:17Z",
+    "updated_at": "2026-10-23T21:44:52Z",
+    "pushed_at": "2026-10-07T20:54:54Z",
+    "archived": false,
+    "disabled": false,
+    "default_branch": "main",
+    "open_issues_count": 2
+  },
+  "commits": [
+    {
+      "sha": "220947028c58857629f1cca88d79253fc7c3acff",
+      "author_date": "2026-10-07T20:54:52Z",
+      "committer_date": "2026-10-07T20:54:52Z",
+      "message": "Voice the narration script before recording in every guide",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/220947028c58857629f1cca88d79253fc7c3acff",
+      "date_kst": "2026-10-08T05:54:52+09:00"
+    },
+    {
+      "sha": "67dc35cce205915d3ba27e20752cd4f360d4a112",
+      "author_date": "2026-10-07T17:54:57Z",
+      "committer_date": "2026-10-07T17:54:57Z",
+      "message": "Keep custom-home installs off the real ~/.agents",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/67dc35cce205915d3ba27e20752cd4f360d4a112",
+      "date_kst": "2026-10-08T02:54:57+09:00"
+    },
+    {
+      "sha": "c6cf30b11baf634e06b9cb0e37f6c42915a40a45",
+      "author_date": "2026-10-07T17:45:41Z",
+      "committer_date": "2026-10-07T17:45:41Z",
+      "message": "Merge the record, edit and deliver skills into one screenstudio skill",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/c6cf30b11baf634e06b9cb0e37f6c42915a40a45",
+      "date_kst": "2026-10-08T02:45:41+09:00"
+    },
+    {
+      "sha": "30dcdefb08b77cddfa7723bd14081006f0dab0cc",
+      "author_date": "2026-10-03T15:24:58Z",
+      "committer_date": "2026-10-03T15:24:58Z",
+      "message": "Release 0.5.4 with faster current-window editing",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/30dcdefb08b77cddfa7723bd14081006f0dab0cc",
+      "date_kst": "2026-10-04T00:24:58+09:00"
+    },
+    {
+      "sha": "7e9a378508dd046f5c93fde719b9fc2b85902c00",
+      "author_date": "2026-10-03T14:41:49Z",
+      "committer_date": "2026-10-03T14:41:49Z",
+      "message": "Compare complete edits with visible and direct application",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/7e9a378508dd046f5c93fde719b9fc2b85902c00",
+      "date_kst": "2026-10-03T23:41:49+09:00"
+    },
+    {
+      "sha": "a8697d10ef29b535dd706e1874e689d371fb3a54",
+      "author_date": "2026-10-03T14:25:32Z",
+      "committer_date": "2026-10-03T14:25:32Z",
+      "message": "Measure live editing speed against installed defaults",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/a8697d10ef29b535dd706e1874e689d371fb3a54",
+      "date_kst": "2026-10-03T23:25:32+09:00"
+    },
+    {
+      "sha": "635ce0b492e8b31c56530484bf8d6f6473860eeb",
+      "author_date": "2026-10-03T14:05:48Z",
+      "committer_date": "2026-10-03T14:05:48Z",
+      "message": "Use current editor and shorten editing startup",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/635ce0b492e8b31c56530484bf8d6f6473860eeb",
+      "date_kst": "2026-10-03T23:05:48+09:00"
+    },
+    {
+      "sha": "2fe77c1a7a384f4a70886468e1ed5eebe568c035",
+      "author_date": "2026-10-02T19:57:29Z",
+      "committer_date": "2026-10-02T19:57:29Z",
+      "message": "Manual zooms by default, back-to-back hand-offs; 0.5.3",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/2fe77c1a7a384f4a70886468e1ed5eebe568c035",
+      "date_kst": "2026-10-03T04:57:29+09:00"
+    },
+    {
+      "sha": "84aa30c6cd87b64adb998e619a8aa80304d4bf6f",
+      "author_date": "2026-10-02T19:42:45Z",
+      "committer_date": "2026-10-02T19:42:45Z",
+      "message": "Keep videos in the person's voice; smaller preview frames; 0.5.2",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/84aa30c6cd87b64adb998e619a8aa80304d4bf6f",
+      "date_kst": "2026-10-03T04:42:45+09:00"
+    },
+    {
+      "sha": "7f8f4d404440dd66c469dbaf08e8e58b84953973",
+      "author_date": "2026-10-02T19:09:41Z",
+      "committer_date": "2026-10-02T19:09:41Z",
+      "message": "Wait for exports to deliver; 0.5.1",
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/7f8f4d404440dd66c469dbaf08e8e58b84953973",
+      "date_kst": "2026-10-03T04:09:41+09:00"
+    }
+  ],
+  "releases": [
+    {
+      "tag": "v0.5.4",
+      "published_at": "2026-10-03T15:25:11Z",
+      "created_at": "2026-10-03T15:24:58Z",
+      "prerelease": false,
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.4",
+      "date_kst": "2026-10-04T00:25:11+09:00"
+    },
+    {
+      "tag": "v0.5.3",
+      "published_at": "2026-10-02T19:57:31Z",
+      "created_at": "2026-10-02T19:57:29Z",
+      "prerelease": false,
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.3",
+      "date_kst": "2026-10-03T04:57:31+09:00"
+    },
+    {
+      "tag": "v0.5.2",
+      "published_at": "2026-10-02T19:42:47Z",
+      "created_at": "2026-10-02T19:42:45Z",
+      "prerelease": false,
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.2",
+      "date_kst": "2026-10-03T04:42:47+09:00"
+    },
+    {
+      "tag": "v0.5.1",
+      "published_at": "2026-10-02T19:09:44Z",
+      "created_at": "2026-10-02T19:09:41Z",
+      "prerelease": false,
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.1",
+      "date_kst": "2026-10-03T04:09:44+09:00"
+    },
+    {
+      "tag": "v0.5.0",
+      "published_at": "2026-10-02T18:56:21Z",
+      "created_at": "2026-10-02T18:48:57Z",
+      "prerelease": false,
+      "url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.0",
+      "date_kst": "2026-10-03T03:56:21+09:00"
+    }
+  ],
+  "npm": {
+    "dist_tags": {
+      "latest": "0.5.4"
+    },
+    "created": "2026-10-02T18:53:54.304Z",
+    "modified": "2026-10-03T15:28:22.946Z",
+    "latest_published": "2026-10-03T15:28:22.616Z",
+    "repository": {
+      "url": "git+https://github.com/tolimarchuk/screenstudio-mcp.git",
+      "type": "git"
+    },
+    "homepage": "https://github.com/tolimarchuk/screenstudio-mcp#readme",
+    "version_dates": {
+      "0.5.0": "2026-10-02T18:53:54.684Z",
+      "0.5.1": "2026-10-02T19:13:58.975Z",
+      "0.5.2": "2026-10-02T19:45:04.936Z",
+      "0.5.3": "2026-10-02T19:59:59.483Z",
+      "0.5.4": "2026-10-03T15:28:22.616Z"
+    },
+    "latest_published_kst": "2026-10-04T00:28:22.616000+09:00"
+  },
+  "issues_and_prs": [
+    {
+      "number": 3,
+      "title": "Screen Studio 4.1.0: \"State subscription timed out\", no editors detected",
+      "state": "open",
+      "created_at": "2026-11-11T04:37:45Z",
+      "updated_at": "2026-11-11T04:37:45Z",
+      "closed_at": null,
+      "comments": 0,
+      "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/issues/3",
+      "type": "issue",
+      "created_kst": "2026-11-11T13:37:45+09:00"
+    },
+    {
+      "number": 2,
+      "title": "Support Screen Studio 4.1.0: editor, recording through renderer modules, transcript reopen",
+      "state": "open",
+      "created_at": "2026-11-08T23:24:09Z",
+      "updated_at": "2026-11-08T23:24:09Z",
+      "closed_at": null,
+      "comments": 0,
+      "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/pull/2",
+      "type": "pull_request",
+      "created_kst": "2026-11-09T08:24:09+09:00"
+    },
+    {
+      "number": 1,
+      "title": "Use the current editor and shorten editing startup",
+      "state": "closed",
+      "created_at": "2026-10-03T14:06:19Z",
+      "updated_at": "2026-10-07T17:45:56Z",
+      "closed_at": "2026-10-07T17:45:56Z",
+      "comments": 0,
+      "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/pull/1",
+      "type": "pull_request",
+      "created_kst": "2026-10-03T23:06:19+09:00"
+    }
+  ],
+  "pr2": {
+    "state": "open",
+    "created_at": "2026-11-08T23:24:09Z",
+    "updated_at": "2026-11-08T23:24:09Z",
+    "closed_at": null,
+    "merged_at": null,
+    "draft": false,
+    "comments": 0,
+    "review_comments": 0,
+    "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/pull/2"
+  }
+}
