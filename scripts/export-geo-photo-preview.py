@@ -32,7 +32,9 @@ assert following_heading and following_heading.get_text(strip=True) == '소개�
 figure = BeautifulSoup(f'''<figure id="geo-coffee-photo" style="margin:40px 0;scroll-margin-top:100px">
 <img src="{PHOTO}" alt="카페 카운터에 놓인 에스프레소 머신과 커피 그라인더" width="1600" height="1088" style="display:block;width:100%;height:auto;border-radius:12px" loading="eager" decoding="async">
 <figcaption style="margin-top:10px;font-size:12px;line-height:1.7;color:#9ca3af">커피머신 예시 사진 · <a href="{SOURCE}" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;text-underline-offset:3px">Ali Aziz / Unsplash</a></figcaption></figure>''', 'html.parser').figure
-paragraph[0].insert_after(figure)
+following_heading.insert_after(figure)
+assert figure.find_previous_sibling() == following_heading
+assert figure.find_next_sibling().name == 'p'
 
 for node in soup.select('script, noscript, iframe, link[rel="preload"], link[rel="modulepreload"], link[rel="preconnect"], link[as="script"], link[href*="googletagmanager.com"]'):
     node.decompose()
@@ -94,6 +96,6 @@ assert len(check.select('#geo-coffee-photo')) == 1
 check.select_one('#geo-coffee-photo').decompose()
 assert check.select_one('article').get_text(' ', strip=True) == before
 assert '__next_f' not in str(check) and 'googletagmanager.com' not in str(check) and not check.select('form,iframe')
-result = {'date_kst':'2026-11-25','article':URL,'preview_route':ROUTE,'source_photo_page':SOURCE,'photographer':'Ali Aziz','license':'https://unsplash.com/license','image_path':PHOTO,'image_bytes':(EVIDENCE/'coffee-machine.jpg').stat().st_size,'image_sha256':hashlib.sha256((EVIDENCE/'coffee-machine.jpg').read_bytes()).hexdigest(),'insertion':'After introduction paragraph 3, before first h2','article_text_preserved':True,'figure_count':1,'photo_edited':False,'credits_used':0,'production_applied':False,'production_deployed':False}
+result = {'date_kst':'2026-11-25','article':URL,'preview_route':ROUTE,'source_photo_page':SOURCE,'photographer':'Ali Aziz','license':'https://unsplash.com/license','image_path':PHOTO,'image_bytes':(EVIDENCE/'coffee-machine.jpg').stat().st_size,'image_sha256':hashlib.sha256((EVIDENCE/'coffee-machine.jpg').read_bytes()).hexdigest(),'insertion':'Immediately after first h2, before its first paragraph','heading':'소개가 달라지면 고객이 기대하는 것도 달라집니다','article_text_preserved':True,'figure_count':1,'photo_edited':False,'credits_used':0,'production_applied':False,'production_deployed':False}
 (EVIDENCE/'verification.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(result,ensure_ascii=False))

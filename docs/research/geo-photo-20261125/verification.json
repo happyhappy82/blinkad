@@ -8,7 +8,8 @@
   "image_path": "/media/geo-coffee-machine.jpg",
   "image_bytes": 184185,
   "image_sha256": "33c904341b5f65b2c1899967e5eaeadaa03a6ce0f0be519393b6de54f34cab3f",
-  "insertion": "After introduction paragraph 3, before first h2",
+  "insertion": "Immediately after first h2, before its first paragraph",
+  "heading": "소개가 달라지면 고객이 기대하는 것도 달라집니다",
   "article_text_preserved": true,
   "figure_count": 1,
   "photo_edited": false,
@@ -16,16 +17,14 @@
   "production_applied": false,
   "production_deployed": false,
   "ui": {
-    "viewports": [
+    "latest_move_viewports": [
       390,
-      320,
       1280
     ],
     "overflow": false,
+    "heading_immediately_before_photo": true,
+    "first_paragraph_immediately_after_photo": true,
     "photo_loaded": true,
-    "min_footer_touch_height": 44,
-    "photo_jump": true,
-    "back_and_list_fallback": true,
     "actual_phone_5g": "not tested"
   }
 }
