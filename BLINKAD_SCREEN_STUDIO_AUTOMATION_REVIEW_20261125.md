@@ -28,3 +28,15 @@
 현재 단일 인사이트의 짧은 영상을 개선하려면 연결 설치를 선행 조건으로 삼지 않고, 먼저 기존 방식으로 줌·커서·프레임 스타일과 MP4/GIF 비교안을 만드는 편을 권한다. 정기적인 녹화·편집 자동화가 필요해지면 설치 앱과 MCP의 호환성·실제 녹화/내보내기 동작을 별도로 확인한다. 이는 제안이며 사용자 제작/설치 결정은 아직 없다.
 
 현재 본문 검토 https://petition-transcripts-possibly-boot.trycloudflare.com/blog/hospital-website-content-structure/ 는 기존 버전 그대로다. main 병합·공식 배포0. 앱 자동 설치 명령은 다른 에이전트 폴더까지 쓸 수 있어 이번에는 실행하지 않았으며, 향후 실제 연결 요청 시 Codex 범위와 기존 환경 지침을 확인한다.
+
+## 후속 질문: 제작자·비용·이용 순서 (2026-11-25 재확인)
+
+[프로젝트 README](https://github.com/tolimarchuk/screenstudio-mcp)는 Toli Marchuk(tolimarchuk)이 제작했다고 명시하며, Screen Studio 제작사와 비제휴인 외부 프로젝트라고 설명한다. [LICENSE](https://github.com/tolimarchuk/screenstudio-mcp/blob/main/LICENSE)는 2026 Toli Marchuk 명의의 MIT다. MCP 코드는 무료 오픈소스이며, 기존 Screen Studio 앱을 AI가 조작하도록 연결하는 도구다. Screen Studio 유료 앱의 이용권까지 제공하는 것은 아니다.
+
+[공식 가격](https://screen.studio/pricing)은 개인용 연간 결제 월 환산US$9(12개월 합계US$108), 월간 결제US$29로 표시한다. 원화 환산·세금·실제 계정 청구액은 이번에 확인하지 않았다. [공식 FAQ](https://screen.studio/)는 과거 일회성 라이선스가 유효하다고 안내하면서 최신 기능·업데이트 접근이 만료됐다면 갱신할 수 있다고 설명한다. 형님의 실제 라이선스 활성화·4버전 업데이트 권리는 미확인이다. 기존 구매 범위에 따라 추가 앱 비용 여부가 달라질 수 있다. Codex 등 사용하는 AI 서비스의 기존 이용 요금과도 별개다.
+
+이용 순서는 ①기존 앱 라이선스와 MCP 검증 버전4.0.1/build4897 이용 가능 여부 확인 → ②Codex에 MCP와 편집 지침 등록 → ③필요한 macOS 화면 녹화·손쉬운 사용 권한을 사용자가 설정 → ④기존 원본을 보존하고 페슈4초 샘플로 녹화·편집·MP4/GIF 내보내기 검증이다. 로컬 재조회에서 앱3.6.0-4214, Node v25.2.1을 확인했다. 해당 MCP는 Node22+와 FFmpeg/FFprobe를 요구한다. 앱 버전은 현재 검증 요건과 다르므로 준비 완료·연결 성공으로 보고하지 않는다.
+
+설정 방법은 local `codex mcp add --help`의 stdio 서버 등록 구문과 [공식 MCP 안내](https://learn.chatgpt.com/docs/extend/mcp?surface=cli), 프로젝트의 수동 Codex 설정을 대조했다. 프로젝트 문서의 등록 예시는 `codex mcp add screenstudio -- npx -y screenstudio-mcp serve` 또는 config.toml의 `[mcp_servers.screenstudio]`, command=npx, args=[-y,screenstudio-mcp,serve], tool_timeout_sec=1800이다. 이번에는 help만 실행했고 등록·설치·doctor·앱 실행/업데이트·권한 변경·구매는0이다. 추후 실제 연결 시 프로젝트 기본 자동 설치 명령이 Claude 폴더도 변경할 수 있는 점을 피하고 Codex 범위에서 설정한다.
+
+제안할 첫 지시는 ‘페슈의원 사이트에서 메인→전체 시술을4초로 보여주고, 부드러운 줌·작은 커서·은은한 배경으로 정리한 뒤 MP4와 GIF로 출력’이다. 아직 이 방식으로 제작하거나 기존 검토본을 교체하지 않았다. 이번은 이용 방법 설명까지다.
