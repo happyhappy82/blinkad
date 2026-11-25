@@ -10,6 +10,7 @@ import { languageAlternates } from '@/lib/site-languages'
 import { BLOG_REWRITE_DATES } from '@/lib/blog-editorial-dates'
 import { ArrowLeft } from 'lucide-react'
 import BlogCTA from '@/components/BlogCTA'
+import BlogContentWithMedia from '@/components/BlogContentWithMedia'
 import BlogRelatedArticles from '@/components/BlogRelatedArticles'
 import { getRelatedBlogArticles, hasCuratedRelatedArticles } from '@/lib/blog-related-articles'
 import { getBlogConsultation } from '@/lib/blog-consultation'
@@ -262,7 +263,9 @@ export default async function BlogPost({ params }: Props) {
 
           {/* Content and product-specific inquiry */}
           <NestArticleExperience article={nestArticle}>
-          <div
+          <BlogContentWithMedia
+            postId={post.id}
+            html={renderedContent}
             className="prose prose-invert prose-lg max-w-none
               prose-headings:text-white prose-headings:font-bold
               prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
@@ -274,7 +277,6 @@ export default async function BlogPost({ params }: Props) {
               prose-table:border-collapse prose-table:w-full prose-table:my-6
               prose-th:border prose-th:border-gray-700 prose-th:bg-gray-800 prose-th:px-4 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:text-white
               prose-td:border prose-td:border-gray-700 prose-td:px-4 prose-td:py-2 prose-td:text-gray-300"
-            dangerouslySetInnerHTML={{ __html: renderedContent }}
           />
 
           </NestArticleExperience>
