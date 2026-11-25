@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="color-scheme" content="light">
+  <title>GEO 브랜드 소개 GIF · BlinkAd 검토</title>
+  <style>
+    *{box-sizing:border-box}html{background:#f2f0ec;color:#24272c;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif}body{margin:0;padding:42px 20px calc(112px + env(safe-area-inset-bottom))}main{max-width:1056px;margin:auto}a{color:inherit}header{margin:0 0 24px}header span{font-size:14px;color:#5f6670}h1{font-size:clamp(24px,3.8vw,38px);line-height:1.35;letter-spacing:-.055em;margin:12px 0 13px}header p{font-size:17px;color:#5c626a;line-height:1.75;max-width:680px;margin:0}figure{margin:0}img{display:block;width:100%;height:auto;border-radius:12px;background:#eceae6}.controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:14px}.controls span{font-size:14px;color:#616772}button,.download a{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:10px 16px;border:1px solid #c5c8cd;border-radius:7px;font:inherit;font-size:14px;background:#fff;color:#25292f;text-decoration:none;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #285dc6;outline-offset:3px}figcaption{font-size:14px;line-height:1.7;color:#626974;margin-top:16px}.download{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}footer{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);border-top:1px solid #dcdfe3;padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px}footer a{min-height:44px;display:flex;align-items:center;justify-content:center;padding:10px 16px;border-radius:7px;text-decoration:none;font-size:14px}footer a:hover{background:#f1f3f7}footer a.primary{background:#24272c;color:white}@media(max-width:500px){body{padding:24px 16px calc(112px + env(safe-area-inset-bottom))}header p{font-size:16px}.controls{margin-top:10px}footer a{flex:1;padding:10px 8px}img{border-radius:7px}.download a{flex:1}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <main>
+    <header><span>BlinkAd 인사이트 · GIF 검토</span><h1>판매·설치·교육을 함께 소개하는 GIF</h1><p>판매만 적힌 소개에 설치와 직원 교육을 더하는 모습을 담았습니다.</p></header>
+    <figure>
+      <img id="demo" src="poster.png" width="960" height="540" alt="커피머신 판매만 적힌 소개에 설치와 직원 교육 설명을 더하고, 세 서비스의 소개 여부를 확인하는 가상 예시">
+      <div class="controls"><span>4.8초 · 무음 반복</span><button id="toggle" type="button" aria-label="GIF 움직임 재생">움직임 재생</button></div>
+      <figcaption>가상 업체의 소개 문구를 보완한 예시입니다. 실제 AI 답변이나 고객 성과를 촬영한 화면은 아닙니다.</figcaption>
+    </figure>
+    <div class="download"><a href="geo-services.gif" download>GIF 다운로드</a><a href="geo-services.mp4" target="_blank" rel="noopener">MP4 보기</a></div>
+  </main>
+  <footer><a id="back" href="/blog/">뒤로가기</a><a href="/blog/">전체 원고/목록</a><a class="primary" href="https://www.blinkad.kr/blog/geo-marketing-brand-description" target="_blank" rel="noopener">연결할 글</a></footer>
+  <script>
+    const img=document.querySelector('#demo'),button=document.querySelector('#toggle'),preference=matchMedia('(prefers-reduced-motion: reduce)');let playing=false;
+    function setPlaying(next){playing=next;img.src=playing?'geo-services.gif':'poster.png';button.textContent=playing?'움직임 멈추기':'움직임 재생';button.setAttribute('aria-label',playing?'GIF 움직임 멈추기':'GIF 움직임 재생');}
+    setPlaying(!preference.matches);button.addEventListener('click',()=>setPlaying(!playing));preference.addEventListener('change',()=>setPlaying(!preference.matches));
+    document.querySelector('#back').addEventListener('click',event=>{if(document.referrer&&new URL(document.referrer).origin===location.origin&&history.length>1){event.preventDefault();history.back();}});
+  </script>
+</body>
+</html>

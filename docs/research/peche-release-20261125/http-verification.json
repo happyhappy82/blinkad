@@ -1,0 +1,8 @@
+{
+  "production_figure_count": 1,
+  "article_text_preserved": true,
+  "production_gif_sha256": "d8bcf59bf049ef25b2315c8d4fb75887b27daca6976e160e2c54f291c2259af7",
+  "geo_preview_gif_sha256": "10e91092e4c9dbc53c8658d73665913232399bf040afb68a87a5b4a172755afa",
+  "geo_preview_gif_matches": true,
+  "parser_note": "Initial verification parser mishandled self-closing void tags; corrected figure-level exclusion passed without source changes."
+}

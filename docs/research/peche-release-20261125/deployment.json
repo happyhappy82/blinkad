@@ -1,0 +1,18 @@
+{
+  "id": "dpl_7etenXmxELfxTD7hvyLhExX2bm3m",
+  "name": "blinkad",
+  "url": "blinkad-1ojfuasqe-aijeonginsight-1976s-projects.vercel.app",
+  "target": "production",
+  "readyState": "READY",
+  "createdAt": 1795599583664,
+  "aliases": [
+    "www.blinkad.kr",
+    "blog.blinkad.kr",
+    "blinkad.vercel.app",
+    "blinkad.kr",
+    "blinkad-aijeonginsight-1976s-projects.vercel.app",
+    "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app"
+  ],
+  "commit": "2570fbf3d3b0738a9374a43f510ebf891dad6136",
+  "commit_evidence": "Vercel build log: Branch main, Commit 2570fbf"
+}

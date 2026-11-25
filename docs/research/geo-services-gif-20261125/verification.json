@@ -1,0 +1,16 @@
+{
+  "duration_ms": 4800,
+  "frames": 96,
+  "gif_dimensions": [
+    960,
+    540
+  ],
+  "loop": 0,
+  "unique_decoded_frames": 87,
+  "first_last_max_channel_mean_difference": 0.05768325617283951,
+  "audio": false,
+  "visual_checked_initial_and_final": true,
+  "original_motion_graphic": true,
+  "source_images_external": false,
+  "credits_used": 0
+}

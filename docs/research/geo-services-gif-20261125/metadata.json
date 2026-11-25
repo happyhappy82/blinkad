@@ -1,0 +1,38 @@
+{
+  "created_date_kst": "2026-11-25",
+  "purpose": "GEO article fictional coffee-machine service description example",
+  "source_article": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+  "method": "Original programmatic motion graphic with fixed Korean typography; local Pillow and FFmpeg",
+  "credits_spent": 0,
+  "gif": {
+    "width": 960,
+    "height": 540,
+    "frames": 96,
+    "duration_ms": 4800,
+    "loop": 0
+  },
+  "mp4": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 4.8,
+    "audio": false
+  },
+  "assets": {
+    "geo-services.gif": {
+      "bytes": 367228,
+      "sha256": "10e91092e4c9dbc53c8658d73665913232399bf040afb68a87a5b4a172755afa"
+    },
+    "geo-services.mp4": {
+      "bytes": 83158,
+      "sha256": "5eb5db0d21303a110cffdaa891cc04ab55f29130971e1335be6c00a4a3d68427"
+    },
+    "poster.png": {
+      "bytes": 101669,
+      "sha256": "75d7f97da6b7edf9ddec6066f31b4f7868eb0be02e1796bea318a88ca292d471"
+    }
+  },
+  "disclosure": "Fictional example, not a recorded AI answer or a client outcome.",
+  "article_applied": false,
+  "production_deployed": false
+}

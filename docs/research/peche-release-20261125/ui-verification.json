@@ -1,0 +1,31 @@
+{
+  "date_kst": "2026-11-25",
+  "production": {
+    "url": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+    "viewport": 390,
+    "scroll_width": 390,
+    "image_width": 340,
+    "pause_and_replay": true
+  },
+  "geo_preview": {
+    "url": "https://petition-transcripts-possibly-boot.trycloudflare.com/geo-brand/",
+    "viewports": [
+      390,
+      320,
+      1280
+    ],
+    "overflow": false,
+    "minimum_button_height": 44,
+    "reduced_motion": true,
+    "pause_and_replay": true,
+    "list_fallback": true,
+    "footer_min_link_height": 44
+  },
+  "limits": [
+    "Actual phone 5G not tested",
+    "SEO/AI citation/inquiry outcomes not measured"
+  ],
+  "test_notes": [
+    "An initial production click landed below the short viewport; observed current geometry and scrolled the button into view, then ordinary click and replay passed. No source change."
+  ]
+}
