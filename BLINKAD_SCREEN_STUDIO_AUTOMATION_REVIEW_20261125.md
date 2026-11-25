@@ -53,3 +53,16 @@ GitHub REST API(저장소/main 커밋/릴리스/이슈·PR), GitHub 릴리스·c
 판단: 출시 초기의 여러 개선과 최근 커뮤니티 기여는 확인되지만, 현재도 활발한 릴리스가 계속된다고 단정할 근거는 약하다. 업데이트가 완전히 중단됐다고도 단정하지 않는다. 공개main은약7주, 배포는약7주반 새 내용이 없고4.1 관련 지원 제안·오류 제보가 미해결 상태다. 실제 도입은 검증된 버전에서 짧은 테스트 후 판단하는 방향을 권한다. 앱 최신 버전에 자동 추종하는 도구라고 가정하지 않는다.
 
 근거: [최신 릴리스](https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.4), [최신 main 커밋](https://github.com/tolimarchuk/screenstudio-mcp/commit/220947028c58857629f1cca88d79253fc7c3acff), [미병합4.1 PR](https://github.com/tolimarchuk/screenstudio-mcp/pull/2), [4.1 연결 오류 제보](https://github.com/tolimarchuk/screenstudio-mcp/issues/3), [npm registry](https://registry.npmjs.org/screenstudio-mcp). 이번은 유지보수 상태 조사만 완료했고 설치·업데이트·앱 실행·영상/본문 변경·배포는0이다.
+
+## 후속 질문: 언제부터 만들어졌는가 (2026-11-25 확인)
+
+GitHub 저장소 메타데이터·기본 브랜치 전체 13개 커밋의 root·첫 공개 release·npm registry를 대조했다. 날짜는 한국시간 기준이다.
+
+- 저장소 생성: **2026-10-03 03:37:17 KST** (원본UTC 2026-10-02T18:37:17Z).
+- 공개 이력의 첫 커밋: **2026-10-03 03:37:21 KST**, 321fd532995d1d3e9700a08a315bdcca0bbddac5, 부모0개, 제목 Screen Studio MCP 0.5.0.
+- 첫 npm 버전0.5.0: **2026-10-03 03:53:54 KST**.
+- 첫 GitHub 공개 배포v0.5.0: **2026-10-03 03:56:21 KST**. 원문도 First public release로 명시한다.
+
+따라서 공개된 시점은 한국시간2026년10월3일로 확인되며, 확인일11월25일 기준 약7주반이다. 첫 공개 때부터0.5.0이므로0.1부터 공개 개발해 왔다고 추정하지 않는다. 공개 이전의 실제 개발 착수일은 이 자료에서 확인되지 않는다. GitHub 화면에10월2일로 보일 수 있는 것은UTC와KST 날짜 차이다.
+
+근거: [저장소 API](https://api.github.com/repos/tolimarchuk/screenstudio-mcp), [첫 공개 커밋](https://github.com/tolimarchuk/screenstudio-mcp/commit/321fd532995d1d3e9700a08a315bdcca0bbddac5), [첫 공개 릴리스](https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.0), [npm](https://registry.npmjs.org/screenstudio-mcp). 공개 메타데이터 요약은 docs/research/screenstudio-maintenance-20261125/origin-evidence.json. 이번은 연혁 조회만 수행했으며 앱/MCP 설치·업데이트·영상/본문 수정·배포는0이다.

@@ -1,0 +1,41 @@
+{
+  "checked_date_kst": "2026-11-25",
+  "repo": {
+    "full_name": "tolimarchuk/screenstudio-mcp",
+    "html_url": "https://github.com/tolimarchuk/screenstudio-mcp",
+    "created_at": "2026-10-02T18:37:17Z",
+    "pushed_at": "2026-10-07T20:54:54Z",
+    "fork": false
+  },
+  "roots": [
+    {
+      "sha": "321fd532995d1d3e9700a08a315bdcca0bbddac5",
+      "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/commit/321fd532995d1d3e9700a08a315bdcca0bbddac5",
+      "author_date": "2026-10-02T18:37:21Z",
+      "committer_date": "2026-10-02T18:37:21Z",
+      "message": "Screen Studio MCP 0.5.0"
+    }
+  ],
+  "commit_count_on_default_history": 13,
+  "earliest_release": {
+    "tag_name": "v0.5.0",
+    "created_at": "2026-10-02T18:48:57Z",
+    "published_at": "2026-10-02T18:56:21Z",
+    "html_url": "https://github.com/tolimarchuk/screenstudio-mcp/releases/tag/v0.5.0"
+  },
+  "npm_created": "2026-10-02T18:53:54.304Z",
+  "npm_earliest_versions": [
+    [
+      "0.5.0",
+      "2026-10-02T18:53:54.684Z"
+    ],
+    [
+      "0.5.1",
+      "2026-10-02T19:13:58.975Z"
+    ],
+    [
+      "0.5.2",
+      "2026-10-02T19:45:04.936Z"
+    ]
+  ]
+}
