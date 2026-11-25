@@ -1,5 +1,7 @@
 # 피부과 홈페이지 언어 전환 — 실제 웹 화면 캡처 GIF
 
+**최신 상태:** 형님 요청으로 피부과 샘플 GIF의 [공식 인사이트 본문 적용·배포](BLINKAD_LANGUAGE_SWITCH_BODY_APPLY_20261125.md)를 완료했다. main `87dbd6f`, 운영 배포 Ready 및 실제 글·모바일 동작 확인. 아래 제작/검토 단계의 적용 전 상태는 당시 이력이다.
+
 제작·수정일: 2026-11-25 KST. 상태: 피부과 디자인 수정과 검토 완료. 공식 인사이트 본문 적용 전.
 
 [모바일 검토](https://shoes-adopt-pushed-humanities.trycloudflare.com/language-switch-browser/preview.html) · [GIF 원본](https://shoes-adopt-pushed-humanities.trycloudflare.com/language-switch-browser/language-switch.gif)

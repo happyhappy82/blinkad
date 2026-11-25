@@ -1,0 +1,61 @@
+{
+  "build": "passed",
+  "target_figures": 1,
+  "target_h1": 1,
+  "insertion_after_first_section": true,
+  "old_maps_figure_preserved": true,
+  "unrelated_geo_unchanged": true,
+  "original_article_metadata_tracking_and_deploy_config_unchanged": true,
+  "gif_sha256": "9522ebddce93fb38937d071cef4032379f56e9cf39d9fb0c55c2a652d015713a",
+  "local_browser": {
+    "desktop": 1440,
+    "mobile": [
+      390,
+      320
+    ],
+    "horizontal_overflow": false,
+    "pause_resume": "passed",
+    "reduced_motion": "passed",
+    "button_min_height": 44,
+    "first_click_check": "Initial check timed out; inspected the same page, then verified controls after page settled. No source change required."
+  },
+  "production": {
+    "deployment_id": "dpl_Aw4ynQpKXxdmT2TNR982WfkC7Sey",
+    "deployment_url": "https://blinkad-4z0bqumlo-aijeonginsight-1976s-projects.vercel.app",
+    "status": "Ready",
+    "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+    "http_status": 200,
+    "figure_count": 1,
+    "original_article_text_equal_after_removing_figure": true,
+    "canonical_preserved": true,
+    "gtm_preserved": true,
+    "indexable": true,
+    "old_maps_figure_preserved": true,
+    "media": [
+      {
+        "file": "dermatology-language-switch.gif",
+        "status": 200,
+        "bytes": 3838627,
+        "sha256": "9522ebddce93fb38937d071cef4032379f56e9cf39d9fb0c55c2a652d015713a"
+      },
+      {
+        "file": "dermatology-language-switch.png",
+        "status": 200,
+        "bytes": 258559,
+        "sha256": "813d3ce53ae3dc07d591a61d63147eac9fdbeee4eb9a69195bfea52d048a8b25"
+      }
+    ],
+    "custom_domain_deployment_id_verified": true,
+    "mobile_browser": {
+      "width": 390,
+      "document_width": 390,
+      "image_width": 340,
+      "pause_resume": "passed",
+      "button_height": 44,
+      "physical_phone_5g_tested": false
+    }
+  },
+  "main_commit": "87dbd6f74223fee66ba9dafffd725d144b286d25",
+  "local_build_preview_stopped": true,
+  "existing_preview_servers_and_tunnel_preserved": true
+}
