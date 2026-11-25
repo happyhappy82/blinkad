@@ -1,0 +1,102 @@
+{
+  "date_kst": "2026-11-25",
+  "scope": "Five current public articles rechecked for proposed GIF supplements. No traffic/demand measurement or generation.",
+  "articles": [
+    {
+      "proposed_order": 1,
+      "candidate_group": "remaining original",
+      "url": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "status": 200,
+      "title": "병원 다국어 홈페이지 제작, 기존 사이트를 유지하면서도 가능할까요?",
+      "canonical": "https://www.blinkad.kr/blog/add-multilingual-pages-existing-hospital-website",
+      "headings": [
+        "기존 홈페이지에서 무엇을 살리고, 무엇을 추가할까요?",
+        "가능 여부는 제작 방식과 변경 권한을 보고 판단합니다",
+        "기존 제작사와 새 제작사가 달라도 진행할 수 있나요?",
+        "견적과 일정은 어떤 자료를 보내야 알 수 있을까요?",
+        "공개할 때는 기존 한국어 사이트도 함께 확인합니다",
+        "관련 글"
+      ],
+      "html_sha256": "8decbebf98e0e96a6bd8a52a02faa213bfd4c8e56f2b7c957936b571be2816a7",
+      "article_text_sha256": "c359b08052d2fdd8d2c6e4bc0772d55149a6de3aa142edd4f333c05ceef5e675",
+      "gif_demo_present": false
+    },
+    {
+      "proposed_order": 2,
+      "candidate_group": "remaining original",
+      "url": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+      "status": 200,
+      "title": "GEO 마케팅, AI가 설명하는 브랜드 이미지까지 살펴봐야 합니다",
+      "canonical": "https://www.blinkad.kr/blog/geo-marketing-brand-description",
+      "headings": [
+        "소개가 달라지면 고객이 기대하는 것도 달라집니다",
+        "‘전문 업체’라는 말 뒤에 실제 하는 일을 적어주세요",
+        "틀린 설명과 덜 알려진 장점은 따로 봅니다",
+        "GEO 마케팅은 우리 회사에 맡길 이유를 설명하는 일이기도 합니다",
+        "관련 글"
+      ],
+      "html_sha256": "7a216db3cb0b057312b23a649e70efbde9ba9684436928bcbf321983872e504e",
+      "article_text_sha256": "ed99eace86e6f5426ad73c3dfb0c152b84c79ee883c7f3565755a1dc399eca2a",
+      "gif_demo_present": false
+    },
+    {
+      "proposed_order": 3,
+      "candidate_group": "remaining original",
+      "url": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes",
+      "status": 200,
+      "title": "외국인 관광객은 어떤 카페를 저장하고 방문할까? 카페 마케팅 방법",
+      "canonical": "https://www.blinkad.kr/blog/how-foreign-tourists-find-and-visit-korean-cafes",
+      "headings": [
+        "외국인 관광객은 카페를 어디에서 발견할까?",
+        "저장된 카페가 실제 방문으로 이어지지 않는 이유는 무엇일까?",
+        "블링크애드는 카페 유입을 어떻게 점검할까?",
+        "외국인 카페 마케팅에는 어떤 정보가 필요할까?",
+        "SEO·AEO·GEO를 함께 고려하려면 어떻게 써야 할까?",
+        "카페 마케팅 성과는 무엇으로 확인할까?",
+        "자주 묻는 질문",
+        "참고 자료",
+        "관련 글"
+      ],
+      "html_sha256": "a0fb064c9cd73cb745f32a67e799ccb45bd08147e0c9f608d2963ac3896735b4",
+      "article_text_sha256": "56959abdc6842cc420c89ebb3a800c11ff1bb9fbc846b1a3426d0fa2a7127218",
+      "gif_demo_present": false
+    },
+    {
+      "proposed_order": 4,
+      "candidate_group": "additional proposal",
+      "url": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+      "status": 200,
+      "title": "병원 소개·의료진·진료 안내를 검색 가능한 페이지로 구성하는 법",
+      "canonical": "https://www.blinkad.kr/blog/hospital-website-content-structure",
+      "headings": [
+        "페이지는 방문자가 확인할 질문에 맞춰 나눕니다",
+        "의료진과 진료 정보는 승인된 자료에서 시작합니다",
+        "중요한 설명은 읽을 수 있는 본문과 링크로 남깁니다",
+        "승인 원고와 실제 페이지를 맞춰보세요",
+        "관련 글"
+      ],
+      "html_sha256": "38892afefae80a2a5a71e87d6c99b87c369e71692b291568527609fb544885a3",
+      "article_text_sha256": "931f6c78a53112947454685262b7dd84711f29d91da4fb153b77e590c0eed2ea",
+      "gif_demo_present": false
+    },
+    {
+      "proposed_order": 5,
+      "candidate_group": "additional proposal",
+      "url": "https://www.blinkad.kr/blog/homepage-seo-new-customer-keywords",
+      "status": 200,
+      "title": "홈페이지 SEO, 우리를 모르는 신규 고객의 검색어는 어떻게 고를까요?",
+      "canonical": "https://www.blinkad.kr/blog/homepage-seo-new-customer-keywords",
+      "headings": [
+        "고객이 찾을 검색어를 고르세요",
+        "검색한 사람이 결정할 내용을 설명하세요",
+        "검색량보다 실제로 받을 문의인지 먼저 보세요",
+        "같은 내용을 찾는 검색어는 한 페이지에 모으세요",
+        "공개한 뒤에는 검색 유입과 문의를 함께 확인하세요",
+        "관련 글"
+      ],
+      "html_sha256": "8fd2629c22180a57b03ba9495c2461d302a6bb5b6c70d834289b171258d49741",
+      "article_text_sha256": "fa747c7b9c1a798670795ab517c6eeb565d01d149f63f012ab42b3222175fb36",
+      "gif_demo_present": false
+    }
+  ]
+}
