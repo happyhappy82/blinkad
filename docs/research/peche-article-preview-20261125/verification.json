@@ -1,0 +1,80 @@
+{
+  "date_kst": "2026-11-25",
+  "preview_url": "https://petition-transcripts-possibly-boot.trycloudflare.com/blog/hospital-website-content-structure/",
+  "scope": "Article preview only; no production publish",
+  "source_base": "87dbd6f74223fee66ba9dafffd725d144b286d25",
+  "type_check": "passed",
+  "article_http": "passed",
+  "original_article_text_equal_after_removing_figure": true,
+  "single_figure_at_first_section_end": true,
+  "gif_sha256": "d8bcf59bf049ef25b2315c8d4fb75887b27daca6976e160e2c54f291c2259af7",
+  "browser": {
+    "space": 4,
+    "desktop": {
+      "width": 1440,
+      "image_width": 766
+    },
+    "mobile": {
+      "width": 390,
+      "document_width": 390,
+      "image_width": 340,
+      "button_height": 44,
+      "footer_height": 61
+    },
+    "small_mobile": {
+      "width": 320,
+      "document_width": 320,
+      "nav_target_height": 44
+    },
+    "pause_resume": "passed",
+    "reduced_motion": "passed",
+    "gif_jump": "passed",
+    "list_back": "passed",
+    "physical_phone_5g_tested": false
+  },
+  "external_http": {
+    "/blog/": {
+      "status": 200,
+      "bytes": 1011,
+      "sha256": "b0a842ffaeba66e1a5278578a4b8f8762db9cecb5af772132dce13cd979afd6b"
+    },
+    "/blog/hospital-website-content-structure/": {
+      "status": 200,
+      "bytes": 18908,
+      "sha256": "02b596f3b8b7b0fc7e110a6332c919d07bafb7a9411da7d9e711366491183b0a"
+    },
+    "/media/insights/peche-clinic-navigation.gif": {
+      "status": 200,
+      "bytes": 3649833,
+      "sha256": "d8bcf59bf049ef25b2315c8d4fb75887b27daca6976e160e2c54f291c2259af7"
+    },
+    "/media/insights/peche-clinic-navigation.png": {
+      "status": 200,
+      "bytes": 269365,
+      "sha256": "7f845650c859b8b220b0db325cdb165c26205d62c6d3cad57c78231bee36e675"
+    },
+    "/assets/preview.js": {
+      "status": 200,
+      "bytes": 1101,
+      "sha256": "392ae8d388e20b1f25228b944a53698c3d722d723256e7ebc5a13d0d534cf569"
+    },
+    "/api/": {
+      "status": 404
+    },
+    "/.env": {
+      "status": 404
+    },
+    "/.git/config": {
+      "status": 404
+    },
+    "/scripts/export-peche-article-preview.py": {
+      "status": 404
+    },
+    "/assets/": {
+      "status": 404
+    }
+  },
+  "production_deployed": false,
+  "main_merged": false,
+  "additional_higgsfield_credits": 0
+}
