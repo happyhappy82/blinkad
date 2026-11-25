@@ -1,6 +1,6 @@
 # 다음 인사이트 Higgsfield GIF 후보
 
-**최신 검토본:** 형님 요청으로 1번을 실제 작동하는 HTML 화면 캡처 방식으로도 제작했다. [새 4초 GIF와 검증](BLINKAD_HOSPITAL_LANGUAGE_SWITCH_BROWSER_CAPTURE_20261125.md). 이번 추가 크레딧0이며 본문 적용·최종선택 전이다. 이전 AI생성본은 이력으로 남긴다.
+**최신 검토본:** 형님 요청으로 1번을 실제 작동하는 HTML 화면 캡처 방식으로 제작하고 피부과 홈페이지 디자인으로 수정했다. [새 4초 GIF와 검증](BLINKAD_HOSPITAL_LANGUAGE_SWITCH_BROWSER_CAPTURE_20261125.md). 이번 추가 크레딧0이며 본문 적용·최종선택 전이다. 이전 AI생성본은 이력으로 남긴다.
 
 **11월25일 후속:** 형님이 1번의 표현을 ‘한국어 홈페이지에서 언어 메뉴 확대→English 선택→같은 디자인의 영어 페이지’로 지정했다. [4초 GIF 제작·검증](BLINKAD_HOSPITAL_LANGUAGE_SWITCH_GIF_20261125.md)을 완료했고1크레딧이 사용됐다. 아래 최초 제안의 새 생성0 상태는 재정리 당시 이력이다. 공식 본문 적용은 아직이다.
 

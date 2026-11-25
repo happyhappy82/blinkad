@@ -5,6 +5,7 @@ const page = task.page('p1');
 await page.cdp('Emulation.setDeviceMetricsOverride', {width:960,height:540,deviceScaleFactor:1,mobile:false});
 await page.goto('http://127.0.0.1:18952/language-switch-browser/sample.html?capture=1');
 await page.waitForFunction(() => typeof window.setDemoTime === 'function' && document.fonts.status === 'loaded');
+await page.evaluate(async()=>{await Promise.all([...document.images].map(image=>image.decode()));});
 const output = '/tmp/blinkad-language-switch-browser-frames-20261125';
 await fs.mkdir(output, {recursive:true});
 for (let index=0; index<80; index++) {

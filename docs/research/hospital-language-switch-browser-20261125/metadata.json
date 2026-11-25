@@ -25,74 +25,62 @@
   "official_article_modified": false,
   "files": {
     "language-switch.gif": {
-      "bytes": 1107380,
-      "sha256": "23a9a58b11344b9063ab1ba9197394f746b03062d7bafad708407b96ace71b22"
+      "bytes": 3838627,
+      "sha256": "9522ebddce93fb38937d071cef4032379f56e9cf39d9fb0c55c2a652d015713a"
     },
     "language-switch.mp4": {
-      "bytes": 215540,
-      "sha256": "3d86524b70f39ceeff8e1dca6c19dccd8098f9c972ff83ed812eab732b773fc2"
+      "bytes": 429815,
+      "sha256": "87ee4305b7c8d194e22c75a6470d7bd608ddeb33cf4980aa5028cf12e76bf202"
     },
     "poster.png": {
-      "bytes": 50223,
-      "sha256": "fd77def9089c98b7491836481ea10f482b3a8f39ba2a3b670cc138ea106d7475"
+      "bytes": 258559,
+      "sha256": "813d3ce53ae3dc07d591a61d63147eac9fdbeee4eb9a69195bfea52d048a8b25"
     },
     "sample.html": {
-      "bytes": 11457,
-      "sha256": "3ee86e683dbe010728df3b300cf98b4697b2ed429eef4a39e06440c443ba8c6b"
+      "bytes": 11507,
+      "sha256": "f95c6aaf3db31cdce0bcceaf26146bf6efc317a8677200583b0085ce86c0b88e"
+    },
+    "dermatology-photo.jpg": {
+      "bytes": 102160,
+      "sha256": "5eab57eef374a81b903a903cba7c3f2e26291cc44888a1a57adb01082d9f7196"
+    },
+    "photo-source.json": {
+      "bytes": 453,
+      "sha256": "91fcb07660c6b3deddf6a32d778eda658b8553960c3d58430140f158a739466a"
+    },
+    "preview.html": {
+      "bytes": 3324,
+      "sha256": "f20e9f23cf125e21ac57d2479262b984fc11ed9e63865b8c2f99194e9e2212ee"
+    },
+    "index.html": {
+      "bytes": 872,
+      "sha256": "bb91ba98410fc90e174d12d1e37fafe1545b60f592f3ca7a94bba4fc576be711"
+    },
+    "mobile-preview.png": {
+      "bytes": 77446,
+      "sha256": "512e58a4f027c860da6058645b204a7ec3a5d072cb42111dcdf8b53bc46f4d0a"
     }
   },
-  "visual_review": {
-    "checked_frames": [
-      0,
-      25,
-      32,
-      50,
-      79
-    ],
-    "readable_korean_english": true,
-    "language_menu_zoom": true,
-    "english_option_selected": true,
-    "same_dom_page_language_change": true,
-    "end_hold_stable": true
-  },
-  "preview_url": "https://shoes-adopt-pushed-humanities.trycloudflare.com/language-switch-browser/preview.html",
-  "gif_url": "https://shoes-adopt-pushed-humanities.trycloudflare.com/language-switch-browser/language-switch.gif",
-  "https_checks": [
-    {
-      "path": "index",
-      "status": 200,
-      "content_type": "text/html"
-    },
-    {
-      "path": "preview.html",
-      "status": 200,
-      "content_type": "text/html"
-    },
-    {
-      "path": "language-switch.gif",
-      "status": 200,
-      "content_type": "image/gif"
-    },
-    {
-      "path": "language-switch.mp4",
-      "status": 200,
-      "content_type": "video/mp4"
-    },
-    {
-      "path": "poster.png",
-      "status": 200,
-      "content_type": "image/png"
-    }
-  ],
-  "encoded_english_hold_frames_identical": true,
-  "browser_review": {
-    "space": 139,
-    "mobile_width": 390,
+  "visual_review": "passed: Korean opening, 2x language dropdown, English result, decoded GIF keyframes, 390px mobile preview",
+  "design": "Fictional dermatology clinic, ivory/taupe, licensed skin-care stock photo",
+  "decoded_final_english_hold_identical": true,
+  "gif_infinite_loop_verified": true,
+  "external_https_sha_verified": true,
+  "mobile_browser_qa": {
+    "width": 390,
     "document_width": 390,
     "image_width": 350,
-    "navigation_touch_height": 44,
+    "navigation_min_height": 44,
     "pause_resume": "passed",
-    "list_detail_back": "passed",
-    "actual_phone_5g_test": false
+    "list_back_navigation": "passed",
+    "physical_phone_5g_tested": false
+  },
+  "photo_source": {
+    "photo_page": "https://unsplash.com/photos/woman-lying-on-blue-towel-with-white-cream-on-face-g-m8EDc4X6Q",
+    "asset_url": "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&fm=jpg&q=85&w=1100",
+    "author": "engin akyurt",
+    "license": "https://unsplash.com/license",
+    "checked_date": "2026-11-25",
+    "usage": "Illustrative stock photo in a fictional clinic sample. No patient identity or clinical outcome claim."
   }
 }

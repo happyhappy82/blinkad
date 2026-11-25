@@ -40,6 +40,7 @@ hold_hashes = {hashlib.sha256(p.read_bytes()).hexdigest() for p in frames[50:]}
 assert len(hold_hashes) == 1, 'The final English page must be pixel-stable'
 metadata = {
     'date_kst': '2026-11-25', 'method': 'Functional HTML UI, scripted real DOM clicks, Ego browser screenshots, FFmpeg encoding',
+    'design': 'Fictional dermatology clinic, ivory/taupe, licensed skin-care stock photo',
     'source_size': [960, 540], 'timeline_frames': len(frames), 'fps': 20,
     'planned_still_holds': {'korean': [0, 9], 'english': [50, 79]},
     'actual_gif_duration_seconds': duration, 'actual_gif_frame_count': int(probe['streams'][0]['nb_read_frames']),
@@ -47,7 +48,7 @@ metadata = {
     'higgsfield_generation_requests': 0, 'higgsfield_credits_spent': 0,
     'official_article_modified': False, 'files': {}, 'visual_review': 'pending',
 }
-for name in ['language-switch.gif', 'language-switch.mp4', 'poster.png', 'sample.html']:
+for name in ['language-switch.gif', 'language-switch.mp4', 'poster.png', 'sample.html', 'dermatology-photo.jpg', 'photo-source.json']:
     p = ROOT / name
     metadata['files'][name] = {'bytes': p.stat().st_size, 'sha256': hashlib.sha256(p.read_bytes()).hexdigest()}
 (ROOT / 'metadata.json').write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + '\n')
