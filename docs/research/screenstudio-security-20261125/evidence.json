@@ -1,0 +1,71 @@
+{
+  "reviewed_commit": "220947028c58857629f1cca88d79253fc7c3acff",
+  "archive_sha256": "94e37ecd8dc96b0dde3a13a033ce05bfee8a5dc40d2b5e4df7401b8ca046a514",
+  "package_version": "0.5.4",
+  "npm_metadata": {
+    "name": "screenstudio-mcp",
+    "version": "0.5.4",
+    "scripts": {
+      "dev": "tsc --watch",
+      "test": "npm run build && node --test test/*.test.mjs",
+      "build": "rm -rf dist && tsc && chmod +x dist/cli/main.js dist/mcp/main.js",
+      "check": "npm run format:check && node scripts/sync-plugin.mjs --check && npm test",
+      "format": "prettier --write src test scripts/*.mjs",
+      "test:live": "npm run build && node scripts/live-record.mjs",
+      "sync:plugin": "node scripts/sync-plugin.mjs",
+      "build:native": "swiftc -O native/Desktop.swift -o native/desktop-helper -framework Cocoa -framework ApplicationServices -framework Vision",
+      "format:check": "prettier --check src test scripts/*.mjs",
+      "pack:dry-run": "npm pack --dry-run",
+      "prepublishOnly": "npm run check && npm run build:native:universal",
+      "build:native:universal": "sh scripts/build-native-universal.sh"
+    },
+    "dependencies": {
+      "zod": "^4.6.5",
+      "@modelcontextprotocol/sdk": "^1.31.0"
+    },
+    "optionalDependencies": null,
+    "bin": {
+      "screenstudio-mcp": "dist/cli/main.js"
+    },
+    "dist": {
+      "shasum": "fa91d4a8794221d865c0edc7a0934a3a52a37581",
+      "tarball": "https://registry.npmjs.org/screenstudio-mcp/-/screenstudio-mcp-0.5.4.tgz",
+      "fileCount": 77,
+      "integrity": "sha512-zvuSnVb+Lax88OSsbVw/MI/kpp8b3JYi0d+p86VSixbbQkEr34BZKz68Nkrp5/DEDus7fPEOey/UAkYrYwoYtA==",
+      "signatures": [
+        {
+          "sig": "MEQCIHRhgjL6AADcK7TrUUN0ZI8VLudYkGxwZ6IixzV6l+UqAiAVyt7mffugMfuKxVcSdZu/2UXs0OYlvAWAJmmQJ7j9Mw==",
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+        },
+        {
+          "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+          "sig": "MEYCIQDKYfghCkNgxJUyVSBzJaQZOAJfpkLgtmg7kkG75nOkmwIhAOO/Nv03hnFTnOugdlxtM1MfcdYUIcdb1QGinN1YlmN7"
+        }
+      ],
+      "attestations": {
+        "url": "https://registry.npmjs.org/-/npm/v1/attestations/screenstudio-mcp@0.5.4",
+        "provenance": {
+          "predicateType": "https://slsa.dev/provenance/v1"
+        }
+      },
+      "unpackedSize": 1140484
+    },
+    "engines": {
+      "node": ">=22"
+    }
+  },
+  "tarball_sha1_matches_registry": true,
+  "tarball_sha256": "24844642fe8faa3bcf5f7113adc017c92e276c620910bdb01d742654c3343b5a",
+  "review_type": "Static source and selected published JS/Swift cross-check. No package/scripts/native binary executed. Native binary equivalence and vulnerability scan not performed.",
+  "checked_date_kst": "2026-11-25",
+  "published_behavior_checks": {
+    "stdio_transport": true,
+    "preview_images_returned_to_mcp_client": true,
+    "loopback_debug_launch": true,
+    "local_socket_validation": true,
+    "online_narration_disclosed": true,
+    "installer_pins_version": true,
+    "installer_writes_agent_config": true,
+    "native_blocklist_present": true
+  }
+}
