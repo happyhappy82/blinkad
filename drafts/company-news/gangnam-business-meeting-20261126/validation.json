@@ -23,13 +23,14 @@
   ],
   "articlePhotoCount": 2,
   "additionalPhotoUnmodified": true,
-  "revision": "published-selected-lead",
+  "revision": "published-keywords",
   "humanizedBodyMatchesExport": true,
   "titleChanged": true,
   "titleProposalCount": 3,
   "attendeeNamesAndPhotosPreserved": true,
-  "sourceCommit": "c1746e135bea8ebca35683eae65d169c0adfac8a",
+  "sourceCommit": "a079083d23ce3b4c4cd9627d22ed0e7d012871ad",
   "officialUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
   "thirdPhotoScreenMosaic": true,
-  "leadPhoto": "gangnam-business-meeting-consultation2-mosaic-20261126.png"
+  "leadPhoto": "gangnam-business-meeting-consultation2-mosaic-20261126.png",
+  "keywordUpdateVerified": true
 }

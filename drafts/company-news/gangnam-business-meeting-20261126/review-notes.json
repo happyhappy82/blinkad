@@ -90,5 +90,21 @@
     "status": "published",
     "sourceCommit": "c1746e135bea8ebca35683eae65d169c0adfac8a",
     "deploymentId": "dpl_G7yg5d4a9v8XQ6BmM6xRW8J4erXN"
+  },
+  "keywordUpdate": {
+    "requestedBy": "2026-11-26 사용자",
+    "terms": [
+      "병원마케팅",
+      "외국인 마케팅",
+      "구글 마케팅",
+      "외국인 환자 유치",
+      "AI 검색",
+      "AEO·GEO"
+    ],
+    "scope": "회사소식 본문·소제목·요약, 다국어 동등 의미 반영",
+    "facts": "행사 사실·인물·날짜와 사진 선택 유지. 성과·계약·개별 병원명 추가 없음.",
+    "status": "published",
+    "sourceCommit": "a079083d23ce3b4c4cd9627d22ed0e7d012871ad",
+    "deploymentId": "dpl_71D1ngJqyfbgfvei7BewQD3Y8um8"
   }
 }

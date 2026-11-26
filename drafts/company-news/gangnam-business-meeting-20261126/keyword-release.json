@@ -1,0 +1,65 @@
+{
+  "request": "외국인 마케팅·병원마케팅 등 타겟 키워드를 글에 자연스럽게 반영",
+  "keywords": {
+    "병원마케팅": 2,
+    "외국인 마케팅": 2,
+    "구글 마케팅": 1,
+    "외국인 환자 유치": 1,
+    "AI 검색": 2,
+    "AEO·GEO": 1
+  },
+  "locations": [
+    "도입부/요약: 병원마케팅 컨설팅",
+    "첫 소제목: 병원마케팅 컨설팅",
+    "두 번째 소제목: 외국인 마케팅을 위한 구글·AI 검색 대응",
+    "서비스 설명: 구글 마케팅, 외국인 마케팅, AEO·GEO",
+    "마무리: 외국인 환자 유치"
+  ],
+  "titlePreserved": true,
+  "attendeeNamesAndEventDatePreserved": true,
+  "photoCount": 2,
+  "deployment": {
+    "id": "dpl_71D1ngJqyfbgfvei7BewQD3Y8um8",
+    "url": "blinkad-m85r8irpj-aijeonginsight-1976s-projects.vercel.app",
+    "readyState": "READY",
+    "target": "production",
+    "aliases": [
+      "www.blinkad.kr",
+      "blog.blinkad.kr",
+      "blinkad.vercel.app",
+      "blinkad.kr",
+      "blinkad-aijeonginsight-1976s-projects.vercel.app",
+      "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app"
+    ]
+  },
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "all4LanguagePagesVerified": true,
+    "metadataDescriptionHasKeyword": true
+  },
+  "sourceCommit": "a079083d23ce3b4c4cd9627d22ed0e7d012871ad",
+  "previousSourceCommit": "c1746e135bea8ebca35683eae65d169c0adfac8a",
+  "verification": {
+    "http200Paths": [
+      "/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/en/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/ja/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/zh/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/news"
+    ],
+    "liveBodyMatches": true,
+    "liveKeywordCounts": {
+      "병원마케팅": 2,
+      "외국인 마케팅": 2,
+      "구글 마케팅": 1,
+      "외국인 환자 유치": 1,
+      "AI 검색": 2,
+      "AEO·GEO": 1
+    },
+    "photos": 2,
+    "summaryAndDescriptionUpdated": true,
+    "mobileWidth": 390,
+    "horizontalOverflow": false
+  }
+}
