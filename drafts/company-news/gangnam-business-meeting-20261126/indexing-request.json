@@ -1,17 +1,36 @@
 {
   "requestedAt": "2026-11-26",
+  "checkedAt": "2026-11-26T17:33:55+09:00",
   "url": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
   "scope": "사용자 지정 한국어 게시글 1건의 색인 생성 요청",
-  "state": "waiting_for_google_login",
+  "property": "https://www.blinkad.kr/",
+  "state": "daily_quota_exceeded",
   "requestSubmitted": false,
-  "indexStatus": "not_inspected_this_turn",
+  "requestAttempted": true,
+  "indexStatus": "not_indexed_unknown_to_google_at_inspection",
   "browser": {
-    "taskSpaceId": 54,
-    "articlePage": "p1",
-    "searchConsolePage": "p2",
-    "control": "handed_off_to_user"
+    "application": "Google Chrome on MacBook",
+    "control": "cua.getApp(\"Google Chrome\")",
+    "signedIn": true
   },
-  "observed": "Google 계정 선택 화면에 Signed out 표시. 계정 비밀번호/인증 정보를 사용하거나 저장하지 않음.",
-  "next": "사용자가 로그인 완료를 알리면 같은 Ego54 p2에서 재개, https://www.blinkad.kr/ 속성의 대상URL만 검사·색인 생성 요청하고 접수 결과 확인.",
-  "otherChanges": "게시글·배포·계정권한·다른 URL 요청 변경 없음."
+  "inspectionUrl": "https://search.google.com/search-console/inspect?resource_id=https%3A%2F%2Fwww.blinkad.kr%2F&id=xeE12mlHzVj35QyS6tUbEg",
+  "observed": {
+    "beforeRequest": "URL이 Google에 등록되어 있지 않음 / Google에는 아직 알려지지 않은 URL입니다.",
+    "afterClick": "실제 URL의 색인을 생성할 수 있는지 테스트 중",
+    "finalDialogTitle": "할당량 초과",
+    "finalDialogMessage": "일일 할당량을 초과하여 이 요청을 처리할 수 없습니다. 내일 다시 제출해 주세요."
+  },
+  "next": "Google 안내에 따라 2026-11-27 이후 같은 블링크애드 속성에서 이 URL 1건만 재제출하고 실제 접수 결과 확인. 정확한 할당량 초기화 시각은 확인하지 못함. 자동 재시도 예약은 하지 않음.",
+  "previousAttempt": {
+    "browser": {
+      "taskSpaceId": 54,
+      "articlePage": "p1",
+      "searchConsolePage": "p2",
+      "control": "handed_off_to_user"
+    },
+    "state": "waiting_for_google_login",
+    "requestSubmitted": false,
+    "observed": "Google 계정 선택 화면에 Signed out 표시. 계정 비밀번호/인증 정보를 사용하거나 저장하지 않음."
+  },
+  "otherChanges": "게시글·운영배포·계정권한·다른 URL 요청 변경 없음. 사용자 지정 탭에서 트리니티 속성을 블링크애드로 전환했으며 트리니티 URL은 요청하지 않음."
 }
