@@ -22,6 +22,8 @@ if not PHOTO.exists():
     source = json.loads((ROOT / 'review-notes.json').read_text())['imageEdit']['generatedSource']
     shutil.copyfile(source, PHOTO)
 shutil.copyfile(PHOTO, DIST / 'assets' / PHOTO.name)
+for filename in POST.get('additionalAssets', []):
+    shutil.copyfile(ROOT / filename, DIST / 'assets' / filename)
 
 session = requests.Session()
 response = session.get(TEMPLATE, timeout=30)
@@ -93,6 +95,8 @@ photo_wrapper.append(caption)
 for img in soup.find_all('img'):
     if img is photo:
         continue
+    if img.get('src', '').startswith('/assets/') and (DIST / img['src'].lstrip('/')).exists():
+        continue
     if img.get('src', '').startswith('data:'):
         continue
     img['src'] = copy_asset(img['src'])
@@ -122,6 +126,7 @@ html{scroll-padding-bottom:110px}body{padding-bottom:calc(90px + env(safe-area-i
 .review-draft-badge{color:#94a3b8;font-size:12px;margin:0 0 20px;letter-spacing:.04em}
 .review-photo-caption{color:#9ca3af;font-size:12px;line-height:1.8;margin:12px 0 0}
 .review-photo-caption a{color:#8ebcff;text-decoration:underline;text-underline-offset:3px}
+.prose .review-event-figure{max-width:560px;margin:36px auto 44px}.prose .review-event-figure img{display:block;width:100%;height:auto;max-width:100%;margin:0;border-radius:8px}.prose .review-event-figure figcaption{margin-top:12px;font-size:12px;line-height:1.8;color:#9ca3af}
 .review-nav{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:1000;display:flex;gap:4px;max-width:calc(100vw - 24px);padding:4px;background:#171717f5;border:1px solid #ffffff30;border-radius:16px;box-shadow:0 8px 30px #0009}
 .review-nav a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;white-space:nowrap;color:#f9fafb;font-size:13px;border-radius:11px}
 .review-nav a:hover{background:#ffffff12}.review-list-main{max-width:1152px;margin:auto;padding:128px 20px 80px}.review-list-main h1{font-size:40px;font-weight:700;margin:16px 0 36px}.review-card{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;border:1px solid #ffffff20;border-radius:16px;overflow:hidden;background:#111}.review-card img{width:100%;height:100%;min-height:320px;object-fit:cover}.review-card-content{padding:40px 28px 40px 0;align-self:center}.review-card h2{font-size:28px;line-height:1.5;font-weight:700;margin:16px 0}.review-card p{font-size:16px;line-height:1.9;color:#aaa}.review-card small{color:#60a5fa}.review-card time{color:#999;margin-left:16px}.review-card .read{color:white;display:block;margin-top:24px}

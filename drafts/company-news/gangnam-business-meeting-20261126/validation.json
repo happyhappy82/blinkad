@@ -16,5 +16,12 @@
   "originalPhotoServed": false,
   "imageEditTool": "built-in image_gen",
   "editedPhotoSHA256": "f846e21ff2138d0f855c49d0d2f0d8894418222a8a1c8b181df5267ea59cdb80",
-  "realCellularNetworkTest": "not performed"
+  "realCellularNetworkTest": "not performed",
+  "attendeeNamesConfirmedByUser": [
+    "권순현 대표",
+    "강기현 이사"
+  ],
+  "articlePhotoCount": 2,
+  "additionalPhotoUnmodified": true,
+  "revision": "attendees-photo2"
 }

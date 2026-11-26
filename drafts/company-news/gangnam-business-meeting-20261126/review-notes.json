@@ -36,5 +36,20 @@
     "serverSessionId": 32970,
     "tunnelSessionId": 25800,
     "browserTaskSpaceId": 54
+  },
+  "attendees": {
+    "names": [
+      "권순현 대표",
+      "강기현 이사"
+    ],
+    "source": "2026-11-26 사용자 명시: 두 사람이 참석하여 컨설팅 진행",
+    "applied": "본문 첫 문단과 목록 요약"
+  },
+  "additionalPhoto": {
+    "file": "gangnam-business-meeting-event-board.jpg",
+    "source": "사용자 첨부 1-20261126_125224.jpg",
+    "position": "도입 두 문단 뒤, 첫 소제목 앞",
+    "editing": "추가 편집 없이 원본 그대로 사용. 화면에서 원본 비율 유지.",
+    "sha256": "5019494a8530fec6a79730a6b5f8e0fdaa100c4824ede0c574ab664d8bf713ab"
   }
 }
