@@ -17,7 +17,7 @@ export const NEWS_POSTS: NewsPost[] = [
     excerpt: "블링크애드 권순현 대표와 강기현 이사가 강남메디컬투어센터에서 열린 2026년도 4분기 비즈니스 미팅에 참석해 병원 관계자들을 대상으로 마케팅 컨설팅을 진행했습니다.",
     date: "2026.11.26",
     category: "컨설팅",
-    imageUrls: ["/news/gangnam-business-meeting-redacted-20261126.png", "/news/gangnam-business-meeting-consultation2-mosaic-20261126.png"],
+    imageUrls: ["/news/gangnam-business-meeting-consultation2-mosaic-20261126.png"],
     imageAlt: "강남메디컬투어센터 비즈니스 미팅에서 병원 관계자와 상담하는 블링크애드",
     imageLayout: "wide",
     content: `
