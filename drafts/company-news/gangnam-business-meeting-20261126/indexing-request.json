@@ -1,0 +1,17 @@
+{
+  "requestedAt": "2026-11-26",
+  "url": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
+  "scope": "사용자 지정 한국어 게시글 1건의 색인 생성 요청",
+  "state": "waiting_for_google_login",
+  "requestSubmitted": false,
+  "indexStatus": "not_inspected_this_turn",
+  "browser": {
+    "taskSpaceId": 54,
+    "articlePage": "p1",
+    "searchConsolePage": "p2",
+    "control": "handed_off_to_user"
+  },
+  "observed": "Google 계정 선택 화면에 Signed out 표시. 계정 비밀번호/인증 정보를 사용하거나 저장하지 않음.",
+  "next": "사용자가 로그인 완료를 알리면 같은 Ego54 p2에서 재개, https://www.blinkad.kr/ 속성의 대상URL만 검사·색인 생성 요청하고 접수 결과 확인.",
+  "otherChanges": "게시글·배포·계정권한·다른 URL 요청 변경 없음."
+}
