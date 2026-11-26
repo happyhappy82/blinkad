@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-26",
+  "scope": "회사소식 초안과 사진 편집 및 로컬 검토. 공식 사이트 발행은 요청되지 않음.",
+  "facts": {
+    "participationAndConsulting": "사용자가 행사 참여·병원 대상 컨설팅 진행 사실과 현장 원본 사진을 제공함.",
+    "eventName": "공식 모집 공문: 2026년도 4분기 강남메디컬투어센터 비즈니스 미팅",
+    "date": "공식 공문 행사일시 2026.11.26, 사용자 첨부 파일명 20261126. 공문의 금요일 표기는 달력상 목요일과 달라 기사에서는 요일을 사용하지 않음.",
+    "program": "공식 공문: 기업별 제공 AI 서비스 소개, 협력의료기관 비즈니스 미팅 및 네트워크.",
+    "organizer": "공식 공문 발신 강남구청장. 사용자 표현 의료관광협회를 공식 주최 기관명으로 확대하지 않음.",
+    "consultingDetails": "개별 병원명·계약·성과 수치·정확한 발언·세부 상담 의제는 미확인. 원고는 일반적인 마케팅 상담 범위로 작성한 검토 초안임."
+  },
+  "sources": [
+    "https://medicaltour.gangnam.go.kr/bbs/notice_ko/view.do?cid=423&lang=ko&msg_seq=1044",
+    "https://medicaltour.gangnam.go.kr/file/download.do?bbs_cd=notice_ko&msg_seq=1044&fileno=2&cid=423&lang=ko",
+    "https://www.blinkad.kr/news/gangnam-hospital-ai-search-brand-marketing-education"
+  ],
+  "imageEdit": {
+    "tool": "built-in image_gen",
+    "operations": [
+      "왼쪽 고객의 얼굴·귀·옆모습을 강한 모자이크로 가림",
+      "중앙 노트북의 전체 화면을 불투명한 짙은색으로 가림"
+    ],
+    "preserve": [
+      "오른쪽 인물",
+      "블링크애드 행사 표지",
+      "현장 구도와 배경"
+    ],
+    "sourceUnchanged": true,
+    "generatedSource": "/Users/mcbookpro/.codex/generated_images/01a1e2c6-415e-7b63-b617-906169cae9a7/exec-748f553c-5c7c-4439-a2cc-fca7f98e7e85.png"
+  },
+  "preview": {
+    "local": "http://127.0.0.1:18961/news/gangnam-medical-tour-ai-business-meeting-20261126/",
+    "https": "https://page-noon-instrumental-executive.trycloudflare.com/news/gangnam-medical-tour-ai-business-meeting-20261126/",
+    "list": "https://page-noon-instrumental-executive.trycloudflare.com/",
+    "scope": "Only the preview directory is served. Source drafts, evidence and original photo are not in the served directory.",
+    "serverSessionId": 32970,
+    "tunnelSessionId": 25800,
+    "browserTaskSpaceId": 54
+  }
+}

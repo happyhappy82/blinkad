@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-26",
+  "localPort": 18961,
+  "previewUrl": "https://page-noon-instrumental-executive.trycloudflare.com/news/gangnam-medical-tour-ai-business-meeting-20261126/",
+  "sourceBodyMatchesExport": true,
+  "localHttp": 200,
+  "externalHttps": 200,
+  "desktopWidth": 1280,
+  "mobileWidths": [
+    390,
+    320
+  ],
+  "horizontalOverflow": false,
+  "stickyNavigationTouchHeight": 44,
+  "publishedToOfficialSite": false,
+  "originalPhotoServed": false,
+  "imageEditTool": "built-in image_gen",
+  "editedPhotoSHA256": "f846e21ff2138d0f855c49d0d2f0d8894418222a8a1c8b181df5267ea59cdb80",
+  "realCellularNetworkTest": "not performed"
+}
