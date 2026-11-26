@@ -6,12 +6,14 @@
   "date": "2026.11.26",
   "category": "컨설팅",
   "imageUrls": [
-    "/assets/gangnam-business-meeting-redacted.png"
+    "/assets/gangnam-business-meeting-redacted.png",
+    "/assets/gangnam-business-meeting-consultation2-mosaic-20261126.png"
   ],
   "imageAlt": "강남메디컬투어센터 비즈니스 미팅에서 병원 관계자와 상담하는 블링크애드",
   "imageLayout": "wide",
   "additionalAssets": [
-    "gangnam-business-meeting-event-board.jpg"
+    "gangnam-business-meeting-event-board.jpg",
+    "gangnam-business-meeting-consultation2-mosaic-20261126.png"
   ],
   "caption": "강남메디컬투어센터 비즈니스 미팅 현장에서 병원 관계자와 상담을 진행하는 블링크애드.",
   "sourceNotice": "https://medicaltour.gangnam.go.kr/bbs/notice_ko/view.do?cid=423&lang=ko&msg_seq=1044",

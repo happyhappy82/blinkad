@@ -2,6 +2,7 @@
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 from hashlib import sha256
+from copy import deepcopy
 import json
 import re
 import shutil
@@ -91,6 +92,13 @@ full = soup.new_tag('a', href=POST['imageUrls'][0], target='_blank')
 full.string = '사진 크게 보기 ↗'
 caption.append(full)
 photo_wrapper.append(caption)
+for image_url in POST['imageUrls'][1:]:
+    additional = deepcopy(photo.parent)
+    additional.img['src'] = image_url
+    additional.img['alt'] = POST['imageAlt']
+    additional.img['id'] = 'additional-consultation-photo'
+    additional.img['loading'] = 'lazy'
+    caption.insert_before(additional)
 
 for img in soup.find_all('img'):
     if img is photo:

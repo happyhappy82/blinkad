@@ -21,13 +21,14 @@
     "권순현 대표",
     "강기현 이사"
   ],
-  "articlePhotoCount": 2,
+  "articlePhotoCount": 3,
   "additionalPhotoUnmodified": true,
-  "revision": "published",
+  "revision": "published-photo3",
   "humanizedBodyMatchesExport": true,
   "titleChanged": true,
   "titleProposalCount": 3,
   "attendeeNamesAndPhotosPreserved": true,
-  "sourceCommit": "a04daf6676165937d5da31d85bb04f0d4b0f7801",
-  "officialUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126"
+  "sourceCommit": "d5aaaa7d0b3dd50245a2211f3a529696cc280799",
+  "officialUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
+  "thirdPhotoScreenMosaic": true
 }

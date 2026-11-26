@@ -69,5 +69,17 @@
     "deploymentId": "dpl_FhPFzXfKPWsvZ3xQq4Pv1AYwaY4j",
     "officialUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
     "verified": "실제 운영 4언어 본문·이름·사진2개·목록·사이트맵/원본이미지SHA·PC1280/모바일390 가로넘침 없음"
+  },
+  "thirdPhoto": {
+    "file": "gangnam-business-meeting-consultation2-mosaic-20261126.png",
+    "source": "사용자 첨부 1182cc6e-0b21-40dc-a5fc-8ba3a850455f/0.jpg",
+    "edit": "노트북 화면 모자이크, 내장 image_gen 사용",
+    "placement": "첫 상담 사진 다음에 두 번째 상담 사진으로 추가; 행사 안내 사진까지 총3개",
+    "sha256": "66ee3c60309f9b1f0e613be0de8f79cb51aa4df4584aec9022764b5818f1f468",
+    "generatedSource": "/Users/mcbookpro/.codex/generated_images/01a1e2c6-415e-7b63-b617-906169cae9a7/exec-6e2d5d66-ed2c-412c-b936-b477eaf5cc0b.png",
+    "promptFile": "photo3-edit-prompt.txt",
+    "status": "published",
+    "sourceCommit": "d5aaaa7d0b3dd50245a2211f3a529696cc280799",
+    "deploymentId": "dpl_2U7LGaieGiBgUYegcdEA6kQGAXAG"
   }
 }

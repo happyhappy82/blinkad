@@ -1,0 +1,53 @@
+{
+  "requestDate": "2026-11-26",
+  "sourceCommit": "d5aaaa7d0b3dd50245a2211f3a529696cc280799",
+  "previousSourceCommit": "a04daf6676165937d5da31d85bb04f0d4b0f7801",
+  "operation": "사진1개 추가, 노트북 화면 모자이크 처리",
+  "asset": "gangnam-business-meeting-consultation2-mosaic-20261126.png",
+  "assetSHA256": "66ee3c60309f9b1f0e613be0de8f79cb51aa4df4584aec9022764b5818f1f468",
+  "assetBytes": 2095618,
+  "editingTool": "built-in image_gen",
+  "promptFile": "photo3-edit-prompt.txt",
+  "approvedTitleAndBodyPreserved": true,
+  "articlePhotoCount": 3,
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "all4LanguageArticlePagesHave3Photos": true
+  },
+  "deployment": {
+    "id": "dpl_2U7LGaieGiBgUYegcdEA6kQGAXAG",
+    "url": "blinkad-ly72pmtwr-aijeonginsight-1976s-projects.vercel.app",
+    "readyState": "READY",
+    "target": "production",
+    "aliases": [
+      "www.blinkad.kr",
+      "blog.blinkad.kr",
+      "blinkad.vercel.app",
+      "blinkad.kr",
+      "blinkad-aijeonginsight-1976s-projects.vercel.app",
+      "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app"
+    ]
+  },
+  "originalSourceSHA256": "b725c624dad9dda556e4aa1b9d82477762c4b6c3fc93ee5a83a498da813f339d",
+  "originalSourceNotPublished": true,
+  "previewPhotoCount": 3,
+  "verification": {
+    "http200Paths": [
+      "/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/en/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/ja/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/zh/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/news/gangnam-business-meeting-consultation2-mosaic-20261126.png"
+    ],
+    "photoCountPerLanguage": 3,
+    "approvedBodyPreserved": true,
+    "newImageSHA256Matches": true,
+    "viewports": [
+      1280,
+      390
+    ],
+    "horizontalOverflow": false,
+    "optimizedImageHttp": 200
+  }
+}
