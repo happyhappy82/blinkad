@@ -1,0 +1,22 @@
+{
+  "currentTitleUnchanged": true,
+  "selected": null,
+  "recommendation": 1,
+  "options": [
+    {
+      "number": 1,
+      "title": "블링크애드, 강남메디컬투어센터서 병원 컨설팅",
+      "reason": "참여 기관과 실제 수행한 컨설팅을 함께 전달"
+    },
+    {
+      "number": 2,
+      "title": "블링크애드, 병원 관계자 대상 마케팅 컨설팅",
+      "reason": "누구를 대상으로 무엇을 했는지에 집중"
+    },
+    {
+      "number": 3,
+      "title": "강남메디컬투어센터 비즈니스 미팅 참여",
+      "reason": "행사 참여 소식을 짧게 전달"
+    }
+  ]
+}

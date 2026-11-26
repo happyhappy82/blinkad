@@ -23,5 +23,9 @@
   ],
   "articlePhotoCount": 2,
   "additionalPhotoUnmodified": true,
-  "revision": "attendees-photo2"
+  "revision": "humanized3",
+  "humanizedBodyMatchesExport": true,
+  "titleChanged": false,
+  "titleProposalCount": 3,
+  "attendeeNamesAndPhotosPreserved": true
 }
