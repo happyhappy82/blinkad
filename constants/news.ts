@@ -12,6 +12,32 @@ export interface NewsPost {
 
 export const NEWS_POSTS: NewsPost[] = [
   {
+    id: "gangnam-medical-tour-ai-business-meeting-20261126",
+    title: "블링크애드, 강남메디컬투어센터서 병원 컨설팅",
+    excerpt: "블링크애드 권순현 대표와 강기현 이사가 강남메디컬투어센터에서 열린 2026년도 4분기 비즈니스 미팅에 참석해 병원 관계자들을 대상으로 마케팅 컨설팅을 진행했습니다.",
+    date: "2026.11.26",
+    category: "컨설팅",
+    imageUrls: ["/news/gangnam-business-meeting-redacted-20261126.png"],
+    imageAlt: "강남메디컬투어센터 비즈니스 미팅에서 병원 관계자와 상담하는 블링크애드",
+    imageLayout: "wide",
+    content: `
+<p>블링크애드 권순현 대표와 강기현 이사는 11월 26일 강남메디컬투어센터에서 열린 ‘2026년도 4분기 강남메디컬투어센터 비즈니스 미팅’에 참석해 병원 관계자들을 대상으로 마케팅 컨설팅을 진행했습니다.</p>
+<p>이번 행사에는 AI를 활용한 의료관광 서비스 제공 기업들과 강남구 협력의료기관이 참여했습니다. 기업별 서비스 소개와 비즈니스 미팅이 진행됐습니다.</p>
+<figure class="news-event-figure" style="max-width:560px;margin:36px auto 44px">
+<a aria-label="행사 안내 사진 크게 보기" href="/news/gangnam-business-meeting-event-board-20261126.jpg" rel="noopener noreferrer" target="_blank">
+<img alt="2026년 4분기 강남메디컬투어센터 비즈니스 미팅의 AI 프로그램 설명회 및 비즈니스 미팅 행사 안내 화면" loading="lazy" src="/news/gangnam-business-meeting-event-board-20261126.jpg" style="display:block;width:100%;height:auto;margin:0;border-radius:8px"/>
+</a>
+<figcaption style="margin-top:12px;font-size:12px;line-height:1.8;color:#9ca3af">2026년 4분기 강남메디컬투어센터 비즈니스 미팅 행사 안내. AI 프로그램 설명회와 비즈니스 미팅이 함께 진행됐습니다.</figcaption>
+</figure>
+<h2>병원 관계자 대상 컨설팅</h2>
+<p>블링크애드는 현장에서 병원 관계자들의 마케팅 고민을 듣고 병원 운영에 적용할 방향을 논의했습니다.</p>
+<p>병원마다 진료 분야와 대상 환자, 현재 운영 중인 채널이 달라 필요한 마케팅 작업도 다릅니다. 이번 미팅에서는 병원별 상황을 살펴보고 실무에서 검토할 개선 방향을 짚었습니다.</p>
+<h2>병원 마케팅 업무의 AI 활용</h2>
+<p>블링크애드는 구글 검색과 지도, 다국어 웹사이트를 관리하고 AI 검색을 고려한 콘텐츠를 운영해 병원의 외국인 마케팅을 지원합니다. 환자가 병원을 찾은 뒤 진료 정보를 이해하고 상담할 수 있도록 공식 정보와 문의 동선을 함께 정비합니다.</p>
+<p>앞으로도 의료관광 현장에서 병원 관계자들과 소통하고 병원별 진료 특성과 운영 상황에 맞춰 컨설팅과 마케팅을 지원하겠습니다.</p>
+    `,
+  },
+  {
     id: "gangnam-hospital-ai-search-brand-marketing-education",
     title: "블링크애드, 의료관광협회에서 강남구 병원 대상 AI 검색·브랜드 전략 교육 진행",
     excerpt: "블링크애드 권순현 대표가 의료관광협회에서 강남구 병원 관계자들을 대상으로 AI 검색 대응과 신환·구환의 병원 브랜드 인식, 구글 지도·웹사이트 기본 세팅을 주제로 교육을 진행했습니다.",
