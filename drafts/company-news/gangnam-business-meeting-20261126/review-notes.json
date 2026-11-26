@@ -81,5 +81,14 @@
     "status": "published",
     "sourceCommit": "d5aaaa7d0b3dd50245a2211f3a529696cc280799",
     "deploymentId": "dpl_2U7LGaieGiBgUYegcdEA6kQGAXAG"
+  },
+  "leadImageSelection": {
+    "request": "맨 위 사진을 빼고 두 번째 사진을 사용",
+    "selected": "gangnam-business-meeting-consultation2-mosaic-20261126.png",
+    "removedFromArticle": "gangnam-business-meeting-redacted-20261126.png",
+    "photoCount": 2,
+    "status": "published",
+    "sourceCommit": "c1746e135bea8ebca35683eae65d169c0adfac8a",
+    "deploymentId": "dpl_G7yg5d4a9v8XQ6BmM6xRW8J4erXN"
   }
 }

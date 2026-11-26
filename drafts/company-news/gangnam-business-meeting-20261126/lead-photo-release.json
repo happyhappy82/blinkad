@@ -1,0 +1,46 @@
+{
+  "sourceCommit": "c1746e135bea8ebca35683eae65d169c0adfac8a",
+  "previousSourceCommit": "d5aaaa7d0b3dd50245a2211f3a529696cc280799",
+  "operation": "기존 첫 사진을 글에서 제외, 두 번째 상담 사진을 대표 사진으로 선택",
+  "selectedLead": "gangnam-business-meeting-consultation2-mosaic-20261126.png",
+  "removedFromArticle": "gangnam-business-meeting-redacted-20261126.png",
+  "articlePhotoCount": 2,
+  "approvedBodyPreserved": true,
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "all4LanguageArticlePages": true,
+    "newsListLeadMatches": true,
+    "socialImageMatches": true
+  },
+  "deployment": {
+    "id": "dpl_G7yg5d4a9v8XQ6BmM6xRW8J4erXN",
+    "url": "blinkad-n1y7bl22v-aijeonginsight-1976s-projects.vercel.app",
+    "readyState": "READY",
+    "target": "production",
+    "aliases": [
+      "www.blinkad.kr",
+      "blog.blinkad.kr",
+      "blinkad.vercel.app",
+      "blinkad.kr",
+      "blinkad-aijeonginsight-1976s-projects.vercel.app",
+      "blinkad-git-main-aijeonginsight-1976s-projects.vercel.app"
+    ]
+  },
+  "verification": {
+    "http200Paths": [
+      "/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/en/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/ja/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/zh/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/news"
+    ],
+    "selectedLeadMatches": true,
+    "oldLeadRemovedFromArticle": true,
+    "photoCountPerLanguage": 2,
+    "newsListAndSocialImagesMatch": true,
+    "approvedBodyPreserved": true,
+    "mobileWidth": 390,
+    "horizontalOverflow": false
+  }
+}

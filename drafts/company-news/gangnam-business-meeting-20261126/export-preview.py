@@ -18,7 +18,7 @@ BODY = (ROOT / 'body.html').read_text()
 DETAIL = '/news/' + POST['id'] + '/'
 DIST.mkdir(exist_ok=True)
 (DIST / 'assets').mkdir(exist_ok=True)
-PHOTO = ROOT / 'gangnam-business-meeting-redacted.png'
+PHOTO = ROOT / Path(POST['imageUrls'][0]).name
 if not PHOTO.exists():
     source = json.loads((ROOT / 'review-notes.json').read_text())['imageEdit']['generatedSource']
     shutil.copyfile(source, PHOTO)
