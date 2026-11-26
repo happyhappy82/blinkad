@@ -1,14 +1,19 @@
 {
-  "status": "draft",
+  "status": "published",
   "id": "gangnam-medical-tour-ai-business-meeting-20261126",
-  "title": "블링크애드, 강남메디컬투어센터 4분기 비즈니스 미팅서 병원 대상 컨설팅 진행",
+  "title": "블링크애드, 강남메디컬투어센터서 병원 컨설팅",
   "excerpt": "블링크애드 권순현 대표와 강기현 이사가 강남메디컬투어센터에서 열린 2026년도 4분기 비즈니스 미팅에 참석해 병원 관계자들을 대상으로 마케팅 컨설팅을 진행했습니다.",
   "date": "2026.11.26",
   "category": "컨설팅",
-  "imageUrls": ["/assets/gangnam-business-meeting-redacted.png"],
+  "imageUrls": [
+    "/assets/gangnam-business-meeting-redacted.png"
+  ],
   "imageAlt": "강남메디컬투어센터 비즈니스 미팅에서 병원 관계자와 상담하는 블링크애드",
   "imageLayout": "wide",
-  "additionalAssets": ["gangnam-business-meeting-event-board.jpg"],
+  "additionalAssets": [
+    "gangnam-business-meeting-event-board.jpg"
+  ],
   "caption": "강남메디컬투어센터 비즈니스 미팅 현장에서 병원 관계자와 상담을 진행하는 블링크애드.",
-  "sourceNotice": "https://medicaltour.gangnam.go.kr/bbs/notice_ko/view.do?cid=423&lang=ko&msg_seq=1044"
+  "sourceNotice": "https://medicaltour.gangnam.go.kr/bbs/notice_ko/view.do?cid=423&lang=ko&msg_seq=1044",
+  "publishedUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126"
 }

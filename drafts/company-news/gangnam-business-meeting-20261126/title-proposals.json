@@ -1,6 +1,6 @@
 {
-  "currentTitleUnchanged": true,
-  "selected": null,
+  "currentTitleUnchanged": false,
+  "selected": 1,
   "recommendation": 1,
   "options": [
     {
@@ -18,5 +18,6 @@
       "title": "강남메디컬투어센터 비즈니스 미팅 참여",
       "reason": "행사 참여 소식을 짧게 전달"
     }
-  ]
+  ],
+  "approvedBy": "2026-11-26 사용자 커밋·배포 지시"
 }

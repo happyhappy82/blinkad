@@ -62,5 +62,12 @@
     "bundledChangeVerifierAvailable": false,
     "auditFile": "_workspace/2026-11-26-001/final.md",
     "preserved": "이름·직함·기관명·행사명·날짜·주요 서비스·사진 2개"
+  },
+  "publication": {
+    "status": "published",
+    "sourceCommit": "a04daf6676165937d5da31d85bb04f0d4b0f7801",
+    "deploymentId": "dpl_FhPFzXfKPWsvZ3xQq4Pv1AYwaY4j",
+    "officialUrl": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
+    "verified": "실제 운영 4언어 본문·이름·사진2개·목록·사이트맵/원본이미지SHA·PC1280/모바일390 가로넘침 없음"
   }
 }

@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "a04daf6676165937d5da31d85bb04f0d4b0f7801",
+  "title": "블링크애드, 강남메디컬투어센터서 병원 컨설팅",
+  "url": "https://www.blinkad.kr/news/gangnam-medical-tour-ai-business-meeting-20261126",
+  "approvedBy": "2026-11-26 사용자 커밋·배포 지시",
+  "build": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "prerenderedRoutes": 681,
+    "newArticleRoutes": [
+      "/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/en/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/ja/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/zh/news/gangnam-medical-tour-ai-business-meeting-20261126"
+    ],
+    "approvedKoreanBodyMatches": true,
+    "articlePhotoCountPerLanguage": 2,
+    "existingDictionaryValuesUnchanged": true
+  },
+  "images": {
+    "gangnam-business-meeting-event-board-20261126.jpg": "5019494a8530fec6a79730a6b5f8e0fdaa100c4824ede0c574ab664d8bf713ab",
+    "gangnam-business-meeting-redacted-20261126.png": "f846e21ff2138d0f855c49d0d2f0d8894418222a8a1c8b181df5267ea59cdb80"
+  },
+  "deployment": {
+    "url": "https://blinkad-raww559q0-aijeonginsight-1976s-projects.vercel.app",
+    "state": "READY",
+    "id": "dpl_FhPFzXfKPWsvZ3xQq4Pv1AYwaY4j",
+    "aliases": [
+      "www.blinkad.kr",
+      "blinkad.kr"
+    ]
+  },
+  "publicVerification": {
+    "http200Paths": [
+      "/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/en/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/ja/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/zh/news/gangnam-medical-tour-ai-business-meeting-20261126",
+      "/news",
+      "/news/sitemap.xml",
+      "/news/gangnam-business-meeting-redacted-20261126.png",
+      "/news/gangnam-business-meeting-event-board-20261126.jpg"
+    ],
+    "approvedKoreanBodyMatches": true,
+    "twoPhotosPerLanguage": true,
+    "imageFilesMatchApproved": true,
+    "newsListAndSitemapContainArticle": true,
+    "viewports": [
+      1280,
+      390
+    ],
+    "horizontalOverflow": false
+  }
+}
