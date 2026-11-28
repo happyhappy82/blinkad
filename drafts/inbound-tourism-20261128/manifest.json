@@ -1,0 +1,27 @@
+{
+  "topic": "T02",
+  "version": 1,
+  "status": "draft_for_user_review",
+  "created_at": "2026-11-28T15:18:01.018260+09:00",
+  "channel": "openads",
+  "article_file": "T02-japan-repeat-openads-v1.md",
+  "reading_copy": "/Users/mcbookpro/Documents/Claude Code/BLINKAD_JAPAN_REPEAT_VISIT_OPENADS_DRAFT_20261128.md",
+  "body_sha256": "eedd17a37f9ba7782130ac2d56891454a4fa8f7dbf35d0d4e2d21e05a18ce6ec",
+  "body_characters": 2575,
+  "source": {
+    "url": "https://know.tour.go.kr/stat/fReportsOfForeignerDisDetail19Re.do?seq=100538",
+    "period": "2026-Q3",
+    "provisional": true,
+    "japan_korea_repeat_visit_pct": 73.2,
+    "physical_page": 11,
+    "printed_page": 5,
+    "pdf_sha256": "a302d6b357f46dea701a6f6499c207b94f75e864dbf2f05a0c517c0936659c71"
+  },
+  "reviewer": "same_author_self_review",
+  "published": false,
+  "scheduled": false,
+  "platform_draft_saved": false,
+  "thumbnail_created": false,
+  "naver_version_created": false,
+  "approved_existing_articles_modified": false
+}
