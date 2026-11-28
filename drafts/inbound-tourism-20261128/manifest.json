@@ -1,13 +1,13 @@
 {
   "topic": "T02",
-  "version": 1,
-  "status": "draft_for_user_review",
+  "version": 2,
+  "status": "revised_draft_for_user_review",
   "created_at": "2026-11-28T15:18:01.018260+09:00",
   "channel": "openads",
-  "article_file": "T02-japan-repeat-openads-v1.md",
+  "article_file": "T02-japan-repeat-openads-v2.md",
   "reading_copy": "/Users/mcbookpro/Documents/Claude Code/BLINKAD_JAPAN_REPEAT_VISIT_OPENADS_DRAFT_20261128.md",
-  "body_sha256": "eedd17a37f9ba7782130ac2d56891454a4fa8f7dbf35d0d4e2d21e05a18ce6ec",
-  "body_characters": 2575,
+  "body_sha256": "ac7920cd4e9217ec3f78e234d585434bf17cfee3545ccd7c58876759fcac1400",
+  "body_characters": 2502,
   "source": {
     "url": "https://know.tour.go.kr/stat/fReportsOfForeignerDisDetail19Re.do?seq=100538",
     "period": "2026-Q3",
@@ -23,5 +23,16 @@
   "platform_draft_saved": false,
   "thumbnail_created": false,
   "naver_version_created": false,
-  "approved_existing_articles_modified": false
+  "approved_existing_articles_modified": false,
+  "previous_versions": [
+    {
+      "version": 1,
+      "article_file": "T02-japan-repeat-openads-v1.md",
+      "body_sha256": "eedd17a37f9ba7782130ac2d56891454a4fa8f7dbf35d0d4e2d21e05a18ce6ec",
+      "commit": "e07ce23"
+    }
+  ],
+  "updated_at": "2026-11-28T16:27:52.729199+09:00",
+  "humanize_output": "/Users/mcbookpro/Documents/Claude Code/_workspace/2026-11-28-002/final.md",
+  "voice": "블링크애드 전문가가 대표님들에게 차근차근 설명하는 격식체; 과도한 권유·추상 표현 축소"
 }
